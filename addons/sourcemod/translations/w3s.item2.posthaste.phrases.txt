@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"posthaste_temName"
+	{
+		"en"		"Post Haste"
+	}
+	"posthaste_ItemShortDesc"
+	{
+		"en"		"+3% speed"
+	}
+	"posthaste_temDesc"
+	{
+		"en"		"+3% speed."
+	}
+}

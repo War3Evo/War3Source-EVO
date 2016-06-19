@@ -1,0 +1,83 @@
+"Phrases"
+{
+	//<shortname>_RaceName
+	"warden_RaceName"
+	{
+		"en"		"Warden"
+	}
+
+	//<shortname>_race_shortdesc
+	"warden_race_shortdesc"
+	{
+		"en"		"Immunities,Force Staff"
+	}
+
+	//skills:
+	//<shortname>_skill_<SkillNameIdentifier> for the skill name
+	//<shortname>_skill_<SkillNameIdentifier>_desc for the skill description
+	"warden_skill_FanOfKnives"
+	{
+		"en"		"Fan of Knives"
+	}
+	"warden_skill_FanOfKnives_desc"
+	{
+		"en"		"#1# chance to activate when attacked\nDeals #2# damage in a #3# radius around you"
+	}
+
+	"warden_skill_Immunity"
+	{
+		"en"		"Immunity"
+	}
+	"warden_skill_Immunity_desc"
+	{
+		"en"		"#1# Immunity from ultimates.\nCannot buy barrier of hope"
+	}
+
+	"warden_skill_ShadowStrike"
+	{
+		"en"		"Shadow Strike"
+	}
+	"warden_skill_ShadowStrike_desc"
+	{
+		"en"		"#1# chance to poison an enemy on hit\nDeals initial damage and damage over time"
+	}
+	"warden_skill_ImpShadowStrike"
+	{
+		"en"		"Improved Shadow Strike"
+	}
+	"warden_skill_ImpShadowStrike_desc"
+	{
+		"en"		"Increases the number of Shadow Strike ticks\nReduces Shadow Strike damage output to keep damage the same"
+	}
+	"warden_skill_Vengence"
+	{
+		"en"		"Vengence"
+	}
+	"warden_skill_Vengence_desc"
+	{
+		"en"		"Respawning when you die"
+	}
+
+	"warden_skill_VengenceTF"
+	{
+		"en"		"Vengence"
+	}
+	"warden_skill_VengenceTF_desc"
+	{
+		"en"		"Heals a percentage of your max HP, capped at #1#\nHeal is halved if no enemies are afflicted with Shadow Strike\nChance to teleport the Warden to an enemy afflicted by Shadow Strike"
+	}
+
+	"warden_skill_ForceStaff"
+	{
+		"en"		"Vengence"
+	}
+	"warden_skill_ForceStaff_desc"
+	{
+		"en"		"Pushes enemies away from you in a large radius\nDoes not respect skill immunity\n#1# chance to push enemies damaged by fan of knives at #2# power"
+	}
+
+	"Revived by Vengence"
+	{
+		"en"		"Revived by Vengence"
+	}
+}

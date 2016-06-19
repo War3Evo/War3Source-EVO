@@ -1,0 +1,76 @@
+"Phrases"
+{
+	//<shortname>_RaceName
+	"transorcerer_RaceName"
+	{
+		"en"		"Transmutation Sorcerer"
+	}
+
+	//skills:
+	//<shortname>_skill_<SkillNameIdentifier> for the skill name
+	//<shortname>_skill_<SkillNameIdentifier>_desc for the skill description
+	"transorcerer_skill_UnholyAura"
+	{
+		"en"		"Unholy Aura"
+	}
+	"transorcerer_skill_UnholyAura_desc"
+	{
+		"en"		"Enemies within your range receive Slow effects.\nLasts #1# seconds."
+	}
+
+	"transorcerer_skill_SlowWard"
+	{
+		"en"		"Slow Ward"
+	}
+	"transorcerer_skill_SlowWard_desc"
+	{
+		"en"		"Slows down your enemies! (Slows down enemies greatly) (+ability2)"
+	}
+
+	"transorcerer_skill_Summon"
+	{
+		"en"		"Summon Headless Horseman"
+	}
+	"transorcerer_skill_Summon_desc"
+	{
+		"en"		"Summons the Headless Horseman in front of you.(+ultimate)\nLasts 20/25/30/35 seconds. Add +60 seconds for the cooldown.\nIf it attacks an ally, it will die."
+	}
+
+	"transorcerer_skill_Cursed"
+	{
+		"en"		"Cursed"
+	}
+	"transorcerer_skill_Cursed_desc"
+	{
+		"en"		"Puts a mark of death on your eneimes\nin a radius of #1#\nfor #2# seconds (+ability)"
+	}
+
+	"HolyShieldProtected"
+	{
+		"en"		"Holy Shield protected you from 'Unholy Aura'"
+	}
+	"CursedByDK"
+	{
+		"en"		"Cursed by Death Knight %s"
+	}
+	"NecklaceProtected"
+	{		
+		"en"		"Necklace protected you from 'Cursed!'"
+	}
+	"UnknownImmune"
+	{		
+		"en"		"For some reason your immune to the ultimate: 'Cursed!'"
+	}
+	"CursedEnemies"
+	{
+		"en"		"You Cursed %i enemies!"
+	}
+	"HolyShieldSoulSwap"
+	{
+		"en"		"Your Holy Shield item protected you from 'Soul Swap'"
+	}
+	"SlowedByAntiwards"
+	{
+		"en"		"Your being Slowed! QUICK -->> Open Chatbox and type: antiwards"
+	}
+}

@@ -1,0 +1,62 @@
+"Phrases"
+{
+	//<shortname>_RaceName
+	"nightelf_RaceName"
+	{
+		"en"		"Night Elf"
+	}
+
+	//<shortname>_race_shortdesc
+	"nightelf_race_shortdesc"
+	{
+		"en"		"Evasion,Roots,Auras"
+	}
+
+	//skills:
+	//<shortname>_skill_<SkillNameIdentifier> for the skill name
+	//<shortname>_skill_<SkillNameIdentifier>_desc for the skill description
+	"nightelf_skill_Evasion"
+	{
+		"en"		"Evasion"
+	}
+	"nightelf_skill_Evasion_desc"
+	{
+		"en"		"#1# chance of evading a shot"
+	}
+
+	"nightelf_skill_Shadowmeld"
+	{
+		"en"		"Shadowmeld"
+	}
+	"nightelf_skill_Shadowmeld_desc"
+	{
+		"en"		"(+ability) Hold down to slip into the shadows.\nYou become #1# visible.\n(does not stack with cloak)"
+	}
+
+	"nightelf_skill_ThornsAura"
+	{
+		"en"		"Thorns Aura"
+	}
+	"nightelf_skill_ThornsAura_desc"
+	{
+		"en"		"You deal #1# of damage recieved to your attacker"
+	}
+
+	"nightelf_skill_TrueshotAura"
+	{
+		"en"		"Trueshot Aura"
+	}
+	"nightelf_skill_TrueshotAura_desc"
+	{
+		"en"		"Your attacks deal #1# more damage\nPhlogistinator messes with your aura and can not trigger this skill."
+	}
+
+	"nightelf_skill_EntanglingRoots"
+	{
+		"en"		"Entangling Roots"
+	}
+	"nightelf_skill_EntanglingRoots_desc"
+	{
+		"en"		"Bind enemies to the ground,\nrendering them immobile for #1# seconds\nDistance of #2# units."
+	}
+}

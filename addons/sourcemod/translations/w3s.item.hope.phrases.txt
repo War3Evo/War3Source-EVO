@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"hope_ItemName"
+	{
+		"en"		"Barrier of Hope"
+	}
+	"hope_ItemShortDesc"
+	{
+		"en"		"Item-Immunity (not oil)"
+	}
+	"hope_ItemDesc"
+	{
+		"en"		"Immunity from items, except oil."
+	}
+}

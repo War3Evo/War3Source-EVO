@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"shield_ItemName"
+	{
+		"en"		"Holy Shield"
+	}
+	"shield_ItemShortDesc"
+	{
+		"en"		"immunity to skills"
+	}
+	"shield_ItemDesc"
+	{
+		"en"		"You will be immune to enemy abilities."
+	}
+}

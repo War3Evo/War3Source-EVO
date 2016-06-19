@@ -1,0 +1,87 @@
+"Phrases"
+{
+	//<shortname>_RaceName
+	"undead_RaceName"
+	{
+		"en"		"Undead Scourge"
+	}
+
+	//<shortname>_race_shortdesc
+	"undead_race_shortdesc"
+	{
+		"en"		"Suicidal,fast,leech hp"
+	}
+
+	//skills:
+	//<shortname>_skill_<SkillNameIdentifier> for the skill name
+	//<shortname>_skill_<SkillNameIdentifier>_desc for the skill description
+	"undead_skill_VampiricAura"
+	{
+		"en"		"Vampiric Aura"
+	}
+	"undead_skill_VampiricAura_desc"
+	{
+		"en"		"Leech Health\nYou recieve up to #1# of your damage dealt as Health\nCan not buy item mask any level"
+	}
+
+	"undead_skill_UnholyAura"
+	{
+		"en"		"Unholy Aura"
+	}
+	"undead_skill_UnholyAura_desc"
+	{
+		"en"		"You run #1# faster"
+	}
+
+	"undead_skill_Levitation"
+	{
+		"en"		"Levitation"
+	}
+	"undead_skill_Levitation_desc"
+	{
+		"en"		"You can jump higher\n#1# less gravity"
+	}
+
+	"undead_skill_Reincarnation"
+	{
+		"en"		"Suicide Bomber"
+	}
+	"undead_skill_Reincarnation_desc"
+	{
+		"en"		"When you die, you revive on the spot.\nHas a 60/50/40/30 second cooldown."
+	}
+
+	"Suicide bomber BUILDING damage: {amount} at distance {amount}"
+	{
+		"#format"	"{1:d},{2:f}"
+		"en"		"[W3S] Suicide bomber BUILDING damage: {1} at distance {2}"
+	}
+	"Player {player} has immunity (protecting buildings)"
+	{
+		"#format"	"{1:d}"
+		"en"		"[W3S] Player {1} has immunity (protecting buildings)"
+	}
+	"Suicide bomber damage: {amount} to {amount} at distance {amount}"
+	{
+		"#format"	"{1:d},{2:d},{3:f}"
+		"en"		"[W3S] Suicide bomber damage: {1} to {2} at distance {3}"
+	}
+	"Could not damage player {player} due to immunity"
+	{
+		"#format"	"{1:d}"
+		"en"		"[W3S] Could not damage player {1} due to immunity"
+	}
+	"Leeched +{amount} HP"
+	{
+		"#format"	"{1:d}"
+		"en"		"[W3S] Leeched +{1} HP"
+	}
+	"The mask would suffocate me"
+	{
+		"en"		"{lightgreen}The mask would suffocate me!"
+	}
+	"Your Reincarnation skill is on cooldown"
+	{
+		"en"		"{blue}Your Reincarnation skill is on cooldown."
+	}
+}

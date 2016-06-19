@@ -1,0 +1,99 @@
+"Phrases"
+{
+	//<shortname>_RaceName
+	"humanally_RaceName"
+	{
+		"en"		"Human Alliance"
+	}
+
+	//<shortname>_race_shortdesc
+	"humanally_race_shortdesc"
+	{
+		"en"		"Teleport,Invis,+hp"
+	}
+
+	//skills:
+	//<shortname>_skill_<SkillNameIdentifier> for the skill name
+	//<shortname>_skill_<SkillNameIdentifier>_desc for the skill description
+	"humanally_skill_Invisibility"
+	{
+		"en"		"Invisibility"
+	}
+	"humanally_skill_Invisibility_desc"
+	{
+		"en"		"Reduces visibility to #1# percent."
+	}
+
+	"humanally_skill_DevotionAura"
+	{
+		"en"		"Devotion Aura"
+	}
+	"humanally_skill_DevotionAura_desc"
+	{
+		"en"		"Gives you additional #1# health."
+	}
+
+	"humanally_skill_Bash"
+	{
+		"en"		"Bash"
+	}
+	"humanally_skill_Bash_desc"
+	{
+		"en"		"#1#% chance to bash the enemy.\nRenders the enemy immobile for 0.2 seconds."
+	}
+
+	"humanally_skill_Teleport"
+	{
+		"en"		"Teleport"
+	}
+	"humanally_skill_Teleport_desc"
+	{
+		"en"		"Teleport toward where you aim.\n#1# range. Ultimate Immunity has #2# blocking radius."
+	}
+
+	"humanally_skill_ImpTeleport"
+	{
+		"en"		"Improved Teleport"
+	}
+	"humanally_skill_ImpTeleport_desc"
+	{
+		"en"		"Ultimate Immunity has #1# blocking radius."
+	}
+
+	"Can't use teleport because you have been silenced!"
+	{
+		"en"		"Can't use teleport because you have been silenced!"
+	}
+	"Distancetooshort"
+	{
+		"en"		"Distance too short."
+	}
+	"NoEmptyLocation"
+	{
+		"en"		"No Empty Location!"
+	}
+	"CantTeleportHere"
+	{
+		"en"		"Can not Teleport Here"
+	}
+	"Teleported"
+	{
+		"en"		"Teleported"
+	}
+	"If I were to disappear into the shadows any further, I'd never return!"
+	{
+		"en"		"If I were to disappear into the shadows any further, I'd never return!"
+	}
+	"The gauntlet is too heavy ..."
+	{
+		"en"		"The gauntlet is too heavy ..."
+	}
+	"RcvdBash"
+	{
+		"en"		"You got Bashed!"
+	}
+	"Bashed"
+	{
+		"en"		"You Bashed a Player!"
+	}
+}

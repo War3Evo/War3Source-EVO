@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"courage_ItemName"
+	{
+		"en"		"Armor of Courage"
+	}
+	"courage_ItemShortDesc"
+	{
+		"en"		"up to 15% dmg reduction"
+	}
+	"courage_ItemDesc"
+	{
+		"en"		"increases up to 15% resistance against all physcial damage\n(does not block magical)\n(does not stack with other armor increases)"
+	}
+}

@@ -1,0 +1,75 @@
+"Phrases"
+{
+	//<shortname>_RaceName
+	"bh_RaceName"
+	{
+		"en"		"Blood Hunter"
+	}
+
+	//<shortname>_race_shortdesc
+	"bh_race_shortdesc"
+	{
+		"en"		"Hemorrhage,Feast"
+	}
+
+	//skills:
+	//<shortname>_skill_<SkillNameIdentifier> for the skill name
+	//<shortname>_skill_<SkillNameIdentifier>_desc for the skill description
+	"bh_skill_BloodCrazy"
+	{
+		"en"		"Blood Crazy"
+	}
+	"bh_skill_BloodCrazy_desc"
+	{
+		"en"		"Those damaged by you will bleed for #1# HP per second for #2# seconds\nOn activation, has cooldown of #3# seconds."
+	}
+
+	"bh_skill_Feast"
+	{
+		"en"		"Feast"
+	}
+	"bh_skill_Feast_desc"
+	{
+		"en"		"Heal #1# percent of the victim's max HP on kill"
+	}
+
+	"bh_skill_BloodSense"
+	{
+		"en"		"Blood Sense"
+	}
+	"bh_skill_BloodSense_desc"
+	{
+		"en"		"Those who are below #1# max HP take critical damage"
+	}
+
+	"bh_skill_Hemorrhage"
+	{
+		"en"		"Hemorrhage"
+	}
+	"bh_skill_Hemorrhage_desc"
+	{
+		"en"		"The target will take damage if he moves.\nDuration Scales #1# seconds."
+	}
+
+	"bh_skill_ImprovedHemorrhage"
+	{
+		"en"		"Hemorrhage"
+	}
+	"bh_skill_ImprovedHemorrhage_desc"
+	{
+		"en"		"You heal #1# of the damage rupture deals."
+	}
+
+	"You have been ruptured! You take damage if you move!"
+	{
+		"en"		"You have been ruptured! You take damage if you move!"
+	}
+	"Rupture!"
+	{
+		"en"		"Rupture!"
+	}
+	"Double Damage against low HP enemies!"
+	{
+		"en"		"[W3S] Double Damage against low HP enemies!"
+	}
+}

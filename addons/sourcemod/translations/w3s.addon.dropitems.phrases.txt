@@ -1,0 +1,45 @@
+"Phrases"
+{
+	"You have dropped {item}"
+	{
+		"#format"	"{1:s}"
+		"en"		"You have dropped {green}{1}{default}"
+	}
+	"You do not have shop items"
+	{
+		"en"		"You do not have shop items that can be dropped"
+	}
+	"You must be alive to use this command"
+	{
+		"en"		"You must be alive to use this command"
+	}
+	"Admin dropped your {item}"
+	{
+		"#format"	"{1:s}"
+		"en"		"Admin dropped your {green}{1}{default}"
+	}
+	"You have successfully dropped {amount} shop items on target {target}"
+	{
+		"#format"	"{1:d},{2:t}"
+		"en"		"[W3S] You have successfully dropped {1} shop items on target {2}"
+	}
+	"Selected players did not have shop items"
+	{
+		"en"		"[W3S] Selected players did not have shop items that can be dropped"
+	}
+	"{item} lost by {player}"
+	{
+		"#format"	"{1:s},{2:N}"
+		"en"		"{1}\nLost by {2}"
+	}
+	"{item}"
+	{
+		"#format"	"{1:s}"
+		"en"		"{1}"
+	}
+	"You have picked up {item}"
+	{
+		"#format"	"{1:s}"
+		"en"		"You have picked up {green}{1}{default}"
+	}
+}
