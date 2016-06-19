@@ -2149,7 +2149,7 @@ methodmap W3player
 			}
 		}
 	}
-
+#if defined _War3Source_Talents_included
 	public int getpoint(TFClassType ClassType, eTree TheTree, eBox TheBox)
 	{
 		return War3_GetTalentBox(this.index, ClassType, TheTree, TheBox);
@@ -2162,6 +2162,7 @@ methodmap W3player
 	{
 		War3_LoadTalents(this.index);
 	}
+#endif
 }
 
 
