@@ -9,3 +9,7 @@ Currently not commpatible with the Original War3Source Races. May add compatibil
 
 Translations do not fully work on this version, as I ripped out a lot of translations during updates for my private version.  English is the language used without translation files.
 
+
+# Notes
+
+* Compiles fine for TF2, but you may need certain extensions to run
