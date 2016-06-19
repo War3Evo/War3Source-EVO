@@ -13,3 +13,4 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 # Notes
 
 * Compiles fine for TF2, but you may need certain extensions to run
+* You need to go to change the contents in the file War3Source-EVO/addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc in order to compile for your platform
