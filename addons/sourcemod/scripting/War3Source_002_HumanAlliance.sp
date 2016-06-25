@@ -123,7 +123,7 @@ public OnW3Denyable(W3DENY:event,client)
 
 public OnPluginStart()
 {
-	CreateConVar("HumanAlliance",PLUGIN_VERSION,"War3Source:EVO Human Alliance",FCVAR_PLUGIN);
+	CreateConVar("HumanAlliance",PLUGIN_VERSION,"War3Source:EVO Human Alliance");
 	ultCooldownCvar=CreateConVar("war3_human_teleport_cooldown","20.0","Cooldown between teleports");
 
 	//LoadTranslations("w3s.race.humanally.phrases");
