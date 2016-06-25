@@ -102,7 +102,7 @@ public OnWar3PlayerAuthed(client)
 
 			//strcopy(p_bank_steamid[client], 63, steamid);
 
-			new String:query[256];
+			char query[256];
 			Format(query, sizeof(query), "SELECT gold,withdraw_stamp FROM `%s` WHERE `sid` = '%s';",DATABASENAME,steamid);
 			SQL_TQuery(g_hDatabase, SQLCallback_PlayerJoin, query, GetClientUserId(client));
 			return;

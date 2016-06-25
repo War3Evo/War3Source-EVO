@@ -234,32 +234,75 @@ public SQLCallback_PlayerJoin(Handle:db, Handle:hndl, const String:error[], any:
 
 	if(hndl == INVALID_HANDLE)
 	{
-		BankLog("SQLCallback_PlayerJoin: Error looking up player gold,withdraw stamp. %s.", error);
-	}
-	else
-	{
-		int retrievals;
-		while(SQL_MoreRows(hndl))
+		//BankLog("SQLCallback_PlayerJoin: Error looking up player gold,withdraw stamp. %s.", error);
+
+		//Bank Does not exists .. create one
+		char longquery2[4000];
+		if(War3SQLType==SQLType_MySQL)
 		{
-			if(SQL_FetchRow(hndl))
+			Format(longquery2,sizeof(longquery2),"\
+			CREATE TABLE `bank` ( \
+			  `sid` varchar(64) NOT NULL, \
+			  `gold` bigint(20) NOT NULL, \
+			  `withdraw_stamp` bigint(20) NOT NULL, \
+			  PRIMARY KEY (`sid`), \
+			  UNIQUE KEY `sid` (`sid`) \
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
+		}
+		else
+		{
+			//sqlite3
+			Format(longquery2,sizeof(longquery2),"\
+			CREATE TABLE bank ( \
+			  sid TEXT NOT NULL, \
+			  gold INT NOT NULL, \
+			  withdraw_stamp INT NOT NULL, \
+			  PRIMARY KEY (sid), \
+			  CONSTRAINT sid UNIQUE (sid) \
+			)");
+		}
+
+		if(!SQL_FastQueryLogOnError(g_hDatabase,longquery2))
+		{
+			SetFailState("[War3Source:EVO] SQL_FastQueryLogOnError longquery2 ERROR in the creation of the SQL table bank");
+			return;
+		}
+		else
+		{
+			// try again
+			char steamid[64];
+			if(g_hDatabase && ValidPlayer(client) && !IsFakeClient(client) && GetClientAuthId(client,AuthId_Steam2,STRING(steamid),true))
 			{
-				p_bank[client][W3Bank_gold]=W3SQLPlayerInt(hndl,"gold");
-
-				p_bank[client][W3Bank_timestamp]=W3SQLPlayerInt(hndl,"withdraw_stamp");
-
-				retrievals++;
+				char query[256];
+				Format(query, sizeof(query), "SELECT gold,withdraw_stamp FROM `%s` WHERE `sid` = '%s';",DATABASENAME,steamid);
+				SQL_TQuery(g_hDatabase, SQLCallback_PlayerJoin, query, GetClientUserId(client));
+				PrintToServer("hope this doesn't loop... SELECT gold,withdraw_stamp FROM `%s` WHERE `sid` = '%s';",DATABASENAME,steamid);
+				return;
 			}
 		}
-		if(retrievals>0)
-		{
-			p_bank[client][hasbank]=true;
-			Call_StartForward(g_OnWar3_BANK_PlayerLoadData);
-			Call_PushCell(client);
-			Call_Finish(dummy);
-		}
-		//new inserts;  ?? not sure if needed from War3Source_Engine_DatabaseSaveXP.sp .. removed the rest
-		//War3_ChatMessage(client,"Successfully retrieved gems save data");
 	}
+
+	int retrievals;
+	while(SQL_MoreRows(hndl))
+	{
+		if(SQL_FetchRow(hndl))
+		{
+			p_bank[client][W3Bank_gold]=W3SQLPlayerInt(hndl,"gold");
+
+			p_bank[client][W3Bank_timestamp]=W3SQLPlayerInt(hndl,"withdraw_stamp");
+
+			retrievals++;
+		}
+	}
+	if(retrievals>0)
+	{
+		p_bank[client][hasbank]=true;
+		Call_StartForward(g_OnWar3_BANK_PlayerLoadData);
+		Call_PushCell(client);
+		Call_Finish(dummy);
+	}
+	//new inserts;  ?? not sure if needed from War3Source_Engine_DatabaseSaveXP.sp .. removed the rest
+	//War3_ChatMessage(client,"Successfully retrieved gems save data");
 }
 
 public withdrawalTime0(time)
