@@ -16,7 +16,7 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 * You need to go to change the contents in the file War3Source-EVO/addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc in order to compile for your platform
 
 
-# Convars
+# All Game Mode Convars
 
 * war3AllowInstantRaceChange - 0 disabled / 1 enabled. Allows players to change race instantly in spawn. (default 1)
 * war3pause - 0 disabled / 1 enabled. Pauses all War3Source stuff, so plugins can be reloaded easier. (default 0)
@@ -51,5 +51,6 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 * war3_command_blocking - 0 disabled / 1 enabled. block chat commands from showing up. (default 0)
 * war3_minimumultimatelevel - (10 default)
 
-## TF2 GAME
+# TF2 Game Mode Convar
+
 * tf2_attributes - 0 disabled / 1 enabled. (default 0)
