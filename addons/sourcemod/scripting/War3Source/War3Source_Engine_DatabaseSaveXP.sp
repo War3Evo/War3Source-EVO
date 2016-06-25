@@ -111,13 +111,13 @@ public War3Source_Engine_DatabaseSaveXP_OnWar3Event(client)
 
 Initialize_SQLTable()
 {
-	PrintToServer("[War3Source:EVO] Initialize_SQLTable");
+	PrintToServer("[War3Source:EVO] Initialize SQLTable Main Table");
 	if(hDB!=INVALID_HANDLE)
 	{
 
 		SQL_LockDatabase(hDB); //non threading operations here, done once on plugin load only, not map change
 
-		new String:shortquery[512];
+		char shortquery[512];
 
 /*
 		//war3sourceraces
@@ -148,7 +148,7 @@ Initialize_SQLTable()
 
 
 
-		new Handle:query;
+		Handle query;
 		//main table
 		Format(shortquery,sizeof(shortquery),"SELECT * from %s LIMIT 1",XP_GOLD_DATABASENAME);
 		query=SQL_Query(hDB,shortquery);
@@ -156,11 +156,11 @@ Initialize_SQLTable()
 
 		if(query==INVALID_HANDLE)
 		{
-			new String:createtable[3000];
+			char createtable[3000];
 			Format(createtable,sizeof(createtable),
 			"CREATE TABLE %s (steamid varchar(64) UNIQUE , name varchar(64),   currentrace varchar(16),     gold int,    diamonds int,    platinum int,  total_level int,     total_xp int, levelbankV2 int,   last_seen int) %s",
 			XP_GOLD_DATABASENAME,
-			W3GetVar(hDatabaseType)==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"" );
+			War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"" );
 
 			if(!SQL_FastQueryLogOnError(hDB,createtable))
 			{
@@ -170,6 +170,10 @@ Initialize_SQLTable()
 		else
 		{
 
+			if(!SQL_FieldNameToNum(query, "accountid", dummy))
+			{
+				AddColumn(hDB,"accountid","int",XP_GOLD_DATABASENAME);
+			}
 			if(!SQL_FieldNameToNum(query, "levelbankV2", dummy))
 			{
 				AddColumn(hDB,"levelbankV2","int",XP_GOLD_DATABASENAME);
@@ -207,7 +211,7 @@ Initialize_SQLTable()
 		{
 			PrintToServer("[War3Source:EVO] %s doesnt exist, creating!!!",XP_GOLD_DATABASENAME_RACEDATA1) ;
 			new String:longquery2[4000];
-			Format(longquery2,sizeof(longquery2),"CREATE TABLE %s (steamid varchar(64)  , raceshortname varchar(16),   level int,  xp int  , last_seen int)  %s",XP_GOLD_DATABASENAME_RACEDATA1,W3GetVar(hDatabaseType)==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
+			Format(longquery2,sizeof(longquery2),"CREATE TABLE %s (steamid varchar(64)  , raceshortname varchar(16),   level int,  xp int  , last_seen int)  %s",XP_GOLD_DATABASENAME_RACEDATA1,War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
 
 			Format(shortquery,sizeof(shortquery),"CREATE UNIQUE INDEX steamid ON %s (steamid,raceshortname)",XP_GOLD_DATABASENAME_RACEDATA1);
 

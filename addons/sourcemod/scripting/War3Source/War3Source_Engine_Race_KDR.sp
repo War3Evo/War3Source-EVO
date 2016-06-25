@@ -54,26 +54,39 @@ public War3Source_Engine_Race_KDR_OnWar3Event(client)
 
 War3Source_Engine_Race_KDR_Initialize_SQLTable()
 {
-	PrintToServer("[War3Source:EVO] Initialize_SQLTable");
+	PrintToServer("[War3Source:EVO] Initialize SQLTable RACE KDR");
 	if(hDB!=INVALID_HANDLE)
 	{
 
 		SQL_LockDatabase(hDB); //non threading operations here, done once on plugin load only, not map change
 
 		//main table
-		new Handle:query=SQL_Query(hDB,"SELECT * from war3raceskdr_v2 LIMIT 1");
+		Handle query=SQL_Query(hDB,"SELECT * from war3raceskdr_v2 LIMIT 1");
 
 
 		if(query==INVALID_HANDLE)
 		{
-			new String:createtable[3000];
-			Format(createtable,sizeof(createtable),
-			"CREATE TABLE IF NOT EXISTS `war3raceskdr_v2` ( \
-			`hostname` text, \
-			`raceshortname` varchar(16) NOT NULL, \
-			`kills` int(11) NOT NULL DEFAULT '0', \
-			`deaths` int(11) NOT NULL DEFAULT '0' \
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
+			char createtable[3000];
+			if(War3SQLType==SQLType_MySQL)
+			{
+				Format(createtable,sizeof(createtable),
+				"CREATE TABLE IF NOT EXISTS `war3raceskdr_v2` ( \
+				`hostname` text, \
+				`raceshortname` varchar(16) NOT NULL, \
+				`kills` int(11) NOT NULL DEFAULT '0', \
+				`deaths` int(11) NOT NULL DEFAULT '0' \
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
+			}
+			else if(War3SQLType==SQLType_SQLite)
+			{
+				Format(createtable,sizeof(createtable),
+				"CREATE TABLE IF NOT EXISTS war3raceskdr_v2 ( \
+				hostname TEXT, \
+				raceshortname TEXT NOT NULL, \
+				kills INTEGER NOT NULL DEFAULT 0, \
+				deaths INTEGER NOT NULL DEFAULT 0 \
+				)");
+			}
 
 			if(!SQL_FastQueryLogOnError(hDB,createtable))
 			{

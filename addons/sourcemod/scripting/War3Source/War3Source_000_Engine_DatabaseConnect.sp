@@ -12,7 +12,7 @@ public Plugin:myinfo=
 */
 
 public ConnectDB(){
-	PrintToServer("[W3S/SH] Connecting to Database");
+	PrintToServer("[W3S] Connecting to Database");
 	new String:sCachedDBIName[256];
 	new String:dbErrorMsg[512];
 
@@ -22,9 +22,9 @@ public ConnectDB(){
 	FileToKeyValues(keyValue,path);
 	// Load level configuration
 	KvRewind(keyValue);
-	new String:database_connect[256];
+	char database_connect[256];
 	KvGetString(keyValue,"database",database_connect,sizeof(database_connect),"default");
-	decl String:error[256];
+	char error[256];
 	strcopy(sCachedDBIName,256,database_connect);
 
 
@@ -38,6 +38,20 @@ public ConnectDB(){
 	}
 	if(!hDB)
 	{
+		// try to connect SQLITE
+		hDB=SQLite_UseDatabase("sourcemod-local",error,sizeof(error));
+	}
+	if(!hDB)
+	{
+		PrintToServer("");
+		PrintToServer(" ######   #######  ##               ########    ###    #### ##       ");
+		PrintToServer("##    ## ##     ## ##               ##         ## ##    ##  ##       ");
+		PrintToServer("##       ##     ## ##               ##        ##   ##   ##  ##       ");
+		PrintToServer(" ######  ##     ## ##       ####### ######   ##     ##  ##  ##       ");
+		PrintToServer("      ## ##  ## ## ##               ##       #########  ##  ##       ");
+		PrintToServer("##    ## ##    ##  ##               ##       ##     ##  ##  ##       ");
+		PrintToServer(" ######   ##### ## ########         ##       ##     ## #### ######## ");
+		PrintToServer("");
 		LogError("[War3Source:EVO] ERROR: hDB invalid handle, Check SourceMod database config, could not connect. ");
 		W3LogError("[War3Source:EVO] ERROR: hDB invalid handle, Check SourceMod database config, could not connect. ");
 		Format(dbErrorMsg,sizeof(dbErrorMsg),"ERR: Could not connect to DB. \n%s",error);
@@ -47,16 +61,33 @@ public ConnectDB(){
 	}
 	else
 	{
-
-		new String:driver_ident[64];
+		char driver_ident[64];
 		SQL_ReadDriver(hDB,driver_ident,sizeof(driver_ident));
 		if(StrEqual(driver_ident,"mysql",false))
 		{
 			War3SQLType=SQLType_MySQL;
+			PrintToServer("");
+			PrintToServer("##     ## ##    ##  ######   #######  ##       ");
+			PrintToServer("###   ###  ##  ##  ##    ## ##     ## ##       ");
+			PrintToServer("#### ####   ####   ##       ##     ## ##       ");
+			PrintToServer("## ### ##    ##     ######  ##     ## ##       ");
+			PrintToServer("##     ##    ##          ## ##  ## ## ##       ");
+			PrintToServer("##     ##    ##    ##    ## ##    ##  ##       ");
+			PrintToServer("##     ##    ##     ######   ##### ## ######## ");
+			PrintToServer("");
 		}
 		else if(StrEqual(driver_ident,"sqlite",false))
 		{
 			War3SQLType=SQLType_SQLite;
+			PrintToServer("");
+			PrintToServer(" ######   #######  ##       #### ######## ######## ");
+			PrintToServer("##    ## ##     ## ##        ##     ##    ##       ");
+			PrintToServer("##       ##     ## ##        ##     ##    ##       ");
+			PrintToServer(" ######  ##     ## ##        ##     ##    ######   ");
+			PrintToServer("      ## ##  ## ## ##        ##     ##    ##       ");
+			PrintToServer("##    ## ##    ##  ##        ##     ##    ##       ");
+			PrintToServer(" ######   ##### ## ######## ####    ##    ######## ");
+			PrintToServer("");
 		}
 		else
 		{
