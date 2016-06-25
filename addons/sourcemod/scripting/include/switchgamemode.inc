@@ -17,6 +17,7 @@
 #define GGAME_TRADE 5
 #define GGAME_HIGHLANDER 7
 #define GGAME_CSGO 8
+#define GGAME_FOF 9
 
 #define GGAME_PVM 6 // for GGAMETYPE2
 #define GGAME_TF2_NORMAL 7 // for GGAMETYPE2

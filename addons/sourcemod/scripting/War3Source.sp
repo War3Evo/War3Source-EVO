@@ -219,6 +219,33 @@ public Plugin:myinfo=
 public APLRes:AskPluginLoad2(Handle:plugin,bool:late,String:error[],err_max)
 {
 	//DetermineGameMode();
+	char game[64];
+	GetGameFolderName(game, sizeof(game));
+#if GGAMETYPE == GGAME_TF2
+	if (strncmp(game, "tf", 2, false) != 0)
+	{
+		strcopy(error, err_max, "War3Source:EVO is currently built for TF2. Look for a compiled version for your game mode.");
+		return APLRes_Failure;
+	}
+#elseif GGAMETYPE == GGAME_CSS
+	if (strncmp(game, "cstrike", 7, false) != 0)
+	{
+		strcopy(error, err_max, "War3Source:EVO is currently built for CSS. Look for a compiled version for your game mode.");
+		return APLRes_Failure;
+	}
+#elseif GGAMETYPE == GGAME_FOF
+	if (strncmp(game, "fof", 3, false) != 0)
+	{
+		strcopy(error, err_max, "War3Source:EVO is currently built for FOF. Look for a compiled version for your game mode.");
+		return APLRes_Failure;
+	}
+#elseif GGAMETYPE == GGAME_CSGO
+	if (strncmp(game, "csgo", 4, false) != 0)
+	{
+		strcopy(error, err_max, "War3Source:EVO is currently built for CSGO. Look for a compiled version for your game mode.");
+		return APLRes_Failure;
+	}
+#endif
 	//GlobalOptionalNatives();
 	new Function:func;
 	func=GetFunctionByName(plugin, "InitNativesForwards");
