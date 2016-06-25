@@ -158,7 +158,7 @@ Initialize_SQLTable()
 		{
 			char createtable[3000];
 			Format(createtable,sizeof(createtable),
-			"CREATE TABLE %s (steamid varchar(64) UNIQUE, accountid int, name varchar(64), currentrace varchar(16), gold int, diamonds int, platinum int, total_level int, total_xp int, levelbankV2 int, last_seen int) %s",
+			"CREATE TABLE %s (steamid varchar(64) UNIQUE, accountid int, name varchar(64), currentrace varchar(16), gold int, diamonds int, platinum int, total_level int, total_xp int, levelbankV2 int, last_seen int, join_date int) %s",
 			XP_GOLD_DATABASENAME,
 			War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"" );
 
@@ -170,6 +170,10 @@ Initialize_SQLTable()
 		else
 		{
 
+			if(!SQL_FieldNameToNum(query, "join_date", dummy))
+			{
+				AddColumn(hDB,"join_date","int",XP_GOLD_DATABASENAME);
+			}
 			if(!SQL_FieldNameToNum(query, "accountid", dummy))
 			{
 				AddColumn(hDB,"accountid","int",XP_GOLD_DATABASENAME);
@@ -228,15 +232,21 @@ Initialize_SQLTable()
 		//do another check for handle, cuz we may have just created database
 		if(query==INVALID_HANDLE)
 		{
-			SetFailState("invalid handle to data, ");
+			SetFailState("War3Source invalid handle to data, ");
 		}
 		else
 		{	//table exists by now, add skill columns if not exists
 
-			new String:columnname[16];
-			new dummyfield;
+			char columnname[16];
+			int dummyfield;
 
-			for(new i=1;i<MAXSKILLCOUNT;i++){
+			if(!SQL_FieldNameToNum(query, "accountid", dummyfield))
+			{
+				AddColumn(hDB,"accountid","int",XP_GOLD_DATABASENAME_RACEDATA1);
+			}
+
+			for(int i=1;i<MAXSKILLCOUNT;i++)
+			{
 				Format(columnname,sizeof(columnname),"skill%d",i);
 
 				if(!SQL_FieldNameToNum(query, columnname , dummyfield))
@@ -245,15 +255,8 @@ Initialize_SQLTable()
 				}
 			}
 
-			if(!SQL_FieldNameToNum(query, "accountid", dummy))
-			{
-				AddColumn(hDB,"accountid","int",XP_GOLD_DATABASENAME);
-			}
-
 			CloseHandle(query);
 		}
-
-
 
 
 		SQL_UnlockDatabase(hDB);
