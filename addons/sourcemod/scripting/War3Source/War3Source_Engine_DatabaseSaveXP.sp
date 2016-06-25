@@ -158,7 +158,7 @@ Initialize_SQLTable()
 		{
 			char createtable[3000];
 			Format(createtable,sizeof(createtable),
-			"CREATE TABLE %s (steamid varchar(64) UNIQUE , name varchar(64),   currentrace varchar(16),     gold int,    diamonds int,    platinum int,  total_level int,     total_xp int, levelbankV2 int,   last_seen int) %s",
+			"CREATE TABLE %s (steamid varchar(64) UNIQUE, accountid int, name varchar(64), currentrace varchar(16), gold int, diamonds int, platinum int, total_level int, total_xp int, levelbankV2 int, last_seen int) %s",
 			XP_GOLD_DATABASENAME,
 			War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"" );
 
@@ -210,7 +210,7 @@ Initialize_SQLTable()
 		{
 			PrintToServer("[War3Source:EVO] %s doesnt exist, creating!!!",XP_GOLD_DATABASENAME_RACEDATA1) ;
 			new String:longquery2[4000];
-			Format(longquery2,sizeof(longquery2),"CREATE TABLE %s (steamid varchar(64)  , raceshortname varchar(16),   level int,  xp int  , last_seen int)  %s",XP_GOLD_DATABASENAME_RACEDATA1,War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
+			Format(longquery2,sizeof(longquery2),"CREATE TABLE %s (steamid varchar(64), accountid int, raceshortname varchar(16), level int,  xp int, last_seen int)  %s",XP_GOLD_DATABASENAME_RACEDATA1,War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
 
 			Format(shortquery,sizeof(shortquery),"CREATE UNIQUE INDEX steamid ON %s (steamid,raceshortname)",XP_GOLD_DATABASENAME_RACEDATA1);
 
@@ -243,8 +243,13 @@ Initialize_SQLTable()
 				{
 					AddColumn(hDB,columnname,"int",XP_GOLD_DATABASENAME_RACEDATA1);
 				}
-
 			}
+
+			if(!SQL_FieldNameToNum(query, "accountid", dummy))
+			{
+				AddColumn(hDB,"accountid","int",XP_GOLD_DATABASENAME);
+			}
+
 			CloseHandle(query);
 		}
 
