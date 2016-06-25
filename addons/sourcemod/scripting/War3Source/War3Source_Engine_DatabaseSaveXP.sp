@@ -178,7 +178,6 @@ Initialize_SQLTable()
 			{
 				AddColumn(hDB,"levelbankV2","int",XP_GOLD_DATABASENAME);
 			}
-
 			if(!SQL_FieldNameToNum(query, "gold", dummy))
 			{
 				if(War3SQLType==SQLType_SQLite){
