@@ -56,7 +56,7 @@ methodmap ThisRacePlayer < W3player
 		public get() { return RESwarn[this.index]; }
 		public set( bool value ) { RESwarn[this.index] =  value; }
 	}
-
+#if GGAMETYPE == GGAME_TF2
 	public void hudmessage( char szMessage[MAX_MESSAGE_LENGTH], any ... )
 	{
 		char szBuffer[MAX_MESSAGE_LENGTH];
@@ -65,6 +65,7 @@ methodmap ThisRacePlayer < W3player
 		SetHudTextParams(-1.0, -1.0, 0.1, 255, 255, 0, 255);
 		ShowSyncHudText(this.index, ClientInfoMessage, szBuffer);
 	}
+#endif
 }
 
 

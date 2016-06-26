@@ -1,5 +1,7 @@
 # War3Source Evoultion
 
+**GAME MODE CURRENTLY SETUP TO COMPILE FOR IS CSGO**
+
 Updated for Sourcemod 1.8
 
 If something is missing during compiling, let me know.

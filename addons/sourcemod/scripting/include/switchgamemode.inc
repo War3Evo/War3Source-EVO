@@ -23,6 +23,8 @@
 #define GGAME_TF2_NORMAL 7 // for GGAMETYPE2
 #define GGAME_MVM 2 // for GGAMETYPE2
 #define GGAME_CSGO_2 10 // for GGAMETYPE2
+#define GGAME_CSS_2 11 // for GGAMETYPE2
+#define GGAME_FOF_2 12 // for GGAMETYPE2
 
 #define KDR_ON 1 // for GGAMETYPE_KDR
 #define KDR_OFF 0 // for GGAMETYPE_KDR

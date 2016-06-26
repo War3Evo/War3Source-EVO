@@ -3,7 +3,8 @@
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
-#include <cssdm>
+//Not sure why I have this here yet, as it compiles fine
+//#include <cssdm>
 #endif
 
 //#pragma semicolon 1

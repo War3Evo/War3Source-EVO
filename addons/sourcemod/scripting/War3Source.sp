@@ -336,7 +336,7 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 
 	if(!War3Source_InitNatives())
 	{
-		LogError("[War3Source] There was a failure in creating the native based functions, definately halting.");
+		LogError("[War3Source:EVO] There was a failure in creating the native based functions, definately halting.");
 		return APLRes_Failure;
 	}
 
@@ -344,7 +344,7 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 
 	if(!War3Source_InitForwards())
 	{
-		LogError("[War3Source] There was a failure in creating the forward based functions, definately halting.");
+		LogError("[War3Source:EVO] There was a failure in creating the forward based functions, definately halting.");
 		return APLRes_Failure;
 	}
 

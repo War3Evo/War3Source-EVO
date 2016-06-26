@@ -1958,7 +1958,7 @@ methodmap W3player
 	{
 		public get() { return W3GetPlayerProp(this.index,talentsLoaded); }
 	}
-
+#if GGAMETYPE == GGAME_TF2
 	property TFClassType class
 	{
 		public get() {
@@ -1966,7 +1966,7 @@ methodmap W3player
 				return TF2_GetPlayerClass(this.index);
 			}
 	}
-
+#endif
 	property bool bankcanwithdraw
 	{
 		public get() { return War3_BankCanWithdraw(this.index); }
