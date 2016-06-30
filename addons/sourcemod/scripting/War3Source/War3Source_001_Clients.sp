@@ -43,6 +43,9 @@ public OnClientPutInServer(client)
 #endif
 	//disabled
 	//War3Source_Engine_Talents_OnClientPutInServer(client);
+#if GGAMETYPE == GGAME_CSGO
+	War3Source_Engine_BuffSpeedGravGlow_OnClientPutInServer(client);
+#endif
 }
 
 public OnClientDisconnect(client)

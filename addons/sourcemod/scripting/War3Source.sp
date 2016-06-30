@@ -415,6 +415,8 @@ public OnMapStart()
 
 	PrintToServer("OnMapStart");
 
+	War3Source_Engine_BuffSpeedGravGlow_OnMapStart();
+
 	if(!MapStart)
 	{
 		LoadTranslations("w3s._common.phrases");

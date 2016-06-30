@@ -23,6 +23,50 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };*/
 
+public void War3Source_Engine_BuffSpeedGravGlow_OnMapStart()
+{
+#if GGAMETYPE == GGAME_CSGO
+		Handle hCvar = FindConVar("sv_disable_immunity_alpha");
+		if(hCvar == null)
+		{
+			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
+			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
+			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
+			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
+			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
+			return;
+		}
+
+		/* Enable convar and make sure it can't be changed by accident. */
+		SetConVarInt(hCvar, 1);
+		HookConVarChange(hCvar, ConVarChange_DisableImmunityAlpha);
+#endif
+}
+
+#if GGAMETYPE == GGAME_CSGO
+public ConVarChange_DisableImmunityAlpha(Handle convar, const char[] oldValue, const char[] newValue)
+{
+	if(!GetConVarBool(convar))
+	{
+		/* Force enable sv_disable_immunity_alpha */
+		SetConVarInt(convar, 1);
+		PrintToServer("[W3SE] sv_disable_immunity_alpha is locked and can't be changed!");
+	}
+}
+public War3Source_Engine_BuffSpeedGravGlow_OnClientPutInServer(client)
+{
+	SDKHook(client, SDKHook_PostThinkPost, PostThinkPost);
+}
+public PostThinkPost(client)
+{
+	//if(war3Game==Game_CS || war3Game==Game_CSGO)
+	if(invisWeaponAttachments[client])
+	{
+		SetEntProp(client, Prop_Send, "m_iAddonBits",0);
+	}
+}
+#endif
+
 public bool:War3Source_Engine_BuffSpeedGravGlow_InitNatives()
 {
 	CreateNative("W3ReapplySpeed",NW3ReapplySpeed);//for races
