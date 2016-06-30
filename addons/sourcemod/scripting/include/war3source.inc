@@ -1884,9 +1884,17 @@ methodmap W3player
 	{
 		public get() { return view_as<int>(this); }
 	}
+	 property int idx
+	{
+		public get() { return view_as<int>(this); }
+	}
 	 property bool alive
 	{
 		public get() { return ValidPlayer(this.index,true); }
+	}
+	 property bool trulyalive
+	{
+		public get() { return ValidPlayer(this.index,true,true); }
 	}
 	 property int team
 	{
@@ -2118,6 +2126,11 @@ methodmap W3player
 	public void TFHealingEvent( int HealTheAmount2)
 	{
 		War3_TFHealingEvent(this.index,HealTheAmount2);
+	}
+
+	public void flashscreen( int color[4], float holdduration=0.1, float fadeduration=0.2, int flags=FFADE_IN)
+	{
+		W3FlashScreen(this.index,color,holdduration,fadeduration,flags);
 	}
 
 	public void message( char szMessage[MAX_MESSAGE_LENGTH], any ... )
