@@ -1,5 +1,7 @@
 # War3Source Evoultion
 
+https://forums.alliedmods.net/showthread.php?p=2431473
+
 **GAME MODE CURRENTLY SETUP TO COMPILE FOR IS CSGO**
 
 Updated for Sourcemod 1.8
