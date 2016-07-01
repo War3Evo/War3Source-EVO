@@ -33,7 +33,7 @@ public War3Source_Engine_Money_Timer_OnPluginStart()
 #endif
 
 	CreateTimer(30.0,Timer_UpdateInfo);
-	CreateTimer(300.0,Timer_Diamonds);
+	CreateTimer(60.0,Timer_Diamonds);
 #if GGAMETYPE_JAILBREAK == JAILBREAK_ON
 	CreateTimer(60.0,Timer_Gold);
 #endif
@@ -247,18 +247,18 @@ public Action:Timer_Diamonds(Handle:timer, any:userid)
 {
 	if(!MapChanging && !War3SourcePause)
 	{
-		for(new i=1; i<GetMaxClients(); i++)
+		for(int i=1; i<GetMaxClients(); i++)
 		{
 			if(ValidPlayer(i,true,true) && !IsFakeClient(i))
 			{
-				new GivePlayerDiamonds = War3_GetDiamonds(i) + 1;
+				int GivePlayerDiamonds = War3_GetDiamonds(i) + 1;
 				War3_SetDiamonds(i, GivePlayerDiamonds);
 
 				//W3GiveXPGold(i,XPAwardByGeneric,W3GetKillXP(i),0,"XP Per 5 Minutes");
 			}
 		}
 	}
-	CreateTimer(300.0,Timer_Diamonds);
+	CreateTimer(60.0,Timer_Diamonds);
 }
 
 #if GGAMETYPE_JAILBREAK == JAILBREAK_ON
