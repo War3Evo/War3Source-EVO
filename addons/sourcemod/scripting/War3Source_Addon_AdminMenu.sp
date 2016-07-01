@@ -29,12 +29,12 @@ public Action:War3Source_Admin(client,args)
 {
 	if(HasSMAccess(client,ADMFLAG_ROOT))
 	{
-		new Handle:adminMenu=CreateMenu(War3Source_Admin_Selected);
+		Handle adminMenu=CreateMenu(War3Source_Admin_Selected);
 		SetMenuExitButton(adminMenu,true);
 		SetMenuTitle(adminMenu,"%T","[War3Source:EVO] Select a player to administrate",client);
 
-		decl String:playername[64];
-		decl String:war3playerbuf[4];
+		char playername[64];
+		char war3playerbuf[4];
 
 		for(new x=1;x<=MaxClients;x++)
 		{
@@ -54,11 +54,11 @@ public War3Source_Admin_Selected(Handle:menu,MenuAction:action,client,selection)
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target))
 			War3Source_Admin_Player(client,target);
 		else
@@ -72,25 +72,25 @@ public War3Source_Admin_Selected(Handle:menu,MenuAction:action,client,selection)
 
 public War3Source_Admin_Player(client,target)
 {
-	new Handle:adminMenu_Player=CreateMenu(War3Source_Admin_Player_Select);
+	Handle adminMenu_Player=CreateMenu(War3Source_Admin_Player_Select);
 	SetMenuExitButton(adminMenu_Player,true);
-	decl String:playername[64];
+	char playername[64];
 	GetClientName(target,playername,sizeof(playername));
 
 	SetMenuTitle(adminMenu_Player,"%T","[War3Source:EVO] Administration options for {player}",client,playername);
 
-	decl String:buf[4];
+	char buf[4];
 	Format(buf,sizeof(buf),"%d",target);
 	new race=War3_GetRace(target);
 
-	new String:details[64];
-	new String:shopitem[64];
-	new String:setrace[64];
-	new String:resetskills[64];
-	new String:managxp[64];
-	new String:managlevel[64];
-	new String:managgold[64];
-	new String:managlvlbank[64];
+	char details[64];
+	char shopitem[64];
+	char setrace[64];
+	char resetskills[64];
+	char managxp[64];
+	char managlevel[64];
+	char managgold[64];
+	char managlvlbank[64];
 
 	Format(details,sizeof(details),"%T","View detailed information",client);
 	Format(shopitem,sizeof(shopitem),"%T","Give shop item",client);
@@ -121,18 +121,18 @@ public War3Source_Admin_Player_Select(Handle:menu,MenuAction:action,client,selec
 	// This is gonna be fun... NOT.
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 
 
-		new String:adminname[64];
+		char adminname[64];
 		GetClientName(client,adminname,sizeof(adminname));
 		if(ValidPlayer(target))
 		{
-			new String:targetname[64];
+			char targetname[64];
 			GetClientName(target,targetname,sizeof(targetname));
 			// What do they want to do with the player?
 			switch(selection)
@@ -202,26 +202,26 @@ public War3Source_Admin_PlayerInfo(client,target)
 	if(ValidPlayer(target,false))
 	{
 		SetTrans(client);
-		new Handle:playerInfo=CreateMenu(War3Source_Admin_PI_Select);
+		Handle playerInfo=CreateMenu(War3Source_Admin_PI_Select);
 		SetMenuExitButton(playerInfo,true);
 
-		decl String:playername[64];
+		char playername[64];
 		GetClientName(target,playername,sizeof(playername));
-		new race=War3_GetRace(target);
+		int race=War3_GetRace(target);
 
-		decl String:race_name[64];
+		char race_name[64];
 		War3_GetRaceName(race,race_name,sizeof(race_name));
-		new gold=War3_GetGold(target);
-		new diamonds=War3_GetDiamonds(target);
-		new platinum=War3_GetPlatinum(target);
-		new xp=War3_GetXP(target,race);
-		new level=War3_GetLevel(target,race);
-		new lvlbank=W3GetLevelBank(target);
+		int gold=War3_GetGold(target);
+		int diamonds=War3_GetDiamonds(target);
+		int platinum=War3_GetPlatinum(target);
+		int xp=War3_GetXP(target,race);
+		int level=War3_GetLevel(target,race);
+		int lvlbank=W3GetLevelBank(target);
 		SetMenuTitle(playerInfo,"[War3Source:EVO] Info for %s.\n Job: %s\n XP: %d\n Level: %d\n Levelbank: %d\n Gold: %d\n Diamonds: %d\n Platinum: %d",playername,race_name,xp,level,lvlbank,gold,diamonds,platinum);
-		decl String:buf[4];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
 
-		new String:backmenu[64];
+		char backmenu[64];
 
 		Format(backmenu,sizeof(backmenu),"%T","Back to options",client);
 
@@ -237,11 +237,11 @@ public War3Source_Admin_PI_Select(Handle:menu,MenuAction:action,client,selection
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target))
 			War3Source_Admin_Player(client,target);
 		else
@@ -258,22 +258,22 @@ public War3Source_Admin_XP(client,target)
 {
 	if(ValidPlayer(target,false))
 	{
-		new Handle:menu=CreateMenu(War3Source_Admin_XP_Select);
+		Handle menu=CreateMenu(War3Source_Admin_XP_Select);
 		SetMenuExitButton(menu,true);
 
-		decl String:playername[64];
+		char playername[64];
 		GetClientName(target,playername,sizeof(playername));
 
 		SetMenuTitle(menu,"%T","[War3Source:EVO] Select an option for {player}",client,playername);
-		decl String:buf[4];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
 
-		new String:give100xp[64];
-		new String:give1000xp[64];
-		new String:give10000xp[64];
-		new String:remove100xp[64];
-		new String:remove1000xp[64];
-		new String:remove10000xp[64];
+		char give100xp[64];
+		char give1000xp[64];
+		char give10000xp[64];
+		char remove100xp[64];
+		char remove1000xp[64];
+		char remove10000xp[64];
 
 		Format(give100xp,sizeof(give100xp),"%T","Give 100 XP",client);
 		Format(give1000xp,sizeof(give1000xp),"%T","Give 1000 XP",client);
@@ -299,22 +299,22 @@ public War3Source_Admin_XP_Select(Handle:menu,MenuAction:action,client,selection
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 
 		if(ValidPlayer(target,false))
 		{
-			new race=War3_GetRace(target);
-			decl String:adminname[64];
+			int race=War3_GetRace(target);
+			char adminname[64];
 			GetClientName(client,adminname,sizeof(adminname));
-			decl String:targetname[64];
+			char targetname[64];
 			GetClientName(target,targetname,sizeof(targetname));
 			if(selection<3) // Give XP
 			{
-				new xpadd;
+				int xpadd;
 				switch(selection)
 				{
 					case 0:
@@ -324,7 +324,7 @@ public War3Source_Admin_XP_Select(Handle:menu,MenuAction:action,client,selection
 					case 2:
 						xpadd=10000;
 				}
-				new newxp=War3_GetXP(target,race)+xpadd;
+				int newxp=War3_GetXP(target,race)+xpadd;
 				War3_SetXP(target,race,newxp);
 				War3_ChatMessage(client,"%T","You gave {player} {amount} XP",client,targetname,xpadd);
 				War3_ChatMessage(target,"%T","You recieved {amount} XP from admin {player}",target,xpadd,adminname);
@@ -333,7 +333,7 @@ public War3Source_Admin_XP_Select(Handle:menu,MenuAction:action,client,selection
 			}
 			else
 			{
-				new xprem;
+				int xprem;
 				switch(selection)
 				{
 					case 3:
@@ -343,7 +343,7 @@ public War3Source_Admin_XP_Select(Handle:menu,MenuAction:action,client,selection
 					case 5:
 						xprem=10000;
 				}
-				new newxp=War3_GetXP(target,race)-xprem;
+				int newxp=War3_GetXP(target,race)-xprem;
 				if(newxp<0)
 					newxp=0;
 				War3_SetXP(target,race,newxp);
@@ -367,16 +367,16 @@ public War3Source_Admin_GiveShopItem(client,target)
 	if(ValidPlayer(target,false))
 	{
 		SetTrans(client);
-		new Handle:menu=CreateMenu(War3Source_Admin_GSI_Select);
+		Handle menu=CreateMenu(War3Source_Admin_GSI_Select);
 		SetMenuExitButton(menu,true);
-		decl String:playername[64];
+		char playername[64];
 		GetClientName(target,playername,sizeof(playername));
 		SetMenuTitle(menu,"%T","[War3Source:EVO] Select an item to give to {player}",client,playername);
-		decl String:itemname[64];
-		decl String:buf[4];
+		char itemname[64];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
-		new ItemsLoaded = W3GetItemsLoaded();
-		for(new x=1;x<=ItemsLoaded;x++)
+		int ItemsLoaded = W3GetItemsLoaded();
+		for(int x=1;x<=ItemsLoaded;x++)
 		{
 			W3GetItemName(x,itemname,sizeof(itemname));
 			AddMenuItem(menu,buf,itemname);
@@ -393,26 +393,26 @@ public War3Source_Admin_GSI_Select(Handle:menu,MenuAction:action,client,selectio
 
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target))
 		{
-			new item=selection+1; //hax
+			int item=selection+1; //hax
 			if(!War3_GetOwnsItem(target,item))
 			{
 				W3SetVar(TheItemBoughtOrLost,item);
 				W3CreateEvent(DoForwardClientBoughtItem,target);
 
-				decl String:itemname[64];
+				char itemname[64];
 				W3GetItemName(item,itemname,sizeof(itemname));
 
-				decl String:adminname[64];
+				char adminname[64];
 				GetClientName(client,adminname,sizeof(adminname));
 
-				decl String:targetname[64];
+				char targetname[64];
 				GetClientName(target,targetname,sizeof(targetname));
 
 				War3_ChatMessage(client,"%T","You gave {player} a {itemname}",client,targetname,itemname);
@@ -437,18 +437,18 @@ public War3Source_Admin_SetRace(client,target)
 	if(ValidPlayer(target,false))
 	{
 		SetTrans(client);
-		new Handle:menu=CreateMenu(War3Source_Admin_SetRace_Select);
+		Handle menu=CreateMenu(War3Source_Admin_SetRace_Select);
 		SetMenuExitButton(menu,true);
-		decl String:playername[64];
+		char playername[64];
 
 		GetClientName(target,playername,sizeof(playername));
 		SetMenuTitle(menu,"%T","[War3Source:EVO] Select a job for {player}",client,playername);
 
-		decl String:racename[64];
-		decl String:buf[4];
+		char racename[64];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
-		new RacesLoaded = War3_GetRacesLoaded();
-		for(new x=1;x<=RacesLoaded;x++)
+		int RacesLoaded = War3_GetRacesLoaded();
+		for(int x=1;x<=RacesLoaded;x++)
 		{
 			War3_GetRaceName(x,racename,sizeof(racename));
 			AddMenuItem(menu,buf,racename);
@@ -464,8 +464,8 @@ public War3Source_Admin_SetRace_Select(Handle:menu,MenuAction:action,client,sele
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
+		char SelectionInfo[4];
+		char SelectionDispText[256];
 		new SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
 		new target=StringToInt(SelectionInfo);
@@ -480,11 +480,11 @@ public War3Source_Admin_SetRace_Select(Handle:menu,MenuAction:action,client,sele
 
 			War3_SetRace(target,race);
 
-			decl String:racename[64];
+			char racename[64];
 			War3_GetRaceName(race,racename,sizeof(racename));
-			decl String:adminname[64];
+			char adminname[64];
 			GetClientName(client,adminname,sizeof(adminname));
-			decl String:targetname[64];
+			char targetname[64];
 			GetClientName(target,targetname,sizeof(targetname));
 			War3_ChatMessage(client,"%T","You set player {player} to job {racename}",client,targetname,racename);
 			War3_ChatMessage(target,"%T","Admin {player} set you to job {racename}",target,adminname,racename);
@@ -503,16 +503,16 @@ public War3Source_Admin_Level(client,target)
 {
 	if(ValidPlayer(target))
 	{
-		new Handle:menu=CreateMenu(War3Source_Admin_Level_Select);
+		Handle menu=CreateMenu(War3Source_Admin_Level_Select);
 		SetMenuExitButton(menu,true);
-		decl String:playername[64];
+		char playername[64];
 		GetClientName(target,playername,sizeof(playername));
 		SetMenuTitle(menu,"%T","&[War3Source:EVO] Select an option for {player}",client,playername);
-		decl String:buf[4];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
 
-		new String:givelevel[64];
-		new String:removelevel[64];
+		char givelevel[64];
+		char removelevel[64];
 
 		Format(givelevel,sizeof(givelevel),"%T","Give a level",client);
 		Format(removelevel,sizeof(removelevel),"%T","Remove a level",client);
@@ -531,22 +531,22 @@ public War3Source_Admin_Level_Select(Handle:menu,MenuAction:action,client,select
 
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target,false))
 		{
-			decl String:adminname[64];
+			char adminname[64];
 			GetClientName(client,adminname,sizeof(adminname));
-			decl String:targetname[64];
+			char targetname[64];
 			GetClientName(target,targetname,sizeof(targetname));
 			new race=War3_GetRace(target);
 			if(selection==0)
 			{
 				// Give a level
-				new newlevel=War3_GetLevel(target,race)+1;
+				int newlevel=War3_GetLevel(target,race)+1;
 				if(newlevel>W3GetRaceMaxLevel(race))
 					War3_ChatMessage(client,"%T","Player {player} is already at the max level",client,targetname);
 				else
@@ -560,7 +560,7 @@ public War3Source_Admin_Level_Select(Handle:menu,MenuAction:action,client,select
 			else
 			{
 				// Remove a level
-				new newlevel=War3_GetLevel(target,race)-1;
+				int newlevel=War3_GetLevel(target,race)-1;
 				if(newlevel<0)
 					War3_ChatMessage(client,"%T","Player {player} is already level 0",client,targetname);
 				else
@@ -591,20 +591,20 @@ public War3Source_Admin_Gold(client,target)
 
 	if(ValidPlayer(target,false))
 	{
-		new Handle:menu=CreateMenu(War3Source_Admin_Gold_Select);
+		Handle menu=CreateMenu(War3Source_Admin_Gold_Select);
 		SetMenuExitButton(menu,true);
-		decl String:playername[64];
+		char playername[64];
 		GetClientName(target,playername,sizeof(playername));
 		SetMenuTitle(menu,"%T","&&[War3Source:EVO] Select an option for {player}",client,playername);
-		decl String:buf[4];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
 
-		new String:give1gold[64];
-		new String:give5gold[64];
-		new String:give10gold[64];
-		new String:remove1gold[64];
-		new String:remove5gold[64];
-		new String:remove10gold[64];
+		char give1gold[64];
+		char give5gold[64];
+		char give10gold[64];
+		char remove1gold[64];
+		char remove5gold[64];
+		char remove10gold[64];
 
 		Format(give1gold,sizeof(give1gold),"%T","Give 1 gold",client);
 		Format(give5gold,sizeof(give5gold),"%T","Give 5 gold",client);
@@ -630,20 +630,20 @@ public War3Source_Admin_Gold_Select(Handle:menu,MenuAction:action,client,selecti
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target,false))
 		{
-			decl String:adminname[64];
+			char adminname[64];
 			GetClientName(client,adminname,sizeof(adminname));
-			decl String:targetname[64];
+			char targetname[64];
 			GetClientName(target,targetname,sizeof(targetname));
 			if(selection<3) // Give gold
 			{
-				new credadd;
+				int credadd;
 				switch(selection)
 				{
 					case 0:
@@ -653,8 +653,8 @@ public War3Source_Admin_Gold_Select(Handle:menu,MenuAction:action,client,selecti
 					case 2:
 						credadd=10;
 				}
-				new newcred=War3_GetGold(target)+credadd;
-				new maxgold=W3GetMaxGold(target);
+				int newcred=War3_GetGold(target)+credadd;
+				int maxgold=W3GetMaxGold(target);
 				if(newcred>maxgold)
 				{
 					War3_ChatMessage(client,"Player has max gold!");
@@ -669,7 +669,7 @@ public War3Source_Admin_Gold_Select(Handle:menu,MenuAction:action,client,selecti
 			}
 			else
 			{
-				new credrem;
+				int credrem;
 				switch(selection)
 				{
 					case 3:
@@ -679,7 +679,7 @@ public War3Source_Admin_Gold_Select(Handle:menu,MenuAction:action,client,selecti
 					case 5:
 						credrem=10;
 				}
-				new newcred=War3_GetGold(target)-credrem;
+				int newcred=War3_GetGold(target)-credrem;
 				if(newcred<0)
 					newcred=0;
 				War3_SetGold(target,newcred);
@@ -702,20 +702,20 @@ public War3Source_Admin_Lvlbank(client,target)
 
 	if(ValidPlayer(target,false))
 	{
-		new Handle:menu=CreateMenu(War3Source_Admin_Lvlbank_Select);
+		Handle menu=CreateMenu(War3Source_Admin_Lvlbank_Select);
 		SetMenuExitButton(menu,true);
-		decl String:playername[64];
+		char playername[64];
 		GetClientName(target,playername,sizeof(playername));
 		SetMenuTitle(menu,"%T","&&&[War3Source:EVO] Select an option for {player}",client,playername);
-		decl String:buf[4];
+		char buf[4];
 		Format(buf,sizeof(buf),"%d",target);
 
-		new String:give1lvlb[64];
-		new String:give5lvlb[64];
-		new String:give10lvlb[64];
-		new String:remove1lvlb[64];
-		new String:remove5lvlb[64];
-		new String:remove10lvlb[64];
+		char give1lvlb[64];
+		char give5lvlb[64];
+		char give10lvlb[64];
+		char remove1lvlb[64];
+		char remove5lvlb[64];
+		char remove10lvlb[64];
 
 		Format(give1lvlb,sizeof(give1lvlb),"%T","Give 1 level in levelbank",client);
 		Format(give5lvlb,sizeof(give5lvlb),"%T","Give 5 levels in levelbank",client);
@@ -741,20 +741,20 @@ public War3Source_Admin_Lvlbank_Select(Handle:menu,MenuAction:action,client,sele
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
+		char SelectionInfo[4];
+		char SelectionDispText[256];
 		new SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
 		new target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target,false))
 		{
-			decl String:adminname[64];
+			char adminname[64];
 			GetClientName(client,adminname,sizeof(adminname));
-			decl String:targetname[64];
+			char targetname[64];
 			GetClientName(target,targetname,sizeof(targetname));
 			if(selection<3)
 			{
-				new lvlbadd;
+				int lvlbadd;
 				switch(selection)
 				{
 					case 0:
@@ -764,7 +764,7 @@ public War3Source_Admin_Lvlbank_Select(Handle:menu,MenuAction:action,client,sele
 					case 2:
 						lvlbadd=10;
 				}
-				new newlvlb=W3GetLevelBank(target)+lvlbadd;
+				int newlvlb=W3GetLevelBank(target)+lvlbadd;
 				W3SetLevelBank(target,newlvlb);
 				War3_ChatMessage(client,"%T","You gave {player} {amount} level(s) in levelbank",client,targetname,lvlbadd);
 				War3_ChatMessage(target,"%T","You recieved {amount} level(s) in levelbank from admin {player}",target,lvlbadd,adminname);
@@ -772,7 +772,7 @@ public War3Source_Admin_Lvlbank_Select(Handle:menu,MenuAction:action,client,sele
 			}
 			else
 			{
-				new lvlbrem;
+				int lvlbrem;
 				switch(selection)
 				{
 					case 3:
@@ -782,7 +782,7 @@ public War3Source_Admin_Lvlbank_Select(Handle:menu,MenuAction:action,client,sele
 					case 5:
 						lvlbrem=10;
 				}
-				new newlvlb=W3GetLevelBank(target)-lvlbrem;
+				int newlvlb=W3GetLevelBank(target)-lvlbrem;
 				if(newlvlb<0)
 					newlvlb=0;
 				W3SetLevelBank(target,newlvlb);
