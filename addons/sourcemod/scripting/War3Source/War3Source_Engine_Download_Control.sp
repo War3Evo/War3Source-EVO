@@ -381,7 +381,7 @@ public War3Source_Engine_Download_Control_OnClientDisconnect_Post(client)
 
 stock bool FakePrecacheSound( char szPath[PLATFORM_MAX_PATH] )
 {
-	decl String:szPathStar[PLATFORM_MAX_PATH];
+	char szPathStar[PLATFORM_MAX_PATH];
 	Format(szPathStar, sizeof(szPathStar), "*%s", szPath);
 	strcopy(STRING(szPath), szPathStar);
 	AddToStringTable( FindStringTable( "soundprecache" ), szPathStar );

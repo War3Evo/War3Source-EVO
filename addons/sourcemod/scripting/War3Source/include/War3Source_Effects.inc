@@ -47,12 +47,12 @@ native War3_TF_ParticleToClient(clienttoshowto,String:particlestr[],Float:pos[3]
  *
  * @returns entity index for the particle or -1 if no particle was spawned
  */
-stock CreateW3SParticle(const String:effectName[], const Float:fPos[3])
+stock CreateW3SParticle(const String:effectName[], const Float:fPos[3], const Float:fAngles[3]=NULL_VECTOR)
 {
 	new particle = CreateEntityByName("info_particle_system");
 	if (IsValidEdict(particle))
 	{
-		TeleportEntity(particle, fPos, NULL_VECTOR, NULL_VECTOR);
+		TeleportEntity(particle, fPos, fAngles, NULL_VECTOR);
 		DispatchKeyValue(particle, "effect_name", effectName);
 		DispatchSpawn(particle);
 
@@ -179,9 +179,9 @@ stock AttachParticle(const client, const String:effectName[], const Float:fPos[3
 }
 
 // If you have an attachment point you can pass NULL_VECTOR to fPos
-stock AttachThrowAwayParticle(const client, const String:effectName[], const Float:fPos[3], const String:attachTo[], const Float:w3lifetime)
+stock AttachThrowAwayParticle(const client, const String:effectName[], const Float:fPos[3], const String:attachTo[], const Float:w3lifetime, const Float:fAngles[3]=NULL_VECTOR)
 {
-	new particle = CreateW3SParticle(effectName, fPos);
+	new particle = CreateW3SParticle(effectName, fPos, fAngles);
 	ModifyEntityAttach(particle, client, attachTo);
 	ModifyEntityAddDeathTimer(particle, w3lifetime);
 

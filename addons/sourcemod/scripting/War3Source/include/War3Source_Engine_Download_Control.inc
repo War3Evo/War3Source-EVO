@@ -48,47 +48,47 @@ native War3_AddSound(String:soundfile[],stocksound=0,priority=PRIORITY_TAKE_FORW
 forward OnAddSound(sound_priority);
 
 // STOCKS
-stock War3_EmitSound(const clients[],
-					numClients,
-					const String:sample[],
-					entity = SOUND_FROM_PLAYER,
-					channel = SNDCHAN_AUTO,
-					level = SNDLEVEL_NORMAL,
-					flags = SND_NOFLAGS,
-					Float:volume = SNDVOL_NORMAL,
-					pitch = SNDPITCH_NORMAL,
-					speakerentity = -1,
-					const Float:origin[3] = NULL_VECTOR,
-					const Float:dir[3] = NULL_VECTOR,
-					bool:updatePos = true,
-					Float:soundtime = 0.0)
+stock War3_EmitSound(const int[] iclients,
+					int inumClients,
+					const char[] csample,
+					int ientity = SOUND_FROM_PLAYER,
+					int ichannel = SNDCHAN_AUTO,
+					int ilevel = SNDLEVEL_NORMAL,
+					int iflags = SND_NOFLAGS,
+					float fvolume = SNDVOL_NORMAL,
+					int ipitch = SNDPITCH_NORMAL,
+					int ispeakerentity = -1,
+					float forigin[3] = NULL_VECTOR,
+					float fdir[3] = NULL_VECTOR,
+					bool bupdatePos = true,
+					float fsoundtime = 0.0)
 {
-	decl String:szSound[PLATFORM_MAX_PATH];
+	char szSound[PLATFORM_MAX_PATH];
 
 #if (GGAMETYPE == GGAME_CSGO)
-	Format(szSound, sizeof(szSound), "*%s", sample);
+	Format(szSound, sizeof(szSound), "*%s", csample);
 #else
-	strcopy(szSound, sizeof(szSound), sample);
+	strcopy(szSound, sizeof(szSound), csample);
 #endif
 
-	EmitSound(clients, numClients, szSound, entity, channel, level, flags, volume, pitch, speakerentity, origin, dir, updatePos, soundtime);
+	EmitSound(iclients, inumClients, szSound, ientity, ichannel, ilevel, iflags, fvolume, ipitch, ispeakerentity, forigin, fdir, bupdatePos, fsoundtime);
 }
 
-stock War3_EmitSoundToClient(client,
-							const String:sample[],
-							entity = SOUND_FROM_PLAYER,
-							channel = SNDCHAN_AUTO,
-							level = SNDLEVEL_NORMAL,
-							flags = SND_NOFLAGS,
-							Float:volume = SNDVOL_NORMAL,
-							pitch = SNDPITCH_NORMAL,
-							speakerentity = -1,
-							const Float:origin[3] = NULL_VECTOR,
-							const Float:dir[3] = NULL_VECTOR,
-							bool:updatePos = true,
-							Float:soundtime = 0.0)
+stock War3_EmitSoundToClient(int client,
+							const char[] sample,
+							int entity = SOUND_FROM_PLAYER,
+							int channel = SNDCHAN_AUTO,
+							int level = SNDLEVEL_NORMAL,
+							int flags = SND_NOFLAGS,
+							float volume = SNDVOL_NORMAL,
+							int pitch = SNDPITCH_NORMAL,
+							int speakerentity = -1,
+							float origin[3] = NULL_VECTOR,
+							float dir[3] = NULL_VECTOR,
+							bool updatePos = true,
+							float soundtime = 0.0)
 {
-	new clients[1];
+	int clients[1];
 	clients[0] = client;
 	/* Save some work for SDKTools and remove SOUND_FROM_PLAYER references */
 	entity = (entity == SOUND_FROM_PLAYER) ? client : entity;
@@ -97,23 +97,23 @@ stock War3_EmitSoundToClient(client,
 	origin, dir, updatePos, soundtime);
 }
 
-stock War3_EmitSoundToAll(const String:sample[],
-						entity = SOUND_FROM_PLAYER,
-						channel = SNDCHAN_AUTO,
-						level = SNDLEVEL_NORMAL,
-						flags = SND_NOFLAGS,
-						Float:volume = SNDVOL_NORMAL,
-						pitch = SNDPITCH_NORMAL,
-						speakerentity = -1,
-						const Float:origin[3] = NULL_VECTOR,
-						const Float:dir[3] = NULL_VECTOR,
-						bool:updatePos = true,
-						Float:soundtime = 0.0)
+stock War3_EmitSoundToAll(const char[] csample,
+						int ientity = SOUND_FROM_PLAYER,
+						int ichannel = SNDCHAN_AUTO,
+						int ilevel = SNDLEVEL_NORMAL,
+						int iflags = SND_NOFLAGS,
+						float fvolume = SNDVOL_NORMAL,
+						int ipitch = SNDPITCH_NORMAL,
+						int ispeakerentity = -1,
+						float forigin[3] = NULL_VECTOR,
+						float fdir[3] = NULL_VECTOR,
+						bool bupdatePos = true,
+						float fsoundtime = 0.0)
 {
-	new clients[MaxClients];
-	new total = 0;
+	int[] clients = new int[MaxClients];
+	int total = 0;
 
-	for (new i=1; i<=MaxClients; i++)
+	for (int i=1; i<=MaxClients; i++)
 	{
 		if (IsClientInGame(i))
 		{
@@ -126,21 +126,21 @@ stock War3_EmitSoundToAll(const String:sample[],
 		return;
 	}
 
-	War3_EmitSound(clients, total, sample, entity, channel,
-	level, flags, volume, pitch, speakerentity,
-	origin, dir, updatePos, soundtime);
+	War3_EmitSound(clients, total, csample, ientity, ichannel,
+	ilevel, iflags, fvolume, ipitch, ispeakerentity,
+	forigin, fdir, bupdatePos, fsoundtime);
 }
 
-stock War3_EmitAmbientSound(const String:sample[],
-						const Float:pos[3],
-						entity = SOUND_FROM_WORLD,
-						level = SNDLEVEL_NORMAL,
-						flags = SND_NOFLAGS,
-						Float:vol = SNDVOL_NORMAL,
-						pitch = SNDPITCH_NORMAL,
-						Float:delay = 0.0)
+stock War3_EmitAmbientSound(char[] sample,
+						const float pos[3],
+						int entity = SOUND_FROM_WORLD,
+						int level = SNDLEVEL_NORMAL,
+						int flags = SND_NOFLAGS,
+						float vol = SNDVOL_NORMAL,
+						int pitch = SNDPITCH_NORMAL,
+						float delay = 0.0)
 {
-	decl String:szSound[PLATFORM_MAX_PATH];
+	char szSound[PLATFORM_MAX_PATH];
 
 #if (GGAMETYPE == GGAME_CSGO)
 	Format(szSound, sizeof(szSound), "*%s", sample);
@@ -151,9 +151,9 @@ stock War3_EmitAmbientSound(const String:sample[],
 	EmitAmbientSound(szSound, pos, entity, level, flags, vol, pitch, delay);
 }
 
-stock War3_StopSound(entity, channel, const String:sample[])
+stock War3_StopSound(int entity, int channel, const char[] sample)
 {
-	decl String:szSound[PLATFORM_MAX_PATH];
+	char szSound[PLATFORM_MAX_PATH];
 
 #if (GGAMETYPE == GGAME_CSGO)
 	Format(szSound, sizeof(szSound), "*%s", sample);

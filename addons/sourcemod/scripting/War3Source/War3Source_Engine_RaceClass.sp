@@ -484,20 +484,18 @@ public NWar3_AddRaceSkill(Handle:plugin,numParams){
 }
 
 //translated
-public NWar3_CreateNewRaceT(Handle:plugin,numParams){
-
-
-
-	decl String:name[64],String:shortname[16],String:shortdesc[32];
+public NWar3_CreateNewRaceT(Handle:plugin,numParams)
+{
+	char name[64],shortname[16],shortdesc[32];
 	GetNativeString(1,shortname,sizeof(shortname));
 	GetNativeString(2,shortdesc,sizeof(shortdesc));
-	new ReloadRaceId_info=GetNativeCell(3);
+	int ReloadRaceId_info=GetNativeCell(3);
 
-	new newraceid=CreateNewRace(name,shortname,shortdesc,ReloadRaceId_info);
+	int newraceid=CreateNewRace(name,shortname,shortdesc,ReloadRaceId_info);
 	if(newraceid>0)
 	{
 		raceTranslated[newraceid]=true;
-		new String:buf[64];
+		char buf[64];
 		Format(buf,sizeof(buf),"w3s.race.%s.phrases",shortname);
 		LoadTranslations(buf);
 		PrintToServer(buf);
