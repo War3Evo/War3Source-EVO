@@ -525,7 +525,8 @@ LoadRacesAndItems()
 //=============================================================================
 DelayedWar3SourceCfgExecute()
 {
-	if(FileExists("cfg/war3source.cfg"))
+#if GGAMETYPE == GGAME_TF2
+	if(FileExists("cfg/war3source_tf2.cfg"))
 	{
 		ServerCommand("exec war3source.cfg");
 		PrintToServer("[War3Source] Executing war3source.cfg");
@@ -534,6 +535,28 @@ DelayedWar3SourceCfgExecute()
 	{
 		PrintToServer("[War3Source] Could not find war3source.cfg, we recommend all servers have this file");
 	}
+#elseif GGAMETYPE == GGAME_CSGO
+	if(FileExists("cfg/war3source_csgo.cfg"))
+	{
+		ServerCommand("exec war3source.cfg");
+		PrintToServer("[War3Source] Executing war3source.cfg");
+	}
+	else
+	{
+		PrintToServer("[War3Source] Could not find war3source.cfg, we recommend all servers have this file");
+	}
+#else
+	if(FileExists("cfg/war3source_other.cfg"))
+	{
+		ServerCommand("exec war3source.cfg");
+		PrintToServer("[War3Source] Executing war3source.cfg");
+	}
+	else
+	{
+		PrintToServer("[War3Source] Could not find war3source.cfg, we recommend all servers have this file");
+	}
+#endif
+
 #if GGAMETYPE == GGAME_TF2
 	//if (IsMvM(true))
 	//{
