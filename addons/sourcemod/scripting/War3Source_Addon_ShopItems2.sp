@@ -103,6 +103,7 @@ public OnPluginStart()
 }
 
 #if GGAMETYPE == GGAME_TF2
+/*
 public OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 {
 	if(War3_GetOwnsItem2(victim,ItemID[SCROLL_OF_ESSENCE])&&ValidPlayer(victim))
@@ -118,7 +119,7 @@ public Action:instaspawn(Handle:timer, any:client)
 	{
 		TF2_RespawnPlayer(client);
 	}
-}
+}*/
 #endif
 
 public OnWar3LoadRaceOrItemOrdered(num)
