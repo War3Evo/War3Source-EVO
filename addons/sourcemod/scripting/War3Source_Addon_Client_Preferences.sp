@@ -261,14 +261,14 @@ ShowWar3PrefsMenu(client,page=0)
 
 }
 
-public OnAddSound(sound_priority)
-{
-	if(sound_priority==PRIORITY_TOP)
-	{
-		strcopy(introSound,sizeof(introSound),"war3source/clickboom.mp3");
-		War3_AddSound(introSound);
-	}
-}
+//public OnAddSound(sound_priority)
+//{
+//	if(sound_priority==PRIORITY_TOP)
+//	{
+//		strcopy(introSound,sizeof(introSound),"war3source/clickboom.mp3");
+//		War3_AddSound(introSound);
+//	}
+//}
 
 ShowPrefsMenuItemsInfo(client)
 {
