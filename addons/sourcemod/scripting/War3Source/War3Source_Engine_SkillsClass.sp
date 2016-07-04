@@ -1,7 +1,7 @@
 // War3Source_Engine_SkillsClass.sp
 // Ideas taken from SkillCraft by El Diablo
 
-#pragma dynamic 10000
+//#pragma dynamic 10000
 
 int totalSkillsLoaded=0;
 
