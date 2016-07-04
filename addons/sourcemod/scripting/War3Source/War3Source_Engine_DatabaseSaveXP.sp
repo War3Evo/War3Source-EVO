@@ -66,6 +66,7 @@ public bool:War3Source_Engine_DatabaseSaveXP_InitNatives()
 
 public War3Source_Engine_DatabaseSaveXP_OnPluginStart()
 {
+	PrintToServer("War3Source:EVO War3Source_Engine_DatabaseSaveXP_OnPluginStart Start");
 	CreateConVar("DataBaseSaveXP",PLUGIN_VERSION,"[War3Source:EVO] DataBase Save XP",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	m_SaveXPConVar=CreateConVar("war3_savexp","1");
@@ -79,6 +80,7 @@ public War3Source_Engine_DatabaseSaveXP_OnPluginStart()
 	g_OnWar3PlayerAuthedHandle=CreateGlobalForward("OnWar3PlayerAuthed",ET_Ignore,Param_Cell,Param_Cell);
 
 	CreateTimer(GetConVarFloat(m_AutosaveTime),Database_DoAutosave);
+	PrintToServer("War3Source:EVO War3Source_Engine_DatabaseSaveXP_OnPluginStart END");
 }
 
 public NW3SaveXP(Handle:plugin,numParams)
@@ -100,6 +102,7 @@ public NW3SaveEnabled(Handle:plugin,numParams)
 // the database connect handles this
 public War3Source_Engine_DatabaseSaveXP_OnWar3Event(client)
 {
+	PrintToServer("[War3Source:EVO] War3Source_Engine_DatabaseSaveXP_OnWar3Event()");
 	hDB=W3GetVar(hDatabase);
 	War3SQLType=W3GetVar(hDatabaseType);
 	Initialize_SQLTable();
@@ -111,7 +114,7 @@ public War3Source_Engine_DatabaseSaveXP_OnWar3Event(client)
 
 Initialize_SQLTable()
 {
-	PrintToServer("[War3Source:EVO] Initialize SQLTable Main Table");
+	PrintToServer("[War3Source:EVO] Initialize SQLTable Main Table START");
 	if(hDB!=INVALID_HANDLE)
 	{
 
@@ -263,11 +266,14 @@ Initialize_SQLTable()
 	}
 	else
 		PrintToServer("hDB invalid 123");
+
+	PrintToServer("[War3Source:EVO] Initialize SQLTable Main Table END");
 }
 
 
 public Action:Database_DoAutosave(Handle:timer,any:data)
 {
+	PrintToServer("[War3Source:EVO] Database_DoAutosave()");
 	if(W3SaveEnabled() && !MapChanging)
 	{
 		for(new x=1;x<=MaxClients;x++)
@@ -293,6 +299,7 @@ public Action:Database_DoAutosave(Handle:timer,any:data)
 
 War3Source_SavePlayerData(client,race)
 {
+	PrintToServer("[War3Source:EVO] War3Source_SavePlayerData()");
 	if(hDB && W3SaveEnabled() && !IsFakeClient(client)&&W3IsPlayerXPLoaded(client))
 	{
 		War3_SavePlayerRace(client,race); //only save their current race
@@ -307,6 +314,7 @@ War3Source_SavePlayerData(client,race)
 //retrieve
 public War3Source_Engine_DatabaseSaveXP_OnClientPutInServer(client)
 {
+	PrintToServer("[War3Source:EVO] OnClientPutInServer %d",client);
 	//DP("PUTIN");
 	//DP("PUTINW3");
 	SetPlayerProp(client,xpLoaded,false); //set race 0 may trigger unwanted behavior, block it first
@@ -336,6 +344,7 @@ public War3Source_Engine_DatabaseSaveXP_OnClientPutInServer(client)
 }
 public War3Source_Engine_DatabaseSaveXP_OnClientDisconnect(client)
 {
+	PrintToServer("[War3Source:EVO] OnClientDisconnect %d",client);
 	if(GetPlayerProp(client,bPutInServer)){ //he must have joined (not just connected) server already
 		if(W3SaveEnabled() && W3IsPlayerXPLoaded(client)){
 #if SHOPMENU3 == MODE_ENABLED
@@ -353,6 +362,7 @@ public War3Source_Engine_DatabaseSaveXP_OnClientDisconnect(client)
 //SELECT STATEMENTS HERE
 War3Source_LoadPlayerData(client) //war3source calls this
 {
+	PrintToServer("[War3Source:EVO] LoadPlayerData %d",client);
 	PrintToServer("");
 	PrintToServer("War3Source_LoadPlayerData(client)");
 
@@ -408,6 +418,7 @@ War3Source_LoadPlayerData(client) //war3source calls this
 
 public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] error, StringMap QueryCode)
 {
+	PrintToServer("[War3Source:EVO] T_CallbackSelectPDataMain()");
 	int client;
 
 	QueryCode.GetValue("client", client);
@@ -1041,6 +1052,7 @@ public void T_CallbackInsertPDataRace(Handle owner,Handle query,const char[] err
 //save a race using new db style
 War3_SavePlayerRace(client,race)
 {
+	PrintToServer("[War3Source:EVO] SavePlayerRace client %d race %d",client,race);
 	//DP("save");
 	if(hDB && W3SaveEnabled() && GetPlayerProp(client,xpLoaded)&&race>0)
 	{
@@ -1112,7 +1124,9 @@ public void T_CallbackSavePlayerRace(Handle owner,Handle hndl,const char[] error
 
 
 
-War3_SavePlayerMainData(client){
+War3_SavePlayerMainData(client)
+{
+	PrintToServer("[War3Source:EVO] SavePlayerMainData client %d",client);
 	if(hDB &&W3IsPlayerXPLoaded(client))
 	{
 		//PrintToServer("client %d mainxp",client);
@@ -1174,6 +1188,7 @@ public void T_CallbackUpdatePDataMain(Handle owner,Handle query,const char[] err
 
 DoForwardOnWar3PlayerAuthed(client)
 {
+	PrintToServer("[War3Source:EVO] DoForwardOnWar3PlayerAuthed client %d",client);
 	Internal_Engine_NewPlayers_OnWar3PlayerAuthedHandle(client);
 
 	Call_StartForward(g_OnWar3PlayerAuthedHandle);
