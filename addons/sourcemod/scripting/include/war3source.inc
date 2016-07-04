@@ -26,17 +26,16 @@
 #include <sdkhooks>
 #include <sdktools>
 #include <sdktools_functions>
+
 #if GGAMETYPE == GGAME_TF2
 #include <tf2>
 #include <tf2_stocks>
-#else
-#include <cstrike>
-#endif
-#if GGAMETYPE == GGAME_TF2
 #include <morecolors>
 #else
+#include <cstrike>
 #include <colors>
 #endif
+
 #include <keyvalues>
 
 #include <DiabloStocks>
@@ -609,7 +608,7 @@ enum W3HookType
 	W3Hook_OnWar3SkinChange,
 	W3Hook_OnTalentsLoaded,
 
-	W3Hook_OnWar3SkillSlotChange, //p_OnWar3SkillSlotChange
+	W3Hook_OnWar3SkillSlotChange //p_OnWar3SkillSlotChange
 	//W3Hook_,
 };
 
@@ -646,7 +645,7 @@ typeset W3HookCB
 	//W3Hook_OnWar3SkinChange
 	function void (int client, int newrace);
 
-	//W3Hook_OnWar3SkillChange
+	//W3Hook_OnWar3SkillSlotChange
 	function void (int client, int skillslot, int oldskillid, int newskillid);
 };
 
