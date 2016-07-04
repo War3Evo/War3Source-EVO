@@ -64,7 +64,7 @@ public void OnAllPluginsLoaded()
 public OnPluginStart()
 {
 
-	CreateConVar("shopmenu2",PLUGIN_VERSION,"War3Source:EVO shopmenu 2",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	CreateConVar("war3_shopmenu2",PLUGIN_VERSION,"War3Source:EVO shopmenu 2",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	//RegConsoleCmd("+ability1",War3Source_AbilityCommand);
 	//RegConsoleCmd("-ability1",War3Source_AbilityCommand);

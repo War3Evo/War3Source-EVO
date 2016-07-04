@@ -115,7 +115,7 @@ public void OnAllPluginsLoaded()
 
 public OnPluginStart()
 {
-	CreateConVar("shopmenu1",PLUGIN_VERSION,"War3Source:EVO shopmenu1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	CreateConVar("war3_shopmenu1",PLUGIN_VERSION,"War3Source:EVO shopmenu1", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	BootsSpeedCvar=CreateConVar("war3_shop_boots_speed","1.2","Boots speed, 1.2 is default");
 	ClawsAttackCvar=CreateConVar("war3_shop_claws_damage","0.10","Claws of attack additional percentage damage per second");
