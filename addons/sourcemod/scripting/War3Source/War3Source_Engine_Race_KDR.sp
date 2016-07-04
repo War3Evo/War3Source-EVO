@@ -159,24 +159,27 @@ public generateRACESKDR_Callback(Handle:owner, Handle:hndl, const String:error[]
 			new inserts;
 			new RacesLoaded = internal_GetRacesLoaded();
 			new String:raceshortname[16];
-			for(new raceid=1;raceid<=RacesLoaded;raceid++)
+			if(RacesLoaded>0)
 			{
-				if(raceloaded[raceid]==false)
+				for(new raceid=1;raceid<=RacesLoaded;raceid++)
 				{
-					//no record make one
-					GetRaceShortname(raceid,raceshortname,sizeof(raceshortname));
-					//size16_War3_GetRaceShortname(raceid,raceshortname);
-					new String:query[3000];
-					Format(query, sizeof(query),"INSERT INTO `war3raceskdr_v2`(`hostname`, `raceshortname`, `kills`, `deaths`) VALUES ('%s','%s','%d','%d')",
-					sHostName,raceshortname,Kills[raceid],Deaths[raceid]);
-					//PrintToServer("Race KDR Query: %s",query);
-					SQL_TQuery(hDB, SQLCallback_Void, query, sizeof(query), DBPrio_Low);
+					if(raceloaded[raceid]==false)
+					{
+						//no record make one
+						GetRaceShortname(raceid,raceshortname,sizeof(raceshortname));
+						//size16_War3_GetRaceShortname(raceid,raceshortname);
+						new String:query[3000];
+						Format(query, sizeof(query),"INSERT INTO `war3raceskdr_v2`(`hostname`, `raceshortname`, `kills`, `deaths`) VALUES ('%s','%s','%d','%d')",
+						sHostName,raceshortname,Kills[raceid],Deaths[raceid]);
+						//PrintToServer("Race KDR Query: %s",query);
+						SQL_TQuery(hDB, SQLCallback_Void, query, sizeof(query), DBPrio_Low);
+					}
+
 				}
+				if(inserts>0){
 
-			}
-			if(inserts>0){
-
-				PrintToServer("[War3Source:EVO] Inserting fresh data for %d jobs",inserts);
+					PrintToServer("[War3Source:EVO] Inserting fresh data for %d jobs",inserts);
+				}
 			}
 		}
 	}
