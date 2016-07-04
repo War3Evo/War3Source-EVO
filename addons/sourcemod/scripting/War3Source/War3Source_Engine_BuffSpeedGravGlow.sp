@@ -23,9 +23,9 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };*/
 
+#if GGAMETYPE == GGAME_CSGO
 public void War3Source_Engine_BuffSpeedGravGlow_OnMapStart()
 {
-#if GGAMETYPE == GGAME_CSGO
 		Handle hCvar = FindConVar("sv_disable_immunity_alpha");
 		if(hCvar == null)
 		{
@@ -40,10 +40,7 @@ public void War3Source_Engine_BuffSpeedGravGlow_OnMapStart()
 		/* Enable convar and make sure it can't be changed by accident. */
 		SetConVarInt(hCvar, 1);
 		HookConVarChange(hCvar, ConVarChange_DisableImmunityAlpha);
-#endif
 }
-
-#if GGAMETYPE == GGAME_CSGO
 public ConVarChange_DisableImmunityAlpha(Handle convar, const char[] oldValue, const char[] newValue)
 {
 	if(!GetConVarBool(convar))
