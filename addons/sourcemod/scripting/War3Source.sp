@@ -392,7 +392,9 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 //=============================================================================
 public OnAllPluginsLoaded()
 {
-	PrintToServer("OnAllPluginsLoaded");
+	PrintToServer("War3Source:EVO OnAllPluginsLoaded");
+	PrintToServer("War3Source:EVO OnAllPluginsLoaded");
+	PrintToServer("War3Source:EVO OnAllPluginsLoaded");
 	ConnectDB();
 }
 //=============================================================================
@@ -415,9 +417,10 @@ public OnMapStart()
 	// moved to gameEvents.sp
 	//MapChanging = false;
 
-	PrintToServer("OnMapStart");
-
-	War3Source_Engine_BuffSpeedGravGlow_OnMapStart();
+	PrintToServer("War3Source:EVO OnMapStart Start");
+	PrintToServer("War3Source:EVO OnMapStart Start");
+	PrintToServer("War3Source:EVO OnMapStart Start");
+	PrintToServer("War3Source:EVO OnMapStart Start");
 
 	if(!MapStart)
 	{
@@ -438,6 +441,7 @@ public OnMapStart()
 
 #if GGAMETYPE == GGAME_CSGO
 	War3Source_Engine_CSGO_Radar_OnMapStart();
+	War3Source_Engine_BuffSpeedGravGlow_OnMapStart();
 #endif
 
 	War3Source_Engine_CooldownMgr_OnMapStart();
@@ -468,6 +472,10 @@ public OnMapStart()
 	// No Reason to check interface versions
 	//OneTimeForwards();
 
+	PrintToServer("War3Source:EVO OnMapStart Finished");
+	PrintToServer("War3Source:EVO OnMapStart Finished");
+	PrintToServer("War3Source:EVO OnMapStart Finished");
+	PrintToServer("War3Source:EVO OnMapStart Finished");
 }
 
 //=============================================================================
@@ -476,6 +484,8 @@ public OnMapStart()
 
 public OnMapEnd()
 {
+	PrintToServer("MapChanging = true");
+	PrintToServer("MapChanging = true");
 	PrintToServer("MapChanging = true");
 	MapChanging = true;
 	War3Source_Engine_Download_Control_OnMapEnd();
@@ -488,11 +498,14 @@ public OnMapEnd()
 LoadRacesAndItems()
 {
 	PrintToServer("RACE ITEM LOAD");
+	PrintToServer("RACE ITEM LOAD");
+	PrintToServer("RACE ITEM LOAD");
 	new Float:starttime=GetEngineTime();
 	//ordered loads
 	new res;
 	for(new i;i<=MAXRACES*30;i++) // 3000
 	{
+		PrintToServer("LoadRacesAndItems #1 i = ", i);
 		Call_StartForward(g_OnWar3PluginReadyHandle);
 		Call_PushCell(i);
 		Call_PushCell(-1);
@@ -502,6 +515,7 @@ LoadRacesAndItems()
 	//orderd loads 2
 	for(new i;i<=MAXRACES*30;i++) // 3000
 	{
+		PrintToServer("LoadRacesAndItems #2 i = ", i);
 		//DoForward_OnWar3LoadRaceOrItemOrdered2(i,-1,"");
 		Call_StartForward(g_OnWar3PluginReadyHandle2);
 		Call_PushCell(i);
@@ -518,6 +532,8 @@ LoadRacesAndItems()
 	War3Source_BotControl_LoadRacesAndItems();
 
 	PrintToServer("RACE ITEM LOAD FINISHED IN %.2f seconds",GetEngineTime()-starttime);
+	PrintToServer("RACE ITEM LOAD FINISHED IN %.2f seconds",GetEngineTime()-starttime);
+	PrintToServer("RACE ITEM LOAD FINISHED IN %.2f seconds",GetEngineTime()-starttime);
 
 	DelayedWar3SourceCfgExecute();
 
@@ -527,15 +543,16 @@ LoadRacesAndItems()
 //=============================================================================
 DelayedWar3SourceCfgExecute()
 {
+	PrintToServer("[War3Source:EVO] DelayedWar3SourceCfgExecute()");
 #if GGAMETYPE == GGAME_TF2
 	if(FileExists("cfg/war3source_tf2.cfg"))
 	{
-		ServerCommand("exec war3source.cfg");
-		PrintToServer("[War3Source] Executing war3source.cfg");
+		ServerCommand("exec war3source_tf2.cfg");
+		PrintToServer("[War3Source] Executing war3source_tf2.cfg");
 	}
 	else
 	{
-		PrintToServer("[War3Source] Could not find war3source.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Could not find war3source_tf2.cfg, we recommend all servers have this file");
 	}
 #elseif GGAMETYPE == GGAME_CSGO
 	if(FileExists("cfg/war3source_csgo.cfg"))
@@ -555,7 +572,7 @@ DelayedWar3SourceCfgExecute()
 	}
 	else
 	{
-		PrintToServer("[War3Source] Could not find war3source.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Could not find war3source configuration file, we recommend all servers have this file");
 	}
 #endif
 
@@ -579,8 +596,11 @@ DelayedWar3SourceCfgExecute()
 //=============================================================================
 // War3Source_HookEvents
 //=============================================================================
-bool:War3Source_HookEvents()
+stock bool War3Source_HookEvents()
 {
+	PrintToServer("[War3Source:EVO] War3Source_HookEvents() START");
+	PrintToServer("[War3Source:EVO] War3Source_HookEvents() START");
+	PrintToServer("[War3Source:EVO] War3Source_HookEvents() START");
 	// Events for all games
 	if(!HookEventEx("player_spawn",War3Source_PlayerSpawnEvent,EventHookMode_Pre)) //,EventHookMode_Pre
 	{
@@ -599,13 +619,18 @@ bool:War3Source_HookEvents()
 		return false;
 	}
 */
+	PrintToServer("[War3Source:EVO] War3Source_HookEvents() END");
+	PrintToServer("[War3Source:EVO] War3Source_HookEvents() END");
+	PrintToServer("[War3Source:EVO] War3Source_HookEvents() END");
 	return true;
 
 }
 //=============================================================================
 // DoForward_OnWar3EventSpawn
 //=============================================================================
-DoForward_OnWar3EventSpawn(client){
+DoForward_OnWar3EventSpawn(client)
+{
+		PrintToServer("[War3Source:EVO] DoForward_OnWar3EventSpawn()");
 		Call_StartForward(p_OnWar3EventSpawnFH);
 		Call_PushCell(client);
 		Call_Finish(dummyreturn);
@@ -615,7 +640,9 @@ DoForward_OnWar3EventSpawn(client){
 //=============================================================================
 // DoForward_OnWar3EventDeath
 //=============================================================================
-DoForward_OnWar3EventDeath(victim,killer,deathrace,distance,attacker_hpleft){
+DoForward_OnWar3EventDeath(victim,killer,deathrace,distance,attacker_hpleft)
+{
+		PrintToServer("[War3Source:EVO] DoForward_OnWar3EventDeath()");
 		Call_StartForward(g_OnWar3EventDeathFH);
 		Call_PushCell(victim);
 		Call_PushCell(killer);
@@ -680,5 +707,6 @@ stock SetPlayerRGB(index,r,g,b)
 
 public NW3Paused(Handle:plugin,numParams)
 {
+	PrintToServer("[War3Source:EVO] NW3Paused()");
 	return War3SourcePause;
 }
