@@ -393,8 +393,6 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 public OnAllPluginsLoaded()
 {
 	PrintToServer("War3Source:EVO OnAllPluginsLoaded");
-	PrintToServer("War3Source:EVO OnAllPluginsLoaded");
-	PrintToServer("War3Source:EVO OnAllPluginsLoaded");
 	ConnectDB();
 }
 //=============================================================================
@@ -417,9 +415,6 @@ public OnMapStart()
 	// moved to gameEvents.sp
 	//MapChanging = false;
 
-	PrintToServer("War3Source:EVO OnMapStart Start");
-	PrintToServer("War3Source:EVO OnMapStart Start");
-	PrintToServer("War3Source:EVO OnMapStart Start");
 	PrintToServer("War3Source:EVO OnMapStart Start");
 
 	if(!MapStart)
@@ -473,9 +468,6 @@ public OnMapStart()
 	//OneTimeForwards();
 
 	PrintToServer("War3Source:EVO OnMapStart Finished");
-	PrintToServer("War3Source:EVO OnMapStart Finished");
-	PrintToServer("War3Source:EVO OnMapStart Finished");
-	PrintToServer("War3Source:EVO OnMapStart Finished");
 }
 
 //=============================================================================
@@ -484,8 +476,6 @@ public OnMapStart()
 
 public OnMapEnd()
 {
-	PrintToServer("MapChanging = true");
-	PrintToServer("MapChanging = true");
 	PrintToServer("MapChanging = true");
 	MapChanging = true;
 	War3Source_Engine_Download_Control_OnMapEnd();
@@ -599,8 +589,6 @@ DelayedWar3SourceCfgExecute()
 stock bool War3Source_HookEvents()
 {
 	PrintToServer("[War3Source:EVO] War3Source_HookEvents() START");
-	PrintToServer("[War3Source:EVO] War3Source_HookEvents() START");
-	PrintToServer("[War3Source:EVO] War3Source_HookEvents() START");
 	// Events for all games
 	if(!HookEventEx("player_spawn",War3Source_PlayerSpawnEvent,EventHookMode_Pre)) //,EventHookMode_Pre
 	{
@@ -619,8 +607,6 @@ stock bool War3Source_HookEvents()
 		return false;
 	}
 */
-	PrintToServer("[War3Source:EVO] War3Source_HookEvents() END");
-	PrintToServer("[War3Source:EVO] War3Source_HookEvents() END");
 	PrintToServer("[War3Source:EVO] War3Source_HookEvents() END");
 	return true;
 
@@ -707,6 +693,5 @@ stock SetPlayerRGB(index,r,g,b)
 
 public NW3Paused(Handle:plugin,numParams)
 {
-	PrintToServer("[War3Source:EVO] NW3Paused()");
 	return War3SourcePause;
 }
