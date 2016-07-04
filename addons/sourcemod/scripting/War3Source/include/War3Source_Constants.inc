@@ -27,6 +27,8 @@
 
 #define MAXRACES 100 //20 = [1]-[199]  ///can only hold X-1 races, IE 20 can only hold 19 races, we skip zeroth race!
 
+#define MAXSKILLS 100
+
 #define MAXITEMS 50  // [1]-[19] //(+1 of real number of items, if there are 8 items to load, use 9!! ignore zeroth rule)
 #define MAXITEMS2 20
 #define MAXITEMS3 25

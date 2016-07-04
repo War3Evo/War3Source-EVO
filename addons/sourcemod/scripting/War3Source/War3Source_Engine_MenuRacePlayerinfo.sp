@@ -12,10 +12,10 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };*/
 
-new raceinfoshowskillnumber[MAXPLAYERSCUSTOM];
+int raceinfoshowskillnumber[MAXPLAYERSCUSTOM];
 
-new Handle:ShowOtherPlayerItemsCvar;
-new Handle:ShowTargetSelfPlayerItemsCvar;
+Handle ShowOtherPlayerItemsCvar;
+Handle ShowTargetSelfPlayerItemsCvar;
 
 public War3Source_Engine_MenuRacePlayerinfo_OnPluginStart()
 {
@@ -38,39 +38,40 @@ public War3Source_Engine_MenuRacePlayerinfo_OnWar3Event(W3EVENT:event,client){
 		PlayerInfoMenuEntry(client);
 	}
 	if(event==DoShowParticularRaceInfo){
-		new raceid = W3GetVar(RaceinfoRaceToShow);
+		int raceid = W3GetVar(RaceinfoRaceToShow);
 		if(ValidRace(raceid)) {
 			War3_ShowParticularRaceInfoMenu(client,raceid);
 		}
 	}
 	if(event==DoShowPlayerInfoTarget){
-		new target = W3GetVar(EventArg1);
+		int target = W3GetVar(EventArg1);
 		if(ValidPlayer(target,false)) {
 			War3_playertargetMenu(client,target) ;
 		}
 	}
 	if(event==DoShowPlayerItemsOwnTarget){
-		new target = W3GetVar(EventArg1);
+		int target = W3GetVar(EventArg1);
 		if(ValidPlayer(target,false)) {
 			War3_playertargetItemMenu(client,target) ;
 		}
 	}
 }
-ShowMenu3Raceinfo(client){
+ShowMenu3Raceinfo(client)
+{
 	SetTrans(client);
-	new Handle:hMenu=CreateMenu(War3_raceinfoSelected);
+	Handle hMenu=CreateMenu(War3_raceinfoSelected);
 	SetMenuExitButton(hMenu,true);
 	SetMenuTitle(hMenu,"%T\n ","[War3Source:EVO] Select a job for more info",client);
 	// Iteriate through the races and print them out
 
-	decl String:rbuf[4];
-	decl String:rracename[32];
-	decl String:rdisp[128];
+	char rbuf[4];
+	char rracename[32];
+	char rdisp[128];
 
-	new racelist[MAXRACES];
-	new racedisplay=W3GetRaceList(racelist);
+	int racelist[MAXRACES];
+	int racedisplay=W3GetRaceList(racelist);
 	//if(GetConVarInt(W3GetVar(hSortByMinLevelCvar))<1){
-	//	for(new x=0;x<War3_GetRacesLoaded();x++){//notice this starts at zero!
+	//	for(int x=0;x<War3_GetRacesLoaded();x++){//notice this starts at zero!
 	//		racelist[x]=x+1;
 	//	}
 	//}
@@ -78,17 +79,17 @@ ShowMenu3Raceinfo(client){
 
 
 
-	for(new i=0;i<racedisplay;i++) //notice this starts at zero!
+	for(int i=0;i<racedisplay;i++) //notice this starts at zero!
 	{
-		new	raceid=racelist[i];
+		int	raceid=racelist[i];
 
 		Format(rbuf,sizeof(rbuf),"%d",raceid); //DATA FOR MENU!
 		GetRaceName(raceid,rracename,sizeof(rracename));
 
 
 
-		new yourteam,otherteam;
-		for(new y=1;y<=MaxClients;y++)
+		int yourteam,otherteam;
+		for(int y=1;y<=MaxClients;y++)
 		{
 
 			if(ValidPlayer(y,false))
@@ -106,7 +107,7 @@ ShowMenu3Raceinfo(client){
 				}
 			}
 		}
-		new String:extra[3];
+		char extra[3];
 		if(GetRace(client)==raceid)
 		{
 			Format(extra,sizeof(extra),">");
@@ -131,12 +132,12 @@ public War3_raceinfoSelected(Handle:menu,MenuAction:action,client,selection)
 		if(ValidPlayer(client))
 		{
 
-			decl String:SelectionInfo[4];
-			decl String:SelectionDispText[256];
+			char SelectionInfo[4];
+			char SelectionDispText[256];
 
-			new SelectionStyle;
+			int SelectionStyle;
 			GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-			new race_selected=StringToInt(SelectionInfo);
+			int race_selected=StringToInt(SelectionInfo);
 
 			raceinfoshowskillnumber[client]=-1;
 			War3_ShowParticularRaceInfoMenu(client,race_selected);
@@ -148,32 +149,33 @@ public War3_raceinfoSelected(Handle:menu,MenuAction:action,client,selection)
 	}
 }
 
-public War3_ShowParticularRaceInfoMenu(client,raceid){
+public War3_ShowParticularRaceInfoMenu(client,raceid)
+{
 	SetTrans(client);
-	new Handle:hMenu=CreateMenu(War3_particularraceinfoSelected);
+	Handle hMenu=CreateMenu(War3_particularraceinfoSelected);
 	SetMenuExitButton(hMenu,true);
 	SetMenuExitBackButton(hMenu,true);
 
-	new String:racename[32];
-	new String:skilldesc[1000];
-	new String:skillname[64];
-	//new String:longbuf[7000];
+	char racename[32];
+	char skilldesc[1000];
+	char skillname[64];
+	//char longbuf[7000];
 	GetRaceName(GetRace(client),racename,sizeof(racename));
 
 
 
-	new String:selectioninfo[32];
+	char selectioninfo[32];
 
 
 	SetMenuTitle(hMenu,"%T\n \n","[War3Source:EVO] Information for job: {racename} (LVL {amount}/{amount})",client,racename,War3_GetLevel(client,raceid),GetRaceMaxLevel(raceid));
 
 
 
-	new level;
-	new SkillCount = GetRaceSkillCount(raceid);
-	for(new x=1;x<=SkillCount;x++)
+	int level;
+	int SkillCount = GetRaceSkillCount(raceid);
+	for(int x=1;x<=SkillCount;x++)
 	{
-		decl String:str[1000];
+		char str[1000];
 		if(GetRaceSkillName(raceid,x,skillname,sizeof(skillname))>0)
 		{
 			level=War3_GetSkillLevelINTERNAL(client,raceid,x) ;
@@ -226,7 +228,7 @@ public War3_ShowParticularRaceInfoMenu(client,raceid){
 	if(CanSelectRace(client,raceid,true))
 	{
 		Format(selectioninfo,sizeof(selectioninfo),"%d,changejob,%d",7,raceid);
-		new String:str[100];
+		char str[100];
 		Format(str,sizeof(str),"%T \n","Change to this Job",client);
 		AddMenuItem(hMenu,selectioninfo,str);
 	}
@@ -234,14 +236,14 @@ public War3_ShowParticularRaceInfoMenu(client,raceid){
 	//Format(selectioninfo,sizeof(selectioninfo),"%d,raceinfo,%d",raceid,0);  //raceinfo ??
 
 	//Format(selectioninfo,sizeof(selectioninfo),"%d,jobinfo,%d",8,0);
-	//new String:str[100];
+	//char str[100];
 	//Format(str,sizeof(str),"%T \n","Back to jobinfo",client);
 	//AddMenuItem(hMenu,selectioninfo,str);
 
 	//Format(selectioninfo,sizeof(selectioninfo),"%d,0,%d",raceid,0);
 	//AddMenuItem(hMenu,selectioninfo,"",ITEMDRAW_NOTEXT); //empty line
 
-	//new String:selectionDisplayBuff[64];
+	//char selectionDisplayBuff[64];
 	//Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T \n \n","See all players with job {racename}",client,racename) ;
 	//Format(selectioninfo,sizeof(selectioninfo),"%d,seeall,%d",raceid,0);
 	//AddMenuItem(hMenu,selectioninfo,selectionDisplayBuff);
@@ -271,18 +273,18 @@ public War3_particularraceinfoSelected(Handle:menu,MenuAction:action,client,sele
 		if(ValidPlayer(client))
 		{
 
-			new String:exploded[3][32];
+			char exploded[3][32];
 
-			decl String:SelectionInfo[32];
-			decl String:SelectionDispText[256];
-			new SelectionStyle;
+			char SelectionInfo[32];
+			char SelectionDispText[256];
+			int SelectionStyle;
 			GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
 
 			ExplodeString(SelectionInfo, ",", exploded, 3, 32);
-			new raceid=StringToInt(exploded[0]);
+			int raceid=StringToInt(exploded[0]);
 
 			if(StrEqual(exploded[1],"skill")){
-				new skillnum=StringToInt(exploded[2]);
+				int skillnum=StringToInt(exploded[2]);
 				if(raceinfoshowskillnumber[client]==selection){
 					raceinfoshowskillnumber[client]=-1;
 				}
@@ -296,11 +298,11 @@ public War3_particularraceinfoSelected(Handle:menu,MenuAction:action,client,sele
 			//	ShowMenu3Raceinfo(client);
 			//}
 			else if(StrEqual(exploded[1],"changejob")){
-				new jobnum=StringToInt(exploded[2]);
-				//decl String:buf[32];
+				int jobnum=StringToInt(exploded[2]);
+				//char buf[32];
 				//GetRaceName(jobnum,buf,sizeof(buf));
 
-				//new bool:allowChooseRace=bool:CanSelectRace(client,jobnum); //this is the deny system W3Denyable
+				//int bool:allowChooseRace=bool:CanSelectRace(client,jobnum); //this is the deny system W3Denyable
 				//if(allowChooseRace==false){
 					//War3_ChatMessage(client,"You can not change to %s.",buf);
 					//ShowMenu3Raceinfo(client);
@@ -344,26 +346,27 @@ public War3_particularraceinfoSelected(Handle:menu,MenuAction:action,client,sele
 
 
 
-War3_playersWhoAreThisRaceMenu(client,raceid){
-	new Handle:hMenu=CreateMenu(War3_playersWhoAreThisRaceSel);
+War3_playersWhoAreThisRaceMenu(client,raceid)
+{
+	Handle hMenu=CreateMenu(War3_playersWhoAreThisRaceSel);
 	SetMenuExitButton(hMenu,true);
 
-	new String:racename[32];
+	char racename[32];
 	GetRaceName(raceid,racename,sizeof(racename));
 
 	SetMenuTitle(hMenu,"%T\n \n","[War3Source:EVO] People who are job: {racename}",client,racename);
 
-	decl String:playername[64];
-	decl String:war3playerbuf[4];
+	char playername[64];
+	char war3playerbuf[4];
 
-	for(new x=1;x<=MaxClients;x++)
+	for(int x=1;x<=MaxClients;x++)
 	{
 		if(ValidPlayer(x)&&GetRace(x)==raceid){
 
 			Format(war3playerbuf,sizeof(war3playerbuf),"%d",x);  //target index
 			GetClientName(x,playername,sizeof(playername));
-			decl String:menuitemstr[100];
-			decl String:teamname[10];
+			char menuitemstr[100];
+			char teamname[10];
 			GetShortTeamName( GetClientTeam(x),teamname,sizeof(teamname));
 			Format(menuitemstr,sizeof(menuitemstr),"%T","{player} (Level {amount}) [{team}]",client,playername,War3_GetLevel(x,raceid),teamname);
 			AddMenuItem(hMenu,war3playerbuf,menuitemstr);
@@ -377,11 +380,11 @@ public War3_playersWhoAreThisRaceSel(Handle:menu,MenuAction:action,client,select
 	if(action==MenuAction_Select)
 	{
 
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target))
 			War3_playertargetMenu(client,target);
 		else
@@ -399,8 +402,8 @@ public War3_playersWhoAreThisRaceSel(Handle:menu,MenuAction:action,client,select
 
 
 PlayerInfoMenuEntry(client){
-	new String:arg[32];
-	new Handle:dataarray=W3GetVar(hPlayerInfoArgStr); //should always be created, upper plugin closes handle
+	char arg[32];
+	Handle dataarray=W3GetVar(hPlayerInfoArgStr); //should always be created, upper plugin closes handle
 	GetArrayString(dataarray,0,arg,sizeof(arg));
 	War3_PlayerInfoMenu(client,arg);
 }
@@ -410,15 +413,15 @@ War3_PlayerInfoMenu(client,String:arg[]){
 	SetTrans(client);
 	//PrintToChatAll("%s",arg);
 	if(strlen(arg)>10){   //has argument (space after)
-		new String:arg2[32];
+		char arg2[32];
 		Format(arg2,sizeof(arg2),"%s",arg[11]);
 		//PrintToChatAll("%s",arg2);
 
 
-		new found=0;
-		new targetlist[MAXPLAYERSCUSTOM];
-		new String:name[32];
-		for(new i=1;i<=MaxClients;i++){
+		int found=0;
+		int targetlist[MAXPLAYERSCUSTOM];
+		char name[32];
+		for(int i=1;i<=MaxClients;i++){
 			if(ValidPlayer(i)){
 				GetClientName(i,name,sizeof(name));
 				if(StrContains(name,arg2,false)>-1){
@@ -432,14 +435,14 @@ War3_PlayerInfoMenu(client,String:arg[]){
 		else if(found>1){
 			//War3_ChatMessage(client,"%T","!playerinfo <optional name>: More than one target found",client);
 			//redundant code..maybe we should optmize?
-			new Handle:hMenu=CreateMenu(War3_playerinfoSelected1);
+			Handle hMenu=CreateMenu(War3_playerinfoSelected1);
 			SetMenuExitButton(hMenu,true);
 			SetMenuTitle(hMenu,"%T\n ","[War3Source:EVO] Select a player to view its information",client);
 			// Iteriate through the players and print them out
-			decl String:playername[32];
-			decl String:war3playerbuf[4];
-			decl String:racename[32];
-			decl String:menuitem[100] ;
+			char playername[32];
+			char war3playerbuf[4];
+			char racename[32];
+			char menuitem[100] ;
 			for(new i=0;i<found;i++)
 			{
 				new clientindex=targetlist[i];
@@ -472,14 +475,14 @@ War3_PlayerInfoMenu(client,String:arg[]){
 	else
 	{
 
-		new Handle:hMenu=CreateMenu(War3_playerinfoSelected1);
+		Handle hMenu=CreateMenu(War3_playerinfoSelected1);
 		SetMenuExitButton(hMenu,true);
 		SetMenuTitle(hMenu,"%T\n ","[War3Source:EVO] Select a player to view its information",client);
 		// Iteriate through the players and print them out
-		decl String:playername[32];
-		decl String:war3playerbuf[4];
-		decl String:racename[32];
-		decl String:menuitem[100] ;
+		char playername[32];
+		char war3playerbuf[4];
+		char racename[32];
+		char menuitem[100] ;
 		for(new x=1;x<=MaxClients;x++)
 		{
 			if(ValidPlayer(x)){
@@ -511,11 +514,11 @@ public War3_playerinfoSelected1(Handle:menu,MenuAction:action,client,selection)
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(ValidPlayer(target))
 			War3_playertargetMenu(client,target);
 		else
@@ -528,24 +531,25 @@ public War3_playerinfoSelected1(Handle:menu,MenuAction:action,client,selection)
 }
 
 
-War3_playertargetMenu(client,target) {
+War3_playertargetMenu(client,target)
+{
 	SetTrans(client);
-	new Handle:hMenu=CreateMenu(War3_playertargetMenuSelected);
+	Handle hMenu=CreateMenu(War3_playertargetMenuSelected);
 	SetMenuExitButton(hMenu,true);
 
-	new String:targetname[32];
+	char targetname[32];
 	GetClientName(target,targetname,sizeof(targetname));
 
-	new String:racename[32];
-	new String:skillname[64];
+	char racename[32];
+	char skillname[64];
 
-	new raceid=GetRace(target);
+	int raceid=GetRace(target);
 	GetRaceName(raceid,racename,sizeof(racename));
 
-	new level;
+	int level;
 	level=War3_GetLevel(target,raceid);
 
-	new String:title[3000];
+	char title[3000];
 
 	Format(title,sizeof(title),"%T\n \n","[War3Source:EVO] Information for {player}",client,targetname);
 	Format(title,sizeof(title),"%s\n \nTotal levels: %d ",title,GetClientTotalLevels(target));
@@ -558,8 +562,8 @@ War3_playertargetMenu(client,target) {
 	//Format(title,sizeof(title),"%s\n",title);
 	Format(title,sizeof(title),"%s\nRace kdr: %.2f\n",title,War3_GetRaceKDR(raceid));
 
-	new SkillCount = GetRaceSkillCount(raceid);
-	for(new x=1;x<=SkillCount;x++)
+	int SkillCount = GetRaceSkillCount(raceid);
+	for(int x=1;x<=SkillCount;x++)
 	{
 		if(GetRaceSkillName(raceid,x,skillname,sizeof(skillname))>0)
 		{
@@ -586,10 +590,10 @@ War3_playertargetMenu(client,target) {
 	{
 		Format(title,sizeof(title),"%s\n \n%T\n",title,"Items:",client);
 
-		new String:itemname[64];
-		new moleitemid=internal_GetItemIdByShortname("mole");
-		new ItemsLoaded = totalItemsLoaded;
-		for(new itemid=1;itemid<=ItemsLoaded;itemid++)
+		char itemname[64];
+		int moleitemid=internal_GetItemIdByShortname("mole");
+		int ItemsLoaded = totalItemsLoaded;
+		for(int itemid=1;itemid<=ItemsLoaded;itemid++)
 		{
 			if(GetOwnsItem(target,itemid)&&itemid!=moleitemid)
 			{
@@ -597,8 +601,8 @@ War3_playertargetMenu(client,target) {
 			 Format(title,sizeof(title),"%s\n%s",title,itemname);
 			}
 		}
-		new Items2Loaded = W3GetItems2Loaded();
-		for(new itemid=1;itemid<=Items2Loaded;itemid++)
+		int Items2Loaded = W3GetItems2Loaded();
+		for(int itemid=1;itemid<=Items2Loaded;itemid++)
 		{
 			if(War3_GetOwnsItem2(target,itemid)&&itemid!=moleitemid)
 			{
@@ -611,10 +615,10 @@ War3_playertargetMenu(client,target) {
 	{
 		Format(title,sizeof(title),"%s\n \n%T\n",title,"Items:",client);
 
-		new String:itemname[64];
-		new moleitemid=internal_GetItemIdByShortname("mole");
-		new ItemsLoaded = totalItemsLoaded;
-		for(new itemid=1;itemid<=ItemsLoaded;itemid++)
+		char itemname[64];
+		int moleitemid=internal_GetItemIdByShortname("mole");
+		int ItemsLoaded = totalItemsLoaded;
+		for(int itemid=1;itemid<=ItemsLoaded;itemid++)
 		{
 			if(GetOwnsItem(target,itemid)&&itemid!=moleitemid)
 			{
@@ -622,8 +626,8 @@ War3_playertargetMenu(client,target) {
 			 Format(title,sizeof(title),"%s\n%s",title,itemname);
 			}
 		}
-		new Items2Loaded = W3GetItems2Loaded();
-		for(new itemid=1;itemid<=Items2Loaded;itemid++)
+		int Items2Loaded = W3GetItems2Loaded();
+		for(int itemid=1;itemid<=Items2Loaded;itemid++)
 		{
 			if(War3_GetOwnsItem2(target,itemid)&&itemid!=moleitemid)
 			{
@@ -632,7 +636,7 @@ War3_playertargetMenu(client,target) {
 			}
 		}
 	}
-	new Float:armorred=(1.0-PhysicalArmorMulti(target))*100;
+	float armorred=(1.0-PhysicalArmorMulti(target))*100;
 	Format(title,sizeof(title),"%s\n \n%T",title,"Physical Armor: {amount} (+-{amount}%)",client,GetBuffSumFloat(target,fArmorPhysical),armorred<0.0?"+":"-",armorred<0.0?armorred*-1.0:armorred);
 
 	armorred=(1.0-W3GetMagicArmorMulti(target))*100;
@@ -647,14 +651,14 @@ War3_playertargetMenu(client,target) {
 
 
 
-	new String:buf[3];
+	char buf[3];
 
 	IntToString(target,buf,sizeof(buf));
-	new String:str[100];
+	char str[100];
 	Format(str,sizeof(str),"%T","Refresh",client);
 	AddMenuItem(hMenu,buf,str);
 
-	new String:selectionDisplayBuff[64];
+	char selectionDisplayBuff[64];
 	Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T","See {racename} Job information",client,racename)  ;
 	AddMenuItem(hMenu,buf,selectionDisplayBuff);
 
@@ -667,12 +671,12 @@ War3_playertargetMenu(client,target) {
 	DisplayMenu(hMenu,client,MENU_TIME_FOREVER);
 }
 
-War3_playertargetItemMenu(client,target) {
-
-		new Handle:hMenu=CreateMenu(War3_playertargetItemMenuSelected2);
+War3_playertargetItemMenu(client,target)
+{
+		Handle hMenu=CreateMenu(War3_playertargetItemMenuSelected2);
 		SetMenuExitButton(hMenu,true);
 
-		new String:title[3000];
+		char title[3000];
 
 		// Items info
 		//if(client==target)
@@ -681,10 +685,10 @@ War3_playertargetItemMenu(client,target) {
 
 		Format(title,sizeof(title),"%s\n \n",title);
 
-		new String:itemname[64];
-		new moleitemid=internal_GetItemIdByShortname("mole");
-		new ItemsLoaded = totalItemsLoaded;
-		for(new itemid=1;itemid<=ItemsLoaded;itemid++)
+		char itemname[64];
+		int moleitemid=internal_GetItemIdByShortname("mole");
+		int ItemsLoaded = totalItemsLoaded;
+		for(int itemid=1;itemid<=ItemsLoaded;itemid++)
 		{
 			if(GetOwnsItem(target,itemid)&&itemid!=moleitemid)
 			{
@@ -694,8 +698,8 @@ War3_playertargetItemMenu(client,target) {
 		}
 		Format(title,sizeof(title),"%s\n \n",title);
 
-		new Items2Loaded = W3GetItems2Loaded();
-		for(new itemid=1;itemid<=Items2Loaded;itemid++)
+		int Items2Loaded = W3GetItems2Loaded();
+		for(int itemid=1;itemid<=Items2Loaded;itemid++)
 		{
 			if(War3_GetOwnsItem2(target,itemid)&&itemid!=moleitemid)
 			{
@@ -709,10 +713,10 @@ War3_playertargetItemMenu(client,target) {
 
 		SetMenuTitle(hMenu,"%s",title);
 
-		new String:buf[3];
+		char buf[3];
 
 		IntToString(target,buf,sizeof(buf));
-		new String:str[100];
+		char str[100];
 		Format(str,sizeof(str),"%T","Refresh",client);
 		AddMenuItem(hMenu,buf,str);
 
@@ -721,13 +725,14 @@ War3_playertargetItemMenu(client,target) {
 
 
 public War3_playertargetItemMenuSelected2(Handle:menu,MenuAction:action,client,selection)
+{
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(!ValidPlayer(target)){
 			War3_ChatMessage(client,"%T","Player has left the server",client);
 		}
@@ -741,17 +746,18 @@ public War3_playertargetItemMenuSelected2(Handle:menu,MenuAction:action,client,s
 		{
 			CloseHandle(menu);
 		}
+	}
 }
 
 public War3_playertargetMenuSelected(Handle:menu,MenuAction:action,client,selection)
 {
 	if(action==MenuAction_Select)
 	{
-		decl String:SelectionInfo[4];
-		decl String:SelectionDispText[256];
-		new SelectionStyle;
+		char SelectionInfo[4];
+		char SelectionDispText[256];
+		int SelectionStyle;
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
-		new target=StringToInt(SelectionInfo);
+		int target=StringToInt(SelectionInfo);
 		if(!ValidPlayer(target)){
 			War3_ChatMessage(client,"%T","Player has left the server",client);
 		}
@@ -761,11 +767,11 @@ public War3_playertargetMenuSelected(Handle:menu,MenuAction:action,client,select
 				War3_playertargetMenu(client,target);
 			}
 			if(selection==1){
-				new raceid=GetRace(target);
+				int raceid=GetRace(target);
 				War3_ShowParticularRaceInfoMenu(client,raceid);
 			}
 			if(selection==2){
-				new raceid=GetRace(target);
+				int raceid=GetRace(target);
 				War3_playersWhoAreThisRaceMenu(client,raceid);
 			}
 			if(selection==3){
@@ -790,9 +796,10 @@ public War3_playertargetMenuSelected(Handle:menu,MenuAction:action,client,select
 
 
 GetClientTotalLevels(client)
-{	new total_level=0;
-	new RacesLoaded = internal_GetRacesLoaded();
-	for(new r=1;r<=RacesLoaded;r++)
+{
+	int total_level=0;
+	int RacesLoaded = internal_GetRacesLoaded();
+	for(int r=1;r<=RacesLoaded;r++)
 	{
 		total_level+=War3_GetLevel(client,r);
 	}

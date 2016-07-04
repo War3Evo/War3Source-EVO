@@ -200,7 +200,7 @@ public Action:Cmdjoblist(client,args){
 }
 
 
-public bool:War3Source_Engine_RaceClass_InitNatives()
+public bool War3Source_Engine_RaceClass_InitNatives()
 {
 	//War3Source_InitForwards2();
 

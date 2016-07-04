@@ -153,6 +153,8 @@ public bool War3Source_InitNatives()
 
 	Return_InitNatives = War3Source_Engine_RaceClass_InitNatives();
 
+	Return_InitNatives = War3Source_Engine_SkillsClass_InitNatives();
+
 	Return_InitNatives = War3Source_Engine_Race_KDR_InitNatives();
 
 	Return_InitNatives = War3Source_Engine_SkillEffects_InitNatives();

@@ -197,3 +197,19 @@ Handle p_OnTalentsLoaded;
 //===============================
 
 Handle p_OnWar3SkinChange;
+
+
+//=============================
+// War3Source_Engine_SkillsClass ------------------------------ SKILLS CLASS
+//=============================
+
+Handle p_OnWar3SkillSlotChange;
+
+char skill_Name[MAXSKILLS][32];
+char skill_Shortname[MAXSKILLS][16];
+char skill_Short_Description[MAXSKILLS][256];
+char skill_Description[MAXSKILLS][512];
+
+//If a player is assigned a skill by the race, this holds the information
+int skill_PlayerSkill[MAXPLAYERSCUSTOM][MAXSKILLCOUNT];
+

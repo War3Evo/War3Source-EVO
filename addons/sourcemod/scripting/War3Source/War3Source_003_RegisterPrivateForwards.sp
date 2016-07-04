@@ -110,6 +110,10 @@ stock Handle GetW3HookType(W3HookType W3HOOKtype)
 		{
 			return p_OnWar3SkinChange;
 		}
+		case W3Hook_OnWar3SkillSlotChange:
+		{
+			return p_OnWar3SkillSlotChange;
+		}
 	}
 	return null;
 }

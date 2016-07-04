@@ -190,6 +190,8 @@
 
 #include "War3Source/War3Source_001_OnSkinChange.sp"
 
+#include "War3Source/War3Source_Engine_SkillsClass.sp"
+
 // Disabled for now
 //#include "War3Source/War3Source_Engine_Talents.sp"
 //#include "War3Source/"

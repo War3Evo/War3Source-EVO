@@ -608,6 +608,8 @@ enum W3HookType
 
 	W3Hook_OnWar3SkinChange,
 	W3Hook_OnTalentsLoaded,
+
+	W3Hook_OnWar3SkillSlotChange, //p_OnWar3SkillSlotChange
 	//W3Hook_,
 };
 
@@ -644,6 +646,8 @@ typeset W3HookCB
 	//W3Hook_OnWar3SkinChange
 	function void (int client, int newrace);
 
+	//W3Hook_OnWar3SkillChange
+	function void (int client, int skillslot, int oldskillid, int newskillid);
 };
 
 /**
@@ -1859,6 +1863,8 @@ stock void RemoveCosmetics(iClient)
 #include "War3Source/include/War3Source_OnW3SupplyLocker.inc"
 #include "War3Source/include/War3Source_OnW3HealthPickup.inc"
 
+#include "War3Source/include/War3Source_Engine_SkillsClass.inc"
+
 // not included for now
 //#include "War3Source/include/War3Source_Talents.inc"
 
@@ -2176,6 +2182,19 @@ methodmap W3player
 		War3_LoadTalents(this.index);
 	}
 #endif
+
+	public int getSkillslot( int skillid )
+	{
+		return War3_GetSkillSlot(this.index,skillid);
+	}
+	public void setSkillslot( int skillslot, int skillid )
+	{
+		War3_SetSkillSlot(this.index,skillslot,skillid);
+	}
+	public int hasSkillslot( int skillslot, int skillid )
+	{
+		return War3_HasSkillSlot(this.index,skillid);
+	}
 }
 
 

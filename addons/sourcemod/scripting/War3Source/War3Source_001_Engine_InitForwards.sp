@@ -3,9 +3,9 @@
 //=============================================================================
 // War3Source_InitForwards
 //=============================================================================
-public bool:War3Source_InitForwards()
+public bool War3Source_InitForwards()
 {
-	new bool:Return_InitForwards=false;
+	bool Return_InitForwards=false;
 
 	g_OnWar3PluginReadyHandle=CreateGlobalForward("OnWar3LoadRaceOrItemOrdered",ET_Ignore,Param_Cell,Param_Cell);//ordered
 	g_OnWar3PluginReadyHandle2=CreateGlobalForward("OnWar3LoadRaceOrItemOrdered2",ET_Ignore,Param_Cell,Param_Cell,Param_String);//ordered
@@ -84,8 +84,11 @@ public bool:War3Source_InitForwards()
 
 	Return_InitForwards = War3Source_002_OnW3HealthPickup_InitNativesForwards();
 
-	//Return_InitForwards =
+	Return_InitForwards = War3Source_Engine_SkillsClass_InitForwards();
 
+	//Return_InitForwards =
+	//Return_InitForwards =
+	//Return_InitForwards =
 	//Return_InitForwards =
 
 	return Return_InitForwards;
