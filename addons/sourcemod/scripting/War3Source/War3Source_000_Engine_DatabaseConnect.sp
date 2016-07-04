@@ -11,7 +11,8 @@ public Plugin:myinfo=
 };
 */
 
-public ConnectDB(){
+public ConnectDB()
+{
 	PrintToServer("[W3S] Connecting to Database");
 	new String:sCachedDBIName[256];
 	new String:dbErrorMsg[512];
