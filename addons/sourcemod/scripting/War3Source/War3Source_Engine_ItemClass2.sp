@@ -1,22 +1,21 @@
 // War3Source_Engine_ItemClass2.sp
 
-new totalItems2Loaded=0;  ///USE raceid=1;raceid<=GetRacesLoaded();raceid++ for looping
 ///race instance variables
 //RACE ID = index of [MAXRACES], raceid 1 is raceName[1][32]
 
-new String:item2Name[MAXITEMS][64];
-new String:item2Shortname[MAXITEMS][16];
-new String:item2ShortDescription[MAXITEMS][256];
-new String:item2Description[MAXITEMS][512];
+char item2Name[MAXITEMS][64];
+char item2Shortname[MAXITEMS][16];
+char item2ShortDescription[MAXITEMS][256];
+char item2Description[MAXITEMS][512];
 
-new item2diamondCost[MAXITEMS];
-new item2Property[MAXITEMS][W3ItemProp] ;
+int item2diamondCost[MAXITEMS];
+int item2Property[MAXITEMS][W3ItemProp] ;
 
-new item2OrderCvar[MAXITEMS];
-new item2FlagsCvar[MAXITEMS];
-new item2CategoryCvar[MAXITEMS];
+int item2OrderCvar[MAXITEMS];
+int item2FlagsCvar[MAXITEMS];
+int item2CategoryCvar[MAXITEMS];
 
-new bool:item2Translated[MAXITEMS];
+bool item2Translated[MAXITEMS];
 /*
 public Plugin:myinfo=
 {
@@ -90,7 +89,7 @@ public NWar3_CreateShopItem2T(Handle:plugin,numParams)
 	}
 	*/
 
-	new String:buf[64];
+	char buf[64];
 	Format(buf,sizeof(buf),"w3s.item2.%s.phrases",shortname);
 	LoadTranslations(buf);
 	return itemid;
@@ -112,7 +111,7 @@ public NWar3_GetItem2Property(Handle:plugin,numParams)
 public NWar3_GetItem2IdByShortname(Handle:plugin,numParams)
 {
 
-	new String:itemshortname[16],String:argstr[16];
+	char itemshortname[16],argstr[16];
 	GetNativeString(1,argstr,16);
 	new ItemsLoaded = W3GetItems2Loaded();
 	for(new i=1;i<=ItemsLoaded;i++){
@@ -129,7 +128,7 @@ public NWar3_GetItem2IdByShortname(Handle:plugin,numParams)
 public NW3GetItem2Name(Handle:plugin,numParams)
 {
 	new itemid=GetNativeCell(1);
-	new String:str[64];
+	char str[64];
 	GetItem2Name(itemid,str,sizeof(str));
 	SetNativeString(2,str,GetNativeCell(3));
 }
@@ -137,7 +136,7 @@ public NW3GetItem2Shortname(Handle:plugin,numParams)
 {
 	new itemid=GetNativeCell(1);
 
-	new String:str[16];
+	char str[16];
 	GetItem2Shortname(itemid,str,sizeof(str));
 	SetNativeString(2,str,GetNativeCell(3));
 
@@ -146,7 +145,7 @@ public NW3GetItem2Shortdesc(Handle:plugin,numParams)
 {
 	new itemid=GetNativeCell(1);
 
-	new String:str[256];
+	char str[256];
 	GetItem2Shortdesc(itemid,str,sizeof(str));
 	SetNativeString(2,str,GetNativeCell(3));
 
@@ -155,7 +154,7 @@ public NW3GetItem2Description(Handle:plugin,numParams)
 {
 	new itemid=GetNativeCell(1);
 
-	new String:str[512];
+	char str[512];
 	GetItem2Description(itemid,str,sizeof(str));
 	SetNativeString(2,str,GetNativeCell(3));
 }
@@ -180,10 +179,10 @@ public NW3GetItem2Order(Handle:plugin,numParams)
 public NW3Item2HasFlag(Handle:plugin,numParams)
 {
 	new itemid=GetNativeCell(1);
-	new String:buf[1000];
+	char buf[1000];
 	W3GetCvar(item2FlagsCvar[itemid],buf,sizeof(buf));
 
-	new String:flagsearch[32];
+	char flagsearch[32];
 	GetNativeString(2,flagsearch,sizeof(flagsearch));
 
 	return (StrContains(buf,flagsearch)>-1);
@@ -191,7 +190,7 @@ public NW3Item2HasFlag(Handle:plugin,numParams)
 public NW3GetItem2Catagory(Handle:plugin,numParams)
 {
 	new itemid=GetNativeCell(1);
-	new String:buf[1000];
+	char buf[1000];
 	W3GetCvar(item2CategoryCvar[itemid],buf,sizeof(buf));
 	SetNativeString(2,buf,GetNativeCell(3));
 }
@@ -230,7 +229,7 @@ CreateNewItem2(String:titemname[] ,String:titemshortname[] ,String:titemshortdes
 	strcopy(item2ShortDescription[titemid], 255, titemshortdesc);
 	strcopy(item2Description[titemid], 511, titemdescription);
 
-	new String:cvarstr[32];
+	char cvarstr[32];
 	Format(cvarstr,sizeof(cvarstr),"%s_diamondcost",titemshortname);
 	item2diamondCost[titemid]=W3CreateCvarInt(cvarstr,itemcostgold,"item2 cost with diamonds");
 
@@ -248,7 +247,7 @@ CreateNewItem2(String:titemname[] ,String:titemshortname[] ,String:titemshortdes
 GetItem2Name(itemid,String:str[],len){
 	if(item2Translated[itemid]){
 
-		new String:buf[64];
+		char buf[64];
 		Format(buf,sizeof(buf),"%T",item2Name[itemid],GetTrans());
 		strcopy(str,len,buf);
 	}
@@ -266,7 +265,7 @@ GetItem2Shortdesc(itemid,String:str[],len){
 }
 GetItem2Description(itemid,String:str[],len){
 	if(item2Translated[itemid]){
-		new String:buf[512];
+		char buf[512];
 		Format(buf,sizeof(buf),"%T",item2Description[itemid],GetTrans());
 		strcopy(str,len,buf);
 	}

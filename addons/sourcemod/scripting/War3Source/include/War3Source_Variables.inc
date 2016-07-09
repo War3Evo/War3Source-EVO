@@ -213,3 +213,8 @@ char skill_Description[MAXSKILLS][512];
 //If a player is assigned a skill by the race, this holds the information
 int skill_PlayerSkill[MAXPLAYERSCUSTOM][MAXSKILLCOUNT];
 
+
+//=============================
+// War3Source_Engine_ItemClass2
+//=============================
+int totalItems2Loaded=0;
