@@ -68,6 +68,20 @@ native War3_AddAuraSkillBuff(race_ID, skill_ID, W3Buff:buff, any:values[],
 native War3_SetBuff(client,W3Buff:buffindex,raceid,any:value,buffowner=-1);
 
 /**
+ * set a buff, identified as coming from a skill created by War3_CreateNewSkill
+ * value can be int float bool, but has to be consistant, agreed upon by war3 main plugin
+ *
+ * @param client						client index
+ * @param buffindex						W3Buff property found in constants.inc
+ * @param skillid						Skills created by War3_CreateNewSkill
+ * @param value							value depends on W3Buff property
+ * @param buffowner						owner whom applied the buff to the client
+ * @return 								no return
+ *
+ */
+native void War3_SetBuffSkill(int client,W3Buff buffindex,int skillid,any value,int buffowner=-1);
+
+/**
  * set a buff, identified as coming from a item
  * value can be int float bool, but has to be consistant, agreed upon by war3 main plugin
  *

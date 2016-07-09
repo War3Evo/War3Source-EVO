@@ -3,7 +3,7 @@
 #define PLUGIN_VERSION "3.0"
 
 //for debuff index, see constants, its in an enum
-new any:buffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXRACES+MAXITEMS2+MAXITEMS3+CUSTOMMODIFIERS]; ///a race may only modify a property once
+new any:buffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXRACES+MAXITEMS2+MAXITEMS3+MAXSKILLS+CUSTOMMODIFIERS]; ///a race may only modify a property once
 
 new BuffProperties[W3Buff][W3BuffProperties];
 
@@ -30,6 +30,7 @@ public bool:War3Source_Engine_BuffSystem_InitNatives()
 {
 
 	CreateNative("War3_SetBuff",Native_War3_SetBuff);//for races
+	CreateNative("War3_SetBuffSkill",Native_War3_SetBuffSkill);//for skills without races
 	CreateNative("War3_SetBuffItem",Native_War3_SetBuffItem);//foritems
 	CreateNative("War3_SetBuffItem2",Native_War3_SetBuffItem2);//foritems
 	CreateNative("War3_SetBuffItem3",Native_War3_SetBuffItem3);//foritems
@@ -68,17 +69,17 @@ public bool:War3Source_Engine_BuffSystem_InitNatives()
 }
 ItemsPlusRacesLoaded(){
 #if SHOPMENU3 == MODE_ENABLED
-	return totalItemsLoaded+War3_GetRacesLoaded()+W3GetItems2Loaded()+W3GetItems3Loaded()+CUSTOMMODIFIERS;
+	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+W3GetItems3Loaded()+CUSTOMMODIFIERS;
 #else
-	return totalItemsLoaded+War3_GetRacesLoaded()+W3GetItems2Loaded()+CUSTOMMODIFIERS;
+	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+CUSTOMMODIFIERS;
 #endif
 }
 public NW3BuffCustomOFFSET(Handle:plugin,numParams)
 {
 #if SHOPMENU3 == MODE_ENABLED
-	return totalItemsLoaded+War3_GetRacesLoaded()+W3GetItems2Loaded()+W3GetItems3Loaded();
+	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+W3GetItems3Loaded();
 #else
-	return totalItemsLoaded+War3_GetRacesLoaded()+W3GetItems2Loaded();
+	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded();
 #endif
 }
 public Native_War3_ShowBuffs(Handle:plugin,numParams) //buff is from an item
@@ -114,7 +115,7 @@ public Native_War3_ShowSpeedBuff(Handle:plugin,numParams) //buff is from an item
 
 stock SetBuff(client,W3Buff:buffindex,raceid,any:value,buffowner=-1)
 {
-	internal_SetBuff(client,buffindex,raceid+totalItemsLoaded,value,buffowner);
+	internal_SetBuff(client,buffindex,totalItemsLoaded+totalItems2Loaded+raceid,value,buffowner);
 }
 
 public Native_War3_SetBuff(Handle:plugin,numParams)
@@ -127,6 +128,24 @@ public Native_War3_SetBuff(Handle:plugin,numParams)
 		new any:value=GetNativeCell(4);
 		new buffowner=GetNativeCell(5);
 		SetBuff(client,buffindex,raceid,value,buffowner); //ofsetted
+	}
+}
+
+stock SetBuffSkill(int client,W3Buff buffindex,int skillid,any value,int buffowner=-1)
+{
+	internal_SetBuff(client,buffindex,totalItemsLoaded+totalItems2Loaded+totalRacesLoaded+skillid,value,buffowner);
+}
+
+public Native_War3_SetBuffSkill(Handle:plugin,numParams)
+{
+	if(numParams>=4) //client,race,buffindex,value
+	{
+		int client=GetNativeCell(1);
+		W3Buff buffindex=GetNativeCell(2);
+		int raceid=GetNativeCell(3);
+		any value=GetNativeCell(4);
+		int buffowner=GetNativeCell(5);
+		SetBuffSkill(client,buffindex,raceid,value,buffowner); //ofsetted
 	}
 }
 
@@ -150,7 +169,7 @@ public Native_War3_SetBuffItem(Handle:plugin,numParams) //buff is from an item
 
 stock SetBuffItem2(client,W3Buff:buffindex,itemid,any:value,buffowner=-1)
 {
-	internal_SetBuff(client,buffindex,totalItemsLoaded+War3_GetRacesLoaded()+itemid,value,buffowner); //not offseted
+	internal_SetBuff(client,buffindex,totalItemsLoaded+totalItems2Loaded+itemid,value,buffowner); //not offseted
 }
 
 public Native_War3_SetBuffItem2(Handle:plugin,numParams) //buff is from an item
@@ -168,7 +187,7 @@ public Native_War3_SetBuffItem2(Handle:plugin,numParams) //buff is from an item
 
 stock SetBuffItem3(client,W3Buff:buffindex,itemid,any:value,buffowner=-1)
 {
-	internal_SetBuff(client,buffindex,totalItemsLoaded+War3_GetRacesLoaded()+W3GetItems2Loaded()+itemid,value,buffowner); //not offseted
+	internal_SetBuff(client,buffindex,totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+itemid,value,buffowner); //not offseted
 }
 
 public Native_War3_SetBuffItem3(Handle:plugin,numParams) //buff is from an item
@@ -302,7 +321,7 @@ public War3Source_Engine_BuffSystem_OnClientPutInServer(client)
 new OldSpeedBuffValue2[MAXPLAYERSCUSTOM];
 #endif
 new bool:TimerSpeedBuff[MAXPLAYERSCUSTOM];
-new any:Oldbuffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXRACES+MAXITEMS2+MAXITEMS3+CUSTOMMODIFIERS];
+new any:Oldbuffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXRACES+MAXITEMS2+MAXITEMS3+MAXSKILLS+CUSTOMMODIFIERS];
 
 internal_SetBuff(client,W3Buff:buffindex,itemraceindex,value,buffowner=-1)
 {
@@ -921,5 +940,5 @@ stock Float:MagicArmorMulti(client){
 
 //use 0 < limit
 stock BuffLoopLimit(){
-	return totalItemsLoaded+internal_GetRacesLoaded()+1;
+	return totalItemsLoaded+totalRacesLoaded+1;
 }
