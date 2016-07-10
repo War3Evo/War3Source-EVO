@@ -1,7 +1,0 @@
-"Game Master"
-{
-	"game.tf.txt"
-	{
-		"game"		"tf"
-	}
-}
