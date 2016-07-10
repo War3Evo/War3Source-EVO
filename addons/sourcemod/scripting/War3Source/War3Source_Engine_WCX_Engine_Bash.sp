@@ -47,7 +47,7 @@ public OnW3TakeDmgAll(victim,attacker,Float:damage){
 					{
 						new race=GetRace(victim);
 						PlayerRace[victim] = race;
-						SetBuff(victim,bBashed,race,true,attacker);
+						SetBuffRace(victim,bBashed,race,true,attacker);
 						new newdamage = GetBuffSumInt(attacker,iBashDamage);
 						if(newdamage>0)
 							DealDamage(victim,newdamage,attacker,_,"weapon_bash");
@@ -72,7 +72,7 @@ public OnW3TakeDmgAll(victim,attacker,Float:damage){
 
 public Action:UnfreezePlayer(Handle:h,any:victim)
 {
-	SetBuff(victim,bBashed,PlayerRace[victim],false);
+	SetBuffRace(victim,bBashed,PlayerRace[victim],false);
 }
 
 

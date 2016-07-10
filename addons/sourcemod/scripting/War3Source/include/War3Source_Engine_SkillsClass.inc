@@ -20,3 +20,5 @@ native int War3_GetSkillSlot(int client, int skillid);
 // returns the slot it finds the skill id (it loops thru all the skill slots, use sparingly)
 // returns 0 if none found
 native int War3_HasSkillSlot(int client, int skillid);
+
+native int War3_IsSkillSlot(int client, int skillid);

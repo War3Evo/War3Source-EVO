@@ -180,24 +180,37 @@ public War3_ShowParticularRaceInfoMenu(client,raceid)
 		{
 			level=War3_GetSkillLevelINTERNAL(client,raceid,x) ;
 
+			int skillSlot = GetSkillSlot(client,x);
+
 			if(IsSkillUltimate(raceid,x))
 			{
+				if(skillSlot>0)
+				{
+					GetSkillName(skillSlot,skillname,sizeof(skillname));
+				}
 				Format(str,sizeof(str),"%T","Ultimate: {skillname} (LVL {amount}/{amount})",client,skillname,level,GetRaceSkillMaxLevel(raceid,x));
 			}
 			else
 			{
+				if(skillSlot>0)
+				{
+					GetSkillName(skillSlot,skillname,sizeof(skillname));
+				}
 				Format(str,sizeof(str),"%T","{skillname} (LVL {amount}/{amount})",client,skillname,level,GetRaceSkillMaxLevel(raceid,x));
 			}
 
 			Format(selectioninfo,sizeof(selectioninfo),"%d,skill,%d",raceid,x);
 
 
-			if(raceinfoshowskillnumber[client]==x){
-
+			if(raceinfoshowskillnumber[client]==x)
+			{
 				if(GetRaceSkillDesc(raceid,x,skilldesc,sizeof(skilldesc))>0)
 				{
+					if(skillSlot>0)
+					{
+						GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+					}
 					//	AddMenuItem(hMenu,selectioninfo,skilldesc,ITEMDRAW_RAWLINE); //,ITEMDRAW_DISABLED|ITEMDRAW_RAWLINE
-
 					Format(str,sizeof(str),"%s \n%s \n",str,skilldesc);
 					//Format(longbuf,sizeof(longbuf),"%s\n%s%s  (Level %d/%d)\n%s\n ",longbuf,,skillname,level,,skilldesc);
 				}

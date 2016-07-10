@@ -65,7 +65,21 @@ native War3_AddAuraSkillBuff(race_ID, skill_ID, W3Buff:buff, any:values[],
  * @return 								no return
  *
  */
-native War3_SetBuff(client,W3Buff:buffindex,raceid,any:value,buffowner=-1);
+//#pragma deprecated Use War3_SetBuffRace(int client,W3Buff buffindex,int raceid,any value,int buffowner=-1) instead
+native War3_SetBuff(client,W3Buff:buffindex,raceid,any:value,buffowner=-1); //deprecated
+
+/**
+ * set a buff, identified as coming from a race
+ * value can be int float bool, but has to be consistant, agreed upon by war3 main plugin
+ *
+ * @param client						client index
+ * @param buffindex						W3Buff property found in constants.inc
+ * @param value							value depends on W3Buff property
+ * @param buffowner						owner whom applied the buff to the client
+ * @return 								no return
+ *
+ */
+native War3_SetBuffRace(int client,W3Buff buffindex,int raceid,any value,int buffowner=-1);
 
 /**
  * set a buff, identified as coming from a skill created by War3_CreateNewSkill
@@ -107,7 +121,7 @@ native War3_SetBuffItem(client,W3Buff:buffindex,itemid,any:value,buffowner=-1);
  * @return 								no return
  *
  */
-native War3_SetBuffItem2(client,W3Buff:buffindex,itemid,any:value,buffowner=-1);
+native War3_SetBuffItem2(client,W3Buff:buffindex,item2id,any:value,buffowner=-1);
 
 /**
  * set a buff, identified as coming from a item
@@ -121,7 +135,7 @@ native War3_SetBuffItem2(client,W3Buff:buffindex,itemid,any:value,buffowner=-1);
  * @return 								no return
  *
  */
-native War3_SetBuffItem3(client,W3Buff:buffindex,itemid,any:value,buffowner=-1);
+native War3_SetBuffItem3(client,W3Buff:buffindex,item3id,any:value,buffowner=-1);
 
 /**
  * get offset for custom buff modifier indexes. use War3_SetBuffItem(client,buffindex,W3BuffCustomOFFSET() + NUMBER,value) (YES, ITEM)
@@ -204,10 +218,11 @@ native War3_ShowSpeedBuff(client);
  * @return 								returns true if buff is valid / throws an error otherwise
  *
  */
-stock ValidBuff(W3Buff:buffindex) {
-	if(_:buffindex>=0&&_:buffindex<MaxBuffLoopLimit) {
+stock bool ValidBuff(W3Buff buffindex)
+{
+	if(view_as<int>(buffindex)>=0&&view_as<int>(buffindex)<MaxBuffLoopLimit)
+	{
 		return true;
-
 	}
 	ThrowError("invalid buff index (%d)",buffindex);
 	return false;
@@ -269,11 +284,11 @@ native W3GetBuffLoopLimit();
  *
  * @param client						client index
  * @param buffindex						W3Buff property found in constants.inc
- * @param RaceIDorItemID				race or item id
- * @param IPassedItemID					special purpose (you passed a item id)
+ * @param RaceIDorItemID				race, item, or skill
+ * @param IPassedItemID					special purpose (you passed a item id) (adds total sh1 + RaceIDorItemID to check against)
  * @return 								no return
  */
-native any:W3GetBuff(client,W3Buff:buffindex,RaceIDorItemID,IPassedItemID=false);
+native any W3GetBuff(int client,W3Buff buffindex,int RaceIDorItemID,bool IPassedItemID=false);
 
 /**
  * W3GetBuffHasTrue

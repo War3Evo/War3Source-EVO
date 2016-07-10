@@ -159,8 +159,8 @@ public Action:Slow_Turtled_Disable(Handle:timer, Handle:datapack)
 	new RaceID = ReadPackCell(datapack);
 	if(ValidPlayer(client))
 	{
-		SetBuff(client,fSlow,RaceID,1.0);
-		SetBuff(client,fMaxSpeed,RaceID,1.0);
+		SetBuffRace(client,fSlow,RaceID,1.0);
+		SetBuffRace(client,fMaxSpeed,RaceID,1.0);
 	}
 	return Plugin_Continue;
 }*/
@@ -378,7 +378,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			new Float:SlowAmount = Float:data[GetSkillLevel(owner, GetRace(owner), wardskill)];
 
 			// do actual slowing
-			SetBuff(victim,fSlow,GetRace(owner),SlowAmount);
+			SetBuffRace(victim,fSlow,GetRace(owner),SlowAmount);
 			War3_WardVisualEffect(wardindex, {255, 89, 246, 255}, 0, WARD_TARGET_ENEMYS);
 
 			HasWardID[victim][BEHAVIOR_SLOW]=wardindex;
@@ -539,8 +539,8 @@ public War3Source_Engine_Wards_Wards_OnWar3EventDeath(victim, attacker)
 	{
 		HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]=-1;
 		HasWardID[victim][BEHAVIOR_SLOW]=-1;
-		SetBuff(victim,fSlow,irace,1.0);
-		SetBuff(victim,fMaxSpeed,irace,1.0);
+		SetBuffRace(victim,fSlow,irace,1.0);
+		SetBuffRace(victim,fMaxSpeed,irace,1.0);
 		new flags = GetEntityFlags(victim)&~FL_NOTARGET;
 		SetEntityFlags(victim, flags);
 	}
@@ -555,8 +555,8 @@ public OnWardExpire(wardindex, owner, behaviorID)
 			{
 				// Remove Slow and Remove Ward ID
 				HasWardID[victim][BEHAVIOR_SLOW]=-1;
-				SetBuff(victim,fSlow,GetRace(owner),1.0);
-				SetBuff(victim,fMaxSpeed,GetRace(owner),1.0);
+				SetBuffRace(victim,fSlow,GetRace(owner),1.0);
+				SetBuffRace(victim,fMaxSpeed,GetRace(owner),1.0);
 			}
 			if(HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]==wardindex && behaviorID==BehaviorIndex[BEHAVIOR_SENTRY_IMMUNITY])
 			{
@@ -578,8 +578,8 @@ public OnWardNotTrigger(wardindex, victim, owner, behavior)
 		{
 			// Remove Slow and Remove Ward ID
 			HasWardID[victim][BEHAVIOR_SLOW]=-1;
-			SetBuff(victim,fSlow,GetRace(owner),1.0);
-			SetBuff(victim,fMaxSpeed,GetRace(owner),1.0);
+			SetBuffRace(victim,fSlow,GetRace(owner),1.0);
+			SetBuffRace(victim,fMaxSpeed,GetRace(owner),1.0);
 		}
 		else if(HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]==wardindex && behavior==BehaviorIndex[BEHAVIOR_SENTRY_IMMUNITY])
 		{

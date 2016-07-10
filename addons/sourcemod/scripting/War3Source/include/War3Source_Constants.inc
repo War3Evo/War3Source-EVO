@@ -55,7 +55,7 @@
 
 #define MAXLEVELXPDEFINED 24 //maximum where level XP is defined, if a race has more than MAXLEVELXPDEFINED levles, xp given and xp to next level is still MAXLEVELXPDEFINED
 
-#define CUSTOMMODIFIERS 3 //how many race indexes extra for modifying buffs without conflicting other races
+#define CUSTOMMODIFIERS 5 //how many race indexes extra for modifying buffs without conflicting other races
 
 #define MAXAURAS 100 // [1- ] ignore zeroth index
 

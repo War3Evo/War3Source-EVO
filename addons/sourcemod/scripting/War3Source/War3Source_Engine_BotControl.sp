@@ -380,10 +380,10 @@ public void PickRace(client)
 		//if(IsMVMmap && g_bMVM_superbots_Enabled)
 		if(g_bMVM_superbots_Enabled)
 		{
-			SetBuff(client,fArmorPhysical,race,7.0);
-			SetBuff(client,fArmorMagic,race,7.0);
-			SetBuff(client,fVampirePercent,race,0.25);
-			SetBuff(client,fHPRegen,race,5.0);
+			SetBuffRace(client,fArmorPhysical,race,7.0);
+			SetBuffRace(client,fArmorMagic,race,7.0);
+			SetBuffRace(client,fVampirePercent,race,0.25);
+			SetBuffRace(client,fHPRegen,race,5.0);
 		}
 
 		SetRace(client, race);
@@ -411,10 +411,10 @@ public War3Source_Engine_BotControl_OnWar3EventDeath(victim, attacker, deathrace
 				new race=GetRace(victim);
 				if(race>0)
 				{
-					SetBuff(victim,fArmorPhysical,race,0.0);
-					SetBuff(victim,fArmorMagic,race,0.0);
-					SetBuff(victim,fVampirePercent,race,0.0);
-					SetBuff(victim,fHPRegen,race,0.0);
+					SetBuffRace(victim,fArmorPhysical,race,0.0);
+					SetBuffRace(victim,fArmorMagic,race,0.0);
+					SetBuffRace(victim,fVampirePercent,race,0.0);
+					SetBuffRace(victim,fHPRegen,race,0.0);
 				}
 			}
 		}

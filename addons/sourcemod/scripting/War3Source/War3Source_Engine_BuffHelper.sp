@@ -81,7 +81,7 @@ public NW3ApplyBuffSimple(Handle:plugin,numParams) {
 		return;
 	}
 //	DP("set client %d",client);
-	SetBuff(client,W3Buff:buffindex,race,initialValue);
+	SetBuffRace(client,W3Buff:buffindex,race,initialValue);
 
 
 	if(index>0){ //replace

@@ -156,12 +156,12 @@ public ShowCancelSpellinfoSelected(Handle:menu,MenuAction:action,client,selectio
 
 			g_castingid[target][castingid]=false;
 
-			War3_SetBuff(target,fInvisibilitySkill,War3_GetRace(target),1.0);
+			SetBuffRace(target,fInvisibilitySkill,War3_GetRace(target),1.0);
 
 			internal_ForceThirdPerson(target,false);
 
-			War3_SetBuff(target,bBashed,0,false);
-			War3_SetBuff(target,bDisarm,0,false);
+			SetBuffRace(target,bBashed,0,false);
+			SetBuffRace(target,bDisarm,0,false);
 
 			decl String:sClientName[32],String:sTargetName[32];
 			decl String:sClientTeamTag[32],String:sTargetTeamTag[32];
@@ -214,8 +214,8 @@ public Action CastSpell(int client,int target,W3SpellEffects spelleffect,char[] 
 {
 	if(ValidPlayer(client))
 	{
-		War3_SetBuff(client,bBashed,0,true);
-		War3_SetBuff(client,bDisarm,0,true);
+		SetBuffRace(client,bBashed,0,true);
+		SetBuffRace(client,bDisarm,0,true);
 
 		War3_ForceThirdPerson(client,true);
 
@@ -235,12 +235,12 @@ public Action CastSpell(int client,int target,W3SpellEffects spelleffect,char[] 
 		{
 			g_castingid[client][SkillID]=false;
 
-			War3_SetBuff(client,fInvisibilitySkill,0,1.0);
+			SetBuffRace(client,fInvisibilitySkill,0,1.0);
 
 			internal_ForceThirdPerson(client,false);
 
-			War3_SetBuff(client,bBashed,0,false);
-			War3_SetBuff(client,bDisarm,0,false);
+			SetBuffRace(client,bBashed,0,false);
+			SetBuffRace(client,bDisarm,0,false);
 			return Plugin_Stop;
 		}
 
@@ -297,10 +297,10 @@ public LightCast(client,target,W3SpellEffects:spelleffect,String:SpellColor[],ra
 	TE_SendToAll(0.75);
 	TE_SetupDynamicLight(this_pos,120,255,120,12,80.0,CastingTimer,1.0);
 	TE_SendToAll();
-	War3_SetBuff(client,fInvisibilitySkill,0,0.22);
+	SetBuffRace(client,fInvisibilitySkill,0,0.22);
 
-	War3_SetBuff(client,bBashed,0,true);
-	War3_SetBuff(client,bDisarm,0,true);
+	SetBuffRace(client,bBashed,0,true);
+	SetBuffRace(client,bDisarm,0,true);
 
 	if(ValidPlayer(target))
 	{
@@ -357,12 +357,12 @@ public Action:RemoveHolyCast(Handle:t,any:Packhead)
 	{
 		g_castingid[client][SkillID]=false;
 
-		War3_SetBuff(client,fInvisibilitySkill,0,1.0);
+		SetBuffRace(client,fInvisibilitySkill,0,1.0);
 
 		internal_ForceThirdPerson(client,false);
 
-		War3_SetBuff(client,bBashed,0,false);
-		War3_SetBuff(client,bDisarm,0,false);
+		SetBuffRace(client,bBashed,0,false);
+		SetBuffRace(client,bDisarm,0,false);
 		return Plugin_Stop;
 	}
 
@@ -394,12 +394,12 @@ public Action:RemoveHolyCast(Handle:t,any:Packhead)
 	}
 	g_castingid[client][SkillID]=false;
 
-	War3_SetBuff(client,fInvisibilitySkill,0,1.0);
+	SetBuffRace(client,fInvisibilitySkill,0,1.0);
 
 	internal_ForceThirdPerson(client,false);
 
-	War3_SetBuff(client,bBashed,0,false);
-	War3_SetBuff(client,bDisarm,0,false);
+	SetBuffRace(client,bBashed,0,false);
+	SetBuffRace(client,bDisarm,0,false);
 
 	return Plugin_Continue;
 }
@@ -430,12 +430,12 @@ public Action:FinishSpellCast(Handle:t,any:Packhead)
 	{
 		g_castingid[client][SkillID]=false;
 
-		War3_SetBuff(client,fInvisibilitySkill,0,1.0);
+		SetBuffRace(client,fInvisibilitySkill,0,1.0);
 
 		internal_ForceThirdPerson(client,false);
 
-		War3_SetBuff(client,bBashed,0,false);
-		War3_SetBuff(client,bDisarm,0,false);
+		SetBuffRace(client,bBashed,0,false);
+		SetBuffRace(client,bDisarm,0,false);
 		return Plugin_Stop;
 	}
 
@@ -458,12 +458,12 @@ public Action:FinishSpellCast(Handle:t,any:Packhead)
 	}
 	g_castingid[client][SkillID]=false;
 
-	War3_SetBuff(client,fInvisibilitySkill,0,1.0);
+	SetBuffRace(client,fInvisibilitySkill,0,1.0);
 
 	internal_ForceThirdPerson(client,false);
 
-	War3_SetBuff(client,bBashed,0,false);
-	War3_SetBuff(client,bDisarm,0,false);
+	SetBuffRace(client,bBashed,0,false);
+	SetBuffRace(client,bDisarm,0,false);
 
 	return Plugin_Continue;
 }

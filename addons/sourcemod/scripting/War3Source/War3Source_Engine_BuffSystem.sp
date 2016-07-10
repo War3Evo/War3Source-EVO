@@ -3,11 +3,11 @@
 #define PLUGIN_VERSION "3.0"
 
 //for debuff index, see constants, its in an enum
-new any:buffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXRACES+MAXITEMS2+MAXITEMS3+MAXSKILLS+CUSTOMMODIFIERS]; ///a race may only modify a property once
+any buffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXITEMS2+MAXITEMS3+MAXRACES+MAXSKILLS+CUSTOMMODIFIERS]; ///a race may only modify a property once
 
-new BuffProperties[W3Buff][W3BuffProperties];
+int BuffProperties[W3Buff][W3BuffProperties];
 
-new any:BuffCached[MAXPLAYERSCUSTOM][W3Buff];// instead of looping, we cache everything in the last dimension, see enum W3BuffCache
+any BuffCached[MAXPLAYERSCUSTOM][W3Buff];// instead of looping, we cache everything in the last dimension, see enum W3BuffCache
 
 /*
 public Plugin:myinfo=
@@ -30,6 +30,7 @@ public bool:War3Source_Engine_BuffSystem_InitNatives()
 {
 
 	CreateNative("War3_SetBuff",Native_War3_SetBuff);//for races
+	CreateNative("War3_SetBuffRace",Native_War3_SetBuffRace);//for races
 	CreateNative("War3_SetBuffSkill",Native_War3_SetBuffSkill);//for skills without races
 	CreateNative("War3_SetBuffItem",Native_War3_SetBuffItem);//foritems
 	CreateNative("War3_SetBuffItem2",Native_War3_SetBuffItem2);//foritems
@@ -67,26 +68,23 @@ public bool:War3Source_Engine_BuffSystem_InitNatives()
 
 	return true;
 }
-ItemsPlusRacesLoaded(){
+stock int ItemsPlusRacesPlusSkillsLoaded()
+{
 #if SHOPMENU3 == MODE_ENABLED
-	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+W3GetItems3Loaded()+CUSTOMMODIFIERS;
+	return totalItemsLoaded+totalItems2Loaded+totalItems3Loaded+totalSkillsLoaded+totalRacesLoaded+CUSTOMMODIFIERS;
 #else
-	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+CUSTOMMODIFIERS;
+	return totalItemsLoaded+totalItems2Loaded+totalSkillsLoaded+totalRacesLoaded+CUSTOMMODIFIERS;
 #endif
 }
 public NW3BuffCustomOFFSET(Handle:plugin,numParams)
 {
-#if SHOPMENU3 == MODE_ENABLED
-	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+W3GetItems3Loaded();
-#else
-	return totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded();
-#endif
+	return (ItemsPlusRacesPlusSkillsLoaded()-CUSTOMMODIFIERS);
 }
 public Native_War3_ShowBuffs(Handle:plugin,numParams) //buff is from an item
 {
 	if(numParams==1) //client,race,buffindex,value
 	{
-		new client=GetNativeCell(1);
+		int client=GetNativeCell(1);
 		if(!IsFakeClient(client))
 		{
 			ShowAttackSpeed(client);
@@ -107,36 +105,76 @@ public Native_War3_ShowSpeedBuff(Handle:plugin,numParams) //buff is from an item
 {
 	if(numParams==1) //client,race,buffindex,value
 	{
-		new client=GetNativeCell(1);
+		int client=GetNativeCell(1);
 		ShowSpeedBuff(client,true);
 	}
 }
 #endif
 
-stock SetBuff(client,W3Buff:buffindex,raceid,any:value,buffowner=-1)
+stock void SetBuffItem(int client,W3Buff buffindex,int itemid,any value,int buffowner=-1)
 {
-	internal_SetBuff(client,buffindex,totalItemsLoaded+totalItems2Loaded+raceid,value,buffowner);
+	internal_SetBuffAny(client,buffindex,itemid,value,buffowner);
 }
 
-public Native_War3_SetBuff(Handle:plugin,numParams)
+public Native_War3_SetBuffItem(Handle:plugin,numParams) //buff is from an item
 {
 	if(numParams>=4) //client,race,buffindex,value
 	{
-		new client=GetNativeCell(1);
-		new W3Buff:buffindex=GetNativeCell(2);
-		new raceid=GetNativeCell(3);
-		new any:value=GetNativeCell(4);
-		new buffowner=GetNativeCell(5);
-		SetBuff(client,buffindex,raceid,value,buffowner); //ofsetted
+		int client=GetNativeCell(1);
+		W3Buff buffindex=GetNativeCell(2);
+		int itemid=GetNativeCell(3);
+		any value=GetNativeCell(4);
+		int buffowner=GetNativeCell(5);
+		SetBuffItem(client,buffindex,itemid,value,buffowner); //not offseted
 	}
 }
 
-stock SetBuffSkill(int client,W3Buff buffindex,int skillid,any value,int buffowner=-1)
+stock void SetBuffItem2(int client,W3Buff buffindex,int itemid,any value,int buffowner=-1)
 {
-	internal_SetBuff(client,buffindex,totalItemsLoaded+totalItems2Loaded+totalRacesLoaded+skillid,value,buffowner);
+	internal_SetBuffAny(client,buffindex,totalItemsLoaded+itemid,value,buffowner); //not offseted
 }
 
-public Native_War3_SetBuffSkill(Handle:plugin,numParams)
+public Native_War3_SetBuffItem2(Handle:plugin,numParams) //buff is from an item
+{
+	if(numParams>=4) //client,race,buffindex,value
+	{
+		int client=GetNativeCell(1);
+		W3Buff buffindex=GetNativeCell(2);
+		int itemid=GetNativeCell(3);
+		any value=GetNativeCell(4);
+		int buffowner=GetNativeCell(5);
+		SetBuffItem2(client,buffindex,itemid,value,buffowner); //not offseted
+	}
+}
+
+stock SetBuffItem3(client,W3Buff:buffindex,itemid,any:value,buffowner=-1)
+{
+	internal_SetBuffAny(client,buffindex,totalItemsLoaded+totalItems2Loaded+itemid,value,buffowner); //not offseted
+}
+
+public Native_War3_SetBuffItem3(Handle:plugin,numParams) //buff is from an item
+{
+	if(numParams>=4) //client,race,buffindex,value
+	{
+		int client=GetNativeCell(1);
+		W3Buff buffindex=GetNativeCell(2);
+		int itemid=GetNativeCell(3);
+		any value=GetNativeCell(4);
+		int buffowner=GetNativeCell(5);
+		SetBuffItem3(client,buffindex,itemid,value,buffowner); //not offseted
+	}
+}
+
+stock SetBuffRace(client,W3Buff:buffindex,raceid,any:value,buffowner=-1)
+{
+#if SHOPMENU3 == MODE_ENABLED
+	internal_SetBuffAny(client,buffindex,totalItemsLoaded+totalItems2Loaded+totalItems3Loaded+raceid,value,buffowner);
+#else
+	internal_SetBuffAny(client,buffindex,totalItemsLoaded+totalItems2Loaded+raceid,value,buffowner);
+#endif
+}
+
+public Native_War3_SetBuff(Handle:plugin,numParams)
 {
 	if(numParams>=4) //client,race,buffindex,value
 	{
@@ -145,73 +183,57 @@ public Native_War3_SetBuffSkill(Handle:plugin,numParams)
 		int raceid=GetNativeCell(3);
 		any value=GetNativeCell(4);
 		int buffowner=GetNativeCell(5);
-		SetBuffSkill(client,buffindex,raceid,value,buffowner); //ofsetted
+		SetBuffRace(client,buffindex,raceid,value,buffowner);
 	}
 }
 
-stock SetBuffItem(client,W3Buff:buffindex,itemid,any:value,buffowner=-1)
-{
-	internal_SetBuff(client,buffindex,itemid,value,buffowner);
-}
-
-public Native_War3_SetBuffItem(Handle:plugin,numParams) //buff is from an item
+public Native_War3_SetBuffRace(Handle:plugin,numParams)
 {
 	if(numParams>=4) //client,race,buffindex,value
 	{
-		new client=GetNativeCell(1);
-		new W3Buff:buffindex=GetNativeCell(2);
-		new itemid=GetNativeCell(3);
-		new any:value=GetNativeCell(4);
-		new buffowner=GetNativeCell(5);
-		SetBuffItem(client,buffindex,itemid,value,buffowner); //not offseted
+		int client=GetNativeCell(1);
+		W3Buff buffindex=GetNativeCell(2);
+		int raceid=GetNativeCell(3);
+		any value=GetNativeCell(4);
+		int buffowner=GetNativeCell(5);
+		SetBuffRace(client,buffindex,raceid,value,buffowner); //ofsetted
 	}
 }
 
-stock SetBuffItem2(client,W3Buff:buffindex,itemid,any:value,buffowner=-1)
+stock SetBuffSkill(int client,W3Buff buffindex,int skillid,any value,int buffowner=-1)
 {
-	internal_SetBuff(client,buffindex,totalItemsLoaded+totalItems2Loaded+itemid,value,buffowner); //not offseted
+#if SHOPMENU3 == MODE_ENABLED
+	internal_SetBuffAny(client,buffindex,totalItemsLoaded+totalItems2Loaded+totalItems3Loaded+totalRacesLoaded+skillid,value,buffowner);
+#else
+	internal_SetBuffAny(client,buffindex,totalItemsLoaded+totalItems2Loaded+totalRacesLoaded+skillid,value,buffowner);
+#endif
 }
 
-public Native_War3_SetBuffItem2(Handle:plugin,numParams) //buff is from an item
+public Native_War3_SetBuffSkill(Handle:plugin,numParams)
 {
 	if(numParams>=4) //client,race,buffindex,value
 	{
-		new client=GetNativeCell(1);
-		new W3Buff:buffindex=GetNativeCell(2);
-		new itemid=GetNativeCell(3);
-		new any:value=GetNativeCell(4);
-		new buffowner=GetNativeCell(5);
-		SetBuffItem2(client,buffindex,itemid,value,buffowner); //not offseted
+		int client=GetNativeCell(1);
+		W3Buff buffindex=GetNativeCell(2);
+		int skillid=GetNativeCell(3);
+		any value=GetNativeCell(4);
+		int buffowner=GetNativeCell(5);
+		SetBuffSkill(client,buffindex,skillid,value,buffowner); //ofsetted
 	}
 }
 
-stock SetBuffItem3(client,W3Buff:buffindex,itemid,any:value,buffowner=-1)
+stock any GetBuff(int client,W3Buff buffindex,int RaceIDorItemID,bool IPassedItemID=false)
 {
-	internal_SetBuff(client,buffindex,totalItemsLoaded+totalRacesLoaded+W3GetItems2Loaded()+itemid,value,buffowner); //not offseted
-}
-
-public Native_War3_SetBuffItem3(Handle:plugin,numParams) //buff is from an item
-{
-	if(numParams>=4) //client,race,buffindex,value
+	if(!IPassedItemID)
 	{
-		new client=GetNativeCell(1);
-		new W3Buff:buffindex=GetNativeCell(2);
-		new itemid=GetNativeCell(3);
-		new any:value=GetNativeCell(4);
-		new buffowner=GetNativeCell(5);
-		SetBuffItem3(client,buffindex,itemid,value,buffowner); //not offseted
-	}
-}
-
-stock any:GetBuff(client,W3Buff:buffindex,RaceIDorItemID,IPassedItemID=false)
-{
-	if(!IPassedItemID){
 		RaceIDorItemID+=totalItemsLoaded;
 	}
-	if(ValidBuff(buffindex)){
+	if(ValidBuff(buffindex))
+	{
 		return buffdebuff[client][buffindex][RaceIDorItemID];
 	}
-	else{
+	else
+	{
 		ThrowError("invalidbuffindex");
 	}
 	return -1;
@@ -219,18 +241,17 @@ stock any:GetBuff(client,W3Buff:buffindex,RaceIDorItemID,IPassedItemID=false)
 
 public NW3GetBuff(Handle:plugin,numParams)
 {
-
-	new client=GetNativeCell(1);
-	new W3Buff:buffindex=GetNativeCell(2);
-	new raceiditemid=GetNativeCell(3);
-	new bool:isItem=GetNativeCell(4);
+	int client=GetNativeCell(1);
+	W3Buff buffindex=GetNativeCell(2);
+	int raceiditemid=GetNativeCell(3);
+	bool isItem=GetNativeCell(4);
 	return GetBuff(client,buffindex,raceiditemid,isItem);
 }
 
 public NW3GetBuffSumInt(Handle:plugin,numParams)
 {
-	new client=GetNativeCell(1);
-	new W3Buff:buffindex=GetNativeCell(2);
+	int client=GetNativeCell(1);
+	W3Buff buffindex=GetNativeCell(2);
 	return GetBuffSumInt(client,buffindex);
 }
 
@@ -318,12 +339,12 @@ public War3Source_Engine_BuffSystem_OnClientPutInServer(client)
 }
 
 #if GGAMETYPE == GGAME_TF2
-new OldSpeedBuffValue2[MAXPLAYERSCUSTOM];
+int OldSpeedBuffValue2[MAXPLAYERSCUSTOM];
 #endif
-new bool:TimerSpeedBuff[MAXPLAYERSCUSTOM];
-new any:Oldbuffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXRACES+MAXITEMS2+MAXITEMS3+MAXSKILLS+CUSTOMMODIFIERS];
+bool TimerSpeedBuff[MAXPLAYERSCUSTOM];
+any Oldbuffdebuff[MAXPLAYERSCUSTOM][W3Buff][MAXITEMS+MAXITEMS2+MAXITEMS3+MAXRACES+MAXSKILLS+CUSTOMMODIFIERS];
 
-internal_SetBuff(client,W3Buff:buffindex,itemraceindex,value,buffowner=-1)
+stock internal_SetBuffAny(int client,W3Buff buffindex,int itemraceindex,any value,int buffowner=-1)
 {
 	buffdebuff[client][buffindex][itemraceindex]=value;
 
@@ -627,8 +648,8 @@ ResetBuff(client,W3Buff:buffindex){
 
 	if(ValidBuff(buffindex))
 	{
-		new loop = ItemsPlusRacesLoaded();
-		for(new i=0;i<=loop;i++) //reset starts at 0
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
+		for(int i=0;i<=loop;i++) //reset starts at 0
 		{
 			buffdebuff[client][buffindex][i]=BuffDefault(buffindex);
 
@@ -678,7 +699,7 @@ stock any:CalcBuffMax(client,W3Buff:buffindex)
 	if(ValidBuff(buffindex))
 	{
 		new any:value=buffdebuff[client][buffindex][0];
-		new loop = ItemsPlusRacesLoaded();
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
 		for(new i=0;i<=loop;i++)
 		{
 			new any:value2=buffdebuff[client][buffindex][i];
@@ -696,7 +717,7 @@ stock any:CalcBuffMin(client,W3Buff:buffindex)
 	if(ValidBuff(buffindex))
 	{
 		new any:value=buffdebuff[client][buffindex][0];
-		new loop = ItemsPlusRacesLoaded();
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
 		for(new i=0;i<=loop;i++)
 		{
 			new any:value2=buffdebuff[client][buffindex][i];
@@ -714,7 +735,7 @@ CalcBuffMinInt(client,W3Buff:buffindex)
 	if(ValidBuff(buffindex))
 	{
 		new value=buffdebuff[client][buffindex][0];
-		new loop = ItemsPlusRacesLoaded();
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
 		for(new i=0;i<=loop;i++)
 		{
 			new value2=buffdebuff[client][buffindex][i];
@@ -731,7 +752,7 @@ stock bool:CalcBuffHasOneTrue(client,W3Buff:buffindex)
 {
 	if(ValidBuff(buffindex))
 	{
-		new loop = ItemsPlusRacesLoaded();
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
 		for(new i=0;i<=loop;i++)
 		{
 			if(buffdebuff[client][buffindex][i])
@@ -751,9 +772,9 @@ stock Float:CalcBuffStackedFloat(client,W3Buff:buffindex)
 {
 	if(ValidBuff(buffindex))
 	{
-		new Float:value=buffdebuff[client][buffindex][0];
-		new loop = ItemsPlusRacesLoaded();
-		for(new i=0;i<=loop;i++)
+		float value=buffdebuff[client][buffindex][0];
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
+		for(int i=0;i<=loop;i++)
 		{
 			value=FloatMul(value,buffdebuff[client][buffindex][i]);
 		}
@@ -769,10 +790,10 @@ stock CalcBuffSumInt(client,W3Buff:buffindex)
 {
 	if(ValidBuff(buffindex))
 	{
-		new any:value=0;
+		any value=0;
 		//this one starts from zero
-		new loop = ItemsPlusRacesLoaded();
-		for(new i=0;i<=loop;i++)
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
+		for(int i=0;i<=loop;i++)
 		{
 			value=value+buffdebuff[client][buffindex][i];
 		}
@@ -787,10 +808,10 @@ stock CalcBuffSumFloat(client,W3Buff:buffindex)
 {
 	if(ValidBuff(buffindex))
 	{
-		new any:value=0;
+		any value=0;
 		//this one starts from zero
-		new loop = ItemsPlusRacesLoaded();
-		for(new i=0;i<=loop;i++)
+		int loop = ItemsPlusRacesPlusSkillsLoaded();
+		for(int i=0;i<=loop;i++)
 		{
 			value=Float:value+Float:(buffdebuff[client][buffindex][i]);
 		}
@@ -939,6 +960,8 @@ stock Float:MagicArmorMulti(client){
 }
 
 //use 0 < limit
-stock BuffLoopLimit(){
-	return totalItemsLoaded+totalRacesLoaded+1;
+stock int BuffLoopLimit()
+{
+	//return totalItemsLoaded+totalRacesLoaded+1;
+	return ItemsPlusRacesPlusSkillsLoaded();
 }

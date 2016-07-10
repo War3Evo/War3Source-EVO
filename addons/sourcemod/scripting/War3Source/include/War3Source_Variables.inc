@@ -218,3 +218,17 @@ int skill_PlayerSkill[MAXPLAYERSCUSTOM][MAXSKILLCOUNT];
 // War3Source_Engine_ItemClass2
 //=============================
 int totalItems2Loaded=0;
+
+
+//=============================
+// War3Source_Engine_ItemClass3
+//=============================
+#if SHOPMENU3 == MODE_ENABLED
+int totalItems3Loaded=0;
+#endif
+
+//=============================
+// War3Source_Engine_SkillsClass
+//=============================
+int totalSkillsLoaded=0;
+

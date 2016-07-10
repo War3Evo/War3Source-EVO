@@ -1,6 +1,7 @@
 // War3Source_Engine_ItemClass3.sp
 
-new totalItems3Loaded=0;  ///USE raceid=1;raceid<=GetRacesLoaded();raceid++ for looping
+// moved to variables
+//int totalItems3Loaded=0;  ///USE raceid=1;raceid<=GetRacesLoaded();raceid++ for looping
 ///race instance variables
 //RACE ID = index of [MAXRACES], raceid 1 is raceName[1][32]
 

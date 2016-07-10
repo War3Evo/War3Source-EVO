@@ -3,8 +3,6 @@
 
 //#pragma dynamic 10000
 
-int totalSkillsLoaded=0;
-
 public bool War3Source_Engine_SkillsClass_InitForwards()
 {
 	p_OnWar3SkillSlotChange=CreateForward(ET_Ignore,Param_Cell,Param_Cell,Param_Cell,Param_Cell);
@@ -15,6 +13,10 @@ public bool War3Source_Engine_SkillsClass_InitNatives()
 {
 	CreateNative("War3_CreateNewSkill",Native_War3_CreateNewSkill);
 	CreateNative("War3_GetSkillsLoaded",Native_War3_GetSkillsLoaded);
+
+	//CreateNative("War3_SetSwappedSkill",Native_War3_SetSwappedSkill);
+
+	//CreateNative("War3_GetSkills",Native_War3_GetSkills);
 
 	CreateNative("War3_GetSkillName",Native_War3_GetSkillName);
 	CreateNative("War3_GetSkillShortname",Native_War3_GetSkillShortname);
@@ -28,9 +30,10 @@ public bool War3Source_Engine_SkillsClass_InitNatives()
 
 	CreateNative("War3_HasSkillSlot",Native_War3_HasSkillSlot);
 
+	CreateNative("War3_IsSkillSlot",Native_War3_IsSkillSlot);
+
 	return true;
 }
-
 stock bool GetSkillName(int skillid,char[] retstr,int maxlen)
 {
 	int num=strcopy(retstr, maxlen, skill_Name[skillid]);
@@ -148,6 +151,31 @@ stock int CreateNewSkill(char[] variable_skill_longname,char[] variable_skill_sh
 	return tskillid; //this will be the new skill's id / index
 }
 
+stock bool GetSkills(int iClient,char skillList[MAXSKILLCOUNT])
+{
+	if (iClient>0 && iClient<=MaxClients)
+	{
+		int iIncrement=0;
+		for(int i=0;i<MAXSKILLCOUNT;i++)
+		{
+			if(skill_PlayerSkill[iClient][i]>0)
+			{
+				skillList[iIncrement]=skill_PlayerSkill[iClient][i];
+				iIncrement++;
+			}
+		}
+	}
+	return iIncrement;
+}
+/*
+public int Native_War3_GetSkills(Handle:plugin,numParams)
+{
+	int client=GetNativeCell(1);
+	int bufsize=GetNativeCell(3);
+	return SetNativeArray(int param, const any[] local, int size)
+}*/
+
+
 public int Native_War3_GetSkillIDByShortname(Handle:plugin,numParams)
 {
 	char short_lookup[16];
@@ -249,6 +277,15 @@ public int Native_War3_SetSkillSlot(Handle plugin,int numParams)
 		}
 	}
 }
+
+stock int GetSkillSlot(int client, int skillslot)
+{
+	if (client>0 && client<=MaxClients)
+	{
+		return skill_PlayerSkill[client][skillslot];
+	}
+	return false;
+}
 public int Native_War3_GetSkillSlot(Handle plugin,int numParams)
 {
 	int client = GetNativeCell(1);
@@ -260,7 +297,7 @@ public int Native_War3_GetSkillSlot(Handle plugin,int numParams)
 	}
 	if (ValidPlayer(client))
 	{
-		return skill_PlayerSkill[client][skillslot];
+		return GetSkillSlot(client,skillslot);
 	}
 	return 0;
 }
@@ -282,4 +319,29 @@ public int Native_War3_HasSkillSlot(Handle plugin,int numParams)
 		}
 	}
 	return 0;
+}
+
+stock bool IsSkillSlot(int client, int skillid)
+{
+#if SHOPMENU3 == MODE_ENABLED
+	if (client>0 && client<=MaxClients)
+	{
+		int itotal = totalItemsLoaded+totalItems2Loaded+totalItems3Loaded+totalRacesLoaded;
+		if(skillid>itotal) return true;
+	}
+#else
+	if (client>0 && client<=MaxClients)
+	{
+		int itotal = totalItemsLoaded+totalItems2Loaded+totalRacesLoaded;
+		if(skillid>itotal) return true;
+	}
+#endif
+	return false;
+}
+
+public int Native_War3_IsSkillSlot(Handle plugin,int numParams)
+{
+	int client = GetNativeCell(1);
+	int skillid = GetNativeCell(2);
+	return view_as<bool>(IsSkillSlot(client, skillid));
 }

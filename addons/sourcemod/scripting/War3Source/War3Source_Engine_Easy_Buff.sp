@@ -255,7 +255,7 @@ InitSkills(client, race)
 				//}
 				//PrintToServer("[SKILL] Giving buff %i with a magnitude of %f to player \"{client %i}\" (Playing race \"{race %i}\" with skill \"{skill %i}\" at level %i)", buff, value, client, race, iSkill, iLevel);
 
-				SetBuff(client, buff, race, value);
+				SetBuffRace(client, buff, race, value);
 			}
 			else
 			{
@@ -286,7 +286,7 @@ public OnW3PlayerAuraStateChanged(client, tAuraID, bool:inAura, level, AuraStack
 				{
 					new any:value = any:GetArrayCell(g_hBuffSkillValues, i, level);
 
-					SetBuff(client, buff, race, value, AuraOwner);
+					SetBuffRace(client, buff, race, value, AuraOwner);
 					//PrintToServer("[AURA] Giving buff %i with a magnitude of %f to player \"{client %i}\" (Aura from skill \"{skill %i}\" of race \"{race %i}\" at level %i)", buff, value, client, iSkill, race, level);
 				}
 				else
