@@ -652,7 +652,7 @@ public War3Source_Engine_BotControl_OnWar3EventSpawn(client)
 
 			// Set the event so the engine can still refuse the purchase
 			// based on the bots gold or another addon
-			//W3SetVar(EventArg1, item);
+			//internal_W3SetVar(EventArg1, item);
 			internal_W3SetVar(EventArg1, item);
 			internal_W3SetVar(EventArg2, 0);
 			DoFwd_War3_Event(DoTriedToBuyItem, client);

@@ -166,7 +166,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 
 			new racelist[MAXRACES];
 			new racedisplay=W3GetRaceList(racelist);
-			//if(GetConVarInt(W3GetVar(hSortByMinLevelCvar))<1){
+			//if(GetConVarInt(internal_W3GetVar(hSortByMinLevelCvar))<1){
 			//	for(new x=0;x<War3_GetRacesLoaded();x++){//notice this starts at zero!
 			//		racelist[x]=x+1;
 			//	}
@@ -194,8 +194,8 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			{
 				int	x=racelist[i];
 
-				W3SetVar(EventArg1,x);
-				W3SetVar(EventArg2,true);
+				internal_W3SetVar(EventArg1,x);
+				internal_W3SetVar(EventArg2,true);
 				value=W3Denyable(DN_CanSelectRace,client);
 
 				if(!value) continue;
@@ -400,8 +400,8 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 					int	x=racelist[i];
 					char rcvar[64];
 
-					W3SetVar(EventArg1,x);
-					W3SetVar(EventArg2,true);
+					internal_W3SetVar(EventArg1,x);
+					internal_W3SetVar(EventArg2,true);
 					value=W3Denyable(DN_CanSelectRace,client);
 
 					if(!value) continue;

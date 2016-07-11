@@ -531,8 +531,8 @@ public NW3SetItem3ExpireTime(Handle:plugin,numParams)
 public War3Source_Engine_ItemOwnership3_OnWar3Event(W3EVENT:event,client)
 {
 	if(event==DoForwardClientBoughtItem3){
-		new itemid=W3GetVar(TheItemBoughtOrLost);
-		new race=W3GetVar(TheRaceItemBoughtOrLost);
+		new itemid=internal_W3GetVar(TheItemBoughtOrLost);
+		new race=internal_W3GetVar(TheRaceItemBoughtOrLost);
 		War3_SetOwnsItem3(client,race,itemid,true);
 
 		Call_StartForward(g_OnItemPurchaseHandle3);
@@ -544,8 +544,8 @@ public War3Source_Engine_ItemOwnership3_OnWar3Event(W3EVENT:event,client)
 
 	}
 	if(event==DoForwardClientLostItem3){
-		new itemid=W3GetVar(TheItemBoughtOrLost);
-		new race=W3GetVar(TheRaceItemBoughtOrLost);
+		new itemid=internal_W3GetVar(TheItemBoughtOrLost);
+		new race=internal_W3GetVar(TheRaceItemBoughtOrLost);
 		//DP("NO LONGER OWNS %d",itemid);
 
 		War3_SetItemLevel(client, race, itemid, 0);
@@ -584,7 +584,7 @@ CheckForRestrictedItemsOnRace3(client)
 				W3GetItemName(itemid,itemname,sizeof(itemname));   //FAKE
 				War3_ChatMessage(client,"%T","{itemname} is restricted on race {racename}, item has been removed",client,itemname,racename);
 
-				W3SetVar(TheItemBoughtOrLost,itemid);
+				internal_W3SetVar(TheItemBoughtOrLost,itemid);
 				DoFwd_War3_Event(DoForwardClientLostItem,client); //old item
 
 			}

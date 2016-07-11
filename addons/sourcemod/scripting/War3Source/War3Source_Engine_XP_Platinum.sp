@@ -134,14 +134,14 @@ public War3Source_Engine_XP_Platinum_OnWar3Event(W3EVENT:event,client)
 
 	if(event==OnPostGiveXPGold && !IsFakeClient(client))
 	{
-		new W3XPAwardedBy:awardevent = W3GetVar(EventArg1);
+		new W3XPAwardedBy:awardevent = internal_W3GetVar(EventArg1);
 		if(awardevent==XPAwardByFakeKill || awardevent==XPAwardByFakeAssist){
 			return;
 		}
-		new xp = W3GetVar(EventArg2);
+		new xp = internal_W3GetVar(EventArg2);
 		// add some randomness
 		xp=xp-GetRandomInt(0,xp);
-		//new gold=W3GetVar(EventArg3);
+		//new gold=internal_W3GetVar(EventArg3);
 
 		//new itemid1,itemid2,itemid3;
 		new race=GetRace(client);
@@ -362,8 +362,8 @@ bool:TryToGiveXP_Platinum(client,race,item,W3ItemSkills:itemskill,W3XPAwardedBy:
 		DoFwd_War3_Event(OnPreGiveXP_Platinum,client); //fire event
 
 
-		new addxp=W3GetVar(EventArg2); //retrieve possibly modified vars
-		new addplatinum=W3GetVar(EventArg3);
+		new addxp=internal_W3GetVar(EventArg2); //retrieve possibly modified vars
+		new addplatinum=internal_W3GetVar(EventArg3);
 
 		//War3_ChatMessage(0,"TryToGiveXP_Platinum itemskill %d",itemskill);
 		//War3_SetItemXP(client,race,item,War3_GetItemXP(client,race,item)+1);

@@ -148,7 +148,7 @@ InternalTriedToBuyItem2(client,item,bool:reshowmenu=true){
 			internal_W3SetVar(EventArg1,item);
 			internal_W3SetVar(EventArg2,1);
 			DoFwd_War3_Event(CanBuyItem,client);
-			if(W3GetVar(EventArg2)==0){
+			if(internal_W3GetVar(EventArg2)==0){
 				canbuy=false;
 			}
 		}
@@ -231,7 +231,7 @@ public OnSelectExceededMaxItemsMenu2Buy(Handle:menu,MenuAction:action,client,sel
 					ShowMenuShop2(client);
 				}
 				else{
-					W3SetVar(TheItemBoughtOrLost,item);
+					internal_W3SetVar(TheItemBoughtOrLost,item);
 					W3CreateEvent(DoForwardClientLostItem2,client); //old item
 
 
@@ -255,7 +255,7 @@ public War3Source_Engine_MenuShopmenu2_OnWar3Event(W3EVENT:event,client)
 		}
 
 	if(event==DoTriedToBuyItem2){ //via say?
-		InternalTriedToBuyItem2(client,W3GetVar(EventArg1),W3GetVar(EventArg2)); ///ALWAYS SET ARG2 before calling this event
+		InternalTriedToBuyItem2(client,internal_W3GetVar(EventArg1),internal_W3GetVar(EventArg2)); ///ALWAYS SET ARG2 before calling this event
 	}
 }
 

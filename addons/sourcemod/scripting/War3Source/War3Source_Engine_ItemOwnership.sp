@@ -257,21 +257,22 @@ public NWar3_SetOwnsItem(Handle:plugin,numParams)
 {
 	SetOwnsItem(GetNativeCell(1),GetNativeCell(2),bool:GetNativeCell(3));
 }
-public NW3IsItemDisabledGlobal(Handle:plugin,numParams)
+stock bool internal_W3IsItemDisabledGlobal(int itemid)
 {
-	new itemid=GetNativeCell(1);
-	decl String:itemShort[16];
+	char itemShort[16];
 	W3GetItemShortname(itemid,itemShort,16);
 
-	decl String:cvarstr[100];
-	decl String:exploded[MAXITEMS][16];
-	decl num;
+	char cvarstr[100];
+	char exploded[MAXITEMS][16];
+	int num;
 	GetConVarString(hitemRestrictionCvar,cvarstr,sizeof(cvarstr));
-	if(strlen(cvarstr)>0){
+	if(strlen(cvarstr)>0)
+	{
 		num=ExplodeString(cvarstr,",",exploded,MAXITEMS,16);
-		for(new i=0;i<num;i++){
+		for(int i=0;i<num;i++){
 			//PrintToServer("'%s' compared to: '%s' num%d",exploded[i],itemShort,num);
-			if(StrEqual(exploded[i],itemShort,false)){
+			if(StrEqual(exploded[i],itemShort,false))
+			{
 				//PrintToServer("TRUE");
 				return true;
 			}
@@ -279,16 +280,21 @@ public NW3IsItemDisabledGlobal(Handle:plugin,numParams)
 	}
 	return false;
 }
+public NW3IsItemDisabledGlobal(Handle:plugin,numParams)
+{
+	new itemid=GetNativeCell(1);
+	return internal_W3IsItemDisabledGlobal(itemid);
+}
 public NW3IsItemDisabledForRace(Handle:plugin,numParams)
 {
 	new raceid=GetNativeCell(1);
 	new itemid=GetNativeCell(2);
 	if(raceid>0){
-		decl String:itemShort[16];
+		char itemShort[16];
 		W3GetItemShortname(itemid,itemShort,sizeof(itemShort));
 
-		decl String:cvarstr[100];
-		decl String:exploded[MAXITEMS][16];
+		char cvarstr[100];
+		char exploded[MAXITEMS][16];
 
 		W3GetRaceItemRestrictionsStr(raceid,cvarstr,sizeof(cvarstr));
 
@@ -348,12 +354,12 @@ public NGetMaxShopitemsPerPlayer(Handle:h,n)
 //new bool:BuyPrevious1_playerOwnsItem[MAXPLAYERSCUSTOM][MAXITEMS];
 public War3Source_Engine_ItemOwnership_OnWar3Event(W3EVENT:event,client){
 	if(event==DoForwardClientBoughtItem){
-		new itemid=W3GetVar(TheItemBoughtOrLost);
+		new itemid=internal_W3GetVar(TheItemBoughtOrLost);
 		SetOwnsItem(client,itemid,true);
 
 	}
 	if(event==DoForwardClientLostItem){
-		new itemid=W3GetVar(TheItemBoughtOrLost);
+		new itemid=internal_W3GetVar(TheItemBoughtOrLost);
 		SetOwnsItem(client,itemid,false);
 
 	}
@@ -408,7 +414,7 @@ CheckForRestrictedItemsOnRace(client)
 				W3GetItemName(itemid,itemname,sizeof(itemname));
 				War3_ChatMessage(client,"%T","{itemname} is restricted on job {racename}, item has been removed",client,itemname,racename);
 
-				W3SetVar(TheItemBoughtOrLost,itemid);
+				internal_W3SetVar(TheItemBoughtOrLost,itemid);
 				DoFwd_War3_Event(DoForwardClientLostItem,client); //old item
 
 			}

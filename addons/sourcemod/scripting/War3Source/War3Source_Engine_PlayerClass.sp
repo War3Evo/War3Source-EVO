@@ -239,7 +239,7 @@ stock SetRace(client,newrace)
 		else{
 			EnableRace(newrace);
 
-			W3SetVar(OldRace,p_properties[client][CurrentRace]);
+			internal_W3SetVar(OldRace,p_properties[client][CurrentRace]);
 
 			if(oldrace>0&&ValidPlayer(client)){
 				W3SaveXP(client,oldrace);
@@ -632,14 +632,14 @@ public War3Source_Engine_PlayerClass_OnWar3Event(W3EVENT:event,client)
 		{
 			for(new i=0;i<MAXITEMS2;i++)
 			{
-				W3SetVar(TheItemBoughtOrLost,i);
+				internal_W3SetVar(TheItemBoughtOrLost,i);
 				DoFwd_War3_Event(DoForwardClientLostItem2,client);
 			}
 			for(new h=1;h<MAXRACES;h++)
 			{
-				W3SetVar(TheRaceItemBoughtOrLost,h);
+				internal_W3SetVar(TheRaceItemBoughtOrLost,h);
 				for(new i=0;i<MAXITEMS3;i++){
-					W3SetVar(TheItemBoughtOrLost,i);
+					internal_W3SetVar(TheItemBoughtOrLost,i);
 					DoFwd_War3_Event(DoForwardClientLostItem3,client);
 				}
 			}
@@ -660,7 +660,7 @@ public War3Source_Engine_PlayerClass_OnWar3Event(W3EVENT:event,client)
 
 		for(new i=0;i<MAXITEMS;i++)
 		{
-			W3SetVar(TheItemBoughtOrLost,i);
+			internal_W3SetVar(TheItemBoughtOrLost,i);
 			DoFwd_War3_Event(DoForwardClientLostItem,client);
 		}
 
@@ -676,14 +676,14 @@ public War3Source_Engine_PlayerClass_OnWar3Event(W3EVENT:event,client)
 		{
 			for(new i=0;i<MAXITEMS2;i++)
 			{
-				W3SetVar(TheItemBoughtOrLost,i);
+				internal_W3SetVar(TheItemBoughtOrLost,i);
 				DoFwd_War3_Event(DoForwardClientLostItem2,client);
 			}
 			for(new h=1;h<MAXRACES;h++)
 			{
-				W3SetVar(TheRaceItemBoughtOrLost,h);
+				internal_W3SetVar(TheRaceItemBoughtOrLost,h);
 				for(new i=0;i<MAXITEMS3;i++){
-					W3SetVar(TheItemBoughtOrLost,i);
+					internal_W3SetVar(TheItemBoughtOrLost,i);
 					DoFwd_War3_Event(DoForwardClientLostItem3,client);
 				}
 			}

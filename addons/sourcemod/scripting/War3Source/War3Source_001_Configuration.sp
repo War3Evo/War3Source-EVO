@@ -21,13 +21,13 @@ War3Source_InitCVars()
 
 	*/
 	hRaceLimitEnabled=CreateConVar("war3_racelimit_enable","1","Should race limit restrictions per team be enabled");
-	W3SetVar(hRaceLimitEnabledCvar,hRaceLimitEnabled);
+	internal_W3SetVar(hRaceLimitEnabledCvar,hRaceLimitEnabled);
 
 
 	hChangeGameDescCvar=CreateConVar("war3_game_desc","1","change game description to war3source? does not affect player connect");
 
 	hUseMetric=CreateConVar("war3_metric_system","0","Do you want use metric system? 1-Yes, 0-No");
-	W3SetVar(hUseMetricCvar,hUseMetric);
+	internal_W3SetVar(hUseMetricCvar,hUseMetric);
 
 //=============================
 // War3Source_Engine_BuffMaxHP

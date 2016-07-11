@@ -207,7 +207,7 @@ public InitPassiveSkills(client)
 {
 #if GGAMETYPE == GGAME_TF2
 	ThisRacePlayer player = ThisRacePlayer(client);
-	int activeweapon = FindSendPropOffs("CTFPlayer", "m_hActiveWeapon");
+	int activeweapon = FindSendPropInfo("CTFPlayer", "m_hActiveWeapon");
 	int activeweapondata = GetEntDataEnt2(player.index, activeweapon);
 	if(IsValidEntity(activeweapondata))
 	{

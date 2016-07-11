@@ -98,8 +98,8 @@ public ConnectDB()
 		SQL_LockDatabase(hDB);
 		SQL_FastQuery(hDB, "SET NAMES \"UTF8\"");
 		SQL_UnlockDatabase(hDB);
-		W3SetVar(hDatabase,hDB);
-		W3SetVar(hDatabaseType,War3SQLType);
+		internal_W3SetVar(hDatabase,hDB);
+		internal_W3SetVar(hDatabaseType,War3SQLType);
 		DoFwd_War3_Event(DatabaseConnected,0);
 	}
 	return true;

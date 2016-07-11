@@ -46,7 +46,7 @@ public Action:CheckItems(Handle:Timer, any:userid)
 			{
 				if(GetOwnsItem(client,i))
 				{
-					W3SetVar(EventArg1,i);
+					internal_W3SetVar(EventArg1,i);
 					if(W3Denyable(DN_CanBuyItem1,client)==false)
 					{
 						SetOwnsItem(client,i,false);
@@ -69,8 +69,8 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			// returning allows an exit to exist.
 			//return true;
 		//}
-		new race_selected=W3GetVar(EventArg1);
-		new bool:No_Message=W3GetVar(EventArg2);
+		new race_selected=internal_W3GetVar(EventArg1);
+		new bool:No_Message=internal_W3GetVar(EventArg2);
 		if(race_selected<=0)
 		{
 			ThrowError(" DN_CanSelectRace CALLED WITH INVALID RACE [%d]",race_selected);
@@ -186,7 +186,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			}
 
 			///MAX PER TEAM CHECK
-			if(GetConVarInt(W3GetVar(hRaceLimitEnabledCvar))>0)
+			if(GetConVarInt(internal_W3GetVar(hRaceLimitEnabledCvar))>0)
 			{
 				//if player is already this race, this is not what it does and its up to gameevents to kick the player
 				if(GetRace(client)!=race_selected&&GetRacesOnTeam(race_selected,GetClientTeam(client))>=W3GetRaceMaxLimitTeam(race_selected,GetClientTeam(client))) //already at limit

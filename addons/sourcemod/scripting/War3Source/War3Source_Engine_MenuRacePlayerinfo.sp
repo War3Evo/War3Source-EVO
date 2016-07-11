@@ -38,19 +38,19 @@ public War3Source_Engine_MenuRacePlayerinfo_OnWar3Event(W3EVENT:event,client){
 		PlayerInfoMenuEntry(client);
 	}
 	if(event==DoShowParticularRaceInfo){
-		int raceid = W3GetVar(RaceinfoRaceToShow);
+		int raceid = internal_W3GetVar(RaceinfoRaceToShow);
 		if(ValidRace(raceid)) {
 			War3_ShowParticularRaceInfoMenu(client,raceid);
 		}
 	}
 	if(event==DoShowPlayerInfoTarget){
-		int target = W3GetVar(EventArg1);
+		int target = internal_W3GetVar(EventArg1);
 		if(ValidPlayer(target,false)) {
 			War3_playertargetMenu(client,target) ;
 		}
 	}
 	if(event==DoShowPlayerItemsOwnTarget){
-		int target = W3GetVar(EventArg1);
+		int target = internal_W3GetVar(EventArg1);
 		if(ValidPlayer(target,false)) {
 			War3_playertargetItemMenu(client,target) ;
 		}
@@ -70,7 +70,7 @@ ShowMenu3Raceinfo(client)
 
 	int racelist[MAXRACES];
 	int racedisplay=W3GetRaceList(racelist);
-	//if(GetConVarInt(W3GetVar(hSortByMinLevelCvar))<1){
+	//if(GetConVarInt(internal_W3GetVar(hSortByMinLevelCvar))<1){
 	//	for(int x=0;x<War3_GetRacesLoaded();x++){//notice this starts at zero!
 	//		racelist[x]=x+1;
 	//	}
@@ -416,7 +416,7 @@ public War3_playersWhoAreThisRaceSel(Handle:menu,MenuAction:action,client,select
 
 PlayerInfoMenuEntry(client){
 	char arg[32];
-	Handle dataarray=W3GetVar(hPlayerInfoArgStr); //should always be created, upper plugin closes handle
+	Handle dataarray=internal_W3GetVar(hPlayerInfoArgStr); //should always be created, upper plugin closes handle
 	GetArrayString(dataarray,0,arg,sizeof(arg));
 	War3_PlayerInfoMenu(client,arg);
 }

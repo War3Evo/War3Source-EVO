@@ -53,7 +53,7 @@ public War3Source_Engine_MenuShopmenu_OnWar3Event(W3EVENT:event,client)
 			War3_TriedToBuyItem(client,item,internal_W3GetVar(EventArg2)); ///ALWAYS SET ARG2 before calling this event
 	}
 	//if(event==TomesCallBack) { //via say?
-		//War3_TriedToBuyItem(client,War3_GetItemIdByShortname("tome"),true,1,W3GetVar(EventArg1));
+		//War3_TriedToBuyItem(client,War3_GetItemIdByShortname("tome"),true,1,internal_W3GetVar(EventArg1));
 	//}
 }
 new WantsToBuy[MAXPLAYERSCUSTOM];
@@ -185,10 +185,10 @@ ShowMenuShop(client, const String:category[]="") {
 		//War3_TFIsItemClass has a internal GAMETF Checking.. if not GAMETF it auto returns true.
 		// Create a back button every 7 items
 #if GGAMETYPE == GGAME_TF2
-		if(!W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden")&&War3_TFIsItemClass(x,TF2_GetPlayerClass(client)))
+		if(!internal_W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden")&&internal_War3_TFIsItemClass(x,TF2_GetPlayerClass(client)))
 		{
 #else
-		if(!W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden"))
+		if(!internal_W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden"))
 		{
 #endif
 			W3GetItemCategory(x, itemcategory, sizeof(itemcategory));
@@ -408,24 +408,26 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 		canbuy=W3Denyable(DN_CanBuyItem1,client);
 
 		int race=GetRace(client);
-		if(W3IsItemDisabledGlobal(item)) {
+		if(internal_W3IsItemDisabledGlobal(item))
+		{
 			War3_ChatMessage(client,"%s is disabled",itemname);
 			canbuy=false;
 		}
 
-		else if(W3IsItemDisabledForRace(race,item)) {
-
+		else if(W3IsItemDisabledForRace(race,item))
+		{
 			char racename[32];
 			GetRaceName(race,racename,sizeof(racename));
 			War3_ChatMessage(client,"You may not purchase %s when you are %s",itemname,racename);
 			canbuy=false;
 		}
-
-		else if(GetOwnsItem(client,item)) {
+		else if(GetOwnsItem(client,item))
+		{
 			War3_ChatMessage(client,"You already own %s",itemname);
 			canbuy=false;
 		}
-		else if((W3IsItemCSmoney(item)?money:cred)<cost_num) {
+		else if((W3IsItemCSmoney(item)?money:cred)<cost_num)
+		{
 			War3_ChatMessage(client,"You cannot afford %s",itemname);
 			if(W3IsItemCSmoney(item)==false)
 				War3_ChatMessage(client,"You have %i Gold. It costs %i Gold.",cred,cost_num);

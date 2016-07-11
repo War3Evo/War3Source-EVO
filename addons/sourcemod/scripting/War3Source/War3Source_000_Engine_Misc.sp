@@ -291,7 +291,8 @@ public any internal_W3GetVar(any param1)
 {
 	return W3VarArr[param1];
 }
-public NW3GetVar(Handle:plugin,numParams){
+public NW3GetVar(Handle:plugin,numParams)
+{
 	return _:W3VarArr[War3Var:GetNativeCell(1)];
 }
 public void internal_W3SetVar(any param1, any param2)

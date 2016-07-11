@@ -88,14 +88,14 @@ stock int CreateNewSkill(char[] variable_skill_longname,char[] variable_skill_sh
 	if(SkillExistsByShortname(variable_skill_shortname))
 	{
 		int oldskillid=GetSkillIDByShortname(variable_skill_shortname);
-		PrintToServer("Skill already exists: %s, returning old skillid %d",variable_skill_shortname,oldskillid);
+		LogError("[War3Source:EVO] Skill already exists: %s, returning old skillid %d",variable_skill_shortname,oldskillid);
 		return oldskillid;
 	}
 
 	//if(totalSkillsLoaded+1==MAXSKILLS&&!PluginsReloading) //make sure we didnt reach our skill capacity limit
 	if(totalSkillsLoaded+1==MAXSKILLS) //make sure we didnt reach our skill capacity limit
 	{
-		LogError("MAX SKILLS REACHED, CANNOT REGISTER %s %s",variable_skill_longname,variable_skill_shortname);
+		LogError("[War3Source:EVO] MAX SKILLS REACHED, CANNOT REGISTER %s %s",variable_skill_longname,variable_skill_shortname);
 		return 0;
 	}
 
@@ -116,14 +116,14 @@ stock int CreateNewSkill(char[] variable_skill_longname,char[] variable_skill_sh
 		tskillid=GetSkillIDByShortname(variable_skill_shortname);
 	}
 	//else if(!SkillExistsByShortname(variable_skill_shortname)&&PluginsReloading)
-	else if(!SkillExistsByShortname(variable_skill_shortname))
+	/*else if(!SkillExistsByShortname(variable_skill_shortname))
 	{
 		LogError("SHORT NAME DOES NOT EXIST!, CANNOT REGISTER %s %s",variable_skill_longname,variable_skill_shortname);
 		PrintToChatAll("ERROR RELOADING SKILLS!  Skill %s does not exist!",variable_skill_shortname);
 		PrintToChatAll("ERROR RELOADING SKILLS!  Skill id set to 0.");
 		PrintToChatAll("ERROR RELOADING SKILLS!  Please reload with correct shortname.");
 		return 0;
-	}
+	}*/
 	else
 	{
 		totalSkillsLoaded++;
@@ -249,12 +249,12 @@ public int Native_War3_SetSkillSlot(Handle plugin,int numParams)
 	int newskillid=GetNativeCell(3);
 	if(skillslot>MAXSKILLCOUNT||skillslot<0)
 	{
-		LogError("[War3Source:EVO] SetSkillId:WARNING INVALID SKILL SLOT for client %d to skill slot %d",client,skillslot);
+		LogError("[War3Source:EVO] War3_SetSkillSlot:WARNING INVALID SKILL SLOT for client %d to skill slot %d",client,skillslot);
 		return;
 	}
 	if(newskillid<0||newskillid>totalSkillsLoaded)
 	{
-		LogError("[War3Source:EVO] SetSkillId:WARNING SET INVALID SKILL for client %d to skillid %d",client,newskillid);
+		LogError("[War3Source:EVO] War3_SetSkillSlot:WARNING SET INVALID SKILL for client %d to skillid %d",client,newskillid);
 		return;
 	}
 	// If the client has no team, and the skill is set for 0.. it will set all skills on both teams to 0.

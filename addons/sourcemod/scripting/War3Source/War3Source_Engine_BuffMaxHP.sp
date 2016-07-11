@@ -182,7 +182,7 @@ public War3Source_Engine_BuffMaxHP_OnWar3EventSpawn(client)
 
 public War3Source_Engine_BuffMaxHP_OnWar3Event(client)
 {
-		if((W3GetVar(EventArg1)==iAdditionalMaxHealth || W3GetVar(EventArg1)==fMaxHealth)&&ValidPlayer(client,false)){
+		if((internal_W3GetVar(EventArg1)==iAdditionalMaxHealth || internal_W3GetVar(EventArg1)==fMaxHealth)&&ValidPlayer(client,false)){
 				if (GetMaxHP(client) != War3_GetMaxHP(client))
 				{
 #if GGAMETYPE == GGAME_TF2

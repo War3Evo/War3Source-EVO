@@ -289,11 +289,11 @@ InternalTriedToBuyItem3(client,item,bool:reshowmenu=true){
 			canbuy=false;
 		}
 //		if(canbuy){
-//			W3SetVar(EventArg1,item);
-//			W3SetVar(EventArg2,1);
-//			W3SetVar(EventArg3,race);
+//			internal_W3SetVar(EventArg1,item);
+//			internal_W3SetVar(EventArg2,1);
+//			internal_W3SetVar(EventArg3,race);
 //			W3CreateEvent(CanBuyItem,client);
-//			if(W3GetVar(EventArg2)==0){
+//			if(internal_W3GetVar(EventArg2)==0){
 //				canbuy=false;
 //			}
 //		}
@@ -586,10 +586,10 @@ public War3Source_Engine_MenuShopmenu3_OnWar3Event(W3EVENT:event,client)
 		}
 
 	if(event==DoTriedToBuyItem3){ //via say?
-		InternalTriedToBuyItem3(client,W3GetVar(EventArg1),W3GetVar(EventArg2)); ///ALWAYS SET ARG2 before calling this event
+		InternalTriedToBuyItem3(client,internal_W3GetVar(EventArg1),internal_W3GetVar(EventArg2)); ///ALWAYS SET ARG2 before calling this event
 	}
 	if(event==DoShowPlayerItems3OwnTarget){
-		new target = W3GetVar(EventArg1);
+		new target = internal_W3GetVar(EventArg1);
 		if(ValidPlayer(target,false)) {
 			War3_playertargetItemMenu3(client,target) ;
 		}

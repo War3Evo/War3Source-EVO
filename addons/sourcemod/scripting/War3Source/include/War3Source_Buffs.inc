@@ -586,9 +586,9 @@ stock bool:Perplexed(client,printmsg=true) {
 //=============================================================================
 
 // Internally forwarded via War3's on EVENT process:
-//	W3SetVar(EventArg1,buffindex); //generic war3event arguments
-//	W3SetVar(EventArg2,itemraceindex);
-//	W3SetVar(EventArg3,value);
+//	internal_W3SetVar(EventArg1,buffindex); //generic war3event arguments
+//	internal_W3SetVar(EventArg2,itemraceindex);
+//	internal_W3SetVar(EventArg3,value);
 //	W3CreateEvent(W3EVENT:OnBuffChanged,client);
 //
 // You'll need to capture the event example:
@@ -596,7 +596,7 @@ stock bool:Perplexed(client,printmsg=true) {
 //public OnWar3Event(W3EVENT:event,client){
 //	if(event==OnBuffChanged)
 //	{
-//		if(W3GetVar(EventArg1)==iAdditionalMaxHealth&&ValidPlayer(client,true)){
+//		if(internal_W3GetVar(EventArg1)==iAdditionalMaxHealth&&ValidPlayer(client,true)){
 //			if(mytimer2[client]==INVALID_HANDLE){
 //				mytimer2[client]=CreateTimer(0.1,CheckHPBuffChange,client);
 //			}

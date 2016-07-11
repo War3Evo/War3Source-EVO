@@ -48,7 +48,7 @@ CREATE  TABLE `war3raceskdr_v2` (
 
 public War3Source_Engine_Race_KDR_OnWar3Event(client)
 {
-	hDB=W3GetVar(hDatabase);
+	hDB=internal_W3GetVar(hDatabase);
 	War3Source_Engine_Race_KDR_Initialize_SQLTable();
 }
 
@@ -236,7 +236,7 @@ public War3Source_Engine_Race_KDR_OnPluginStart()
 	// Get Database late load?
 	//if(hDB==INVALID_HANDLE)
 	//{
-		//hDB=W3GetVar(hDatabase);
+		//hDB=internal_W3GetVar(hDatabase);
 		//Initialize_SQLTable();
 	//}
 
@@ -276,7 +276,7 @@ public War3Source_Engine_Race_KDR_OnMapStart()
 	// Get Database late load?
 	//if(hDB==INVALID_HANDLE)
 	//{
-		//hDB=W3GetVar(hDatabase);
+		//hDB=internal_W3GetVar(hDatabase);
 		//Initialize_SQLTable();
 	//
 

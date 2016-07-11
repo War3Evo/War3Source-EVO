@@ -69,8 +69,8 @@
 
 #define INVALID_DEPENDENCY -1 //describes the default/invalid value of a skill dependency
 
-// The enum W3Var is used with function W3SetVar and W3GetVar.
-// It is the first parameter, eg: new deathRace = W3GetVar(DeathRace)
+// The enum W3Var is used with function W3SetVar and internal_W3GetVar.
+// It is the first parameter, eg: new deathRace = internal_W3GetVar(DeathRace)
 enum W3Var
 {
 	OldRace, //the race he was before OnRaceChanged //REMOVE DEPRECATED

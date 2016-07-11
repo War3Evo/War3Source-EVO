@@ -618,9 +618,9 @@ bool:CanPlaceWardNearHere(client)
 #endif
 public War3Source_Engine_Wards_Checking_OnW3Denyable(client)
 {
-				//W3SetVar(EventArg1,true);
-				new bool:Silence=bool:W3GetVar(EventArg1);
-				new Float:DistanceCheck=Float:W3GetVar(EventArg2);
+				//internal_W3SetVar(EventArg1,true);
+				new bool:Silence=bool:internal_W3GetVar(EventArg1);
+				new Float:DistanceCheck=Float:internal_W3GetVar(EventArg2);
 
 				if(!(GetEntityFlags(client) & FL_ONGROUND))
 				{

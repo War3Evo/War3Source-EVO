@@ -273,12 +273,12 @@ public WeaponFireEvent(Handle:event,const String:name[],bool:dontBroadcast)
 		g_iWeaponRateQueue[g_iWeaponRateQueueLength][0] = ent;
 		g_iWeaponRateQueue[g_iWeaponRateQueueLength++][1] = client;
 	}
-	new Handle:oldevent=W3GetVar(SmEvent);
-	W3SetVar(SmEvent,event);
+	new Handle:oldevent=internal_W3GetVar(SmEvent);
+	internal_W3SetVar(SmEvent,event);
 	Call_StartForward(hweaponFiredFwd);
 	Call_PushCell(client);
 	Call_Finish(dummy);
-	W3SetVar(SmEvent,oldevent);
+	internal_W3SetVar(SmEvent,oldevent);
 }
 
 public Action:TF2_CalcIsAttackCritical(client, weapon, String:weaponname[], &bool:result)

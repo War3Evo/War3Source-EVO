@@ -491,9 +491,9 @@ public ShowXP(client)
 #if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 public War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker)
 {
-	new Handle:event=W3GetVar(SmEvent);
+	Handle event=internal_W3GetVar(SmEvent);
 	//DP("get event %d",event);
-	new assister=GetClientOfUserId(GetEventInt(event,"assister"));
+	int assister=GetClientOfUserId(GetEventInt(event,"assister"));
 
 	if(victim!=attacker&&ValidPlayer(attacker))
 	{
@@ -504,7 +504,7 @@ public War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker)
 			{
 				decl String:weapon[64];
 				GetEventString(event,"weapon",weapon,sizeof(weapon));
-				new bool:is_hs,bool:is_melee;
+				bool is_hs,is_melee;
 				if(IsFakeClient(victim) && GetConVarBool(BotIgnoreXPCvar))
 					return;
 				is_hs=(GetEventInt(event,"customkill")==1);
@@ -594,8 +594,8 @@ TryToGiveXPGold(client,W3XPAwardedBy:awardedfromevent,xp,gold,String:awardedprin
 		internal_W3SetVar(EventArg3,gold);
 		DoFwd_War3_Event(OnPreGiveXPGold,client); //fire event
 
-		new addxp=	W3GetVar(EventArg2); //retrieve possibly modified vars
-		new addgold=W3GetVar(EventArg3);
+		new addxp=	internal_W3GetVar(EventArg2); //retrieve possibly modified vars
+		new addgold=internal_W3GetVar(EventArg3);
 
 		if(addxp<0&&GetXP(client,GetRace(client)) +addxp<0){ //negative xp?
 			addxp=-1*GetXP(client,GetRace(client));
@@ -710,11 +710,11 @@ GiveAssistKillXP(client, bool:IsFake)
 #endif
 
 bool:IsShortTerm(){
-	if(GetConVarInt(Handle:W3GetVar(hSaveEnabledCvar))==1)
+	if(GetConVarInt(Handle:internal_W3GetVar(hSaveEnabledCvar))==1)
 		return false;
 	else
 		return true;
-	//return GetConVarInt(Handle:W3GetVar(hSaveEnabledCvar))?false:true;
+	//return GetConVarInt(Handle:War3_CreateNewSkill(hSaveEnabledCvar))?false:true;
 	// not sure why the above does not work.. im going to temporary solve it.
 	//return true;
 }

@@ -29,7 +29,7 @@ public OnW3TakeDmgAll(victim,attacker,Float:damage){
 	{
 		// Not sure why prevent these weapons?
 		//decl String:weapon[64];
-		//GetEventString(W3GetVar(SmEvent),"weapon",weapon,63);
+		//GetEventString(internal_W3GetVar(SmEvent),"weapon",weapon,63);
 		//if(StrEqual(weapon, "crit",false) || StrEqual(weapon, "bash", false) || StrEqual(weapon, "weapon_crit",false) || StrEqual(weapon, "weapon_bash", false))
 			//return;
 

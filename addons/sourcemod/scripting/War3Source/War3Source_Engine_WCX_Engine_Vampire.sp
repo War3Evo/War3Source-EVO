@@ -45,8 +45,8 @@ LeechHP(victim, attacker, float damage, float percentage, bool bBuff)
 
 		DoFwd_War3_Event(VampireImmunityCheckPre,attacker);
 
-		ImmunityCheck = War3Immunity:W3GetVar(EventArg1);
-		new SkillOrItem = W3GetVar(EventArg2);
+		ImmunityCheck = War3Immunity:internal_W3GetVar(EventArg1);
+		new SkillOrItem = internal_W3GetVar(EventArg2);
 
 		if(ImmunityCheck==Immunity_Skills||ImmunityCheck==Immunity_Ultimates) // skills / ultimate
 		{

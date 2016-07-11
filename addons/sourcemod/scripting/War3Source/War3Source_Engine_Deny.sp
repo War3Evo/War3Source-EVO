@@ -26,10 +26,10 @@ public War3Source_Engine_Deny_OnRaceChanged(client,oldrace,newrace)
 			{
 				if(GetOwnsItem(client,i))
 				{
-					W3SetVar(EventArg1,i);
+					internal_W3SetVar(EventArg1,i);
 					if(W3Denyable(DN_CanBuyItem1,client)==false)
 					{
-						W3SetVar(TheItemBoughtOrLost,i);
+						internal_W3SetVar(TheItemBoughtOrLost,i);
 						DoFwd_War3_Event(DoForwardClientLostItem,client); //old item
 					}
 				}

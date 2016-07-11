@@ -582,9 +582,9 @@ public Native_NotifyPlayerImmuneFromItem(Handle:plugin, numParams)
 //=============================================================================
 
 // Internally forwarded via War3's on EVENT process:
-//	W3SetVar(EventArg1,buffindex); //generic war3event arguments
-//	W3SetVar(EventArg2,itemraceindex);
-//	W3SetVar(EventArg3,value);
+//	internal_W3SetVar(EventArg1,buffindex); //generic war3event arguments
+//	internal_W3SetVar(EventArg2,itemraceindex);
+//	internal_W3SetVar(EventArg3,value);
 //	W3CreateEvent(W3EVENT:OnBuffChanged,client);
 //
 // You'll need to capture the event example:
@@ -601,18 +601,18 @@ public War3Source_Engine_Notifications_OnWar3Event(client){
 		{
 			return;
 		}
-		//W3SetVar(EventArg1,buffindex); //generic war3event arguments
-		//W3SetVar(EventArg2,itemraceindex);
-		//W3SetVar(EventArg3,value);
-		//W3SetVar(EventArg4,buffowner);
+		//internal_W3SetVar(EventArg1,buffindex); //generic war3event arguments
+		//internal_W3SetVar(EventArg2,itemraceindex);
+		//internal_W3SetVar(EventArg3,value);
+		//internal_W3SetVar(EventArg4,buffowner);
 		//W3CreateEvent(W3EVENT:OnBuffChanged,client);
 
 		// Client is the person being affected by the buff,
 		// where as the buffowner is the one whom created the buff
-		new W3Buff:buffindex=W3Buff:W3GetVar(EventArg1);
-		//new itemraceindex=W3GetVar(EventArg2);
-		new any:value=W3GetVar(EventArg3);
-		new buffowner=W3GetVar(EventArg4);
+		new W3Buff:buffindex=W3Buff:internal_W3GetVar(EventArg1);
+		//new itemraceindex=internal_W3GetVar(EventArg2);
+		new any:value=internal_W3GetVar(EventArg3);
+		new buffowner=internal_W3GetVar(EventArg4);
 
 		// if both validplayers and alive
 		//&& (MessageTimer[client]<(GetGameTime()-0.1))

@@ -25,7 +25,7 @@ public War3Source_Engine_ItemDatabase3_OnPluginStart()
 	// Added so i can reload and test... may need to remove later?
 	// worried it may not work good on server restart?
 	/*
-	g_hDatabase3 = W3GetVar(hDatabase);
+	g_hDatabase3 = internal_W3GetVar(hDatabase);
 
 	if (g_hDatabase3 != INVALID_HANDLE)
 	{
@@ -550,7 +550,7 @@ public T_CallbackInsertPDataRace(Handle:owner,Handle:query,const String:error[],
 
 public War3Source_Engine_ItemDatabase3_OnWar3Event(client)
 {
-	g_hDatabase3 = W3GetVar(hDatabase);
+	g_hDatabase3 = internal_W3GetVar(hDatabase);
 	new String:query[600];
 	Format(query, sizeof(query), "CREATE TABLE IF NOT EXISTS `war3_shopmenu3_players` ( \
 		`player_id` INT UNSIGNED NOT NULL, \

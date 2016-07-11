@@ -137,7 +137,7 @@ public Native_War3_CooldownMGR(Handle:plugin,numParams)
 		internal_W3SetVar(EventArg1,cooldownTime); //float
 		DoFwd_War3_Event(OnWar3_CooldownMGR,client); //fire event
 
-		cooldownTime=Float:W3GetVar(EventArg1);
+		cooldownTime=Float:internal_W3GetVar(EventArg1);
 
 		Internal_CreateCooldown(client,cooldownTime,raceid,skillNum,resetOnSpawn,printMsgOnExpireByTime);
 }

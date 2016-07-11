@@ -179,10 +179,10 @@ public Native_War3_CreateWard(Handle:plugin, numParams)
 
 	// EventArg1 - Should W3Denyable be silent on why you can't place ward?
 	// EventArg2 - Distance Check Float - max distance ward needs to be away from another ward.
-	W3SetVar(EventArg1,false);
+	internal_W3SetVar(EventArg1,false);
 	new iRadius = GetNativeCell(3);
 	new Float:fDistance = FloatAdd(float(iRadius),185.0);
-	W3SetVar(EventArg2,fDistance);
+	internal_W3SetVar(EventArg2,fDistance);
 	if(W3Denyable(DN_CanPlaceWard, client))
 	{
 		new id = PushArrayCell(g_hWardOwner, client);
@@ -244,10 +244,10 @@ public Native_War3_CreateWardMod(Handle:plugin, numParams)
 
 	// EventArg1 - Should W3Denyable be silent on why you can't place ward?
 	// EventArg2 - Distance Check Float - max distance ward needs to be away from another ward.
-	W3SetVar(EventArg1,false);
+	internal_W3SetVar(EventArg1,false);
 	new iRadius = GetNativeCell(3);
 	new Float:fDistance = FloatAdd(float(iRadius),185.0);
-	W3SetVar(EventArg2,fDistance);
+	internal_W3SetVar(EventArg2,fDistance);
 
 	new bool:bypass = bool:GetNativeCell(14);
 

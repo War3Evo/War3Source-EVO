@@ -467,7 +467,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	{
 		Handle array=CreateArray(300);
 		PushArrayString(array,arg1);
-		W3SetVar(hPlayerInfoArgStr,array);
+		internal_W3SetVar(hPlayerInfoArgStr,array);
 		DoFwd_War3_Event(DoShowPlayerinfoEntryWithArg,client);
 
 		CloseHandle(array);
@@ -608,7 +608,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		}
 		else if(CommandCheck(arg1,"myinfo")||CommandCheck(arg1,"!myinfo"))
 		{
-			W3SetVar(EventArg1,client);
+			internal_W3SetVar(EventArg1,client);
 			DoFwd_War3_Event(DoShowPlayerInfoTarget,client);
 			return returnblocking;
 		}
@@ -619,7 +619,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		}
 		else if(CommandCheck(arg1,"myitems")||CommandCheck(arg1,"!myitems"))
 		{
-			W3SetVar(EventArg1,client);
+			internal_W3SetVar(EventArg1,client);
 			DoFwd_War3_Event(DoShowPlayerItemsOwnTarget,client);
 			return returnblocking;
 		}
@@ -675,12 +675,12 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			}
 			if(found>0)
 			{
-				W3SetVar(EventArg1,found);
+				internal_W3SetVar(EventArg1,found);
 				DoFwd_War3_Event(DoShowPlayerItems3OwnTarget,client);
 			}
 			else
 			{
-				W3SetVar(EventArg1,client);
+				internal_W3SetVar(EventArg1,client);
 				DoFwd_War3_Event(DoShowPlayerItems3OwnTarget,client);
 			}
 			return returnblocking;
@@ -690,7 +690,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			if(top_num>100) top_num=100;
 			if(W3SaveEnabled())
 			{
-				W3SetVar(EventArg1,top_num);
+				internal_W3SetVar(EventArg1,top_num);
 				DoFwd_War3_Event(DoShowWar3Top,client);
 			}
 			else
@@ -805,8 +805,8 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		for(int itemid=1;itemid<=ItemsLoaded;itemid++) {
 			W3GetItemShortname(itemid,itemshort,sizeof(itemshort));
 			if(CommandCheckStartsWith(arg1,itemshort)&&!W3ItemHasFlag(itemid,"hidden")) {
-				W3SetVar(EventArg1,itemid);
-				W3SetVar(EventArg2,false); //dont show menu again
+				internal_W3SetVar(EventArg1,itemid);
+				internal_W3SetVar(EventArg2,false); //dont show menu again
 				if(CommandCheckStartsWith(arg1,"tome"))
 				{                                           //item is tome
 					int multibuy;
@@ -826,7 +826,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				}
 
 				if(StrEqual(arg1,itemshort,false)){//item maybe tier2??
-					W3SetVar(EventArg1,itemid);
+					internal_W3SetVar(EventArg1,itemid);
 				}
 
 				DoFwd_War3_Event(DoTriedToBuyItem,client);

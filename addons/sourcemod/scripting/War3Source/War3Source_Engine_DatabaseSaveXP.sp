@@ -70,7 +70,7 @@ public War3Source_Engine_DatabaseSaveXP_OnPluginStart()
 	CreateConVar("DataBaseSaveXP",PLUGIN_VERSION,"[War3Source:EVO] DataBase Save XP",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	m_SaveXPConVar=CreateConVar("war3_savexp","1");
-	W3SetVar(hSaveEnabledCvar,m_SaveXPConVar);
+	internal_W3SetVar(hSaveEnabledCvar,m_SaveXPConVar);
 
 	hSetRaceOnJoinCvar=CreateConVar("war3_set_job_on_join","1");
 
@@ -103,8 +103,8 @@ public NW3SaveEnabled(Handle:plugin,numParams)
 public War3Source_Engine_DatabaseSaveXP_OnWar3Event(client)
 {
 	PrintToServer("[War3Source:EVO] War3Source_Engine_DatabaseSaveXP_OnWar3Event()");
-	hDB=W3GetVar(hDatabase);
-	War3SQLType=W3GetVar(hDatabaseType);
+	hDB=internal_W3GetVar(hDatabase);
+	War3SQLType=internal_W3GetVar(hDatabaseType);
 	Initialize_SQLTable();
 	//DP("EVENT %d",event);
 }
@@ -144,7 +144,7 @@ Initialize_SQLTable()
 			Format(longquery,sizeof(longquery),"%s, skilldesc%d varchar(2000)",longquery,i);
 		}
 
-		Format(longquery,sizeof(longquery),"%s ) %s",longquery,War3SQLType:W3GetVar(hDatabaseType)==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
+		Format(longquery,sizeof(longquery),"%s ) %s",longquery,War3SQLType:internal_W3GetVar(hDatabaseType)==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
 
 		SQL_FastQueryLogOnError(hDB,longquery);*/
 
@@ -966,7 +966,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			}
 		//PrintToServer("shoudl set race? %d client %d",raceDesiredOnJoin,client);
 		/*	new bool:doset=true;
-			if(GetConVarInt(W3GetVar(hRaceLimitEnabledCvar))>0){
+			if(GetConVarInt(internal_W3GetVar(hRaceLimitEnabledCvar))>0){
 				if(!CanSelectRace(client,desiredRaceOnJoin[client])){
 					doset=false;
 				}

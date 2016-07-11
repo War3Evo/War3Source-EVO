@@ -44,7 +44,7 @@ public War3Source_Engine_DatabaseTop100_OnWar3Event(W3EVENT:event,client)
 		War3Source_Stats(client);
 	}
 	if(event==DoShowWar3Top){
-		new num=W3GetVar(EventArg1);
+		new num=internal_W3GetVar(EventArg1);
 		War3Source_War3Top(client,num);
 	}
 }
@@ -102,7 +102,7 @@ GetRank(client)
 	}
 	else
 	{
-		//new Handle:hDB=W3GetVar(hDatabase);
+		//new Handle:hDB=internal_W3GetVar(hDatabase);
 		SQL_TQuery(hDB,T_RetrieveRankCache,"SELECT steamid FROM war3source ORDER BY total_level DESC,total_xp DESC",GetClientUserId(client));
 	}
 }

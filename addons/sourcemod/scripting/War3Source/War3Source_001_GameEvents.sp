@@ -258,12 +258,12 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 
 		W3VarArr[DeathRace]=GetRace(victimIndex);
 
-		new Handle:oldevent=W3GetVar(SmEvent);
+		new Handle:oldevent=internal_W3GetVar(SmEvent);
 	//	DP("new event %d",event);
-		W3SetVar(SmEvent,event); //stacking on stack
+		internal_W3SetVar(SmEvent,event); //stacking on stack
 
 		///pre death event, internal event
-		W3SetVar(EventArg1,attackerIndex);
+		internal_W3SetVar(EventArg1,attackerIndex);
 		DoFwd_War3_Event(OnDeathPre,victimIndex);
 
 		Internal_OnWar3EventDeath(victimIndex,attackerIndex,W3VarArr[DeathRace],distance,attacker_hpleft);
@@ -271,7 +271,7 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 		//DoForward_OnWar3EventDeath(victimIndex,attackerIndex,W3VarArr[DeathRace],distance,attacker_hpleft,weapon);
 		DoForward_OnWar3EventDeath(victimIndex,attackerIndex,W3VarArr[DeathRace],distance,attacker_hpleft);
 
-		W3SetVar(SmEvent,oldevent); //restore on stack , if any
+		internal_W3SetVar(SmEvent,oldevent); //restore on stack , if any
 		//DP("restore event %d",event);
 		//then we allow change race AFTER death forward
 		SetPlayerProp(victimIndex,bStatefulSpawn,true);//next spawn shall be stateful

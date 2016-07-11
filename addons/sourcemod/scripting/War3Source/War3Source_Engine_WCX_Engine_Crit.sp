@@ -22,7 +22,7 @@ public void War3Source_Engine_WCX_Engine_Crit_OnWar3EventPostHurt(int victim, in
 		return;
 	}
 	//decl String:weapon[64];
-	//GetEventString(W3GetVar(SmEvent),"weapon",weapon,sizeof(weapon));
+	//GetEventString(internal_W3GetVar(SmEvent),"weapon",weapon,sizeof(weapon));
 	if(StrEqual(weapon, "crit",false) || StrEqual(weapon, "bash", false) || StrEqual(weapon, "weapon_crit",false) || StrEqual(weapon, "weapon_bash", false))
 		return;
 

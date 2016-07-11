@@ -183,20 +183,15 @@ public NWar3_SetItemClasses(Handle:plugin,numParams)
 	}
 }
 
-public NWar3_IsItemClass(Handle:plugin,numParams)
+stock bool internal_War3_TFIsItemClass(int itemid,TFClassType iPlayerClass)
 {
-	new itemid = GetNativeCell(1);
-	new iPlayerClass = GetNativeCell(2);
-
-	//DP("itemid %i iPlayerClass %b",itemid,itemClassShopmenu[itemid][iPlayerClass]);
-
 	if(itemClassShopmenu[itemid][0]==true)
 		return true;
 
-	new bool:itemClassSet=false;
+	bool itemClassSet=false;
 
 	//Check if itemClass was set?
-	for(new x=0; x <= 9; x++)
+	for(int x=0; x <= 9; x++)
 	{
 		if(itemClassShopmenu[itemid][x]==true)
 			itemClassSet=true;
@@ -206,6 +201,16 @@ public NWar3_IsItemClass(Handle:plugin,numParams)
 		return true;
 	else
 		return itemClassShopmenu[itemid][iPlayerClass];
+}
+
+public NWar3_IsItemClass(Handle:plugin,numParams)
+{
+	int itemid = GetNativeCell(1);
+	TFClassType iPlayerClass = view_as<TFClassType>(GetNativeCell(2));
+
+	//DP("itemid %i iPlayerClass %b",itemid,itemClassShopmenu[itemid][iPlayerClass]);
+
+	return internal_War3_TFIsItemClass(itemid,iPlayerClass);
 }
 #endif
 public NWar3_SetItemProperty(Handle:plugin,numParams)

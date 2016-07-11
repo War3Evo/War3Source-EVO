@@ -132,7 +132,7 @@ public NW3SetItem2ExpireTime(Handle:plugin,numParams)
 public War3Source_Engine_ItemOwnership2_OnWar3Event(W3EVENT:event,client)
 {
 	if(event==DoForwardClientBoughtItem2){
-		new itemid=W3GetVar(TheItemBoughtOrLost);
+		new itemid=internal_W3GetVar(TheItemBoughtOrLost);
 		War3_SetOwnsItem2(client,itemid,true);
 
 		Call_StartForward(g_OnItemPurchaseHandle2);
@@ -143,7 +143,7 @@ public War3Source_Engine_ItemOwnership2_OnWar3Event(W3EVENT:event,client)
 
 	}
 	if(event==DoForwardClientLostItem2){
-		new itemid=W3GetVar(TheItemBoughtOrLost);
+		new itemid=internal_W3GetVar(TheItemBoughtOrLost);
 		War3_SetOwnsItem2(client,itemid,false);
 		//DP("NO LONGER OWNS %d",itemid);
 

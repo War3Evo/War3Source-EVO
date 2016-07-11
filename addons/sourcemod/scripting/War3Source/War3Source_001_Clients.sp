@@ -113,7 +113,7 @@ public OnWar3PlayerAuthed(client)
 	}
 	else
 	{
-		g_hDatabase = W3GetVar(hDatabase);
+		g_hDatabase = internal_W3GetVar(hDatabase);
 	}
 
 	// Try one more time?

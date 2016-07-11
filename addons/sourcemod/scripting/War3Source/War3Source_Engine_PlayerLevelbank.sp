@@ -21,7 +21,7 @@ public Plugin:myinfo=
 public War3Source_Engine_PlayerLevelbank_OnPluginStart()
 {
 	hCvar_NewPlayerLevelbank=CreateConVar("war3_new_player_levelbank","20","The amount of free levels a person gets that is new to the server (no xp record)");
-	W3SetVar(hNewPlayerLevelbankCvar,hCvar_NewPlayerLevelbank);
+	internal_W3SetVar(hNewPlayerLevelbankCvar,hCvar_NewPlayerLevelbank);
 
 	hCvarPrintLevelBank=CreateConVar("war3_print_levelbank_spawn","0","Print how much you have in your level bank in chat every time you spawn?");
 	hLevelup=CreateConVar("war3_levelbank_method","0","Selects the method the levelbank uses the levelup a player(available: 0=just increase current job level(default) 1=give required XP to levelup)");
@@ -167,7 +167,7 @@ public Action:War3Source_CMD_addlevelbank(client,args){
 		}
 
 		// already defined
-		//new Handle:hDB=W3GetVar(hDatabase);
+		//new Handle:hDB=internal_W3GetVar(hDatabase);
 		if(hDB){
 			SQL_LockDatabase(hDB);   //DB must not ERROR! else u will not unlock databaase!!!
 

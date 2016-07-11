@@ -46,7 +46,7 @@ public void Internal_War3_Event(W3EVENT event,int client)
 		case DatabaseConnected:
 		{
 			//War3Source_Engine_Bank
-			g_hDatabase=W3GetVar(hDatabase);
+			g_hDatabase=internal_W3GetVar(hDatabase);
 
 			War3Source_Engine_Race_KDR_OnWar3Event(client);
 			War3Source_Engine_DatabaseSaveXP_OnWar3Event(client);
