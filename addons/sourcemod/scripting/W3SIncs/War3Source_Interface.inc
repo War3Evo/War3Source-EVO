@@ -134,3 +134,5 @@ stock W3IsOwnerSentry(client,bool UseInternalInflictor=true,ExternalInflictor=0)
 	//
 }
 #endif
+
+//native War3_LogInfo(const String:fmt[], any:...);

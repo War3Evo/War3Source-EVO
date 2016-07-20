@@ -2,7 +2,7 @@
 
 #include "W3SIncs/War3Source_Interface"
 
-#assert GGAMEMODE == MODE_WAR3SOURCE
+//#assert GGAMEMODE == MODE_WAR3SOURCE
 
 ValveGameEnum tValveGame;
 
@@ -85,6 +85,8 @@ public APLRes:AskPluginLoad2(Handle:plugin,bool:late,String:error[],err_max)
 	g_OnWar3EventPostHurtFH = CreateGlobalForward("OnWar3EventPostHurt", ET_Ignore, Param_Cell, Param_Cell, Param_Float, Param_String, Param_Cell);
 
 	CreateNative("War3_GetGame",Native_War3_GetGame);
+	CreateNative("War3_LogInfo",Native_War3_LogInfo);
+	CreateNative("War3_LogError",Native_War3_LogInfo);
 
 	return APLRes_Success;
 }
@@ -197,4 +199,12 @@ public void War3Source_EVO_OnAbilityCommand(int client, int ability, bool presse
 public int Native_War3_GetGame(Handle plugin, int numParams)
 {
 	return view_as<int>(tValveGame);
+}
+
+public Native_War3_LogInfo(Handle:plugin, numParams)
+{
+	char sMessage[1000];
+	FormatNativeString(0, 1, 2, sizeof(sMessage), _, sMessage);
+
+	LogError("Old War3Source War3_LogInfo: %s",sMessage);
 }

@@ -39,7 +39,7 @@ public War3Source_Engine_MenuRacePlayerinfo_OnWar3Event(W3EVENT:event,client){
 	}
 	if(event==DoShowParticularRaceInfo){
 		int raceid = internal_W3GetVar(RaceinfoRaceToShow);
-		if(ValidRace(raceid)) {
+		if(eValidRace(raceid)) {
 			War3_ShowParticularRaceInfoMenu(client,raceid);
 		}
 	}

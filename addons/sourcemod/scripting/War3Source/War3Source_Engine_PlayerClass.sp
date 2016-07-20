@@ -469,16 +469,14 @@ public NWar3_GetSkillLevel(Handle:plugin,numParams){
 	return GetSkillLevel(GetNativeCell(1),GetNativeCell(2),GetNativeCell(3));
 }
 
-public NWar3_SetSkillLevelINTERNAL(Handle:plugin,numParams){
-	int client=GetNativeCell(1);
-	int race=GetNativeCell(2);
-	int skill=GetNativeCell(3);
-	int level=GetNativeCell(4);
+stock void SetSkillLevelINTERNAL(int client, int race, int skill, int level)
+{
 	if (client > 0 && client <= MaxClients && race >= 0 && race < MAXRACES)
 	{
 		int oldlevel=p_skilllevel[client][race][skill];
 		p_skilllevel[client][race][skill]=level;
-		if(GetRace(client)==race){
+		if(GetRace(client)==race)
+		{
 			Call_StartForward(g_OnSkillLevelChangedHandle);
 			Call_PushCell(client);
 			Call_PushCell(race);
@@ -488,7 +486,15 @@ public NWar3_SetSkillLevelINTERNAL(Handle:plugin,numParams){
 			Call_Finish(dummy);
 		}
 	}
+}
 
+public NWar3_SetSkillLevelINTERNAL(Handle:plugin,numParams)
+{
+	int client=GetNativeCell(1);
+	int race=GetNativeCell(2);
+	int skill=GetNativeCell(3);
+	int level=GetNativeCell(4);
+	SetSkillLevelINTERNAL(client,race,skill,level);
 }
 public NWar3_GetSkillLevelINTERNAL(Handle:plugin,numParams){
 	new client=GetNativeCell(1);

@@ -80,18 +80,23 @@ stock int internal_W3GetCvarInt(cvarid) {
 
 	return StringToInt(outstr);
 }
-
-public NW3GetCvar(Handle:plugin,numParams){
-	new cvarid=GetNativeCell(1);
-	new String:cvarstr[64];
+stock void GetCVar(int cvarid, char[] returnstr, int maxsize)
+{
+	char cvarstr[64];
 	GetArrayString(Cvararraylist, cvarid,cvarstr,sizeof(cvarstr));
-
-
-	new String:outstr[1024];
-	if(!GetTrieString(Cvartrie, cvarstr, outstr, sizeof(outstr))){
+	char outstr[1024];
+	if(!GetTrieString(Cvartrie, cvarstr, outstr, sizeof(outstr)))
+	{
 		ThrowError("Could not GET Cvar: cvarid %d",cvarid);
 	}
-	//PrintToServer("%s %d",outstr,cvarid);
+	StrCopy(returnstr, maxsize, outstr);
+}
+public NW3GetCvar(Handle:plugin,numParams)
+{
+	int cvarid=GetNativeCell(1);
+	char outstr[1024];
+	GetCVar(cvarid, outstr, sizeof(outstr));
+
 	SetNativeString(2,outstr,GetNativeCell(3));
 }
 public NW3SetCvar(Handle:plugin,numParams){

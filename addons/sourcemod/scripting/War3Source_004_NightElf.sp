@@ -167,7 +167,7 @@ public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 {
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual(RACE_SHORTNAME,shortname,false)))
 	{
-		thisRaceID=War3_CreateNewRace(RACE_LONGNAME,RACE_SHORTNAME,"Evasion,Roots,Auras",reloadrace_id);
+		thisRaceID=War3_CreateNewRace(RACE_LONGNAME,RACE_SHORTNAME,reloadrace_id,"Evasion,Roots,Auras");
 		SKILL_EVADE=War3_AddRaceSkill(thisRaceID,"Evasion","4/6/8/10 percent chance of evading a shot",false,4);
 		//SKILL_SHADOWMELD=War3_AddRaceSkill(thisRaceID,"Shadowmeld","(+ability) Hold down to slip into the shadows.\nYou become 80/70/60/50% visible.\n(does not stack with cloak)",false,4);
 		SKILL_THORNS=War3_AddRaceSkill(thisRaceID,"Thorns Aura","You deal 5/10/15/20 percent of damage recieved to your attacker. ",false,4);

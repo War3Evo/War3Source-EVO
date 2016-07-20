@@ -72,7 +72,7 @@ public NW3ApplyBuffSimple(Handle:plugin,numParams) {
 	if(! ValidBuff(W3Buff:buffindex)){
 		ThrowError("INVALID BUFF");
 	}
-	if(!ValidRace(race)){
+	if(!eValidRace(race)){
 		ThrowError("INVALID RACE");
 	}
 	int index=FindExisting(race,buffindex,client);

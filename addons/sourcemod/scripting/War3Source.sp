@@ -495,17 +495,17 @@ LoadRacesAndItems()
 	new res;
 	for(new i;i<=MAXRACES*30;i++) // 3000
 	{
-		PrintToServer("LoadRacesAndItems #1 i = ", i);
+		//PrintToServer("LoadRacesAndItems #1 i = ", i);
 		Call_StartForward(g_OnWar3PluginReadyHandle);
 		Call_PushCell(i);
-		Call_PushCell(-1);
+		//Call_PushCell(-1); //removed for backwards compatbility.
 		Call_Finish(res);
 	}
 
 	//orderd loads 2
 	for(new i;i<=MAXRACES*30;i++) // 3000
 	{
-		PrintToServer("LoadRacesAndItems #2 i = ", i);
+		//PrintToServer("LoadRacesAndItems #2 i = ", i);
 		//DoForward_OnWar3LoadRaceOrItemOrdered2(i,-1,"");
 		Call_StartForward(g_OnWar3PluginReadyHandle2);
 		Call_PushCell(i);

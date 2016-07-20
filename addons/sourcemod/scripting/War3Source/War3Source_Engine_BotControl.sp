@@ -598,7 +598,7 @@ public War3Source_Engine_BotControl_OnWar3Event(client)
 	if(IsFakeClient(client))
 	{
 		int race = GetRace(client);
-		if(ValidRace(race))
+		if(eValidRace(race))
 		{
 			DistributeSkillPoints(client,race);
 		}

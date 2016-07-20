@@ -217,9 +217,9 @@ public bool War3Source_Engine_RaceClass_InitNatives()
 	// NO LONGER USED:  PROBABLY SHOULD REMOVE OR COMMENT OUT
 	CreateNative("War3_AddRaceSkillT",NWar3_AddRaceSkillT);
 
-	CreateNative("War3_CreateGenericSkill",NWar3_CreateGenericSkill);
-	CreateNative("War3_UseGenericSkill",NWar3_UseGenericSkill);
-	CreateNative("W3_GenericSkillLevel",NW3_GenericSkillLevel);
+	//CreateNative("War3_CreateGenericSkill",NWar3_CreateGenericSkill);
+	//CreateNative("War3_UseGenericSkill",NWar3_UseGenericSkill);
+	//CreateNative("W3_GenericSkillLevel",NW3_GenericSkillLevel);
 
 	CreateNative("War3_CreateRaceEnd",NWar3_CreateRaceEnd);
 
@@ -453,8 +453,8 @@ public NWar3_CreateNewRace(Handle:plugin,numParams){
 	decl String:name[64],String:shortname[16],String:shortdesc[32];
 	GetNativeString(1,name,sizeof(name));
 	GetNativeString(2,shortname,sizeof(shortname));
-	GetNativeString(3,shortdesc,sizeof(shortdesc));
-	new ReloadRaceId_info=GetNativeCell(4);
+	int ReloadRaceId_info=GetNativeCell(3);
+	GetNativeString(4,shortdesc,sizeof(shortdesc));
 
 	//W3Log("add race %s %s",name,shortname);
 
@@ -488,8 +488,8 @@ public NWar3_CreateNewRaceT(Handle:plugin,numParams)
 {
 	char name[64],shortname[16],shortdesc[32];
 	GetNativeString(1,shortname,sizeof(shortname));
-	GetNativeString(2,shortdesc,sizeof(shortdesc));
-	int ReloadRaceId_info=GetNativeCell(3);
+	int ReloadRaceId_info=GetNativeCell(2);
+	GetNativeString(3,shortdesc,sizeof(shortdesc));
 
 	int newraceid=CreateNewRace(name,shortname,shortdesc,ReloadRaceId_info);
 	if(newraceid>0)
@@ -686,15 +686,22 @@ public NW3GetRaceOrder(Handle:plugin,numParams)
 	return W3GetCvarInt(RaceOrderCvar[raceid]);
 
 }
+stock bool RaceHasFlag(int raceid, char flagsearch[32])
+{
+	char buf[1000];
+	GetCVar(RaceFlagsCvar[raceid],buf,sizeof(buf));
+
+	return (StrContains(buf,flagsearch)>-1);
+}
 public NW3RaceHasFlag(Handle:plugin,numParams)
 {
-	new raceid=GetNativeCell(1);
-	new String:buf[1000];
+	int raceid=GetNativeCell(1);
+	char buf[1000];
 	W3GetCvar(RaceFlagsCvar[raceid],buf,sizeof(buf));
 
-	new String:flagsearch[32];
+	char flagsearch[32];
 	GetNativeString(2,flagsearch,sizeof(flagsearch));
-	return (StrContains(buf,flagsearch)>-1);
+	return RaceHasFlag(raceid,flagsearch);
 }
 public NW3GetRaceList(Handle:plugin,numParams){
 
@@ -734,20 +741,27 @@ public NW3GetRaceItemRestrictionsStr(Handle:plugin,numParams)
 	SetNativeString(2,buf,GetNativeCell(3));
 }
 
-public NW3GetRaceMaxLimitTeam(Handle:plugin,numParams)
+stock int GetRaceMaxLimitTeam(int raceid, int team)
 {
-	new raceid=GetNativeCell(1);
-	if(raceid>0){
-
-		new team=GetNativeCell(2);
-		if(team==TEAM_T||team==TEAM_RED){
-			return W3GetCvarInt(RestrictLimitCvar[raceid][0]);
+	if(raceid>0)
+	{
+		if(team==TEAM_T||team==TEAM_RED)
+		{
+			return internal_W3GetCvarInt(RestrictLimitCvar[raceid][0]);
 		}
-		if(team==TEAM_CT||team==TEAM_BLUE){
-			return W3GetCvarInt(RestrictLimitCvar[raceid][1]);
+		if(team==TEAM_CT||team==TEAM_BLUE)
+		{
+			return internal_W3GetCvarInt(RestrictLimitCvar[raceid][1]);
 		}
 	}
 	return 99;
+
+}
+public NW3GetRaceMaxLimitTeam(Handle:plugin,numParams)
+{
+	int raceid=GetNativeCell(1);
+	int team=GetNativeCell(2);
+	return GetRaceMaxLimitTeam(raceid,team);
 }
 public NW3GetRaceMaxLimitTeamCvar(Handle:plugin,numParams)
 {
@@ -804,6 +818,7 @@ enum GenericSkillClass
 	Handle:raceskilldatahandle[MAXCUSTOMERRACES], //handle the customer races passed us
 }
 //55 generic skills
+/*
 new GenericSkill[55][GenericSkillClass];
 public NWar3_CreateGenericSkill(Handle:plugin,numParams){
 	new String:tempgenskillname[32];
@@ -943,7 +958,7 @@ public NW3_GenericSkillLevel(Handle:plugin,numParams){
 	return reallevel;
 
 }
-
+*/
 
 
 
@@ -1295,10 +1310,12 @@ Handle:append(Handle:leftarr,Handle:rightarr){
 // STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS
 // STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS
 // STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS
-stock IsSkillUltimate(raceid,skill){
+stock bool IsSkillUltimate(int raceid,int skill)
+{
 	return skillIsUltimate[raceid][skill];
 }
-stock GetRaceSkillMaxLevel(raceid,skill){
+stock bool GetRaceSkillMaxLevel(int raceid,int skill)
+{
 	return skillMaxLevel[raceid][skill];
 }
 
@@ -1347,7 +1364,8 @@ stock GetRaceSkillDesc(raceid,skillindex,String:retstr[],maxlen){
 	return num;
 }
 
-stock GetRaceSkillCount(raceid){
+stock int GetRaceSkillCount(int raceid)
+{
 	if(raceid>0){
 		return raceSkillCount[raceid];
 	}
@@ -1473,7 +1491,8 @@ stock GetRaceName(raceid,String:retstr[],maxlen){
 
 //stock size32_War3_GetRaceName(raceid,String:retstr[])
 
-stock internal_GetRacesLoaded(){
+stock internal_GetRacesLoaded()
+{
 	return  totalRacesLoaded;
 }
 

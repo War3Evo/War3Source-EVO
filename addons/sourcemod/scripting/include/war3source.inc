@@ -921,14 +921,16 @@ stock CSGO_RADAR(client,bool:TurnON)
 #endif
 
 ///check race limit and force re-choose race
-stock CheckRaceTeamLimit(raceid,team){
+stock CheckRaceTeamLimit(raceid,team)
+{
 
 	new Float:youngest=-1.0;
 	new target=0;
+	War3Source_Races W3racefunctions = War3Source_Races();
 	for(new i=1;i<=MaxClients;i++){
 		if(ValidPlayer(i))
 		{
-			if(War3_GetRace(i)==raceid&&!W3IsDeveloper(i))
+			if(W3racefunctions.War3_GetRace(i)==raceid&&!W3IsDeveloper(i))
 			{
 				if(GetClientTeam(i)==team)
 				{
@@ -940,41 +942,44 @@ stock CheckRaceTeamLimit(raceid,team){
 			}
 		}
 	}
-	if(target>0){
-		War3_SetRace(target,0);
-		new String:racename[64];
-		War3_GetRaceName(raceid,racename,sizeof(racename));
-		War3_ChatMessage(target,"%T","{race} race team limit has reached (MAX {amount}), please select a different job",target,racename,W3GetRaceMaxLimitTeam(raceid,team));
+	if(target>0)
+	{
+		W3racefunctions.War3_SetRace(target,0);
+		char racename[64];
+		W3racefunctions.War3_GetRaceName(raceid,racename,sizeof(racename));
+		War3_ChatMessage(target,"%T","{race} race team limit has reached (MAX {amount}), please select a different job",target,racename,W3racefunctions.W3GetRaceMaxLimitTeam(raceid,team));
 		PrintToConsole(target,"Your job has been set via raceutils.inc");
-		new cvar=W3GetRaceMaxLimitTeamCvar(raceid,team);
-		new String:cvarstr[64];
+		int cvar=W3racefunctions.W3GetRaceMaxLimitTeamCvar(raceid,team);
+		char cvarstr[64];
 		if(cvar>-1){
 			W3GetCvarActualString(cvar,cvarstr,sizeof(cvarstr));
 		}
 		cvar=W3FindCvar(cvarstr);
-		new String:cvarvalue[64];
+		char cvarvalue[64];
 		if(cvar>-1){
 			W3GetCvar(cvar,cvarvalue,sizeof(cvarvalue));
 		}
 
-		W3Log("job %s blocked on client %d due to restrictions limit %d (CheckRaceTeamLimit)  %s %s",racename,target,W3GetRaceMaxLimitTeam(raceid,team),cvarstr,cvarvalue);
+		W3Log("job %s blocked on client %d due to restrictions limit %d (CheckRaceTeamLimit)  %s %s",racename,target,W3racefunctions.W3GetRaceMaxLimitTeam(raceid,team),cvarstr,cvarvalue);
 
 		W3CreateEvent(DoShowChangeRaceMenu,target);
 	}
 
 }
 
-stock CheckPendingRace(client){
-	new pendingrace=W3GetPendingRace(client);
+stock CheckPendingRace(client)
+{
+	int pendingrace=W3GetPendingRace(client);
+	War3Source_Races W3racefunctions = War3Source_Races();
 	if(pendingrace>0)
 	{
 		W3SetPendingRace(client,-1);
 
-
 		/*GetConVarInt(W3GetVar(hRaceLimitEnabledCvar))>0&&
 		GetRacesOnTeam(pendingrace,GetClientTeam(client))>=W3GetRaceMaxLimitTeam(pendingrace,GetClientTeam(client))*/
-		if(	CanSelectRace(client,pendingrace)||W3IsDeveloper(client)){
-			War3_SetRace(client,pendingrace);
+		if(	CanSelectRace(client,pendingrace)||W3IsDeveloper(client))
+		{
+			W3racefunctions.War3_SetRace(client,pendingrace);
 		}
 		else
 		{   //already at limit
@@ -985,12 +990,12 @@ stock CheckPendingRace(client){
 
 	}
 	///wasnt pending
-	else if(War3_GetRace(client)==0){
+	else if(W3racefunctions.War3_GetRace(client)==0){
 		W3CreateEvent(DoShowChangeRaceMenu,client);
 	}
-	else if(War3_GetRace(client)>0){
-		if(!CanSelectRace(client,War3_GetRace(client))){
-			War3_SetRace(client,0);
+	else if(W3racefunctions.War3_GetRace(client)>0){
+		if(!CanSelectRace(client,W3racefunctions.War3_GetRace(client))){
+			W3racefunctions.War3_SetRace(client,0);
 			PrintToConsole(client,"Your race is set to zero via gameevents.inc");
 		}
 	}
@@ -1458,9 +1463,11 @@ stock UTIL_Remove(entity) {
 		AcceptEntityInput(entity, "Kill");
 }
 
-stock W3ShowSkillsInfo(client) {
-	if (War3_GetRace(client) > 0) {
-		W3SetVar(RaceinfoRaceToShow, War3_GetRace(client));
+stock W3ShowSkillsInfo(client)
+{
+	War3Source_Races W3racefunctions = War3Source_Races();
+	if (W3racefunctions.War3_GetRace(client) > 0) {
+		W3SetVar(RaceinfoRaceToShow, W3racefunctions.War3_GetRace(client));
 		W3CreateEvent(DoShowParticularRaceInfo, client);
 	} else {
 		War3_ChatMessage(client, "Select a race first!");
@@ -1877,7 +1884,6 @@ stock void RemoveCosmetics(iClient)
 // METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS
 // METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS METHODMAPS
 
-
 methodmap W3player
 {
 	public W3player(int playerindex) //constructor
@@ -1932,8 +1938,16 @@ methodmap W3player
 	}
 	property int raceid
 	{
-		public get() { return War3_GetRace(this.index); }
-		public set( int value ) { War3_SetRace(this.index, value); }
+		public get()
+		{
+			War3Source_Races W3racefunctions = War3Source_Races();
+			return W3racefunctions.War3_GetRace(this.index);
+		}
+		public set( int value )
+		{
+			War3Source_Races W3racefunctions = War3Source_Races();
+			W3racefunctions.War3_SetRace(this.index, value);
+		}
 	}
 	property bool inspawn
 	{
@@ -2105,7 +2119,8 @@ methodmap W3player
 
 	public int getskilllevel( int raceid, int skill )
 	{
-		return War3_GetSkillLevel(this.index,raceid,skill);
+		War3Source_Races W3racefunctions = War3Source_Races();
+		return W3racefunctions.War3_GetSkillLevel(this.index,raceid,skill);
 	}
 
 	public bool skillnotcooldown( int raceid, int skillNum, bool printTextIfNotReady=false )

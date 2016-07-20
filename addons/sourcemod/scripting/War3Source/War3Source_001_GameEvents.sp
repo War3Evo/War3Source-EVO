@@ -121,15 +121,15 @@ public War3Source_PlayerSpawnEvent(Handle:event,const String:name[],bool:dontBro
 				new tries=100;
 				while(tries>0)
 				{
-					new race=GetRandomInt(1,War3_GetRacesLoaded());
-					if(!W3RaceHasFlag(race,"nobots")) // may want to remove race!=motherbot then put "nobots" for motherbot along with hidden
+					new race=GetRandomInt(1,internal_GetRacesLoaded());
+					if(!RaceHasFlag(race,"nobots")) // may want to remove race!=motherbot then put "nobots" for motherbot along with hidden
 					{
 						tries=0;
 						SetRace(client,race);
-						SetLevel(client,race,W3GetRaceMaxLevel(race));
+						SetLevel(client,race,GetRaceMaxLevel(race));
 						for(new i=1;i<=GetRaceSkillCount(race);i++)
 						{
-							War3_SetSkillLevelINTERNAL(client,race,i,GetRaceSkillMaxLevel(race,i));
+							SetSkillLevelINTERNAL(client,race,i,GetRaceSkillMaxLevel(race,i));
 						}
 						W3DoLevelCheck(client);
 					}
@@ -145,7 +145,8 @@ public War3Source_PlayerSpawnEvent(Handle:event,const String:name[],bool:dontBro
 			{
 				ShowChangeRaceMenu(client);
 			}
-			else if(raceid>0&&GetConVarInt(hRaceLimitEnabled)>0&&GetRacesOnTeam(raceid,GetClientTeam(client),true)>W3GetRaceMaxLimitTeam(raceid,GetClientTeam(client))){
+			else if(raceid>0&&GetConVarInt(hRaceLimitEnabled)>0&&GetRacesOnTeam(raceid,GetClientTeam(client),true)>GetRaceMaxLimitTeam(raceid,GetClientTeam(client)))
+			{
 				CheckRaceTeamLimit(raceid,GetClientTeam(client));  //show changerace inside
 			}
 			raceid=GetRace(client);//get again it may have changed
