@@ -5,11 +5,13 @@
 //new Float:MessageTimer[MAXPLAYERSCUSTOM];
 //new W3Buff:MessageEventType[MAXPLAYERSCUSTOM];
 
-stock bool:IsValidRace(raceid_) {
-	return (raceid_>0&&raceid_<=internal_GetRacesLoaded())?true:false;
+stock bool IsValidRace(raceid_)
+{
+	return (raceid_>0&&raceid_<=GetRacesLoaded())?true:false;
 }
 
-stock bool:IsValidSkill(raceid_,skillid_) {
+stock bool IsValidSkill(raceid_,skillid_)
+{
 	if(IsValidRace(raceid_))
 		return (skillid_>0&&skillid_<=GetRaceSkillCount(raceid_))?true:false;
 	else

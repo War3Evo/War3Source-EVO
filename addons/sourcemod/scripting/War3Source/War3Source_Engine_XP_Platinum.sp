@@ -519,7 +519,7 @@ LevelCheck(client){
 		new curlevel=War3_GetLevel(client,race);
 		new SkillCount = War3_GetRaceSkillCount(race);
 		for(new i=1;i<=SkillCount;i++){
-			skilllevel=War3_GetSkillLevelINTERNAL(client,race,i);
+			skilllevel=GetSkillLevelINTERNAL(client,race,i);
 			if(!IsSkillUltimate(race,i))
 			{
 			// El Diablo: I want to be able to allow skills to reach maximum skill level via skill points.
@@ -610,7 +610,7 @@ LevelCheck(client){
 ClearSkillLevels(client,race){
 	new SkillCount =War3_GetRaceSkillCount(race);
 	for(new i=1;i<=SkillCount;i++){
-		War3_SetSkillLevelINTERNAL(client,race,i,0);
+		SetSkillLevelINTERNAL(client,race,i,0);
 	}
 }
 */

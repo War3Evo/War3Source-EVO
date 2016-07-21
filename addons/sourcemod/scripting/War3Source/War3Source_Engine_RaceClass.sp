@@ -594,8 +594,9 @@ public Native_War3_GetRaceShortdesc(Handle:plugin,numParams)
 		SetNativeString(2,race_shortdesc,bufsize);
 	}
 }
-public NWar3_GetRacesLoaded(Handle:plugin,numParams){
-	return internal_GetRacesLoaded();
+public NWar3_GetRacesLoaded(Handle:plugin,numParams)
+{
+	return GetRacesLoaded();
 }
 
 public NW3GetRaceMaxLevel(Handle:plugin,numParams)
@@ -670,14 +671,19 @@ public NWar3_GetRaceIDByShortname(Handle:plugin,numParams)
 	GetNativeString(1,shortname,sizeof(shortname));
 	return size16_GetRaceIDByShortname(shortname);
 }
+stock void GetRaceAccessFlagStr(int raceid, char[] returnstr, int maxsize)
+{
+	char buf[32];
+	GetCvar(AccessFlagCvar[raceid],buf,sizeof(buf));
+	StrCopy(returnstr, maxsize, buf);
+}
 public NW3GetRaceAccessFlagStr(Handle:plugin,numParams)
 {
-	new String:buf[32];
+	int raceid=GetNativeCell(1);
+	char buf[32];
+	GetRaceAccessFlagStr(raceid, buf, GetNativeCell(3));
 
-	new raceid=GetNativeCell(1);
-	W3GetCvar(AccessFlagCvar[raceid],buf,sizeof(buf));
 	SetNativeString(2,buf,GetNativeCell(3));
-
 }
 public NW3GetRaceOrder(Handle:plugin,numParams)
 {
@@ -1491,16 +1497,17 @@ stock GetRaceName(raceid,String:retstr[],maxlen){
 
 //stock size32_War3_GetRaceName(raceid,String:retstr[])
 
-stock internal_GetRacesLoaded()
+stock GetRacesLoaded()
 {
 	return  totalRacesLoaded;
 }
 
-stock size16_GetRaceIDByShortname(String:shortname[]){
-	new String:buffer[16];
+stock size16_GetRaceIDByShortname(String:shortname[])
+{
+	char buffer[16];
 
-	new RacesLoaded =internal_GetRacesLoaded();
-	for(new raceid=1;raceid<=RacesLoaded;raceid++){
+	int RacesLoaded = GetRacesLoaded();
+	for(int raceid=1;raceid<=RacesLoaded;raceid++){
 		GetRaceShortname(raceid,buffer,sizeof(buffer));
 		if(StrEqual(shortname, buffer, false)){
 			return raceid;

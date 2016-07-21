@@ -205,7 +205,7 @@ stock bool ValidRace(int raceid_)
 // internal engine only
 stock bool eValidRace(int raceid_)
 {
-	return bool:(raceid_>0&&raceid_<=internal_GetRacesLoaded());
+	return bool:(raceid_>0&&raceid_<=GetRacesLoaded());
 }
 
 //=============================================================================

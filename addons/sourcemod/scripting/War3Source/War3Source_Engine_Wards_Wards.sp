@@ -535,19 +535,19 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 //public OnWar3EventSpawn(client)
 public War3Source_Engine_Wards_Wards_OnWar3EventDeath(victim, attacker)
 {
-	for(new irace=1;irace<=internal_GetRacesLoaded();irace++)
+	for(int irace=1;irace<=GetRacesLoaded();irace++)
 	{
 		HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]=-1;
 		HasWardID[victim][BEHAVIOR_SLOW]=-1;
 		SetBuffRace(victim,fSlow,irace,1.0);
 		SetBuffRace(victim,fMaxSpeed,irace,1.0);
-		new flags = GetEntityFlags(victim)&~FL_NOTARGET;
+		int flags = GetEntityFlags(victim)&~FL_NOTARGET;
 		SetEntityFlags(victim, flags);
 	}
 }
 public OnWardExpire(wardindex, owner, behaviorID)
 {
-	for(new victim=1;victim<=MaxClients;victim++)
+	for(int victim=1;victim<=MaxClients;victim++)
 	{
 		if(ValidPlayer(victim) && (HasWardID[victim][BEHAVIOR_SLOW]>-1||HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]>-1))
 		{

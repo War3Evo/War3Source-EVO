@@ -142,10 +142,10 @@ public Action:SetTestBotRace(client, args)
 	new String:CompareStr[64];
 	strcopy(CompareStr,sizeof(CompareStr),DefaultRaceName);
 	//War3_ChatMessage(client,"Searching: %s",CompareStr);
-	new RacesLoaded = internal_GetRacesLoaded();
-	new String:sRaceName[32];
-	new x;
-	new bool:foundit=false;
+	int RacesLoaded = GetRacesLoaded();
+	char sRaceName[32];
+	int x;
+	bool foundit=false;
 	for(x=1;x<=RacesLoaded;x++)
 	{
 		GetRaceName(x,sRaceName,sizeof(sRaceName));
@@ -159,7 +159,7 @@ public Action:SetTestBotRace(client, args)
 	}
 	if(foundit)
 	{
-		new bool:allowChooseRace=CanSelectRace(target,x);
+		bool allowChooseRace=CanSelectRace(target,x);
 		if(allowChooseRace==true)
 		{
 			SetRace(target,x);
@@ -287,7 +287,7 @@ public void CreateBotList()
 	}
 
 	// load list
-	int RacesLoaded = internal_GetRacesLoaded();
+	int RacesLoaded = GetRacesLoaded();
 	//LogMessage("RacesLoaded %d",RacesLoaded);
 	BotRaceCount = 0;
 
@@ -497,7 +497,7 @@ public DistributeSkillPoints(client,race)
 	if(skillpoints < 0)
 	{
 		for(int i=0; i < GetRaceSkillCount(race); i++)
-			War3_SetSkillLevelINTERNAL(client, race, i, 0); 	// Reset all skill points to zero
+			SetSkillLevelINTERNAL(client, race, i, 0); 	// Reset all skill points to zero
 		DistributeSkillPoints(client,race); // Start over
 		return;
 	}
@@ -528,7 +528,7 @@ public DistributeSkillPoints(client,race)
 				int requiredLVL=War3_GetDependency(race, skill, SkillDependency:LVL);
 				if(requiredLVL > 0)
 				{
-					new currentLVL = War3_GetSkillLevelINTERNAL(client,race,dependencyID);
+					new currentLVL = GetSkillLevelINTERNAL(client,race,dependencyID);
 					if(currentLVL >= requiredLVL)
 					{
 						if((IsSkillUltimate(race, skill)) && (level < ultLevel))
@@ -553,7 +553,7 @@ public DistributeSkillPoints(client,race)
 						}
 						else
 						{
-							War3_SetSkillLevelINTERNAL(client, race, skill, skill_level + 1);
+							SetSkillLevelINTERNAL(client, race, skill, skill_level + 1);
 							skillpoints--;
 							if(!isClientFake) attempts = 0;
 						}
@@ -584,7 +584,7 @@ public DistributeSkillPoints(client,race)
 						}
 						else
 						{
-							War3_SetSkillLevelINTERNAL(client, race, skill, skill_level + 1);
+							SetSkillLevelINTERNAL(client, race, skill, skill_level + 1);
 							skillpoints--;
 							if(!isClientFake) attempts = 0;
 						}

@@ -77,16 +77,16 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			return W3Deny();
 		}
 		//MIN LEVEL CHECK
-		new total_level=0;
-		new RacesLoaded = internal_GetRacesLoaded();
-		new bool:DenyNow=false;
-		for(new x=1;x<=RacesLoaded;x++)
+		int total_level=0;
+		int RacesLoaded = GetRacesLoaded();
+		bool DenyNow=false;
+		for(int x=1;x<=RacesLoaded;x++)
 		{
 			total_level+=War3_GetLevel(client,x);
 			//RACE DEPENDENCY CHECK
 			if(War3_FindRaceDependency(race_selected,x)>War3_GetLevel(client,x))
 			{
-				new String:tName[32];
+				char tName[32];
 				GetRaceName(x,tName,sizeof(tName));
 				//DP("Found race dependency %s",tName);
 				War3_ChatMessage(client,"Race requires {green}%s {default}with a minimum level of {green}%d",tName,War3_FindRaceDependency(race_selected,x));

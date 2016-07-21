@@ -178,7 +178,7 @@ public War3_ShowParticularRaceInfoMenu(client,raceid)
 		char str[1000];
 		if(GetRaceSkillName(raceid,x,skillname,sizeof(skillname))>0)
 		{
-			level=War3_GetSkillLevelINTERNAL(client,raceid,x) ;
+			level=GetSkillLevelINTERNAL(client,raceid,x) ;
 
 			int skillSlot = GetSkillSlot(client,x);
 
@@ -580,7 +580,7 @@ War3_playertargetMenu(client,target)
 	{
 		if(GetRaceSkillName(raceid,x,skillname,sizeof(skillname))>0)
 		{
-			level=War3_GetSkillLevelINTERNAL(target,raceid,x) ;
+			level=GetSkillLevelINTERNAL(target,raceid,x) ;
 			if(IsSkillUltimate(raceid,x))
 			{
 				Format(title,sizeof(title),"%s%T\n",title,"Ultimate: {skillname} (LVL {amount}/{amount})",client,skillname,level,GetRaceSkillMaxLevel(raceid,x));

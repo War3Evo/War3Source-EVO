@@ -38,7 +38,7 @@ stock bool:HasDependency(client,race,skill,String:buffer[],maxlen,bool:is_ult)
 		new requiredLVL = War3_GetDependency(race, skill, SkillDependency:LVL);
 		if(requiredLVL > 0) {
 			//oh it is.. okay do the stuff i want to do before lol...
-			new currentLVL = War3_GetSkillLevelINTERNAL(client,race,dependencyID);
+			new currentLVL = GetSkillLevelINTERNAL(client,race,dependencyID);
 			if(currentLVL < requiredLVL) {
 				//Gotcha! now we just need to overwrite that buffer
 				decl String:skillname[64]; //original skill
@@ -83,7 +83,7 @@ War3Source_SkillMenu(client)
 			new SkillCount = GetRaceSkillCount(race_num);
 			for(new x=1;x<=SkillCount;x++)
 			{
-				curskilllevel=War3_GetSkillLevelINTERNAL(client,race_num,x);
+				curskilllevel=GetSkillLevelINTERNAL(client,race_num,x);
 				if(curskilllevel<GetRaceSkillMaxLevel(race_num,x)){
 
 					if(GetRaceSkillName(race_num,x,skillname,sizeof(skillname))>0)
@@ -137,7 +137,7 @@ War3Source_SkillMenu(client)
 
 								if(i_skillIDdepends == i)
 								{ //the skill we need (i_SkillIDdepends) is i! we have a winner! wohoo! now lets apply the stuff!
-									skilllevelinternal = War3_GetSkillLevelINTERNAL(client,race_num,i);
+									skilllevelinternal = GetSkillLevelINTERNAL(client,race_num,i);
 
 									if( skilllevelinternal >= minlevel) //has he leveled the skill needed higher than/equal to the required parameter?
 									{
@@ -186,7 +186,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 					{
 						if(GetLevelsSpent(client,race)<War3_GetLevel(client,race))
 						{
-							War3_SetSkillLevelINTERNAL(client,race,skill,War3_GetSkillLevelINTERNAL(client,race,skill)+1);
+							SetSkillLevelINTERNAL(client,race,skill,GetSkillLevelINTERNAL(client,race,skill)+1);
 							decl String:skillname[64];
 							if(GetRaceSkillName(race,skill,skillname,sizeof(skillname))>0)
 							{
@@ -210,7 +210,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 					new race=GetRace(client);
 					if(GetLevelsSpent(client,race)<War3_GetLevel(client,race))
 					{
-						War3_SetSkillLevelINTERNAL(client,race,skill,War3_GetSkillLevelINTERNAL(client,race,skill)+1);
+						SetSkillLevelINTERNAL(client,race,skill,GetSkillLevelINTERNAL(client,race,skill)+1);
 						decl String:skillname[64];
 						if(GetRaceSkillName(race,skill,skillname,sizeof(skillname))>0)
 						{

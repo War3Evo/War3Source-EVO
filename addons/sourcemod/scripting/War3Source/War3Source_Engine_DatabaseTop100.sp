@@ -200,17 +200,17 @@ public War3Source_Stats_Player(client,target)
 {
 	if(ValidPlayer(target,false))
 	{
-		new Handle:playerInfo=CreateMenu(War3Source_Stats_Player_Select);
+		Handle playerInfo=CreateMenu(War3Source_Stats_Player_Select);
 		SetMenuExitButton(playerInfo,true);
 		decl String:playername[64];
 		GetClientName(target,playername,sizeof(playername));
-		new RacesLoaded = War3_GetRacesLoaded();
-		for(new x=1;x<=RacesLoaded;x++)
+		int RacesLoaded = GetRacesLoaded();
+		for(int x=1;x<=RacesLoaded;x++)
 		{
 
-			decl String:race_name[32];
+			char race_name[32];
 			GetRaceName(x,race_name,sizeof(race_name));
-			new String:data_str[16];
+			char data_str[16];
 			Format(data_str,sizeof(data_str),"%d.%d",target,x);
 			AddMenuItem(playerInfo,data_str,race_name);
 		}
@@ -284,7 +284,7 @@ public War3Source_Stats_Player_Race(client,target,race_num)
 			new String:skillname[64];
 			if(GetRaceSkillName(race_num,i,skillname,sizeof(skillname))>0)
 			{
-				new skilllevel=War3_GetSkillLevelINTERNAL(target,race_num,i);
+				new skilllevel=GetSkillLevelINTERNAL(target,race_num,i);
 				//Format(longbuf,sizeof(longbuf),"%s%T\n",longbuf,"{skillname} - Level {amount}",client,skillname,skilllevel);
 				Format(longbuf,sizeof(longbuf),"%s %s - Level %d\n",longbuf,skillname,skilllevel);
 			}

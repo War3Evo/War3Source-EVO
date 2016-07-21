@@ -371,7 +371,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	{
 		char CompareStr[64];
 		strcopy(CompareStr,sizeof(CompareStr),arg1[3]);
-		int RacesLoaded = internal_GetRacesLoaded();
+		int RacesLoaded = GetRacesLoaded();
 		char sRaceName[32];
 		int x;
 		bool foundit=false;

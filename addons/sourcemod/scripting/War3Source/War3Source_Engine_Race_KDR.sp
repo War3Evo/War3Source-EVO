@@ -156,28 +156,27 @@ public generateRACESKDR_Callback(Handle:owner, Handle:hndl, const String:error[]
 			//new inserts;  ?? not sure if needed from War3Source_Engine_DatabaseSaveXP.sp .. removed the rest
 			//War3_ChatMessage(client,"Successfully retrieved gems save data");
 
-			new inserts;
-			new RacesLoaded = internal_GetRacesLoaded();
-			new String:raceshortname[16];
+			int inserts;
+			int RacesLoaded = GetRacesLoaded();
+			char raceshortname[16];
 			if(RacesLoaded>0)
 			{
-				for(new raceid=1;raceid<=RacesLoaded;raceid++)
+				for(int raceid=1;raceid<=RacesLoaded;raceid++)
 				{
 					if(raceloaded[raceid]==false)
 					{
 						//no record make one
 						GetRaceShortname(raceid,raceshortname,sizeof(raceshortname));
 						//size16_War3_GetRaceShortname(raceid,raceshortname);
-						new String:query[3000];
+						char query[3000];
 						Format(query, sizeof(query),"INSERT INTO `war3raceskdr_v2`(`hostname`, `raceshortname`, `kills`, `deaths`) VALUES ('%s','%s','%d','%d')",
 						sHostName,raceshortname,Kills[raceid],Deaths[raceid]);
 						//PrintToServer("Race KDR Query: %s",query);
 						SQL_TQuery(hDB, SQLCallback_Void, query, sizeof(query), DBPrio_Low);
 					}
-
 				}
-				if(inserts>0){
-
+				if(inserts>0)
+				{
 					PrintToServer("[War3Source:EVO] Inserting fresh data for %d jobs",inserts);
 				}
 			}
@@ -213,8 +212,8 @@ Float:fKDR(raceid,offset)
 }
 
 public Native_War3_GetRaceKDR(Handle:plugin,numParams) {
-	new raceid = GetNativeCell(1);
-	new RacesLoaded=internal_GetRacesLoaded();
+	int raceid = GetNativeCell(1);
+	int RacesLoaded=GetRacesLoaded();
 	if(raceid>0 && raceid<=RacesLoaded)
 	{
 		return _:fKDR(raceid,0);
@@ -257,8 +256,8 @@ public War3Source_Engine_Race_KDR_OnPluginStart()
 
 public Action:War3Source_Engine_Race_KDR_DoAutosave(Handle:timer,any:data)
 {
-	new RacesLoaded = internal_GetRacesLoaded();
-	for(new raceid=1;raceid<=RacesLoaded;raceid++)
+	int RacesLoaded = GetRacesLoaded();
+	for(int raceid=1;raceid<=RacesLoaded;raceid++)
 	{
 		if(hDB)
 		{

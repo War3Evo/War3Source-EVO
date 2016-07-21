@@ -118,10 +118,10 @@ public War3Source_PlayerSpawnEvent(Handle:event,const String:name[],bool:dontBro
 
 			CheckPendingRace(client);
 			if(IsFakeClient(client)&&W3IsPlayerXPLoaded(client)&&GetRace(client)==0&&GetConVarInt(botsetraces)){ //W3IsPlayerXPLoaded(client) is for skipping until putin server is fired (which cleared variables)
-				new tries=100;
+				int tries=100;
 				while(tries>0)
 				{
-					new race=GetRandomInt(1,internal_GetRacesLoaded());
+					int race=GetRandomInt(1,GetRacesLoaded());
 					if(!RaceHasFlag(race,"nobots")) // may want to remove race!=motherbot then put "nobots" for motherbot along with hidden
 					{
 						tries=0;

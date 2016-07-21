@@ -153,7 +153,7 @@ public void DisableRace(oldrace)
 }
 
 public Action:cmdwar3RaceDynamicLoadingOn(client,args){
-	new RacesLoaded = internal_GetRacesLoaded();
+	new RacesLoaded = GetRacesLoaded();
 	new String:LongRaceName[32];
 	for(new x=1;x<=RacesLoaded;x++)
 	{
@@ -168,7 +168,7 @@ public Action:cmdwar3RaceDynamicLoadingOn(client,args){
 }
 
 public Action:cmdwar3RaceDynamicLoadingOff(client,args){
-	new RacesLoaded = internal_GetRacesLoaded();
+	new RacesLoaded = GetRacesLoaded();
 	new String:LongRaceName[32];
 	for(new x=1;x<=RacesLoaded;x++)
 	{
@@ -187,14 +187,14 @@ public Action:cmdwar3RaceDynamicLoadingOff(client,args){
 public Action:cmdwar3EnableRaceDynamicLoading(client,args){
 	SetConVarInt(hRaceEnableOrDisableCvar, 1);
 	SetConVarInt(hRaceEnableOrDisableFullCvar, 0);
-	new RacesLoaded = internal_GetRacesLoaded();
-	new String:LongRaceName[32];
-	new iRaceCount=0;
-	for(new x=1;x<=RacesLoaded;x++)
+	int RacesLoaded = GetRacesLoaded();
+	char LongRaceName[32];
+	int iRaceCount=0;
+	for(int x=1;x<=RacesLoaded;x++)
 	{
 		iRaceCount=0;
 
-		for(new i=1;i<=MaxClients;i++)
+		for(int i=1;i<=MaxClients;i++)
 		{
 			if(GetRace(i)==x)
 			{
@@ -225,7 +225,8 @@ public Action:cmdwar3EnableRaceDynamicLoading(client,args){
 
 stock SetRace(client,newrace)
 {
-	if(newrace<0||newrace>internal_GetRacesLoaded()){
+	if(newrace<0||newrace>GetRacesLoaded())
+	{
 		W3LogError("WARNING SET INVALID RACE for client %d to race %d",client,newrace);
 		return;
 	}
@@ -284,7 +285,7 @@ stock SetRace(client,newrace)
 					Call_PushCell(client);
 					Call_PushCell(newrace);
 					Call_PushCell(i); //i is skillid
-					Call_PushCell(War3_GetSkillLevelINTERNAL(client,newrace,i)); //i is skillid
+					Call_PushCell(GetSkillLevelINTERNAL(client,newrace,i)); //i is skillid
 					Call_PushCell(0); //force 0
 					Call_Finish(dummy);
 				}
@@ -487,7 +488,6 @@ stock void SetSkillLevelINTERNAL(int client, int race, int skill, int level)
 		}
 	}
 }
-
 public NWar3_SetSkillLevelINTERNAL(Handle:plugin,numParams)
 {
 	int client=GetNativeCell(1);
@@ -496,16 +496,20 @@ public NWar3_SetSkillLevelINTERNAL(Handle:plugin,numParams)
 	int level=GetNativeCell(4);
 	SetSkillLevelINTERNAL(client,race,skill,level);
 }
-public NWar3_GetSkillLevelINTERNAL(Handle:plugin,numParams){
-	new client=GetNativeCell(1);
-	new race=GetNativeCell(2);
-	new skill=GetNativeCell(3);
+stock int GetSkillLevelINTERNAL(int client, int race, int skill)
+{
 	if (client > 0 && client <= MaxClients && race >= 0 && race < MAXRACES && skill >0 && skill < MAXSKILLCOUNT)
 	{
 		return p_skilllevel[client][race][skill];
 	}
 	else
 		return 0;
+}
+public NWar3_GetSkillLevelINTERNAL(Handle:plugin,numParams){
+	int client=GetNativeCell(1);
+	int race=GetNativeCell(2);
+	int skill=GetNativeCell(3);
+	return (client,race,skill);
 }
 
 stock GetPlayerProp(client,W3PlayerProp:property)
@@ -541,7 +545,7 @@ stock GetTotalLevels(client)
 	new total_level=0;
 	if (client > 0 && client <= MaxClients)
 	{
-		new racesLoaded = internal_GetRacesLoaded();
+		new racesLoaded = GetRacesLoaded();
 		for(new r=1;r<=racesLoaded;r++)
 		{
 			total_level+=War3_GetLevel(client,r);
@@ -560,7 +564,7 @@ public internal_ClearSkillLevels(client,race)
 		int iRaceSkillCount = GetRaceSkillCount(race);
 		for(int i=1;i<=iRaceSkillCount;i++)
 		{
-			War3_SetSkillLevelINTERNAL(client,race,i,0);
+			SetSkillLevelINTERNAL(client,race,i,0);
 		}
 	}
 }
@@ -583,7 +587,7 @@ stock GetLevelsSpent(client,race)
 	{
 		new iRaceSkillCount = GetRaceSkillCount(race);
 		for(new i=1;i<=iRaceSkillCount;i++)
-			ret+=War3_GetSkillLevelINTERNAL(client,race,i);
+			ret+=GetSkillLevelINTERNAL(client,race,i);
 	}
 	return ret;
 }
@@ -660,7 +664,7 @@ public War3Source_Engine_PlayerClass_OnWar3Event(W3EVENT:event,client)
 			SetXP(client,i,0);
 			for(new x=1;x<MAXSKILLCOUNT;x++)
 			{
-				War3_SetSkillLevelINTERNAL(client,i,x,0);
+				SetSkillLevelINTERNAL(client,i,x,0);
 			}
 		}
 

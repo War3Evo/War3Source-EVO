@@ -580,14 +580,14 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				if(GetConVarInt(hSetRaceOnJoinCvar)>0)
 				{
 					//Scan all the races
-					new RacesLoaded = internal_GetRacesLoaded();
+					int RacesLoaded = GetRacesLoaded();
 					if(RacesLoaded>0)
 					{
 						raceFound=1;  //Change default to 1 since races do exist
 					}
-					for(new x=1;x<=RacesLoaded;x++)
+					for(int x=1;x<=RacesLoaded;x++)
 					{
-						new String:short[16];
+						char short[16];
 						GetRaceShortname(x,short,sizeof(short));
 
 						//compare their short names to the one loaded
@@ -658,26 +658,26 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				new String:szSafeName[(sizeof(name)*2)-1];
 				SQL_EscapeString( hDB, name, szSafeName, sizeof(szSafeName));
 
-				new total_level=GetTotalLevels(client);
-				new total_xp=0;
+				int total_level=GetTotalLevels(client);
+				int total_xp=0;
 
 				// Get data from the player vector I guess this allows the player to play before the queries are
 				// done but it is probably zero all the time
-				new RacesLoaded = internal_GetRacesLoaded();
-				for(new z=1;z<=RacesLoaded;z++)
+				int RacesLoaded = GetRacesLoaded();
+				for(int z=1;z<=RacesLoaded;z++)
 				{
 					total_xp+=GetXP(client,z);
 				}
 
-				new String:short_name[16];
+				char short_name[16];
 				GetRaceShortname(GetRace(client),short_name,sizeof(short_name));
 
-				new String:longquery[4000];
+				char longquery[4000];
 				// Main table query
-				new steamaccountid = GetSteamAccountID(client);
+				int steamaccountid = GetSteamAccountID(client);
 
 
-				new joindate=GetTime();
+				int joindate=GetTime();
 
 				Format(longquery,sizeof(longquery),"INSERT INTO %s (steamid,accountid,name,currentrace,total_level,total_xp,join_date) VALUES ('%s','%d','%s','%s','%d','%d','%d')",XP_GOLD_DATABASENAME,steamid,steamaccountid,szSafeName,short_name,total_level,total_xp,joindate);
 
@@ -695,10 +695,10 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				//War3_SetRace(client,1);
 
 				new String:requiredflagstr[32];
-				new racesloaded = internal_GetRacesLoaded();
+				new racesloaded = GetRacesLoaded();
 				new newrace = GetRandomInt(1, racesloaded);
 				new countit=0;
-				W3GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
+				GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
 				//while ((W3RaceHasFlag(newrace, "hidden")||W3RaceHasFlag(newrace, "steamgroup"))&&(!StrEqual(requiredflagstr, "0", false)||!StrEqual(requiredflagstr, "", false)))
 				GetRaceShortname(newrace,short_name,sizeof(short_name));
 #if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
@@ -851,7 +851,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 						{
 							skilllevel=SkillMaxLevel;
 						}
-						War3_SetSkillLevelINTERNAL(client,raceid,skillid,skilllevel);
+						SetSkillLevelINTERNAL(client,raceid,skillid,skilllevel);
 
 						Format(printstr,sizeof(printstr),"%s skill%d=%d",printstr,skillid,skilllevel);
 					}
@@ -865,7 +865,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 		if(retrievals>0){
 			PrintToConsole(client,"[War3Source:EVO] Successfully retrieved data jobs, total of %d jobs were returned, %d are running on this server",retrievals,usefulretrievals);
 		}
-		else if(retrievals<=0&&internal_GetRacesLoaded()>0)
+		else if(retrievals<=0&&GetRacesLoaded()>0)
 		{//no xp record
 
 			// Check for STEAM ID
@@ -906,7 +906,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			PrintToServer("W3CreateEvent(PlayerIsNewToServer,client)");
 		}
 		new inserts;
-		new RacesLoaded = internal_GetRacesLoaded();
+		new RacesLoaded = GetRacesLoaded();
 		for(new raceid=1;raceid<=RacesLoaded;raceid++)
 		{
 
@@ -1077,7 +1077,7 @@ War3_SavePlayerRace(client,race)
 
 			int SkillCount = GetRaceSkillCount(race);
 			for(int skillid=1;skillid<=SkillCount;skillid++){
-				Format(longquery,sizeof(longquery),"%s, skill%d=%d ",longquery,skillid,War3_GetSkillLevelINTERNAL(client,race,skillid));
+				Format(longquery,sizeof(longquery),"%s, skill%d=%d ",longquery,skillid,GetSkillLevelINTERNAL(client,race,skillid));
 			}
 
 			int last_seen=GetTime();
@@ -1144,7 +1144,7 @@ War3_SavePlayerMainData(client)
 			char longquery[4000];
 			int total_level=GetTotalLevels(client);
 			int total_xp=0;
-			int RacesLoaded = internal_GetRacesLoaded();
+			int RacesLoaded = GetRacesLoaded();
 			for(int z=1;z<=RacesLoaded;z++)
 			{
 				total_xp+=GetXP(client,z);

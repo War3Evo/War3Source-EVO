@@ -138,9 +138,9 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 				int highestvalue=0;
 				float settime=0.0;
 #if SHOPMENU3 == MODE_ENABLED
-				int limit=totalItemsLoaded+internal_GetRacesLoaded()+W3GetItems2Loaded()+W3GetItems3Loaded();
+				int limit=totalItemsLoaded+GetRacesLoaded()+W3GetItems2Loaded()+W3GetItems3Loaded();
 #else
-				int limit=totalItemsLoaded+internal_GetRacesLoaded()+W3GetItems2Loaded();
+				int limit=totalItemsLoaded+GetRacesLoaded()+W3GetItems2Loaded();
 #endif
 				for(int i=0;i<=limit;i++){
 					if(GetBuff(client,iGlowPriority,i)>highestvalue)

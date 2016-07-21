@@ -160,22 +160,22 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			}
 			SetMenuTitle(crMenu,"%s\n \n",title);
 			// Iteriate through the races and print them out
-			new String:rname[32];
-			new String:rdisp[128],String:requirement[128],String:ShortDesc[32];
+			char rname[32];
+			char rdisp[128],char requirement[128],char ShortDesc[32];
 
 
-			new racelist[MAXRACES];
-			new racedisplay=W3GetRaceList(racelist);
+			int racelist[MAXRACES];
+			int racedisplay=W3GetRaceList(racelist);
 			//if(GetConVarInt(internal_W3GetVar(hSortByMinLevelCvar))<1){
-			//	for(new x=0;x<War3_GetRacesLoaded();x++){//notice this starts at zero!
+			//	for(new x=0;x<GetRacesLoaded();x++){//notice this starts at zero!
 			//		racelist[x]=x+1;
 			//	}
 			//}
 #if GGAMETYPE == GGAME_TF2
-			new bool:SteamGroupRequired=false;
+			bool SteamGroupRequired=false;
 #endif
-			new bool:VIPRequired=false;
-			new bool:draw_ITEMDRAW_DEFAULT=false;
+			bool VIPRequired=false;
+			bool draw_ITEMDRAW_DEFAULT=false;
 
 			new AdminId:id = GetUserAdmin(client);
 			new bool:IsVip = (id == INVALID_ADMIN_ID) ? false : true;
@@ -541,7 +541,7 @@ public War3Source_CRMenu_Selected(Handle:menu,MenuAction:action,client,selection
 			{
 				SetTrans(client);
 				//new menuselectindex=selection+1;
-				//if(racechosen>0&&racechosen<=War3_GetRacesLoaded())
+				//if(racechosen>0&&racechosen<=GetRacesLoaded())
 
 				decl String:SelectionInfo[4];
 				decl String:SelectionDispText[256];
@@ -566,7 +566,7 @@ public War3Source_CRMenu_Selected(Handle:menu,MenuAction:action,client,selection
 					// Minimum level?
 
 					new total_level=0;
-					new RacesLoaded = War3_GetRacesLoaded();
+					new RacesLoaded = GetRacesLoaded();
 					for(new x=1;x<=RacesLoaded;x++)
 					{
 						total_level+=War3_GetLevel(client,x);

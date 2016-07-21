@@ -63,9 +63,9 @@ AddSkillBuff()
 		   GetArrayCell(g_hSkillBuffs, i) == buff)
 		{
 			// Change Skill Values (So Races can have Reloading)
-			new iSkillMaxLevel = GetRaceSkillMaxLevel(iRace, iSkill) + 1;
+			int iSkillMaxLevel = GetRaceSkillMaxLevel(iRace, iSkill) + 1;
 
-			new any:values[iSkillMaxLevel];
+			any values[iSkillMaxLevel];
 			GetNativeArray(4, values, iSkillMaxLevel);
 
 			SetArrayArray(g_hBuffSkillValues, i, values, iSkillMaxLevel);

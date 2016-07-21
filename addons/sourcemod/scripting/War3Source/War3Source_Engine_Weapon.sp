@@ -113,17 +113,19 @@ public NWar3_GetWeaponRestrict(Handle:plugin,numParams)
 	new maxsize=GetNativeCell(4);
 	if(maxsize>0) SetNativeString(3, weaponsAllowed[client][raceid], maxsize, false);
 }
-CalculateWeaponRestCache(client){
-	new num=0;
-	new limit=internal_GetRacesLoaded();
-	new highestpri=0;
-	for(new raceid=0;raceid<=limit;raceid++){
+CalculateWeaponRestCache(client)
+{
+	int num=0;
+	int limit=GetRacesLoaded();
+	int highestpri=0;
+	for(int raceid=0;raceid<=limit;raceid++)
+	{
 		restrictionEnabled[client][raceid]=(strlen(weaponsAllowed[client][raceid])>0)?true:false;
-		if(restrictionEnabled[client][raceid]){
-
-
+		if(restrictionEnabled[client][raceid])
+		{
 			num++;
-			if(restrictionPriority[client][raceid]>highestpri){
+			if(restrictionPriority[client][raceid]>highestpri)
+			{
 				highestpri=restrictionPriority[client][raceid];
 			}
 		}
@@ -139,8 +141,8 @@ CalculateWeaponRestCache(client){
 public War3Source_Engine_Weapon_OnClientPutInServer(client)
 {
 	//War3_WeaponRestrictTo(client,0,""); //REMOVE RESTICTIONS ON JOIN
-	new limit=internal_GetRacesLoaded();
-	for(new raceid=0;raceid<=limit;raceid++){
+	int limit=GetRacesLoaded();
+	for(int raceid=0;raceid<=limit;raceid++){
 		restrictionEnabled[client][raceid]=false;
 		//Format(weaponsAllowed[client][i],3,"");
 
@@ -157,14 +159,18 @@ bool:CheckCanUseWeapon(client,weaponent){
 	decl String:WeaponName[32];
 	GetEdictClassname(weaponent, WeaponName, sizeof(WeaponName));
 
-	if(StrContains(WeaponName,"c4")>-1){ //allow c4
+	if(StrContains(WeaponName,"c4")>-1)
+	{ //allow c4
 		return true;
 	}
 
-	new limit=internal_GetRacesLoaded();
-	for(new raceid=0;raceid<=limit;raceid++){
-		if(restrictionEnabled[client][raceid]&&restrictionPriority[client][raceid]==highestPriority[client]){ //cached strlen is not zero
-			if(StrContains(weaponsAllowed[client][raceid],WeaponName)<0){ //weapon name not found
+	int limit=GetRacesLoaded();
+	for(int raceid=0;raceid<=limit;raceid++)
+	{
+		if(restrictionEnabled[client][raceid]&&restrictionPriority[client][raceid]==highestPriority[client])
+		{ //cached strlen is not zero
+			if(StrContains(weaponsAllowed[client][raceid],WeaponName)<0)
+			{ //weapon name not found
 				return false;
 			}
 		}
