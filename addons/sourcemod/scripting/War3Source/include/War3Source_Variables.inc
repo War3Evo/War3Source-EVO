@@ -232,3 +232,9 @@ int totalItems3Loaded=0;
 //=============================
 int totalSkillsLoaded=0;
 
+//=============================
+// War3Source_Engine_TrieKeyValue
+//=============================
+Handle Cvartrie;
+Handle Cvararraylist; //cvar
+Handle Cvararraylist2; //cvar definition

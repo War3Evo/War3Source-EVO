@@ -695,7 +695,7 @@ public NW3GetRaceOrder(Handle:plugin,numParams)
 stock bool RaceHasFlag(int raceid, char flagsearch[32])
 {
 	char buf[1000];
-	GetCVar(RaceFlagsCvar[raceid],buf,sizeof(buf));
+	GetCvar(RaceFlagsCvar[raceid],buf,sizeof(buf));
 
 	return (StrContains(buf,flagsearch)>-1);
 }
@@ -709,41 +709,71 @@ public NW3RaceHasFlag(Handle:plugin,numParams)
 	GetNativeString(2,flagsearch,sizeof(flagsearch));
 	return RaceHasFlag(raceid,flagsearch);
 }
-public NW3GetRaceList(Handle:plugin,numParams){
+stock int GetRaceList(int racelist[MAXRACES])
+{
+	int listcount=0;
+	int RacesLoaded = internal_GetRacesLoaded();
+	Handle hdynamicarray=CreateArray(1); //1 cell
 
-	new listcount=0;
-	new RacesLoaded = internal_GetRacesLoaded();
-	new Handle:hdynamicarray=CreateArray(1); //1 cell
+	for(int raceid=1;raceid<=RacesLoaded;raceid++){
 
-	for(new raceid=1;raceid<=RacesLoaded;raceid++){
-
-		if(!W3RaceHasFlag(raceid,"hidden")){
+		if(!W3RaceHasFlag(raceid,"hidden"))
+		{
 		//	DP("not hidden %d",raceid);
 			PushArrayCell(hdynamicarray, raceid);
 			listcount++;
 		}
-		else{
+		else
+		{
 		//	DP("hidden %d",raceid);
 		}
 	}
-	new racelist[MAXRACES];
-	new Handle:result=MergeSort(hdynamicarray); //closes hdynamicarray
-	for(new i=0;i<listcount;i++){
+	//int racelist[MAXRACES];
+	Handle result=MergeSort(hdynamicarray); //closes hdynamicarray
+	for(int i=0;i<listcount;i++)
+	{
 		racelist[i]=GetArrayCell(result, i);
 	}
 	//printArray("",result);
 	//PrintToServer("result array size %d/%d", GetArraySize(result),War3_GetRacesLoaded());
 	CloseHandle(result);
 
+	//SetNativeArray(1, racelist, MAXRACES);
+	return listcount;
+}
+public NW3GetRaceList(Handle:plugin,numParams)
+{
+	int racelist[MAXRACES];
+	int listcount = GetRaceList(racelist);
+
 	SetNativeArray(1, racelist, MAXRACES);
 	return listcount;
 }
+
+stock void GetCVar(int cvarid, char[] returnstr, int maxsize)
+{
+	char cvarstr[64];
+	GetArrayString(Cvararraylist, cvarid,cvarstr,sizeof(cvarstr));
+	char outstr[1024];
+	if(!GetTrieString(Cvartrie, cvarstr, outstr, sizeof(outstr)))
+	{
+		ThrowError("Could not GET Cvar: cvarid %d",cvarid);
+	}
+	StrCopy(returnstr, maxsize, outstr);
+}
+
+stock void GetRaceItemRestrictionsStr(int raceid, char[] returnstr, int maxsize)
+{
+	char buf[64];
+	GetCvar(RestrictItemsCvar[raceid],buf,sizeof(buf));
+	StrCopy(returnstr, maxsize, buf);
+}
+
 public NW3GetRaceItemRestrictionsStr(Handle:plugin,numParams)
 {
-
-	new raceid=GetNativeCell(1);
-	new String:buf[64];
-	W3GetCvar(RestrictItemsCvar[raceid],buf,sizeof(buf));
+	int raceid=GetNativeCell(1);
+	char buf[64];
+	GetRaceItemRestrictionsStr(raceid,buf,sizeof(buf));
 	SetNativeString(2,buf,GetNativeCell(3));
 }
 
@@ -753,11 +783,11 @@ stock int GetRaceMaxLimitTeam(int raceid, int team)
 	{
 		if(team==TEAM_T||team==TEAM_RED)
 		{
-			return internal_W3GetCvarInt(RestrictLimitCvar[raceid][0]);
+			return GetCvarInt(RestrictLimitCvar[raceid][0]);
 		}
 		if(team==TEAM_CT||team==TEAM_BLUE)
 		{
-			return internal_W3GetCvarInt(RestrictLimitCvar[raceid][1]);
+			return GetCvarInt(RestrictLimitCvar[raceid][1]);
 		}
 	}
 	return 99;
@@ -784,22 +814,34 @@ public NW3GetRaceMaxLimitTeamCvar(Handle:plugin,numParams)
 	}
 	return -1;
 }
-public NW3GetRaceMinLevelRequired(Handle:plugin,numParams){
-	return W3GetCvarInt(MinLevelCvar[GetNativeCell(1)]);
+stock int GetRaceMinLevelRequired(int raceid)
+{
+	return GetCvarInt(MinLevelCvar[raceid]);
+}
+public NW3GetRaceMinLevelRequired(Handle:plugin,numParams)
+{
+	return GetRaceMinLevelRequired(GetNativeCell(1));
 }
 public NW3GetRaceSkillMaxLevel(Handle:plugin,numParams){
 	return GetRaceSkillMaxLevel(GetNativeCell(1),GetNativeCell(2));
 }
-public NW3GetMinUltLevel(Handle:plugin,numParams){
+stock int GetMinUltLevel()
+{
 	return GetConVarInt(m_MinimumUltimateLevel);
 }
-public NW3IsRaceTranslated(Handle:plugin,numParams){
+public NW3GetMinUltLevel(Handle:plugin,numParams)
+{
+	return GetMinUltLevel();
+}
+public NW3IsRaceTranslated(Handle:plugin,numParams)
+{
 	return raceTranslated[GetNativeCell(1)];
 }
 public NW3SetRaceCell(Handle:plugin,numParams){
 	return raceCell[GetNativeCell(1)][GetNativeCell(2)]=GetNativeCell(3);
 }
-public NW3GetRaceCell(Handle:plugin,numParams){
+public NW3GetRaceCell(Handle:plugin,numParams)
+{
 	return raceCell[GetNativeCell(1)][GetNativeCell(2)];
 }
 
@@ -1320,7 +1362,7 @@ stock bool IsSkillUltimate(int raceid,int skill)
 {
 	return skillIsUltimate[raceid][skill];
 }
-stock bool GetRaceSkillMaxLevel(int raceid,int skill)
+stock int GetRaceSkillMaxLevel(int raceid,int skill)
 {
 	return skillMaxLevel[raceid][skill];
 }

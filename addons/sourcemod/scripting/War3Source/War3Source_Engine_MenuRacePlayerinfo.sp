@@ -573,7 +573,7 @@ War3_playertargetMenu(client,target)
 		Format(title,sizeof(title),"%s%T",title,"Current Job: {racename} (LVL {amount}/{amount}) XP: {amount}",client,racename,level,GetRaceMaxLevel(raceid),GetXP(target,raceid));
 	}
 	//Format(title,sizeof(title),"%s\n",title);
-	Format(title,sizeof(title),"%s\nRace kdr: %.2f\n",title,War3_GetRaceKDR(raceid));
+	Format(title,sizeof(title),"%s\nRace kdr: %.2f\n",title,GetRaceKDR(raceid));
 
 	int SkillCount = GetRaceSkillCount(raceid);
 	for(int x=1;x<=SkillCount;x++)
@@ -811,7 +811,7 @@ public War3_playertargetMenuSelected(Handle:menu,MenuAction:action,client,select
 GetClientTotalLevels(client)
 {
 	int total_level=0;
-	int RacesLoaded = internal_GetRacesLoaded();
+	int RacesLoaded = GetRacesLoaded();
 	for(int r=1;r<=RacesLoaded;r++)
 	{
 		total_level+=War3_GetLevel(client,r);

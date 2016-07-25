@@ -65,7 +65,10 @@ AddSkillBuff()
 			// Change Skill Values (So Races can have Reloading)
 			int iSkillMaxLevel = GetRaceSkillMaxLevel(iRace, iSkill) + 1;
 
-			any values[iSkillMaxLevel];
+			//example of dynamic variable creation:
+			//int[] players = new int[MaxClients + 1];
+
+			any[] values = new any[iSkillMaxLevel];
 			GetNativeArray(4, values, iSkillMaxLevel);
 
 			SetArrayArray(g_hBuffSkillValues, i, values, iSkillMaxLevel);

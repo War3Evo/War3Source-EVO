@@ -210,15 +210,19 @@ Float:fKDR(raceid,offset)
 
 	return KDRate;
 }
-
-public Native_War3_GetRaceKDR(Handle:plugin,numParams) {
-	int raceid = GetNativeCell(1);
+stock float GetRaceKDR(int raceid)
+{
 	int RacesLoaded=GetRacesLoaded();
 	if(raceid>0 && raceid<=RacesLoaded)
 	{
-		return _:fKDR(raceid,0);
+		return fKDR(raceid,0);
 	}
-	return _:0.0;
+	return 0.0;
+}
+public Native_War3_GetRaceKDR(Handle:plugin,numParams)
+{
+	int raceid = GetNativeCell(1);
+	return GetRaceKDR(raceid);
 }
 
 //////////////////////////////////////////////////////////////////

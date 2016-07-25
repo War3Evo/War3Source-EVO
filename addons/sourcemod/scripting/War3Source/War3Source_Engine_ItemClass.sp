@@ -299,11 +299,11 @@ stock int GetItemCost(int client,int itemid,bool csmoney=false)
 
 	if(csmoney)
 	{
-		itemcost = internal_W3GetCvarInt(itemMoneyCost[itemid]);
+		itemcost = GetCvarInt(itemMoneyCost[itemid]);
 	}
 	else
 	{
-		itemcost = internal_W3GetCvarInt(itemGoldCost[itemid]);
+		itemcost = GetCvarInt(itemGoldCost[itemid]);
 		internal_W3SetVar(EventArg1,itemid);
 		internal_W3SetVar(EventArg2,itemcost); //set event vars
 		DoFwd_War3_Event(OnPreShopMenu1ItemCost,client); //fire event

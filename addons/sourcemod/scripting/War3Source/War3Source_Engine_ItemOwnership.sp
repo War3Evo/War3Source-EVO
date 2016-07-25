@@ -296,12 +296,12 @@ public NW3IsItemDisabledForRace(Handle:plugin,numParams)
 		char cvarstr[100];
 		char exploded[MAXITEMS][16];
 
-		W3GetRaceItemRestrictionsStr(raceid,cvarstr,sizeof(cvarstr));
+		GetRaceItemRestrictionsStr(raceid,cvarstr,sizeof(cvarstr));
 
-		new num;
+		int num;
 		if(strlen(cvarstr)>0){
 			num=ExplodeString(cvarstr,",",exploded,MAXITEMS,16);
-			for(new i=0;i<num;i++){
+			for(int i=0;i<num;i++){
 				//PrintToServer("'%s' compared to: '%s' num%d",exploded[i],itemShort,num);
 				if(StrEqual(exploded[i],itemShort,false)){
 					//PrintToServer("TRUE");

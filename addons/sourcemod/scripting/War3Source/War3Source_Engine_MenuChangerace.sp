@@ -78,15 +78,17 @@ public OnWar3GlobalError(String:err[]){
 }
 
 //This just returns the amount of untouched(=level 0) races in the given category
-stock GetNewRacesInCat(client,String:category[]) {
-	new amount=0;
-	new racelist[MAXRACES];
-	new racedisplay=W3GetRaceList(racelist);
-	for(new i=1;i<racedisplay;i++)
+stock int GetNewRacesInCat(int client,char[] category)
+{
+	int amount=0;
+	int racelist[MAXRACES];
+	int racedisplay=GetRaceList(racelist);
+	for(int i=1;i<racedisplay;i++)
 	{
-		new String:rcvar[64];
-		W3GetCvar(W3GetRaceCell(i,RaceCategorieCvar),rcvar,sizeof(rcvar));
-		if(strcmp(category, rcvar, false)==0) {
+		char rcvar[64];
+		GetCvar(GetRaceCell(i,RaceCategorieCvar),rcvar,sizeof(rcvar));
+		if(strcmp(category, rcvar, false)==0)
+		{
 			amount++;
 		}
 	}
@@ -161,11 +163,11 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			SetMenuTitle(crMenu,"%s\n \n",title);
 			// Iteriate through the races and print them out
 			char rname[32];
-			char rdisp[128],char requirement[128],char ShortDesc[32];
+			char rdisp[128], requirement[128], ShortDesc[32];
 
 
 			int racelist[MAXRACES];
-			int racedisplay=W3GetRaceList(racelist);
+			int racedisplay=GetRaceList(racelist);
 			//if(GetConVarInt(internal_W3GetVar(hSortByMinLevelCvar))<1){
 			//	for(new x=0;x<GetRacesLoaded();x++){//notice this starts at zero!
 			//		racelist[x]=x+1;
@@ -209,7 +211,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 #endif
 
 				new String:requiredflagstr[32];
-				W3GetRaceAccessFlagStr(x,requiredflagstr,sizeof(requiredflagstr));  ///14 = index, see races.inc
+				GetRaceAccessFlagStr(x,requiredflagstr,sizeof(requiredflagstr));  ///14 = index, see races.inc
 
 				if(!StrEqual(requiredflagstr, "0", false) && !StrEqual(requiredflagstr, "", false))
 				{
@@ -220,7 +222,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 					//DP("VIPRequired=true;");
 				}
 #if GGAMETYPE == GGAME_TF2
-				else if(!bIsInSteamGroup[client]&&W3RaceHasFlag(x,"steamgroup"))
+				else if(!bIsInSteamGroup[client]&&RaceHasFlag(x,"steamgroup"))
 				{
 					GetRaceName(x,rname,sizeof(rname));
 					Format(rname,sizeof(rname),"%s S",rname);
@@ -241,7 +243,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 
 				//decl String:ttmpstr[16];
 				//FloatToString(War3_GetRaceKDR(x), ttmpstr, sizeof(ttmpstr));
-				Format(rname,sizeof(rname),"%s %.1f",rname,War3_GetRaceKDR(x));
+				Format(rname,sizeof(rname),"%s %.1f",rname,GetRaceKDR(x));
 
 				new yourteam,otherteam;
 				for(new y=1;y<=MaxClients;y++)
@@ -276,7 +278,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 
 
 				Format(rdisp,sizeof(rdisp),"%s%T",extra,"{racename} [L {amount}]",GetTrans(),rname,War3_GetLevel(client,x));
-				new minlevel=W3GetRaceMinLevelRequired(x);
+				int minlevel=GetRaceMinLevelRequired(x);
 				if(minlevel<0) minlevel=0;
 				if(minlevel)
 				{
@@ -298,7 +300,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 				//else
 				//{
 #if GGAMETYPE == GGAME_TF2
-				else if(bIsInSteamGroup[client] && W3RaceHasFlag(x,"steamgroup"))
+				else if(bIsInSteamGroup[client] && RaceHasFlag(x,"steamgroup"))
 				{
 					// Lets not fill up the display, this would tell them the race is a steam group race
 					Format(requirement,sizeof(requirement),"S");
@@ -458,7 +460,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 							draw_ITEMDRAW_DEFAULT=false;
 						}
 #if GGAMETYPE == GGAME_TF2
-						else if(!bIsInSteamGroup[client]&&W3RaceHasFlag(x,"steamgroup"))
+						else if(!bIsInSteamGroup[client]&&RaceHasFlag(x,"steamgroup"))
 						{
 							//Format(rdisp,sizeof(rdisp),"%s *Steam Group Required*",rdisp);
 							Format(requirement,sizeof(requirement),"*Steam Group Required*");
@@ -477,7 +479,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 							// MIN LEVEL REQUIREMENT
 
 							//AddMenuItem(crMenu,rbuf,rdisp,(minlevel<=W3GetTotalLevels(client)||StrEqual(steamid,"STEAM_0:1:35173666",false)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
-							if(W3RaceHasFlag(x,"steamgroup"))
+							if(RaceHasFlag(x,"steamgroup"))
 							{
 								// Lets not fill up the display, this would tell them the race is a steam group race
 
@@ -770,11 +772,11 @@ refreshCategories() {
 	decl String:rcvar[64];
 	decl racelist[MAXRACES];
 	//Loop tru all _avaible_ races
-	new racedisplay=W3GetRaceList(racelist);
+	new racedisplay=GetRaceList(racelist);
 	for(new i=0;i<racedisplay;i++)
 	{
 		new x=racelist[i];
-		W3GetCvar(W3GetRaceCell(x,RaceCategorieCvar),rcvar,sizeof(rcvar));
+		GetCvar(GetRaceCell(x,RaceCategorieCvar),rcvar,sizeof(rcvar));
 		//To avoid multiple-same-named-categories we need to check if the category allready exist
 		if(!W3IsCategory(rcvar)) {
 			//Add a new category

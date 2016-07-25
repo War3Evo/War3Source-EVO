@@ -4,9 +4,10 @@
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
-new Handle:Cvartrie;
-new Handle:Cvararraylist; //cvar
-new Handle:Cvararraylist2; //cvar definition
+//moved to War3Source_Variables.inc
+//new Handle:Cvartrie;
+//new Handle:Cvararraylist; //cvar
+//new Handle:Cvararraylist2; //cvar definition
 /*
 public Plugin:myinfo=
 {
@@ -66,7 +67,8 @@ public NW3CreateCvar(Handle:plugin,numParams){
 	return GetArraySize(Cvararraylist)-1;
 }
 
-stock int internal_W3GetCvarInt(cvarid) {
+stock int GetCvarInt(cvarid)
+{
 	char ret[1024];
 	char cvarstr[64];
 	W3GetCvar(cvarid, ret, sizeof(ret));
@@ -80,22 +82,11 @@ stock int internal_W3GetCvarInt(cvarid) {
 
 	return StringToInt(outstr);
 }
-stock void GetCVar(int cvarid, char[] returnstr, int maxsize)
-{
-	char cvarstr[64];
-	GetArrayString(Cvararraylist, cvarid,cvarstr,sizeof(cvarstr));
-	char outstr[1024];
-	if(!GetTrieString(Cvartrie, cvarstr, outstr, sizeof(outstr)))
-	{
-		ThrowError("Could not GET Cvar: cvarid %d",cvarid);
-	}
-	StrCopy(returnstr, maxsize, outstr);
-}
 public NW3GetCvar(Handle:plugin,numParams)
 {
 	int cvarid=GetNativeCell(1);
 	char outstr[1024];
-	GetCVar(cvarid, outstr, sizeof(outstr));
+	GetCvar(cvarid, outstr, sizeof(outstr));
 
 	SetNativeString(2,outstr,GetNativeCell(3));
 }

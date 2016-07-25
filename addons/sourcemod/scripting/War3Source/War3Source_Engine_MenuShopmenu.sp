@@ -80,16 +80,16 @@ ShowMenuShopCategory(client)
 #endif
 	SetMenuTitle(shopMenu, title);
 
-	new Handle:h_ItemCategorys = CreateArray(ByteCountToCells(64));
+	Handle h_ItemCategorys = CreateArray(ByteCountToCells(64));
 	char category[64];
-	new ItemsLoaded = W3GetItemsLoaded();
+	int ItemsLoaded = W3GetItemsLoaded();
 
-	new raceid = War3_GetRace(client);
+	int raceid = GetRace(client);
 
-	new RequiredRaceID=0;
+	int RequiredRaceID=0;
 
 	// find all possible categorys and fill the menu
-	for(new x=1; x <= ItemsLoaded; x++)
+	for(int x=1; x <= ItemsLoaded; x++)
 	{
 		RequiredRaceID=War3_GetItemProperty(x,ITEM_REQUIRED_RACE);
 		if(RequiredRaceID>0 && raceid!=RequiredRaceID)

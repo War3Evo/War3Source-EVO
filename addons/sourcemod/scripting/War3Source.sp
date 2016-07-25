@@ -55,6 +55,9 @@
 #include "War3Source/include/War3Source_Version_Info.inc"
 #include "War3Source/include/War3Source_Variables.inc"
 
+//stocks needed by all included below:
+#include "War3Source/include/War3Soruce_Internal_Only_Stocks.inc"
+
 #include "War3Source/War3Source_001_OnPluginStart.sp"
 #include "War3Source/War3Source_001_OnPluginEnd.sp"
 #include "War3Source/War3Source_001_OnRaceChanged.sp"
@@ -490,10 +493,10 @@ LoadRacesAndItems()
 	PrintToServer("RACE ITEM LOAD");
 	PrintToServer("RACE ITEM LOAD");
 	PrintToServer("RACE ITEM LOAD");
-	new Float:starttime=GetEngineTime();
+	float starttime=GetEngineTime();
 	//ordered loads
-	new res;
-	for(new i;i<=MAXRACES*30;i++) // 3000
+	int res;
+	for(int i;i<=MAXRACES*30;i++) // 3000
 	{
 		//PrintToServer("LoadRacesAndItems #1 i = ", i);
 		Call_StartForward(g_OnWar3PluginReadyHandle);
@@ -503,7 +506,7 @@ LoadRacesAndItems()
 	}
 
 	//orderd loads 2
-	for(new i;i<=MAXRACES*30;i++) // 3000
+	for(int i;i<=MAXRACES*30;i++) // 3000
 	{
 		//PrintToServer("LoadRacesAndItems #2 i = ", i);
 		//DoForward_OnWar3LoadRaceOrItemOrdered2(i,-1,"");
