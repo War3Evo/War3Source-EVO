@@ -69,7 +69,7 @@ ShowMenu3Raceinfo(client)
 	char rdisp[128];
 
 	int racelist[MAXRACES];
-	int racedisplay=W3GetRaceList(racelist);
+	int racedisplay=GetRaceList(racelist);
 	//if(GetConVarInt(internal_W3GetVar(hSortByMinLevelCvar))<1){
 	//	for(int x=0;x<War3_GetRacesLoaded();x++){//notice this starts at zero!
 	//		racelist[x]=x+1;

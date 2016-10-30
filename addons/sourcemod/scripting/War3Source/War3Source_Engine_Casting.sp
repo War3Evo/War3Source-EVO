@@ -71,7 +71,7 @@ public NWar3_CancelSpell(Handle:plugin,numParams)
 			GetTeamColor(target,STRING(sTargetTeamTag));
 			GetClientName(target,STRING(sTargetName));
 			decl String:sSkillName[32];
-			W3GetRaceSkillName(War3_GetRace(target),castingid,STRING(sSkillName));
+			GetRaceSkillName(GetRace(target),castingid,STRING(sSkillName));
 
 			War3_ChatMessage(0,"%s%s {default}successfully canceled %s%s's {default}spell {green}%s!",
 				sClientTeamTag,sClientName,sTargetTeamTag,sTargetName,sSkillName);
@@ -114,7 +114,7 @@ ShowPlayerCancelSpellMenu(client)
 		{
 			if(g_castingid[target][castingid])
 			{
-				W3GetRaceSkillName(War3_GetRace(target),castingid,STRING(sSkillName));
+				GetRaceSkillName(GetRace(target),castingid,STRING(sSkillName));
 
 				Format(selectioninfo,sizeof(selectioninfo),"%d,%d",target,castingid);
 
@@ -156,7 +156,7 @@ public ShowCancelSpellinfoSelected(Handle:menu,MenuAction:action,client,selectio
 
 			g_castingid[target][castingid]=false;
 
-			SetBuffRace(target,fInvisibilitySkill,War3_GetRace(target),1.0);
+			SetBuffRace(target,fInvisibilitySkill,GetRace(target),1.0);
 
 			internal_ForceThirdPerson(target,false);
 
@@ -172,7 +172,7 @@ public ShowCancelSpellinfoSelected(Handle:menu,MenuAction:action,client,selectio
 			GetTeamColor(target,STRING(sTargetTeamTag));
 			GetClientName(target,STRING(sTargetName));
 			decl String:sSkillName[32];
-			W3GetRaceSkillName(War3_GetRace(target),castingid,STRING(sSkillName));
+			GetRaceSkillName(GetRace(target),castingid,STRING(sSkillName));
 
 
 			War3_ChatMessage(0,"%s%s {default}successfully canceled %s%s's {default}spell {green}%s!",
@@ -180,7 +180,7 @@ public ShowCancelSpellinfoSelected(Handle:menu,MenuAction:action,client,selectio
 
 			Call_StartForward(g_OnWar3CancelSpell_Post);
 			Call_PushCell(client);
-			Call_PushCell(War3_GetRace(client));
+			Call_PushCell(GetRace(client));
 			Call_PushCell(castingid);
 			Call_PushCell(target);
 			Call_Finish(dummy);

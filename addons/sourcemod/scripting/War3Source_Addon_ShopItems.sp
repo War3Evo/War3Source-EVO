@@ -105,7 +105,6 @@ public Plugin:myinfo =
 
 public void OnAllPluginsLoaded()
 {
-
 	W3Hook(W3Hook_OnW3TakeDmgAll, OnW3TakeDmgAll);
 #if GGAMETYPE == GGAME_TF2
 	W3Hook(W3Hook_OnW3TakeDmgBullet, OnW3TakeDmgBullet);
@@ -526,6 +525,7 @@ public OnItemPurchase(client,item)
 	}
 	else if(item==shopItem[TOME]) // tome of xp
 	{
+		//War3Source_Races W3racefunctions = War3Source_Races();
 		int race=War3_GetRace(client);
 		int add_xp=GetConVarInt(TomeCvar);
 		if(add_xp<0)	add_xp=0;
@@ -1106,7 +1106,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 							GetWeapon = "";
 						}
 						bool WeaponIsCritial=false;
-						int activeweapon = FindSendPropOffs("CTFPlayer", "m_hActiveWeapon");
+						int activeweapon = FindSendPropInfo("CTFPlayer", "m_hActiveWeapon"); //FindSendPropOffs
 						int weapon = GetEntDataEnt2(attacker, activeweapon);
 						if(IsValidEntity(weapon))
 						{

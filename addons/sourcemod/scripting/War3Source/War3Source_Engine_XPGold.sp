@@ -744,7 +744,7 @@ LevelCheck(client){
 	if(race>0){
 		new skilllevel;
 
-		new ultminlevel=W3GetMinUltLevel();
+		new ultminlevel=GetMinUltLevel();
 
 		///skill or ult is more than what he can be? ie level 4 skill when he is only level 4...
 		new curlevel=War3_GetLevel(client,race);

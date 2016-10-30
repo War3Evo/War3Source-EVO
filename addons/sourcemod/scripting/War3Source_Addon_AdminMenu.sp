@@ -13,7 +13,6 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };
 
-
 public OnPluginStart()
 {
 	LoadTranslations("w3s._common.phrases");

@@ -40,6 +40,17 @@
 * All handle leaks have been considered.
 * If you don't like it, read through the whole thing yourself and prove yourself wrong.
 */
+
+/*
+ *
+ * NOTES:
+ *
+ * In War3Source_Engine_Race_KDR.sp
+ * return view_as<int>(GetRaceKDR(raceid)); <-- may cause issue not sure
+ * it was saying using "return GetRaceKDR(raceid);" was a tag mismatch
+ *
+ */
+
 #pragma dynamic 600000
 
 #pragma semicolon 1

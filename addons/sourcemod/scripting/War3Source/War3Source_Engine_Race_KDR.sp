@@ -222,7 +222,7 @@ stock float GetRaceKDR(int raceid)
 public Native_War3_GetRaceKDR(Handle:plugin,numParams)
 {
 	int raceid = GetNativeCell(1);
-	return GetRaceKDR(raceid);
+	return view_as<int>(GetRaceKDR(raceid));
 }
 
 //////////////////////////////////////////////////////////////////

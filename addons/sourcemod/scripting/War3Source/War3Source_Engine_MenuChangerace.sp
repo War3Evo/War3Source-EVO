@@ -328,7 +328,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 				}
 				else
 				{
-					War3_GetRaceShortdesc(x,ShortDesc,sizeof(ShortDesc));
+					GetRaceShortdesc(x,ShortDesc,sizeof(ShortDesc));
 					Format(rdisp,sizeof(rdisp),"%s\n%s",rdisp,ShortDesc);
 				}
 #else
@@ -385,15 +385,15 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 					return;
 				}
 
-				new Handle:crMenu=CreateMenu(War3Source_CRMenu_Selected);
+				Handle crMenu=CreateMenu(War3Source_CRMenu_Selected);
 				SetMenuExitButton(crMenu,true);
 				Format(title,sizeof(title),"%T","[War3Source:EVO] Select your desired job",GetTrans());
 				SetMenuTitle(crMenu,"%s\nCategory: %s\n",title,sItem);
 				// Iteriate through the races and print them out
-				new racelist[MAXRACES];
-				new racedisplay=W3GetRaceList(racelist);
+				int racelist[MAXRACES];
+				int racedisplay=GetRaceList(racelist);
 #if GGAMETYPE == GGAME_TF2
-				new bool:SteamGroupRequired=false;
+				bool SteamGroupRequired=false;
 #endif
 				bool value=true;
 				AddMenuItem(crMenu,"-1","[Return to Categories]");
@@ -408,7 +408,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 
 					if(!value) continue;
 
-					W3GetCvar(W3GetRaceCell(x,RaceCategorieCvar),rcvar,sizeof(rcvar));
+					W3GetCvar(GetRaceCell(x,RaceCategorieCvar),rcvar,sizeof(rcvar));
 					if(strcmp(sItem, rcvar, false)==0) {
 						IntToString(x,rbuf,sizeof(rbuf)); //menudata as string
 						GetRaceName(x,rname,sizeof(rname));
@@ -440,7 +440,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 							Format(extra,sizeof(extra),"<");
 						}
 						Format(rdisp,sizeof(rdisp),"%s%T",extra,"{racename} [L {amount}]",GetTrans(),rname,War3_GetLevel(client,x));
-						new minlevel=W3GetRaceMinLevelRequired(x);
+						new minlevel=GetRaceMinLevelRequired(x);
 						if(minlevel<0) minlevel=0;
 						if(minlevel)
 						{
@@ -449,7 +449,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 							Format(requirement,sizeof(requirement),"%s %T","","reqlvl {amount}",GetTrans(),minlevel);
 						}
 						new String:requiredflagstr[32];
-						W3GetRaceAccessFlagStr(x,requiredflagstr,sizeof(requiredflagstr));  ///14 = index, see races.inc
+						GetRaceAccessFlagStr(x,requiredflagstr,sizeof(requiredflagstr));  ///14 = index, see races.inc
 
 						new bool:draw_ITEMDRAW_DEFAULT=false;
 

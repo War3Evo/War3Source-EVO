@@ -84,12 +84,12 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 		{
 			total_level+=War3_GetLevel(client,x);
 			//RACE DEPENDENCY CHECK
-			if(War3_FindRaceDependency(race_selected,x)>War3_GetLevel(client,x))
+			if(FindRaceDependency(race_selected,x)>War3_GetLevel(client,x))
 			{
 				char tName[32];
 				GetRaceName(x,tName,sizeof(tName));
 				//DP("Found race dependency %s",tName);
-				War3_ChatMessage(client,"Race requires {green}%s {default}with a minimum level of {green}%d",tName,War3_FindRaceDependency(race_selected,x));
+				War3_ChatMessage(client,"Race requires {green}%s {default}with a minimum level of {green}%d",tName,FindRaceDependency(race_selected,x));
 				DenyNow=true;
 				//return W3Deny();
 			}
@@ -98,7 +98,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 		if(DenyNow)
 			return W3Deny();
 
-		new min_level=W3GetRaceMinLevelRequired(race_selected);
+		new min_level=GetRaceMinLevelRequired(race_selected);
 		if(min_level<0) min_level=0;
 
 		//Check for Races Developer:
@@ -116,13 +116,13 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			new bool:PassFlagCheck=false;
 			//FLAG CHECK
 			new String:requiredflagstr[32];
-			W3GetRaceAccessFlagStr(race_selected,requiredflagstr,sizeof(requiredflagstr));  ///14 = index, see races.inc
+			GetRaceAccessFlagStr(race_selected,requiredflagstr,sizeof(requiredflagstr));  ///14 = index, see races.inc
 			//DP("Race Access Flag of Selected: %s",requiredflagstr);
 			if(!StrEqual(requiredflagstr, "0", false)&&!StrEqual(requiredflagstr, "", false))
 			{
 
 				//new AdminId:admin = GetUserAdmin(client);
-				if(admin == INVALID_ADMIN_ID && War3_GetLevel(client, race_selected) != W3GetRaceMaxLevel(race_selected) ) //flag is required and this client is not admin
+				if(admin == INVALID_ADMIN_ID && War3_GetLevel(client, race_selected) != GetRaceMaxLevel(race_selected) ) //flag is required and this client is not admin
 				{
 					if(No_Message==false)
 					{
@@ -144,7 +144,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 					}
 					else
 					{
-						if (!GetAdminFlag(admin, flag)  && War3_GetLevel(client, race_selected) != W3GetRaceMaxLevel(race_selected) )
+						if (!GetAdminFlag(admin, flag)  && War3_GetLevel(client, race_selected) != GetRaceMaxLevel(race_selected) )
 						{
 							if(No_Message==false)
 							{
@@ -160,7 +160,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			}
 
 			// root access deny everyone not root
-			if(!GetAdminFlag(admin, Admin_Root) && War3_GetLevel(client, race_selected) == W3GetRaceMaxLevel(race_selected))
+			if(!GetAdminFlag(admin, Admin_Root) && War3_GetLevel(client, race_selected) == GetRaceMaxLevel(race_selected))
 			{
 				if(StrEqual(requiredflagstr, "z", false))
 				{
@@ -189,16 +189,16 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			if(GetConVarInt(internal_W3GetVar(hRaceLimitEnabledCvar))>0)
 			{
 				//if player is already this race, this is not what it does and its up to gameevents to kick the player
-				if(GetRace(client)!=race_selected&&GetRacesOnTeam(race_selected,GetClientTeam(client))>=W3GetRaceMaxLimitTeam(race_selected,GetClientTeam(client))) //already at limit
+				if(GetRace(client)!=race_selected&&GetRacesOnTeam(race_selected,GetClientTeam(client))>=GetRaceMaxLimitTeam(race_selected,GetClientTeam(client))) //already at limit
 				{
 					//if(!W3IsDeveloper(client)){
 					//	DP("racerestricitons.sp");
 					if(No_Message==false)
 					{
-						War3_ChatMessage(client,"Job limit for your team has been reached, please select a different race. (MAX {amount})",W3GetRaceMaxLimitTeam(race_selected,GetClientTeam(client)));
+						War3_ChatMessage(client,"Job limit for your team has been reached, please select a different race. (MAX {amount})",GetRaceMaxLimitTeam(race_selected,GetClientTeam(client)));
 					}
 
-					new cvar=W3GetRaceMaxLimitTeamCvar(race_selected,GetClientTeam(client));
+					new cvar=GetRaceMaxLimitTeamCvar(race_selected,GetClientTeam(client));
 					new String:cvarstr[64];
 					if(cvar>-1)
 					{
@@ -218,7 +218,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 				}
 			}
 
-			if (W3RaceHasFlag(race_selected, "botsonly"))
+			if (RaceHasFlag(race_selected, "botsonly"))
 			{
 				War3_ChatMessage(client,"This is a bots only race.  Select another race!");
 				return W3Deny();
@@ -244,7 +244,7 @@ enum TFClassType
 			new String:classstring[32];
 			strcopy(classstring,sizeof(classstring),classlist[class]);
 
-			new cvarid=W3GetRaceCell(race_selected,ClassRestrictionCvar);
+			new cvarid=GetRaceCell(race_selected,ClassRestrictionCvar);
 			//DP("cvar %d %s",cvarid,cvarstring);
 
 			if(W3FindStringInCvar(cvarid,classstring,9)) // was max of 2 --> if(W3FindStringInCvar(cvarid,classstring,2))

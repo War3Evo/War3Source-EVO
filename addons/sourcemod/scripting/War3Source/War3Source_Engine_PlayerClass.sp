@@ -333,8 +333,8 @@ stock SetRace(client,newrace)
 public NWar3_SetRace(Handle:plugin,numParams){
 
 	//set old race
-	new client=GetNativeCell(1);
-	new race=GetNativeCell(2);
+	int client=GetNativeCell(1);
+	int race=GetNativeCell(2);
 	SetRace(client,race);
 }
 
@@ -509,7 +509,7 @@ public NWar3_GetSkillLevelINTERNAL(Handle:plugin,numParams){
 	int client=GetNativeCell(1);
 	int race=GetNativeCell(2);
 	int skill=GetNativeCell(3);
-	return (client,race,skill);
+	return GetSkillLevelINTERNAL(client,race,skill);
 }
 
 stock GetPlayerProp(client,W3PlayerProp:property)
@@ -701,7 +701,7 @@ public War3Source_Engine_PlayerClass_OnWar3Event(W3EVENT:event,client)
 
 
 		SetPlayerProp(client,PendingRace,0);
-		War3_SetRace(client,0); //need the race change event fired
+		SetRace(client,0); //need the race change event fired
 		SetPlayerProp(client,dbRaceSelected,false);
 		SetPlayerProp(client,PlayerGold,0);
 		War3_SetDiamonds(client,0);

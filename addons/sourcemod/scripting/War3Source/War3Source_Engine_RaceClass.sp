@@ -189,9 +189,9 @@ public Action:Cmdassignrace(client,args)
 
 
 public Action:Cmdjoblist(client,args){
-	new RacesLoaded = internal_GetRacesLoaded();
-	new String:LongRaceName[32];
-	for(new x=1;x<=RacesLoaded;x++)
+	int RacesLoaded = GetRacesLoaded();
+	char LongRaceName[32];
+	for(int x=1;x<=RacesLoaded;x++)
 	{
 		GetRaceName(x,LongRaceName,sizeof(LongRaceName));
 		War3_ChatMessage(client,"JobList [Debug] Job: %s Job ID: %i",LongRaceName,x);
@@ -273,9 +273,9 @@ public NWar3_IsRaceReloading(Handle:plugin,numParams){
 
 Internal_NWar3_IsRaceReloading()
 {
-	new RacesLoaded = internal_GetRacesLoaded();
-	new bool:findtherace=false;
-	for(new x=1;x<=RacesLoaded;x++)
+	int RacesLoaded = GetRacesLoaded();
+	bool findtherace=false;
+	for(int x=1;x<=RacesLoaded;x++)
 	{
 		// ReloadRaces_Shortname[x]==
 		if(ReloadRaces_Id[x]==true)
@@ -349,7 +349,7 @@ public NWar3_RaceOnPluginEnd(Handle:plugin,numParams){
 		if(LibraryExists("RaceDependency"))
 		{
 			War3_RemoveDependency(RaceOnPluginEndID,raceSkillCount[RaceOnPluginEndID]);
-			War3_RemoveRaceDependency(RaceOnPluginEndID);
+			RemoveRaceDependency(RaceOnPluginEndID,RaceOnPluginEndID);
 		}
 		raceSkillCount[RaceOnPluginEndID]=0;
 
@@ -378,7 +378,7 @@ public NWar3_RaceOnPluginStart(Handle:plugin,numParams){
 	GetNativeString(1,shortname,sizeof(shortname));
 	if(!StrEqual(shortname,"",false))
 	{
-		new RacesLoaded = internal_GetRacesLoaded();
+		new RacesLoaded = GetRacesLoaded();
 		new x;
 		new bool:findtherace=false;
 		for(x=1;x<=RacesLoaded;x++)
@@ -544,7 +544,7 @@ public Native_War3_GetRaceByShortname(Handle:plugin,numParams)
 {
 	new String:short_lookup[16];
 	GetNativeString(1,short_lookup,sizeof(short_lookup));
-	new RacesLoaded = internal_GetRacesLoaded();
+	new RacesLoaded = GetRacesLoaded();
 	for(new x=1;x<=RacesLoaded;x++)
 	{
 
@@ -561,7 +561,7 @@ public Native_War3_GetRaceName(Handle:plugin,numParams)
 {
 	new race=GetNativeCell(1);
 	new bufsize=GetNativeCell(3);
-	if(race>-1 && race<=internal_GetRacesLoaded()) //allow "No Race"
+	if(race>-1 && race<=GetRacesLoaded()) //allow "No Race"
 	{
 		new String:race_name[32];
 		GetRaceName(race,race_name,sizeof(race_name));
@@ -572,7 +572,7 @@ public Native_War3_GetRaceShortname(Handle:plugin,numParams)
 {
 	new race=GetNativeCell(1);
 	new bufsize=GetNativeCell(3);
-	if(race>=1 && race<=internal_GetRacesLoaded())
+	if(race>=1 && race<=GetRacesLoaded())
 	{
 		new String:race_shortname[16];
 		GetRaceShortname(race,race_shortname,sizeof(race_shortname));
@@ -580,16 +580,16 @@ public Native_War3_GetRaceShortname(Handle:plugin,numParams)
 	}
 }
 GetRaceShortdesc(raceid,String:retstr[],maxlen){
-	new num=strcopy(retstr, maxlen, raceShortdesc[raceid]);
+	int num=strcopy(retstr, maxlen, raceShortdesc[raceid]);
 	return num;
 }
 public Native_War3_GetRaceShortdesc(Handle:plugin,numParams)
 {
-	new race=GetNativeCell(1);
-	new bufsize=GetNativeCell(3);
-	if(race>=1 && race<=internal_GetRacesLoaded())
+	int race=GetNativeCell(1);
+	int bufsize=GetNativeCell(3);
+	if(race>=1 && race<=GetRacesLoaded())
 	{
-		new String:race_shortdesc[32];
+		char race_shortdesc[32];
 		GetRaceShortdesc(race,race_shortdesc,sizeof(race_shortdesc));
 		SetNativeString(2,race_shortdesc,bufsize);
 	}
@@ -645,7 +645,7 @@ public NW3GetRaceSkillName(Handle:plugin,numParams)
 	new skill=GetNativeCell(2);
 	new maxlen=GetNativeCell(4);
 
-	if(race<1||race>internal_GetRacesLoaded()){
+	if(race<1||race>GetRacesLoaded()){
 		ThrowNativeError(1,"bad race %d",race);
 	}
 	if(skill<1||skill>GetRaceSkillCount(race)){
@@ -675,7 +675,7 @@ stock void GetRaceAccessFlagStr(int raceid, char[] returnstr, int maxsize)
 {
 	char buf[32];
 	GetCvar(AccessFlagCvar[raceid],buf,sizeof(buf));
-	StrCopy(returnstr, maxsize, buf);
+	strcopy(returnstr, maxsize, buf);
 }
 public NW3GetRaceAccessFlagStr(Handle:plugin,numParams)
 {
@@ -687,9 +687,9 @@ public NW3GetRaceAccessFlagStr(Handle:plugin,numParams)
 }
 public NW3GetRaceOrder(Handle:plugin,numParams)
 {
-	new raceid=GetNativeCell(1);
+	int raceid=GetNativeCell(1);
 	//DP("getraceorder race %d cvar %d",raceid,RaceOrderCvar[raceid]);
-	return W3GetCvarInt(RaceOrderCvar[raceid]);
+	return GetCvarInt(RaceOrderCvar[raceid]);
 
 }
 stock bool RaceHasFlag(int raceid, char flagsearch[32])
@@ -712,12 +712,12 @@ public NW3RaceHasFlag(Handle:plugin,numParams)
 stock int GetRaceList(int racelist[MAXRACES])
 {
 	int listcount=0;
-	int RacesLoaded = internal_GetRacesLoaded();
+	int RacesLoaded = GetRacesLoaded();
 	Handle hdynamicarray=CreateArray(1); //1 cell
 
 	for(int raceid=1;raceid<=RacesLoaded;raceid++){
 
-		if(!W3RaceHasFlag(raceid,"hidden"))
+		if(!RaceHasFlag(raceid,"hidden"))
 		{
 		//	DP("not hidden %d",raceid);
 			PushArrayCell(hdynamicarray, raceid);
@@ -766,7 +766,7 @@ stock void GetRaceItemRestrictionsStr(int raceid, char[] returnstr, int maxsize)
 {
 	char buf[64];
 	GetCvar(RestrictItemsCvar[raceid],buf,sizeof(buf));
-	StrCopy(returnstr, maxsize, buf);
+	strcopy(returnstr, maxsize, buf);
 }
 
 public NW3GetRaceItemRestrictionsStr(Handle:plugin,numParams)
@@ -837,9 +837,11 @@ public NW3IsRaceTranslated(Handle:plugin,numParams)
 {
 	return raceTranslated[GetNativeCell(1)];
 }
-public NW3SetRaceCell(Handle:plugin,numParams){
+public NW3SetRaceCell(Handle:plugin,numParams)
+{
 	return raceCell[GetNativeCell(1)][GetNativeCell(2)]=GetNativeCell(3);
 }
+// GetRaceCell(int cell1, int cell2) --> War3Source_Internal_Only_Stocks.inc
 public NW3GetRaceCell(Handle:plugin,numParams)
 {
 	return raceCell[GetNativeCell(1)][GetNativeCell(2)];
@@ -853,7 +855,7 @@ public NW3GetRaceCell(Handle:plugin,numParams)
 
 
 
-new genericskillcount=0;
+//new genericskillcount=0;
 
 //how many skills can use a generic skill, limited for memory
 #define MAXCUSTOMERRACES 32
@@ -1222,10 +1224,10 @@ CreateRaceEnd(raceid){
 			new temp;
 			Format(cvarstr,sizeof(cvarstr),"%s_restrictclass",shortname);
 			temp=W3CreateCvar(cvarstr,"","Which classes are not allowed to play this race? Separate by comma. MAXIMUM OF 2!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",Internal_NWar3_IsRaceReloading());
-			W3SetRaceCell(raceid,ClassRestrictionCvar,temp);
+			SetRaceCell(raceid,ClassRestrictionCvar,temp);
 
 			Format(cvarstr,sizeof(cvarstr),"%s_category",shortname);
-			W3SetRaceCell(raceid,RaceCategorieCvar,W3CreateCvar(cvarstr,"default","Determines in which Category the race should be displayed(if cats are active)",Internal_NWar3_IsRaceReloading()));
+			SetRaceCell(raceid,RaceCategorieCvar,W3CreateCvar(cvarstr,"default","Determines in which Category the race should be displayed(if cats are active)",Internal_NWar3_IsRaceReloading()));
 
 			if(load_a_race)
 			{
@@ -1274,8 +1276,8 @@ Handle:MergeSort(Handle:array){
 	new Handle:resultarray=CreateArray(1,0);
 	new index=0;
 	while(GetArraySize(leftresult)>0&&GetArraySize(rightresult)>0){
-		new leftval=W3GetRaceOrder( GetArrayCell(leftresult, 0));
-		new rightval=W3GetRaceOrder( GetArrayCell(rightresult, 0));
+		new leftval=GetRaceOrder( GetArrayCell(leftresult, 0));
+		new rightval=GetRaceOrder( GetArrayCell(rightresult, 0));
 		//PrintToServer("left %d vs right %d",leftval,rightval);
 
 		if(leftval<=rightval){
@@ -1369,7 +1371,7 @@ stock int GetRaceSkillMaxLevel(int raceid,int skill)
 
 stock GetRaceSkillName(raceid,skillindex,String:retstr[],maxlen)
 {
-	if(raceid<1||raceid>internal_GetRacesLoaded()){
+	if(raceid<1||raceid>GetRacesLoaded()){
 		//ThrowNativeError(1,"bad race %d",race);
 		return -1;
 	}
@@ -1436,7 +1438,7 @@ stock GetRaceMaxLevel(raceid){
 stock bool:RaceExistsByShortname(String:shortname[]){
 	new String:buffer[16];
 
-	new RacesLoaded = internal_GetRacesLoaded();
+	new RacesLoaded = GetRacesLoaded();
 	for(new raceid=1;raceid<=RacesLoaded;raceid++){
 		GetRaceShortname(raceid,buffer,sizeof(buffer));
 		if(StrEqual(shortname, buffer, false)){
@@ -1485,7 +1487,7 @@ stock printArray(String:prepend[]="",Handle:arr){
 stock RaceNameSearch(String:changeraceArg[32])
 {
 		new String:sRaceName[32];
-		new RacesLoaded=internal_GetRacesLoaded();
+		new RacesLoaded=GetRacesLoaded();
 		new race=0;
 		//full name
 		for(race=1;race<=RacesLoaded;race++)
@@ -1509,7 +1511,7 @@ stock RaceNameSearch(String:changeraceArg[32])
 
 stock GetRaceShortname(raceid,String:retstr[],maxlen)
 {
-	if(raceid>=1 && raceid<=internal_GetRacesLoaded())
+	if(raceid>=1 && raceid<=GetRacesLoaded())
 	{
 		new num=strcopy(retstr, maxlen, raceShortname[raceid]);
 		return num;
@@ -1518,7 +1520,7 @@ stock GetRaceShortname(raceid,String:retstr[],maxlen)
 }
 
 stock GetRaceName(raceid,String:retstr[],maxlen){
-	if(raceid>=1 && raceid<=internal_GetRacesLoaded())
+	if(raceid>=1 && raceid<=GetRacesLoaded())
 	{
 
 		if(raceTranslated[raceid]){

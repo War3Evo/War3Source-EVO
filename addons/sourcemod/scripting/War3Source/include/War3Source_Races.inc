@@ -2,10 +2,12 @@
 // Races / Race Creation
 //=============================================================================
 
+/*
 methodmap War3Source_Races
 {
 	public War3Source_Races()
 	{
+		return view_as<War3Source_Races>(true);
 	}
 	public native int War3_CreateNewRace(char[] name, char[] shortname,int reload_race_id=0,char[] shortdesc="no description");
 	public native int War3_CreateNewRaceT(String:shortname[],reload_race_id=0,String:shortdesc[]="no description");
@@ -72,45 +74,49 @@ methodmap War3Source_Races
 	public native bool War3_SetRaceDependency(int iRaceID, int iRequiredRace, int iRequiredLevel);
 	public native void War3_RemoveRaceDependency(int iRaceID, int iRequiredRace=0);
 	public native int War3_FindRaceDependency(int iRaceID, int IRequiredID);
-}
+}*/
 
 //creates a new race, returns the race id
 //a valid race is >0
 //native War3_CreateNewRace(String:name[],String:shortname[],reload_race_id=0,String:shortdesc[]="no description");
+native int War3_CreateNewRace(char[] name, char[] shortname,int reload_race_id=0,char[] shortdesc="no description");
 
 //translated
 //creates a new race, returns the race id
 //native War3_CreateNewRaceT(String:shortname[],reload_race_id=0,String:shortdesc[]="no description");
+native int War3_CreateNewRaceT(String:shortname[],reload_race_id=0,String:shortdesc[]="no description");
 
 //adds a skill or a ultimate
 //native War3_AddRaceSkill(raceid,String:tskillorultname[],String:tskillorultdescription[],bool:isult=false,maxskilllevel=DEF_MAX_SKILL_LEVEL);
+native int War3_AddRaceSkill(int raceid,char[] tskillorultname,char[] tskillorultdescription,bool isult=false,int maxskilllevel=DEF_MAX_SKILL_LEVEL);
 
 //translated
 //adds a skill or a ultimate
 //additional parameters replaces #1# #2# ... in the translation string (max 5)
 // % does not need to be escaped
 //native War3_AddRaceSkillT(raceid,String:SkillNameIdentifier[],bool:isult=false,maxskilllevel=DEF_MAX_SKILL_LEVEL,any:...);
+native int War3_AddRaceSkillT(int raceid,char[] SkillNameIdentifier,bool isult=false,int maxskilllevel=DEF_MAX_SKILL_LEVEL,any ...);
 
 //ends race creation!!! MUST CALL THIS!!!
-//native War3_CreateRaceEnd(raceid);
+native void War3_CreateRaceEnd(int raceid);
 
 //=============================================================================
 // Races Reloading
 //=============================================================================
 
 // Makes it so that your races are reloadable
-//native War3_RaceOnPluginStart(String:shortname[16]);
-//native War3_RaceOnPluginEnd(String:shortname[16]);
-//native bool:War3_IsRaceReloading();
+native void War3_RaceOnPluginStart(char shortname[16]);
+native void War3_RaceOnPluginEnd(char shortname[16]);
+native bool War3_IsRaceReloading();
 
 //=============================================================================
 // Races Information / name, shortname, etc.
 //=============================================================================
 
-//native War3_GetRaceName(raceid,String:retstr[],maxlen);
-//native War3_GetRaceShortname(raceid,String:retstr[],maxlen);
+native void War3_GetRaceName(int raceid,char[] retstr,int maxlen);
+native void War3_GetRaceShortname(int raceid,char[] retstr,int maxlen);
+native void War3_GetRaceShortdesc(int raceid,char[] retstr,int maxlen);
 
-//native War3_GetRaceShortdesc(raceid,String:retstr[],maxlen);
 
 //#pragma deprecated Not Fully Implemented, possibly in the future
 //native W3GetRaceString(raceid,RaceString:property,String:retstr[],maxlen); // not implemented
@@ -133,49 +139,46 @@ methodmap War3Source_Races
 // Get Total number of races loaded
 //=============================================================================
 
-//native War3_GetRacesLoaded();
+native int War3_GetRacesLoaded();
 
 //=============================================================================
 // Get Race Max Level
 //=============================================================================
 
-//native W3GetRaceMaxLevel(race);
+native int W3GetRaceMaxLevel(int raceid);
 
 //=============================================================================
 // RACE Skills Information
 //=============================================================================
-/*
-native War3_IsSkillUltimate(raceid, skillnum);
-native War3_GetRaceSkillCount(raceid);
-native W3GetRaceSkillName(raceid,skillindex,String:retstr[],maxlen);
-native W3GetRaceSkillDesc(raceid,skillindex,String:retstr[],maxlen);
-native W3GetRaceSkillMaxLevel(raceid, skillnum);
-native W3GetRaceOrder(raceid);
-*/
 
-//native War3_SetSkillLevel(client,race,skill,newlevel);
-/*
-native War3_GetSkillLevel(client, race, skill);
+native bool War3_IsSkillUltimate(int raceid, int skillnum);
+native int War3_GetRaceSkillCount(raceid);
+native void W3GetRaceSkillName(int raceid,int skillindex,char[] retstr,int maxlen);
+native void W3GetRaceSkillDesc(int raceid,int skillindex,char[] retstr,int maxlen);
+native int W3GetRaceSkillMaxLevel(int raceid, int skillnum);
+native int W3GetRaceOrder(int raceid);
 
-native War3_SetSkillLevelINTERNAL(client, race, skill, newlevel);
-native War3_GetSkillLevelINTERNAL(client, race, skill);
+native int War3_GetSkillLevel(int client, int raceid, int skill);
 
-native W3GetMinUltLevel();
+native int War3_SetSkillLevelINTERNAL(int client, int raceid, int skill, int newlevel);
+native int War3_GetSkillLevelINTERNAL(int client, int raceid, int skill);
 
-native Float:War3_GetRaceKDR(raceid);
-*/
+native int W3GetMinUltLevel();
+
+native float War3_GetRaceKDR(int raceid);
+
 
 //=============================================================================
 // RACE Flags
 //=============================================================================
 //Flag is a generic string. We compare the race_flags cvar to the string you passed
-/*
-native bool:W3RaceHasFlag(raceid,String:flag[]);
 
-native W3GetRaceAccessFlagStr(raceid,String:ret[],maxlen);
+native bool W3RaceHasFlag(int raceid,char[] flag);
 
-native W3GetRaceItemRestrictionsStr(raceid,String:ret[],maxlen);
-*/
+native void W3GetRaceAccessFlagStr(int raceid,char[] retstr,int maxlen);
+
+native void W3GetRaceItemRestrictionsStr(int raceid,char[] retstr,int maxlen);
+
 
 //=============================================================================
 // RACE Misc
@@ -186,17 +189,17 @@ native W3GetRaceItemRestrictionsStr(raceid,String:ret[],maxlen);
 //pass array of MAXRACES, returns number of races in the array. starts at 0
 //ordered properly
 //returns the size of the array
-/*
-native W3GetRaceList(racelist[]);
 
-native W3GetRaceMaxLimitTeam(raceid, team);
-native W3GetRaceMaxLimitTeamCvar(raceid, team); //returns the internal cvar id (int not handle)
-native W3GetRaceMinLevelRequired(raceid);
-native W3IsRaceTranslated(raceid);
+native int W3GetRaceList(int[] racelist);
 
-native W3GetRaceCell(raceid,ENUM_RaceObject:property);
-native W3SetRaceCell(raceid,ENUM_RaceObject:property,any:somevalue);
-*/
+native int W3GetRaceMaxLimitTeam(int raceid, int team);
+native int W3GetRaceMaxLimitTeamCvar(int raceid, int team); //returns the internal cvar id (int not handle)
+native int W3GetRaceMinLevelRequired(int raceid);
+native bool W3IsRaceTranslated(int raceid);
+
+native any W3GetRaceCell(int raceid,ENUM_RaceObject property);
+native void W3SetRaceCell(int raceid,ENUM_RaceObject property,any somevalue);
+
 
 stock bool ValidRace(int raceid_)
 {
@@ -211,13 +214,14 @@ stock bool eValidRace(int raceid_)
 //=============================================================================
 // RACE ID Information
 //=============================================================================
-/*
-native War3_GetRace(client);
-native War3_SetRace(client, race);
+
+native int War3_GetRace(int client);
+native void War3_SetRace(int client, int raceid);
+
 
 //a valid race is >0
-native War3_GetRaceIDByShortname(String:raceshortname[]);
-*/
+native int War3_GetRaceIDByShortname(char[] raceshortname);
+
 
 //=============================================================================
 // RACE DEPENDENCIES
@@ -231,7 +235,7 @@ native War3_GetRaceIDByShortname(String:raceshortname[]);
  * @return					 true on success, otherwhise false!
  * @error					 Thrown on invalid param num/race
  */
-//native bool:War3_SetRaceDependency(iRaceID, iRequiredRace, iRequiredLevel);
+native bool War3_SetRaceDependency(int iRaceID, int iRequiredRace, int iRequiredLevel);
 
 /**
  * Removes any known dependency from a race(if any)
@@ -242,7 +246,7 @@ native War3_GetRaceIDByShortname(String:raceshortname[]);
  * @noreturn
  * @error				 Thrown on invalid param num/race
  */
-//native War3_RemoveRaceDependency(iRaceID, iRequiredRace=0);
+native void War3_RemoveRaceDependency(int iRaceID, int iRequiredRace=0);
 
 /**
  * Retrieves various informations about a depending skill
@@ -253,7 +257,7 @@ native War3_GetRaceIDByShortname(String:raceshortname[]);
  * @return				 returns required level
  * @error				 Thrown on invalid param num/race
  */
-//native War3_FindRaceDependency(iRaceID, IRequiredID);
+native int War3_FindRaceDependency(int iRaceID, int IRequiredID);
 
 
 

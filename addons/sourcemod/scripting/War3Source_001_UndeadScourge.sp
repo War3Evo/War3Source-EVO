@@ -131,8 +131,7 @@ public OnPluginStart()
 }
 public OnAllPluginsLoaded()
 {
-	War3Source_Races race = War3Source_Races();
-	race.War3_RaceOnPluginStart(RACE_SHORTNAME);
+	War3_RaceOnPluginStart(RACE_SHORTNAME);
 }
 public OnMapStart()
 {
@@ -152,14 +151,14 @@ public OnPluginEnd()
 {
 	if(LibraryExists("RaceClass"))
 	{
-		War3Source_Races race = War3Source_Races();
-		race.War3_RaceOnPluginEnd(RACE_SHORTNAME);
+		//War3Source_Races race = War3Source_Races();
+		War3_RaceOnPluginEnd(RACE_SHORTNAME);
 	}
 }
 public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 {
 	// Allows us to be backwards compatibile
-	War3Source_Races race = War3Source_Races();
+	//War3Source_Races race = War3Source_Races();
 
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual(RACE_SHORTNAME,shortname,false)))
 	{
@@ -170,12 +169,12 @@ public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 		//SKILL_SUICIDE=War3_AddRaceSkill(thisRaceID,"Reincarnation","When you die, you revive on the spot.\nHas a 60/50/40/30 second cooldown.",true,4);
 		//War3_CreateRaceEnd(thisRaceID);
 
-		thisRaceID=race.War3_CreateNewRace(RACE_LONGNAME,RACE_SHORTNAME,reloadrace_id,"Suicidal,fast,leech hp");
-		SKILL_LEECH=race.War3_AddRaceSkill(thisRaceID,"Vampiric Aura","Leech Health\nYou recieve up to 10% of your damage dealt as Health\nCan not buy item mask any level",false,4);
-		SKILL_SPEED=race.War3_AddRaceSkill(thisRaceID,"Unholy Aura","You run 20% faster",false,4);
-		SKILL_LOWGRAV=race.War3_AddRaceSkill(thisRaceID,"Blood Lust","When you gain health from Vampiric Aura,\nyour crit chance increases slowly.\nCrit Chance resets on death.\nCrits count as 25% damage increase.",false,4);
-		SKILL_SUICIDE=race.War3_AddRaceSkill(thisRaceID,"Reincarnation","When you die, you revive on the spot.\nHas a 60/50/40/30 second cooldown.",true,4);
-		race.War3_CreateRaceEnd(thisRaceID);
+		thisRaceID=War3_CreateNewRace(RACE_LONGNAME,RACE_SHORTNAME,reloadrace_id,"Suicidal,fast,leech hp");
+		SKILL_LEECH=War3_AddRaceSkill(thisRaceID,"Vampiric Aura","Leech Health\nYou recieve up to 10% of your damage dealt as Health\nCan not buy item mask any level",false,4);
+		SKILL_SPEED=War3_AddRaceSkill(thisRaceID,"Unholy Aura","You run 20% faster",false,4);
+		SKILL_LOWGRAV=War3_AddRaceSkill(thisRaceID,"Blood Lust","When you gain health from Vampiric Aura,\nyour crit chance increases slowly.\nCrit Chance resets on death.\nCrits count as 25% damage increase.",false,4);
+		SKILL_SUICIDE=War3_AddRaceSkill(thisRaceID,"Reincarnation","When you die, you revive on the spot.\nHas a 60/50/40/30 second cooldown.",true,4);
+		War3_CreateRaceEnd(thisRaceID);
 
 		War3_AddSkillBuff(thisRaceID, SKILL_LEECH, fVampirePercent, VampirePercent);
 		War3_AddSkillBuff(thisRaceID, SKILL_SPEED, fMaxSpeed, UnholySpeed);

@@ -113,14 +113,14 @@ War3Source_SkillMenu(client)
 							//if(level>=curskilllevel*2+1+){
 							Format(sbuf,sizeof(sbuf),"%d",x);
 							Format(buf,sizeof(buf),"%T ","Ultimate: {skillname} (Skill Level {amount})",client,skillname,curskilllevel+1);
-							if((level<W3GetMinUltLevel())){
-								Format(buf,sizeof(buf),"%s %T",buf,"[Requires lvl {amount}]",client,W3GetMinUltLevel());
+							if((level<GetMinUltLevel())){
+								Format(buf,sizeof(buf),"%s %T",buf,"[Requires lvl {amount}]",client,GetMinUltLevel());
 							}
 							new bool:failed = HasDependency(client,race_num,x,buf,sizeof(buf),true);
 							if(failed)
 								AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
 							else
-	                            AddMenuItem(sMenu,sbuf,buf,(level>=curskilllevel*2+1+W3GetMinUltLevel()-1)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
+	                            AddMenuItem(sMenu,sbuf,buf,(level>=curskilllevel*2+1+GetMinUltLevel()-1)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
 						}
 
 						/*if(War3_IsSkillPartOfTree(race_num, x)) //the skill depends on something
@@ -182,7 +182,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 				{
 					new race=GetRace(client);
 					new level=War3_GetLevel(client,race);
-					if(level>=W3GetMinUltLevel())
+					if(level>=GetMinUltLevel())
 					{
 						if(GetLevelsSpent(client,race)<War3_GetLevel(client,race))
 						{
@@ -190,7 +190,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 							decl String:skillname[64];
 							if(GetRaceSkillName(race,skill,skillname,sizeof(skillname))>0)
 							{
-								War3_ChatMessage(client,"%T","{skillname} is now level {amount}",client,skillname,War3_GetSkillLevelINTERNAL(client,race,skill));
+								War3_ChatMessage(client,"%T","{skillname} is now level {amount}",client,skillname,GetSkillLevelINTERNAL(client,race,skill));
 							}
 							else
 							{
@@ -201,7 +201,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 							War3_ChatMessage(client,"%T","You can not choose a skill without gaining another level",client);
 					}
 					else{
-						War3_ChatMessage(client,"%T","You need to be at least level {amount} to choose an ultimate",client,W3GetMinUltLevel());
+						War3_ChatMessage(client,"%T","You need to be at least level {amount} to choose an ultimate",client,GetMinUltLevel());
 					}
 
 				}
@@ -214,7 +214,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 						decl String:skillname[64];
 						if(GetRaceSkillName(race,skill,skillname,sizeof(skillname))>0)
 						{
-							War3_ChatMessage(client,"%T","{skillname} is now level {amount}",client,skillname,War3_GetSkillLevelINTERNAL(client,race,skill));
+							War3_ChatMessage(client,"%T","{skillname} is now level {amount}",client,skillname,GetSkillLevelINTERNAL(client,race,skill));
 						}
 						else
 						{

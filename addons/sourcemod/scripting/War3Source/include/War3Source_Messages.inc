@@ -120,17 +120,16 @@ char zzname[32];
 stock W3PrintSkillDmgConsole(victim = 0, attacker, damage, skillnum)
 {
 	GetClientName(victim, zzname, sizeof(zzname));
-	War3Source_Races W3racefunctions = War3Source_Races();
 
-	int race = W3racefunctions.War3_GetRace(attacker);
+	int race = War3_GetRace(attacker);
 	char skillname[32];
 	//SetTrans( attacker);
-	W3racefunctions.W3GetRaceSkillName(race, skillnum, skillname, sizeof(skillname));
+	W3GetRaceSkillName(race, skillnum, skillname, sizeof(skillname));
 	PrintToConsole(attacker, "[War3Source:EVO] You did +%i damage to %s with %s", damage, zzname, skillname);
 
 	if (victim > 0) {
 		//SetTrans( victim);
-		W3racefunctions.W3GetRaceSkillName(race, skillnum, skillname, sizeof(skillname)); //get trans again
+		W3GetRaceSkillName(race, skillnum, skillname, sizeof(skillname)); //get trans again
 
 		GetClientName(attacker, zzname, sizeof(zzname));
 		PrintToConsole(victim, "[War3Source:EVO] %s did %i damage to you with %s",zzname, damage, skillname);

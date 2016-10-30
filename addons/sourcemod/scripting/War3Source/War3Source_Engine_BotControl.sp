@@ -163,7 +163,7 @@ public Action:SetTestBotRace(client, args)
 		if(allowChooseRace==true)
 		{
 			SetRace(target,x);
-			SetLevel(target, x, W3GetRaceMaxLevel(x));
+			SetLevel(target, x, GetRaceMaxLevel(x));
 			War3_bots_distribute_sp(target);
 		}
 		else
@@ -297,7 +297,7 @@ public void CreateBotList()
 
 	for(int x=1;x<=RacesLoaded;x++)
 	{
-		if (W3RaceHasFlag(x, "nobots"))
+		if (RaceHasFlag(x, "nobots"))
 		{
 				continue;
 		}
@@ -488,7 +488,7 @@ public DistributeSkillPoints(client,race)
 	bool isClientFake = IsFakeClient(client);
 	int level = War3_GetLevel(client, race);
 	int skillpoints = level;
-	int ultLevel = W3GetMinUltLevel();
+	int ultLevel = GetMinUltLevel();
 
 	// Subtract already spent skillpoints
 	for(int i=0; i < GetRaceSkillCount(race); i++)
