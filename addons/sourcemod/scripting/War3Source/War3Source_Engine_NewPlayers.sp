@@ -33,7 +33,7 @@ public Plugin:myinfo =
 public War3Source_Engine_NewPlayers_OnPluginStart()
 {
 	NewPlayerCvar=CreateConVar("war3_newplayer_enabled","1","1 for on, 0 for off. (default 1)");
-	NewPlayerDaysCvar=CreateConVar("war3_newplayer_days","7","How long a new player is considered new after join date.");
+	NewPlayerDaysCvar=CreateConVar("war3_newplayer_days","1","How long a new player is considered new after join date.");
 	NewPlayerDamageModCvar=CreateConVar("war3_newplayer_damage_mod","0.90","0.0 = 100% damage reduction, 0.90 = 10% damage reduction, 1.0 = no damage reduction",0,true,0.0,true,1.0);
 
 	HookConVarChange(NewPlayerCvar, W3CvarNewPlayerCvar);
