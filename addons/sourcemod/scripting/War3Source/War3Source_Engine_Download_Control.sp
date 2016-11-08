@@ -39,7 +39,7 @@ new Handle:g_hSoundFile = INVALID_HANDLE;
 new Handle:g_hPriority = INVALID_HANDLE;
 new Handle:g_hStockSound = INVALID_HANDLE;
 
-new Handle:g_hHistoryFiles = INVALID_HANDLE;
+//new Handle:g_hHistoryFiles = INVALID_HANDLE;
 
 // Event handles
 new Handle:g_OnAddSoundHandle = INVALID_HANDLE;
@@ -120,7 +120,7 @@ UpdateDownloadControl()
 	if(GetConVarBool(EnableFullDownloadsModuleCvar))
 	{
 		new String:StringDetail[2048];
-		new String:TempBuffer[1024];
+		new String:TempBuffer[PLATFORM_MAX_PATH];
 
 		new iMaxDownloads=CurrentClientsConnected*GetConVarInt(imaxdownloadsCvar);
 
@@ -171,7 +171,7 @@ UpdateDownloadControl()
 	{
 
 		new String:StringDetail[2048];
-		new String:TempBuffer[1024];
+		new String:TempBuffer[PLATFORM_MAX_PATH];
 
 		new iMaxDownloads=CurrentClientsConnected*GetConVarInt(imaxdownloadsCvar);
 
@@ -295,11 +295,11 @@ UpdateDownloadControl()
 	}
 
 
-	if(DownloadCount<=0)
-	{
-		ClearArray(g_hHistoryFiles);
-		LogDownloads("CLEARED HISTORY FILES [DownloadCount<=0]");
-	}
+	//if(DownloadCount<=0)
+	//{
+		//ClearArray(g_hHistoryFiles);
+		//LogDownloads("CLEARED HISTORY FILES [DownloadCount<=0]");
+	//}
 	ClearArray(g_hSoundFile);
 	ClearArray(g_hPriority);
 }
@@ -318,7 +318,7 @@ public War3Source_Engine_Download_Control_OnPluginStart()
 	EnableLowDownloadsCvar = CreateConVar("war3_downloads_low_enabled", "1","set 1 to enable downloads of Priority TOP");
 	EnableBottomDownloadsCvar = CreateConVar("war3_downloads_bottom_enabled", "1","set 1 to enable downloads of Priority TOP");
 
-	imaxdownloadsCvar = CreateConVar("war3_downloads_max", "2","max allowed downloads per player (max * maxclients)");
+	imaxdownloadsCvar = CreateConVar("war3_downloads_max", "999999","max allowed downloads per player (max * maxclients)");
 	ihighdownloadsCvar = CreateConVar("war3_downloads_high", "0.50","percentage 0.50 is 50 percent");
 	imediumdownloadsCvar = CreateConVar("war3_downloads_medium", "0.25","percentage 0.25 is 25 percent");
 	ilowdownloadsCvar = CreateConVar("war3_downloads_low", "0.10","percentage 0.10 is 10 percent");
@@ -333,9 +333,9 @@ public War3Source_Engine_Download_Control_OnPluginStart()
 	OnPluginStartIndex=1;
 	//CacheFiles();
 	//UpdateDownloadControl();
-	RegAdminCmd("sm_soundcache",soundcache,ADMFLAG_ROOT);
+	//RegAdminCmd("sm_soundcache",soundcache,ADMFLAG_ROOT);
 }
-
+/*
 public Action soundcache(int client, int args)
 {
 	//g_hHistoryFiles
@@ -357,7 +357,7 @@ public Action soundcache(int client, int args)
 		}
 	}
 	return Plugin_Handled;
-}
+}*/
 
 LogDownloads(String:LogThis[2048])
 {
@@ -438,7 +438,8 @@ bool War3_AddSoundFiles(char sound[PLATFORM_MAX_PATH], bool precache = true, boo
 }
 
 // True files are added to history, false if not.
-bool:AddSoundFiles(const String:sound[],iSoundIndex,iMaxDownloadsCount,iCurrentCount)
+
+bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloadsCount,iCurrentCount)
 {
 	bool ReturnBool = false;
 
@@ -462,9 +463,10 @@ bool:AddSoundFiles(const String:sound[],iSoundIndex,iMaxDownloadsCount,iCurrentC
 	// History Check -- do AddFileToDownloadsTable first before War3_Internal_PreCacheSound
 	if(iMaxDownloadsCount > iCurrentCount)
 	{
-		if(FindStringInArray(g_hHistoryFiles, SoundModify)==-1)
-		{
-			PushArrayString(g_hHistoryFiles, sound);
+		//Removing History as it seems to be creating a problem on map change
+		//if(FindStringInArray(g_hHistoryFiles, SoundModify)==-1)
+		//{
+			//PushArrayString(g_hHistoryFiles, sound);
 			// Add to download tables if custom file
 			if(GetArrayCell(g_hStockSound, iSoundIndex)<=0)
 			{
@@ -477,7 +479,7 @@ bool:AddSoundFiles(const String:sound[],iSoundIndex,iMaxDownloadsCount,iCurrentC
 				}
 			}
 			ReturnBool = true;
-		}
+		//}
 	}
 
 	//if(FileExists(path) && GetArrayCell(g_hStockSound, iSoundIndex)>0)
@@ -570,7 +572,7 @@ public bool:War3Source_Engine_Download_Control_InitNatives()
 
 	g_hStockSound = CreateArray(1);
 
-	g_hHistoryFiles = CreateArray(ByteCountToCells(1024));
+	//g_hHistoryFiles = CreateArray(ByteCountToCells(1024));
 
 	return true;
 }
