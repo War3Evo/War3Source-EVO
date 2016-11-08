@@ -76,7 +76,7 @@ public War3Source_Engine_BotControl_OnPluginStart()
 #endif
 
 	// ########################## BOT ITEM CONFIG ############################
-	botBuysItems = CreateConVar("war3_bots_buy_items", "1", "Can bots buy items?", _, true, 0.0, true, 1.0);
+	botBuysItems = CreateConVar("war3_bots_buy_items", "0", "Can bots buy items?", _, true, 0.0, true, 1.0);
 	botBuysRandom = CreateConVar("war3_bots_buy_random","1","Bots buy random items when they spawn (Loadout Mode currently disabled!)", _, true, 1.0, true, 1.0);
 	botBuysRandomChance = CreateConVar("war3_bots_buy_random_chance","100","Chance a bot will buy an item on spawn.", _, true, 0.0, true, 100.0);
 	botBuysRandomMultipleChance = CreateConVar("war3_bots_buy_random_multiple_chance","0.95","Chance modifier that is applied each time a bot buys a item.", _, true, 0.0, true, 100.0);
@@ -631,6 +631,7 @@ public War3Source_Engine_BotControl_OnWar3EventSpawn(client)
 
 	if(!IsFakeClient(client)) return 0;
 
+	// NEED TO CREATE A LIST OF ITEMS ALREADY BOUGHT BY BOTS
 	if(GetConVarBool(botBuysItems) && GetConVarBool(botBuysRandom))
 	{
 		float chance = GetConVarFloat(botBuysRandomChance);
