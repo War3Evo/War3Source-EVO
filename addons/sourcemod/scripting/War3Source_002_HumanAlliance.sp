@@ -144,7 +144,7 @@ public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual(RACE_SHORTNAME,shortname,false)))
 	{
 
-		thisRaceID=War3_CreateNewRace(RACE_LONGNAME,RACE_SHORTNAME,"Teleport,Invis,+hp",reloadrace_id);
+		thisRaceID=War3_CreateNewRace(RACE_LONGNAME,RACE_SHORTNAME,reloadrace_id,"Teleport,Invis,+hp");
 		SKILL_SPEED=War3_AddRaceSkill(thisRaceID,"Whisk","Increases movement speed.",false,4);
 		SKILL_HEALTH=War3_AddRaceSkill(thisRaceID,"Devotion Aura","Gives you additional 10/20/30/40 health.",false,4);
 		SKILL_BASH=War3_AddRaceSkill(thisRaceID,"Bash","7/13/19/25% chance to bash the enemy.\nRenders the enemy immobile for 0.2 seconds.",false,4);
