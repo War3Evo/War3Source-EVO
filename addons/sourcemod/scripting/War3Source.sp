@@ -561,8 +561,8 @@ DelayedWar3SourceCfgExecute()
 #elseif GGAMETYPE == GGAME_CSGO
 	if(FileExists("cfg/war3source_csgo.cfg"))
 	{
-		ServerCommand("exec war3source.cfg");
-		PrintToServer("[War3Source] Executing war3source.cfg");
+		ServerCommand("exec war3source_csgo.cfg");
+		PrintToServer("[War3Source] Executing war3source_csgo.cfg");
 	}
 	else
 	{
@@ -571,8 +571,8 @@ DelayedWar3SourceCfgExecute()
 #else
 	if(FileExists("cfg/war3source_other.cfg"))
 	{
-		ServerCommand("exec war3source.cfg");
-		PrintToServer("[War3Source] Executing war3source.cfg");
+		ServerCommand("exec war3source_other.cfg");
+		PrintToServer("[War3Source] Executing war3source_other.cfg");
 	}
 	else
 	{
