@@ -2,7 +2,7 @@
 
 https://forums.alliedmods.net/showthread.php?p=2431473
 
-**GAME MODE CURRENTLY SETUP TO COMPILE FOR IS CSGO**
+**GAME MODE CURRENTLY SETUP TO COMPILE FOR IS TF2**
 
 Working: TF2, CSGO
 
@@ -60,3 +60,29 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 # TF2 Game Mode Convar
 
 * tf2_attributes - 0 disabled / 1 enabled. (default 0)
+
+# RACES INCLUDED (BUT HAVE NOT BEEN TESTED ON CSGO)
+Undead Scourge
+Human Alliance
+Night Elf
+Blood Mage
+Corrupted Disciple
+Soul Reaper
+Blood Hunter
+Naix
+Succubus Hunter
+Chronos
+Lich
+Sacred Warriror
+Hammer Storm
+Scout
+Dark Elf
+Dragon Born
+Flutter Shy
+Rarity
+Rainbow Dash
+Luna
+Light Bender
+Soul Medic
+
+-- You can obtain custom races by me by joining my Patreon: https://www.patreon.com/war3evo
