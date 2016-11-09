@@ -2,7 +2,7 @@
 
 War3Source_InitCVars()
 {
-	gh_CVAR_AllowInstantSpawn = CreateConVar("war3AllowInstantRaceChange", "1", "0 disabled / 1 enabled\nAllows players to change race instantly in spawn.");
+	gh_CVAR_AllowInstantSpawn = CreateConVar("war3AllowInstantRaceChange", "0", "0 disabled / 1 enabled\nAllows players to change race instantly in spawn.");
 
 	gh_CVAR_War3Source_Pause = CreateConVar("war3pause", "0", "0 disabled / 1 enabled\nPauses all War3Source stuff, so plugins can be reloaded easier.");
 
