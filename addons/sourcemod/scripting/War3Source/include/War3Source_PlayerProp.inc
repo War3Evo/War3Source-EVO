@@ -2,6 +2,7 @@
 enum W3PlayerProp
 {
 	bool:bPutInServer,
+	TFClassType:CurrentClass,
 	CurrentRace,
 	PendingRace,
 	PlayerGold,

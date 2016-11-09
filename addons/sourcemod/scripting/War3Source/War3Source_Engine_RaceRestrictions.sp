@@ -22,12 +22,18 @@ public War3Source_Engine_RaceRestrictions_OnPluginStart()
 #if GGAMETYPE == GGAME_TF2
 public ItemRestrictions_PlayerChangeClassEvent(Handle:event,const String:name[],bool:dontBroadcast)
 {
-	new userid=GetEventInt(event,"userid");
-	//new classid=GetEventInt(event,"class");
+	int userid=GetEventInt(event,"userid");
+	TFClassType classid=view_as<TFClassType>(GetEventInt(event,"class"));
 	//_:TF2_GetPlayerClass(i)==classid
 	if(userid>0)
 	{
 		//new client=GetClientOfUserId(userid);
+		int client=GetClientOfUserId(userid);
+		if(ValidPlayer(client))
+		{
+			p_properties[client][CurrentClass]=classid;
+			//PrintToChatAll("changed class = %i",view_as<int>(p_properties[client][CurrentClass]));
+		}
 		CreateTimer(5.0, CheckItems, userid);
 	}
 }

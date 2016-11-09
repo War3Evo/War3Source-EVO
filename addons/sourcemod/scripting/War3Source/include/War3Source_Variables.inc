@@ -238,3 +238,20 @@ int totalSkillsLoaded=0;
 Handle Cvartrie;
 Handle Cvararraylist; //cvar
 Handle Cvararraylist2; //cvar definition
+
+Handle gh_MaxSpeedLimitConvar;
+float War3Source_MaxSpeedLimit = 1.4;
+
+//=============================
+// War3Source_Engine_BuffSpeedGravGlow
+//=============================
+int m_OffsetSpeed=-1;
+
+int reapplyspeed[MAXPLAYERSCUSTOM];
+bool invisWeaponAttachments[MAXPLAYERSCUSTOM];
+bool bDeniedInvis[MAXPLAYERSCUSTOM];
+
+float gspeedmulti[MAXPLAYERSCUSTOM];
+
+float speedBefore[MAXPLAYERSCUSTOM];
+float speedWeSet[MAXPLAYERSCUSTOM];

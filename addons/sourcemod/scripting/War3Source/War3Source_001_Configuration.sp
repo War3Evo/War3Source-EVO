@@ -10,6 +10,9 @@ War3Source_InitCVars()
 
 	gh_AllowDeveloperPowers = CreateConVar("war3_allow_developer_powers", "0", "0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc.");
 
+	gh_MaxSpeedLimitConvar = CreateConVar("war3_maxspeed_limit", "1.4", "0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc.");
+
+	HookConVarChange(gh_MaxSpeedLimitConvar, War3ConVarChanged);
 	HookConVarChange(gh_CVAR_War3Source_Pause, War3ConVarChanged);
 
 	/*
@@ -58,7 +61,19 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 		{
 			War3_ChatMessage(0,"{yellow}War3Source:EVO has now resumed.");
 		}
+	}
+	else if(cvar == gh_MaxSpeedLimitConvar)
+	{
+		War3Source_MaxSpeedLimit = StringToFloat(newVal);
 
+		// force speed update on all alive clients
+		for(int client=1;client<=MaxClients;client++)
+		{
+			if(ValidPlayer(client,true))
+			{
+				reapplyspeed[client]++;
+			}
+		}
 	}
 }
 

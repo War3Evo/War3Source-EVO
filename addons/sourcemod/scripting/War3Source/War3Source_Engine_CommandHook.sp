@@ -488,6 +488,10 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		War3_ChatMessage(client,"Diamonds: %i",War3_GetDiamonds(client));
 		return returnblocking;
 	}
+	else if(CommandCheck(arg1,"beforespeed")||CommandCheck(arg1,"!beforespeed"))
+	{
+		War3_ChatMessage(client,"Your before speed is %.2f",speedBefore[client]);
+	}
 	else if(CommandCheck(arg1,"speed")||CommandCheck(arg1,"!speed"))
 	{
 		int ClientX=client;

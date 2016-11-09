@@ -2,8 +2,10 @@
 
 ////BUFF SYSTEM
 
-int m_OffsetSpeed=-1;
 
+/* moved to variables includes file
+ * int m_OffsetSpeed=-1;
+ *
 int reapplyspeed[MAXPLAYERSCUSTOM];
 bool invisWeaponAttachments[MAXPLAYERSCUSTOM];
 bool bDeniedInvis[MAXPLAYERSCUSTOM];
@@ -11,7 +13,7 @@ bool bDeniedInvis[MAXPLAYERSCUSTOM];
 float gspeedmulti[MAXPLAYERSCUSTOM];
 
 float speedBefore[MAXPLAYERSCUSTOM];
-float speedWeSet[MAXPLAYERSCUSTOM];
+float speedWeSet[MAXPLAYERSCUSTOM];*/
 
 /*
 public Plugin:myinfo=
@@ -281,11 +283,11 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 {
 	if(MapChanging || War3SourcePause) return 0;
 
-	for(new client=1;client<=MaxClients;client++)
+	for(int client=1;client<=MaxClients;client++)
 	{
 		if(ValidPlayer(client,true))//&&!bIgnoreTrackGF[client])
 		{
-			new Float:currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
+			float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
 			if(currentmaxspeed!=speedWeSet[client]) ///SO DID engien set a new speed? copy that!! //TFIsDefaultMaxSpeed(client,currentmaxspeed)){ //ONLY IF NOT SET YET
 			{
 				speedBefore[client]=currentmaxspeed;
@@ -295,7 +297,7 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 			{
 				reapplyspeed[client]=0;
 				//player frame tracking, if client speed is not what we set, we reapply speed
-				new Float:speedmulti=1.0;
+				float speedmulti=1.0;
 				//new Float:speedadd=1.0;
 				if(!GetBuffHasOneTrue(client,bBuffDenyAll)){
 					speedmulti=W3GetBuffMaxFloat(client,fMaxSpeed)+W3GetBuffMaxFloat(client,fMaxSpeed2)-1.0;
@@ -310,11 +312,21 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 				}
 				//PrintToConsole(client,"speedmulti should be 1.0 %f %f",speedmulti,speedadd);
 				gspeedmulti[client]=speedmulti;
-				new Float:newmaxspeed=FloatMul(speedBefore[client],speedmulti);
+				float newmaxspeed=FloatMul(speedBefore[client],speedmulti);
 				if(newmaxspeed<0.1){
 					newmaxspeed=0.1;
 				}
+
+				//Create Speed Limit
+				float maxspeedlimit=FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(p_properties[client][CurrentClass]));
+				if(maxspeedlimit>0.1 && maxspeedlimit>speedBefore[client])
+				{
+					gspeedmulti[client]=War3Source_MaxSpeedLimit;
+					newmaxspeed=speedBefore[client];
+				}
+
 				speedWeSet[client]=newmaxspeed;
+
 				SetEntDataFloat(client,m_OffsetSpeed,newmaxspeed,true);
 			}
 			new MoveType:currentmovetype=GetEntityMoveType(client);
