@@ -310,20 +310,60 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow));
 					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow2));
 				}
+
 				//PrintToConsole(client,"speedmulti should be 1.0 %f %f",speedmulti,speedadd);
+				//gspeedmulti[client]=speedmulti;
+				// speed bonuses
+				float newmaxspeed;// = FloatMul(speedBefore[client],speedmulti);
+
+				//Create Speed Limit
+				//This is our Max Speed Limit
+				float classbasespeed=TF2_GetClassSpeed(p_properties[client][CurrentClass]);
+
+				//If tf2 engine speed is greater than Class Base Speed, then
+				//tf2 applied a bonus
+				if(speedBefore[client]>classbasespeed)
+				{
+					float maxspeedlimit=FloatMul(War3Source_MaxSpeedLimit,classbasespeed);
+					if(maxspeedlimit<0.1)
+					{
+						maxspeedlimit=0.1;
+					}
+					newmaxspeed=FloatMul(speedBefore[client],speedmulti);
+					if(newmaxspeed<0.1)
+					{
+						newmaxspeed=0.1;
+					}
+
+					if(speedBefore[client]>maxspeedlimit)
+					{
+						// apply no bonuses
+						speedmulti=1.0;
+					}
+					else if(newmaxspeed>maxspeedlimit)
+					{
+						if(speedmulti>War3Source_MaxSpeedLimit)
+						{
+							speedmulti=War3Source_MaxSpeedLimit-(speedmulti-War3Source_MaxSpeedLimit);
+						}
+						else
+						{
+							speedmulti=War3Source_MaxSpeedLimit-speedmulti;
+						}
+						if(speedmulti<1.0)
+						{
+							speedmulti+=1.0;
+						}
+					}
+				}
+
 				gspeedmulti[client]=speedmulti;
-				float newmaxspeed=FloatMul(speedBefore[client],speedmulti);
-				if(newmaxspeed<0.1){
+				newmaxspeed=FloatMul(speedBefore[client],speedmulti);
+				if(newmaxspeed<0.1)
+				{
 					newmaxspeed=0.1;
 				}
 
-				//Create Speed Limit
-				float maxspeedlimit=FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(p_properties[client][CurrentClass]));
-				if(maxspeedlimit>0.1 && maxspeedlimit>speedBefore[client])
-				{
-					gspeedmulti[client]=War3Source_MaxSpeedLimit;
-					newmaxspeed=speedBefore[client];
-				}
 
 				speedWeSet[client]=newmaxspeed;
 

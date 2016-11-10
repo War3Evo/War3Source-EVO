@@ -66,6 +66,21 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 	{
 		War3Source_MaxSpeedLimit = StringToFloat(newVal);
 
+		War3_ChatMessage(0,"{yellow}Max Warcraft Speed limits:");
+		float fScout = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Scout));
+		float fSoldier = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Soldier));
+		float fDemo = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_DemoMan));
+		float fMedic = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Medic));
+		float fPyro = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Pyro));
+		float fSpy = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Spy));
+		float fEngineer = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Engineer));
+		float fSniper = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Sniper));
+		float fHeavy = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Heavy));
+
+		War3_ChatMessage(0,"{yellow}Scout %.2f | Soldier %.2f | Demo %.2f",fScout,fSoldier,fDemo);
+		War3_ChatMessage(0,"{yellow}Medic %.2f | Pyro %.2f | Spy %.2f",fMedic,fPyro,fSpy);
+		War3_ChatMessage(0,"{yellow}Engineer %.2f | Sniper %.2f | Heavy %.2f",fEngineer,fSniper,fHeavy);
+
 		// force speed update on all alive clients
 		for(int client=1;client<=MaxClients;client++)
 		{
