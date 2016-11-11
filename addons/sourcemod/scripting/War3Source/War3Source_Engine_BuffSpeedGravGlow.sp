@@ -278,6 +278,10 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 		return 0;
 }
 
+float fclassbasespeed;
+float fBeforeSpeedDifferenceMULTI;
+float fnewmaxspeed;
+float fWarCraftBonus_AND_TF2Bonus;
 
 public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 {
@@ -299,75 +303,93 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 				//player frame tracking, if client speed is not what we set, we reapply speed
 				float speedmulti=1.0;
 				//new Float:speedadd=1.0;
-				if(!GetBuffHasOneTrue(client,bBuffDenyAll)){
+				if(!GetBuffHasOneTrue(client,bBuffDenyAll))
+				{
 					speedmulti=W3GetBuffMaxFloat(client,fMaxSpeed)+W3GetBuffMaxFloat(client,fMaxSpeed2)-1.0;
-					}
-				if(GetBuffHasOneTrue(client,bStunned)||GetBuffHasOneTrue(client,bBashed)){
-				//DP("stunned or bashed");
+				}
+				if(GetBuffHasOneTrue(client,bStunned)||GetBuffHasOneTrue(client,bBashed))
+				{
+					//DP("stunned or bashed");
 					speedmulti=0.0;
 				}
-				if(!GetBuffHasOneTrue(client,bSlowImmunity)){
+				if(!GetBuffHasOneTrue(client,bSlowImmunity))
+				{
 					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow));
 					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow2));
 				}
-
-				//PrintToConsole(client,"speedmulti should be 1.0 %f %f",speedmulti,speedadd);
-				//gspeedmulti[client]=speedmulti;
-				// speed bonuses
-				float newmaxspeed;// = FloatMul(speedBefore[client],speedmulti);
+				PrintToConsole(client,"------------------------------------------------------------");
+				PrintToConsole(client,"speedmulti = %.2f",speedmulti);
+				PrintToConsole(client,"speedWeSet[client] = %.2f",speedWeSet[client]);
+				PrintToConsole(client,"speedBefore[client] = %.2f",speedBefore[client]);
 
 				//Create Speed Limit
 				//This is our Max Speed Limit
-				float classbasespeed=TF2_GetClassSpeed(p_properties[client][CurrentClass]);
+				fclassbasespeed=TF2_GetClassSpeed(p_properties[client][CurrentClass]);
+				PrintToConsole(client,"fclassbasespeed is %.2f",fclassbasespeed);
 
-				//If tf2 engine speed is greater than Class Base Speed, then
-				//tf2 applied a bonus
-				if(speedBefore[client]>classbasespeed)
+				fBeforeSpeedDifferenceMULTI = FloatDiv(speedBefore[client],fclassbasespeed);
+
+				PrintToConsole(client,"fBeforeSpeedDifferenceMULTI is %.2f",fBeforeSpeedDifferenceMULTI);
+
+				if(fBeforeSpeedDifferenceMULTI>=War3Source_MaxSpeedLimit)
 				{
-					float maxspeedlimit=FloatMul(War3Source_MaxSpeedLimit,classbasespeed);
-					if(maxspeedlimit<0.1)
-					{
-						maxspeedlimit=0.1;
-					}
-					newmaxspeed=FloatMul(speedBefore[client],speedmulti);
-					if(newmaxspeed<0.1)
-					{
-						newmaxspeed=0.1;
-					}
+					PrintToConsole(client,"if(fBeforeSpeedDifferenceMULTI>=War3Source_MaxSpeedLimit)");
+					// apply no bonuses and don't change speed
+					speedmulti=fBeforeSpeedDifferenceMULTI;
+					PrintToConsole(client,"apply no bonuses and don't change speed");
 
-					if(speedBefore[client]>maxspeedlimit)
-					{
-						// apply no bonuses
-						speedmulti=1.0;
-					}
-					else if(newmaxspeed>maxspeedlimit)
-					{
-						if(speedmulti>War3Source_MaxSpeedLimit)
-						{
-							speedmulti=War3Source_MaxSpeedLimit-(speedmulti-War3Source_MaxSpeedLimit);
-						}
-						else
-						{
-							speedmulti=War3Source_MaxSpeedLimit-speedmulti;
-						}
-						if(speedmulti<1.0)
-						{
-							speedmulti+=1.0;
-						}
-					}
+					currentmaxspeed=fclassbasespeed;
+					PrintToConsole(client,"currentmaxspeed=fclassbasespeed %.2f",currentmaxspeed);
 				}
+				else
+				{
+						PrintToConsole(client,"if(fBeforeSpeedDifferenceMULTI>=War3Source_MaxSpeedLimit) ELSE");
+
+						fWarCraftBonus_AND_TF2Bonus = FloatAdd(fBeforeSpeedDifferenceMULTI,speedmulti)-1.0;
+						PrintToConsole(client,"fWarCraftBonus_AND_TF2Bonus is %.2f",fWarCraftBonus_AND_TF2Bonus);
+
+						if(War3Source_MaxSpeedLimit>0.0)
+						{
+							PrintToConsole(client,"if(War3Source_MaxSpeedLimit>0.0)");
+							if(fWarCraftBonus_AND_TF2Bonus>=War3Source_MaxSpeedLimit)
+							{
+								PrintToConsole(client,"if(War3Source_MaxSpeedLimit>0.0)");
+
+								speedmulti = War3Source_MaxSpeedLimit;
+								PrintToConsole(client,"speedmulti = War3Source_MaxSpeedLimit = %.2f",speedmulti);
+								if(fBeforeSpeedDifferenceMULTI!=0.0)
+								{
+									speedBefore[client]=FloatMul(fclassbasespeed,fBeforeSpeedDifferenceMULTI);
+									PrintToConsole(client,"speedBefore[client]=FloatMul(fclassbasespeed,fBeforeSpeedDifferenceMULTI) is %.2f",speedBefore[client]);
+								}
+								else
+								{
+									speedBefore[client]=currentmaxspeed;
+									PrintToConsole(client,"speedBefore[client]=currentmaxspeed is %.2f",speedBefore[client]);
+								}
+							}
+							else
+							{
+								speedmulti=fWarCraftBonus_AND_TF2Bonus;
+							}
+						}
+					//}
+				}
+				//}
 
 				gspeedmulti[client]=speedmulti;
-				newmaxspeed=FloatMul(speedBefore[client],speedmulti);
-				if(newmaxspeed<0.1)
+				PrintToConsole(client,"gspeedmulti[client]=speedmulti = %.2f",gspeedmulti[client]);
+				PrintToConsole(client,"fclassbasespeed = %.2f",fclassbasespeed);
+				fnewmaxspeed=FloatMul(fclassbasespeed,speedmulti);
+				if(fnewmaxspeed<0.1)
 				{
-					newmaxspeed=0.1;
+					fnewmaxspeed=0.1;
 				}
 
+				speedWeSet[client]=fnewmaxspeed;
+				PrintToConsole(client,"speedWeSet[client]=fnewmaxspeed = %.2f",fnewmaxspeed);
 
-				speedWeSet[client]=newmaxspeed;
-
-				SetEntDataFloat(client,m_OffsetSpeed,newmaxspeed,true);
+				SetEntDataFloat(client,m_OffsetSpeed,fnewmaxspeed,true);
 			}
 			new MoveType:currentmovetype=GetEntityMoveType(client);
 			new MoveType:shouldmoveas=MOVETYPE_WALK;
@@ -410,4 +432,5 @@ stock GetWeaponAlpha(client)
 	}
 	return 255;
 }
+
 

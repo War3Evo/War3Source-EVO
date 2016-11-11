@@ -492,6 +492,13 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	{
 		War3_ChatMessage(client,"Your before speed is %.2f",speedBefore[client]);
 	}
+	else if(CommandCheck(arg1,"vars")||CommandCheck(arg1,"!vars"))
+	{
+		War3_ChatMessage(client,"fclassbasespeed is %.2f",fclassbasespeed);
+		War3_ChatMessage(client,"fBeforeSpeedDifferenceMULTI is %.2f",fBeforeSpeedDifferenceMULTI);
+		War3_ChatMessage(client,"fWarCraftBonus_AND_TF2Bonus is %.2f",fWarCraftBonus_AND_TF2Bonus);
+		War3_ChatMessage(client,"fnewmaxspeed is %.2f",fnewmaxspeed);
+	}
 	else if(CommandCheck(arg1,"speed")||CommandCheck(arg1,"!speed"))
 	{
 		int ClientX=client;
