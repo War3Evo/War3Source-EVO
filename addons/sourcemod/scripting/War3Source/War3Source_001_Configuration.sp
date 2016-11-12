@@ -10,8 +10,11 @@ War3Source_InitCVars()
 
 	gh_AllowDeveloperPowers = CreateConVar("war3_allow_developer_powers", "0", "0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc.");
 
-	gh_MaxSpeedLimitConvar = CreateConVar("war3_maxspeed_limit", "1.4", "0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc.");
+	gh_MaxSpeedLimitConvar = CreateConVar("war3_maxspeed_limit", "1.4", "Must be a float.\nControls the overall speed limit of Warcraft, and allows TF2 speed bonuses to exceed it.");
 
+	gh_MaxSpeedDebugConvar = CreateConVar("war3_maxspeed_debug", "0", "0 disabled / 1 enabled\nallows maxspeed debug messages.");
+
+	HookConVarChange(gh_MaxSpeedDebugConvar, War3ConVarChanged);
 	HookConVarChange(gh_MaxSpeedLimitConvar, War3ConVarChanged);
 	HookConVarChange(gh_CVAR_War3Source_Pause, War3ConVarChanged);
 
@@ -64,18 +67,18 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 	}
 	else if(cvar == gh_MaxSpeedLimitConvar)
 	{
-		War3Source_MaxSpeedLimit = StringToFloat(newVal);
+		fWar3_MaxSpeedLimit = StringToFloat(newVal);
 
 		War3_ChatMessage(0,"{yellow}Max Warcraft Speed limits:");
-		float fScout = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Scout));
-		float fSoldier = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Soldier));
-		float fDemo = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_DemoMan));
-		float fMedic = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Medic));
-		float fPyro = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Pyro));
-		float fSpy = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Spy));
-		float fEngineer = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Engineer));
-		float fSniper = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Sniper));
-		float fHeavy = FloatMul(War3Source_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Heavy));
+		float fScout = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Scout));
+		float fSoldier = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Soldier));
+		float fDemo = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_DemoMan));
+		float fMedic = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Medic));
+		float fPyro = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Pyro));
+		float fSpy = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Spy));
+		float fEngineer = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Engineer));
+		float fSniper = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Sniper));
+		float fHeavy = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Heavy));
 
 		War3_ChatMessage(0,"{yellow}Scout %.2f | Soldier %.2f | Demo %.2f",fScout,fSoldier,fDemo);
 		War3_ChatMessage(0,"{yellow}Medic %.2f | Pyro %.2f | Spy %.2f",fMedic,fPyro,fSpy);
@@ -89,6 +92,10 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 				reapplyspeed[client]++;
 			}
 		}
+	}
+	else if(cvar == gh_MaxSpeedDebugConvar)
+	{
+		//gh_MaxSpeedDebugConvar
 	}
 }
 

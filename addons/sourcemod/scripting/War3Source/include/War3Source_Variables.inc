@@ -239,8 +239,10 @@ Handle Cvartrie;
 Handle Cvararraylist; //cvar
 Handle Cvararraylist2; //cvar definition
 
+Handle gh_MaxSpeedDebugConvar;
+bool bMaxSpeedDebugMessages = false;
 Handle gh_MaxSpeedLimitConvar;
-float War3Source_MaxSpeedLimit = 1.4;
+float fWar3_MaxSpeedLimit = 1.4;
 
 //=============================
 // War3Source_Engine_BuffSpeedGravGlow
