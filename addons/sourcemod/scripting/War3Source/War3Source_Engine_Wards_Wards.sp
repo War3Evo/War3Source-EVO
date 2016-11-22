@@ -136,6 +136,7 @@ public JarateBomber( victim, level, Float:duration )
 							new Tcolor[4]=RGBA_COLOR_YELLOW;
 							Tcolor[3]=50; // more dark yellow flash
 							W3FlashScreen( x, Tcolor );
+							W3FlashScreen( x, Tcolor );
 							PrintCenterText(x,"Jarated by an enemy yellow ward! -->> Say \"antiwards\" to be immune next time!");
 						}
 						else
@@ -288,8 +289,10 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 
 			W3FlashScreen(owner,Tcolor);
 			W3FlashScreen(victim,Tcolor);
+			W3FlashScreen(victim,Tcolor);
 
-			War3_WardVisualEffect(wardindex, {255, 0, 0, 255}, 0, WARD_TARGET_ENEMYS);
+			//War3_WardVisualEffect(wardindex, {255, 0, 0, 255}, 0, WARD_TARGET_ENEMYS);
+			War3_WardVisualEffect(wardindex, WARD_RGBA_COLOR_PINK, 0, WARD_TARGET_ENEMYS);
 
 			War3_NotifyPlayerTookDamageFromSkill(victim, owner, damage, War3_GetWardSkill(wardindex));
 
@@ -332,6 +335,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			new Tcolor[4]=RGBA_COLOR_GREEN;
 			Tcolor[3]=40;
 			W3FlashScreen(victim,Tcolor);
+			W3FlashScreen(victim,Tcolor);
 #if GGAMETYPE == GGAME_TF2
 			War3_ShowHealthGainedParticle(victim);
 			War3_TFHealingEvent(victim, healAmount);
@@ -372,6 +376,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 
 			new Tcolor[4]=RGBA_COLOR_BLUE;
 			Tcolor[3]=50;
+			W3FlashScreen(victim,Tcolor);
 			W3FlashScreen(victim,Tcolor);
 
 			new wardskill = War3_GetWardSkill(wardindex);
@@ -414,6 +419,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 
 			new Tcolor[4]=RGBA_COLOR_ORANGE;
 			Tcolor[3]=50;
+			W3FlashScreen(victim,Tcolor);
 			W3FlashScreen(victim,Tcolor);
 
 			//new wardskill = War3_GetWardSkill(wardindex);
@@ -504,6 +510,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			W3FlashScreen(owner,Tcolor);
 			Tcolor=RGBA_COLOR_RED;
 			Tcolor[3]=40;
+			W3FlashScreen(victim,Tcolor);
 			W3FlashScreen(victim,Tcolor);
 
 			new team = GetClientTeam(owner);

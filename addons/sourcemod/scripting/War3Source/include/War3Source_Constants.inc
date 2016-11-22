@@ -871,6 +871,23 @@ stock any:W3GetHintPriorityType(W3HintPriority:priority){
 #define RGBA_COLOR_BROWN	{139,69,19,3}
 #define RGBA_COLOR_VIOLET	{238,130,238,3}
 
+#define WARD_RGBA_COLOR_RED		{255,0,0,255}
+#define WARD_RGBA_COLOR_GREEN	{0,255,0,255}
+#define WARD_RGBA_COLOR_BLUE		{0,0,255,255}
+#define WARD_RGBA_COLOR_YELLOW	{255,255,0,255}
+#define WARD_RGBA_COLOR_ORANGE	{255,69,0,255}
+#define WARD_RGBA_COLOR_PURPLE	{128,0,128,255}
+#define WARD_RGBA_COLOR_CYAN		{255,0,255,255}
+#define WARD_RGBA_COLOR_WHITE	{255,255,255,255}
+#define WARD_RGBA_COLOR_BLACK	{0,0,0,255}
+#define WARD_RGBA_COLOR_GREY		{128,128,128,255}
+#define WARD_RGBA_COLOR_PINK		{255,20,147,255}
+#define WARD_RGBA_COLOR_MAROON	{128,0,0,255}
+#define WARD_RGBA_COLOR_SKYBLUE	{135,206,25,255}
+#define WARD_RGBA_COLOR_GOLD		{255,215,0,255}
+#define WARD_RGBA_COLOR_BROWN	{139,69,19,255}
+#define WARD_RGBA_COLOR_VIOLET	{238,130,238,255}
+
 // The following are from the SourceSDK, used for the optional flags field of War3_FlashScreen
 #define FFADE_IN			0x0001		// Just here so we don't pass 0 into the function, YOUR SCREEN DECAYS AND YOU SEE CLEARLY SLOWLY
 #define FFADE_OUT			0x0002		// Fade out (not in)
