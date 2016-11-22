@@ -38,6 +38,7 @@ new Forward_Priority = PRIORITY_BOTTOM;
 new Handle:g_hSoundFile = INVALID_HANDLE;
 new Handle:g_hPriority = INVALID_HANDLE;
 new Handle:g_hStockSound = INVALID_HANDLE;
+//Handle g_hRaceIDSound = null;
 
 //new Handle:g_hHistoryFiles = INVALID_HANDLE;
 
@@ -300,8 +301,8 @@ UpdateDownloadControl()
 		//ClearArray(g_hHistoryFiles);
 		//LogDownloads("CLEARED HISTORY FILES [DownloadCount<=0]");
 	//}
-	ClearArray(g_hSoundFile);
-	ClearArray(g_hPriority);
+	//ClearArray(g_hSoundFile);
+	//ClearArray(g_hPriority);
 }
 
 new OnPluginStartIndex=1;
@@ -470,8 +471,15 @@ bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloa
 			// Add to download tables if custom file
 			if(GetArrayCell(g_hStockSound, iSoundIndex)<=0)
 			{
-				// false so not to precache twice!
+				// Do not precache races or items (for now)
+				//if(GetArrayCell(g_hRaceIDSound, iSoundIndex)>0)
+				//{
+					//War3_AddSoundFiles(SoundModify,true,false);
+				//}
+				//else
+				//{
 				War3_AddSoundFiles(SoundModify,true);
+				//}
 				if(GetConVarInt(EnablePRECACHEDownloadsCvar)>0)
 				{
 					Format(StringDetail,sizeof(StringDetail),"**AddFileToDownloadsTable** %s",SoundModify);
@@ -554,6 +562,11 @@ public War3Source_Engine_Download_Control_OnMapEnd()
 	CurrentClientsConnected=0;
 	IsOnMapEnd=true;
 
+	ClearArray(g_hSoundFile);
+	ClearArray(g_hStockSound);
+	//ClearArray(g_hRaceIDSound);
+	ClearArray(g_hPriority);
+
 	CacheFiles();
 }
 
@@ -572,27 +585,89 @@ public bool:War3Source_Engine_Download_Control_InitNatives()
 
 	g_hStockSound = CreateArray(1);
 
+	//g_hRaceIDSound = CreateArray(1);
+
 	//g_hHistoryFiles = CreateArray(ByteCountToCells(1024));
 
 	return true;
 }
 
-public Native_War3_AddSound(Handle:plugin, numParams)
+public int Native_War3_AddSound(Handle:plugin, numParams)
 {
-	new String:sSoundFile[1024];
+	//PrintToServer("numParams %d",numParams);
+	char sSoundFile[1024];
 	GetNativeString(1, sSoundFile, sizeof(sSoundFile));
 
 	if(FindStringInArray(g_hSoundFile, sSoundFile)==-1) // if not found, add
 	{
-		new stocksound = GetNativeCell(2);
+		int stocksound = GetNativeCell(2);
 		PushArrayCell(g_hStockSound, stocksound);
 
-		new priority = GetNativeCell(3);
+		int priority = GetNativeCell(3);
 		if(priority==PRIORITY_TAKE_FORWARD)
 		{
 			priority = Forward_Priority;
 		}
 		PushArrayCell(g_hPriority, priority);
 		PushArrayString(g_hSoundFile, sSoundFile);
+
+		/*
+		if(numParams==4)
+		{
+			int iRaceID = GetNativeCell(4);
+			PushArrayCell(g_hRaceIDSound, iRaceID);
+		}
+		else
+		{
+			PushArrayCell(g_hRaceIDSound, 0);
+		}*/
+
 	}
 }
+
+//if(GetArrayCell(g_hRaceIDSound, iSoundIndex)>0))
+// an old idea which could possibly work
+/*
+public War3Source_Engine_Download_Control_EnableRace(int iRaceID)
+{
+	if(iRaceID==0) return;
+	char TempBuffer[PLATFORM_MAX_PATH];
+	//PrintToServer("g_hSoundFile GetArraySize %d",GetArraySize(g_hSoundFile));
+	bool RaceFound = false;
+	for(int i = 0; i < GetArraySize(g_hSoundFile); i++)
+	{
+		//PrintToServer("g_hSoundFile GetArraySize %d",GetArraySize(g_hSoundFile));
+		//PrintToServer("g_hRaceIDSound GetArraySize %d",GetArraySize(g_hRaceIDSound));
+
+		//PrintToServer("Download_Control_EnableRace index %i",i);
+		if(GetArrayCell(g_hRaceIDSound, i)==iRaceID)
+		{
+			RaceFound=true;
+			GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
+			//precache sounds
+			if(PrecacheScriptSound(TempBuffer))
+			{
+				PrintToServer("%s PrecacheScriptSound",TempBuffer);
+				PrintToServer("RaceID %d",iRaceID);
+				PrintToServer("%s Precached!",TempBuffer);
+			}
+			else
+			{
+				PrintToServer("RaceID %d",iRaceID);
+				PrintToServer("%s PrecacheScriptSound ELSE",TempBuffer);
+				if(PrecacheSound(TempBuffer))
+				{
+					PrintToServer("%s PrecacheSound Successful!",TempBuffer);
+				}
+				else
+				{
+					PrintToServer("%s PrecacheSound NOT Successful!",TempBuffer);
+				}
+			}
+		}
+	}
+	if(!RaceFound)
+	{
+		PrintToServer("Race Sounds %d sound not in g_hSoundFile!",iRaceID);
+	}
+}*/

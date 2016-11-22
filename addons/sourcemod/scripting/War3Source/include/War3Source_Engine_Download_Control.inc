@@ -41,7 +41,8 @@
 
  * @return nothing
  */
-native War3_AddSound(String:soundfile[],stocksound=0,priority=PRIORITY_TAKE_FORWARD);
+//native void War3_AddSound(char[] soundfile,int stocksound=0,int priority=PRIORITY_TAKE_FORWARD,int RaceID=0);
+native void War3_AddSound(char[] soundfile,int stocksound=0,int priority=PRIORITY_TAKE_FORWARD);
 
 // WARD EVENTS
 
