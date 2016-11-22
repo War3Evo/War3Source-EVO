@@ -289,8 +289,8 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 			if(!Silenced(client)&&(bypass||War3_SkillNotInCooldown(client,thisRaceID,ULT_FLAMESTRIKE,true)))
 			{
 				/////Flame Strike
-				//int target = War3_GetTargetInViewCone(client,UltimateMaxDistance[ult_level],false,23.0,IsBurningFilter,ULT_FLAMESTRIKE);
-				int target = client;
+				int target = War3_GetTargetInViewCone(client,UltimateMaxDistance[ult_level],false,23.0,IsBurningFilter,ULT_FLAMESTRIKE);
+				//int target = client;
 				if(target>0)
 				{
 					++UltimateUsed[client];
@@ -350,33 +350,33 @@ public Action BurnLoop(Handle timer,any userid)
 {
 	int victim=GetClientOfUserId(userid);
 	int attacker=GetClientOfUserId(BeingBurnedBy[victim]);
-	PrintToChatAll("Burns Remaining %d",BurnsRemaining[victim]);
+	//PrintToChatAll("Burns Remaining %d",BurnsRemaining[victim]);
 	if(victim>0 && attacker>0 && BurnsRemaining[victim]>0 && IsClientInGame(victim) && IsClientInGame(attacker) && IsPlayerAlive(victim))
 	{
-		PrintToChatAll("BurnsRemaining[victim]>0");
+		//PrintToChatAll("BurnsRemaining[victim]>0");
 
 		if (W3HasImmunity(victim,Immunity_Ultimates))
 		{
 			W3ResetPlayerColor(victim,thisRaceID);
 			if (FireEntityEffect[victim]>0 && IsValidEdict(FireEntityEffect[victim]))
 			{
-				PrintToChatAll("First FireEntityEffect Kill Start");
+				//PrintToChatAll("First FireEntityEffect Kill Start");
 				AcceptEntityInput(FireEntityEffect[victim], "Kill");
-				PrintToChatAll("First FireEntityEffect Kill End");
+				//PrintToChatAll("First FireEntityEffect Kill End");
 				FireEntityEffect[victim]=-1;
 			}
 			BurnsRemaining[victim]=0;
 			War3_NotifyPlayerImmuneFromSkill(attacker, victim, ULT_FLAMESTRIKE);
-			PrintToChatAll("War3_NotifyPlayerImmuneFromSkill ULT_FLAMESTRIKE");
+			//PrintToChatAll("War3_NotifyPlayerImmuneFromSkill ULT_FLAMESTRIKE");
 			return;
 		}
 
 		BurnsRemaining[victim]--;
-		PrintToChatAll("Burns Remaining %d (inside function)",BurnsRemaining[victim]);
+		//PrintToChatAll("Burns Remaining %d (inside function)",BurnsRemaining[victim]);
 		int damage = ULT_DAMAGE_TF;
 		if(War3_DealDamage(victim,damage,attacker,DMG_BURN,"flamestrike",_,W3DMGTYPE_MAGIC))
 		{
-			PrintToChatAll("War3_DealDamage flamestrike is True");
+			//PrintToChatAll("War3_DealDamage flamestrike is True");
 			War3_NotifyPlayerTookDamageFromSkill(victim, attacker, War3_GetWar3DamageDealt(), ULT_FLAMESTRIKE);
 		}
 		CreateTimer(1.0,BurnLoop,userid);
@@ -386,9 +386,9 @@ public Action BurnLoop(Handle timer,any userid)
 			W3ResetPlayerColor(victim,thisRaceID);
 			if (IsValidEdict(FireEntityEffect[victim]))
 			{
-				PrintToChatAll("2ne FireEntityEffect Kill Start");
+				//PrintToChatAll("2ne FireEntityEffect Kill Start");
 				AcceptEntityInput(FireEntityEffect[victim], "Kill");
-				PrintToChatAll("2ne FireEntityEffect Kill End");
+				//PrintToChatAll("2ne FireEntityEffect Kill End");
 				FireEntityEffect[victim]=-1;
 			}
 		}
