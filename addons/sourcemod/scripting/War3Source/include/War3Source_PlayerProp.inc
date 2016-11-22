@@ -1,8 +1,9 @@
+// IMPORTANT: TO ADD MORE TO THIS LIST, ADD TO THE BOTTOM!
+
 //Basically Instance variables for the Player Class
 enum W3PlayerProp
 {
 	bool:bPutInServer,
-	TFClassType:CurrentClass,
 	CurrentRace,
 	PendingRace,
 	PlayerGold,
@@ -42,7 +43,10 @@ enum W3PlayerProp
 	iAdminSecurityExtra,
 	//iTomeCount,
 	//iAutoBuyMaxGoldItem,
-	iGraphics
+	iGraphics,
+#if GGAMETYPE == GGAME_TF2
+	TFClassType:CurrentClass
+#endif
 }
 
 native int W3SetPlayerProp(int client,W3PlayerProp property,any value);

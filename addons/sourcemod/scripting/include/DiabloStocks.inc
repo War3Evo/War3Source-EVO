@@ -271,7 +271,9 @@ stock Float:TF2_GetClassSpeed(TFClassType:class)
 				case TFClass_DemoMan:   return 280.0;
 				case TFClass_Medic:     return 320.0;
 				case TFClass_Pyro:      return 300.0;
-				case TFClass_Spy:       return 300.0;
+				// Spy was 300.0, but patch update made it 320.0
+				// https://wiki.teamfortress.com/wiki/Speed
+				case TFClass_Spy:       return 320.0;
 				case TFClass_Engineer:  return 300.0;
 				case TFClass_Sniper:    return 300.0;
 				case TFClass_Heavy:     return 230.0;
