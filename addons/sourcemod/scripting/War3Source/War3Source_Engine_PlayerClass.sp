@@ -49,7 +49,7 @@ public War3Source_Engine_PlayerClass_OnPluginStart()
 
 	// If set to 1, it will enable / disable races automatically.
 	// if set to 0, it will enable races automatically and not disable them.
-	hRaceEnableOrDisableCvar=CreateConVar("war3_race_dynamic_loading","1","1 to enable, 0 to disable");
+	hRaceEnableOrDisableCvar=CreateConVar("war3_race_dynamic_loading","1","1 to enable, 0 to disable.  Helps save memory.");
 
 	// does not allow enabling or disabling of races
 	// Do not set this to 1 on start up or no races willl be enabled!
@@ -113,6 +113,8 @@ public void EnableRace(newrace)
 	if(GetConVarBool(hRaceEnableOrDisableFullCvar)) return;
 
 	// Enable new race
+	//War3Source_Engine_Download_Control_EnableRace(newrace);
+
 	Call_StartForward(g_OnWar3RaceEnabled);
 	Call_PushCell(newrace);
 	Call_Finish(dummy);
