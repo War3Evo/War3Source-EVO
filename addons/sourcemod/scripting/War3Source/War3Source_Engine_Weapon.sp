@@ -68,11 +68,21 @@ public bool:War3Source_Engine_Weapon_InitNativesForwards()
 	return true;
 }
 
-public NW3GetCurrentWeaponEnt(Handle:plugin,numParams){
+public NW3GetCurrentWeaponEnt(Handle:plugin,numParams)
+{
 	return GetCurrentWeaponEnt(GetNativeCell(1));
 }
-GetCurrentWeaponEnt(client){
-	return GetEntDataEnt2(client,m_OffsetActiveWeapon);
+GetCurrentWeaponEnt(client)
+{
+	if(client)
+	{
+		int wep = GetEntDataEnt2(client,m_OffsetActiveWeapon);
+		return wep;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 public NW3DropWeapon(Handle:plugin,numParams)
