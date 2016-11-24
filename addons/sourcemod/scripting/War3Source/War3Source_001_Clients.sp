@@ -45,6 +45,7 @@ public OnClientPutInServer(client)
 	//War3Source_Engine_Talents_OnClientPutInServer(client);
 #if GGAMETYPE == GGAME_CSGO
 	War3Source_Engine_BuffSpeedGravGlow_OnClientPutInServer(client);
+	War3Source_Engine_CSGO_Radar_OnClientChange(client);
 #endif
 }
 
@@ -73,6 +74,10 @@ public OnClientDisconnect(client)
 	War3Source_Engine_Weapon_OnClientDisconnect(client);
 
 	War3Source_Engine_Casting_OnClientDisconnect(client);
+
+#if GGAMETYPE == GGAME_CSGO
+	War3Source_Engine_CSGO_Radar_OnClientChange(client);
+#endif
 }
 
 public OnClientDisconnect_Post(client)

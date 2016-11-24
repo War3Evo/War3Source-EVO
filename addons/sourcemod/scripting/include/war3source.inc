@@ -892,13 +892,13 @@ native W3Deny();
 
 
 #if GGAMETYPE == GGAME_CSGO
-stock CSGO_RADAR(client,bool:TurnON)
+stock void CSGO_RADAR(int client,bool TurnON)
 {
 	if(ValidPlayer(client))
 	{
 		if(TurnON)
 		{
-			new hudflags = GetEntProp(client, Prop_Send, "m_iHideHUD");
+			int hudflags = GetEntProp(client, Prop_Send, "m_iHideHUD");
 			if(hudflags & HIDE_RADAR)
 			{
 				hudflags &= ~HIDE_RADAR;
@@ -908,7 +908,7 @@ stock CSGO_RADAR(client,bool:TurnON)
 		}
 		else
 		{
-			new hudflags = GetEntProp(client, Prop_Send, "m_iHideHUD");
+			int hudflags = GetEntProp(client, Prop_Send, "m_iHideHUD");
 			if(!(hudflags & HIDE_RADAR))
 			{
 				hudflags |= HIDE_RADAR;
