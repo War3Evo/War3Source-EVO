@@ -87,7 +87,6 @@ public OnPluginStart()
 	War3Source_Engine_WCX_Engine_Skills_OnPluginStart();
 #if GGAMETYPE != GGAME_CSGO
 	War3Source_Engine_SteamTools_OnPluginStart();
-	War3Source_Engine_CSGO_Radar_OnPluginStart();
 #endif
 	War3Source_Engine_BotControl_OnPluginStart();
 
