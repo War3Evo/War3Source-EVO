@@ -259,3 +259,11 @@ float gspeedmulti[MAXPLAYERSCUSTOM];
 
 float speedBefore[MAXPLAYERSCUSTOM];
 float speedWeSet[MAXPLAYERSCUSTOM];
+
+
+//=============================
+// War3Source_Engine_CSGO_Radar
+//=============================
+Handle mp_teamcashawards;
+Handle mp_playercashawards;
+int CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
