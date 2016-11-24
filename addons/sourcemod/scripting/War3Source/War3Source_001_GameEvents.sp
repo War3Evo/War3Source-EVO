@@ -55,6 +55,10 @@ public Internal_OnWar3EventDeath(victim,attacker,deathrace,distance,attacker_hpl
 #if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 	War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker);
 #endif
+
+#if GGAMETYPE == GGAME_CSGO
+	War3Source_Engine_CSGO_Radar_OnWar3EventDeath(victim);
+#endif
 }
 
 new iRoundNumber;
