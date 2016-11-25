@@ -440,7 +440,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	else if(CommandCheck(arg1,"war3version"))
 	{
 		char version[64];
-		Handle g_hCVar = FindConVar("war3_version");
+		Handle g_hCVar = FindConVar("war3e_version");
 		if(g_hCVar!=INVALID_HANDLE)
 		{
 			GetConVarString(g_hCVar, version, sizeof(version));
