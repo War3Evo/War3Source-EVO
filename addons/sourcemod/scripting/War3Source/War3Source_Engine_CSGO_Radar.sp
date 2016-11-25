@@ -59,9 +59,10 @@ public Action:Timer_CheckMenu(Handle:timer)
 			else
 			{
 				// menu disabled / radar on
-				CSGO_RADAR(i,true);
+				//CSGO_RADAR(i,true);
 				if(CSGO_Radar_Changed[i]!=11)
 				{
+					CSGO_RADAR(i,true);
 					//PrintToChatAll("dollar sign ON");
 					CSGO_Radar_Changed[i]=11;
 					if(mp_teamcashawards==null || mp_playercashawards==null)
