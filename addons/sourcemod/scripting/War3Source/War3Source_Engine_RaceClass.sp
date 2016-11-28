@@ -1221,10 +1221,14 @@ CreateRaceEnd(raceid){
 			Format(cvarstr,sizeof(cvarstr),"%s_team%d_limit",shortname,2);
 			RestrictLimitCvar[raceid][1]=W3CreateCvar(cvarstr,"99","How many people can play this race on team 2 (BLU/CT)",Internal_NWar3_IsRaceReloading());
 
-			new temp;
+			int temp;
 			Format(cvarstr,sizeof(cvarstr),"%s_restrictclass",shortname);
 			temp=W3CreateCvar(cvarstr,"","Which classes are not allowed to play this race? Separate by comma. MAXIMUM OF 2!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",Internal_NWar3_IsRaceReloading());
 			SetRaceCell(raceid,ClassRestrictionCvar,temp);
+
+			Format(cvarstr,sizeof(cvarstr),"%s_onlysingleclass",shortname);
+			temp=W3CreateCvar(cvarstr,"","Which class can only play this race? MAXIMUM OF 1!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",Internal_NWar3_IsRaceReloading());
+			SetRaceCell(raceid,OnlySingleClassAllowedCvar,temp);
 
 			Format(cvarstr,sizeof(cvarstr),"%s_category",shortname);
 			SetRaceCell(raceid,RaceCategorieCvar,W3CreateCvar(cvarstr,"default","Determines in which Category the race should be displayed(if cats are active)",Internal_NWar3_IsRaceReloading()));

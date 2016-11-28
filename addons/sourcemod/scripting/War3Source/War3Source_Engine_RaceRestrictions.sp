@@ -245,12 +245,37 @@ enum TFClassType
 	TFClass_Engineer
 };*/
 #if GGAMETYPE == GGAME_TF2
-			new String:classlist[][32]={"unknown","scout","sniper","soldier","demoman","medic","heavy","pyro","spy","engineer"};
+			char classlist[][32]={"unknown","scout","sniper","soldier","demoman","medic","heavy","pyro","spy","engineer"};
 			new class=_:TF2_GetPlayerClass(client);
-			new String:classstring[32];
+			char classstring[32];
 			strcopy(classstring,sizeof(classstring),classlist[class]);
 
-			new cvarid=GetRaceCell(race_selected,ClassRestrictionCvar);
+			int cvarid=GetRaceCell(race_selected,OnlySingleClassAllowedCvar);
+			//DP("cvar %d %s",cvarid,cvarstring);
+
+			char cvarstr[100];
+			GetCvar(cvarid,cvarstr,sizeof(cvarstr));
+
+			PrintToServer("cvarid %d",cvarid);
+			PrintToServer("cvarstr %s",cvarstr);
+
+			if(strlen(cvarstr)>0 && !StrEqual(cvarstr,classstring))
+			{
+				//DP("deny");
+				if(No_Message==false)
+				{
+					War3_ChatMessage(client,"Race restricted due to class only allowed for this race is: %s",cvarstr);
+				}
+				return W3Deny();
+			}
+
+			//new String:classlist[][32]={"unknown","scout","sniper","soldier","demoman","medic","heavy","pyro","spy","engineer"};
+			//new class=_:TF2_GetPlayerClass(client);
+			//new String:classstring[32];
+			//strcopy(classstring,sizeof(classstring),classlist[class]);
+
+			//int cvarid=GetRaceCell(race_selected,ClassRestrictionCvar);
+			cvarid=GetRaceCell(race_selected,ClassRestrictionCvar);
 			//DP("cvar %d %s",cvarid,cvarstring);
 
 			if(W3FindStringInCvar(cvarid,classstring,9)) // was max of 2 --> if(W3FindStringInCvar(cvarid,classstring,2))
