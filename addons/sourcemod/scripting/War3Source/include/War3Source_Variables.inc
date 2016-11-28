@@ -264,6 +264,8 @@ float speedWeSet[MAXPLAYERSCUSTOM];
 //=============================
 // War3Source_Engine_CSGO_Radar
 //=============================
+#if GGAMETYPE == GGAME_CSGO
 Handle mp_teamcashawards;
 Handle mp_playercashawards;
 int CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
+#endif
