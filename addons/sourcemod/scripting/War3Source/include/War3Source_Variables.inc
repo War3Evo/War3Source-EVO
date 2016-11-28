@@ -244,6 +244,8 @@ Handle gh_MaxSpeedDebugConvar;
 bool bMaxSpeedDebugMessages = false;
 Handle gh_MaxSpeedLimitConvar;
 float fWar3_MaxSpeedLimit = 1.4;
+
+bool bNoDominations = false;
 #endif
 
 //=============================

@@ -17,6 +17,14 @@ War3Source_InitCVars()
 
 	HookConVarChange(gh_MaxSpeedDebugConvar, War3ConVarChanged);
 	HookConVarChange(gh_MaxSpeedLimitConvar, War3ConVarChanged);
+
+
+	gh_war3_nodominations = CreateConVar("war3_nodominations", "0", "Disable Domination & Revenge broadcasting?", FCVAR_PLUGIN, true, 0.0, true, 1.0);
+
+	// Make some late-load hacks
+	HookConVarChange(gh_war3_nodominations, War3ConVarChanged);
+	War3ConVarChanged(gh_war3_nodominations, "1", "0");
+
 #endif
 	HookConVarChange(gh_CVAR_War3Source_Pause, War3ConVarChanged);
 
@@ -99,6 +107,20 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 	else if(cvar == gh_MaxSpeedDebugConvar)
 	{
 		bMaxSpeedDebugMessages = view_as<bool>(StringToInt(newVal));
+	}
+	else if(cvar == gh_war3_nodominations)
+	{
+		bNoDominations = view_as<bool>(StringToInt(newVal));
+		if(bNoDominations)
+		{
+			int entity = GetPlayerResourceEntity();
+			SDKHookEx(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnResourceThink);
+		}
+		else
+		{
+			int entity = GetPlayerResourceEntity();
+			SDKUnhook(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnResourceThink);
+		}
 	}
 #endif
 }

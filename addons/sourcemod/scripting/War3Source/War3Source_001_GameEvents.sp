@@ -177,18 +177,18 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 {
 	if(MapChanging || War3SourcePause) return Plugin_Continue;
 
-	new uid_victim = GetEventInt(event, "userid");
-	new uid_attacker = GetEventInt(event, "attacker");
+	int uid_victim = GetEventInt(event, "userid");
+	int uid_attacker = GetEventInt(event, "attacker");
 	//new uid_entity = GetEventInt(event, "entityid");
 
-	new victimIndex = 0;
-	new attackerIndex = 0;
+	int victimIndex = 0;
+	int attackerIndex = 0;
 
-	new victim = GetClientOfUserId(uid_victim);
-	new attacker = GetClientOfUserId(uid_attacker);
+	int victim = GetClientOfUserId(uid_victim);
+	int attacker = GetClientOfUserId(uid_attacker);
 
-	new distance=0;
-	new attacker_hpleft=0;
+	int distance=0;
+	int attacker_hpleft=0;
 
 	//new String:weapon[32];
 	//GetEventString(event, "weapon", weapon, 32);
@@ -197,8 +197,8 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 	if(victim>0&&attacker>0)
 	{
 		//Get the distance
-		new Float:victimLoc[3];
-		new Float:attackerLoc[3];
+		float victimLoc[3];
+		float attackerLoc[3];
 		GetClientAbsOrigin(victim,victimLoc);
 		GetClientAbsOrigin(attacker,attackerLoc);
 		distance = RoundToNearest(FloatDiv(calcDistance(victimLoc[0],attackerLoc[0], victimLoc[1],attackerLoc[1], victimLoc[2],attackerLoc[2]),12.0));
@@ -216,10 +216,30 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 		victimIndex=GetClientOfUserId(uid_victim);
 	}
 
-	new bool:deadringereath=false;
+	int deathFlags = GetEventInt(event, "death_flags");
+
+	if(bNoDominations)
+	{
+		death_flags &= ~(TF_DEATHFLAG_KILLERDOMINATION | TF_DEATHFLAG_ASSISTERDOMINATION | TF_DEATHFLAG_KILLERREVENGE | TF_DEATHFLAG_ASSISTERREVENGE);
+		SetEventInt(event, "death_flags", death_flags);
+
+		if (attacker && IsClientInGame(attacker))
+		{
+			// First remove 'DOMINATED' icon in a scoreboard
+			SetEntData(attacker, m_bPlayerDominated + victim, false, _, true);
+		}
+
+		if (victim && IsClientInGame(victim))
+		{
+			// Then remove 'NEMESIS' icon in a scoreboard
+			SetEntData(victim, m_bPlayerDominatingMe + attacker, false, _, true);
+		}
+	}
+
+	bool deadringereath=false;
 	if(uid_victim>0)
 	{
-		new deathFlags = GetEventInt(event, "death_flags");
+		//int deathFlags = GetEventInt(event, "death_flags");
 		if (deathFlags & 32) //TF_DEATHFLAG_DEADRINGER
 		{
 			deadringereath=true;
@@ -286,4 +306,10 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 	return Plugin_Continue;
 }
 
+#if GGAMETYPE == GGAME_TF2
 
+public War3Source_001_GameEvents_OnResourceThink(entity)
+{
+	// Copies an array of cells to an entity at a dominations offset
+	SetEntDataArray(entity, m_iActiveDominations, zeroCount, MaxClients+1);
+}
