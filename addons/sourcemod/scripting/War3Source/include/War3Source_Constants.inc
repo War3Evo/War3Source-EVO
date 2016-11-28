@@ -717,6 +717,7 @@ enum RaceString
 //simulates race object
 enum ENUM_RaceObject{ //CELLS ONLY, NO STRINGS
 	ClassRestrictionCvar, //for TF
+	OnlySingleClassAllowedCvar, //for TF
 	RaceCategorieCvar,
 	RaceExtends,
 }
