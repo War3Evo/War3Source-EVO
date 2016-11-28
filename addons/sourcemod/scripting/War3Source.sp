@@ -340,9 +340,9 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 	PrintToServer("");
 	PrintToServer("");
 
-	new String:version[64];
+	char version[64];
 	Format(version,sizeof(version),"%s by %s",VERSION_NUM,AUTHORS);
-	new String:Eversion[64];
+	char Eversion[64];
 	Format(Eversion,sizeof(Eversion),"%s by %s",eVERSION_NUM,eAUTHORS);
 	CreateConVar("war3e_version",version,"War3Source:EVO version.",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 	//CreateConVar("a_war3_version",version,"War3Source version.",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
