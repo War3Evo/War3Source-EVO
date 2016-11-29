@@ -245,7 +245,13 @@ bool bMaxSpeedDebugMessages = false;
 Handle gh_MaxSpeedLimitConvar;
 float fWar3_MaxSpeedLimit = 1.4;
 
-bool bNoDominations = false;
+Handle gh_war3_nodominations;
+bool bNoDominations = false, bGetPlayerResourceEntity = false;
+int m_bPlayerDominated, m_bPlayerDominatingMe, m_iActiveDominations, // Net Props
+		zeroCount[MAXPLAYERSCUSTOM];
+
+Handle gh_war3_noscores;
+bool bNoScores = false;
 #endif
 
 //=============================
@@ -270,4 +276,29 @@ float speedWeSet[MAXPLAYERSCUSTOM];
 Handle mp_teamcashawards;
 Handle mp_playercashawards;
 int CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
+#endif
+
+
+// Ascii Art
+#if GGAMETYPE == GGAME_TF2
+stock void NoDominationsART()
+{
+	PrintToServer("::::    :::  ::::::::       :::::::::   ::::::::  ::::    ::::  ::::::::::: ::::    :::     ::: ::::::::::: ::::::::::: ::::::::  ::::    :::  ::::::::  ");
+	PrintToServer(":+:+:   :+: :+:    :+:      :+:    :+: :+:    :+: +:+:+: :+:+:+     :+:     :+:+:   :+:   :+: :+:   :+:         :+:    :+:    :+: :+:+:   :+: :+:    :+: ");
+	PrintToServer(":+:+:+  +:+ +:+    +:+      +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+     :+:+:+  +:+  +:+   +:+  +:+         +:+    +:+    +:+ :+:+:+  +:+ +:+        ");
+	PrintToServer("+#+ +:+ +#+ +#+    +:+      +#+    +:+ +#+    +:+ +#+  +:+  +#+     +#+     +#+ +:+ +#+ +#++:++#++: +#+         +#+    +#+    +:+ +#+ +:+ +#+ +#++:++#++ ");
+	PrintToServer("+#+  +#+#+# +#+    +#+      +#+    +#+ +#+    +#+ +#+       +#+     +#+     +#+  +#+#+# +#+     +#+ +#+         +#+    +#+    +#+ +#+  +#+#+#        +#+ ");
+	PrintToServer("#+#   #+#+# #+#    #+#      #+#    #+# #+#    #+# #+#       #+#     #+#     #+#   #+#+# #+#     #+# #+#         #+#    #+#    #+# #+#   #+#+# #+#    #+# ");
+	PrintToServer("###    ####  ########       #########   ########  ###       ### ########### ###    #### ###     ### ###     ########### ########  ###    ####  ########  ");
+}
+stock void DominationsART()
+{
+	PrintToServer(":::   ::: :::::::::: ::::::::       :::::::::   ::::::::  ::::    ::::  ::::::::::: ::::    :::     ::: ::::::::::: ::::::::::: ::::::::  ::::    :::  ::::::::  ");
+	PrintToServer(":+:   :+: :+:       :+:    :+:      :+:    :+: :+:    :+: +:+:+: :+:+:+     :+:     :+:+:   :+:   :+: :+:   :+:         :+:    :+:    :+: :+:+:   :+: :+:    :+: ");
+	PrintToServer(" +:+ +:+  +:+       +:+             +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+     :+:+:+  +:+  +:+   +:+  +:+         +:+    +:+    +:+ :+:+:+  +:+ +:+        ");
+	PrintToServer("  +#++:   +#++:++#  +#++:++#++      +#+    +:+ +#+    +:+ +#+  +:+  +#+     +#+     +#+ +:+ +#+ +#++:++#++: +#+         +#+    +#+    +:+ +#+ +:+ +#+ +#++:++#++ ");
+	PrintToServer("   +#+    +#+              +#+      +#+    +#+ +#+    +#+ +#+       +#+     +#+     +#+  +#+#+# +#+     +#+ +#+         +#+    +#+    +#+ +#+  +#+#+#        +#+ ");
+	PrintToServer("   #+#    #+#       #+#    #+#      #+#    #+# #+#    #+# #+#       #+#     #+#     #+#   #+#+# #+#     #+# #+#         #+#    #+#    #+# #+#   #+#+# #+#    #+# ");
+	PrintToServer("   ###    ########## ########       #########   ########  ###       ### ########### ###    #### ###     ### ###     ########### ########  ###    ####  ########  ");
+}
 #endif

@@ -216,29 +216,37 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 		victimIndex=GetClientOfUserId(uid_victim);
 	}
 
-	int deathFlags = GetEventInt(event, "death_flags");
+	int deathFlags; //= GetEventInt(event, "death_flags");
 
+#if GGAMETYPE == GGAME_TF2
 	if(bNoDominations)
 	{
-		death_flags &= ~(TF_DEATHFLAG_KILLERDOMINATION | TF_DEATHFLAG_ASSISTERDOMINATION | TF_DEATHFLAG_KILLERREVENGE | TF_DEATHFLAG_ASSISTERREVENGE);
-		SetEventInt(event, "death_flags", death_flags);
+		deathFlags = GetEventInt(event, "death_flags");
+		deathFlags &= ~(TF_DEATHFLAG_KILLERDOMINATION | TF_DEATHFLAG_ASSISTERDOMINATION | TF_DEATHFLAG_KILLERREVENGE | TF_DEATHFLAG_ASSISTERREVENGE);
+		SetEventInt(event, "death_flags", deathFlags);
 
-		if (attacker && IsClientInGame(attacker))
+		if (m_bPlayerDominated>0 && attacker && IsClientInGame(attacker))
 		{
 			// First remove 'DOMINATED' icon in a scoreboard
 			SetEntData(attacker, m_bPlayerDominated + victim, false, _, true);
 		}
 
-		if (victim && IsClientInGame(victim))
+		if (m_bPlayerDominatingMe>0 && victim && IsClientInGame(victim))
 		{
 			// Then remove 'NEMESIS' icon in a scoreboard
 			SetEntData(victim, m_bPlayerDominatingMe + attacker, false, _, true);
 		}
 	}
+#endif
 
 	bool deadringereath=false;
 	if(uid_victim>0)
 	{
+#if GGAMETYPE == GGAME_TF2
+		if(!bNoDominations)
+		{
+			deathFlags = GetEventInt(event, "death_flags");
+		}
 		//int deathFlags = GetEventInt(event, "death_flags");
 		if (deathFlags & 32) //TF_DEATHFLAG_DEADRINGER
 		{
@@ -270,6 +278,9 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 		{
 			W3DoLevelCheck(victimIndex);
 		}
+#else
+		W3DoLevelCheck(victimIndex);
+#endif
 	}
 
 	if(bHasDiedThisFrame[victimIndex]>0){
@@ -307,9 +318,73 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 }
 
 #if GGAMETYPE == GGAME_TF2
-
 public War3Source_001_GameEvents_OnResourceThink(entity)
 {
+	if(!bGetPlayerResourceEntity) return;
 	// Copies an array of cells to an entity at a dominations offset
 	SetEntDataArray(entity, m_iActiveDominations, zeroCount, MaxClients+1);
 }
+
+public War3Source_001_GameEvents__OnMapStart()
+{
+	if(!MapStart)
+	{
+		if(bNoDominations)
+		{
+			// Find the Dominations/Revenge netprops before hooking and creating
+			m_bPlayerDominated    = FindSendPropInfo("CTFPlayer",         "m_bPlayerDominated");
+			m_bPlayerDominatingMe = FindSendPropInfo("CTFPlayer",         "m_bPlayerDominatingMe");
+			m_iActiveDominations = FindSendPropInfo("CTFPlayerResource", "m_iActiveDominations");
+		}
+		int entity = FindEntityByClassname(MaxClients+1, "tf_player_manager");
+		if (entity != -1)
+		{
+			if(bNoScores)
+			{
+				if(SDKHookEx(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnThinkPostScores))
+				{
+					PrintToServer("");
+					PrintToServer("[War3Source: Evolution] No Scores");
+					PrintToServer("");
+				}
+				else
+				{
+					PrintToServer("");
+					PrintToServer("[War3Source: Evolution] ERROR: Could not Hook No Scores");
+					PrintToServer("");
+				}
+			}
+			else
+			{
+				SDKUnhook(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnThinkPostScores);
+				PrintToServer("");
+				PrintToServer("[War3Source: Evolution] Scores");
+				PrintToServer("");
+			}
+		}
+	}
+}
+
+int iTotalScore[MAXPLAYERS+1];
+
+public War3Source_001_GameEvents_OnThinkPostScores(entity)
+{
+	static iTotalScoreOffset = -1;
+	if (iTotalScoreOffset == -1)
+	{
+		iTotalScoreOffset = FindSendPropInfo("CTFPlayerResource", "m_iTotalScore");
+	}
+
+	GetEntDataArray(entity, iTotalScoreOffset, iTotalScore, MaxClients+1);
+
+	for (int i = 1; i <= MaxClients; i++)
+	{
+		if (IsClientInGame(i))
+		{
+			iTotalScore[i] = 0;
+		}
+	}
+
+	SetEntDataArray(entity, iTotalScoreOffset, iTotalScore, MaxClients+1);
+}
+#endif

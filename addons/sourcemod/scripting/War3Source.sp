@@ -446,6 +446,11 @@ public OnMapStart()
 		RacesAndItemsLoaded=true;
 	}
 
+#if GGAMETYPE == GGAME_TF2
+	//must be before MapStart so it knows if its done this before already.
+	War3Source_001_GameEvents__OnMapStart();
+#endif
+
 	MapStart=true;
 
 #if GGAMETYPE == GGAME_CSGO
