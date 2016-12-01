@@ -144,30 +144,33 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 	else if(cvar == gh_war3_noscores)
 	{
 		bNoScores = view_as<bool>(StringToInt(newVal));
-		int entity = FindEntityByClassname(MaxClients+1, "tf_player_manager");
-		if (entity != -1)
+		if(MapStart)
 		{
-			if(bNoScores)
+			int entity = FindEntityByClassname(MaxClients+1, "tf_player_manager");
+			if (entity != -1)
 			{
-				if(SDKHookEx(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnThinkPostScores))
+				if(bNoScores)
 				{
-					PrintToServer("");
-					PrintToServer("[War3Source: Evolution] No Scores");
-					PrintToServer("");
+					if(SDKHookEx(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnThinkPostScores))
+					{
+						PrintToServer("");
+						PrintToServer("[War3Source: Evolution] No Scores");
+						PrintToServer("");
+					}
+					else
+					{
+						PrintToServer("");
+						PrintToServer("[War3Source: Evolution] ERROR: Could not Hook No Scores");
+						PrintToServer("");
+					}
 				}
 				else
 				{
+					SDKUnhook(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnThinkPostScores);
 					PrintToServer("");
-					PrintToServer("[War3Source: Evolution] ERROR: Could not Hook No Scores");
+					PrintToServer("[War3Source: Evolution] Scores");
 					PrintToServer("");
 				}
-			}
-			else
-			{
-				SDKUnhook(entity, SDKHook_ThinkPost, War3Source_001_GameEvents_OnThinkPostScores);
-				PrintToServer("");
-				PrintToServer("[War3Source: Evolution] Scores");
-				PrintToServer("");
 			}
 		}
 	}

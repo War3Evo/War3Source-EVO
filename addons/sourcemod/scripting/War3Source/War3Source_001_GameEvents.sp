@@ -321,6 +321,8 @@ public Action:War3Source_PlayerDeathEvent(Handle:event,const String:name[],bool:
 public War3Source_001_GameEvents_OnResourceThink(entity)
 {
 	if(!bGetPlayerResourceEntity) return;
+	if(entity<=0) return;
+	if(m_iActiveDominations==0) return;
 	// Copies an array of cells to an entity at a dominations offset
 	SetEntDataArray(entity, m_iActiveDominations, zeroCount, MaxClients+1);
 }
@@ -365,25 +367,29 @@ public War3Source_001_GameEvents__OnMapStart()
 	}
 }
 
-int iTotalScore[MAXPLAYERS+1];
+//int iTotalScore[MaxClients+1];
 
 public War3Source_001_GameEvents_OnThinkPostScores(entity)
 {
+	if(entity<=0) return;
+
 	static iTotalScoreOffset = -1;
 	if (iTotalScoreOffset == -1)
 	{
 		iTotalScoreOffset = FindSendPropInfo("CTFPlayerResource", "m_iTotalScore");
 	}
+	if(iTotalScoreOffset<=0) return;
 
-	GetEntDataArray(entity, iTotalScoreOffset, iTotalScore, MaxClients+1);
+	//GetEntDataArray(entity, iTotalScoreOffset, iTotalScore, MaxClients+1);
 
-	for (int i = 1; i <= MaxClients; i++)
-	{
-		if (IsClientInGame(i))
-		{
-			iTotalScore[i] = 0;
-		}
-	}
+	//for (int i = 1; i <= MaxClients; i++)
+	//{
+	//	if (IsClientInGame(i))
+	//	{
+	//		iTotalScore[i] = 0;
+	//	}
+	//}
+	int[] iTotalScore =  new int[MaxClients+1];
 
 	SetEntDataArray(entity, iTotalScoreOffset, iTotalScore, MaxClients+1);
 }
