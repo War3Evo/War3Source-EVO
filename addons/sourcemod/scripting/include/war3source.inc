@@ -1854,8 +1854,11 @@ stock void RemoveCosmetics(iClient)
 #include "War3Source/include/War3Soruce_CoolDown_Manager"
 #include "War3Source/include/War3Source_Messages"
 #include "War3Source/include/War3Source_SQL"
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/include/War3Source_ShopItems"
 #include "War3Source/include/War3Source_ShopItems2"
+#endif
 
 #include "War3Source/include/War3Source_Addon_Bank"
 
@@ -2003,40 +2006,48 @@ methodmap W3player
 	{
 		War3_NotifyPlayerSkillActivated(this.index,skill,activated);
 	}
+#if GGAMEMODE == MODE_WAR3SOURCE
 	public void itemactivated(int skill,bool activated)
 	{
 		War3_NotifyPlayerItemActivated(this.index,skill,activated);
 	}
+#endif
 	public void immunefromskill(int victim,int skill)
 	{
 		// assumes this.index is attacker
 		War3_NotifyPlayerImmuneFromSkill(this.index, victim, skill);
 	}
+#if GGAMEMODE == MODE_WAR3SOURCE
 	public void immunefromitem(int victim,int skill)
 	{
 		// assumes this.index is attacker
 		War3_NotifyPlayerImmuneFromItem(this.index, victim, skill);
 	}
+#endif
 	public void leechedfromskill(int victim,int health, int skill)
 	{
 		// assumes this.index is attacker
 		War3_NotifyPlayerLeechedFromSkill(victim, this.index, health, skill);
 	}
+#if GGAMEMODE == MODE_WAR3SOURCE
 	public void leechedfromitem(int victim,int health, int item)
 	{
 		// assumes this.index is attacker
 		War3_NotifyPlayerLeechedFromItem(victim, this.index, health, item);
 	}
+#endif
 	public void damagefromskill(int victim,int damage, int skill)
 	{
 		// assumes this.index is attacker
 		War3_NotifyPlayerTookDamageFromSkill(victim, this.index, damage, skill);
 	}
+#if GGAMEMODE == MODE_WAR3SOURCE
 	public void damagefromitem(int victim,int damage, int item)
 	{
 		// assumes this.index is attacker
 		War3_NotifyPlayerTookDamageFromSkill(victim, this.index, damage, item);
 	}
+#endif
 	//
 
 	public bool castspell(int target, W3SpellEffects spelleffect, char SpellColor[20], int SkillID, float duration)
@@ -2191,6 +2202,7 @@ methodmap W3player
 	}
 #endif
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	public int getSkillslot( int skillid )
 	{
 		return War3_GetSkillSlot(this.index,skillid);
@@ -2203,6 +2215,7 @@ methodmap W3player
 	{
 		return War3_HasSkillSlot(this.index,skillid);
 	}
+#endif
 }
 
 

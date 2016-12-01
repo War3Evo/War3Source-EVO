@@ -557,6 +557,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(client,"%T","You do not have any skill points to spend, if you want to reset your skills use resetskills",client);
 			return returnblocking;
 		}
+#if GGAMEMODE == MODE_WAR3SOURCE
 		else if(CommandCheck(arg1,"shopmenu")||CommandCheck(arg1,"sh1")||CommandCheck(arg1,"!sh1")||CommandCheck(arg1,"/sh1"))
 		{
 			DoFwd_War3_Event(DoShowShopMenu,client);
@@ -572,6 +573,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			DoFwd_War3_Event(DoShowShopMenu3,client);
 			return returnblocking;
 		}
+#endif
 		else if(CommandCheck(arg1,"war3menu")||CommandCheck(arg1,"w3e")||CommandCheck(arg1,"wcs")||CommandCheck(arg1,"!war3menu")||CommandCheck(arg1,"!w3e")||CommandCheck(arg1,"!wcs"))
 		{
 			DoFwd_War3_Event(DoShowWar3Menu,client);
@@ -623,6 +625,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			DoFwd_War3_Event(DoShowPlayerInfoTarget,client);
 			return returnblocking;
 		}
+#if GGAMEMODE == MODE_WAR3SOURCE
 		else if(CommandCheck(arg1,"buyprevious")||CommandCheck(arg1,"bp")||CommandCheck(arg1,"!buyprevious")||CommandCheck(arg1,"!bp"))
 		{
 			War3_RestoreItemsFromDeath(client,true);
@@ -663,6 +666,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(client,"Could not find any shopitem named %s",arg3[1]);
 			return returnblocking;
 		}
+#endif
 		else if(CommandCheckStartsWith(arg1,"gems")||CommandCheckStartsWith(arg1,"myitems3")||CommandCheckStartsWith(arg1,"!myitems3")||CommandCheckStartsWith(arg1,"!gems"))
 		{
 			char arg2[2][64];
@@ -811,6 +815,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(client,"Please use !withdraw instead of !bank_withdraw");
 			return returnblocking;
 		}
+#if GGAMEMODE == MODE_WAR3SOURCE
 		char itemshort[100];
 		int ItemsLoaded = totalItemsLoaded;
 		for(int itemid=1;itemid<=ItemsLoaded;itemid++) {
@@ -845,6 +850,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				return returnblocking;
 			}
 		}
+#endif
 	}
 	else
 	{

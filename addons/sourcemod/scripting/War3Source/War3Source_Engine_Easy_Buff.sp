@@ -20,17 +20,20 @@ new Handle:g_hAuraId = INVALID_HANDLE;
 new Handle:g_hAuraDistance = INVALID_HANDLE;
 new Handle:g_hAuraImmunity = INVALID_HANDLE;
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 // EasyBuffs for items
 new Handle:g_hItemBuffs = INVALID_HANDLE;  // Holds the W3Buff
 new Handle:g_hItemBuffValue = INVALID_HANDLE; // Holds the value
 new Handle:g_hBuffItem = INVALID_HANDLE; // Holds the item id
+#endif
 
 public bool:War3Source_Engine_Easy_Buff_InitNatives()
 {
 	CreateNative("War3_AddSkillBuff", Native_War3_AddSkillBuff);
 	CreateNative("War3_AddAuraSkillBuff", Native_War3_AddSkillAuraBuff);
+#if GGAMEMODE == MODE_WAR3SOURCE
 	CreateNative("War3_AddItemBuff", Native_War3_AddItemBuff);
-
+#endif
 	return true;
 }
 
@@ -45,9 +48,11 @@ public War3Source_Engine_Easy_Buff_OnPluginStart()
 	g_hAuraDistance = CreateArray(32);
 	g_hAuraImmunity = CreateArray(1);
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	g_hItemBuffs = CreateArray(1);
 	g_hBuffItem = CreateArray(1);
 	g_hItemBuffValue = CreateArray(1);
+#endif
 }
 
 AddSkillBuff()
@@ -159,6 +164,7 @@ public Native_War3_AddSkillAuraBuff(Handle:plugin, numParams)
 	}
 }
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 public Native_War3_AddItemBuff(Handle:plugin, numParams)
 {
 	new iItem = GetNativeCell(1);
@@ -182,6 +188,7 @@ public Native_War3_AddItemBuff(Handle:plugin, numParams)
 
 	//DP("[ITEM] Created buff %i for item \"{item %i}\"", buff, iItem);
 }
+#endif
 
 /* SKILLS */
 
@@ -306,6 +313,7 @@ public OnW3PlayerAuraStateChanged(client, tAuraID, bool:inAura, level, AuraStack
 	}
 }
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 /* ITEMS */
 
 public OnItemPurchase(client, item)
@@ -349,4 +357,4 @@ InitItems(client, item)
 		}
 	}
 }
-
+#endif

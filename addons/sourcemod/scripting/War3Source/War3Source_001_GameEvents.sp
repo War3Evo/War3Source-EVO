@@ -52,8 +52,10 @@ public Internal_OnWar3EventDeath(victim,attacker,deathrace,distance,attacker_hpl
 	War3Source_Engine_BotControl_OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft);
 #endif
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 #if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 	War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker);
+#endif
 #endif
 
 #if GGAMETYPE == GGAME_CSGO

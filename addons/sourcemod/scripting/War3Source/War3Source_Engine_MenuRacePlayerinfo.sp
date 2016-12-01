@@ -14,17 +14,21 @@ public Plugin:myinfo=
 
 int raceinfoshowskillnumber[MAXPLAYERSCUSTOM];
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 Handle ShowOtherPlayerItemsCvar;
 Handle ShowTargetSelfPlayerItemsCvar;
+#endif
 
 public War3Source_Engine_MenuRacePlayerinfo_OnPluginStart()
 {
 	CreateConVar("MenuRacePlayerInfo",PLUGIN_VERSION,"[War3Source:EVO] Menu Core",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	// No Spendskill level restrictions on non-ultimates (Requires mapchange)
 	ShowOtherPlayerItemsCvar=CreateConVar("war3_show_playerinfo_other_player_items","1","0 disables showing other players items using playerinfo. [default 1]");
 	//war3_show_playerinfo_targetself_items 0
 	ShowTargetSelfPlayerItemsCvar=CreateConVar("war3_show_playerinfo_targetself_items","1","0 disables showing targeting yourself items using playerinfo. [default 1]");
-
+#endif
 }			//War3_playertargetItemMenu
 
 public War3Source_Engine_MenuRacePlayerinfo_OnWar3Event(W3EVENT:event,client){
@@ -49,12 +53,14 @@ public War3Source_Engine_MenuRacePlayerinfo_OnWar3Event(W3EVENT:event,client){
 			War3_playertargetMenu(client,target) ;
 		}
 	}
+#if GGAMEMODE == MODE_WAR3SOURCE
 	if(event==DoShowPlayerItemsOwnTarget){
 		int target = internal_W3GetVar(EventArg1);
 		if(ValidPlayer(target,false)) {
 			War3_playertargetItemMenu(client,target) ;
 		}
 	}
+#endif
 }
 ShowMenu3Raceinfo(client)
 {
@@ -595,6 +601,7 @@ War3_playertargetMenu(client,target)
 			LogError("MenuRacePlayerInfo War3_playertargetMenu - War3Source Lookup of GetRaceSkillName(%d,%d,%s,sizeof(%d))",raceid,x,skillname,sizeof(skillname));
 		}
 	}
+#if GGAMEMODE == MODE_WAR3SOURCE
 	// IF FALSE:
 	// ONLY SHOW ITEMS IF YOU ARE OWNER
 	// DON'T SHOW OTHER PLAYERS ITEMS
@@ -649,6 +656,7 @@ War3_playertargetMenu(client,target)
 			}
 		}
 	}
+#endif
 	float armorred=(1.0-PhysicalArmorMulti(target))*100;
 	Format(title,sizeof(title),"%s\n \n%T",title,"Physical Armor: {amount} (+-{amount}%)",client,GetBuffSumFloat(target,fArmorPhysical),armorred<0.0?"+":"-",armorred<0.0?armorred*-1.0:armorred);
 
@@ -683,7 +691,7 @@ War3_playertargetMenu(client,target)
 
 	DisplayMenu(hMenu,client,MENU_TIME_FOREVER);
 }
-
+#if GGAMEMODE == MODE_WAR3SOURCE
 War3_playertargetItemMenu(client,target)
 {
 		Handle hMenu=CreateMenu(War3_playertargetItemMenuSelected2);
@@ -735,8 +743,6 @@ War3_playertargetItemMenu(client,target)
 
 		DisplayMenu(hMenu,client,MENU_TIME_FOREVER);
 }
-
-
 public War3_playertargetItemMenuSelected2(Handle:menu,MenuAction:action,client,selection)
 {
 	if(action==MenuAction_Select)
@@ -761,6 +767,8 @@ public War3_playertargetItemMenuSelected2(Handle:menu,MenuAction:action,client,s
 		}
 	}
 }
+#endif
+
 
 public War3_playertargetMenuSelected(Handle:menu,MenuAction:action,client,selection)
 {

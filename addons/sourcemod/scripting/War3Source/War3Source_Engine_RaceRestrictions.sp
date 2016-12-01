@@ -34,11 +34,15 @@ public ItemRestrictions_PlayerChangeClassEvent(Handle:event,const String:name[],
 			p_properties[client][CurrentClass]=classid;
 			//PrintToChatAll("changed class = %i",view_as<int>(p_properties[client][CurrentClass]));
 		}
+#if GGAMEMODE == MODE_WAR3SOURCE
 		CreateTimer(5.0, CheckItems, userid);
+#endif
 	}
 }
 #endif
 
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 public Action:CheckItems(Handle:Timer, any:userid)
 {
 	if(MapChanging || War3SourcePause) return Plugin_Stop;
@@ -64,6 +68,7 @@ public Action:CheckItems(Handle:Timer, any:userid)
 
 	return Plugin_Continue;
 }
+#endif
 
 public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 {

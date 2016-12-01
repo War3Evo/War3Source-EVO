@@ -117,9 +117,10 @@ public bool War3Source_InitNatives()
 
 	Return_InitNatives = War3Source_Engine_HelpMenu_InitNatives();
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	Return_InitNatives = War3Source_Engine_ItemClass_InitNatives();
-
 	Return_InitNatives = War3Source_Engine_ItemClass2_InitNatives();
+#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 	Return_InitNatives = War3Source_Engine_ItemClass3_InitNatives();
@@ -129,9 +130,10 @@ public bool War3Source_InitNatives()
 	Return_InitNatives = War3Source_Engine_ItemDatabase3_InitNatives();
 #endif
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	Return_InitNatives = War3Source_Engine_ItemOwnership_InitNatives();
-
 	Return_InitNatives = War3Source_Engine_ItemOwnership2_InitNatives();
+#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 	Return_InitNatives = War3Source_Engine_ItemOwnership3_InitNatives();
@@ -170,7 +172,9 @@ public bool War3Source_InitNatives()
 
 	Return_InitNatives = War3Source_Engine_Weapon_InitNatives();
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	Return_InitNatives = War3Source_Engine_XPGold_InitNatives();
+#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 	Return_InitNatives = War3Source_Engine_XP_Platinum_InitNatives();

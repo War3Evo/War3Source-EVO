@@ -296,7 +296,8 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 		new Float:old_DamageModifierPercent = g_CurDMGModifierPercent;
 		new old_IsTrueDamage = g_CurDamageIsTrueDamage;
 
-		new attacker_Owns_item = 0;
+#if GGAMEMODE == MODE_WAR3SOURCE
+		int attacker_Owns_item = 0;
 
 		if(ValidPlayer(attacker,true))
 		{
@@ -314,6 +315,7 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 				}
 			}
 		}
+#endif
 
 		//set these to global
 		g_CurDamageType=damagetype;
@@ -331,6 +333,7 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 				damage=FloatMul(damage,MagicArmorMulti(victim));
 			}
 		}
+#if GGAMEMODE == MODE_WAR3SOURCE
 		else if((attacker_Owns_item!=1)&&!g_CurDamageIsTrueDamage&&!GetBuffHasOneTrue(victim,bfArmorPhysicalDenyAll))
 		{
 			//bullet
@@ -360,6 +363,7 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 				}
 			}
 		}
+#endif
 		if(!g_CurDamageIsWarcraft && ValidPlayer(attacker))
 		{
 			new Float:now=GetGameTime();

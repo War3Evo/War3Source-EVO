@@ -48,15 +48,23 @@ public OnPluginStart()
 #if SHOPMENU3 == MODE_ENABLED
 	War3Source_Engine_ItemDatabase3_OnPluginStart();
 #endif
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	War3Source_Engine_ItemOwnership_OnPluginStart();
 	War3Source_Engine_ItemOwnership2_OnPluginStart();
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 	War3Source_Engine_ItemOwnership3_OnPluginStart();
 #endif
 	War3Source_Engine_MenuChangerace_OnPluginStart();
 	War3Source_Engine_MenuRacePlayerinfo_OnPluginStart();
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	War3Source_Engine_MenuShopmenu_OnPluginStart();
 	War3Source_Engine_MenuShopmenu2_OnPluginStart();
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 	War3Source_Engine_MenuShopmenu3_OnPluginStart();
 #endif
@@ -79,7 +87,11 @@ public OnPluginStart()
 	War3Source_Engine_Wards_Checking_OnPluginStart();
 	War3Source_Engine_Wards_Engine_OnPluginStart();
 	War3Source_Engine_Wards_Wards_OnPluginStart();
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	War3Source_Engine_XPGold_OnPluginStart();
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 	War3Source_Engine_XP_Platinum_OnPluginStart();
 #endif

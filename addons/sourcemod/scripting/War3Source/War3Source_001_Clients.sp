@@ -35,7 +35,11 @@ public OnClientPutInServer(client)
 #endif
 #endif
 	War3Source_Engine_DamageSystem_OnClientPutInServer(client);
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	War3Source_Engine_ItemOwnership_OnClientPutInServer(client);
+#endif
+
 	//War3Source_Engine_Statistics_OnClientPutInServer(client);
 	War3Source_Engine_Weapon_OnClientPutInServer(client);
 #if GGAMETYPE != GGAME_CSGO

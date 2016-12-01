@@ -116,8 +116,12 @@
 #include "War3Source/War3Source_Engine_Easy_Buff.sp"
 #include "War3Source/War3Source_Engine_Events.sp"
 #include "War3Source/War3Source_Engine_HelpMenu.sp"
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/War3Source_Engine_ItemClass.sp"
 #include "War3Source/War3Source_Engine_ItemClass2.sp"
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 #include "War3Source/War3Source_Engine_ItemClass3.sp"
 #endif
@@ -126,20 +130,31 @@
 #include "War3Source/War3Source_Engine_ItemDatabase3.sp"
 #endif
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/War3Source_Engine_ItemOwnership.sp"
 #include "War3Source/War3Source_Engine_ItemOwnership2.sp"
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 #include "War3Source/War3Source_Engine_ItemOwnership3.sp"
 #endif
 #include "War3Source/War3Source_Engine_MenuChangerace.sp"
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/War3Source_Engine_MenuItemsinfo.sp"
 #include "War3Source/War3Source_Engine_MenuItemsinfo2.sp"
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 #include "War3Source/War3Source_Engine_MenuItemsinfo3.sp"
 #endif
 #include "War3Source/War3Source_Engine_MenuRacePlayerinfo.sp"
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/War3Source_Engine_MenuShopmenu.sp"
 #include "War3Source/War3Source_Engine_MenuShopmenu2.sp"
+#endif
+
 #if SHOPMENU3 == MODE_ENABLED
 #include "War3Source/War3Source_Engine_MenuShopmenu3.sp"
 #endif
@@ -170,7 +185,10 @@
 #include "War3Source/War3Source_Engine_Wards_Engine_Behavior.sp"
 #include "War3Source/War3Source_Engine_Wards_Wards.sp"
 #include "War3Source/War3Source_Engine_Weapon.sp"
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/War3Source_Engine_XPGold.sp"
+#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 #include "War3Source/War3Source_Engine_XP_Platinum.sp"
@@ -339,7 +357,27 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 	PrintToServer(" #######    #    ####### #######  #####     #    ### ####### #     # ");
 	PrintToServer("");
 	PrintToServer("");
-
+#if GGAMEMODE == MODE_WAR3SOURCE
+	PrintToServer(" #     #    #    ######   #####  ######     #    ####### ####### ");
+	PrintToServer(" #  #  #   # #   #     # #     # #     #   # #   #          #    ");
+	PrintToServer(" #  #  #  #   #  #     # #       #     #  #   #  #          #    ");
+	PrintToServer(" #  #  # #     # ######  #       ######  #     # #####      #    ");
+	PrintToServer(" #  #  # ####### #   #   #       #   #   ####### #          #    ");
+	PrintToServer(" #  #  # #     # #    #  #     # #    #  #     # #          #    ");
+	PrintToServer("  ## ##  #     # #     #  #####  #     # #     # #          #    ");
+	PrintToServer("");
+	PrintToServer("");
+#elseif GGAMEMODE == MODE_OVERWATCH
+	PrintToServer(" ####### #     # ####### ######  #     #    #    #######  #####  #     # ");
+	PrintToServer(" #     # #     # #       #     # #  #  #   # #      #    #     # #     # ");
+	PrintToServer(" #     # #     # #       #     # #  #  #  #   #     #    #       #     # ");
+	PrintToServer(" #     # #     # #####   ######  #  #  # #     #    #    #       ####### ");
+	PrintToServer(" #     #  #   #  #       #   #   #  #  # #######    #    #       #     # ");
+	PrintToServer(" #     #   # #   #       #    #  #  #  # #     #    #    #     # #     # ");
+	PrintToServer(" #######    #    ####### #     #  ## ##  #     #    #     #####  #     # ");
+	PrintToServer("");
+	PrintToServer("");
+#endif
 	char version[64];
 	Format(version,sizeof(version),"%s by %s",VERSION_NUM,AUTHORS);
 	char Eversion[64];
@@ -471,7 +509,9 @@ public OnMapStart()
 	War3Source_Engine_SkillEffects_OnMapStart();
 	//War3Source_Engine_Statistics_OnMapStart();
 	War3Source_Engine_Wards_Checking_OnMapStart();
+#if GGAMEMODE == MODE_WAR3SOURCE
 	War3Source_Engine_XPGold_OnMapStart();
+#endif
 	War3Source_Engine_WCX_Engine_Skills_OnMapStart();
 #if GGAMETYPE == GGAME_TF2
 	War3Source_Engine_BotControl_OnMapStart();
@@ -554,6 +594,17 @@ DelayedWar3SourceCfgExecute()
 {
 	PrintToServer("[War3Source:EVO] DelayedWar3SourceCfgExecute()");
 #if GGAMETYPE == GGAME_TF2
+#if GGAMEMODE == MODE_OVERWATCH
+	if(FileExists("cfg/war3source_tf2_overwatch.cfg"))
+	{
+		ServerCommand("exec war3source_tf2_overwatch.cfg");
+		PrintToServer("[War3Source] Executing war3source_tf2_overwatch.cfg");
+	}
+	else
+	{
+		PrintToServer("[War3Source] Could not find war3source_tf2_overwatch.cfg, we recommend all servers have this file");
+	}
+#else
 	if(FileExists("cfg/war3source_tf2.cfg"))
 	{
 		ServerCommand("exec war3source_tf2.cfg");
@@ -563,6 +614,7 @@ DelayedWar3SourceCfgExecute()
 	{
 		PrintToServer("[War3Source] Could not find war3source_tf2.cfg, we recommend all servers have this file");
 	}
+#endif
 #elseif GGAMETYPE == GGAME_CSGO
 	if(FileExists("cfg/war3source_csgo.cfg"))
 	{

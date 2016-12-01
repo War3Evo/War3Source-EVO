@@ -34,13 +34,28 @@ new Float:MessageTimer_Immunities[MAXPLAYERSCUSTOM];
 public bool:War3Source_Engine_Notifications_InitNatives()
 {
 	CreateNative("War3_NotifyPlayerTookDamageFromSkill", Native_NotifyPlayerTookDamageFromSkill);
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	CreateNative("War3_NotifyPlayerTookDamageFromItem", Native_NotifyPlayerTookDamageFromItem);
+#endif
+
 	CreateNative("War3_NotifyPlayerLeechedFromSkill", Native_NotifyPlayerLeechedFromSkill);
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	CreateNative("War3_NotifyPlayerLeechedFromItem", Native_NotifyPlayerLeechedFromItem);
+#endif
+
 	CreateNative("War3_NotifyPlayerImmuneFromSkill", Native_NotifyPlayerImmuneFromSkill);
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	CreateNative("War3_NotifyPlayerImmuneFromItem", Native_NotifyPlayerImmuneFromItem);
+#endif
+
 	CreateNative("War3_NotifyPlayerSkillActivated", Native_NotifyPlayerSkillActivated);
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	CreateNative("War3_NotifyPlayerItemActivated", Native_NotifyPlayerItemActivated);
+#endif
 
 	return true;
 }
@@ -107,6 +122,7 @@ public Native_NotifyPlayerSkillActivated(Handle:plugin, numParams)
 	}
 }
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 public Native_NotifyPlayerItemActivated(Handle:plugin, numParams)
 {
 	new client = GetNativeCell(1);
@@ -118,9 +134,9 @@ public Native_NotifyPlayerItemActivated(Handle:plugin, numParams)
 		return;
 	}
 
-	new String:sItemName[32];
+	char sItemName[32];
 
-	W3GetItemName(item, sItemName, sizeof(sItemName));
+	GetItemName(item, sItemName, sizeof(sItemName));
 
 	if(activated)
 	{
@@ -131,7 +147,7 @@ public Native_NotifyPlayerItemActivated(Handle:plugin, numParams)
 		War3_ChatMessage(client,"{default}[{green}ITEM {blue}%s {green}DEACTIVATED{default}]",sItemName);
 	}
 }
-
+#endif
 
 NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 {
@@ -178,7 +194,9 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 	}
 	else
 	{
+#if GGAMEMODE == MODE_WAR3SOURCE
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
+#endif
 		strcopy(sSkillType, sizeof(sSkillType), "item");
 	}
 
@@ -253,6 +271,7 @@ public Native_NotifyPlayerTookDamageFromSkill(Handle:plugin, numParams)
 	NotifyPlayerTookDamageFunction(victim,attacker,damage,skill,true);
 }
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 public Native_NotifyPlayerTookDamageFromItem(Handle:plugin, numParams)
 {
 	new victim = GetNativeCell(1);
@@ -269,7 +288,7 @@ public Native_NotifyPlayerTookDamageFromItem(Handle:plugin, numParams)
 
 	NotifyPlayerTookDamageFunction(victim,attacker,damage,item,false);
 }
-
+#endif
 
 NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkill)
 {
@@ -310,7 +329,9 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 	}
 	else
 	{
+#if GGAMEMODE == MODE_WAR3SOURCE
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
+#endif
 		strcopy(sSkillType, sizeof(sSkillType), "item");
 	}
 
@@ -385,6 +406,8 @@ public Native_NotifyPlayerLeechedFromSkill(Handle:plugin, numParams)
 
 	NotifyPlayerLeechedHealthFunction(victim,attacker,health,skill,true);
 }
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 public Native_NotifyPlayerLeechedFromItem(Handle:plugin, numParams)
 {
 	new victim = GetNativeCell(1);
@@ -401,7 +424,7 @@ public Native_NotifyPlayerLeechedFromItem(Handle:plugin, numParams)
 
 	NotifyPlayerLeechedHealthFunction(victim,attacker,health,item,false);
 }
-
+#endif
 
 //=============================================================================
 // Notify immune from skill
@@ -472,7 +495,9 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 	}
 	else
 	{
+#if GGAMEMODE == MODE_WAR3SOURCE
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
+#endif
 		strcopy(sSkillType, sizeof(sSkillType), "item");
 	}
 	//}
@@ -559,6 +584,7 @@ public Native_NotifyPlayerImmuneFromSkill(Handle:plugin, numParams)
 	return NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skill,true);
 }
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 public Native_NotifyPlayerImmuneFromItem(Handle:plugin, numParams)
 {
 	if(numParams != 3) {
@@ -579,6 +605,7 @@ public Native_NotifyPlayerImmuneFromItem(Handle:plugin, numParams)
 
 	return NotifyPlayerImmuneFromSkillOrItem(attacker,victim,item,false);
 }
+#endif
 //=============================================================================
 // Buff Notifications
 //=============================================================================

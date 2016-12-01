@@ -141,8 +141,10 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 				float settime=0.0;
 #if SHOPMENU3 == MODE_ENABLED
 				int limit=totalItemsLoaded+GetRacesLoaded()+W3GetItems2Loaded()+W3GetItems3Loaded();
-#else
+#elseif GGAMEMODE == MODE_WAR3SOURCE
 				int limit=totalItemsLoaded+GetRacesLoaded()+W3GetItems2Loaded();
+#else
+				int limit=GetRacesLoaded();
 #endif
 				for(int i=0;i<=limit;i++){
 					if(GetBuff(client,iGlowPriority,i)>highestvalue)

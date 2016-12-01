@@ -17,7 +17,7 @@ public Plugin:myinfo=
 
 public War3Source_Engine_Deny_OnRaceChanged(client,oldrace,newrace)
 {
-
+#if GGAMEMODE == MODE_WAR3SOURCE
 		if(ValidPlayer(client))
 		{
 			new ItemsLoaded = totalItemsLoaded;
@@ -35,4 +35,5 @@ public War3Source_Engine_Deny_OnRaceChanged(client,oldrace,newrace)
 				}
 			}
 		}
+#endif
 }

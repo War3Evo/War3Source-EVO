@@ -32,11 +32,17 @@
 #define JAILBREAK_ON 1 // for GGAMETYPE_JAILBREAK
 #define JAILBREAK_OFF 0 // for GGAMETYPE_JAILBREAK
 
-#define MODE_VANILLA 1
+
+// MODES (PUBLIC)
 #define MODE_WAR3SOURCE 2
-#define MODE_WAR3SOURCE_JAILBREAK 3
-#define MODE_TF2RPG 4
-#define MODE_MGE 5
+// New 12/1/2016
+#define MODE_OVERWATCH 6
+
+// MODES (PRIVATE)
+//#define MODE_VANILLA 1 // used in servercommands.sp
+//#define MODE_WAR3SOURCE_JAILBREAK 3 // used in servercommands.sp
+//#define MODE_TF2RPG 4 // used in servercommands.sp
+//#define MODE_MGE 5 //not used at all
 
 #define MODE_DISABLED 0
 #define MODE_ENABLED 1

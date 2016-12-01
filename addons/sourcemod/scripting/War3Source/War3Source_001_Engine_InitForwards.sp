@@ -58,9 +58,10 @@ public bool War3Source_InitForwards()
 
 	Return_InitForwards = War3Source_Engine_Events_InitNativesForwards();
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	Return_InitForwards = War3Source_Engine_ItemOwnership_InitNativesForwards();
-
 	Return_InitForwards = War3Source_Engine_ItemOwnership2_InitNativesForwards();
+#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 	Return_InitForwards = War3Source_Engine_ItemOwnership3_InitNativesForwards();

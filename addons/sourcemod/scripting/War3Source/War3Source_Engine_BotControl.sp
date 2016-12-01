@@ -32,12 +32,14 @@ new Handle:botLevelRandom = INVALID_HANDLE;
 new Handle:MVM_SUPER_BOTS_cvar = INVALID_HANDLE;
 new g_bMVM_superbots_Enabled;
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 // ########################## BOT ITEM CONFIG ############################
 new Handle:botBuysItems = INVALID_HANDLE;
 new Handle:botBuysRandom = INVALID_HANDLE;
 new Handle:botBuysRandomChance = INVALID_HANDLE;
 new Handle:botBuysRandomMultipleChance = INVALID_HANDLE;
 //new Handle:botsetraces = INVALID_HANDLE;
+#endif
 
 new Handle:default_race_Cvar = INVALID_HANDLE;
 
@@ -75,11 +77,13 @@ public War3Source_Engine_BotControl_OnPluginStart()
 	HookEvent("round_start", Event_ScrambleNow);
 #endif
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	// ########################## BOT ITEM CONFIG ############################
 	botBuysItems = CreateConVar("war3_bots_buy_items", "0", "Can bots buy items?", _, true, 0.0, true, 1.0);
 	botBuysRandom = CreateConVar("war3_bots_buy_random","1","Bots buy random items when they spawn (Loadout Mode currently disabled!)", _, true, 1.0, true, 1.0);
 	botBuysRandomChance = CreateConVar("war3_bots_buy_random_chance","100","Chance a bot will buy an item on spawn.", _, true, 0.0, true, 100.0);
 	botBuysRandomMultipleChance = CreateConVar("war3_bots_buy_random_multiple_chance","0.95","Chance modifier that is applied each time a bot buys a item.", _, true, 0.0, true, 100.0);
+#endif
 
 	LoadTranslations ("w3s.addon.botcontrol.phrases");
 }
@@ -605,6 +609,7 @@ public War3Source_Engine_BotControl_OnWar3Event(client)
 	}
 }
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 // ########################## BOT ITEM CONFIG ############################
 AmountOfItems(client)
 {
@@ -622,6 +627,7 @@ AmountOfItems(client)
 }
 
 Handle war3_max_shopitems = null;
+#endif
 
 public War3Source_Engine_BotControl_OnWar3EventSpawn(client)
 {
@@ -631,6 +637,7 @@ public War3Source_Engine_BotControl_OnWar3EventSpawn(client)
 
 	if(!IsFakeClient(client)) return 0;
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 	// NEED TO CREATE A LIST OF ITEMS ALREADY BOUGHT BY BOTS
 	if(GetConVarBool(botBuysItems) && GetConVarBool(botBuysRandom))
 	{
@@ -664,12 +671,14 @@ public War3Source_Engine_BotControl_OnWar3EventSpawn(client)
 		}
 
 	}
+#endif
 	if(GetConVarInt(botSrambleSpawn))
 	{
 		PickRace(client);
 	}
 	return 0;
 }
+
 
 // ########################## NATIVES ############################
 
