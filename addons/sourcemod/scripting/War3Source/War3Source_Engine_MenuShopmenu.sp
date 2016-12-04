@@ -11,7 +11,7 @@ public Plugin:myinfo=
 };*/
 
 new Handle:hUseCategorysCvar;
-new String:buyTombSound[256]; //="war3source/tomes.mp3";
+new String:buyTombSound[PLATFORM_MAX_PATH]; //="war3source/tomes.mp3";
 
 public War3Source_Engine_MenuShopmenu_OnPluginStart()
 {
@@ -29,7 +29,7 @@ public War3Source_Engine_MenuShopmenu_OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_LOW)
 	{
 		strcopy(buyTombSound,sizeof(buyTombSound),"war3source/tomes.mp3");
-		War3_AddSound(buyTombSound);
+		Internal_War3_AddSound(buyTombSound);
 	}
 }
 

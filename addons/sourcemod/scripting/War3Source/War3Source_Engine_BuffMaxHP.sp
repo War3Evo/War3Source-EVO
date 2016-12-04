@@ -41,7 +41,7 @@ new ORIGINALHP[MAXPLAYERSCUSTOM];
 
 GetMaxHP(client)
 {
-	new MaxHP = ORIGINALHP[client] + GetBuffSumInt(client,iAdditionalMaxHealth);
+	int MaxHP = ORIGINALHP[client] + GetBuffSumInt(client,iAdditionalMaxHealth);
 	MaxHP = RoundToCeil(FloatMul(float(MaxHP),GetBuffStackedFloat(client,fMaxHealth)));
 	return MaxHP;
 }
@@ -52,7 +52,7 @@ setMax(client)
 	if(GetConVarBool(g_buffmaxhp_enable_tf2attributes) && ValidPlayer(client))
 	{
 		//DP("ORIGHP setMax %i",ORIGINALHP[client]);
-		new maxHP = GetMaxHP(client);
+		int maxHP = GetMaxHP(client);
 
 		if(maxHP<=0)
 			return;
@@ -70,7 +70,7 @@ setMax(client)
 		if(ORIGINALHP[client]>0)
 		{
 			//DP("ORIGHP setMax %i",ORIGINALHP[client]);
-			new maxHP = GetMaxHP(client);
+			int maxHP = GetMaxHP(client);
 
 			if(maxHP<=0)
 				return;
@@ -87,7 +87,7 @@ setMax(client)
 		{
 			//DP("ORIGHP setMax %i",ORIGINALHP[client]);
 			ORIGINALHP[client] = GetClientHealth(client);
-			new maxHP = GetMaxHP(client);
+			int maxHP = GetMaxHP(client);
 
 			if(maxHP<=0)
 				return;
@@ -107,7 +107,7 @@ setMax(client)
 		//new Float:vec[3];
 		//GetClientAbsOrigin(client, vec);
 		if (War3_IsInSpawn(client))
-			SetEntityHealth(client,War3_GetMaxHP(client));
+			SetEntityHealth(client,Internal_War3_GetMaxHP(client));
 	}
 #else
 
@@ -116,7 +116,7 @@ setMax(client)
 		if(ORIGINALHP[client]>0)
 		{
 			//DP("ORIGHP setMax %i",ORIGINALHP[client]);
-			new maxHP = GetMaxHP(client);
+			int maxHP = GetMaxHP(client);
 
 			if(maxHP<=0)
 				return;
@@ -129,7 +129,7 @@ setMax(client)
 		{
 			//DP("ORIGHP setMax %i",ORIGINALHP[client]);
 			ORIGINALHP[client] = GetClientHealth(client);
-			new maxHP = GetMaxHP(client);
+			int maxHP = GetMaxHP(client);
 
 			if(maxHP<=0)
 				return;
@@ -142,19 +142,19 @@ setMax(client)
 #endif
 }
 
-new Handle:timers[33];
+Handle timers[MAXPLAYERSCUSTOM];
 public Action:thisSpawn(Handle:h,any:client)
 {
 		if(ValidPlayer(client))
 		{
-			new iClientHealth=GetClientHealth(client);
+			int iClientHealth=GetClientHealth(client);
 			if(iClientHealth>1)
 			{
 				//DP("client health on spawn = %d",iClientHealth);
 				//DP("W3GetBuffSumInt(client,iAdditionalMaxHealth) on spawn = %d",W3GetBuffSumInt(client,iAdditionalMaxHealth));
 				ORIGINALHP[client]=iClientHealth - GetBuffSumInt(client,iAdditionalMaxHealth);
 				setMax(client);
-				new MaxHP=War3_GetMaxHP(client);
+				int MaxHP=Internal_War3_GetMaxHP(client);
 				if(MaxHP>0)
 				{
 					//SetEntityHealth(client,MaxHP);
@@ -183,7 +183,7 @@ public War3Source_Engine_BuffMaxHP_OnWar3EventSpawn(client)
 public War3Source_Engine_BuffMaxHP_OnWar3Event(client)
 {
 		if((internal_W3GetVar(EventArg1)==iAdditionalMaxHealth || internal_W3GetVar(EventArg1)==fMaxHealth)&&ValidPlayer(client,false)){
-				if (GetMaxHP(client) != War3_GetMaxHP(client))
+				if (GetMaxHP(client) != Internal_War3_GetMaxHP(client))
 				{
 #if GGAMETYPE == GGAME_TF2
 					if(GetConVarBool(g_buffmaxhp_enable_tf2attributes))
@@ -195,7 +195,7 @@ public War3Source_Engine_BuffMaxHP_OnWar3Event(client)
 					else
 					{
 						setMax(client);
-						new MaxHP=War3_GetMaxHP(client);
+						int MaxHP=Internal_War3_GetMaxHP(client);
 						if(MaxHP>0 && GetPlayerProp(client,bStatefulSpawn))
 						{
 							SetEntProp(client, Prop_Data, "m_iHealth", MaxHP);
@@ -204,7 +204,7 @@ public War3Source_Engine_BuffMaxHP_OnWar3Event(client)
 					}
 #else
 					setMax(client);
-					new MaxHP=War3_GetMaxHP(client);
+					int MaxHP=Internal_War3_GetMaxHP(client);
 					if(MaxHP>0 && GetPlayerProp(client,bStatefulSpawn))
 					{
 						//DP("bStatefulSpawn");
@@ -222,7 +222,7 @@ public OnConfigsExecuted()
 {
 	if(!GetConVarBool(g_buffmaxhp_enable_tf2attributes))
 	{
-		for (new i = 1; i <= MaxClients; i++)
+		for (int i = 1; i <= MaxClients; i++)
 		{
 				if (ValidPlayer(i))
 				{

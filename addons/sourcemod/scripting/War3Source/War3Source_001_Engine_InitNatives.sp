@@ -172,9 +172,7 @@ public bool War3Source_InitNatives()
 
 	Return_InitNatives = War3Source_Engine_Weapon_InitNatives();
 
-#if GGAMEMODE == MODE_WAR3SOURCE
 	Return_InitNatives = War3Source_Engine_XPGold_InitNatives();
-#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 	Return_InitNatives = War3Source_Engine_XP_Platinum_InitNatives();

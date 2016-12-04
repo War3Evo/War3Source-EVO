@@ -88,9 +88,7 @@ public OnPluginStart()
 	War3Source_Engine_Wards_Engine_OnPluginStart();
 	War3Source_Engine_Wards_Wards_OnPluginStart();
 
-#if GGAMEMODE == MODE_WAR3SOURCE
 	War3Source_Engine_XPGold_OnPluginStart();
-#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 	War3Source_Engine_XP_Platinum_OnPluginStart();

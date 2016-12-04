@@ -112,13 +112,11 @@ public void Internal_War3_Event(W3EVENT event,int client)
 			return;
 		}
 
-#if GGAMEMODE == MODE_WAR3SOURCE
 		case DoLevelCheck:
 		{
 			War3Source_Engine_XPGold_OnWar3Event(client);
 			return;
 		}
-#endif
 
 		case PlayerLeveledUp:
 		{

@@ -186,9 +186,7 @@
 #include "War3Source/War3Source_Engine_Wards_Wards.sp"
 #include "War3Source/War3Source_Engine_Weapon.sp"
 
-#if GGAMEMODE == MODE_WAR3SOURCE
 #include "War3Source/War3Source_Engine_XPGold.sp"
-#endif
 
 #if SHOPMENU3 == MODE_ENABLED
 #include "War3Source/War3Source_Engine_XP_Platinum.sp"
@@ -223,6 +221,10 @@
 #include "War3Source/War3Source_001_OnSkinChange.sp"
 
 #include "War3Source/War3Source_Engine_SkillsClass.sp"
+
+#if GGAMETYPE == GGAME_TF2
+#include "War3Source/War3Source_Engine_ClassControl.sp"
+#endif
 
 // Disabled for now
 //#include "War3Source/War3Source_Engine_Talents.sp"
@@ -509,15 +511,19 @@ public OnMapStart()
 	War3Source_Engine_SkillEffects_OnMapStart();
 	//War3Source_Engine_Statistics_OnMapStart();
 	War3Source_Engine_Wards_Checking_OnMapStart();
-#if GGAMEMODE == MODE_WAR3SOURCE
+
 	War3Source_Engine_XPGold_OnMapStart();
-#endif
+
 	War3Source_Engine_WCX_Engine_Skills_OnMapStart();
 #if GGAMETYPE == GGAME_TF2
 	War3Source_Engine_BotControl_OnMapStart();
 #endif
 	//War3Source_Engine_PlayerDeathWeapons_OnMapStart();
 	War3Source_Engine_Weapon_OnMapStart();
+
+#if GGAMETYPE == GGAME_TF2
+	War3Source_Engine_ClassControl_OnMapStart();
+#endif
 
 	War3Source_003_RegisterPrivateForwards_OnMapStart();
 

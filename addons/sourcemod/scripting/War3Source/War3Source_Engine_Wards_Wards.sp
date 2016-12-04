@@ -11,16 +11,16 @@ public Plugin:myinfo =
 };*/
 
 #if GGAMETYPE == GGAME_TF2
-new String:jarateSound0[]="vo/halloween_merasmus/sf12_wheel_jarate01.wav";
-new String:jarateSound1[]="vo/halloween_merasmus/sf12_wheel_jarate02.wav";
-new String:jarateSound2[]="vo/halloween_merasmus/sf12_wheel_jarate03.wav";
-new String:jarateSound3[]="vo/halloween_merasmus/sf12_wheel_jarate04.wav";
-new String:jarateSound4[]="vo/halloween_merasmus/sf12_wheel_jarate05.wav";
+new String:jarateSound0[PLATFORM_MAX_PATH]="vo/halloween_merasmus/sf12_wheel_jarate01.wav";
+new String:jarateSound1[PLATFORM_MAX_PATH]="vo/halloween_merasmus/sf12_wheel_jarate02.wav";
+new String:jarateSound2[PLATFORM_MAX_PATH]="vo/halloween_merasmus/sf12_wheel_jarate03.wav";
+new String:jarateSound3[PLATFORM_MAX_PATH]="vo/halloween_merasmus/sf12_wheel_jarate04.wav";
+new String:jarateSound4[PLATFORM_MAX_PATH]="vo/halloween_merasmus/sf12_wheel_jarate05.wav";
 #endif
-new String:wardZap1[]="ambient/energy/zap1.wav";
-new String:wardZap2[]="ambient/energy/zap2.wav";
-//new String:wardDamageSound[]="war3source/thunder_clap.wav";
-new String:wardDamageSound[]="npc/scanner/scanner_electric2.wav";
+new String:wardZap1[PLATFORM_MAX_PATH]="ambient/energy/zap1.wav";
+new String:wardZap2[PLATFORM_MAX_PATH]="ambient/energy/zap2.wav";
+//new String:wardDamageSound[PLATFORM_MAX_PATH]="war3source/thunder_clap.wav";
+new String:wardDamageSound[PLATFORM_MAX_PATH]="npc/scanner/scanner_electric2.wav";
 
 new Float:LastWardSound[MAXPLAYERSCUSTOM];
 new Float:War3Source_Engine_Wards_Wards_MessageTimer[MAXPLAYERSCUSTOM];
@@ -36,15 +36,15 @@ public War3Source_Engine_Wards_Wards_OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_TOP)
 	{
 #if GGAMETYPE == GGAME_TF2
-		War3_AddSound(jarateSound0,STOCK_SOUND);
-		War3_AddSound(jarateSound1,STOCK_SOUND);
-		War3_AddSound(jarateSound2,STOCK_SOUND);
-		War3_AddSound(jarateSound3,STOCK_SOUND);
-		War3_AddSound(jarateSound4,STOCK_SOUND);
+		Internal_War3_AddSound(jarateSound0,STOCK_SOUND);
+		Internal_War3_AddSound(jarateSound1,STOCK_SOUND);
+		Internal_War3_AddSound(jarateSound2,STOCK_SOUND);
+		Internal_War3_AddSound(jarateSound3,STOCK_SOUND);
+		Internal_War3_AddSound(jarateSound4,STOCK_SOUND);
 #endif
-		War3_AddSound(wardDamageSound,STOCK_SOUND);
-		War3_AddSound(wardZap1,STOCK_SOUND);
-		War3_AddSound(wardZap2,STOCK_SOUND);
+		Internal_War3_AddSound(wardDamageSound,STOCK_SOUND);
+		Internal_War3_AddSound(wardZap1,STOCK_SOUND);
+		Internal_War3_AddSound(wardZap2,STOCK_SOUND);
 	}
 }
 
@@ -340,9 +340,9 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			War3_ShowHealthGainedParticle(victim);
 			War3_TFHealingEvent(victim, healAmount);
 #endif
-			new iiMaxHP=War3_GetMaxHP(victim);
-			new iHealth=GetClientHealth(victim);
-			new iQuarterHealth=RoundToFloor(FloatMul(float(iiMaxHP),0.33));
+			int iiMaxHP=Internal_War3_GetMaxHP(victim);
+			int iHealth=GetClientHealth(victim);
+			int iQuarterHealth=RoundToFloor(FloatMul(float(iiMaxHP),0.33));
 			if(iHealth<iQuarterHealth)
 			{
 				War3_WardVisualEffect(wardindex, {255, 0, 0, 125}, 0, WARD_TARGET_NOBODY, false);

@@ -39,8 +39,8 @@ enum SkillRedirect
 {
 	genericskillid,
 }
-new bool:SkillRedirected[MAXRACES][MAXSKILLCOUNT];
-new SkillRedirectedToSkill[MAXRACES][MAXSKILLCOUNT];
+new bool:SkillRedirected[MAXRACES][MAXSKILLCOUNT]; //generic skills not used
+new SkillRedirectedToSkill[MAXRACES][MAXSKILLCOUNT]; //generic skills not used
 
 new bool:skillIsUltimate[MAXRACES][MAXSKILLCOUNT];
 new skillMaxLevel[MAXRACES][MAXSKILLCOUNT];
@@ -335,8 +335,10 @@ public NWar3_RaceOnPluginEnd(Handle:plugin,numParams){
 			raceSkillDescReplaceNum[RaceOnPluginEndID][i]=0;
 			skillTranslated[RaceOnPluginEndID][i]=false;
 			//raceSkillString[RaceOnPluginEndID][i][SkillString][512]; //not used
-			SkillRedirected[RaceOnPluginEndID][i]=false;
-			SkillRedirectedToSkill[RaceOnPluginEndID][i]=0;
+
+			//SkillRedirected[RaceOnPluginEndID][i]=false; //generic skills not used
+			//SkillRedirectedToSkill[RaceOnPluginEndID][i]=0; //generic skills not used
+
 			skillIsUltimate[RaceOnPluginEndID][i]=false;
 			//skillProp[RaceOnPluginEndID][i][W3SkillProp]; //not used
 
@@ -1252,36 +1254,36 @@ CreateRaceEnd(raceid){
 
 
 
-Handle:MergeSort(Handle:array){
-
-	new len=GetArraySize(array);
+Handle:MergeSort(Handle:array)
+{
+	int len=GetArraySize(array);
 	if(len==1){
 		return array;
 	}
-	new cut=len/2;
+	int cut=len/2;
 
-	new Handle:smallerarrayleft=CreateArray(1,cut);
-	new Handle:smallerarrayright=CreateArray(1,len-cut);
+	Handle smallerarrayleft=CreateArray(1,cut);
+	Handle smallerarrayright=CreateArray(1,len-cut);
 
-	for(new i=0;i<cut;i++){
+	for(int i=0;i<cut;i++){
 		SetArrayCell(smallerarrayleft, i, GetArrayCell(array, i));
 
 	}
-	for(new i=cut;i<len;i++){
+	for(int i=cut;i<len;i++){
 		SetArrayCell(smallerarrayright, i-cut, GetArrayCell(array, i ));
 
 	}
 	CloseHandle(array);
 
 
-	new Handle:leftresult=	MergeSort(smallerarrayleft);
-	new Handle:rightresult=	MergeSort(smallerarrayright);
+	Handle leftresult=	MergeSort(smallerarrayleft);
+	Handle rightresult=	MergeSort(smallerarrayright);
 
-	new Handle:resultarray=CreateArray(1,0);
-	new index=0;
+	Handle resultarray=CreateArray(1,0);
+	int index=0;
 	while(GetArraySize(leftresult)>0&&GetArraySize(rightresult)>0){
-		new leftval=GetRaceOrder( GetArrayCell(leftresult, 0));
-		new rightval=GetRaceOrder( GetArrayCell(rightresult, 0));
+		int leftval=GetRaceOrder( GetArrayCell(leftresult, 0));
+		int rightval=GetRaceOrder( GetArrayCell(rightresult, 0));
 		//PrintToServer("left %d vs right %d",leftval,rightval);
 
 		if(leftval<=rightval){

@@ -55,7 +55,7 @@ stock bool:War3_PrecacheSound(String:sound[]){
 
 	if(GetConVarInt(cvar_downloads)>0)
 	{
-		War3_AddSound(sound,PRIORITY_BOTTOM);
+		Internal_War3_AddSound(sound,PRIORITY_BOTTOM);
 		return true;
 	}
 	else

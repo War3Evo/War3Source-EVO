@@ -2,10 +2,10 @@
 
 //would you like to see the damage stack print out?
 //#define DEBUG
-new String:helmSound0[]="physics/metal/metal_solid_impact_bullet1.wav";
-new String:helmSound1[]="physics/metal/metal_solid_impact_bullet2.wav";
-new String:helmSound2[]="physics/metal/metal_solid_impact_bullet3.wav";
-new String:helmSound3[]="physics/metal/metal_solid_impact_bullet4.wav";
+new String:helmSound0[PLATFORM_MAX_PATH]="physics/metal/metal_solid_impact_bullet1.wav";
+new String:helmSound1[PLATFORM_MAX_PATH]="physics/metal/metal_solid_impact_bullet2.wav";
+new String:helmSound2[PLATFORM_MAX_PATH]="physics/metal/metal_solid_impact_bullet3.wav";
+new String:helmSound3[PLATFORM_MAX_PATH]="physics/metal/metal_solid_impact_bullet4.wav";
 
 #if GGAMETYPE == GGAME_TF2
 new Handle:PyroW3ChanceModifierCvar;
@@ -64,10 +64,10 @@ public War3Source_Engine_DamageSystem_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_TOP)
 	{
-		War3_AddSound(helmSound0,STOCK_SOUND);
-		War3_AddSound(helmSound1,STOCK_SOUND);
-		War3_AddSound(helmSound2,STOCK_SOUND);
-		War3_AddSound(helmSound3,STOCK_SOUND);
+		Internal_War3_AddSound(helmSound0,STOCK_SOUND);
+		Internal_War3_AddSound(helmSound1,STOCK_SOUND);
+		Internal_War3_AddSound(helmSound2,STOCK_SOUND);
+		Internal_War3_AddSound(helmSound3,STOCK_SOUND);
 	}
 }
 

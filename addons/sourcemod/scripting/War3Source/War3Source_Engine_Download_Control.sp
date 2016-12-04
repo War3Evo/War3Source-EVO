@@ -32,12 +32,16 @@ new Handle:EnableBottomDownloadsCvar = INVALID_HANDLE;
 
 new Handle:EnablePRECACHEDownloadsCvar = INVALID_HANDLE;
 
-new Forward_Priority = PRIORITY_BOTTOM;
+// War3Source_Variables.inc
+//new Forward_Priority = PRIORITY_BOTTOM;
 
 // Internal data
-new Handle:g_hSoundFile = INVALID_HANDLE;
-new Handle:g_hPriority = INVALID_HANDLE;
-new Handle:g_hStockSound = INVALID_HANDLE;
+
+// War3Source_Variables.inc
+//new Handle:g_hSoundFile = INVALID_HANDLE;
+//new Handle:g_hPriority = INVALID_HANDLE;
+//new Handle:g_hStockSound = INVALID_HANDLE;
+
 //Handle g_hRaceIDSound = null;
 
 //new Handle:g_hHistoryFiles = INVALID_HANDLE;
@@ -580,7 +584,7 @@ public bool:War3Source_Engine_Download_Control_InitNatives()
 {
 	CreateNative("War3_AddSound", Native_War3_AddSound);
 
-	g_hSoundFile = CreateArray(ByteCountToCells(1024));
+	g_hSoundFile = CreateArray(ByteCountToCells(PLATFORM_MAX_PATH)); //was 1024
 	g_hPriority = CreateArray(1);
 
 	g_hStockSound = CreateArray(1);
@@ -594,35 +598,14 @@ public bool:War3Source_Engine_Download_Control_InitNatives()
 
 public int Native_War3_AddSound(Handle:plugin, numParams)
 {
-	//PrintToServer("numParams %d",numParams);
-	char sSoundFile[1024];
+	char sSoundFile[PLATFORM_MAX_PATH];
 	GetNativeString(1, sSoundFile, sizeof(sSoundFile));
+	int stocksound = GetNativeCell(2);
+	int priority = GetNativeCell(3);
 
-	if(FindStringInArray(g_hSoundFile, sSoundFile)==-1) // if not found, add
-	{
-		int stocksound = GetNativeCell(2);
-		PushArrayCell(g_hStockSound, stocksound);
+	Internal_War3_AddSound(sSoundFile,stocksound,priority);
 
-		int priority = GetNativeCell(3);
-		if(priority==PRIORITY_TAKE_FORWARD)
-		{
-			priority = Forward_Priority;
-		}
-		PushArrayCell(g_hPriority, priority);
-		PushArrayString(g_hSoundFile, sSoundFile);
-
-		/*
-		if(numParams==4)
-		{
-			int iRaceID = GetNativeCell(4);
-			PushArrayCell(g_hRaceIDSound, iRaceID);
-		}
-		else
-		{
-			PushArrayCell(g_hRaceIDSound, 0);
-		}*/
-
-	}
+	//PrintToServer("numParams %d",numParams);
 }
 
 //if(GetArrayCell(g_hRaceIDSound, iSoundIndex)>0))

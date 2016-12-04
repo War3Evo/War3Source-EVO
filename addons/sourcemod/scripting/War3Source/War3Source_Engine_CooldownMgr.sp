@@ -10,8 +10,8 @@ new bool:CooldownOnSpawn[MAXRACES][MAXSKILLCOUNT];
 new bool:CdOnSpawnPrintOnExpire[MAXRACES][MAXSKILLCOUNT];
 new Float:CooldownOnSpawnDuration[MAXRACES][MAXSKILLCOUNT];
 
-new String:ultimateReadySound[256]; //="war3source/ult_ready.mp3";
-new String:abilityReadySound[256]; //="war3source/ability_refresh.mp3";
+new String:ultimateReadySound[PLATFORM_MAX_PATH]; //="war3source/ult_ready.mp3";
+new String:abilityReadySound[PLATFORM_MAX_PATH]; //="war3source/ability_refresh.mp3";
 
 Handle g_CooldownExpiredForwardHandle;
 Handle g_CooldownStartedForwardHandle;
@@ -63,9 +63,9 @@ public War3Source_Engine_CooldownMgr_OnAddSound(sound_priority)
 	{
 		strcopy(ultimateReadySound,sizeof(ultimateReadySound),"war3source/ult_ready.mp3");
 		strcopy(abilityReadySound,sizeof(abilityReadySound),"war3source/ability_refresh.mp3");
-		War3_AddSound("ui/hint.wav",STOCK_SOUND);
-		War3_AddSound(abilityReadySound);
-		War3_AddSound(ultimateReadySound);
+		Internal_War3_AddSound("ui/hint.wav",STOCK_SOUND);
+		Internal_War3_AddSound(abilityReadySound);
+		Internal_War3_AddSound(ultimateReadySound);
 	}
 }
 

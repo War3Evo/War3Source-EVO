@@ -10,8 +10,8 @@ public Plugin:myinfo =
 	description = "Centralize some notifications"
 };
 */
-new iMaskSoundDelay[MAXPLAYERSCUSTOM];
-new String:sMaskSound[]="war3source/mask.mp3";
+int iMaskSoundDelay[MAXPLAYERSCUSTOM];
+char sMaskSound[PLATFORM_MAX_PATH]="war3source/mask.mp3";
 
 
 new BeamSprite = -1;
@@ -53,7 +53,7 @@ public War3Source_Engine_SkillEffects_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(sMaskSound);
+		Internal_War3_AddSound(sMaskSound);
 	}
 }
 

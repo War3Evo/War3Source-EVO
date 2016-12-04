@@ -694,6 +694,7 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				// Set New Player Job
 				//War3_SetRace(client,1);
 
+#if GGAMEMODE != MODE_OVERWATCH
 				new String:requiredflagstr[32];
 				new racesloaded = GetRacesLoaded();
 				new newrace = GetRandomInt(1, racesloaded);
@@ -730,6 +731,13 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				SetRaceLevel = GetRaceMaxLevel(newrace);
 				SetLevel(client, newrace, SetRaceLevel);
 				//}
+#else
+				// Having no race forces a race menu to popup
+				SetRace(client,0);
+				SetLevel(client, 0, 0);
+				War3_SetGold(client,0);
+#endif
+
 			}
 		}
 		else if(SQL_GetRowCount(hndl) >1)
@@ -955,14 +963,22 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 		//War3_ChatMessage(client,"Successfully retrieved save data");
 		PrintToConsole(client,"[War3Source:EVO] XP RETRIEVED IN %f seconds",GetGameTime()-Float:GetPlayerProp(client,sqlStartLoadXPTime)) ;
 
-		if(GetRace(client)<=0 && desiredRaceOnJoin[client]>0){
-
-			if(CanSelectRace(client,desiredRaceOnJoin[client])){
-				SetPlayerProp(client,RaceSetByAdmin,false);
-				SetRace(client,desiredRaceOnJoin[client]);
+		if(GetRace(client)<=0 && desiredRaceOnJoin[client]>0)
+		{
+			if(eValidRace(desiredRaceOnJoin[client]))
+			{
+				if(CanSelectRace(client,desiredRaceOnJoin[client])){
+					SetPlayerProp(client,RaceSetByAdmin,false);
+					SetRace(client,desiredRaceOnJoin[client]);
+				}
+				else{
+					DoFwd_War3_Event(DoShowChangeRaceMenu,client);
+				}
 			}
-			else{
-				DoFwd_War3_Event(DoShowChangeRaceMenu,client);
+			else
+			{
+				SetPlayerProp(client,RaceSetByAdmin,false);
+				SetRace(client,0);
 			}
 		//PrintToServer("shoudl set race? %d client %d",raceDesiredOnJoin,client);
 		/*	new bool:doset=true;

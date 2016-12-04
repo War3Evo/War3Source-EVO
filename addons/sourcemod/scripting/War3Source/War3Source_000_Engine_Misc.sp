@@ -216,12 +216,12 @@ public Native_War3_HTMHP(Handle:plugin,numParams)
 {
 	if(MapChanging || War3SourcePause) return false;
 
-	new client = GetNativeCell(1);
-	new addhp = GetNativeCell(2);
-	new maxhp=War3_GetMaxHP(client);
-	new currenthp=GetClientHealth(client);
+	int client = GetNativeCell(1);
+	int addhp = GetNativeCell(2);
+	int maxhp=Internal_War3_GetMaxHP(client);
+	int currenthp=GetClientHealth(client);
 	if(currenthp<maxhp){ ///do not make hp lower
-		new newhp=GetClientHealth(client)+addhp;
+		int newhp=GetClientHealth(client)+addhp;
 		if (newhp>maxhp){
 			newhp=maxhp;
 		}
@@ -234,12 +234,12 @@ public Native_War3_HTBHP(Handle:plugin,numParams)
 {
 	if(MapChanging || War3SourcePause) return 0;
 
-	new client = GetNativeCell(1);
-	new addhp = GetNativeCell(2);
-	new maxhp=RoundFloat(float(War3_GetMaxHP(client))*1.5);
-	new currenthp=GetClientHealth(client);
+	int client = GetNativeCell(1);
+	int addhp = GetNativeCell(2);
+	int maxhp=RoundFloat(float(Internal_War3_GetMaxHP(client))*1.5);
+	int currenthp=GetClientHealth(client);
 	if(currenthp<maxhp){ ///do not make hp lower
-		new newhp=GetClientHealth(client)+addhp;
+		int newhp=GetClientHealth(client)+addhp;
 		if (newhp>maxhp){
 			newhp=maxhp;
 		}

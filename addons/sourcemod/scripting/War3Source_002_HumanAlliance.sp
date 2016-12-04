@@ -1,5 +1,5 @@
 #include <war3source>
-#assert GGAMEMODE == MODE_WAR3SOURCE
+//#assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
 

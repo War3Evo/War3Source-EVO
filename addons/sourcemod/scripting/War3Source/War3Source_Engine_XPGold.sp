@@ -87,9 +87,9 @@ public War3Source_Engine_XPGold_OnPluginStart()
 #endif
 }
 
-new String:meleeKiller[256];
-new String:meleeKilled[256];
-new String:headshotKiller[256];
+new String:meleeKiller[PLATFORM_MAX_PATH];
+new String:meleeKilled[PLATFORM_MAX_PATH];
+new String:headshotKiller[PLATFORM_MAX_PATH];
 
 public War3Source_Engine_XPGold_OnMapStart()
 {
@@ -113,10 +113,10 @@ public War3Source_Engine_XPGold_OnAddSound(sound_priority)
 		strcopy(meleeKiller,sizeof(meleeKiller),"war3source/gotchaknife.mp3");
 		strcopy(meleeKilled,sizeof(meleeKilled),"war3source/gotchaknife.mp3");
 		strcopy(headshotKiller,sizeof(headshotKiller),"war3source/bheadshot.mp3");
-		War3_AddSound(meleeKiller);
-		War3_AddSound(meleeKilled);
-		War3_AddSound(headshotKiller);
-		//War3_AddSound(levelupSound);
+		Internal_War3_AddSound(meleeKiller);
+		Internal_War3_AddSound(meleeKilled);
+		Internal_War3_AddSound(headshotKiller);
+		//Internal_War3_AddSound(levelupSound);
 	}
 }
 

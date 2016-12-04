@@ -12,7 +12,7 @@ new bool:bResetSkillsOnSpawn[MAXPLAYERSCUSTOM];
 new RaceIDToReset[MAXPLAYERSCUSTOM];
 
 
-new String:levelupSound[256]; //="war3source/levelupcaster.mp3";
+new String:levelupSound[PLATFORM_MAX_PATH]; //="war3source/levelupcaster.mp3";
 
 
 
@@ -62,7 +62,7 @@ public War3Source_Engine_PlayerClass_OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_LOW)
 	{
 		strcopy(levelupSound,sizeof(levelupSound),"war3source/levelupcaster.mp3");
-		War3_AddSound(levelupSound);
+		Internal_War3_AddSound(levelupSound);
 	}
 }
 
@@ -512,16 +512,6 @@ public NWar3_GetSkillLevelINTERNAL(Handle:plugin,numParams){
 	int race=GetNativeCell(2);
 	int skill=GetNativeCell(3);
 	return GetSkillLevelINTERNAL(client,race,skill);
-}
-
-stock GetPlayerProp(client,W3PlayerProp:property)
-{
-	if (client > 0 && client <= MaxClients)
-	{
-		return p_properties[client][property];
-	}
-	else
-		return 0;
 }
 
 public NW3GetPlayerProp(Handle:plugin,numParams)

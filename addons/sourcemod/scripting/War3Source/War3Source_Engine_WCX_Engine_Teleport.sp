@@ -25,7 +25,7 @@ enum W3TeleportProp
 	tele_skillid
 }
 
-new String:teleportSound[]="war3source/blinkarrival.mp3";
+new String:teleportSound[PLATFORM_MAX_PATH]="war3source/blinkarrival.mp3";
 
 new PlayerProp[MAXPLAYERSCUSTOM][W3TeleportProp];
 
@@ -63,7 +63,7 @@ public War3Source_Engine_WCX_Engine_Teleport_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(teleportSound);
+		Internal_War3_AddSound(teleportSound);
 	}
 }
 

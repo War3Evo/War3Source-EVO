@@ -53,7 +53,7 @@ public War3Source_Engine_XP_Platinum_OnPluginStart()
 //{
 	//if(sound_priority==PRIORITY_LOW)
 	//{
-		//War3_AddSound(levelupSound);
+		//Internal_War3_AddSound(levelupSound);
 	//}
 //}
 

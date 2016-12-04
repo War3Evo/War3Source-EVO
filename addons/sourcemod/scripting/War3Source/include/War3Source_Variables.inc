@@ -152,12 +152,13 @@ int raceSkillDescReplaceNum[MAXRACES][MAXSKILLCOUNT];
 char raceSkillDescReplace[MAXRACES][MAXSKILLCOUNT][5][64]; ///MAX 5 params for replacement //64 string length
 bool skillTranslated[MAXRACES][MAXSKILLCOUNT];
 
-enum SkillRedirect
-{
-	genericskillid,
-}
-bool SkillRedirected[MAXRACES][MAXSKILLCOUNT];
-int SkillRedirectedToSkill[MAXRACES][MAXSKILLCOUNT];
+//generic skills not used
+//enum SkillRedirect
+//{
+	//genericskillid,
+//}
+//bool SkillRedirected[MAXRACES][MAXSKILLCOUNT]; //generic skills not used
+//int SkillRedirectedToSkill[MAXRACES][MAXSKILLCOUNT]; //generic skills not used
 
 bool skillIsUltimate[MAXRACES][MAXSKILLCOUNT];
 int skillMaxLevel[MAXRACES][MAXSKILLCOUNT];
@@ -302,3 +303,12 @@ stock void DominationsART()
 	PrintToServer("   ###    ########## ########       #########   ########  ###       ### ########### ###    #### ###     ### ###     ########### ########  ###    ####  ########  ");
 }
 #endif
+
+
+//=============================
+// War3Source_Engine_Download_Control
+//=============================
+Handle g_hSoundFile = INVALID_HANDLE;
+Handle g_hPriority = INVALID_HANDLE;
+Handle g_hStockSound = INVALID_HANDLE;
+int Forward_Priority = PRIORITY_BOTTOM;

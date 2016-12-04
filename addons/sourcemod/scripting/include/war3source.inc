@@ -121,6 +121,7 @@ native any:W3GetVar(W3Var:variabletoretrieve);
 native any:W3SetVar(W3Var:variabletoretrieve,any:value);
 /* END GLOBAL VARS */
 
+#if GGAMEMODE == MODE_WAR3SOURCE
 /*
  War3_TFSetItemClasses(itemid, and then use ItemClassString separted by comma )
 
@@ -167,6 +168,7 @@ native War3_TFSetItemClasses(itemid,any:...);
 native War3_TFIsItemClass(itemid,TFClassType:iPlayerClass);
 
 //native W3ExtShowShop2(client);
+#endif
 
 /**
  * Registers a help command with the War3Source:EVO plugin for war3help
@@ -179,7 +181,7 @@ native War3_CreateHelpCommand(String:name[],String:desc[]);
 native W3GetLevelsSpent(client, race);
 native W3ClearSkillLevels(client, race);
 
-
+#if GGAMEMODE == MODE_WAR3SOURCE
 /**
  * When a player dies, this command record's their shopmenu1 items.
  * When you use this command, you are telling it to restore their items from death.
@@ -196,6 +198,7 @@ native W3ClearSkillLevels(client, race);
  * @return The return value will be true if it is successful.
  */
 native War3_RestoreItemsFromDeath(client,bool:payforit=true,bool:csmoney=false);
+#endif
 
 #if GGAMETYPE == GGAME_TF2
 // Checks if a player is in steam group
@@ -1849,7 +1852,9 @@ stock void RemoveCosmetics(iClient)
 
 #include "War3Source/include/War3Source_SkillEffects"
 #include "War3Source/include/War3Source_Engine_Download_Control"
+
 #include "War3Source/include/War3Source_XP_Gold"
+
 #include "War3Source/include/War3Source_Health"
 #include "War3Source/include/War3Soruce_CoolDown_Manager"
 #include "War3Source/include/War3Source_Messages"
@@ -1870,6 +1875,10 @@ stock void RemoveCosmetics(iClient)
 #include "War3Source/include/War3Source_OnW3HealthPickup.inc"
 
 #include "War3Source/include/War3Source_Engine_SkillsClass.inc"
+
+#if GGAMETYPE == GGAME_TF2
+#include "War3Source/include/War3Source_Engine_ClassControl.inc"
+#endif
 
 // not included for now
 //#include "War3Source/include/War3Source_Talents.inc"
@@ -2267,9 +2276,6 @@ public SharedPlugin:__pl_War3Source =
 public __pl_War3Source_SetNTVOptional()
 {
 	MarkNativeAsOptional("W3GetReqXP");
-
-	MarkNativeAsOptional("War3_ShowXP");
-
 	MarkNativeAsOptional("W3SaveXP");
 
 	//MarkNativeAsOptional("War3Failed");
@@ -2313,7 +2319,10 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("W3IsRaceTranslated");
 	MarkNativeAsOptional("W3GetVar");
 	MarkNativeAsOptional("W3SetVar");
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	// Shopmenu
+	// War3Source_Engine_ItemClass
 	MarkNativeAsOptional("War3_CreateShopItem");
 	MarkNativeAsOptional("War3_CreateShopItemT");
 #if GGAMETYPE == GGAME_TF2
@@ -2327,14 +2336,28 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("W3GetItemShortname");
 	MarkNativeAsOptional("W3GetItemShortdesc");
 	MarkNativeAsOptional("W3GetItemDescription");
+	MarkNativeAsOptional("W3GetItemsLoaded");
 	MarkNativeAsOptional("W3GetItemCost");
-	MarkNativeAsOptional("W3GetItemOrder");
+	MarkNativeAsOptional("W3IsItemCSmoney");
 	MarkNativeAsOptional("W3ItemHasFlag");
 	MarkNativeAsOptional("W3GetItemCategory");
-	MarkNativeAsOptional("W3GetItemsLoaded");
+	//end of War3Source_Engine_ItemClass
+
+	// War3Source_Engine_ItemOwnership
+	MarkNativeAsOptional("War3_RestoreItemsFromDeath");
+	MarkNativeAsOptional("War3_GetOwnsItem");
+	MarkNativeAsOptional("War3_SetOwnsItem");
 	MarkNativeAsOptional("W3IsItemDisabledGlobal");
 	MarkNativeAsOptional("W3IsItemDisabledForRace");
+	MarkNativeAsOptional("GetMaxShopitemsPerPlayer");
+	MarkNativeAsOptional("GetClientItemsOwned");
+#endif // end of War3Source_Engine_ItemOwnership
+
+	MarkNativeAsOptional("W3GetItemOrder");
+
+#if GGAMEMODE == MODE_WAR3SOURCE
 	// Shopmenu 2
+	//War3Source_Engine_ItemClass2.sp
 	MarkNativeAsOptional("War3_CreateShopItem2");
 	MarkNativeAsOptional("War3_CreateShopItem2T");
 	MarkNativeAsOptional("War3_SetItem2Property");
@@ -2343,36 +2366,80 @@ public __pl_War3Source_SetNTVOptional()
 	//MarkNativeAsOptional("W3CreateShopItem2");
 	MarkNativeAsOptional("W3GetItem2Name");
 	MarkNativeAsOptional("W3GetItem2Shortname");
+	MarkNativeAsOptional("W3GetItem2Shortdesc");
 	MarkNativeAsOptional("W3GetItem2Desc");
+	MarkNativeAsOptional("W3GetItems2Loaded");
 	MarkNativeAsOptional("W3GetItem2Cost");
 	MarkNativeAsOptional("W3GetItem2Order");
 	MarkNativeAsOptional("W3Item2HasFlag");
 	MarkNativeAsOptional("W3GetItem2Catagory");
-	MarkNativeAsOptional("W3GetItems2Loaded");
+	//end of War3Source_Engine_ItemClass2.sp
+
+	// War3Source_Engine_ItemOwnership2.sp
+	MarkNativeAsOptional("War3_GetOwnsItem2");
+	MarkNativeAsOptional("War3_SetOwnsItem2");
 	MarkNativeAsOptional("W3IsItem2DisabledGlobal");
 	MarkNativeAsOptional("W3IsItem2DisabledForRace");
+	MarkNativeAsOptional("GetClientItems2Owned");
+	MarkNativeAsOptional("GetMaxShopitems2PerPlayer");
+#endif // end of War3Source_Engine_ItemOwnership2.sp
+
 	MarkNativeAsOptional("W3SaveItem2ExpireTime");
-	// Shopmenu3
-	MarkNativeAsOptional("W3CreateShopItem3");
-	MarkNativeAsOptional("W3CreateShopItem3T");
+
+#if GGAMEMODE == MODE_WAR3SOURCE
+	// Shopmenu 3
+	// War3Source_Engine_ItemClass3
 #if GGAMETYPE == GGAME_TF2
+	//War3Source_Shopmenu3.inc
 	MarkNativeAsOptional("War3_TFSetItem3Classes");
 	MarkNativeAsOptional("War3_TFIsItem3Class");
+	//end of War3Source_Shopmenu3.inc
 #endif
+	MarkNativeAsOptional("War3_CreateShopItem3");
+	//MarkNativeAsOptional("War3_CreateShopItem3T"); //dont exist right now
 	MarkNativeAsOptional("War3_SetItem3Property");
 	MarkNativeAsOptional("War3_GetItem3Property");
 	MarkNativeAsOptional("War3_GetItem3IdByShortname");
-	MarkNativeAsOptional("W3CreateShopItem3");
 	MarkNativeAsOptional("W3GetItem3Name");
 	MarkNativeAsOptional("W3GetItem3Shortname");
 	MarkNativeAsOptional("W3GetItem3Desc");
+	MarkNativeAsOptional("W3GetItems3Loaded");
 	MarkNativeAsOptional("W3GetItem3Cost");
+	MarkNativeAsOptional("W3GetItem3levelName");
+	MarkNativeAsOptional("W3GetItem3maxtotallevels");
+	MarkNativeAsOptional("W3GetItem3maxlevel1");
+	MarkNativeAsOptional("W3GetItem3maxlevel2");
 	MarkNativeAsOptional("W3GetItem3Order");
 	MarkNativeAsOptional("W3Item3HasFlag");
 	MarkNativeAsOptional("W3GetItem3Category");
-	//MarkNativeAsOptional("W3GetItems3Loaded");
+	MarkNativeAsOptional("W3ItemCategoryExist");
+	MarkNativeAsOptional("W3CompareTwoItemCategories");
+	// end of War3Source_Engine_ItemClass3
+
+	// War3Source_Engine_ItemOwnership3.sp
+	MarkNativeAsOptional("War3_GetItemId1");
+	MarkNativeAsOptional("War3_GetItemId2");
+	MarkNativeAsOptional("War3_GetItemId3");
+	MarkNativeAsOptional("War3_GetOwnsItem3");
+	MarkNativeAsOptional("War3_SetOwnsItem3");
+	MarkNativeAsOptional("War3_Item3CooldownMGR");
+	MarkNativeAsOptional("War3_Item3NotInCooldown");
+	MarkNativeAsOptional("War3_Item3CooldownTimeRemaining");
+	MarkNativeAsOptional("War3_GetTotalItemLevels");
+	MarkNativeAsOptional("War3_SetItemLevel");
+	MarkNativeAsOptional("War3_GetItemLevel");//W3GetItems3Loaded
+	MarkNativeAsOptional("War3_SetItemXP");
+	MarkNativeAsOptional("War3_GetItemXP");
+	MarkNativeAsOptional("War3_SetItemLevel2");
+	MarkNativeAsOptional("War3_GetItemLevel2");
+	MarkNativeAsOptional("War3_SetItemXP2");
+	MarkNativeAsOptional("War3_GetItemXP2");
 	MarkNativeAsOptional("W3IsItem3DisabledGlobal");
 	MarkNativeAsOptional("W3IsItem3DisabledForRace");
+	MarkNativeAsOptional("GetClientItems3Owned");
+	MarkNativeAsOptional("GetMaxShopitems3PerPlayer");
+#endif // end of War3Source_Engine_ItemOwnership3.sp
+
 	MarkNativeAsOptional("W3SaveItem3");
 
 	MarkNativeAsOptional("War3_CreateHelpCommand");
@@ -2382,24 +2449,12 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("W3GetReqXP");
 	MarkNativeAsOptional("War3_ShowXP");
 	MarkNativeAsOptional("W3GetMaxGold");
-	MarkNativeAsOptional("War3_RestoreItemsFromDeath");
 #if GGAMETYPE == GGAME_TF2
 	MarkNativeAsOptional("War3_IsInSteamGroup");
 #endif
-	MarkNativeAsOptional("War3_GetOwnsItem");
-	MarkNativeAsOptional("War3_GetOwnsItem2");
-	MarkNativeAsOptional("War3_GetOwnsItem3");
-	MarkNativeAsOptional("War3_SetItemXP");
-	MarkNativeAsOptional("War3_GetItemXP");
-	MarkNativeAsOptional("War3_SetItemLevel");
-	MarkNativeAsOptional("War3_GetItemLevel");//W3GetItems3Loaded
-	MarkNativeAsOptional("W3GetItems3Loaded");
 
 //	MarkNativeAsOptional("W3GetItem2ExpireTime");
 //	MarkNativeAsOptional("W3SetItem2ExpireTime");
-	MarkNativeAsOptional("War3_SetOwnsItem");
-	MarkNativeAsOptional("War3_SetOwnsItem2");
-	MarkNativeAsOptional("War3_SetOwnsItem3");
 	MarkNativeAsOptional("War3_GetTargetInViewCone");
 	MarkNativeAsOptional("W3LOS");
 	MarkNativeAsOptional("War3_DealDamage");
@@ -2622,5 +2677,7 @@ public __pl_War3Source_SetNTVOptional()
 
 	MarkNativeAsOptional("OnW3SupplyLocker");
 	MarkNativeAsOptional("OnW3HealthPickup");
+
+	MarkNativeAsOptional("War3_SetClass");
 }
 #endif

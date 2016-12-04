@@ -533,7 +533,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	}
 	else if(CommandCheck(arg1,"maxhp"))
 	{
-		int maxhp = War3_GetMaxHP(client);
+		int maxhp = Internal_War3_GetMaxHP(client);
 		War3_ChatMessage(client,"Your max health is: %d",maxhp);
 	}
 	if(GetRace(client)>0)
