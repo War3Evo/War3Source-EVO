@@ -4,7 +4,7 @@ https://forums.alliedmods.net/showthread.php?p=2431473
 
 **GAME MODE CURRENTLY SETUP TO COMPILE FOR IS TF2**
 
-Working: TF2, ~~CSGO~~ CSGO is only partially working, if you've got programming skills, you can make it work!
+Working: TF2, ~~CSGO is only partially working, if you've got programming skills, you can make it work!~~
 
 Updated for Sourcemod 1.8
 
