@@ -1,5 +1,9 @@
 # War3Source Evoultion
 
+Servers running this mod:
+
+**Norad is running a public server running this mod here: 136.57.191.195:27018**
+
 https://forums.alliedmods.net/showthread.php?p=2431473
 
 **GAME MODE CURRENTLY SETUP TO COMPILE FOR IS TF2**
