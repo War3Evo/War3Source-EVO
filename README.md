@@ -10,6 +10,8 @@ https://forums.alliedmods.net/showthread.php?p=2431473
 
 Working: TF2, ~~CSGO is only partially working, if you've got programming skills, you can make it work!~~
 
+War3Source:Evo does require at least 1 gb of ram to run smoothly.  At minimum 750 mb of ram with 250 mb of vswap in openvz.
+
 Updated for Sourcemod 1.8
 
 If something is missing during compiling, let me know.
