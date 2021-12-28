@@ -14,6 +14,20 @@ War3Source:Evo does require at least 1 gb of ram to run smoothly.  At minimum 75
 
 Updated for Sourcemod 1.8
 
+Seems to compile fine using the 1.9 compiler, but once you go to the 1.10 compiler... you'll get tons of errors!
+```
+git_War3Evo_OPENSOURCE_4_JUNE_2016/addons/sourcemod/scripting/compile.sh "War3Source.sp" (in directory: git_War3Evo_OPENSOURCE_4_JUNE_2016/addons/sourcemod/scripting)
+Single File Compiling War3Source.sp...SourcePawn Compiler 1.9.0.6261
+Copyright (c) 1997-2006 ITB CompuPhase
+Copyright (c) 2004-2017 AlliedModders LLC
+Code size:           597404 bytes
+Data size:          8862768 bytes
+Stack/heap size:    2400000 bytes
+Total requirements:11860172 bytes
+Done.
+Compilation finished successfully.
+```
+
 If something is missing during compiling, let me know.
 
 
