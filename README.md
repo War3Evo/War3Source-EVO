@@ -1,4 +1,8 @@
-# War3Source Evoultion
+# War3Source Evoultion -->>ReadME.md updated 12/29/2021<<--
+
+**War3Evo War3Source: Evolution 3.0 Test Server is here: 107.191.126.14:27015**
+
+https://cache.gametracker.com/server_info/107.191.126.14:27015/b_560_95_1.png
 
 Servers running this mod:
 
@@ -14,7 +18,7 @@ War3Source:Evo does require at least 1 gb of ram to run smoothly.  At minimum 75
 
 Updated for Sourcemod 1.8
 
-Seems to compile fine using the 1.9 compiler, but once you go to the 1.10 compiler... you'll get tons of errors!
+**Seems to compile fine using the 1.9 compiler, but once you go to the 1.10 compiler... you'll get tons of errors!**
 ```
 git_War3Evo_OPENSOURCE_4_JUNE_2016/addons/sourcemod/scripting/compile.sh "War3Source.sp" (in directory: git_War3Evo_OPENSOURCE_4_JUNE_2016/addons/sourcemod/scripting)
 Single File Compiling War3Source.sp...SourcePawn Compiler 1.9.0.6261
