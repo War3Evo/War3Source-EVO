@@ -74,53 +74,191 @@ War3Source_SkillMenu(client)
 			new skillcount=GetLevelsSpent(client,race_num);
 			new level=War3_GetLevel(client,race_num);
 			SetMenuExitButton(sMenu,true);
+			SetMenuExitBackButton(sMenu,true); //SetMenuExitButton
+			SetMenuPagination(sMenu,3);
 			SetMenuTitle(sMenu,"%T\n \n","[War3Source:EVO] Select your desired skill. ({amount}/{amount})",client,skillcount,level);
 			decl String:skillname[64];
 			new curskilllevel;
 
 			decl String:sbuf[4];
 			decl String:buf[192];
+
+			char str[1000];
+			char skilldesc[1000];
+
 			new SkillCount = GetRaceSkillCount(race_num);
 			for(new x=1;x<=SkillCount;x++)
 			{
 				curskilllevel=GetSkillLevelINTERNAL(client,race_num,x);
-				if(curskilllevel<GetRaceSkillMaxLevel(race_num,x)){
-
+				int maxskilllevel=GetRaceSkillMaxLevel(race_num,x);
+				if(curskilllevel<maxskilllevel)
+				{
 					if(GetRaceSkillName(race_num,x,skillname,sizeof(skillname))>0)
 					{
 
-						if(!IsSkillUltimate(race_num,x))
+						if(!IsSkillUltimate(race_num,x))  // IS NOT ULTIMATE
 						{
 							//if(level>=curskilllevel*2+1){
 							Format(sbuf,sizeof(sbuf),"%d",x);
-							Format(buf,sizeof(buf),"%T","{skillname} (Skill Level {amount})",client,skillname,curskilllevel+1);
+							//Format(buf,sizeof(buf),"%T","{skillname} (Skill Level {amount})",client,skillname,curskilllevel+1);
+							Format(buf,sizeof(buf),"%s [%d / %d]",skillname,curskilllevel,maxskilllevel);
 							new bool:failed = HasDependency(client,race_num,x,buf,sizeof(buf),false);
 							if(failed)
-								AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
+							{
+								//AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
+								if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+								{
+									int skillSlot = GetSkillSlot(client,x);
+									if(skillSlot>0)
+									{
+										GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+									}
+									Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+									AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+								}
+								else
+								{
+									Format(str,sizeof(str),"%s:\nno description",buf);
+									AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+								}
+							}
 							else
-	                           {
-	                            // No Spending skills limit
-	                            if(GetConVarBool(NoSpendSkillsLimitCvar))
-	                              {
-	                               AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DEFAULT);
-	                              }
-	                             else
-	  							   AddMenuItem(sMenu,sbuf,buf,(level>=curskilllevel*2+1)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
-	                           }
-							//}
+							{
+									// No Spending skills limit
+									if(GetConVarBool(NoSpendSkillsLimitCvar))
+									{
+										//AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DEFAULT);
+										if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+										{
+											int skillSlot = GetSkillSlot(client,x);
+											if(skillSlot>0)
+											{
+												GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+											}
+											Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+											AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
+										}
+										else
+										{
+											Format(str,sizeof(str),"%s:\nno description",buf);
+											AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
+										}
+									}
+									else
+									{
+										if(level>=curskilllevel*2+1) // REGULAR SKILLS
+										{
+											//AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DEFAULT);
+											if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+											{
+												int skillSlot = GetSkillSlot(client,x);
+												if(skillSlot>0)
+												{
+													GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+												}
+												Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+												AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
+											}
+											else
+											{
+												Format(str,sizeof(str),"%s:\nno description",buf);
+												AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
+											}
+										}
+										else
+										{
+											//DISABLED REGULAR SKILLS / NOT ENOUGH POINTS
+											if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+											{
+												int skillSlot = GetSkillSlot(client,x);
+												if(skillSlot>0)
+												{
+													GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+												}
+												Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+												AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+											}
+											else
+											{
+												Format(str,sizeof(str),"%s:\nno description",buf);
+												AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+											}
+										}
+									}
+							}
 						}
-						else {
+						else
+						{
+							// ULTIMATE SKILL LISTING
+
 							//if(level>=curskilllevel*2+1+){
 							Format(sbuf,sizeof(sbuf),"%d",x);
-							Format(buf,sizeof(buf),"%T ","Ultimate: {skillname} (Skill Level {amount})",client,skillname,curskilllevel+1);
-							if((level<GetMinUltLevel())){
+							//Format(buf,sizeof(buf),"%T ","Ultimate: {skillname} (Skill Level {amount})",client,skillname,curskilllevel+1);
+							Format(buf,sizeof(buf),"(Ultimate: %s [%d / %d])",skillname,curskilllevel,maxskilllevel);
+							if((level<GetMinUltLevel()))
+							{
 								Format(buf,sizeof(buf),"%s %T",buf,"[Requires lvl {amount}]",client,GetMinUltLevel());
 							}
 							new bool:failed = HasDependency(client,race_num,x,buf,sizeof(buf),true);
 							if(failed)
-								AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
+							{
+								//AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
+								if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+								{
+									int skillSlot = GetSkillSlot(client,x);
+									if(skillSlot>0)
+									{
+										GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+									}
+									Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+									AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+								}
+								else
+								{
+									Format(str,sizeof(str),"%s:\nno description",buf);
+									AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+								}
+							}
 							else
-	                            AddMenuItem(sMenu,sbuf,buf,(level>=curskilllevel*2+1+GetMinUltLevel()-1)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
+							{
+								//AddMenuItem(sMenu,sbuf,buf,(level>=curskilllevel*2+1+GetMinUltLevel()-1)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
+								if(level>=curskilllevel*2+1+GetMinUltLevel()-1)
+								{
+									if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+									{
+										int skillSlot = GetSkillSlot(client,x);
+										if(skillSlot>0)
+										{
+											GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+										}
+										Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+										AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
+									}
+									else
+									{
+										Format(str,sizeof(str),"%s:\nno description",buf);
+										AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
+									}
+								}
+								else
+								{
+									if(GetRaceSkillDesc(race_num,x,skilldesc,sizeof(skilldesc))>0)
+									{
+										int skillSlot = GetSkillSlot(client,x);
+										if(skillSlot>0)
+										{
+											GetSkillDesc(skillSlot,skilldesc,sizeof(skilldesc));
+										}
+										Format(str,sizeof(str),"%s:\n%s",buf,skilldesc);
+										AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+									}
+									else
+									{
+										Format(str,sizeof(str),"%s:\nno description",buf);
+										AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
+									}
+								}
+							}
 						}
 
 						/*if(War3_IsSkillPartOfTree(race_num, x)) //the skill depends on something
@@ -153,9 +291,20 @@ War3Source_SkillMenu(client)
 						//if(curskilllevel<GetRaceSkillMaxLevel(race_num,x)) //, show if 3 when maxlevel is 4 not max level
 					}
 				}
+				else //if(curskilllevel>=GetRaceSkillMaxLevel(race_num,x))
+				{
+					if(GetRaceSkillName(race_num,x,skillname,sizeof(skillname))>0)
+					{
+						Format(sbuf,sizeof(sbuf),"%d",x);
+						//Format(buf,sizeof(buf),"%T","{skillname} (Skill Level {amount})",client,skillname,curskilllevel); //maxskilllevel
+						Format(buf,sizeof(buf),"%s [%d / %d]",skillname,curskilllevel,maxskilllevel);
+						AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
+					}
+				}
 
 			}
-			DisplayMenu(sMenu,client,20);
+			// SHOW HUD DESCRIPTION (ROTATING HUD)
+			DisplayMenu(sMenu,client,60);
 		}
 	}
 }
