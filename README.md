@@ -2,7 +2,7 @@
 
 **War3Evo War3Source: Evolution 3.0 Test Server is here: 107.191.126.14:27015**
 
-https://cache.gametracker.com/server_info/107.191.126.14:27015/b_560_95_1.png
+https://www.gametracker.com/server_info/107.191.126.14:27015/
 
 Servers running this mod:
 
