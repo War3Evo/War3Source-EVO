@@ -75,6 +75,12 @@ public War3Source_Engine_BotControl_OnPluginStart()
 	HookEvent("round_start", Event_ScrambleNow);
 #endif
 
+/*
+since there are some cvars that control how sniper bots aim
+
+tf_bot_sniper_aim_error and tf_bot_sniper_aim_steady_rate
+*/
+
 	// ########################## BOT ITEM CONFIG ############################
 	botBuysItems = CreateConVar("war3_bots_buy_items", "0", "Can bots buy items?", _, true, 0.0, true, 1.0);
 	botBuysRandom = CreateConVar("war3_bots_buy_random","1","Bots buy random items when they spawn (Loadout Mode currently disabled!)", _, true, 1.0, true, 1.0);
