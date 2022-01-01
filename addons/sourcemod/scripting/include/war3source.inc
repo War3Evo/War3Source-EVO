@@ -2191,10 +2191,11 @@ methodmap W3player
 	}
 #endif
 
+/*  Already exists else where except Captial G instead of lowercase g
 	public int getSkillslot( int skillid )
 	{
 		return War3_GetSkillSlot(this.index,skillid);
-	}
+	}*/
 	public void setSkillslot( int skillslot, int skillid )
 	{
 		War3_SetSkillSlot(this.index,skillslot,skillid);
