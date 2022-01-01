@@ -29,6 +29,7 @@ Total requirements:11860172 bytes
 Done.
 Compilation finished successfully.
 ```
+You can find SourceMod 1.9 here: https://www.sourcemod.net/downloads.php?branch=1.9-dev&all=1
 
 If something is missing during compiling, let me know.
 
