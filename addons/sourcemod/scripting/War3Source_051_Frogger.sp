@@ -1,5 +1,13 @@
 #include <war3source>
 
+/*
+	WARNING	WARNING	WARNING	WARNING	WARNING	WARNING	WARNING	WARNING	WARNING	WARNING
+	* 
+	* THERE ARE 'FindSendProp*' and other warnings that will show up in the compiler... for now I'm just ignoring them and you can too.
+	* 
+	* I'll fix those annoyances later.
+ */
+
 #pragma semicolon 1
 //#include <sourcemod>
 #include <tf2attributes>
