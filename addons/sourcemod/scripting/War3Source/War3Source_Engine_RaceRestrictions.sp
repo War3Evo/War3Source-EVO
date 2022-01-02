@@ -256,8 +256,8 @@ enum TFClassType
 			char cvarstr[100];
 			GetCvar(cvarid,cvarstr,sizeof(cvarstr));
 
-			PrintToServer("cvarid %d",cvarid);
-			PrintToServer("cvarstr %s",cvarstr);
+			//PrintToServer("cvarid %d",cvarid);
+			//PrintToServer("cvarstr %s",cvarstr);
 
 			if(strlen(cvarstr)>0 && !StrEqual(cvarstr,classstring))
 			{
