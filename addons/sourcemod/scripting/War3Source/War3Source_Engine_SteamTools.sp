@@ -78,19 +78,19 @@ public Action:Command_Refresh(args)
 			Steam_RequestGroupStatus(client, GetConVarInt(g_hClanID));
 		}
 	}
-	PrintToServer("[W3S] Repolling groupstatus...");
+	PrintToServer("[W3E] Repolling groupstatus...");
 }
 
 public Action:Command_TellStatus(client,args)
 {
 	if(g_bSteamTools) {
-		ReplyToCommand(client,"[W3S] Steamtools detected!");
+		ReplyToCommand(client,"[W3E] Steamtools detected!");
 	}
 	else {
-		ReplyToCommand(client,"[W3S] Steamtools wasn't recognized!");
+		ReplyToCommand(client,"[W3E] Steamtools wasn't recognized!");
 	}
 	if(IS_PLAYER(client)) {
-		ReplyToCommand(client,"[W3S] Membership status of Group(%i) is: %s",GetConVarInt(g_hClanID),(bIsInSteamGroup[client]?"member":"nobody"));
+		ReplyToCommand(client,"[W3E] Membership status of Group(%i) is: %s",GetConVarInt(g_hClanID),(bIsInSteamGroup[client]?"member":"non-member"));
 	}
 	return Plugin_Handled;
 }
@@ -125,7 +125,7 @@ public Action:WelcomeAdvertTimer (Handle:timer, any:client)
 			Steam_RequestGroupStatus(x, GetConVarInt(g_hClanID));
 		}
 	}
-	//PrintToServer("[W3S] Repolling groupstatus...");
+	//PrintToServer("[W3E] Repolling groupstatus...");
 
 	decl String:ClientName[64] = "";
 	if (ValidPlayer(client) && !IsFakeClient(client))
@@ -137,11 +137,11 @@ public Action:WelcomeAdvertTimer (Handle:timer, any:client)
 		Format(buffer2, sizeof(buffer2), "\x01\x04%s\x01", buffer2);
 		if(bIsInSteamGroup[client])
 		{
-			//PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Welcome to the -W3E- Steam Group! Bonus jobs and items have been unlocked!",ClientName,buffer2);
+			PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Welcome to the -W3E- Steam Group! Bonus jobs and items have been unlocked!",ClientName,buffer2);
 		}
 		else
 		{
-			//PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Welcome %s\x01! Please join our steam group for bonus jobs and items. Type !join to get started.",ClientName,buffer2);
+			PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Welcome %s\x01! Please join our steam group for bonus jobs and items.",ClientName,buffer2);
 			//PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Type !join to join");
 		}
 		//PrintToChat (client, "\x01\x04[War3Source:EVO]\x01 Welcome! Please join our Steam Group ");
@@ -173,12 +173,12 @@ public Steam_GroupStatusResult(client, groupID, bool:bIsMember, bool:bIsOfficer)
 			bIsInSteamGroup[client] = bIsMember;
 			if(!bIsMember)
 			{
-				//PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Please join our steam group for bonus jobs and items. Type !join to get started.");
+				PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Please join our steam group for bonus jobs and items.");
 			}
 			else
 			{
 				if (myChecker[client] == 0) {
-					//PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Thanks for joining our steam group! Bonus jobs and items have been unlocked!");
+					PrintToChat(client, "\x01\x04[War3Source:EVO]\x01 Thanks for joining our steam group! Bonus jobs and items have been unlocked!");
 					myChecker[client] = 1;
 				}
 			}
