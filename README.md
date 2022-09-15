@@ -17,6 +17,8 @@ Currently checking these for bugs:
 **RamNode Servers Recommendation**
 If your good with setting up your own VPS, then I highly recommend using RamNode open vps servers as they've been around for over a decade.
 
+War3Source:Evo does require at least 1 gb of ram to run smoothly.  At minimum 750 mb of ram with 250 mb of vswap in openvz.
+
 Please help me pay for my test servers by using my [Affiliate Link](https://clientarea.ramnode.com/aff.php?aff=1227) 
 
 **Paypal.me Donations**
@@ -30,14 +32,6 @@ https://www.gametracker.com/server_info/107.191.126.14:27015/
 **Norad is running a public server running this mod here: 136.57.191.195:27018**
 
 https://forums.alliedmods.net/showthread.php?p=2431473
-
-**GAME MODE CURRENTLY SETUP TO COMPILE FOR IS TF2**
-
-Working: TF2, ~~CSGO is only partially working, if you've got programming skills, you can make it work!~~
-
-War3Source:Evo does require at least 1 gb of ram to run smoothly.  At minimum 750 mb of ram with 250 mb of vswap in openvz.
-
-Updated for Sourcemod 1.8
 
 **Seems to compile fine using the 1.9 compiler, but once you go to the 1.10 compiler... you'll get tons of errors!**
 ```
@@ -56,8 +50,8 @@ You can find SourceMod 1.9 here: https://www.sourcemod.net/downloads.php?branch=
 
 If something is missing during compiling, let me know.
 
-
-IS NOT commpatible with the Original War3Source Races. May add compatibility later, but don't get your hopes up.
+**War3Evo War3source: EVO IS NOT commpatible with the Original War3Source Races.** 
+May add compatibility later, but don't get your hopes up.
 
 Translations do not fully work on this version, as I ripped out a lot of translations during updates for my private version.  English is the language used without translation files.
 
