@@ -4,7 +4,7 @@
 
 Currently checking these for bugs:
 
-- [x] TF2 is working.
+- [x] TF2 is working. (done on 9/15/2022)
 - [ ] CSGO is being looked at
 - [ ] CS:S is next on list
 - [ ] FOF is last to be looked at
