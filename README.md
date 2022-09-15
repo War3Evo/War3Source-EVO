@@ -33,7 +33,7 @@ https://www.gametracker.com/server_info/107.191.126.14:27015/
 
 https://forums.alliedmods.net/showthread.php?p=2431473
 
-**Seems to compile fine using the 1.9 compiler, but once you go to the 1.10 compiler... you'll get tons of errors!**
+**Seems to compile fine for TF2 using the 1.9 compiler, but once you go to the 1.10 compiler... you'll get tons of errors!**
 ```
 git_War3Evo_OPENSOURCE_4_JUNE_2016/addons/sourcemod/scripting/compile.sh "War3Source.sp" (in directory: git_War3Evo_OPENSOURCE_4_JUNE_2016/addons/sourcemod/scripting)
 Single File Compiling War3Source.sp...SourcePawn Compiler 1.9.0.6261
@@ -47,6 +47,8 @@ Done.
 Compilation finished successfully.
 ```
 You can find SourceMod 1.9 here: https://www.sourcemod.net/downloads.php?branch=1.9-dev&all=1
+
+I believe you can download the latest SourceMod for the server, then just compile the code for War3Source: EVO using spcomp from 1.9
 
 If something is missing during compiling, let me know.
 
