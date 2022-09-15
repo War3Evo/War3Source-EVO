@@ -1,6 +1,7 @@
 # War3Source Evoultion -->>ReadME.md updated 9/15/2022<<--
 
 **Current Game Setup is CSGO**
+
 Edit GAME_SWITCHER before compiling to switch for your game mode:
 addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc
 
