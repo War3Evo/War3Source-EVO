@@ -1,4 +1,13 @@
-# War3Source Evoultion -->>ReadME.md updated 12/29/2021<<--
+# War3Source Evoultion -->>ReadME.md updated 9/15/2022<<--
+
+**RamNode Servers Recommendation**
+If your good with setting up your own VPS, then I highly recommend using RamNode open vps servers as they've been around for over a decade.
+
+Please help me pay for my test servers by using my [Affiliate Link](https://clientarea.ramnode.com/aff.php?aff=1227) 
+
+**Paypal.me Donations**
+You can also help me pay for my time and the test servers by donating to me here:
+[Paypal.me/timmonspro](paypal.me/timmonspro)
 
 **War3Evo War3Source: Evolution 3.0 Test Server is here: 107.191.126.14:27015**
 
