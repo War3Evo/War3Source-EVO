@@ -1,5 +1,14 @@
 # War3Source Evoultion -->>ReadME.md updated 9/15/2022<<--
 
+**Road MAP**
+
+Currently checking these for bugs:
+
+- [x] TF2 is working.
+- [ ] CSGO is being looked at
+- [ ] CS:S is next on list
+- [ ] FOF is last to be looked at
+
 **RamNode Servers Recommendation**
 If your good with setting up your own VPS, then I highly recommend using RamNode open vps servers as they've been around for over a decade.
 
