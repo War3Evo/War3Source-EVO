@@ -1,7 +1,5 @@
 // War3Source_Engine_CommandHook.sp
 
-#include <basecomm>
-
 #define BLUETEAMCHATCOLOR "blue"
 #define REDTEAMCHATCOLOR "red"
 
