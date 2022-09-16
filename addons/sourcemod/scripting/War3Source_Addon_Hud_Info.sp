@@ -1,4 +1,31 @@
 #include <war3source>
+
+/*
+	Issues with CSGO that will take a lot more time to figure out.
+	
+L 09/16/2022 - 03:14:29: "Jon<5><BOT><>" entered the game
+L 09/16/2022 - 03:14:29: "Gary<6><BOT><>" connected, address ""
+[War3Source:EVO] OnClientPutInServer 5
+L 09/16/2022 - 03:14:29: "Gary<6><BOT>" switched from team <Unassigned> to <TERRORIST>
+[War3Source:EVO] War3Source_SavePlayerData()
+L 09/16/2022 - 03:14:29: [War3Source.smx] bad race ID 0
+[War3Source:EVO] DoForward_OnWar3EventSpawn()
+[War3Source:EVO] War3Source_SavePlayerData()
+[War3Source:EVO] DoForward_OnWar3EventSpawn()
+L 09/16/2022 - 03:14:29: "Gary<6><BOT><>" entered the game
+L 09/16/2022 - 03:14:29: [SM] Exception reported: Native is not bound
+L 09/16/2022 - 03:14:29: [SM] Blaming: War3Source_Addon_Hud_Info.smx
+L 09/16/2022 - 03:14:29: [SM] Call stack trace:
+L 09/16/2022 - 03:14:29: [SM]   [0] BfWriteByte
+L 09/16/2022 - 03:14:29: [SM]   [1] Line 139, /home/lucifer/War3Source-EVO/addons/sourcemod/scripting/War3Source_Addon_Hud_Info.sp$
+L 09/16/2022 - 03:14:29: [SM]   [2] Line 396, /home/lucifer/War3Source-EVO/addons/sourcemod/scripting/War3Source_Addon_Hud_Info.sp$
+L 
+*/
+
+#if GGAMETYPE != GGAME_TF2
+	#endinput
+#endif
+
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
 
@@ -123,23 +150,27 @@ stock Handle StartMessageExOne(UserMsg msg, int client, int flags=0)
 
 stock bool stockKeyHintText(int client, char format[254])
 {
-	Handle userMessage = StartMessageExOne(g_umsgKeyHintText, client);
-	if(userMessage != INVALID_HANDLE)
+	if (ValidPlayer(client,true) && !IsFakeClient(client))
 	{
-		SetGlobalTransTarget(client);
+		Handle userMessage = StartMessageExOne(g_umsgKeyHintText, client);
+		if(userMessage != INVALID_HANDLE)
+		{
+			SetGlobalTransTarget(client);
 
-		//if (g_bCanEnumerateMsgType && GetUserMessageType() == UM_Protobuf)
-		//{
-			//PbSetString(userMessage, "hints", format);
-		//}
-		//else
-		//{
-		BfWriteByte(userMessage, 1);
-		BfWriteString(userMessage, format);
-		//}
-		EndMessage();
+			//if (g_bCanEnumerateMsgType && GetUserMessageType() == UM_Protobuf)
+			//{
+				//PbSetString(userMessage, "hints", format);
+			//}
+			//else
+			//{
+			BfWriteByte(userMessage, 1);
+			BfWriteString(userMessage, format);
+			//}
+			EndMessage();
+		}
+		return true;
 	}
-	return true;
+	return false;
 }
 
 //public OnMapStart()
