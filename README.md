@@ -118,10 +118,12 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 
 * tf2_attributes - 0 disabled / 1 enabled. (default 0)
 
-# RACES INCLUDED (BUT HAVE NOT BEEN TESTED ON CSGO)
+# RACES INCLUDED (TESTED ON CSGO, TF2)
 * Undead Scourge
 * Human Alliance
 * Night Elf
+
+# RACES INCLUDED (TESTED ON TF2)
 * Blood Mage
 * Corrupted Disciple
 * Soul Reaper
