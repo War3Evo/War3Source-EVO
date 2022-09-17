@@ -143,6 +143,3 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 * Luna
 * Light Bender
 * Soul Medic
-
-
--- You can obtain custom races by me by joining my Patreon: https://www.patreon.com/war3evo
