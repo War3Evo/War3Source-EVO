@@ -1,4 +1,4 @@
-# War3Source Evoultion -->>ReadME.md updated 9/15/2022<<--
+# War3Source Evoultion -->>ReadME.md updated 9/17/2022<<--
 
 **Current Game Setup is CSGO**
 
@@ -11,6 +11,9 @@ Currently checking these for bugs:
 
 - [x] TF2 is working. (done on 9/15/2022)
 - [ ] CSGO is being looked at
+---[x] War3Source CORE fixed
+---[  ] Checking each race for errors
+---[  ] Checking each addon for errors
 - [ ] CS:S is next on list
 - [ ] FOF is last to be looked at
 
