@@ -9,11 +9,11 @@ addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc
 
 Currently checking these for bugs:
 
-- [x] TF2 is working. (done on 9/15/2022)
+- [x] TF2 is working. (9/15/2022)
 
 - [ ] CSGO is being looked at
 
--- [x] War3Source CORE fixed
+-- [x] War3Source CORE fixed (9/17/2022
 
 -- [ ] Checking each race for errors
 
