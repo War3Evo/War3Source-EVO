@@ -13,7 +13,7 @@ Currently checking these for bugs:
 
 - [ ] CSGO is being looked at
 
--- [x] War3Source CORE fixed (9/17/2022
+-- [x] War3Source CORE fixed (9/17/2022)
 
 -- [ ] Checking each race for errors
 
