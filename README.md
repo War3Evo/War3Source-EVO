@@ -15,9 +15,13 @@ Currently checking these for bugs:
 
 -- [x] War3Source CORE fixed
 
--- [  ] Checking each race for errors
+-- [ ] Checking each race for errors
 
--- [  ] Checking each addon for errors
+------- [ ] One of the races is causing an error model (need to find and fix it)
+
+-- [ ] Checking each addon for errors
+
+-- [ ] Check for sound files / models needed and create a package for users to download the zip
 
 - [ ] CS:S is next on list
 
