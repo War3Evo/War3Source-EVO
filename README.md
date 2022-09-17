@@ -63,6 +63,8 @@ You can find SourceMod 1.9 here: https://www.sourcemod.net/downloads.php?branch=
 
 I believe you can download the latest SourceMod for the server, then just compile the code for War3Source: EVO using spcomp from 1.9
 
+For CSGO, I have the latest SourceMod and MetaMod programs running on the CSGO server, while I still compile using a SourceMod 1.9 spcomp compiler.  Reason: Anything after 1.9 they've changed the compiler so much it is just too time comsuming to change the thousands of lines of code just so it looks better.  In reality, SourceMod 1.9 should continue to work forever as the changes they are making to the compiler is cosmetic.
+
 If something is missing during compiling, let me know.
 
 **War3Evo War3source: EVO IS NOT commpatible with the Original War3Source Races.** 
