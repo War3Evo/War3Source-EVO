@@ -27,6 +27,8 @@ Currently checking these for bugs:
 
 - [ ] FOF is last to be looked at
 
+- [ ] Add Translations back into War3Source:EVO
+
 **RamNode Servers Recommendation**
 If your good with setting up your own VPS, then I highly recommend using RamNode open vps servers as they've been around for over a decade.
 
