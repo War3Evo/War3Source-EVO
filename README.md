@@ -38,7 +38,7 @@ Please help me pay for my test servers by using my [Affiliate Link](https://clie
 
 **Paypal.me Donations**
 You can also help me pay for my time and the test servers by donating to me here:
-[Paypal.me/timmonspro](paypal.me/timmonspro)
+[Paypal.me/timmonspro](https://paypal.me/timmonspro)
 
 **War3Evo War3Source: Evolution 3.0 Test Server is here: 107.191.126.14:27015**
 
