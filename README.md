@@ -10,11 +10,17 @@ addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc
 Currently checking these for bugs:
 
 - [x] TF2 is working. (done on 9/15/2022)
+
 - [ ] CSGO is being looked at
----[x] War3Source CORE fixed
----[  ] Checking each race for errors
----[  ] Checking each addon for errors
+
+-- [x] War3Source CORE fixed
+
+-- [  ] Checking each race for errors
+
+-- [  ] Checking each addon for errors
+
 - [ ] CS:S is next on list
+
 - [ ] FOF is last to be looked at
 
 **RamNode Servers Recommendation**
