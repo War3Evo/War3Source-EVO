@@ -894,7 +894,7 @@ native W3Deny();
 #if GGAMETYPE == GGAME_CSGO
 stock void CSGO_RADAR(int client,bool TurnON)
 {
-	if(ValidPlayer(client))
+	if(ValidPlayer(client) && !IsFakeClient(client))
 	{
 		if(TurnON)
 		{

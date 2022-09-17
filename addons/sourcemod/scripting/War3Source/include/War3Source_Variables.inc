@@ -2,6 +2,8 @@
 
 Handle gh_CVAR_War3Source_Pause = null;
 
+//Handle g_War3Source_Engine_CSGO_Radar = null;
+
 ConVar gh_CVAR_AllowInstantSpawn;
 
 bool War3SourcePause = false;
@@ -267,5 +269,5 @@ float speedWeSet[MAXPLAYERSCUSTOM];
 #if GGAMETYPE == GGAME_CSGO
 Handle mp_teamcashawards;
 Handle mp_playercashawards;
-int CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
+bool CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
 #endif

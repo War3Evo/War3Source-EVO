@@ -7,8 +7,8 @@
 #define WAR3MAIN
 
 #if GGAMETYPE == GGAME_CSGO
-#define HIDE_RADAR 1<<12
-#define HIDEHUD_CHAT				( 1<<7 )	// Hide all communication elements (saytext, voice icon, etc)
+#define HIDE_RADAR			1<<12
+#define HIDEHUD_CHAT	1<<7	// Hide all communication elements (saytext, voice icon, etc)
 #endif
 
 #define ATTACKER_WORLD 0

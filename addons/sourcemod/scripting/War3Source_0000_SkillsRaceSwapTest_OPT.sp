@@ -2,6 +2,11 @@
 
 #include <war3source>
 
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+	#endinput
+#endif
+
+
 int thisRaceID;
 
 int SKILL_LEECH,SKILL_SPEED,SKILL_LOWGRAV,SKILL_SUICIDE;

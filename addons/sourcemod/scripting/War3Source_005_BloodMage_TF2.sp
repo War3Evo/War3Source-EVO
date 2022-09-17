@@ -1,4 +1,10 @@
 #include <war3source>
+
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+	#endinput
+#endif
+
+
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 

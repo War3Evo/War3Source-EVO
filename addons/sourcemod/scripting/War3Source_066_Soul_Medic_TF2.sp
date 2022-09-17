@@ -1,5 +1,10 @@
 #include <war3source>
 
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+	#endinput
+#endif
+
+
 #pragma semicolon 1
 
 //#include "W3SIncs/War3Source_Interface"

@@ -1,4 +1,5 @@
 #include <war3source>
+
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
 #define RACE_ID_NUMBER 130

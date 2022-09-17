@@ -4,6 +4,10 @@
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+	#endinput
+#endif
+
 #define RACE_ID_NUMBER 180
 
 /**

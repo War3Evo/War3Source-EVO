@@ -8,6 +8,11 @@
  */
 #include <war3source>
 
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+	#endinput
+#endif
+
+
 #define PLUGIN_VERSION "0.0.1.0 12/15/2013"
 
 #pragma semicolon 1
