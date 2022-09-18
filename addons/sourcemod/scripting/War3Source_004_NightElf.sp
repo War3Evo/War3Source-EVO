@@ -598,11 +598,18 @@ public OnWar3CastingFinished(client, target, W3SpellEffects:spelleffect, String:
 					char sclientname[32];
 					GetClientName(player.index,sclientname,32);
 
+					// CSGO ERROR - [SM] Exception reported: Using two team colors in one message is not allowed
+#if defined GGAME_CSGO
+					char sCTeam[32], sTTeam[32];
+					GetTeamColor(player.index,STRING(sCTeam));
+					GetTeamColor(iTarget.index,STRING(sTTeam));
+					War3_ChatMessage(0,"{white}%s {default}was entangled by %s%s",targetname,sCTeam,sclientname);
+#else
 					char sCTeam[32], sTTeam[32];
 					GetTeamColor(player.index,STRING(sCTeam));
 					GetTeamColor(iTarget.index,STRING(sTTeam));
 					War3_ChatMessage(0,"%s%s {default}was entangled by %s%s",sTTeam,targetname,sCTeam,sclientname);
-
+#endif
 					W3MsgEntangle(iTarget.index,player.index);
 				}
 				player.setcooldown(GetConVarFloat(EntangleCooldownCvar),thisRaceID,ULT_ENTANGLE,_,_);
