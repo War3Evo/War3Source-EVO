@@ -1,4 +1,7 @@
 // My Personal Stocks that I reuse often
+// <DiabloStocks>
+// it's also included in war3source.inc
+
 #include <switchgamemode>
 
 #if GGAMETYPE == GGAME_TF2

@@ -145,3 +145,8 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 * Luna
 * Light Bender
 * Soul Medic
+
+# CSGO doesn't like the following:
+* [SM] Exception reported: Using two team colors in one message is not allowed
+
+-- You can obtain custom races by me by joining my Patreon: https://www.patreon.com/war3evo

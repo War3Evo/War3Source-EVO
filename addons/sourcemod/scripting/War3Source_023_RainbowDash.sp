@@ -87,6 +87,7 @@ new Handle:speedendtimer[MAXPLAYERSCUSTOM];
 
 new Float:rainboomradius[5]={0.0,200.0,266.0,333.0,400.0};
 
+/*
 public OnPluginStart()
 {
 	//CreateTimer(1.0,CalcWards,_,TIMER_REPEAT);
@@ -98,7 +99,8 @@ public OnPluginStart()
 		bSonicBoom[z]=false;
 		fSonicBoom[z]=0.0;
 	}
-}
+}*/
+
 public OnAllPluginsLoaded()
 {
 	War3_RaceOnPluginStart("rainbowdash");
@@ -199,9 +201,11 @@ public Action:SonicBoomCheckLoop(Handle:h,any:data)
 				{
 
 					GetClientAbsOrigin(i,origin);
+#if GGAMETYPE == GGAME_TF2
 					//War3_TF_ParticleToClient(0, GetClientTeam(i)==2?"soldierbuff_red_buffed":"soldierbuff_blue_buffed", origin);
 					//ThrowAwayParticle(GetClientTeam(i)==2?"soldierbuff_red_buffed":"soldierbuff_blue_buffed", origin, 0.3);
 					AttachThrowAwayParticle(i, GetClientTeam(i)==2?"soldierbuff_red_buffed":"soldierbuff_blue_buffed",origin, "chest", 4.0);
+#endif
 					bSonicBoom[i]=false;
 					bSonicBoomDamage[i]=true;
 					//lastRuptureLocation[i][0]=origin[0];
@@ -235,6 +239,15 @@ public OnMapStart()
 		bSonicBoom[z]=false;
 		fSonicBoom[z]=0.0;
 		speedendtimer[z]=INVALID_HANDLE;
+	}
+	
+	CreateTimer(0.1,SonicBoomCheckLoop,_,TIMER_REPEAT);
+
+	for(new z=0;z<MAXPLAYERSCUSTOM;z++)
+	{
+		bSonicBoomDamage[z]=false;
+		bSonicBoom[z]=false;
+		fSonicBoom[z]=0.0;
 	}
 }
 /*
