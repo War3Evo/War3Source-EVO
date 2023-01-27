@@ -188,6 +188,8 @@ public bool War3Source_InitNatives()
 	Return_InitNatives = War3Source_Engine_GameData_InitNatives();
 
 	Return_InitNatives = War3Source_003_RegisterPrivateForwards_InitNatives();
+	
+	Return_InitNatives = War3Source_Engine_Messages_InitNatives();
 
 	//disabled
 	//Return_InitNatives = War3Source_Engine_Talents_InitNatives();

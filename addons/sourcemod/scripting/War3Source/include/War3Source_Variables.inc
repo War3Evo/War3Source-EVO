@@ -6,6 +6,8 @@ Handle gh_CVAR_War3Source_Pause = null;
 
 ConVar gh_CVAR_AllowInstantSpawn;
 
+ConVar gh_CVAR_DisableAllText;  // For Testing 1/27/2023
+
 bool War3SourcePause = false;
 
 stock dummy; //variable for dummies! Use this where ever u want for a dummy return

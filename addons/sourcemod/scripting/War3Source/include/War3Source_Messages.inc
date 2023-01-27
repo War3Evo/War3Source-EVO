@@ -1,7 +1,35 @@
 //=============================================================================
 // Messages --stocks
 //=============================================================================
+
+// War3Source_Messages.inc
+
+// FIND War3Source_Engine_Messages.sp
+
 //#define MAX_MESSAGE_LENGTH 250
+
+// 1/27/2023 -- msgcode and PRIORITY means nothing atm
+//                  -- work in progress
+// msgcode
+#define W3_CHAT			0
+#define W3_CHAT_ALL	1
+#define W3_DAMAGE		2
+#define W3_HINT			3
+#define W3_EXTRA		4
+#define W3_CONSOLE	5
+#define W3_WARD			6
+#define W3_DENY			7
+
+// PRIORITY
+#define W3_MSG_PRIORITY_AUTO		0
+#define W3_MSG_PRIORITY_LOW			1
+#define W3_MSG_PRIORITY_MED			2
+#define W3_MSG_PRIORITY_HIGH			3
+#define W3_MSG_PRIORITY_CRITICAL	4
+
+// Need to add per player throttling varaible for messages
+
+native bool:War3_CanSendMessage(client,msgcode,prioirty); 
 
 /**
  * Prints a message in the chat area with [War3Source:EVO] pre-appended.
@@ -13,7 +41,7 @@
  */
 stock War3_ChatMessage(client, const String:szMessage[], any:...)
 {
-	if (client == 0)
+	if (client == 0 && War3_CanSendMessage(client,W3_CHAT_ALL,W3_MSG_PRIORITY_AUTO))
 	{
 		decl String:szBuffer[MAX_MESSAGE_LENGTH];
 		for (new i = 1; i <= MaxClients; i++)
@@ -29,14 +57,17 @@ stock War3_ChatMessage(client, const String:szMessage[], any:...)
 	}
 	else
 	{
-		decl String:szBuffer[MAX_MESSAGE_LENGTH];
-		SetGlobalTransTarget(client);
-		VFormat(szBuffer, sizeof(szBuffer), szMessage, 3);
-		Format(szBuffer, sizeof(szBuffer), "{green}[War3Source:EVO]{default} %s", szBuffer);
+		 if (War3_CanSendMessage(client,W3_CHAT,W3_MSG_PRIORITY_AUTO))
+		 {
+			decl String:szBuffer[MAX_MESSAGE_LENGTH];
+			SetGlobalTransTarget(client);
+			VFormat(szBuffer, sizeof(szBuffer), szMessage, 3);
+			Format(szBuffer, sizeof(szBuffer), "{green}[War3Source:EVO]{default} %s", szBuffer);
 
-		if(ValidPlayer(client) && !IsFakeClient(client))
-		{
-			CPrintToChat(client, szBuffer);
+			if(ValidPlayer(client) && !IsFakeClient(client))
+			{
+				CPrintToChat(client, szBuffer);
+			}
 		}
 
 		// Added this delay because most chat commands tend to be above the test some types instead below it
@@ -77,7 +108,7 @@ public Action:DelayWar3ChatMessageTimer(Handle:timer, Handle:datapack)
  */
 stock War3_ChatMessageEx(client, author, const String:szMessage[], any:...)
 {
-	if (client == 0)
+	if (client == 0 && War3_CanSendMessage(client,W3_CHAT_ALL,W3_MSG_PRIORITY_AUTO))
 	{
 		if (author < 0 || author > MaxClients)
 		ThrowError("Invalid client index %d", author);
@@ -99,7 +130,7 @@ stock War3_ChatMessageEx(client, author, const String:szMessage[], any:...)
 	}
 	else
 	{
-		if(ValidPlayer(client) && !IsFakeClient(client))
+		if(ValidPlayer(client) && !IsFakeClient(client) && War3_CanSendMessage(client,W3_CHAT,W3_MSG_PRIORITY_AUTO))
 		{
 			decl String:szBuffer[MAX_MESSAGE_LENGTH];
 			//SetGlobalTransTarget(client);
@@ -112,7 +143,7 @@ stock War3_ChatMessageEx(client, author, const String:szMessage[], any:...)
 
 
 //=============================================================================
-// Print Skill Damage Console
+// Print Skill Damage Console  (used in races) need to just put into the races instead of these stock
 //=============================================================================
 //prints [W3S] You did %d damage to %name with SKILLNAME
 //prints [W3S] %name did %d damage to you with SKILLNAME

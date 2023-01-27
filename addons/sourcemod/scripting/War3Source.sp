@@ -147,6 +147,10 @@
 #endif
 #include "War3Source/War3Source_Engine_MenuSpendskills.sp"
 #include "War3Source/War3Source_Engine_MenuWar3Menu.sp"
+
+// added 1/27/2022 - csgo can't handle spammy war3source
+#include "War3Source/War3Source_Engine_Messages.sp"
+
 #include "War3Source/War3Source_Engine_Money_Timer.sp"
 #include "War3Source/War3Source_Engine_NewPlayers.sp"
 #include "War3Source/War3Source_Engine_Notifications.sp"
