@@ -48,7 +48,7 @@ new Handle:AssistGoldCvar;
 
 public War3Source_Engine_XPGold_OnPluginStart()
 {
-	CreateConVar("XPGold",PLUGIN_VERSION,"[War3Source:EVO] XP Gold system",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	//CreateConVar("XPGold",PLUGIN_VERSION,"[War3Source:EVO] XP Gold system",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 #if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 	BotIgnoreXPCvar=CreateConVar("war3_ignore_bots_xp","0","Set to 1 to not award XP for killing bots");

@@ -19,7 +19,7 @@ Handle ShowTargetSelfPlayerItemsCvar;
 
 public War3Source_Engine_MenuRacePlayerinfo_OnPluginStart()
 {
-	CreateConVar("MenuRacePlayerInfo",PLUGIN_VERSION,"[War3Source:EVO] Menu Core",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	//CreateConVar("MenuRacePlayerInfo",PLUGIN_VERSION,"[War3Source:EVO] Menu Core",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 	// No Spendskill level restrictions on non-ultimates (Requires mapchange)
 	ShowOtherPlayerItemsCvar=CreateConVar("war3_show_playerinfo_other_player_items","1","0 disables showing other players items using playerinfo. [default 1]");
 	//war3_show_playerinfo_targetself_items 0

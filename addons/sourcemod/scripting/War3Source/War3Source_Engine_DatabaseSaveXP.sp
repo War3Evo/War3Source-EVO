@@ -67,7 +67,7 @@ public bool:War3Source_Engine_DatabaseSaveXP_InitNatives()
 public War3Source_Engine_DatabaseSaveXP_OnPluginStart()
 {
 	PrintToServer("War3Source:EVO War3Source_Engine_DatabaseSaveXP_OnPluginStart Start");
-	CreateConVar("DataBaseSaveXP",PLUGIN_VERSION,"[War3Source:EVO] DataBase Save XP",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	//CreateConVar("DataBaseSaveXP",PLUGIN_VERSION,"[War3Source:EVO] DataBase Save XP",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	m_SaveXPConVar=CreateConVar("war3_savexp","1");
 	internal_W3SetVar(hSaveEnabledCvar,m_SaveXPConVar);

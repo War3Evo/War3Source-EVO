@@ -22,7 +22,7 @@ public Plugin:myinfo=
 
 public War3Source_Engine_BuffSystem_OnPluginStart()
 {
-	CreateConVar("BuffSystem",PLUGIN_VERSION,"War3Source:EVO Buff System",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	//CreateConVar("BuffSystem",PLUGIN_VERSION,"War3Source:EVO Buff System",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 	InitiateBuffPropertiesArray(BuffProperties);
 }
 

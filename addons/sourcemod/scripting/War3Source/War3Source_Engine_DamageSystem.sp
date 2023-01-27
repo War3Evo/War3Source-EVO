@@ -51,7 +51,7 @@ public Plugin:myinfo=
 
 public War3Source_Engine_DamageSystem_OnPluginStart()
 {
-	CreateConVar("DamageSystem",PLUGIN_VERSION,"War3Source:EVO Damage System",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	//CreateConVar("DamageSystem",PLUGIN_VERSION,"War3Source:EVO Damage System",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 #if GGAMETYPE == GGAME_TF2
 	PyroW3ChanceModifierCvar=CreateConVar("war3_pyro_w3chancemod","0.500","Float 0.0 - 1.0");
 	HeavyW3ChanceModifierCvar=CreateConVar("war3_heavy_w3chancemod","0.666","Float 0.0 - 1.0");
