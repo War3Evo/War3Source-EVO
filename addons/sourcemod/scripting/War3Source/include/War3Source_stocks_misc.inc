@@ -1,4 +1,5 @@
 // War3Source_stocks_misc.inc
+// is included with war3source.inc
 
 /**
  * Description: Manage precaching resources.

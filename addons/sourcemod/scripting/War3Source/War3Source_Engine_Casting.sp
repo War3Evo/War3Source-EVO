@@ -32,6 +32,14 @@ public War3Source_Engine_Casting_OnPluginStart()
 	RegAdminCmd("fp", DisableThirdperson, 0, "Usage: sm_firstperson");
 }
 
+public War3Source_Engine_Casting_OnMapStart()
+{
+	//W3AddModel("materials/effects/softglow.vmt");
+	//W3AddModel("materials/effects/softglow.vtf");
+	
+	War3_PrecacheParticle("ambient_sparks_glow");
+}
+
 public bool:War3Source_Engine_Casting_InitForwards()
 {
 	g_OnWar3CastingStarted_Pre=CreateGlobalForward("OnWar3CastingStarted_Pre",ET_Hook,Param_Cell,Param_Cell,Param_Cell,Param_String,Param_Cell,Param_Cell,Param_FloatByRef);
@@ -326,7 +334,9 @@ public LightCast(client,target,W3SpellEffects:spelleffect,String:SpellColor[],ra
 		WritePackCell(Packhead, SkillID);
 	}
 
-	CreateParticlesUp(client,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+	//CreateParticlesUp(client,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+	//materials/effects/softglow.vmt
+	CreateParticlesUp(client,true,CastingTimer,45.0,5.0,10.0,0.0,"ambient_sparks_glow",SpellColor,"10","300","300","120");
 	EmitSoundToAll(ww_on,client);
 }
 
@@ -378,8 +388,10 @@ public Action:RemoveHolyCast(Handle:t,any:Packhead)
 			GetClientAbsOrigin(target,this_pos);
 			TE_SetupDynamicLight(this_pos,120,255,120,12,80.0,1.88,1.0);
 			TE_SendToAll();
-
-			CreateParticlesDown(target,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+			
+			//Home / csgo / materials / effects
+			//CreateParticlesDown(target,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+			CreateParticlesDown(target,true,CastingTimer,45.0,5.0,10.0,0.0,"ambient_sparks_glow",SpellColor,"10","300","300","120");
 		}
 
 

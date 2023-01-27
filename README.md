@@ -148,3 +148,6 @@ Translations do not fully work on this version, as I ripped out a lot of transla
 
 # CSGO doesn't like the following:
 * [SM] Exception reported: Using two team colors in one message is not allowed
+
+# CSGO
+* Client gamers need to add this to their console: sv_allowupload 1
