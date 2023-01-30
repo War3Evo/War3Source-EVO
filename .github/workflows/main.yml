@@ -19,9 +19,8 @@ jobs:
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
       continue-on-error: true
     - name: Compiling of all TTT related plugins
-    - continue-on-error: true
       run: |
           echo -e "\nCompiling $file..." 
           addons/sourcemod/scripting/compile.sh
-
+          - continue-on-error: true
 
