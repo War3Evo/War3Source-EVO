@@ -8,11 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: always()
+
     steps:
     - uses: actions/checkout@v1
     - name: Download sourcemod
-      if: always()
       run: |
         wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
         tar -xzf sourcemod.tar.gz
@@ -20,8 +19,7 @@ jobs:
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
       continue-on-error: true
     - name: Compiling of all TTT related plugins
-      if: always()
-      continue-on-error: true
+    - continue-on-error: true
       run: |
           echo -e "\nCompiling $file..." 
           addons/sourcemod/scripting/compile.sh
