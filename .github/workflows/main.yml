@@ -19,8 +19,5 @@ jobs:
     - name: Compiling of all TTT related plugins
       continue-on-error: true
       run: |
-        do
           echo -e "\nCompiling $file..." 
           addons/sourcemod/scripting/compile.sh
-        done
-
