@@ -1,0 +1,23 @@
+name: SourceMod Plugin Workflow
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Compile Latest
+      run: |
+        wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
+        tar -xzf sourcemod.tar.gz
+    - name: Give spcomp the required permissions
+      run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
+    - name: Compiling of all TTT related plugins
+      run: |
+          echo -e "\nCompiling $file..." 
+          addons/sourcemod/scripting/compile_for_github_action.sh
