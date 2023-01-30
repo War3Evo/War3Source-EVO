@@ -189,7 +189,9 @@ public bool War3Source_InitNatives()
 
 	Return_InitNatives = War3Source_003_RegisterPrivateForwards_InitNatives();
 	
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 	Return_InitNatives = War3Source_Engine_Messages_InitNatives();
+#endif
 
 	//disabled
 	//Return_InitNatives = War3Source_Engine_Talents_InitNatives();

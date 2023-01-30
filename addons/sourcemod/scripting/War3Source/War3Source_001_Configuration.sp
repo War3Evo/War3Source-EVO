@@ -2,8 +2,10 @@
 
 War3Source_InitCVars()
 {
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 	// This only disables War3Source text, if a race uses a different method to send text, this will not disable that method.
 	gh_CVAR_DisableAllText = CreateConVar("war3DisableAllMessages", "0", "0 disabled / 1 enabled\nDisables all War3Source based text.");
+#endif
 
 	gh_CVAR_AllowInstantSpawn = CreateConVar("war3AllowInstantRaceChange", "0", "0 disabled / 1 enabled\nAllows players to change race instantly in spawn.");
 
