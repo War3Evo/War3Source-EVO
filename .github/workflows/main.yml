@@ -8,6 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     continue-on-error: true
+    if: always()
     steps:
     - uses: actions/checkout@v1
     - name: Download sourcemod
@@ -19,7 +20,6 @@ jobs:
       continue-on-error: true
     - name: Compiling of all TTT related plugins
       run: |
-          continue-on-error: true
           echo -e "\nCompiling $file..." 
           addons/sourcemod/scripting/compile.sh
 
