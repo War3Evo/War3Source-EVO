@@ -8,8 +8,9 @@
 
 //#define MAX_MESSAGE_LENGTH 250
 
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 // 1/27/2023 -- msgcode and PRIORITY means nothing atm
-//                  -- work in progress
+//                  -- work in progress ... 1/27/2023
 // msgcode
 #define W3_CHAT			0
 #define W3_CHAT_ALL	1
@@ -30,6 +31,8 @@
 // Need to add per player throttling varaible for messages
 
 native bool:War3_CanSendMessage(client,msgcode,prioirty); 
+#endif
+
 
 /**
  * Prints a message in the chat area with [War3Source:EVO] pre-appended.
@@ -41,7 +44,11 @@ native bool:War3_CanSendMessage(client,msgcode,prioirty);
  */
 stock War3_ChatMessage(client, const String:szMessage[], any:...)
 {
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 	if (client == 0 && War3_CanSendMessage(client,W3_CHAT_ALL,W3_MSG_PRIORITY_AUTO))
+#else
+	if (client == 0)
+#endif
 	{
 		decl String:szBuffer[MAX_MESSAGE_LENGTH];
 		for (new i = 1; i <= MaxClients; i++)
@@ -57,8 +64,10 @@ stock War3_ChatMessage(client, const String:szMessage[], any:...)
 	}
 	else
 	{
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 		 if (War3_CanSendMessage(client,W3_CHAT,W3_MSG_PRIORITY_AUTO))
 		 {
+#endif
 			decl String:szBuffer[MAX_MESSAGE_LENGTH];
 			SetGlobalTransTarget(client);
 			VFormat(szBuffer, sizeof(szBuffer), szMessage, 3);
@@ -68,7 +77,9 @@ stock War3_ChatMessage(client, const String:szMessage[], any:...)
 			{
 				CPrintToChat(client, szBuffer);
 			}
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 		}
+#endif
 
 		// Added this delay because most chat commands tend to be above the test some types instead below it
 		// This will help cause less confusion for new players.
@@ -108,7 +119,11 @@ public Action:DelayWar3ChatMessageTimer(Handle:timer, Handle:datapack)
  */
 stock War3_ChatMessageEx(client, author, const String:szMessage[], any:...)
 {
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 	if (client == 0 && War3_CanSendMessage(client,W3_CHAT_ALL,W3_MSG_PRIORITY_AUTO))
+#else
+	if (client == 0)
+#endif
 	{
 		if (author < 0 || author > MaxClients)
 		ThrowError("Invalid client index %d", author);
@@ -130,7 +145,11 @@ stock War3_ChatMessageEx(client, author, const String:szMessage[], any:...)
 	}
 	else
 	{
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 		if(ValidPlayer(client) && !IsFakeClient(client) && War3_CanSendMessage(client,W3_CHAT,W3_MSG_PRIORITY_AUTO))
+#else
+		if(ValidPlayer(client) && !IsFakeClient(client))
+#endif
 		{
 			decl String:szBuffer[MAX_MESSAGE_LENGTH];
 			//SetGlobalTransTarget(client);

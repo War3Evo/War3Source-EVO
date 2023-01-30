@@ -148,8 +148,12 @@
 #include "War3Source/War3Source_Engine_MenuSpendskills.sp"
 #include "War3Source/War3Source_Engine_MenuWar3Menu.sp"
 
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 // added 1/27/2022 - csgo can't handle spammy war3source
+// I would rather rip it out of the source code, but maybe useful in
+// the future.
 #include "War3Source/War3Source_Engine_Messages.sp"
+#endif
 
 #include "War3Source/War3Source_Engine_Money_Timer.sp"
 #include "War3Source/War3Source_Engine_NewPlayers.sp"

@@ -6,7 +6,10 @@ Handle gh_CVAR_War3Source_Pause = null;
 
 ConVar gh_CVAR_AllowInstantSpawn;
 
+
+#if MESSAGE_CONTROL_MODE == MODE_ENABLED
 ConVar gh_CVAR_DisableAllText;  // For Testing 1/27/2023
+#endif
 
 bool War3SourcePause = false;
 

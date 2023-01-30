@@ -1,6 +1,8 @@
-# War3Source Evoultion -->>ReadME.md updated 9/17/2022<<--
+# War3Source Evoultion -->>ReadME.md updated 1/30/2023<<--
 
-**Current Game Setup is CSGO**
+Testing Github Changes issued to Discord 5
+
+**Current Game Setup is TF2**
 
 Edit GAME_SWITCHER before compiling to switch for your game mode:
 addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc
@@ -11,7 +13,9 @@ Currently checking these for bugs:
 
 - [x] TF2 is working. (9/15/2022)
 
-- [ ] CSGO is being looked at
+- [x] CS:GO FPS issue fixed. (1/30/2023)
+
+- [ ] TF2 is being rechecked and when done I will compile a version for Allied Modders and post a link here - 1/30/2023
 
 -- [x] War3Source CORE fixed (9/17/2022)
 

@@ -1,12 +1,11 @@
-#pragma semicolon 1
-
-#include <sourcemod>
-#include <sdktools>
 #include <switchgamemode>
 
 #if GGAMETYPE != GGAME_TF2
 	#endinput
 #endif
+
+#include <sourcemod>
+#include <sdktools>
 
 #define PLUGIN_NAME		"[TF2] TF2Attributes"
 #define PLUGIN_AUTHOR		"FlaminSarge & El Diablo"
