@@ -44,9 +44,9 @@
 //#pragma newdecls required
 
 //#include "switchgamemode.inc"
-#include "War3Source/include/War3Source_Constants"
-#include "War3Source/include/War3Source_PlayerProp"
-#include "War3Source/include/War3Source_Races"
+#include "War3Source/include/War3Source_Constants.inc"
+#include "War3Source/include/War3Source_PlayerProp.inc"
+#include "War3Source/include/War3Source_Races.inc"
 
 // natives natives natives natives natives natives natives natives natives natives natives natives natives natives
 // natives natives natives natives natives natives natives natives natives natives natives natives natives natives
