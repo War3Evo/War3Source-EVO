@@ -50,31 +50,30 @@ public Action:Timer_CheckMenu(Handle:timer)
                         PrintToServer("[WAR3SOURCE:EVO] mp_teamcashawards 0 ERROR");
                         War3_ChatMessage(0,"mp_teamcashawards 0 ERROR -->CSGO RADAR"); // to everyone
                     }
-                    if(SendConVarValue(i, mp_playercashawards, "0")==false)  // turn money off
+                    if(SendConVarValue(i, mp_playercashawards, "0") == false)  // turn money off
                     {
                         PrintToServer("WAR3SOURCE:EVO mp_playercashawards 0 ERROR");
-                        War3_ChatMessage(0,"mp_teamcashawards 0 ERROR -->CSGO RADAR"); // to everyone
+                        War3_ChatMessage(0, "mp_teamcashawards 0 ERROR -->CSGO RADAR"); // to everyone
                     }
-                    CSGO_Radar_Changed[i]=true;
+                    CSGO_Radar_Changed[i] = true;
                 }
             }
             else
             {
-                if(CSGO_Radar_Changed[i]){
-                CSGO_RADAR(i,true);  // turn radar back on
-                if(SendConVarValue(i, mp_teamcashawards, "1")==false)  // turn money back on
-                {
-                    PrintToServer("[WAR3SOURCE:EVO] mp_teamcashawards 1 ERROR");
-                    War3_ChatMessage(0,"mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
+                if(CSGO_Radar_Changed[i]) {
+                    CSGO_RADAR(i, true);  // turn radar back on
+                    if(SendConVarValue(i, mp_teamcashawards, "1") == false)  // turn money back on
+                    {
+                        PrintToServer("[WAR3SOURCE:EVO] mp_teamcashawards 1 ERROR");
+                        War3_ChatMessage(0, "mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
+                    }
+                    if(SendConVarValue(i, mp_playercashawards, "1") == false)  // turn money back on
+                    {
+                        PrintToServer("WAR3SOURCE:EVO mp_playercashawards 1 ERROR");
+                        War3_ChatMessage(0, "mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
+                    }
+                    CSGO_Radar_Changed[i] = false;    // Radar is no longer forced off
                 }
-                if(SendConVarValue(i, mp_playercashawards, "1")==false)  // turn money back on
-                {
-                    PrintToServer("WAR3SOURCE:EVO mp_playercashawards 1 ERROR");
-                    War3_ChatMessage(0,"mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
-                }
-                CSGO_Radar_Changed[i]=false;    // Radar is no longer forced off
-                }
-                
             }
         }
     }
