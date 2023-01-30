@@ -1,6 +1,11 @@
-# War3Source Evoultion -->>ReadME.md updated 9/17/2022<<--
+# War3Source Evoultion -->>ReadME.md updated 1/30/2023<<--
 
-**Current Game Setup is CSGO**
+**CS:GO - no longer supported**
+You can however still access and update the source code yourself if you want to get it working for yourself.
+The main issue with the project is it causes clients connected to lower FPS.
+The other issue is probably race based where there is a ERROR prop that keeps popping up once in a while during game play.
+
+**Current Game Setup is TF2**
 
 Edit GAME_SWITCHER before compiling to switch for your game mode:
 addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc
@@ -11,7 +16,7 @@ Currently checking these for bugs:
 
 - [x] TF2 is working. (9/15/2022)
 
-- [ ] CSGO is being looked at
+- [ ] TF2 is being rechecked and when done I will compile a version for Allied Modders and post a link here - 1/30/2023
 
 -- [x] War3Source CORE fixed (9/17/2022)
 

@@ -9,7 +9,7 @@
 //#define MAX_MESSAGE_LENGTH 250
 
 // 1/27/2023 -- msgcode and PRIORITY means nothing atm
-//                  -- work in progress
+//                  -- work in progress ... 1/27/2023
 // msgcode
 #define W3_CHAT			0
 #define W3_CHAT_ALL	1
