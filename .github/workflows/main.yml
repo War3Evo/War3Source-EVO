@@ -16,7 +16,7 @@ jobs:
         wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
         tar -xzf sourcemod.tar.gz
     - name: Give spcomp the required permissions
-      run: chmod +x addons/sourcemod/scripting/spcomp
+      run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
     - name: Compiling of all TTT related plugins
       run: |
         for file in addons/sourcemod/scripting/*.sp
