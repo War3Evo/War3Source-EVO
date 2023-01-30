@@ -7,11 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    continue-on-error: true
 
+    
     steps:
     - uses: actions/checkout@v1
     - name: Download sourcemod
+    - continue-on-error: true
       run: |
         wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
         tar -xzf sourcemod.tar.gz
@@ -22,5 +23,5 @@ jobs:
       run: |
           echo -e "\nCompiling $file..." 
           addons/sourcemod/scripting/compile.sh
-          - continue-on-error: true
+
 
