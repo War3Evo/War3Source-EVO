@@ -21,5 +21,5 @@ jobs:
       run: |
 
           echo -e "\nCompiling $file..." 
-          addons/sourcemod/scripting/spcomp_1.9.0.6261 -E -w234 -O2 -v2 $file
+          addons/sourcemod/scripting/compile.sh
 
