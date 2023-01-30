@@ -23,5 +23,3 @@ jobs:
       run: |
           echo -e "\nCompiling $file..." 
           addons/sourcemod/scripting/compile.sh
-
-
