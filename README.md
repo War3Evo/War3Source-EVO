@@ -1,5 +1,7 @@
 # War3Source Evoultion -->>ReadME.md updated 1/30/2023<<--
 
+Testing Github Changes issued to Discord
+
 **Current Game Setup is TF2**
 
 Edit GAME_SWITCHER before compiling to switch for your game mode:
