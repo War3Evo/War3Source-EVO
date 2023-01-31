@@ -23,8 +23,18 @@ jobs:
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
+      
+    - name: Clean compiled directory
+      run: |
+          rm addons/sourcemod/scripting/compiled/*
 
-    - name: Compiling of all plugins
+    - name: Switch Game Mode to TF2
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to TF2";
+          ./game_switcher_TF2.sh
+
+    - name: Compile TF2 plugins
       run: |
           cd addons/sourcemod/scripting/
           echo -e "\nCompiling $file..." 
@@ -33,4 +43,92 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           path: addons/sourcemod/scripting/compiled
-          name: latest-compiled-plugins
+          name: TF2-compiled-plugins
+          
+    - name: Clean compiled directory
+      run: |
+          rm addons/sourcemod/scripting/compiled/*
+
+    - name: Switch Game Mode to TF2 MVM
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to TF2 MVM";
+          ./game_switcher_TF2_MVM.sh
+
+    - name: Compile TF2 MVM plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+          path: addons/sourcemod/scripting/compiled
+          name: TF2-MVM-compiled-plugins
+
+    - name: Clean compiled directory
+      run: |
+          rm addons/sourcemod/scripting/compiled/*
+  
+    - name: Switch Game Mode to FoF
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to FoF";
+          ./game_switcher_FOF.sh
+
+    - name: Compile FoF plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+          path: addons/sourcemod/scripting/compiled
+          name: FoF-compiled-plugins
+
+    - name: Clean compiled directory
+      run: |
+          rm addons/sourcemod/scripting/compiled/*
+          
+    - name: Switch Game Mode to CSS
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to CSS";
+          ./game_switcher_CSS.sh
+
+    - name: Compile FoF plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+          path: addons/sourcemod/scripting/compiled
+          name: CSS-compiled-plugins
+
+    - name: Clean compiled directory
+      run: |
+          rm addons/sourcemod/scripting/compiled/*
+          
+    - name: Switch Game Mode to CSGO
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to CSGO";
+          ./game_switcher_CSGO.sh
+
+    - name: Compile CSGO plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+          path: addons/sourcemod/scripting/compiled
+          name: CSGO-old-stable-compiled-plugins
+
+    - name: Clean compiled directory
+      run: |
+          rm addons/sourcemod/scripting/compiled/*
