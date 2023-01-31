@@ -16,16 +16,12 @@ jobs:
         SM_VERSION: [ "1.9" ]
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     
-    - name: wget
-      uses: wei/wget@v1
-      with:
-        args: -O ./sourcemod.tar.gz http://www.sourcemod.net/latest.php?version=1.9&os=linux
-    
-    - name: Extract Sourcemod
+    - name: Download & Extract SourceMod 1.9
       run: |
-        tar -xzf ./sourcemod.tar.gz
+        wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
+        tar -xzf sourcemod.tar.gz
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
