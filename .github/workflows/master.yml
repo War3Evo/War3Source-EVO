@@ -3,6 +3,10 @@ name: SourceMod Plugin Workflow
 on:
   push:
     branches: master
+    
+defaults:
+  run:
+    working-directory: compiled
 
 jobs:
   build:
@@ -10,7 +14,7 @@ jobs:
     continue-on-error: true
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Compile Latest
       run: |
         wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
@@ -22,4 +26,5 @@ jobs:
           cd addons/sourcemod/scripting/
           echo -e "\nCompiling $file..." 
           ./compile_for_github_action.sh || true
+    
           
