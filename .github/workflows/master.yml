@@ -2,7 +2,10 @@ name: War3Evo War3Source SourceMod Plugin Workflow
 
 on:
   push:
-    branches: master
+    branches: master    
+defaults:
+  run:
+    working-directory: compiled
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,11 +21,11 @@ jobs:
     - name: wget
       uses: wei/wget@v1
       with:
-        args: -O sourcemod.tar.gz http://www.sourcemod.net/latest.php?version=1.9&os=linux
+        args: -O ./sourcemod.tar.gz http://www.sourcemod.net/latest.php?version=1.9&os=linux
     
     - name: Extract Sourcemod
       run: |
-        tar -xzf sourcemod.tar.gz
+        tar -xzf ./sourcemod.tar.gz
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
@@ -32,4 +35,3 @@ jobs:
           cd addons/sourcemod/scripting/
           echo -e "\nCompiling $file..." 
           ./compile_for_github_action.sh || true
-      working-directory: compiled
