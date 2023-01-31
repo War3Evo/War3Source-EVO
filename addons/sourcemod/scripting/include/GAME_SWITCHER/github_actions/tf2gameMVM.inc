@@ -26,7 +26,7 @@
 // client spam.  I didn't fully complete it.  If someone else
 // wishes to complete this, you can turn it on in currentgame.inc
 // This does not help a normal server owner, but may extend itself for a programmer.
-#define MESSAGE_CONTROL_MODE MODE_CONTROL_MESSAGES_DISABLED
+#define MESSAGE_CONTROL_MODE MODE_DISABLED
 //Stop of uncomment for TF2 MVM
 
 
