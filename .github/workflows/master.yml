@@ -29,4 +29,4 @@ jobs:
           cd addons/sourcemod/scripting/
           echo -e "\nCompiling $file..." 
           ./compile_for_github_action.sh || true
-          working-directory: compiled
+          workingdirectory: compiled
