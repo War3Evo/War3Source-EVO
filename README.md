@@ -1,8 +1,9 @@
 # War3Source Evoultion -->>ReadME.md updated 1/30/2023<<--
 
-Testing Github Changes issued to Discord 5
+Join the discord: https://discord.gg/kYDNhDwwZV
+AlliedModders: https://forums.alliedmods.net/showthread.php?t=284415
 
-**Current Game Setup is TF2**
+**Don't forget to switch game before compiling**
 
 Edit GAME_SWITCHER before compiling to switch for your game mode:
 addons/sourcemod/scripting/include/GAME_SWITCHER/currentgame.inc
@@ -39,10 +40,6 @@ If your good with setting up your own VPS, then I highly recommend using RamNode
 War3Source:Evo does require at least 1 gb of ram to run smoothly.  At minimum 750 mb of ram with 250 mb of vswap in openvz.
 
 Please help me pay for my test servers by using my [Affiliate Link](https://clientarea.ramnode.com/aff.php?aff=1227) 
-
-**Paypal.me Donations**
-You can also help me pay for my time and the test servers by donating to me here:
-[Paypal.me/timmonspro](https://paypal.me/timmonspro)
 
 **War3Evo War3Source: Evolution 3.0 Test Server is here: 107.191.126.14:27015**
 
