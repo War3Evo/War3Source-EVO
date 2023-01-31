@@ -1,18 +1,20 @@
 #include <war3source>
+
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
 #define RACE_ID_NUMBER 2
-#define RACE_LONGNAME  "Human Alliance"
+#define RACE_LONGNAME  "Race - Human Alliance"
 #define RACE_SHORTNAME "humanally"
+#define PLUGIN_VERSION "1.0.0.0"
 
-/**
- * File: War3Source_HumanAlliance.sp
- * Description: The Human Alliance race for War3Source.
- * Author(s): Anthony Iacono, necavi
- * Modified for TF2 Stability: El Diablo
- */
-#define PLUGIN_VERSION "0.0.0.1"
+public Plugin:myinfo = {
+	name		= RACE_LONGNAME,
+	author		= "PimpinJuice, necavi, El Diablo",
+	description = "The Human Alliance race for War3Source.",
+	version		= PLUGIN_VERSION,
+	url			= "http://war3source.com"
+};
 
 public W3ONLY() {}	   // unload this?
 int	   thisRaceID;
@@ -22,7 +24,7 @@ Handle ultCooldownCvar;
 // Chance/Info Arrays
 float  BashChance[7]		= { 0.0, 0.07, 0.13, 0.19, 0.25, 0.25, 0.25 };
 float  TeleportDistance[7]	= { 0.0, 600.0, 700.0, 850.0, 1000.0, 1250.0, 1500.0 };
-float  InvisibilityAlpha[7] = { 1.0, 0.84, 0.68, 0.56, 0.40, 0.35, 0.30 };
+//float  InvisibilityAlpha[7] = { 1.0, 0.84, 0.68, 0.56, 0.40, 0.35, 0.30 };
 
 //#if GGAMETYPE == GGAME_TF2
 // float InvisibilityAlphaTF[7]={1.0,0.84,0.68,0.56,0.40,0.35,0.30};
@@ -37,7 +39,7 @@ new BeamSprite, HaloSprite;
 
 float WhiskSpeed[5] = { 1.0, 1.02, 1.04, 1.06, 1.08 };
 
-new SKILL_SPEED, SKILL_INVIS, SKILL_BASH, SKILL_HEALTH, ULT_TELEPORT;	 //, ULT_IMPROVED_TELEPORT;
+new SKILL_SPEED, /*SKILL_INVIS,*/ SKILL_BASH, SKILL_HEALTH, ULT_TELEPORT;	 //, ULT_IMPROVED_TELEPORT;
 
 /*
 new ClientTracer;
@@ -49,13 +51,6 @@ new bool:inteleportcheck[MAXPLAYERSCUSTOM];
 
 // new String:teleportSound[]="war3source/blinkarrival.mp3";
 // new String:teleportSound[256];
-public Plugin : myinfo = {
-	name		= "Race - Human Alliance",
-	author		= "PimpinJuice, necavi, El Diablo",
-	description = "The Human Alliance race for War3Source.",
-	version		= "1.0",
-	url			= "http://war3source.com"
-};
 
 bool HooksLoaded = false;
 
@@ -145,7 +140,7 @@ public OnWar3LoadRaceOrItemOrdered2(num, reloadrace_id, String: shortname[])
 		thisRaceID	 = War3_CreateNewRace(RACE_LONGNAME, RACE_SHORTNAME, reloadrace_id, "Teleport,Invis,+hp");
 		SKILL_SPEED	 = War3_AddRaceSkill(thisRaceID, "Whisk", "Increases movement speed.", false, 4);
 		SKILL_HEALTH = War3_AddRaceSkill(thisRaceID, "Devotion Aura", "Gives you additional 10/20/30/40 health.", false, 4);
-		SKILL_INVIS	 = War3_AddRaceSkill(thisRaceID, "Invisibility", "Makes you invisible to players", false, 6);
+		//SKILL_INVIS	 = War3_AddRaceSkill(thisRaceID, "Invisibility", "Makes you invisible to players", false, 6);
 		SKILL_BASH	 = War3_AddRaceSkill(thisRaceID, "Bash", "7/13/19/25% chance to bash the enemy.\nRenders the enemy immobile for 0.2 seconds.", false, 4);
 		ULT_TELEPORT = War3_AddRaceSkill(thisRaceID, "Teleport", "Teleport toward where you aim.\n600/700/850/1000 range. Ultimate Immunity has 350 blocking radius.", true, 4);
 
@@ -182,7 +177,7 @@ public OnRaceChanged(client, oldrace, newrace)
 	}
 	else
 	{
-		War3_SetBuff(client, fInvisibilitySkill, thisRaceID, 1.0);	  // if we aren't their race anymore we shouldn't be controlling their alpha
+		//War3_SetBuff(client, fInvisibilitySkill, thisRaceID, 1.0);	  // if we aren't their race anymore we shouldn't be controlling their alpha
 		War3_SetBuff(client, iAdditionalMaxHealth, thisRaceID, 0);
 		War3_SetBuff(client, fBashChance, thisRaceID, 0.0);
 		War3_SetBuff(client, fHPDecay, thisRaceID, 0.0);
@@ -378,10 +373,10 @@ public void OnSkillLevelChanged(int client, int currentrace, int skill, int news
 				War3_SetBuff(client, fBashChance, thisRaceID, BashChance[newskilllevel]);
 			}
 
-			else if (skill == SKILL_INVIS)
-			{
-				War3_SetBuff(client, fInvisibilitySkill, thisRaceID, InvisibilityAlpha[newskilllevel]);
-			}
+			//else if (skill == SKILL_INVIS)
+			//{
+			//	War3_SetBuff(client, fInvisibilitySkill, thisRaceID, InvisibilityAlpha[newskilllevel]);
+			//}
 		}
 	}
 }
