@@ -15,10 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Setup SourcePawn Compiler ${{ matrix.SM_VERSION }}
-      uses: rumblefrog/setup-sp@master
+    - name: wget
+      uses: wei/wget@v1
       with:
-        version: ${{ matrix.SM_VERSION }}
+        args: -O sourcemod.tar.gz http://www.sourcemod.net/latest.php?version=1.9&os=linux
+    
+    - name: Extract Sourcemod
+      run: |
+        tar -xzf sourcemod.tar.gz
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
