@@ -29,4 +29,8 @@ jobs:
           cd addons/sourcemod/scripting/
           echo -e "\nCompiling $file..." 
           ./compile_for_github_action.sh || true
-          workingdirectory: addons/sourcemod/scripting/compiled
+    - name: Upload output
+      uses: actions/upload-artifact@v2
+      with:
+          path: addons/sourcemod/scripting/compiled
+          artiface_name: latest-compiled-plugins
