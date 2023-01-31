@@ -1,30 +1,31 @@
-name: SourceMod Plugin Workflow
+name: War3Evo War3Source SourceMod Plugin Workflow
 
 on:
   push:
     branches: master
-    
-defaults:
-  run:
-    working-directory: compiled
-
 jobs:
   build:
     runs-on: ubuntu-latest
     continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        SM_VERSION: [ "1.9" ]
     
     steps:
     - uses: actions/checkout@v2
-    - name: Compile Latest
-      run: |
-        wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
-        tar -xzf sourcemod.tar.gz
+    
+    - name: Setup SourcePawn Compiler ${{ matrix.SM_VERSION }}
+      uses: rumblefrog/setup-sp@master
+      with:
+        version: ${{ matrix.SM_VERSION }}
+         
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
-    - name: Compiling of all TTT related plugins
+
+    - name: Compiling of all plugins
       run: |
           cd addons/sourcemod/scripting/
           echo -e "\nCompiling $file..." 
           ./compile_for_github_action.sh || true
-    
-          
+      working-directory: compiled
