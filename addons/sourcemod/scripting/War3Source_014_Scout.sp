@@ -8,7 +8,7 @@
 	#endinput
 #endif
 
-#define RACE_ID_NUMBER 180
+#define RACE_ID_NUMBER 14
 
 /**
 * File: War3Source_NightElf.sp

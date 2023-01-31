@@ -1,7 +1,7 @@
 #include <war3source>
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#define RACE_ID_NUMBER 90
+#define RACE_ID_NUMBER 5
 
 /**
  *

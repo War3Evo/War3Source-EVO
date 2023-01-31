@@ -2,7 +2,7 @@
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
-#define RACE_ID_NUMBER 140
+#define RACE_ID_NUMBER 10
 
 /**
 * File: War3Source_NightElf.sp

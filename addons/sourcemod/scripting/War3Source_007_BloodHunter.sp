@@ -1,7 +1,7 @@
 #include <war3source>
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#define RACE_ID_NUMBER 110
+#define RACE_ID_NUMBER 7
 
 #define PLUGIN_VERSION "0.0.0.1 (1/20/2013) 9:12AM EST"
 /**

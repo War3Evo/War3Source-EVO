@@ -3,7 +3,7 @@
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
-#define RACE_ID_NUMBER 40
+#define RACE_ID_NUMBER 3
 #define RACE_LONGNAME "Night Elf"
 #define RACE_SHORTNAME "nightelf"
 

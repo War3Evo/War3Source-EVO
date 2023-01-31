@@ -4,7 +4,7 @@
 
 #define PLUGIN_VERSION "0.0.0.2 (1/18/2013)"
 
-#define RACE_ID_NUMBER 220
+#define RACE_ID_NUMBER 18
 
 //#include "W3SIncs/War3Source_Effects"
 

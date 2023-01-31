@@ -33,7 +33,7 @@
 //#assert GGAMETYPE == GGAME_TF2
 //#assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
-#define RACE_ID_NUMBER 510
+#define RACE_ID_NUMBER 21
 
 //main list of player/teleport relation
 enum telelist {

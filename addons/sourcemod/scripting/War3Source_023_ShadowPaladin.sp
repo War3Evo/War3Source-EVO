@@ -21,7 +21,7 @@
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
 
-#define RACE_ID_NUMBER 640
+#define RACE_ID_NUMBER 23
 
 ////TO DO:
 //native that asks if the damage is by direct weapon, not lasting burn

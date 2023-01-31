@@ -20,7 +20,7 @@
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 //#assert GGAMETYPE == GGAME_TF2
 
-#define RACE_ID_NUMBER 660
+#define RACE_ID_NUMBER 24
 
 //#include <tf2_stocks>
 

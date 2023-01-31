@@ -2,7 +2,7 @@
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
 
-#define RACE_ID_NUMBER 230
+#define RACE_ID_NUMBER 19
 
 //#include "W3SIncs/War3Source_Effects"
 

@@ -10,7 +10,7 @@
 
 #include "War3Source/include/War3Source_Engine_Teleport_To_Teleporter.inc"
 
-#define RACE_ID_NUMBER 50
+#define RACE_ID_NUMBER 4
 
 /**
 * File: War3Source_BloodMage.sp

@@ -11,7 +11,7 @@
 /*										                                        */
 /* ============================================================================	*/
 
-#define RACE_ID_NUMBER 120
+#define RACE_ID_NUMBER 8
 
 
 public W3ONLY(){} //unload this?

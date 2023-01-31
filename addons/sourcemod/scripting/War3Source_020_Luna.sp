@@ -1,7 +1,7 @@
 #include <war3source>
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#define RACE_ID_NUMBER 280
+#define RACE_ID_NUMBER 20
 
 /**
  * File: War3Source_Luna.sp

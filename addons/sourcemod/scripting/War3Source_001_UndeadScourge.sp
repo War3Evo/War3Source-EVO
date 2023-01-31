@@ -1,19 +1,12 @@
-//UPDATED FOR WAR3SOURCE EVOLUTION
-
 #include <war3source>
+
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
-#define RACE_ID_NUMBER 10
+#define RACE_ID_NUMBER 1
 #define RACE_LONGNAME "Undead Scourge"
 #define RACE_SHORTNAME "undead"
-
-
-/**
-* File: War3Source_UndeadScourge.sp
-* Description: The Undead Scourge race for War3Source.
-* Author(s): Anthony Iacono, Necavi, El Diablo
-*/
+#define PLUGIN_VERSION "0.0.0.1"
 
 int thisRaceID;
 

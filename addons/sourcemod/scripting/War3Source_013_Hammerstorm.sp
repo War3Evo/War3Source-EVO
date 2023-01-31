@@ -1,7 +1,7 @@
 #include <war3source>
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#define RACE_ID_NUMBER 170
+#define RACE_ID_NUMBER 13
 
 //#pragma semicolon 1	///WE RECOMMEND THE SEMICOLON
 

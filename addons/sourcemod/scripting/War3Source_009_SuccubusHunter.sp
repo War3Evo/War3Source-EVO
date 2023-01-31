@@ -2,7 +2,7 @@
 
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#define RACE_ID_NUMBER 130
+#define RACE_ID_NUMBER 9
 
 /**
 * vim: set ai et ts=4 sw=4 :

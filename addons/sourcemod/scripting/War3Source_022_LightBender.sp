@@ -19,7 +19,7 @@
 //#include "W3SIncs/War3Source_Interface"
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#define RACE_ID_NUMBER 570
+#define RACE_ID_NUMBER 22
 
 // War3Source stuff
 //new thisRaceID, SKILL_RED, SKILL_GREEN, SKILL_BLUE, SKILL_YELLOW, ULT_DISCO;

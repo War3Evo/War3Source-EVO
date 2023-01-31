@@ -2,7 +2,7 @@
 #assert GGAMEMODE == MODE_WAR3SOURCE
 #assert GGAMETYPE_JAILBREAK == JAILBREAK_OFF
 
-#define RACE_ID_NUMBER 200
+#define RACE_ID_NUMBER 16
 
 //////////////////////////////////////
 // 			T F 2   O N L Y         //
