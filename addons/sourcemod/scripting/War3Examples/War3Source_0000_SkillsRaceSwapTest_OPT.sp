@@ -1,29 +1,24 @@
-//War3Source_0000_SkillsRaceSwapTest_OPT.sp
-
 #include <war3source>
 
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	#endinput
 #endif
 
-
-int thisRaceID;
-
-int SKILL_LEECH,SKILL_SPEED,SKILL_LOWGRAV,SKILL_SUICIDE;
-
-#define RACE_ID_NUMBER 12
+#define RACE_ID_NUMBER 1000
 #define RACE_LONGNAME "Test Race 1"
 #define RACE_SHORTNAME "testrace1"
 
 public Plugin:myinfo =
 {
-	name = "War3Source_9000_SkillsPack_1",
+	name = "Race - Example Race",
 	author = "El Diablo",
 	description = "Skills Pack for War3Source:EVO.",
 	version = "1.0",
 	url = "http://war3evo.info"
 };
 
+int thisRaceID;
+int SKILL_LEECH,SKILL_SPEED,SKILL_LOWGRAV,SKILL_SUICIDE;
 int Test1Skill,Test2Skill,Test3Skill,Test4Skill;
 
 bool HooksLoaded = false;
@@ -34,6 +29,7 @@ public void Load_Hooks()
 
 	W3Hook(W3Hook_OnWar3SkillSlotChange, OnWar3SkillSlotChange);
 }
+
 public void UnLoad_Hooks()
 {
 	if(!HooksLoaded) return;
@@ -41,6 +37,7 @@ public void UnLoad_Hooks()
 
 	W3UnhookAll(W3Hook_OnWar3SkillSlotChange);
 }
+
 bool RaceDisabled=true;
 public OnWar3RaceEnabled(newrace)
 {
@@ -51,6 +48,7 @@ public OnWar3RaceEnabled(newrace)
 		RaceDisabled=false;
 	}
 }
+
 public OnWar3RaceDisabled(oldrace)
 {
 	if(oldrace==thisRaceID)
@@ -106,7 +104,6 @@ public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 	if(SKILL_SUICIDE)
 	{
 	}
-
 }
 
 public OnWar3EventDeath(victim, attacker)

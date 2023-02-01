@@ -1,16 +1,4 @@
-// War3Source_000_Engine_Hint.sp
-
 new UserMsg:umHintText;
-
-/*
-public Plugin:myinfo=
-{
-	name="Engine Hint Display",
-	author="Ownz",
-	description="War3Source Core Plugins",
-	version="1.0",
-	url="http://war3source.com/"
-};*/
 
 public War3Source_000_Engine_Hint_OnPluginStart()
 {
@@ -29,19 +17,19 @@ public NW3Hint(Handle:plugin,numParams)
 	new client= GetNativeCell(1);
 	if(!ValidPlayer(client)) return 0;
 
-	new W3HintPriority:priority=W3HintPriority:GetNativeCell(2);
-	new Float:Duration=GetNativeCell(3);
-	if(Duration>20.0){ Duration=20.0;}
+	new W3HintPriority:priority = W3HintPriority:GetNativeCell(2);
+	new Float:Duration = GetNativeCell(3);
+
+	if(Duration>20.0)
+	{ 
+		Duration=20.0;
+	}
+
 	new String:format[128];
 	GetNativeString(4,format,sizeof(format));
+
 	new String:output[128];
-	FormatNativeString(0,
-			4,
-			5,
-			sizeof(output),
-			dummy,
-			output
-			);
+	FormatNativeString(0, 4, 5, sizeof(output), dummy, output );
 
 	//must have \n
 	new len=strlen(output);
@@ -54,24 +42,24 @@ public NW3Hint(Handle:plugin,numParams)
 	if (arr == INVALID_HANDLE)
 		objarray[client][priority] = arr = CreateArray(ByteCountToCells(128)); //128 characters;
 
-	if(W3GetHintPriorityType(priority)==HINT_TYPE_SINGLE)
+	if(W3GetHintPriorityType(priority) == HINT_TYPE_SINGLE)
 	{
 		ClearArray(arr);
 	}
 
 	//does it already exist? then update time
-	new index=FindStringInArray(arr,output);
-	if(index>=0)
+	new index = FindStringInArray(arr, output);
+	if(index >= 0)
 	{
-		SetArrayCell(arr,index+1,Duration + GetEngineTime()); //ODD
+		SetArrayCell(arr, index+1, Duration + GetEngineTime()); //ODD
 	}
 	else
 	{
 		PushArrayString(arr, output); //EVEN
-		PushArrayCell(arr,Duration + GetEngineTime()); //ODD
+		PushArrayCell(arr, Duration + GetEngineTime()); //ODD
 	}
 
-	updatenextframe[client]=true;
+	updatenextframe[client] = true;
 
 	return 1;
 }
@@ -79,9 +67,9 @@ public NW3Hint(Handle:plugin,numParams)
 public DeleteObject(client)
 {
 	//if ur object holds handles, close them!!
-	for(new W3HintPriority:i=HINT_NORMAL; i < HINT_SIZE; i++)
+	for(new W3HintPriority:i = HINT_NORMAL; i < HINT_SIZE; i++)
 	{
-		new Handle:arr=objarray[client][i];
+		new Handle:arr = objarray[client][i];
 		if (arr)
 		{
 			//PrintToServer("%d",arr));
@@ -94,13 +82,8 @@ public DeleteObject(client)
 public Action:MsgHook_HintText(UserMsg:msg_id, Handle:bf, const players[], playersNum, bool:reliable, bool:init)
 {
 	if(MapChanging || War3SourcePause) return Plugin_Continue;
-//do NOT print to chat here
-//do NOT print to chat here
-//do NOT print to chat here
-//do NOT print to chat here
-//do NOT print to chat here
 
-	new bool:intercept=false;
+	new bool:intercept = false;
 
 	new String:str[128];
 	if (GetUserMessageType() != UM_Protobuf)
@@ -114,7 +97,7 @@ public Action:MsgHook_HintText(UserMsg:msg_id, Handle:bf, const players[], playe
 
 	//PrintToServer("[W3Hint] recieved \"%s\"",str);
 
-	if(str[0]!=' '&&str[0]!='#')
+	if(str[0] !=' ' && str[0] !='#')
 	{
 		intercept=true;
 	}
@@ -149,23 +132,23 @@ public War3Source_000_Engine_Hint_OnGameFrame()
 			new Float:time = GetEngineTime();
 			if (lastshow[client] < time-0.3 || updatenextframe[client])
 			{
-				updatenextframe[client]=false;
-				lastshow[client]=time;
+				updatenextframe[client] = false;
+				lastshow[client] = time;
 				decl String:output[128];
-				output[0]=0;
-				for (new W3HintPriority:priority=HINT_NORMAL; priority < HINT_SIZE; priority++)
+				output[0] = 0;
+				for (new W3HintPriority:priority = HINT_NORMAL; priority < HINT_SIZE; priority++)
 				{
 					new Handle:arr=objarray[client][priority];
 					if (arr != INVALID_HANDLE)
 					{
-						new size=GetArraySize(arr);
+						new size = GetArraySize(arr);
 
 						//DP("%d size %d",priority,size);
 						if (size)
 						{
-							for (new arrindex=0;arrindex<size;arrindex+=2)
+							for (new arrindex = 0; arrindex < size; arrindex += 2)
 							{
-								new Float:expiretime=GetArrayCell(arr,arrindex+1);
+								new Float:expiretime=GetArrayCell(arr, arrindex+1);
 								if (time > expiretime)
 								{
 									//expired
@@ -187,19 +170,20 @@ public War3Source_000_Engine_Hint_OnGameFrame()
 									}
 								}
 							}
-							if (size&&W3HintPriority:priority==HINT_NORMAL) //size may have changed when somethign expired
+							if (size && W3HintPriority:priority == HINT_NORMAL) //size may have changed when somethign expired
 							{
-								StrCat(output,sizeof(output)," \n");
+								StrCat(output, sizeof(output), " \n");
 							}
 						}
 					}
 				}
-				if(strlen(output)>1 /*&& strcmp(output," ")==-1 && strcmp(output,"  ")==-1*/)
+
+				if(strlen(output) > 1 /*&& strcmp(output," ")==-1 && strcmp(output,"  ")==-1*/)
 				{
 					War3_StopSound(client, SNDCHAN_STATIC, "UI/hint.wav");
 
-					new len=strlen(output);
-					while (len>0 && (output[len-1]=='\n' || output[len-1]==' ' ))
+					new len = strlen(output);
+					while (len> 0 && (output[len-1] == '\n' || output[len-1] == ' '))
 					{
 						len -= 1; //keep eating the last returns
 						output[len] = '\0';
@@ -207,7 +191,7 @@ public War3Source_000_Engine_Hint_OnGameFrame()
 
 					if (!StrEqual(lastoutput[client],output))
 					{
-						PrintHintText(client," %s",output); //NEED SPACE
+						PrintHintText(client, " %s", output); //NEED SPACE
 					}
 				}
 				strcopy(lastoutput[client],sizeof(output),output);
