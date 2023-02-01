@@ -803,7 +803,7 @@ public int Native_War3_AddSound(Handle:plugin, numParams)
 	}
 }
 
-public int Native_War3_AddSound(Handle:plugin, numParams)
+public int Native_War3_AddModel(Handle:plugin, numParams)
 {
 	//PrintToServer("numParams %d",numParams);
 	char sModelFile[1024];
