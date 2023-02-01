@@ -1,7 +1,5 @@
 # ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evoultion Gamemode for Sourcemod
 
---------------
-
 * [Introduction](#introduction)
 * [Requirements](#requirements)
 * [Install](#install)
@@ -56,6 +54,5 @@ Read file [COPYING](LICENSE).
 ## Links
 
 * [Website](http://www.war3evo.info/)
-* [Wiki](http://www.war3evo.info//wiki)
-* [Forums](http://www.war3evo.info/)
+* [Wiki](https://github.com/War3Evo/War3Source-EVO/wiki)
 * [Discord](https://discord.gg/kYDNhDwwZV)
