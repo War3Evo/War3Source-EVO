@@ -62,4 +62,4 @@ Read file [COPYING](LICENSE).
 
 * [Website](http://www.war3evo.info/)
 * [Wiki](https://github.com/War3Evo/War3Source-EVO/wiki)
-* [Discord](https://discord.gg/kYDNhDwwZV)
+* [Discord](https://discord.gg/uhTfXYgJfB)
