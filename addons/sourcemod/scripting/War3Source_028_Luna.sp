@@ -140,7 +140,6 @@ public OnAddSound(sound_priority)
 	}
 }
 
-
 public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 {
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual("luna",shortname,false)))

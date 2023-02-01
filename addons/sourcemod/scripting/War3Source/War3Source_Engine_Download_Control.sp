@@ -312,7 +312,7 @@ public War3Source_Engine_Download_Control_OnPluginStart()
 	EnableFullDownloadsModuleCvar = CreateConVar("war3_downloads_full_download", "1","1 to enable module");
 
 	EnableDownloadsModuleCvar = CreateConVar("war3_downloads_enabled", "1","1 to enable module");
-	EnablePRECACHEDownloadsCvar = CreateConVar("war3_downloads_precache_enabled", "0","set 1 to enable downloads of Priority TOP");
+	EnablePRECACHEDownloadsCvar = CreateConVar("war3_downloads_precache_enabled", "1","set 1 to enable downloads of Priority TOP");
 	EnableTopDownloadsCvar = CreateConVar("war3_downloads_top_enabled", "1","set 1 to enable downloads of Priority TOP");
 	EnableHighDownloadsCvar = CreateConVar("war3_downloads_high_enabled", "1","set 1 to enable downloads of Priority TOP");
 	EnableMediumDownloadsCvar = CreateConVar("war3_downloads_medium_enabled", "1","set 1 to enable downloads of Priority TOP");
@@ -324,7 +324,7 @@ public War3Source_Engine_Download_Control_OnPluginStart()
 	imediumdownloadsCvar = CreateConVar("war3_downloads_medium", "0.25","percentage 0.25 is 25 percent");
 	ilowdownloadsCvar = CreateConVar("war3_downloads_low", "0.10","percentage 0.10 is 10 percent");
 	ibottomdownloadsCvar = CreateConVar("war3_downloads_bottom", "0.05","percentage 0.05 is 5 percent");
-	Log_TOP_prioirtyCvar = CreateConVar("war3_downloads_log_top", "0","set 1 to enable");
+	Log_TOP_prioirtyCvar = CreateConVar("war3_downloads_log_top", "1","set 1 to enable");
 	Log_HIGH_prioirtyCvar = CreateConVar("war3_downloads_log_high", "0","set 1 to enable");
 	Log_MEDIUM_prioirtyCvar = CreateConVar("war3_downloads_log_medium", "0","set 1 to enable");
 	Log_LOW_prioirtyCvar = CreateConVar("war3_downloads_log_low", "0","set 1 to enable");
