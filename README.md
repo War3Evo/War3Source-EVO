@@ -1,4 +1,4 @@
-# ![logo](https://avatars.githubusercontent.com/u/3613045?s=64) War3Source Evoultion Gamemode for Sourcemod Server
+# ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evoultion Gamemode for Sourcemod
 
 --------------
 
@@ -33,7 +33,7 @@ TODO - Informations about this come later
 
 ## Changelogs
 
-Read file [CHANGELOGS](CHANGELOGS.md).
+Read file [CHANGELOGS](CHANGELOG.md).
 
 ## Reporting issues
 
