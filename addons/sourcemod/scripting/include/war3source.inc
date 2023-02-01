@@ -2571,6 +2571,7 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("War3_WardZapVisualEffect");
 
 	MarkNativeAsOptional("War3_AddSound");
+	MarkNativeAsOptional("War3_AddModel");
 
 	MarkNativeAsOptional("War3_NotifyPlayerTookDamageFromSkill");
 	MarkNativeAsOptional("War3_NotifyPlayerTookDamageFromItem");

@@ -55,6 +55,7 @@ public OnWar3RaceDisabled(oldrace)
 //		return;
 
 new String:beamsnd[]= "war3source/moonqueen/beam.mp3";
+new String:effLight[] ="Effects/vol_light.mdl";
 
 //skill is auto cast via chance
 //new Float:LucentChance[5] = {0.00,0.05,0.11,0.22,0.30};
@@ -140,6 +141,13 @@ public OnAddSound(sound_priority)
 	}
 }
 
+public OnAddModel(model_priority)
+{
+	if(model_priority==PRIORITY_HIGH)
+	{
+		War3_AddMModel(effLight);
+	}
+}
 public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 {
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual("luna",shortname,false)))
