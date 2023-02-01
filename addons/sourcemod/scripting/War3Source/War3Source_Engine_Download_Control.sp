@@ -415,12 +415,30 @@ stock bool FakePrecacheSound( char szPath[PLATFORM_MAX_PATH] )
 	return true;
 }
 
+stock bool FakePrecacheModel( char szPath[PLATFORM_MAX_PATH] )
+{
+	char szPathStar[PLATFORM_MAX_PATH];
+	Format(szPathStar, sizeof(szPathStar), "*%s", szPath);
+	strcopy(STRING(szPath), szPathStar);
+	AddToStringTable( FindStringTable( "modelprecache" ), szPathStar );
+	return true;
+}
+
 stock bool War3_Internal_PreCacheSound( char szPath[PLATFORM_MAX_PATH] , bool preload=false )
 {
 #if (GGAMETYPE == GGAME_CSGO)
 		return FakePrecacheSound(szPath);
 #else
 		return PrecacheSound(szPath, preload);
+#endif
+}
+
+stock bool War3_Internal_PreCacheModel( char szPath[PLATFORM_MAX_PATH] , bool preload=false )
+{
+#if (GGAMETYPE == GGAME_CSGO)
+		return FakePrecacheModel(szPath);
+#else
+		return PrecacheModel(szPath, preload);
 #endif
 }
 
