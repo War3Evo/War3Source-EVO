@@ -34,9 +34,12 @@ public War3Source_Engine_Casting_OnPluginStart()
 
 public War3Source_Engine_Casting_OnMapStart()
 {
+// not sure if I need this cache or not for TF2
+// CSGO may not have this?? not fully tested
+//#if (GGAMETYPE != GGAME_CSGO)
 	//W3AddModel("materials/effects/softglow.vmt");
 	//W3AddModel("materials/effects/softglow.vtf");
-	
+//#endif
 	War3_PrecacheParticle("ambient_sparks_glow");
 }
 
@@ -334,9 +337,12 @@ public LightCast(client,target,W3SpellEffects:spelleffect,String:SpellColor[],ra
 		WritePackCell(Packhead, SkillID);
 	}
 
-	//CreateParticlesUp(client,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+#if (GGAMETYPE != GGAME_CSGO)
+	CreateParticlesUp(client,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+#else
 	//materials/effects/softglow.vmt
 	CreateParticlesUp(client,true,CastingTimer,45.0,5.0,10.0,0.0,"ambient_sparks_glow",SpellColor,"10","300","300","120");
+#endif
 	EmitSoundToAll(ww_on,client);
 }
 
@@ -389,9 +395,12 @@ public Action:RemoveHolyCast(Handle:t,any:Packhead)
 			TE_SetupDynamicLight(this_pos,120,255,120,12,80.0,1.88,1.0);
 			TE_SendToAll();
 			
+#if (GGAMETYPE != GGAME_CSGO)
+			CreateParticlesDown(target,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
+#else
 			//Home / csgo / materials / effects
-			//CreateParticlesDown(target,true,CastingTimer,45.0,5.0,10.0,0.0,"effects/softglow.vmt",SpellColor,"10","300","300","120");
 			CreateParticlesDown(target,true,CastingTimer,45.0,5.0,10.0,0.0,"ambient_sparks_glow",SpellColor,"10","300","300","120");
+#endif
 		}
 
 

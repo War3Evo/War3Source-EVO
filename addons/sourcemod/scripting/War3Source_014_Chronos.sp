@@ -546,7 +546,7 @@ public Action OnW3TakeDmgAllPre(int victim, int attacker, float damage)
 	}
 
 	if(ValidPlayer(attacker,true) && bTrapped[attacker]){ //if the attacker is inside the sphere...
-		new wpnent2 = W3GetCurrentWeaponEnt(attacker);
+		int wpnent2 = W3GetCurrentWeaponEnt(attacker);
 		if(wpnent2>0&&IsValidEdict(wpnent2)){
 				decl String:WeaponName2[32];
 				GetEdictClassname(wpnent2, WeaponName2, 32);

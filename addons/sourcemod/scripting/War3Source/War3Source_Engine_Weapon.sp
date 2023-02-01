@@ -31,6 +31,8 @@ public Plugin:myinfo=
 */
 public War3Source_Engine_Weapon_OnMapStart()
 {
+	//sm_dump_netprops netprops.txt
+	//https://forums.alliedmods.net/showpost.php?p=2207028&postcount=3
 	m_OffsetActiveWeapon=FindSendPropInfo("CBasePlayer","m_hActiveWeapon");
 	if(m_OffsetActiveWeapon==-1)
 	{
@@ -76,8 +78,17 @@ GetCurrentWeaponEnt(client)
 {
 	if(client)
 	{
-		int wep = GetEntDataEnt2(client,m_OffsetActiveWeapon);
-		return wep;
+		// TF2 couldn't find this on 1/31/2023 ... will have to research this further
+		// Reason for if then statement: Exception reported: Offset 0 is invalid
+		if(m_OffsetActiveWeapon>0)
+		{
+			//int wep = GetEntDataEnt2(client,m_OffsetActiveWeapon);
+
+			// recommended from Allied Modders to try instad of GetEntDataEnt2
+			int wep = GetEntPropEnt(client, Prop_Send, "m_hActiveWeapon");
+			return wep;
+		}
+		else return -1;
 	}
 	else
 	{

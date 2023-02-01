@@ -32,31 +32,11 @@
 
 // TF2
 //Uncomment below for TF2:
-// #define GGAMETYPE GGAME_TF2
-// #define GGAMETYPE2 GGAME_TF2_NORMAL
-// #define GGAMETYPE_KDR KDR_OFF
-// #define GGAMETYPE_JAILBREAK JAILBREAK_OFF
-// #define GGAMEMODE MODE_WAR3SOURCE
-// #define SHOPMENU3 MODE_DISABLED
-// This was programmally added in to try to have more control
-// over spammy War3Source because CSGO can't handle so much
-// client spam.  I didn't fully complete it.  If someone else
-// wishes to complete this, you can turn it on in currentgame.inc
-// This does not help a normal server owner, but may extend itself for a programmer.
-// #define MESSAGE_CONTROL_MODE MODE_DISABLED
-// MODE_DISABLED MODE_ENABLED
-// #define CYBORG_SKIN MODE_DISABLED
-//Stop of uncomment for TF2
-
-
-//CSGO
-//Uncomment below for CSGO:
-#define GGAMETYPE GGAME_CSGO
-#define GGAMETYPE2 GGAME_CSGO_2
-#define GGAMETYPE_KDR KDR_ON
+#define GGAMETYPE GGAME_TF2
+#define GGAMETYPE2 GGAME_TF2_NORMAL
+#define GGAMETYPE_KDR KDR_OFF
 #define GGAMETYPE_JAILBREAK JAILBREAK_OFF
 #define GGAMEMODE MODE_WAR3SOURCE
-#define CYBORG_SKIN MODE_DISABLED
 #define SHOPMENU3 MODE_DISABLED
 // This was programmally added in to try to have more control
 // over spammy War3Source because CSGO can't handle so much
@@ -64,6 +44,26 @@
 // wishes to complete this, you can turn it on in currentgame.inc
 // This does not help a normal server owner, but may extend itself for a programmer.
 #define MESSAGE_CONTROL_MODE MODE_DISABLED
+// MODE_DISABLED MODE_ENABLED
+#define CYBORG_SKIN MODE_DISABLED
+//Stop of uncomment for TF2
+
+
+//CSGO
+//Uncomment below for CSGO:
+//#define GGAMETYPE GGAME_CSGO
+//#define GGAMETYPE2 GGAME_CSGO_2
+//#define GGAMETYPE_KDR KDR_ON
+//#define GGAMETYPE_JAILBREAK JAILBREAK_OFF
+//#define GGAMEMODE MODE_WAR3SOURCE
+//#define CYBORG_SKIN MODE_DISABLED
+//#define SHOPMENU3 MODE_DISABLED
+// This was programmally added in to try to have more control
+// over spammy War3Source because CSGO can't handle so much
+// client spam.  I didn't fully complete it.  If someone else
+// wishes to complete this, you can turn it on in currentgame.inc
+// This does not help a normal server owner, but may extend itself for a programmer.
+//#define MESSAGE_CONTROL_MODE MODE_DISABLED
 //Stop of uncomment for CSGO
 
 

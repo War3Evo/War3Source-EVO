@@ -252,7 +252,8 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 				}
 				invisWeaponAttachments[client]=alpha<200?true:false;
 				int wpn=W3GetCurrentWeaponEnt(client);
-				if(wpn>0){
+				if(wpn>0)
+				{
 					int alphaw=alpha;
 					if(GetBuffHasOneTrue(client,bInvisWeaponOverride))
 					{
@@ -499,7 +500,7 @@ stock SetEntityAlpha(index,alpha)
 
 stock GetWeaponAlpha(client)
 {
-	new wep=W3GetCurrentWeaponEnt(client);
+	int wep=W3GetCurrentWeaponEnt(client);
 	if(wep>MaxClients && IsValidEdict(wep))
 	{
 		return GetEntityAlpha(wep);
