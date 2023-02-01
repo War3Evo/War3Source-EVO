@@ -74,7 +74,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_TOP;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		CallStartForward(g_OnAddModelHandle);
+		Call_StartForward(g_OnAddModelHandle);
 		Call_PushCell(PRIORITY_TOP);
 		Call_Finish(res);
 	}
@@ -84,7 +84,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_HIGH;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		CallStartForward(g_OnAddModelHandle);
+		Call_StartForward(g_OnAddModelHandle);
 		Call_PushCell(PRIORITY_HIGH);
 		Call_Finish(res);
 	}
@@ -94,7 +94,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_MEDIUM;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		CallStartForward(g_OnAddModelHandle);
+		Call_StartForward(g_OnAddModelHandle);
 		Call_PushCell(PRIORITY_MEDIUM);
 		Call_Finish(res);
 	}
@@ -104,7 +104,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_LOW;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		CallStartForward(g_OnAddModelHandle);
+		Call_StartForward(g_OnAddModelHandle);
 		Call_PushCell(PRIORITY_LOW);
 		Call_Finish(res);
 	}
@@ -114,7 +114,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_BOTTOM;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		CallStartForward(g_OnAddModelHandle);
+		Call_StartForward(g_OnAddModelHandle);
 		Call_PushCell(PRIORITY_BOTTOM);
 		Call_Finish(res);
 	}
