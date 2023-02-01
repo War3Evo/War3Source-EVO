@@ -21,13 +21,9 @@ make pull requests to our [Github repository](https://github.com/War3Evo/War3Sou
 For further information on the War3Source Evoultion project, please visit our project
 website at [War3Evo.info](http://www.war3evo.info/).
 
-## Requirements
+## Compile & Server Requirements
 
-TODO - Informations about this come later
-
-## Install
-
-TODO - Informations about this come later
+* https://github.com/War3Evo/War3Source-EVO/wiki/Compile-&-Server-Requirements
 
 ## Changelogs
 
