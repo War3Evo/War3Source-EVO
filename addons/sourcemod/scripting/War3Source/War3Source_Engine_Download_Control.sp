@@ -74,7 +74,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_TOP;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		Call_StartForward(g_OnAddModelHandle);
+
 		Call_PushCell(PRIORITY_TOP);
 		Call_Finish(res);
 	}
@@ -84,7 +84,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_HIGH;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		Call_StartForward(g_OnAddModelHandle);
+
 		Call_PushCell(PRIORITY_HIGH);
 		Call_Finish(res);
 	}
@@ -94,7 +94,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_MEDIUM;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		Call_StartForward(g_OnAddModelHandle);
+
 		Call_PushCell(PRIORITY_MEDIUM);
 		Call_Finish(res);
 	}
@@ -104,7 +104,7 @@ CacheFiles()
 		Forward_Priority=PRIORITY_LOW;
 
 		Call_StartForward(g_OnAddSoundHandle);
-		Call_StartForward(g_OnAddModelHandle);
+
 		Call_PushCell(PRIORITY_LOW);
 		Call_Finish(res);
 	}
@@ -114,6 +114,63 @@ CacheFiles()
 		Forward_Priority=PRIORITY_BOTTOM;
 
 		Call_StartForward(g_OnAddSoundHandle);
+
+		Call_PushCell(PRIORITY_BOTTOM);
+		Call_Finish(res);
+	}
+}
+
+CacheModelFiles()
+{
+	// CACHE FILES HERE FOR NEXT MAP
+	//new bool:res;
+	if(!GetConVarBool(EnableDownloadsModuleCvar))
+	{
+		return;
+	}
+
+	new res;
+
+	if(GetConVarBool(EnableTopDownloadsCvar))
+	{
+		Forward_Priority=PRIORITY_TOP;
+
+		Call_StartForward(g_OnAddModelHandle);
+		Call_PushCell(PRIORITY_TOP);
+		Call_Finish(res);
+	}
+
+	if(GetConVarBool(EnableHighDownloadsCvar))
+	{
+		Forward_Priority=PRIORITY_HIGH;
+
+		Call_StartForward(g_OnAddModelHandle);
+		Call_PushCell(PRIORITY_HIGH);
+		Call_Finish(res);
+	}
+
+	if(GetConVarBool(EnableMediumDownloadsCvar))
+	{
+		Forward_Priority=PRIORITY_MEDIUM;
+
+		Call_StartForward(g_OnAddModelHandle);
+		Call_PushCell(PRIORITY_MEDIUM);
+		Call_Finish(res);
+	}
+
+	if(GetConVarBool(EnableLowDownloadsCvar))
+	{
+		Forward_Priority=PRIORITY_LOW;
+
+		Call_StartForward(g_OnAddModelHandle);
+		Call_PushCell(PRIORITY_LOW);
+		Call_Finish(res);
+	}
+
+	if(GetConVarBool(EnableBottomDownloadsCvar))
+	{
+		Forward_Priority=PRIORITY_BOTTOM;
+
 		Call_StartForward(g_OnAddModelHandle);
 		Call_PushCell(PRIORITY_BOTTOM);
 		Call_Finish(res);
@@ -729,6 +786,7 @@ public War3Source_Engine_Download_Control_OnMapStart()
 	if(OnPluginStartIndex>0)
 	{
 		CacheFiles();
+		CacheModelFiles();
 		OnPluginStartIndex=0;
 	}
 	UpdateDownloadControl();
@@ -745,6 +803,7 @@ public War3Source_Engine_Download_Control_OnMapEnd()
 	ClearArray(g_hPriority);
 
 	CacheFiles();
+	CacheModelFiles();
 }
 
 public bool:War3Source_Engine_Download_Control_InitNativesForwards()
