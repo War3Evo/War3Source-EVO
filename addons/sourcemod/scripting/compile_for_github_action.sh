@@ -24,7 +24,7 @@ then
 	do
 		fullpathsourcefile="`echo $fullpath/$i`";
 		smxfile="`echo $i | sed -e 's/\.sp$/\.smx/'`";
-		if [[ $smxfile =~ "War3Source" ]]; then
+		if [[ $smxfile =~ "War3Source" ]] || [[ $smxfile =~ "tf2attributes" ]]; then
 			outputfile="`echo $fullpath/compiled/$smxfile`"
 			echo -n "Single File Compiling $i...";
 			./spcomp_1.9.0.6261 -t4 -v2 $fullpathsourcefile -o$outputfile
@@ -35,7 +35,7 @@ for sourcefile in *.sp
 do
 	fullpathsourcefile="`echo $fullpath/$sourcefile`";
 	smxfile="`echo $sourcefile | sed -e 's/\.sp$/\.smx/'`";
-	if [[ $smxfile =~ "War3Source" ]]; then
+	if [[ $smxfile =~ "War3Source" ]] || [[ $smxfile =~ "tf2attributes" ]]; then
 		echo -n "All Files Compiling $sourcefile...";
 		./spcomp_1.9.0.6261 -t4 -v2 $fullpathsourcefile -ocompiled/$smxfile;
 	fi
