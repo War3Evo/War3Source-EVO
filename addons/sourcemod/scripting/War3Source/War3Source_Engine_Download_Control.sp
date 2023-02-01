@@ -200,6 +200,42 @@ UpdateDownloadControl()
 		{
 			GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
 			AddSoundFiles(TempBuffer,i,666,0);
+			if(GetConVarBool(Log_TOP_prioirtyCvar))
+			{
+				if(GetArrayCell(g_hPriority, i)==PRIORITY_TOP)
+				{
+					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_TOP) ALL FILES %s", TempBuffer);
+					LogDownloads(StringDetail);
+				}
+				else if(GetArrayCell(g_hPriority, i)==PRIORITY_HIGH)
+				{
+					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_HIGH) ALL FILES %s", TempBuffer);
+					LogDownloads(StringDetail);
+				}
+				else if(GetArrayCell(g_hPriority, i)==PRIORITY_MEDIUM)
+				{
+					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_MEDIUM) ALL FILES %s", TempBuffer);
+					LogDownloads(StringDetail);
+				}
+				else if(GetArrayCell(g_hPriority, i)==PRIORITY_LOW)
+				{
+					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_LOW) ALL FILES %s", TempBuffer);
+					LogDownloads(StringDetail);
+				}
+				else if(GetArrayCell(g_hPriority, i)==PRIORITY_BOTTOM)
+				{
+					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_BOTTOM) ALL FILES %s", TempBuffer);
+					LogDownloads(StringDetail);
+				}
+				//Format(StringDetail,sizeof(StringDetail),"ALL FILES %s", TempBuffer);
+				//LogDownloads(StringDetail);
+			}
+			DownloadCount++;
+		}
+
+		for(new i = 0; i < GetArraySize(g_hModelFile); i++)
+		{
+			GetArrayString(g_hModelFile, i, TempBuffer, sizeof(TempBuffer));
 			AddModelFiles(TempBuffer,i,666,0);
 			if(GetConVarBool(Log_TOP_prioirtyCvar))
 			{
@@ -256,6 +292,20 @@ UpdateDownloadControl()
 				{
 					GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
 					AddSoundFiles(TempBuffer,i,666,0);
+					if(GetConVarBool(Log_TOP_prioirtyCvar))
+					{
+						Format(StringDetail,sizeof(StringDetail),"PRIORITY_TOP %s", TempBuffer);
+						LogDownloads(StringDetail);
+					}
+					DownloadCount++;
+				}
+			}
+
+			for(new i = 0; i < GetArraySize(g_hModelFile); i++)
+			{
+				if(GetArrayCell(g_hPriority, i)==PRIORITY_TOP)
+				{
+					GetArrayString(g_hModelFile, i, TempBuffer, sizeof(TempBuffer));
 					AddModelFiles(TempBuffer,i,666,0);
 					if(GetConVarBool(Log_TOP_prioirtyCvar))
 					{
@@ -282,6 +332,21 @@ UpdateDownloadControl()
 					{
 						iCount++;
 					}
+
+					if(GetConVarBool(Log_HIGH_prioirtyCvar))
+					{
+						Format(StringDetail,sizeof(StringDetail),"PRIORITY_HIGH %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						LogDownloads(StringDetail);
+					}
+					DownloadCount++;
+				}
+			}
+
+			for(new i = 0; i < GetArraySize(g_hModelFile); i++)
+			{
+				if(GetArrayCell(g_hPriority, i)==PRIORITY_HIGH)
+				{
+					GetArrayString(g_hModelFile, i, TempBuffer, sizeof(TempBuffer));
 
 					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
 					{
@@ -312,6 +377,21 @@ UpdateDownloadControl()
 					{
 						iCount++;
 					}
+
+					if(GetConVarBool(Log_MEDIUM_prioirtyCvar))
+					{
+						Format(StringDetail,sizeof(StringDetail),"PRIORITY_MEDIUM %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						LogDownloads(StringDetail);
+					}
+					DownloadCount++;
+				}
+			}
+
+			for(new i = 0; i < GetArraySize(g_hModelFile); i++)
+			{
+				if(GetArrayCell(g_hPriority, i)==PRIORITY_MEDIUM)
+				{
+					GetArrayString(g_hModelFile, i, TempBuffer, sizeof(TempBuffer));
 					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
 					{
 						iCount++;
@@ -340,6 +420,20 @@ UpdateDownloadControl()
 					{
 						iCount++;
 					}
+					if(GetConVarBool(Log_LOW_prioirtyCvar))
+					{
+						Format(StringDetail,sizeof(StringDetail),"PRIORITY_LOW %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						LogDownloads(StringDetail);
+					}
+					DownloadCount++;
+				}
+			}
+
+			for(new i = 0; i < GetArraySize(g_hModelFile); i++)
+			{
+				if(GetArrayCell(g_hPriority, i)==PRIORITY_LOW)
+				{
+					GetArrayString(g_hModelFile, i, TempBuffer, sizeof(TempBuffer));
 					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
 					{
 						iCount++;
@@ -368,6 +462,20 @@ UpdateDownloadControl()
 					{
 						iCount++;
 					}
+					if(GetConVarBool(Log_BOTTOM_prioirtyCvar))
+					{
+						Format(StringDetail,sizeof(StringDetail),"PRIORITY_BOTTOM %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						LogDownloads(StringDetail);
+					}
+					DownloadCount++;
+				}
+			}
+
+			for(new i = 0; i < GetArraySize(g_hModelFile); i++)
+			{
+				if(GetArrayCell(g_hPriority, i)==PRIORITY_BOTTOM)
+				{
+					GetArrayString(g_hModelFile, i, TempBuffer, sizeof(TempBuffer));
 					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
 					{
 						iCount++;
@@ -703,7 +811,7 @@ bool:AddModelFiles(const String:model[PLATFORM_MAX_PATH], iModelIndex, iMaxDownl
 		//{
 			//PushArrayString(g_hHistoryFiles, sound);
 			// Add to download tables if custom file
-			if(GetArrayCell(g_hStockModel, iModelIndex)<=0)
+			if(GetArrayCell(g_hStockModel, iModelIndex) <= 0)
 			{
 				// Do not precache races or items (for now)
 				//if(GetArrayCell(g_hRaceIDSound, iSoundIndex)>0)
