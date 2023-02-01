@@ -325,10 +325,10 @@ public War3Source_Engine_Download_Control_OnPluginStart()
 	ilowdownloadsCvar = CreateConVar("war3_downloads_low", "0.10","percentage 0.10 is 10 percent");
 	ibottomdownloadsCvar = CreateConVar("war3_downloads_bottom", "0.05","percentage 0.05 is 5 percent");
 	Log_TOP_prioirtyCvar = CreateConVar("war3_downloads_log_top", "1","set 1 to enable");
-	Log_HIGH_prioirtyCvar = CreateConVar("war3_downloads_log_high", "0","set 1 to enable");
-	Log_MEDIUM_prioirtyCvar = CreateConVar("war3_downloads_log_medium", "0","set 1 to enable");
-	Log_LOW_prioirtyCvar = CreateConVar("war3_downloads_log_low", "0","set 1 to enable");
-	Log_BOTTOM_prioirtyCvar = CreateConVar("war3_downloads_log_bottom", "0","set 1 to enable");
+	Log_HIGH_prioirtyCvar = CreateConVar("war3_downloads_log_high", "1","set 1 to enable");
+	Log_MEDIUM_prioirtyCvar = CreateConVar("war3_downloads_log_medium", "1","set 1 to enable");
+	Log_LOW_prioirtyCvar = CreateConVar("war3_downloads_log_low", "1","set 1 to enable");
+	Log_BOTTOM_prioirtyCvar = CreateConVar("war3_downloads_log_bottom", "1","set 1 to enable");
 	CurrentClientsConnected=2;
 	IsOnMapEnd=false;
 	OnPluginStartIndex=1;
