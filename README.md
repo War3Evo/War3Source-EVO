@@ -52,7 +52,7 @@ For SQL only fixes, open a ticket; if a bug report exists for the bug, post on a
 * Anthony Iacono & OwnageOwnz (DarkEnergy) - Original Authors - 7/23/2016 - 8/31/2010
 * El Diablo - Rewritten a lot of the Original War3Source source code - (2015) to (current)
 * Dagothur - Major Coding of the source code (2016) to (2020)
-* JustZerooo JustZerooo - fixed CSGO FPS issue and some documentation work - 1/30/2023 to 2/1/2023
+* JustZerooo - fixed CSGO FPS issue and some documentation work - 1/30/2023 to 2/1/2023
 * ice-mann - submitted sound-pack branch & minor code changes (2016)
 
 ## Copyright
