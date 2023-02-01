@@ -34,11 +34,12 @@ public War3Source_Engine_Casting_OnPluginStart()
 
 public War3Source_Engine_Casting_OnMapStart()
 {
+// not sure if I need this cache or not for TF2
 // CSGO may not have this?? not fully tested
-#if (GGAMETYPE != GGAME_CSGO)
-	W3AddModel("materials/effects/softglow.vmt");
-	W3AddModel("materials/effects/softglow.vtf");
-#endif
+//#if (GGAMETYPE != GGAME_CSGO)
+	//W3AddModel("materials/effects/softglow.vmt");
+	//W3AddModel("materials/effects/softglow.vtf");
+//#endif
 	War3_PrecacheParticle("ambient_sparks_glow");
 }
 
