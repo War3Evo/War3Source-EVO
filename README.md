@@ -45,6 +45,13 @@ prevent duplicates.
 SourcePawn fixes are submitted as pull requests via Github.
 For SQL only fixes, open a ticket; if a bug report exists for the bug, post on an existing ticket.
 
+## Contributor Rules
+
+* Keep the very first comment on top of file
+* If you want to delete certain comments, it must be approved.
+* TABS are required.
+* Any major changes, must be approved.
+
 ## Copyright
 
 License: GPL 3.0
