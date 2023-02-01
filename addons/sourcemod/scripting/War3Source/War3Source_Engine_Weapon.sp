@@ -32,7 +32,7 @@ public Plugin:myinfo=
 public War3Source_Engine_Weapon_OnMapStart()
 {
 	//sm_dump_netprops netprops.txt
-	https://forums.alliedmods.net/showpost.php?p=2207028&postcount=3
+	//https://forums.alliedmods.net/showpost.php?p=2207028&postcount=3
 	m_OffsetActiveWeapon=FindSendPropInfo("CBasePlayer","m_hActiveWeapon");
 	if(m_OffsetActiveWeapon==-1)
 	{
