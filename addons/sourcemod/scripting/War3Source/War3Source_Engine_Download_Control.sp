@@ -221,7 +221,7 @@ UpdateDownloadControl()
 						iCount++;
 					}
 
-					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount)
+					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
 					{
 						iCount++;
 					}
@@ -594,7 +594,7 @@ bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloa
 }
 
 
-bool:AddModelFiles(const String:model[PLATFORM_MAX_PATH], iSoundIndex, iMaxDownloadsCount, iCurrentCount)
+bool:AddModelFiles(const String:model[PLATFORM_MAX_PATH], iModelIndex, iMaxDownloadsCount, iCurrentCount)
 {
 	bool ReturnBool = false;
 
