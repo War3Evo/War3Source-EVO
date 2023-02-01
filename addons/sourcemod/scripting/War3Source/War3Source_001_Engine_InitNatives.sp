@@ -89,7 +89,6 @@ public bool War3Source_InitNatives()
 //=============================
 	Return_InitNatives = War3Source_Engine_BuffSpeedGravGlow_InitNatives();
 
-
 	Return_InitNatives = War3Source_Engine_Casting_InitNatives();
 
 

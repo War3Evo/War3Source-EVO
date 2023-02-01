@@ -36,14 +36,20 @@ new Forward_Priority = PRIORITY_BOTTOM;
 
 // Internal data
 new Handle:g_hSoundFile = INVALID_HANDLE;
-new Handle:g_hPriority = INVALID_HANDLE;
+new Handle:g_hModelFile = INVALID_HANDLE;
+
 new Handle:g_hStockSound = INVALID_HANDLE;
+new Handle:g_hStockModel = INVALID_HANDLE;
+
+new Handle:g_hPriority = INVALID_HANDLE;
+
 //Handle g_hRaceIDSound = null;
 
 //new Handle:g_hHistoryFiles = INVALID_HANDLE;
 
 // Event handles
 new Handle:g_OnAddSoundHandle = INVALID_HANDLE;
+new Handle:g_OnAddModelHandle = INVALID_HANDLE;
 
 new Handle:EnableDownloadsModuleCvar = INVALID_HANDLE;
 
@@ -132,6 +138,7 @@ UpdateDownloadControl()
 		{
 			GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
 			AddSoundFiles(TempBuffer,i,666,0);
+			AddModelFiles(TempBuffer,i,666,0);
 			if(GetConVarBool(Log_TOP_prioirtyCvar))
 			{
 				if(GetArrayCell(g_hPriority, i)==PRIORITY_TOP)
@@ -187,6 +194,7 @@ UpdateDownloadControl()
 				{
 					GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
 					AddSoundFiles(TempBuffer,i,666,0);
+					AddModelFiles(TempBuffer,i,666,0);
 					if(GetConVarBool(Log_TOP_prioirtyCvar))
 					{
 						Format(StringDetail,sizeof(StringDetail),"PRIORITY_TOP %s", TempBuffer);
@@ -207,7 +215,13 @@ UpdateDownloadControl()
 				if(GetArrayCell(g_hPriority, i)==PRIORITY_HIGH)
 				{
 					GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
+
 					if(AddSoundFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
+					{
+						iCount++;
+					}
+
+					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount)
 					{
 						iCount++;
 					}
@@ -236,6 +250,10 @@ UpdateDownloadControl()
 					{
 						iCount++;
 					}
+					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
+					{
+						iCount++;
+					}
 					if(GetConVarBool(Log_MEDIUM_prioirtyCvar))
 					{
 						Format(StringDetail,sizeof(StringDetail),"PRIORITY_MEDIUM %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
@@ -260,6 +278,10 @@ UpdateDownloadControl()
 					{
 						iCount++;
 					}
+					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
+					{
+						iCount++;
+					}
 					if(GetConVarBool(Log_LOW_prioirtyCvar))
 					{
 						Format(StringDetail,sizeof(StringDetail),"PRIORITY_LOW %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
@@ -281,6 +303,10 @@ UpdateDownloadControl()
 				{
 					GetArrayString(g_hSoundFile, i, TempBuffer, sizeof(TempBuffer));
 					if(AddSoundFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
+					{
+						iCount++;
+					}
+					if(AddModelFiles(TempBuffer,i,iMaxDownloadsNow,iCount))
 					{
 						iCount++;
 					}
@@ -438,6 +464,45 @@ bool War3_AddSoundFiles(char sound[PLATFORM_MAX_PATH], bool precache = true, boo
 	return false;
 }
 
+/**
+ * Add to downloads table and precaches a given sound.
+ *
+ * @param mnodel Name of the sound to download and precache.
+ * @param precache If precache is true the file will be precached.
+ * @param preload If preload is true the file will be precached before level startup.
+ *
+ * @return True if successfully precached, false otherwise.
+ */
+bool War3_AddModelFiles(char model[PLATFORM_MAX_PATH], bool precache = true, bool preload = true)
+{
+	char path[PLATFORM_MAX_PATH];
+	Format(path, sizeof(path), "models/%s", model);
+	//if (FileExists(path))
+	//{
+	AddFileToDownloadsTable(path);
+	if (precache)
+	{
+		return War3_Internal_PreCacheSound(model, preload);
+	}
+	/*
+	}
+	else if (FileExists(sound))
+	{
+		AddFileToDownloadsTable(sound);
+		if (precache)
+		{
+			return War3_Internal_PreCacheSound(sound, preload);
+		}
+	}
+	else
+	{
+		new String:StringDetail[2048];
+		Format(StringDetail,sizeof(StringDetail),"War3Source_Engine_Download_Control: Sound file \"%s\" not found", path);
+		LogDownloads(StringDetail);
+	}*/
+
+	return false;
+}
 // True files are added to history, false if not.
 
 bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloadsCount,iCurrentCount)
@@ -528,6 +593,95 @@ bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloa
 	return ReturnBool;
 }
 
+
+bool:AddModelFiles(const String:model[PLATFORM_MAX_PATH], iSoundIndex, iMaxDownloadsCount, iCurrentCount)
+{
+	bool ReturnBool = false;
+
+	new String:ModelModify[PLATFORM_MAX_PATH];
+	//decl String:path[PLATFORM_MAX_PATH],String:SoundModify[PLATFORM_MAX_PATH];
+	//Format(path, sizeof(path), "sound/%s", sound);
+
+	Format(ModelModify, sizeof(ModelModify), "%s", model);
+
+	//if (FileExists(path) && GetArrayCell(g_hStockSound, iSoundIndex)>0) return false;
+
+	new String:StringDetail[2048];
+	// Precache only stock files (Bypass history check)
+
+	PrintToServer(ModelModify);
+
+	TrimString(ModelModify);
+
+	if(StrEqual("", ModelModify)) return false;
+
+	// History Check -- do AddFileToDownloadsTable first before War3_Internal_PreCacheSound
+	if(iMaxDownloadsCount > iCurrentCount)
+	{
+		//Removing History as it seems to be creating a problem on map change
+		//if(FindStringInArray(g_hHistoryFiles, SoundModify)==-1)
+		//{
+			//PushArrayString(g_hHistoryFiles, sound);
+			// Add to download tables if custom file
+			if(GetArrayCell(g_hStockModel, iModelIndex)<=0)
+			{
+				// Do not precache races or items (for now)
+				//if(GetArrayCell(g_hRaceIDSound, iSoundIndex)>0)
+				//{
+					//War3_AddSoundFiles(SoundModify,true,false);
+				//}
+				//else
+				//{
+				War3_AddModelFiles(ModelModify, true);
+				//}
+				if(GetConVarInt(EnablePRECACHEDownloadsCvar)>0)
+				{
+					Format(StringDetail, sizeof(StringDetail), "**AddFileToDownloadsTable** %s",ModelModify);
+					LogDownloads(StringDetail);
+				}
+			}
+			ReturnBool = true;
+		//}
+	}
+
+	//if(FileExists(path) && GetArrayCell(g_hStockSound, iSoundIndex)>0)
+	if(GetArrayCell(g_hStockModel, iModelIndex)>0)
+	{
+		PrintToServer("STOCK MODEL: %s",ModelModify);
+		if(!War3_Internal_PreCacheModel(ModelModify, false))
+		{
+			Format(StringDetail, sizeof(StringDetail),"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Model file \"%s\" not found", ModelModify);
+			LogDownloads(StringDetail);
+		}
+		else
+		{
+			if(GetConVarInt(EnablePRECACHEDownloadsCvar)>0)
+			{
+				Format(StringDetail, sizeof(StringDetail), "**STOCK PRECACHED** %s", ModelModify);
+				LogDownloads(StringDetail);
+			}
+		}
+	}
+	else
+	{
+		PrintToServer("CUSTOM MODEL: %s", ModelModify);
+		if(!War3_Internal_PreCacheSound(ModelModify, false))
+		{
+			Format(StringDetail, sizeof(StringDetail), "War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Model file \"%s\" not found", ModelModify);
+			LogDownloads(StringDetail);
+		}
+		else
+		{
+			if(GetConVarInt(EnablePRECACHEDownloadsCvar) > 0)
+			{
+				Format(StringDetail, sizeof(StringDetail), "**CUSTOM PRECACHED** %s", ModelModify);
+				LogDownloads(StringDetail);
+			}
+		}
+	}
+	return ReturnBool;
+}
+
 //new iMaxDownloads=40, HighPriorityPercent, MedPriorityPercent, LowPriorityPercent, BottomPriorityPercent
 
 //public OnAllPluginsLoaded()
@@ -573,17 +727,23 @@ public War3Source_Engine_Download_Control_OnMapEnd()
 public bool:War3Source_Engine_Download_Control_InitNativesForwards()
 {
 	g_OnAddSoundHandle = CreateGlobalForward("OnAddSound", ET_Ignore, Param_Cell);
+	g_OnAddModelHandle = CreateGlobalForward("OnAddModel", ET_Ignore, Param_Cell);
 	return true;
 }
 
 public bool:War3Source_Engine_Download_Control_InitNatives()
 {
 	CreateNative("War3_AddSound", Native_War3_AddSound);
+	CreateNative("War3_AddModel", Native_War3_AddModel);
 
 	g_hSoundFile = CreateArray(ByteCountToCells(1024));
-	g_hPriority = CreateArray(1);
+	g_hModelFile = CreateArray(ByteCountToCells(1024));
 
 	g_hStockSound = CreateArray(1);
+	g_hPriority = CreateArray(1);
+
+	g_hStockModel = CreateArray(1);
+	g_hPriority = CreateArray(1);
 
 	//g_hRaceIDSound = CreateArray(1);
 
@@ -610,6 +770,39 @@ public int Native_War3_AddSound(Handle:plugin, numParams)
 		}
 		PushArrayCell(g_hPriority, priority);
 		PushArrayString(g_hSoundFile, sSoundFile);
+
+		/*
+		if(numParams==4)
+		{
+			int iRaceID = GetNativeCell(4);
+			PushArrayCell(g_hRaceIDSound, iRaceID);
+		}
+		else
+		{
+			PushArrayCell(g_hRaceIDSound, 0);
+		}*/
+
+	}
+}
+
+public int Native_War3_AddSound(Handle:plugin, numParams)
+{
+	//PrintToServer("numParams %d",numParams);
+	char sModelFile[1024];
+	GetNativeString(1, sModelFile, sizeof(sModelFile));
+
+	if(FindStringInArray(g_hModelFile, sModelFile)==-1) // if not found, add
+	{
+		int stockmodel = GetNativeCell(2);
+		PushArrayCell(g_hStockModel, stockmodel);
+
+		int priority = GetNativeCell(3);
+		if(priority==PRIORITY_TAKE_FORWARD)
+		{
+			priority = Forward_Priority;
+		}
+		PushArrayCell(g_hPriority, priority);
+		PushArrayString(g_hModelFile, sModelFile);
 
 		/*
 		if(numParams==4)
