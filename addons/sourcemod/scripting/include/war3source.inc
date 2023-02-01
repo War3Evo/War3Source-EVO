@@ -1768,10 +1768,10 @@ stock void Directory_AddFileToDownloadsTable(char[] custom_path)
 		{
 			Format(ThePath, sizeof(ThePath), "%s%s",custom_path,path);
 
-			//if(StrContains(path,".mdl") != -1)
-			//{
-				//PrecacheModel(ThePath,true);
-			//}
+			if(StrContains(path,".mdl") != -1)
+			{
+				PrecacheModel(ThePath,true);
+			}
 
 			if(FileExists(ThePath, true))
 			{
