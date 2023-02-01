@@ -103,6 +103,7 @@ public OnMapStart()
 	//BeamSprite=PrecacheModel("materials/sprites/purpleglow1.vmt");
 	Laser=PrecacheModel("materials/sprites/laserbeam.vmt");
 }
+
 public OnW3Denyable(W3DENY:event,client)
 {
 	if(RaceDisabled)
