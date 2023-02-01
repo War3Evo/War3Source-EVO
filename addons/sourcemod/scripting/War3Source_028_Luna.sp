@@ -145,9 +145,10 @@ public OnAddModel(model_priority)
 {
 	if(model_priority==PRIORITY_HIGH)
 	{
-		War3_AddMModel(effLight);
+		War3_AddModel(effLight);
 	}
 }
+
 public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 {
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual("luna",shortname,false)))
