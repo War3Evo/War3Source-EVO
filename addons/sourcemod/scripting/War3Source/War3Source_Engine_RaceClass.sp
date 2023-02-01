@@ -1424,6 +1424,7 @@ stock int GetRaceSkillCount(int raceid)
 		return raceSkillCount[raceid];
 	}
 	else 
+	{
 	    //No need to log id 0;
 		return -1;
 	}
