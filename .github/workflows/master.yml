@@ -51,7 +51,7 @@ jobs:
       run: |
           cd ${{ github.workspace }}
           ls -la
-          cat smlist19.txt | rm -f
+          xargs rm -f < smlist19.txt
           
     - name: Create TF2-compiled-plugins
       uses: actions/upload-artifact@v3
