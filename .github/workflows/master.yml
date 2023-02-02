@@ -23,7 +23,7 @@ jobs:
         ls -la
         cd ${{ github.workspace }}
         ls -la
-        tar -xzfk sourcemod.tar.gz
+        tar --extract -f sourcemod.tar.gz --keep-old-files
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
