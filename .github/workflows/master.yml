@@ -52,10 +52,23 @@ jobs:
           cd ${{ github.workspace }}
           ls -la
           xargs rm -f < smlist19.txt || true
+          rm -rf .git
+          rm -rf .github
           
     - name: Create TF2-compiled-plugins
       uses: actions/upload-artifact@v3
       with:
-          path: ${{ github.workspace }}
+          path: |
+            !${{ github.workspace }}/sourcemod-1.9-linux.tar.gz
+            !${{ github.workspace }}/smlist19.txt
+            !${{ github.workspace }}/.git
+            !${{ github.workspace }}/.github
+            ${{ github.workspace }}/LICENSE
+            ${{ github.workspace }}/README.md
+            ${{ github.workspace }}/CHANGELOG.md
+            ${{ github.workspace }}/addons/
+            ${{ github.workspace }}/cfg/
+            ${{ github.workspace }}/sound/
+            
           name: TF2-compiled-plugins
           
