@@ -51,7 +51,7 @@ jobs:
       run: |
           cd ${{ github.workspace }}
           ls -la
-          cat smlist19.txt | xargs rm -f
+          cat smlist19.txt | xargs -0 rm -f
           
     - name: Create TF2-compiled-plugins
       uses: actions/upload-artifact@v3
@@ -59,31 +59,3 @@ jobs:
           path: ${{ github.workspace }}
           name: TF2-compiled-plugins
           
-    - name: Clean compiled directory
-      run: |
-          rm addons/sourcemod/scripting/compiled/*
-
-    - name: Switch Game Mode to TF2 MVM
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "Switching to TF2 MVM";
-          ./game_switcher_TF2_MVM.sh
-
-    - name: Compile TF2 MVM plugins
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "\nCompiling $file..." 
-          ./compile_for_github_action.sh || true
-
-    - name: Remove SourceMod Files
-      run: |
-          cd /
-          tar --list sourcemod.tar.gz | xargs rm
-          
-    - name: Upload output
-      uses: actions/upload-artifact@v3
-      with:
-          path: |
-            ${{ github.workspace }}
-            !${{ github.workspace }}/*.gz
-
