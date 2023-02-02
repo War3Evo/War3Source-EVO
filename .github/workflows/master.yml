@@ -20,6 +20,9 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
+        ls -la
+        cd ${{ github.workspace }}
+        ls -la
         tar -xzfk sourcemod.tar.gz
          
     - name: Give spcomp the required permissions
