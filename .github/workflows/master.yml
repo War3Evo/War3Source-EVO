@@ -20,7 +20,7 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
-        tar -xzf sourcemod.tar.gz
+        tar -xzf sourcemod.tar.gz -keep-old-files
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
@@ -45,7 +45,7 @@ jobs:
       run: |
           cd ${{ github.workspace }}
           ls -la
-          tar -t sourcemod.tar.gz | xargs rm
+          tar -ft sourcemod.tar.gz | xargs rm
           
     - name: Upload output
       uses: actions/upload-artifact@v3
