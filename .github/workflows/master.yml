@@ -31,9 +31,9 @@ jobs:
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
       
-    - name: Clean compiled directory
+    - name: Clean plugins directory
       run: |
-          rm addons/sourcemod/scripting/compiled/*
+          rm addons/sourcemod/plugins/*
           
     - name: Switch Game Mode to TF2
       run: |
@@ -55,7 +55,7 @@ jobs:
           rm -rf .git
           rm -rf .github
           
-    - name: Create TF2-compiled-plugins
+    - name: Create War3SourceEvo-TF2-plugins
       uses: actions/upload-artifact@v3
       with:
           path: |
@@ -69,6 +69,164 @@ jobs:
             ${{ github.workspace }}/addons/
             ${{ github.workspace }}/cfg/
             ${{ github.workspace }}/sound/
-            
-          name: TF2-compiled-plugins
+          name: War3SourceEvo-TF2-plugins
           
+    - name: Clean plugins directory
+      run: |
+          rm addons/sourcemod/plugins/*
+          
+    - name: Switch Game Mode to TF2 MVM
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to TF2 MVM";
+          ./game_switcher_TF2_MVM.sh
+
+    - name: Compile TF2 MVM plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+          
+    - name: Clean up & Remove SM 1.9
+      run: |
+          cd ${{ github.workspace }}
+          ls -la
+          xargs rm -f < smlist19.txt || true
+          rm -rf .git
+          rm -rf .github
+          
+    - name: Create War3SourceEvo-TF2-MVM-plugins
+      uses: actions/upload-artifact@v3
+      with:
+          path: |
+            !${{ github.workspace }}/sourcemod-1.9-linux.tar.gz
+            !${{ github.workspace }}/smlist19.txt
+            !${{ github.workspace }}/.git
+            !${{ github.workspace }}/.github
+            ${{ github.workspace }}/LICENSE
+            ${{ github.workspace }}/README.md
+            ${{ github.workspace }}/CHANGELOG.md
+            ${{ github.workspace }}/addons/
+            ${{ github.workspace }}/cfg/
+            ${{ github.workspace }}/sound/
+          name: War3SourceEvo-TF2-MVM-plugins
+
+    - name: Clean plugins directory
+      run: |
+          rm addons/sourcemod/plugins/*
+          
+    - name: Switch Game Mode to FOF
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to FOF";
+          ./game_switcher_FOF.sh
+
+    - name: Compile FOF plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+          
+    - name: Clean up & Remove SM 1.9
+      run: |
+          cd ${{ github.workspace }}
+          ls -la
+          xargs rm -f < smlist19.txt || true
+          rm -rf .git
+          rm -rf .github
+          
+    - name: Create War3SourceEvo-FOF-plugins
+      uses: actions/upload-artifact@v3
+      with:
+          path: |
+            !${{ github.workspace }}/sourcemod-1.9-linux.tar.gz
+            !${{ github.workspace }}/smlist19.txt
+            !${{ github.workspace }}/.git
+            !${{ github.workspace }}/.github
+            ${{ github.workspace }}/LICENSE
+            ${{ github.workspace }}/README.md
+            ${{ github.workspace }}/CHANGELOG.md
+            ${{ github.workspace }}/addons/
+            ${{ github.workspace }}/cfg/
+            ${{ github.workspace }}/sound/
+          name: War3SourceEvo-FOF-plugins
+
+    - name: Clean plugins directory
+      run: |
+          rm addons/sourcemod/plugins/*
+          
+    - name: Switch Game Mode to CSS
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to CSS";
+          ./game_switcher_CSS.sh
+
+    - name: Compile CSS plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+          
+    - name: Clean up & Remove SM 1.9
+      run: |
+          cd ${{ github.workspace }}
+          ls -la
+          xargs rm -f < smlist19.txt || true
+          rm -rf .git
+          rm -rf .github
+          
+    - name: Create War3SourceEvo-CSS-plugins
+      uses: actions/upload-artifact@v3
+      with:
+          path: |
+            !${{ github.workspace }}/sourcemod-1.9-linux.tar.gz
+            !${{ github.workspace }}/smlist19.txt
+            !${{ github.workspace }}/.git
+            !${{ github.workspace }}/.github
+            ${{ github.workspace }}/LICENSE
+            ${{ github.workspace }}/README.md
+            ${{ github.workspace }}/CHANGELOG.md
+            ${{ github.workspace }}/addons/
+            ${{ github.workspace }}/cfg/
+            ${{ github.workspace }}/sound/
+          name: War3SourceEvo-CSS-plugins
+
+    - name: Clean plugins directory
+      run: |
+          rm addons/sourcemod/plugins/*
+          
+    - name: Switch Game Mode to CSGO
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "Switching to CSGO";
+          ./game_switcher_CSGO.sh
+
+    - name: Compile CSGO plugins
+      run: |
+          cd addons/sourcemod/scripting/
+          echo -e "\nCompiling $file..." 
+          ./compile_for_github_action.sh || true
+          
+    - name: Clean up & Remove SM 1.9
+      run: |
+          cd ${{ github.workspace }}
+          ls -la
+          xargs rm -f < smlist19.txt || true
+          rm -rf .git
+          rm -rf .github
+          
+    - name: Create War3SourceEvo-CSGO-plugins
+      uses: actions/upload-artifact@v3
+      with:
+          path: |
+            !${{ github.workspace }}/sourcemod-1.9-linux.tar.gz
+            !${{ github.workspace }}/smlist19.txt
+            !${{ github.workspace }}/.git
+            !${{ github.workspace }}/.github
+            ${{ github.workspace }}/LICENSE
+            ${{ github.workspace }}/README.md
+            ${{ github.workspace }}/CHANGELOG.md
+            ${{ github.workspace }}/addons/
+            ${{ github.workspace }}/cfg/
+            ${{ github.workspace }}/sound/
+          name: War3SourceEvo-CSGO-plugins                    
