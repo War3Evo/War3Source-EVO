@@ -19,11 +19,14 @@ jobs:
     - name: Download & Extract SourceMod 1.9
       run: |
         cd ${{ github.workspace }}
-        wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod.tar.gz
+        wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O sourcemod-1.9-linux.tar.gz
         ls -la
+        tar -xvf sourcemod-1.9-linux.tar.gz
+        
+    - name: Extract SourceMod as List
+      run: |
         cd ${{ github.workspace }}
-        ls -la
-        tar --extract -f sourcemod.tar.gz --keep-old-files
+        tar --list -f sourcemod-1.9-linux.tar.gz > smlist19.txt
          
     - name: Give spcomp the required permissions
       run: chmod +x addons/sourcemod/scripting/spcomp_1.9.0.6261
@@ -44,13 +47,13 @@ jobs:
           echo -e "\nCompiling $file..." 
           ./compile_for_github_action.sh || true
           
-    - name: Remove SourceMod Files
+    - name: Clean up & Remove SM 1.9
       run: |
           cd ${{ github.workspace }}
           ls -la
-          tar -zft sourcemod.tar.gz | xargs rm
+          cat smlist19.txt | xargs rm
           
-    - name: Upload output
+    - name: Create TF2-compiled-plugins
       uses: actions/upload-artifact@v3
       with:
           path: ${{ github.workspace }}
@@ -80,90 +83,7 @@ jobs:
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
-          path: cd /
-          name: TF2-MVM-compiled-plugins
+          path: |
+            ${{ github.workspace }}
+            !${{ github.workspace }}/*.gz
 
-    - name: Clean compiled directory
-      run: |
-          rm addons/sourcemod/scripting/compiled/*
-  
-    - name: Switch Game Mode to FoF
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "Switching to FoF";
-          ./game_switcher_FOF.sh
-
-    - name: Compile FoF plugins
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "\nCompiling $file..." 
-          ./compile_for_github_action.sh || true
-
-    - name: Remove SourceMod Files
-      run: |
-          cd /
-          tar --list sourcemod.tar.gz | xargs rm
-
-    - name: Upload output
-      uses: actions/upload-artifact@v3
-      with:
-          path: /
-          name: FoF-compiled-plugins
-
-    - name: Clean compiled directory
-      run: |
-          rm addons/sourcemod/scripting/compiled/*
-          
-    - name: Switch Game Mode to CSS
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "Switching to CSS";
-          ./game_switcher_CSS.sh
-
-    - name: Compile FoF plugins
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "\nCompiling $file..." 
-          ./compile_for_github_action.sh || true
-
-    - name: Remove SourceMod Files
-      run: |
-          cd /
-          tar --list sourcemod.tar.gz | xargs rm
-          
-    - name: Upload output
-      uses: actions/upload-artifact@v3
-      with:
-          path: /
-          name: CSS-compiled-plugins
-
-    - name: Clean compiled directory
-      run: |
-          rm addons/sourcemod/scripting/compiled/*
-          
-    - name: Switch Game Mode to CSGO
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "Switching to CSGO";
-          ./game_switcher_CSGO.sh
-
-    - name: Compile CSGO plugins
-      run: |
-          cd addons/sourcemod/scripting/
-          echo -e "\nCompiling $file..." 
-          ./compile_for_github_action.sh || true
-          
-    - name: Remove SourceMod Files
-      run: |
-          cd /
-          tar --list sourcemod.tar.gz | xargs rm          
-          
-    - name: Upload output
-      uses: actions/upload-artifact@v3
-      with:
-          path: /
-          name: CSGO-compiled-plugins
-
-    - name: Clean compiled directory
-      run: |
-          rm addons/sourcemod/scripting/compiled/*
