@@ -42,6 +42,7 @@ jobs:
           
     - name: Remove SourceMod Files
       run: |
+          cd ${GITHUB_WORKSPACE}
           tar --list sourcemod.tar.gz | xargs rm
           
     - name: Upload output
@@ -68,6 +69,7 @@ jobs:
 
     - name: Remove SourceMod Files
       run: |
+          cd ${GITHUB_WORKSPACE}
           tar --list sourcemod.tar.gz | xargs rm
           
     - name: Upload output
@@ -94,6 +96,7 @@ jobs:
 
     - name: Remove SourceMod Files
       run: |
+          cd ${GITHUB_WORKSPACE}
           tar --list sourcemod.tar.gz | xargs rm
 
     - name: Upload output
@@ -120,6 +123,7 @@ jobs:
 
     - name: Remove SourceMod Files
       run: |
+          cd ${GITHUB_WORKSPACE}
           tar --list sourcemod.tar.gz | xargs rm
           
     - name: Upload output
@@ -146,6 +150,7 @@ jobs:
           
     - name: Remove SourceMod Files
       run: |
+          cd ${GITHUB_WORKSPACE}
           tar --list sourcemod.tar.gz | xargs rm          
           
     - name: Upload output
