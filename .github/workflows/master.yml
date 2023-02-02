@@ -44,7 +44,8 @@ jobs:
     - name: Remove SourceMod Files
       run: |
           cd ${{ github.workspace }}
-          tar --list sourcemod.tar.gz | xargs rm
+          ls -la
+          tar -t sourcemod.tar.gz | xargs rm
           
     - name: Upload output
       uses: actions/upload-artifact@v3
