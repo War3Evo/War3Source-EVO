@@ -2,8 +2,11 @@
 cd "$(dirname "$0")"
 
 fullpath=${PWD};
+pluginpath=$fullpath/../plugins
 
 test -e compiled || mkdir compiled
+
+test -e $pluginpath || mkdir $pluginpath
 
 newfilename=${@##*/}
 
@@ -25,7 +28,8 @@ then
 		fullpathsourcefile="`echo $fullpath/$i`";
 		smxfile="`echo $i | sed -e 's/\.sp$/\.smx/'`";
 		if [[ $smxfile =~ "War3Source" ]] || [[ $smxfile =~ "tf2attributes" ]]; then
-			outputfile="`echo $fullpath/compiled/$smxfile`"
+			#outputfile="`echo $fullpath/compiled/$smxfile`"
+			outputfile="`echo $pluginpath/$smxfile`"
 			echo -n "Single File Compiling $i...";
 			./spcomp_1.9.0.6261 -t4 -v2 $fullpathsourcefile -o$outputfile
 		fi
@@ -36,8 +40,9 @@ do
 	fullpathsourcefile="`echo $fullpath/$sourcefile`";
 	smxfile="`echo $sourcefile | sed -e 's/\.sp$/\.smx/'`";
 	if [[ $smxfile =~ "War3Source" ]] || [[ $smxfile =~ "tf2attributes" ]]; then
+		outputfile="`echo $pluginpath/$smxfile`"
 		echo -n "All Files Compiling $sourcefile...";
-		./spcomp_1.9.0.6261 -t4 -v2 $fullpathsourcefile -ocompiled/$smxfile;
+		./spcomp_1.9.0.6261 -t4 -v2 $fullpathsourcefile -o$outputfile;
 	fi
 done
 fi
