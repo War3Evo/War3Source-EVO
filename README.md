@@ -21,6 +21,14 @@ make pull requests to our [Github repository](https://github.com/War3Evo/War3Sou
 For further information on the War3Source Evoultion project, please visit our project
 website at [War3Evo.info](http://www.war3evo.info/).
 
+## Players having trouble downloading files from your CSGO server?
+
+Make sure every player puts this into their console to enable downloads:
+
+* sv_allowupload 1
+
+This will allow the server to uplaod to the client. By default the clients have this disabled.
+
 ## Compile & Server Requirements
 
 * https://github.com/War3Evo/War3Source-EVO/wiki/Compile-&-Server-Requirements
