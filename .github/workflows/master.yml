@@ -42,13 +42,13 @@ jobs:
           
     - name: Remove SourceMod Files
       run: |
-          cd ${{ github.workspace }}
+          cd /
           tar --list sourcemod.tar.gz | xargs rm
           
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
-          path: cd ${{ github.workspace }}
+          path: cd /
           name: TF2-compiled-plugins
           
     - name: Clean compiled directory
@@ -69,13 +69,13 @@ jobs:
 
     - name: Remove SourceMod Files
       run: |
-          cd ${{ github.workspace }}
+          cd /
           tar --list sourcemod.tar.gz | xargs rm
           
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
-          path: cd ${{ github.workspace }}
+          path: cd /
           name: TF2-MVM-compiled-plugins
 
     - name: Clean compiled directory
@@ -96,13 +96,13 @@ jobs:
 
     - name: Remove SourceMod Files
       run: |
-          cd ${{ github.workspace }}
+          cd /
           tar --list sourcemod.tar.gz | xargs rm
 
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
-          path: ${{ github.workspace }}
+          path: /
           name: FoF-compiled-plugins
 
     - name: Clean compiled directory
@@ -123,13 +123,13 @@ jobs:
 
     - name: Remove SourceMod Files
       run: |
-          cd ${{ github.workspace }}
+          cd /
           tar --list sourcemod.tar.gz | xargs rm
           
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
-          path: ${{ github.workspace }}
+          path: /
           name: CSS-compiled-plugins
 
     - name: Clean compiled directory
@@ -150,13 +150,13 @@ jobs:
           
     - name: Remove SourceMod Files
       run: |
-          cd ${{ github.workspace }}
+          cd /
           tar --list sourcemod.tar.gz | xargs rm          
           
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
-          path: ${{ github.workspace }}
+          path: /
           name: CSGO-compiled-plugins
 
     - name: Clean compiled directory
