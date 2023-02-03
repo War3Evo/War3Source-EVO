@@ -71,6 +71,12 @@ jobs:
             ${{ github.workspace }}/sound/
           name: War3SourceEvo-TF2-plugins
           
+    - name: Extract SourceMod 1.9
+      run: |
+        cd ${{ github.workspace }}
+        ls -la
+        tar -xvf sourcemod-1.9-linux.tar.gz
+
     - name: Clean plugins directory
       run: |
           rm -rf addons/sourcemod/plugins/*
@@ -110,6 +116,12 @@ jobs:
             ${{ github.workspace }}/cfg/
             ${{ github.workspace }}/sound/
           name: War3SourceEvo-TF2-MVM-plugins
+
+    - name: Extract SourceMod 1.9
+      run: |
+        cd ${{ github.workspace }}
+        ls -la
+        tar -xvf sourcemod-1.9-linux.tar.gz
 
     - name: Clean plugins directory
       run: |
@@ -151,6 +163,12 @@ jobs:
             ${{ github.workspace }}/sound/
           name: War3SourceEvo-FOF-plugins
 
+    - name: Extract SourceMod 1.9
+      run: |
+        cd ${{ github.workspace }}
+        ls -la
+        tar -xvf sourcemod-1.9-linux.tar.gz
+
     - name: Clean plugins directory
       run: |
           rm -rf addons/sourcemod/plugins/*
@@ -190,6 +208,12 @@ jobs:
             ${{ github.workspace }}/cfg/
             ${{ github.workspace }}/sound/
           name: War3SourceEvo-CSS-plugins
+
+    - name: Extract SourceMod 1.9
+      run: |
+        cd ${{ github.workspace }}
+        ls -la
+        tar -xvf sourcemod-1.9-linux.tar.gz
 
     - name: Clean plugins directory
       run: |
