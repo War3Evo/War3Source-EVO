@@ -248,7 +248,7 @@ ParseXPSettingsFile(){
 		BuildPath(Path_SM,path,sizeof(path),"configs/war3source.ini");
 	else
 		BuildPath(Path_SM,path,sizeof(path),"configs/war3sourceMVM.ini");
-#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+#else
 	BuildPath(Path_SM,path,sizeof(path),"configs/war3source.ini");
 #endif
 
