@@ -19,8 +19,9 @@
 #define MAXPLAYERSCUSTOM 34   //+2 of real for normal servers, add +X number of HLTV slots
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 #define MAXPLAYERSCUSTOM 66   //+2 of real for normal servers, add +X number of HLTV slots
+#else
+#define MAXPLAYERSCUSTOM 34   //+2 of real for normal servers, add +X number of HLTV slots
 #endif
-
 
 //dochecking up to <MAXRACES
 //limit check up to >=MAXRACES-1
