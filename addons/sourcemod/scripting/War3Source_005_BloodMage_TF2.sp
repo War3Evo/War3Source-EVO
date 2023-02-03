@@ -1,6 +1,6 @@
 #include <war3source>
 
-#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+#if (GGAMETYPE != GGAME_TF2)
 	#endinput
 #endif
 
