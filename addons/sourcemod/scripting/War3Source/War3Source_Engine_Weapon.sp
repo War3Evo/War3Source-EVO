@@ -74,6 +74,8 @@ public NW3GetCurrentWeaponEnt(Handle:plugin,numParams)
 {
 	return GetCurrentWeaponEnt(GetNativeCell(1));
 }
+
+// bookmark
 GetCurrentWeaponEnt(client)
 {
 	if(client)
@@ -82,10 +84,13 @@ GetCurrentWeaponEnt(client)
 		// Reason for if then statement: Exception reported: Offset 0 is invalid
 		if(m_OffsetActiveWeapon>0)
 		{
-			//int wep = GetEntDataEnt2(client,m_OffsetActiveWeapon);
-
+#if GGAMETYPE != GGAME_TF2
+			// CSGO
+			int wep = GetEntDataEnt2(client,m_OffsetActiveWeapon);
+#else
 			// recommended from Allied Modders to try instad of GetEntDataEnt2
 			int wep = GetEntPropEnt(client, Prop_Send, "m_hActiveWeapon");
+#endif			
 			return wep;
 		}
 		else return -1;
