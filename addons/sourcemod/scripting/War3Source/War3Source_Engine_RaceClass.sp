@@ -1423,8 +1423,9 @@ stock int GetRaceSkillCount(int raceid)
 	if(raceid>0){
 		return raceSkillCount[raceid];
 	}
-	else{
-		LogError("bad race ID %d",raceid);
+	else
+	{
+		//LogError("bad race ID %d",raceid); //removed temporary to stop spamming log file
 		return -1;
 	}
 }
