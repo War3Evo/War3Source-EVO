@@ -1,4 +1,9 @@
 #include <war3source>
+
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+	#endinput
+#endif
+
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
 #define RACE_ID_NUMBER 280
@@ -118,16 +123,25 @@ public OnMapStart()
 	HaloSprite=War3_PrecacheHaloSprite();
 #if GGAMETYPE == GGAME_CSGO
 	CoreSprite = PrecacheModel( "effects/combinemuzzle1.vmt" );
+	if (CoreSprite <= 0 ) LogError("Error PrecacheModel effects/combinemuzzle1.vmt");
 	MoonSprite = PrecacheModel( "particle/particle_glow_01" );
+	if (MoonSprite <= 0 ) LogError("Error PrecacheModel particle/particle_glow_01");
 	XBeamSprite = PrecacheModel( "materials/sprites/physbeam.vmt" );
+	if (XBeamSprite <= 0 ) LogError("Error PrecacheModel materials/sprites/physbeam.vmt");
 	//PrecacheModel("particle/particle_flares/particle_flare_004");
-	LightModel = PrecacheModel( "models/Effects/vol_light.mdl" );
+	//LightModel = PrecacheModel( "models/Effects/vol_light.mdl" ); original
+	LightModel = PrecacheModel( "models/effects/vol_light.mdl" ); // (capital E to e)
+	if (LightModel <= 0 ) LogError("Error PrecacheModel models/effects/vol_light.mdl");
 #else
 	CoreSprite = PrecacheModel( "materials/sprites/physcannon_blueflare1.vmt" );
+	if (CoreSprite <= 0 ) LogError("Error PrecacheModel effects/combinemuzzle1.vmt");
 	MoonSprite = PrecacheModel( "materials/sprites/physcannon_bluecore1b.vmt");
+	if (MoonSprite <= 0 ) LogError("Error PrecacheModel particle/particle_glow_01");
 	//BlueSprite = PrecacheModel( "materials/sprites/physcannon_bluelight1.vmt" );
 	XBeamSprite = PrecacheModel( "materials/sprites/XBeam2.vmt" );
+	if (XBeamSprite <= 0 ) LogError("Error PrecacheModel materials/sprites/XBeam2.vmt");
 	LightModel = PrecacheModel( "models/effects/vol_light.mdl" );
+	if (LightModel <= 0 ) LogError("Error PrecacheModel models/effects/vol_light.mdl");
 	//PrecacheModel("particle/fire.vmt");
 #endif
 }
