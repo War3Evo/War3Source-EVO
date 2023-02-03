@@ -23,7 +23,7 @@ int W3VarArr[W3Var];
 
 int dummyreturn; //for your not used return values
 
-#if GGAMETYPE == GGAME_TF2
+#if GGAMETYPE != GGAME_CSGO
 bool bIsInSteamGroup[MAXPLAYERSCUSTOM] = false;
 #endif
 
