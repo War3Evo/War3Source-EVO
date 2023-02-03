@@ -1,5 +1,6 @@
 #include <war3source>
 
+// bookmark
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	#endinput
 #endif
