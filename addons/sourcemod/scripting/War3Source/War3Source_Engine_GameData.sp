@@ -4,6 +4,8 @@
 #if GGAMETYPE == GGAME_TF2
 #define    GAMEDATA    "war3source.games"
 new Handle:g_hIsMeleeWeapon = INVALID_HANDLE;
+#else
+#define    GAMEDATA    ""
 #endif
 
 /*
