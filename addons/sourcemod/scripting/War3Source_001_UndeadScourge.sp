@@ -23,10 +23,10 @@ float CritDamageIncrease = 0.25;
 float Reincarnation[5]={0.0,60.0,50.0,40.0,30.0};
 float UnholySpeed[5]={1.0,1.05,1.10,1.15,1.24};
 float VampirePercent[5]={0.0,0.02,0.06,0.08,0.10};
-#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+#else
+float Reincarnation[5]={0.0,60.0,50.0,40.0,30.0};
 float UnholySpeed[5]={1.0,1.05,1.10,1.15,1.24};
 float VampirePercent[5]={0.0,0.02,0.06,0.08,0.10};
-float Reincarnation[5]={0.0,60.0,50.0,40.0,30.0};
 #endif
 
 bool RESwarn[MAXPLAYERSCUSTOM];
