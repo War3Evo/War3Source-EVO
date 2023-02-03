@@ -106,7 +106,7 @@ public NW3DropWeapon(Handle:plugin,numParams)
 	new client = GetNativeCell(1);
 	new wpent = GetNativeCell(2);
 	if (ValidPlayer(client,true) && IsValidEdict(wpent)){
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO) 
 		CS_DropWeapon(client,wpent,true);
 #endif
 		//SDKHooks_DropWeapon(client, wpent);

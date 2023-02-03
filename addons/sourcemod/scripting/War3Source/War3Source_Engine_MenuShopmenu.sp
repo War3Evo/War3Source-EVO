@@ -73,7 +73,7 @@ ShowMenuShopCategory(client)
 	new String:title[300];
 	Format(title,sizeof(title),"[War3Source:EVO] Select an item category to browse. You have %d/%d items",GetClientItemsOwned(client),iGetMaxShopitemsPerPlayer(client));
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2 || GGAMETYPE == GGAME_FOF)
 	Format(title,sizeof(title),"%s\n \n Your current balance: %d/%d gold.",title, gold, W3GetMaxGold(client));
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	Format(title,sizeof(title),"%s\n \n %d/%d gold $%d money",title, gold, W3GetMaxGold(client),GetCSMoney(client));
@@ -137,7 +137,7 @@ ShowMenuShop(client, const String:category[]="") {
 
 	new String:title[300];
 	Format(title,sizeof(title),"[War3Source:EVO] Select an item to buy. You have %d/%d items",GetClientItemsOwned(client),iGetMaxShopitemsPerPlayer(client));
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2 || GGAMETYPE == GGAME_FOF)
 	//Format(title,sizeof(title),"%s%T\n \n",title,"You have {amount} Gold",GetTrans(),gold);
 	//Format(title,sizeof(title),"%s\n \n You have %i Gold and [%i] Reserved Gold.",title, gold, ReservedGold);
 	Format(title,sizeof(title),"%s\n \n Your current balance: %d/%d gold.",title, gold, W3GetMaxGold(client));
