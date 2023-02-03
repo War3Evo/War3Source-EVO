@@ -1439,6 +1439,8 @@ stock GetCSMoney(client) {
 	return GetEntProp(client, Prop_Send, "m_iAccount");
 #elseif GGAMETYPE == GGAME_TF2
 	return GetEntProp(client, Prop_Send, "m_nCurrency");
+#else
+	return 0;
 #endif
 }
 
