@@ -26,7 +26,7 @@ enum ITEMENUM{
 	FORTIFIED_BRACER,
 	CASH_REGEN
 }
-#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+#else
 enum ITEMENUM{
 	POSTHASTE=0,
 	TRINKET,
@@ -35,6 +35,7 @@ enum ITEMENUM{
 	FORTIFIED_BRACER,
 }
 #endif
+
 int ItemID[MAXITEMS2];
 
 // Regen Cash
