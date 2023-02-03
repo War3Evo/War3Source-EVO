@@ -260,7 +260,7 @@ public War3Source_Engine_Weapon_DeciSecondTimer()
 						//RemovePlayerItem(client,wpnent);
 
 						//PrintIfDebug(client,"            drop");
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 						CS_DropWeapon(client,wpnent,true);
 #endif
 						//SDKHooks_DropWeapon(client, wpnent);
