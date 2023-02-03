@@ -31,8 +31,10 @@
 #include <tf2>
 #include <tf2_stocks>
 #include <morecolors>
-#else
+#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO) 
 #include <cstrike>
+#include <colors>
+#else
 #include <colors>
 #endif
 
