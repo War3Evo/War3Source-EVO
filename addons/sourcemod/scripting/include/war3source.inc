@@ -892,6 +892,22 @@ native W3Deny();
  * STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS STOCKS
  */
 
+// FOF doesn't display hints correctly
+stock W3PrintHint(int client, const char[] format, any ...)
+{
+	// for the format
+	char buffer[254];
+	VFormat(buffer, sizeof(buffer), format, 2);
+
+	//halflife.inc
+	//native void PrintHintText(int client, const char[] format, any ...);
+#if GGAMETYPE == GGAME_FOF
+	War3_ChatMessage(client, buffer);
+#else
+	PrintHintText(client, buffer);
+#endif
+}
+
 
 #if GGAMETYPE == GGAME_CSGO
 stock void CSGO_RADAR(int client,bool TurnON)

@@ -177,13 +177,13 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 				new String:buffer[100];
 				Format(buffer, sizeof(buffer), "You are too far away from your target!");
 				//DP("%f > %f",distanceteleport,distance);
-				PrintHintText(client,buffer);
+				W3PrintHint(client,buffer);
 				return false;
 			}
 			if(distanceteleport2<200.0){
 				new String:buffer[100];
 				Format(buffer, sizeof(buffer), "You are too close too teleport!");
-				PrintHintText(client,buffer);
+				W3PrintHint(client,buffer);
 				return false;
 			}
 		}
@@ -193,7 +193,7 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 			if(distanceteleport<200.0){
 				new String:buffer[100];
 				Format(buffer, sizeof(buffer),"Distance too short.");
-				PrintHintText(client,buffer);
+				W3PrintHint(client,buffer);
 				return false;
 			}
 		}
@@ -212,7 +212,7 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 		if(GetVectorLength(emptypos)<1.0){
 			new String:buffer[100];
 			Format(buffer, sizeof(buffer), "No empty location found");
-			PrintHintText(client,buffer);
+			W3PrintHint(client,buffer);
 			return false; //it returned 0 0 0
 		}
 
@@ -260,7 +260,7 @@ public Action:checkTeleport(Handle:h,any:client){
 	if(GetVectorDistance(teleportpos[client],pos)<0.001)//he didnt move in this 0.1 second
 	{
 		TeleportEntity(client,oldpos[client],NULL_VECTOR,NULL_VECTOR);
-		PrintHintText(client,"Cannot teleport there");
+		W3PrintHint(client,"Cannot teleport there");
 		if(PlayerProp[client][tele_raceid]>-1 && PlayerProp[client][tele_skillid]>-1)
 		{
 			War3_CooldownReset(client,PlayerProp[client][tele_raceid],PlayerProp[client][tele_skillid]);
@@ -268,7 +268,7 @@ public Action:checkTeleport(Handle:h,any:client){
 	}
 	else
 	{
-		PrintHintText(client,"Teleported!");
+		W3PrintHint(client,"Teleported!");
 
 		Call_StartForward(g_OnW3Teleported);
 		Call_PushCell(client);

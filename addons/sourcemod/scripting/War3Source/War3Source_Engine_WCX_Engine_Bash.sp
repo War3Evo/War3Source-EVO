@@ -56,8 +56,8 @@ public OnW3TakeDmgAll(victim,attacker,Float:damage){
 						new Float:duration = GetBuffSumFloat(attacker,fBashDuration);
 						CreateTimer(duration,UnfreezePlayer,victim);
 
-						PrintHintText(victim,"%T","RcvdBash",victim);
-						PrintHintText(attacker,"%T","Bashed",attacker);
+						W3PrintHint(victim,"%T","RcvdBash",victim);
+						W3PrintHint(attacker,"%T","Bashed",attacker);
 					}
 					else
 					{

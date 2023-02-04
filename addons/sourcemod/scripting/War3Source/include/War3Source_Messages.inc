@@ -197,14 +197,14 @@ stock W3PrintSkillDmgHint(victim = 0, attacker, damage, SKILLNUM) {
 	//SetTrans( attacker);
 	if(GetRaceSkillName(race, SKILLNUM, skillname, sizeof(skillname))>0)
 	{
-		PrintHintText(attacker, "+%i damage with %s",damage, skillname);
+		W3PrintHint(attacker, "+%i damage with %s",damage, skillname);
 	}
 
 	if (victim > 0) {
 		//SetTrans( victim);
 		if(GetRaceSkillName(race, SKILLNUM, skillname, sizeof(skillname))>0)
 		{
-			PrintHintText(victim, "Received %i damage from %s",damage, skillname);
+			W3PrintHint(victim, "Received %i damage from %s",damage, skillname);
 		}
 	}
 }
@@ -237,7 +237,7 @@ stock W3PrintSkillDmgHintConsole(victim = 0, attacker, damage, SKILLNUM) {
 stock W3MsgUltNotLeveled(client) {
 	new String:buffer[100];
 	Format(buffer, sizeof(buffer),"Your Ultimate is not leveled");
-	PrintHintText(client, buffer);
+	W3PrintHint(client, buffer);
 }
 
 //=============================================================================
@@ -257,7 +257,7 @@ stock W3MsgNoTargetFound(client,Float:distancegameunits=0.0) {
 			Format(print,sizeof(print),"No target found within %.2f meters",distancegameunits/30.0);
 		}
 	}
-	PrintHintText(client,"%s",print);
+	W3PrintHint(client,"%s",print);
 }
 
 //=============================================================================
@@ -270,7 +270,7 @@ stock W3MsgCreatedWard(client, currentwardcount = 0, totalwardcount = 0) {
 	if (totalwardcount > 0) {
 		Format(print, sizeof(print), "You created a Ward %i/%i",currentwardcount, totalwardcount);
 	}
-	PrintHintText(client, "%s", print);
+	W3PrintHint(client, "%s", print);
 }
 
 //=============================================================================
@@ -278,7 +278,7 @@ stock W3MsgCreatedWard(client, currentwardcount = 0, totalwardcount = 0) {
 //=============================================================================
 
 stock W3MsgWardLocationDeny(client) {
-	PrintHintText(client, "You can not build a Ward Here");
+	W3PrintHint(client, "You can not build a Ward Here");
 }
 
 //=============================================================================
@@ -286,7 +286,7 @@ stock W3MsgWardLocationDeny(client) {
 //=============================================================================
 
 stock W3MsgNoWardsLeft(client) {
-	PrintHintText(client, "You have used up all your Wards!");
+	W3PrintHint(client, "You have used up all your Wards!");
 }
 
 //=============================================================================
@@ -294,7 +294,7 @@ stock W3MsgNoWardsLeft(client) {
 //=============================================================================
 
 stock W3MsgNoWardWhenInvis(client) {
-	PrintHintText(client, "No Ward Placement While Invisible");
+	W3PrintHint(client, "No Ward Placement While Invisible");
 }
 
 //=============================================================================
@@ -302,8 +302,8 @@ stock W3MsgNoWardWhenInvis(client) {
 //=============================================================================
 
 stock W3MsgEvaded(victim, attacker) {
-	PrintHintText(victim, "You Evaded a Shot");
-	PrintHintText(attacker, "Enemy Evaded");
+	W3PrintHint(victim, "You Evaded a Shot");
+	W3PrintHint(attacker, "Enemy Evaded");
 }
 
 //=============================================================================
@@ -311,8 +311,8 @@ stock W3MsgEvaded(victim, attacker) {
 //=============================================================================
 
 stock W3MsgEntangle(victim, attacker) {
-	PrintHintText(victim, "You are Entangled!");
-	PrintHintText(attacker, "Entangled!");
+	W3PrintHint(victim, "You are Entangled!");
+	W3PrintHint(attacker, "Entangled!");
 }
 
 //=============================================================================
@@ -320,7 +320,7 @@ stock W3MsgEntangle(victim, attacker) {
 //=============================================================================
 
 stock W3MsgNoCastDuringFreezetime(client) {
-	PrintHintText(client, "Cannot cast during freezetime");
+	W3PrintHint(client, "Cannot cast during freezetime");
 }
 
 //=============================================================================
@@ -329,10 +329,10 @@ stock W3MsgNoCastDuringFreezetime(client) {
 
 stock W3MsgSkillBlocked(victim=0,attacker=0,String:skillname[]) {
 	if(victim>0) {
-		PrintHintText(victim,"Blocked enemy %s",skillname);
+		W3PrintHint(victim,"Blocked enemy %s",skillname);
 	}
 	if(attacker>0) {
-		PrintHintText(victim,"Enemy Blocked %s",skillname);
+		W3PrintHint(victim,"Enemy Blocked %s",skillname);
 	}
 }
 
@@ -342,7 +342,7 @@ stock W3MsgSkillBlocked(victim=0,attacker=0,String:skillname[]) {
 
 stock W3MsgNewbieProjectBlocked(victim=0,String:skillname[],String:chatmessage[],String:chatmessage2[]) {
 	if(victim>0) {
-		PrintHintText(victim,"[New Player Project] Blocked enemy %s",skillname);
+		W3PrintHint(victim,"[New Player Project] Blocked enemy %s",skillname);
 		War3_ChatMessage(victim,"{green}[New Player Project]{lightgreen}%s{default}.",chatmessage);
 		War3_ChatMessage(victim,"{green}[New Player Project]{lightgreen}%s{default}.",chatmessage2);
 	}
@@ -353,8 +353,8 @@ stock W3MsgNewbieProjectBlocked(victim=0,String:skillname[],String:chatmessage[]
 //=============================================================================
 
 stock W3MsgBanished(victim, attacker) {
-	PrintHintText(victim, "You have been Banished");
-	PrintHintText(attacker, "You Banished");
+	W3PrintHint(victim, "You have been Banished");
+	W3PrintHint(attacker, "You Banished");
 }
 
 //=============================================================================
@@ -362,8 +362,8 @@ stock W3MsgBanished(victim, attacker) {
 //=============================================================================
 
 stock W3MsgStoleMoney(victim, attacker, dollars) {
-	PrintHintText(victim, "Enemy stole %i dollars from you",dollars);
-	PrintHintText(attacker, "You Stole %i dollars",dollars);
+	W3PrintHint(victim, "Enemy stole %i dollars from you",dollars);
+	W3PrintHint(attacker, "You Stole %i dollars",dollars);
 }
 
 //=============================================================================
@@ -371,8 +371,8 @@ stock W3MsgStoleMoney(victim, attacker, dollars) {
 //=============================================================================
 
 stock W3MsgStoleGold(victim, attacker, gold) {
-	PrintHintText(victim, "Enemy stole %i gold from you",gold);
-	PrintHintText(attacker, "You Stole %i gold", gold);
+	W3PrintHint(victim, "Enemy stole %i gold from you",gold);
+	W3PrintHint(attacker, "You Stole %i gold", gold);
 }
 
 //=============================================================================
@@ -385,7 +385,7 @@ stock W3MsgRevivedBM(playerrevived, savior, gold=0, xp=0, heal=0) {
 	new String:saviorName[64];
 	GetClientName(savior, saviorName, sizeof(saviorName));
 
-	PrintHintText(savior, "You revived %s", clientName);
+	W3PrintHint(savior, "You revived %s", clientName);
 	War3_ChatMessage(playerrevived, "%s revived you", saviorName);
 }
 
@@ -394,7 +394,7 @@ stock W3MsgRevivedBM(playerrevived, savior, gold=0, xp=0, heal=0) {
 //=============================================================================
 
 stock W3MsgUsingVoodoo(client) {
-	PrintHintText(client,"Activated Voodoo!");
+	W3PrintHint(client,"Activated Voodoo!");
 }
 
 //=============================================================================
@@ -402,7 +402,7 @@ stock W3MsgUsingVoodoo(client) {
 //=============================================================================
 
 stock W3MsgVoodooEnded(client) {
-	PrintHintText(client,"Voodoo has ended");
+	W3PrintHint(client,"Voodoo has ended");
 }
 
 //=============================================================================
@@ -410,7 +410,7 @@ stock W3MsgVoodooEnded(client) {
 //=============================================================================
 
 stock W3MsgEnemyHasImmunity(client,bool:console=true) {
-	PrintHintText(client,"Enemy has immunity!");
+	W3PrintHint(client,"Enemy has immunity!");
 	PrintToConsole(client,"[War3Source:EVO] Enemy has immunity!");
 }
 
@@ -419,7 +419,7 @@ stock W3MsgEnemyHasImmunity(client,bool:console=true) {
 //=============================================================================
 
 stock W3MsgUltimateNotActivatable(client) {
-	PrintHintText(client, "This ultimate is not activatable"); //prints
+	W3PrintHint(client, "This ultimate is not activatable"); //prints
 }
 
 //=============================================================================
@@ -427,7 +427,7 @@ stock W3MsgUltimateNotActivatable(client) {
 //=============================================================================
 
 stock W3MsgUltimateBlocked(client) {
-	PrintHintText(client, "Ultimate Blocked");
+	W3PrintHint(client, "Ultimate Blocked");
 }
 
 //=============================================================================
@@ -435,7 +435,7 @@ stock W3MsgUltimateBlocked(client) {
 //=============================================================================
 
 stock W3MsgThrewKnives(client) {
-	PrintHintText(client,"You threw knives around you");
+	W3PrintHint(client,"You threw knives around you");
 }
 
 //=============================================================================
@@ -443,7 +443,7 @@ stock W3MsgThrewKnives(client) {
 //=============================================================================
 
 stock W3MsgHitByKnives(client) {
-	PrintHintText(client, "Attacked by Fan of Knives");
+	W3PrintHint(client, "Attacked by Fan of Knives");
 }
 
 //=============================================================================
@@ -451,7 +451,7 @@ stock W3MsgHitByKnives(client) {
 //=============================================================================
 
 stock W3MsgActivated(client,String:postpendstr[]) {
-	PrintHintText(client,"Activated %s",postpendstr);
+	W3PrintHint(client,"Activated %s",postpendstr);
 }
 
 //=============================================================================
@@ -459,7 +459,7 @@ stock W3MsgActivated(client,String:postpendstr[]) {
 //=============================================================================
 
 stock W3MsgAttackedBy(client,String:postpendstr[]) {
-	PrintHintText(client,"Attacked By %s",postpendstr);
+	W3PrintHint(client,"Attacked By %s",postpendstr);
 }
 
 //=============================================================================
@@ -467,7 +467,7 @@ stock W3MsgAttackedBy(client,String:postpendstr[]) {
 //=============================================================================
 
 stock W3MsgMoleIn(client,Float:timetillactivation) {
-	PrintHintText(client,"WARNING! MOLE IN %i SECONDS!",timetillactivation);
+	W3PrintHint(client,"WARNING! MOLE IN %i SECONDS!",timetillactivation);
 	War3_ChatMessage(client,"WARNING! MOLE IN %i SECONDS!",timetillactivation);
 }
 
@@ -477,7 +477,7 @@ stock W3MsgMoleIn(client,Float:timetillactivation) {
 
 stock W3MsgNoLongerDisguised(client) {
 	War3_ChatMessage(client, "You are no longer disguised");
-	PrintHintText(client, "You are no longer disguised");
+	W3PrintHint(client, "You are no longer disguised");
 }
 
 //=============================================================================

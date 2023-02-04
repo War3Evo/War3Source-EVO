@@ -207,7 +207,7 @@ public War3Source_000_Engine_Hint_OnGameFrame()
 
 					if (!StrEqual(lastoutput[client],output))
 					{
-						PrintHintText(client," %s",output); //NEED SPACE
+						W3PrintHint(client," %s",output); //NEED SPACE
 					}
 				}
 				strcopy(lastoutput[client],sizeof(output),output);

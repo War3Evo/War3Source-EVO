@@ -20,7 +20,7 @@ public Action:DeciSecondLoop(Handle:timer)
 				{
 					if(GetGameTime()>LastLoadingHintMsg[client]+4.0)
 					{
-						PrintHintText(client,"Loading XP... Please Wait");
+						W3PrintHint(client,"Loading XP... Please Wait");
 						LastLoadingHintMsg[client]=GetGameTime();
 					}
 					continue;

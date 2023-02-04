@@ -516,11 +516,11 @@ stock bool:Silenced(client,printSilenced=true) {
 		if(IsPlayerAlive(client)) {
 			if(Stunned(client))
 			{
-				PrintHintText(client,"You are stunned");
+				W3PrintHint(client,"You are stunned");
 			}
 			else
 			{
-				PrintHintText(client,"You are silenced");
+				W3PrintHint(client,"You are silenced");
 			}
 		}
 		if(Stunned(client))
