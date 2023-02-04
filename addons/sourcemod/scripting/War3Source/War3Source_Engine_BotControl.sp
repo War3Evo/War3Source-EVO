@@ -55,8 +55,12 @@ public War3Source_Engine_BotControl_OnPluginStart()
 	default_race_Cvar=CreateConVar("bot_default_race","apple","default race of long name");
 	RegAdminCmd("sm_setbot", SetTestBotRace, ADMFLAG_SLAY, "SetTestBotRace.");
 
+// Bots can be completely invis for FOF --needs fixing.
+#if GGAMETYPE == GGAME_FOF
+	botsetraces = CreateConVar("war3_bots_use_races", "0", "Enable/Disable races for bots");
+#else
 	botsetraces = CreateConVar("war3_bots_use_races", "1", "Enable/Disable races for bots");
-
+#endif
 	MVM_SUPER_BOTS_cvar = CreateConVar("war3_bots_mvm_super_bots", "0", "Enable/Disable mvm super bots");
 	g_bMVM_superbots_Enabled=GetConVarBool(MVM_SUPER_BOTS_cvar);
 	HookConVarChange(MVM_SUPER_BOTS_cvar, ConVarChange_MVM_SUPER_BOTS_cvar);
