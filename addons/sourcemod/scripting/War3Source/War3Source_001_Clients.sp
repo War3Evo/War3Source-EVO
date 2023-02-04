@@ -26,8 +26,9 @@ public OnClientPutInServer(client)
 	//DatabaseSaveXP now handles clearing of vars and triggering retrieval
 
 	War3Source_Engine_DatabaseSaveXP_OnClientPutInServer(client);
-
+#if GGAMETYPE != GGAME_FOF
 	War3Source_Engine_BuffMaxHP_OnClientPutInServer(client);
+#endif
 	War3Source_Engine_BuffSystem_OnClientPutInServer(client);
 #if CYBORG_SKIN == MODE_ENABLED
 #if GGAMETYPE == GGAME_TF2

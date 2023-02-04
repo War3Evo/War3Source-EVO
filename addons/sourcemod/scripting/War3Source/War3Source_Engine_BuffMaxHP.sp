@@ -41,7 +41,7 @@ new ORIGINALHP[MAXPLAYERSCUSTOM];
 
 GetMaxHP(client)
 {
-	new MaxHP = ORIGINALHP[client] + GetBuffSumInt(client,iAdditionalMaxHealth);
+	int MaxHP = ORIGINALHP[client] + GetBuffSumInt(client,iAdditionalMaxHealth);
 	MaxHP = RoundToCeil(FloatMul(float(MaxHP),GetBuffStackedFloat(client,fMaxHealth)));
 	return MaxHP;
 }
@@ -238,7 +238,13 @@ public War3Source_Engine_BuffMaxHP_OnClientPutInServer(client)
 		SDKHook(client, SDKHook_GetMaxHealth, OnGetMaxHealth);
 	}
 }
-#else
+// FOF COMPLAINS THAT SDKHook_GetMaxHealth ISN'T USED WITH FOF
+#elseif GGAMETYPE != GGAME_FOF
+public War3Source_Engine_BuffMaxHP_OnClientPutInServer(client)
+{
+	SDKHook(client, SDKHook_GetMaxHealth, OnGetMaxHealth);
+}
+
 public OnConfigsExecuted()
 {
 	for (new i = 1; i <= MaxClients; i++)
@@ -249,10 +255,6 @@ public OnConfigsExecuted()
 			}
 	}
 }
-public War3Source_Engine_BuffMaxHP_OnClientPutInServer(client)
-{
-	SDKHook(client, SDKHook_GetMaxHealth, OnGetMaxHealth);
-}
 #endif
 
 public War3Source_Engine_BuffMaxHP_OnClientDisconnect(client)
@@ -260,6 +262,7 @@ public War3Source_Engine_BuffMaxHP_OnClientDisconnect(client)
 	ORIGINALHP[client]=0;
 }
 
+#if GGAMETYPE != GGAME_FOF
 public Action:OnGetMaxHealth(client, &maxhealth)
 {
 	if(MapChanging || War3SourcePause) return Plugin_Continue;
@@ -312,5 +315,5 @@ public Action:OnGetMaxHealth(client, &maxhealth)
 #endif
 	return Plugin_Continue;
 }
-
+#endif
 

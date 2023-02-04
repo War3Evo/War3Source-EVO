@@ -45,7 +45,8 @@ public War3Source_Engine_Regen_OnGameFrame()
 				continue;
 			}
 			new Float:period=FloatAbs(1.0/fbuffsum);
-			if(now-lastTickTime[client]>period){
+			if(now-lastTickTime[client]>period)
+			{
 				lastTickTime[client]+=period;
 				//PrintToChat(client,"regein tick %f %f",fbuffsum,now);
 				if(fbuffsum>0.01){ //heal
@@ -73,7 +74,8 @@ public War3Source_Engine_Regen_OnGameFrame()
 						SetEntityHealth(client,GetClientHealth(client)-1);
 
 					}
-					else{
+					else
+					{
 #if GGAMETYPE == GGAME_TF2
 						DealDamage(client,1,_,_,"bleed_kill",_,W3DMGTYPE_TRUEDMG);
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)

@@ -351,7 +351,7 @@ stock internal_SetBuffAny(int client,W3Buff buffindex,int itemraceindex,any valu
 	// later add a AFTER BUFF EVENT
 
 	if(buffindex==fMaxSpeed||buffindex==fMaxSpeed2||buffindex==fSlow||buffindex==fSlow2||buffindex==bStunned||buffindex==bBashed){
-		W3ReapplySpeed(client);
+		Internal_W3ReapplySpeed(client);
 	}
 	DoCalculateBuffCache(client,buffindex,itemraceindex);
 
@@ -655,7 +655,7 @@ ResetBuff(client,W3Buff:buffindex){
 
 			DoCalculateBuffCache(client,buffindex,i);
 		}
-		W3ReapplySpeed(client);
+		Internal_W3ReapplySpeed(client);
 
 	}
 }
@@ -666,7 +666,7 @@ ResetBuffParticularRaceOrItem(client,W3Buff:buffindex,particularraceitemindex){
 		buffdebuff[client][buffindex][particularraceitemindex]=BuffDefault(buffindex);
 
 		DoCalculateBuffCache(client,buffindex,particularraceitemindex);
-		W3ReapplySpeed(client);
+		Internal_W3ReapplySpeed(client);
 	}
 }
 

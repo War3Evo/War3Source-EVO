@@ -94,8 +94,13 @@ public bool:War3Source_Engine_BuffSpeedGravGlow_InitNatives()
 public NW3ReapplySpeed(Handle:plugin,numParams)
 {
 	int client=GetNativeCell(1);
+	Internal_W3ReapplySpeed(client);
+}
+public Internal_W3ReapplySpeed(int client)
+{
 	reapplyspeed[client]++;
 }
+
 public NW3IsBuffInvised(Handle:plugin,numParams)
 {
 	int client=GetNativeCell(1);
@@ -292,67 +297,37 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 	{
 		if(ValidPlayer(client,true))//&&!bIgnoreTrackGF[client])
 		{
-			float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
-			if(bMaxSpeedDebugMessages==true)
-			{
-				PrintToConsole(client,"298 currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed) = %.2f",currentmaxspeed);
-			}
+			/*
+			
+			How this works:
 
-			float speedmulti=1.0;
+			The War3Source_Engine_BuffSystem.sp will detect that there was a change in MaxSpeed buff,
+			then it will call Internal_W3ReapplySpeed so that reapplyspeed[client]
+			is greater than 0, there by forcing this frame to recalculate max speed buff
+			then setting it.
+			
+			*/
+
+
+			float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
+			//if(bMaxSpeedDebugMessages==true)
+			//{
+				//PrintToConsole(client,"298 currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed) = %.2f",currentmaxspeed);
+			//}
+
+			//DP("speed %f, speedbefore %f , we set %f",currentmaxspeed,speedBefore[client],speedWeSet[client]);
 
 			if(currentmaxspeed!=speedWeSet[client]) ///SO DID engien set a new speed? copy that!! //TFIsDefaultMaxSpeed(client,currentmaxspeed)){ //ONLY IF NOT SET YET
 			{
 				speedBefore[client]=currentmaxspeed;
 				reapplyspeed[client]++;
 			}
-			else
-			{
-				// Fist full of Frags never changes speed engine.
-				// Check for new speedWeSet[] in buffs
-				speedmulti=1.0;
-
-				if(!GetBuffHasOneTrue(client,bBuffDenyAll))
-				{
-					speedmulti=W3GetBuffMaxFloat(client,fMaxSpeed)+W3GetBuffMaxFloat(client,fMaxSpeed2)-1.0;
-					if(bMaxSpeedDebugMessages==true)
-					{
-						PrintToConsole(client,"317 speedmulti = %.2f",speedmulti);
-					}
-				}
-				if(GetBuffHasOneTrue(client,bStunned)||GetBuffHasOneTrue(client,bBashed))
-				{
-					//DP("stunned or bashed");
-					speedmulti=0.0;
-					if(bMaxSpeedDebugMessages==true)
-					{
-						PrintToConsole(client,"326 speedmulti = %.2f",speedmulti);
-					}
-				}
-				if(!GetBuffHasOneTrue(client,bSlowImmunity))
-				{
-					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow));
-					if(bMaxSpeedDebugMessages==true)
-					{
-						PrintToConsole(client,"334 speedmulti = %.2f",speedmulti);
-					}
-					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow2));
-					if(bMaxSpeedDebugMessages==true)
-					{
-						PrintToConsole(client,"339 speedmulti = %.2f",speedmulti);
-					}
-				}
-				if(speedWeSet[client]!=speedmulti)
-				{
-					speedWeSet[client] = speedmulti;
-					reapplyspeed[client]++;
-				}
-			}
 
 			if(reapplyspeed[client]>0)
 			{
 				reapplyspeed[client]=0;
 				//player frame tracking, if client speed is not what we set, we reapply speed
-				speedmulti=1.0;
+				float speedmulti=1.0;
 				//new Float:speedadd=1.0;
 				if(!GetBuffHasOneTrue(client,bBuffDenyAll))
 				{

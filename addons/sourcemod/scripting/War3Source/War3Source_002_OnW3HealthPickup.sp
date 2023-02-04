@@ -2,9 +2,12 @@
 
 public War3Source_002_OnW3HealthPickup_OnPluginStart()
 {
+// tf2 only items (maybe?)
+//#if (GGAMETYPE == GGAME_TF2)
 	HookEntityOutput("item_healthkit_full", "OnPlayerTouch", EntityOutput:Entity_OnPlayerTouch);
 	HookEntityOutput("item_healthkit_medium", "OnPlayerTouch", EntityOutput:Entity_OnPlayerTouch);
 	HookEntityOutput("item_healthkit_small", "OnPlayerTouch", EntityOutput:Entity_OnPlayerTouch);
+//#endif
 }
 
 new Handle:g_OnW3HealthPickup;
