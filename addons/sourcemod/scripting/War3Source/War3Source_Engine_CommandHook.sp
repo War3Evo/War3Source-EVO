@@ -444,6 +444,52 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			GetConVarString(g_hCVar, version, sizeof(version));
 			War3_ChatMessage(client,"%s",version);
 		}
+
+#if GGAMETYPE == GGAME_TF2
+
+			PrintToConsole(client,"#######    #######     #####  ");
+			PrintToConsole(client,"   #       #          #     # ");
+			PrintToConsole(client,"   #       #                # ");
+			PrintToConsole(client,"   #       #####       #####  ");
+			PrintToConsole(client,"   #       #          #       ");
+			PrintToConsole(client,"   #       #          #       ");
+			PrintToConsole(client,"   #       #          ####### ");
+
+#elseif GGAMETYPE == GGAME_CSS
+
+			PrintToConsole(client," #####      #####      #####  ");
+			PrintToConsole(client,"#     #    #     #    #     # ");
+			PrintToConsole(client,"#          #          #       ");
+			PrintToConsole(client,"#           #####      #####  ");
+			PrintToConsole(client,"#                #          # ");
+			PrintToConsole(client,"#     #    #     #    #     # ");
+			PrintToConsole(client," #####      #####      #####  ");
+
+#elseif GGAMETYPE == GGAME_CSGO
+
+			PrintToConsole(client," #####      #####      #####     ####### ");
+			PrintToConsole(client,"#     #    #     #    #     #    #     # ");
+			PrintToConsole(client,"#          #          #          #     # ");
+			PrintToConsole(client,"#           #####     #  ####    #     # ");
+			PrintToConsole(client,"#                #    #     #    #     # ");
+			PrintToConsole(client,"#     #    #     #    #     #    #     # ");
+			PrintToConsole(client," #####      #####      #####     ####### ");
+
+#elseif GGAMETYPE == GGAME_FOF
+
+			PrintToConsole(client,"#######    #######    ####### ");
+			PrintToConsole(client,"#          #     #    #       ");
+			PrintToConsole(client,"#          #     #    #       ");
+			PrintToConsole(client,"#####      #     #    #####   ");
+			PrintToConsole(client,"#          #     #    #       ");
+			PrintToConsole(client,"#          #     #    #       ");
+			PrintToConsole(client,"#          #######    #       ");
+
+#else
+			PrintToConsole(client,"UNKNOWN GAME"):
+#endif
+
+
 		return returnblocking;
 	}
 	else if(CommandCheck(arg1,"itemsinfo")||CommandCheck(arg1,"iteminfo")||CommandCheck(arg1,"!iteminfo")||CommandCheck(arg1,"!itemsinfo"))
@@ -519,7 +565,12 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				}
 			}
 		}
+#if GGAMETYPE == GGAME_FOF
+		//float currentmaxspeed=GetEntDataFloat(ClientX,FindSendPropInfo("CFoF_Player","m_flMaxspeed"));
+		float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
+#else
 		float currentmaxspeed=GetEntDataFloat(ClientX,FindSendPropInfo("CTFPlayer","m_flMaxspeed"));
+#endif
 		if(SpecTarget==true)
 		{
 			War3_ChatMessage(client,"%T (%.2fx)","Spectating target's max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(ClientX));
