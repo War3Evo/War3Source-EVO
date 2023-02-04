@@ -69,10 +69,10 @@ public PostThinkPost(client)
 public bool:War3Source_Engine_BuffSpeedGravGlow_InitNatives()
 {
 	CreateNative("W3ReapplySpeed",NW3ReapplySpeed);//for races
-#if GGAMETYPE == GGAME_TF2
-	m_OffsetSpeed=FindSendPropInfo("CTFPlayer","m_flMaxspeed");
-#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+#if GGAMETYPE == GGAME_FOF
 	m_OffsetSpeed=FindSendPropInfo("CBasePlayer","m_flLaggedMovementValue");
+#else
+	m_OffsetSpeed=FindSendPropInfo("CTFPlayer","m_flMaxspeed");
 #endif
 
 	if(m_OffsetSpeed==-1)
@@ -293,30 +293,96 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 		if(ValidPlayer(client,true))//&&!bIgnoreTrackGF[client])
 		{
 			float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
+			if(bMaxSpeedDebugMessages==true)
+			{
+				PrintToConsole(client,"298 currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed) = %.2f",currentmaxspeed);
+			}
+
+			float speedmulti=1.0;
+
 			if(currentmaxspeed!=speedWeSet[client]) ///SO DID engien set a new speed? copy that!! //TFIsDefaultMaxSpeed(client,currentmaxspeed)){ //ONLY IF NOT SET YET
 			{
 				speedBefore[client]=currentmaxspeed;
 				reapplyspeed[client]++;
 			}
-			if(reapplyspeed[client]>0)
+			else
 			{
-				reapplyspeed[client]=0;
-				//player frame tracking, if client speed is not what we set, we reapply speed
-				float speedmulti=1.0;
-				//new Float:speedadd=1.0;
+				// Fist full of Frags never changes speed engine.
+				// Check for new speedWeSet[] in buffs
+				speedmulti=1.0;
+
 				if(!GetBuffHasOneTrue(client,bBuffDenyAll))
 				{
 					speedmulti=W3GetBuffMaxFloat(client,fMaxSpeed)+W3GetBuffMaxFloat(client,fMaxSpeed2)-1.0;
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"317 speedmulti = %.2f",speedmulti);
+					}
 				}
 				if(GetBuffHasOneTrue(client,bStunned)||GetBuffHasOneTrue(client,bBashed))
 				{
 					//DP("stunned or bashed");
 					speedmulti=0.0;
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"326 speedmulti = %.2f",speedmulti);
+					}
 				}
 				if(!GetBuffHasOneTrue(client,bSlowImmunity))
 				{
 					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow));
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"334 speedmulti = %.2f",speedmulti);
+					}
 					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow2));
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"339 speedmulti = %.2f",speedmulti);
+					}
+				}
+				if(speedWeSet[client]!=speedmulti)
+				{
+					speedWeSet[client] = speedmulti;
+					reapplyspeed[client]++;
+				}
+			}
+
+			if(reapplyspeed[client]>0)
+			{
+				reapplyspeed[client]=0;
+				//player frame tracking, if client speed is not what we set, we reapply speed
+				speedmulti=1.0;
+				//new Float:speedadd=1.0;
+				if(!GetBuffHasOneTrue(client,bBuffDenyAll))
+				{
+					speedmulti=W3GetBuffMaxFloat(client,fMaxSpeed)+W3GetBuffMaxFloat(client,fMaxSpeed2)-1.0;
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"317 speedmulti = %.2f",speedmulti);
+					}
+				}
+				if(GetBuffHasOneTrue(client,bStunned)||GetBuffHasOneTrue(client,bBashed))
+				{
+					//DP("stunned or bashed");
+					speedmulti=0.0;
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"326 speedmulti = %.2f",speedmulti);
+					}
+				}
+				if(!GetBuffHasOneTrue(client,bSlowImmunity))
+				{
+					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow));
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"334 speedmulti = %.2f",speedmulti);
+					}
+					speedmulti=FloatMul(speedmulti,GetBuffStackedFloat(client,fSlow2));
+					if(bMaxSpeedDebugMessages==true)
+					{
+						PrintToConsole(client,"339 speedmulti = %.2f",speedmulti);
+					}
 				}
 
 #if GGAMETYPE == GGAME_TF2
@@ -455,16 +521,38 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 					}
 				}
 #else
+				if(bMaxSpeedDebugMessages==true)
+				{
+					PrintToConsole(client,"472 speedmulti = %.2f",speedmulti);
+					PrintToConsole(client,"473 speedBefore[client] = %.2f",speedBefore[client]);
+				}
 				gspeedmulti[client]=speedmulti;
+				if(speedmulti<=0)
+				{
+					speedmulti=1.0;
+				}
 				fnewmaxspeed=FloatMul(speedBefore[client],speedmulti);
+				if(bMaxSpeedDebugMessages==true)
+				{
+					PrintToConsole(client,"479 fnewmaxspeed = %.2f",fnewmaxspeed);
+				}
 				if(fnewmaxspeed<0.1)
 				{
 					fnewmaxspeed=0.1;
 				}
 				speedWeSet[client]=fnewmaxspeed;
+				
+				if(bMaxSpeedDebugMessages==true)
+				{
+					PrintToConsole(client,"488 speedWeSet[client]=fnewmaxspeed = %.2f",fnewmaxspeed);
+				}
 #endif
 
+#if GGAMETYPE == GGAME_FOF
+				SetEntDataFloat(client,m_OffsetSpeed,fnewmaxspeed,true);  // Testing for FOF
+#else
 				SetEntDataFloat(client,m_OffsetSpeed,fnewmaxspeed,true);
+#endif
 			}
 			new MoveType:currentmovetype=GetEntityMoveType(client);
 			new MoveType:shouldmoveas=MOVETYPE_WALK;

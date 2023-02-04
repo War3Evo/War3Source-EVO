@@ -18,11 +18,12 @@ War3Source_InitCVars()
 #if GGAMETYPE == GGAME_TF2
 	gh_MaxSpeedLimitConvar = CreateConVar("war3_maxspeed_limit", "9999.0", "9999.0 to disable speed limit. Must be a float.\nControls the overall speed limit of Warcraft, and allows TF2 speed bonuses to exceed it.");
 
-	gh_MaxSpeedDebugConvar = CreateConVar("war3_maxspeed_debug", "0", "0 disabled / 1 enabled\nallows maxspeed debug messages.");
-
-	HookConVarChange(gh_MaxSpeedDebugConvar, War3ConVarChanged);
 	HookConVarChange(gh_MaxSpeedLimitConvar, War3ConVarChanged);
 #endif
+
+	gh_MaxSpeedDebugConvar = CreateConVar("war3_maxspeed_debug", "0", "0 disabled / 1 enabled\nallows maxspeed debug messages.");
+	HookConVarChange(gh_MaxSpeedDebugConvar, War3ConVarChanged);
+
 	HookConVarChange(gh_CVAR_War3Source_Pause, War3ConVarChanged);
 
 	/*
@@ -101,10 +102,10 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 			}
 		}
 	}
+#endif
 	else if(cvar == gh_MaxSpeedDebugConvar)
 	{
 		bMaxSpeedDebugMessages = view_as<bool>(StringToInt(newVal));
 	}
-#endif
 }
 
