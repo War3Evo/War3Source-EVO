@@ -273,7 +273,8 @@ public Action:checkTeleport(Handle:h,any:client){
 		Call_StartForward(g_OnW3Teleported);
 		Call_PushCell(client);
 		Call_PushCell(PlayerProp[client][tele_target]);
-		Call_PushFloat(PlayerProp[client][tele_distance]);
+		// report actual distance traveled
+		Call_PushFloat(GetVectorDistance(teleportpos[client],pos));
 		Call_PushCell(PlayerProp[client][tele_raceid]);
 		Call_PushCell(PlayerProp[client][tele_skillid]);
 		Call_Finish();

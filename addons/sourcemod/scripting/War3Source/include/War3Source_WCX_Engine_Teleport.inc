@@ -87,7 +87,7 @@ forward Action:OnW3TeleportLocationChecking(client,Float:playerVec[3]);
  *
  * @param client
  * @param target
- * @param distance
+ * @param distance - Actual distance traveled
  * @param raceid
  * @param skillid
  *
