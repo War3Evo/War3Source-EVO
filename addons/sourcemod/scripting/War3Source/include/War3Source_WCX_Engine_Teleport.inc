@@ -66,6 +66,7 @@ forward Action:OnW3TeleportGetAngleVectorsPre(client, target, Float:angle[3]);
  * @param target
  *
  * @return Plugin_Handled if you plan to use this function to create
+ * @return Plugin_Continue if okay
  * your own teleport entity function.
 */
 forward Action:OnW3TeleportEntityCustom(client,target,Float:dir[3],Float:emptypos[3]);
@@ -76,6 +77,7 @@ forward Action:OnW3TeleportEntityCustom(client,target,Float:dir[3],Float:emptypo
  * Most races do immunity checking here.
  *
  * @return Plugin_Handled if this did NOT pass your checks and you will NOT allow the teleport to this location.
+ * @return Plugin_Continue if okay
 */
 forward Action:OnW3TeleportLocationChecking(client,Float:playerVec[3]);
 
@@ -85,10 +87,11 @@ forward Action:OnW3TeleportLocationChecking(client,Float:playerVec[3]);
  *
  * @param client
  * @param target
+ * @param distance
  * @param raceid
  * @param skillid
  *
  * @param return - no return
  *
  */
-forward OnW3Teleported(client,target,distance,raceid,skillid);
+forward OnW3Teleported(int client,int target,float distance,int raceid,int skillid);
