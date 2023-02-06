@@ -42,6 +42,7 @@ new Handle:g_OnW3Teleported;
 
 public bool:War3Source_Engine_WCX_Engine_Teleport_InitNatives()
 {
+	CreateNative("W3TeleportEntity", Native_W3TeleportEntity);
 	CreateNative("W3Teleport", Native_War3_Teleport);
 	return true;
 }
@@ -89,6 +90,25 @@ public War3Source_Engine_WCX_Engine_Teleport_OnAddSound(sound_priority)
 	}
 }
 
+//native W3TeleportEntity(int client, const float origin[3], const float angles[3], const float velocity[3]);
+public Native_W3TeleportEntity(Handle:plugin, numParams)
+{
+	new client = GetNativeCell(1);
+	if(ValidPlayer(client))
+	{
+		float origin[3];
+		float angles[3]; 
+		float velocity[3];
+
+		GetNativeArray(2, origin, 3);
+		GetNativeArray(2, angles, 3);
+		GetNativeArray(2, velocity, 3);
+
+		Internal_TeleportEntity(client, origin, angles, velocity);
+	}
+}
+
+
 public Native_War3_Teleport(Handle:plugin, numParams)
 {
 	new client = GetNativeCell(1);
@@ -129,7 +149,7 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 		{
 			GetClientEyePosition(client,startpos);
 		}
-		new Float:dir[3];
+		new Float:fwd[3];
 		/*
 		angle[0]=0.0;
 		angle[2]=0.0;
@@ -155,19 +175,19 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 		//DP("angles %f %f %f",angle[0],angle[1],angle[2]);
 
 		//NegateVector(angle);
-		GetAngleVectors(angle, dir, NULL_VECTOR, NULL_VECTOR);
+		GetAngleVectors(angle, fwd, NULL_VECTOR, NULL_VECTOR);
 		//DP("%f, %f, %f",angle[0],angle[1],angle[2]);
 		//new Float:TDist=GetConVarFloat(TDistBullyCvar);
 		if(ScaleVectorDistance>-1.0)
 		{
-			ScaleVector(dir, ScaleVectorDistance);
+			ScaleVector(fwd, ScaleVectorDistance);
 		}
 		else
 		{
-			ScaleVector(dir, distance);
+			ScaleVector(fwd, distance);
 		}
 
-		AddVectors(startpos, dir, endpos);
+		AddVectors(startpos, fwd, endpos);
 
 		GetClientAbsOrigin(client,oldpos[client]);
 
@@ -220,10 +240,10 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 			}
 		}
 
-		GetAngleVectors(angle, dir, NULL_VECTOR, NULL_VECTOR);///get dir again
-		ScaleVector(dir, distanceteleport-33.0);
+		GetAngleVectors(angle, fwd, NULL_VECTOR, NULL_VECTOR);///get fwd again
+		ScaleVector(fwd, distanceteleport-33.0);
 
-		AddVectors(startpos,dir,endpos);
+		AddVectors(startpos,fwd,endpos);
 		emptypos[0]=0.0;
 		emptypos[1]=0.0;
 		emptypos[2]=0.0;
@@ -240,14 +260,14 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 
 		//emptypos[1]+=10;
 		//GetClientEyeAngles(Target,angle);
-		//GetAngleVectors(angle, dir, NULL_VECTOR, NULL_VECTOR);
-		//TeleportEntity(client,emptypos,angle,dir);
+		//GetAngleVectors(angle, fwd, NULL_VECTOR, NULL_VECTOR);
+		//TeleportEntity(client,emptypos,angle,fwd);
 
 		returnVal = Plugin_Continue;
 		Call_StartForward(g_OnW3TeleportEntityCustom);
 		Call_PushCell(client);
 		Call_PushCell(target);
-		Call_PushArray(dir,sizeof(dir));
+		Call_PushArray(fwd,sizeof(fwd));
 		Call_PushArray(emptypos,sizeof(emptypos));
 		Call_Finish(_:returnVal);
 		if(returnVal == Plugin_Continue)

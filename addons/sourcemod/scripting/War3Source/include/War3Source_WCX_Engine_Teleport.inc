@@ -28,6 +28,21 @@
 native W3Teleport(client,target=-1,Float:ScaleVectorDistance=-1.0,Float:distance=1200.0,raceid=-1,skillid=-1);
 
 /**
+ * Teleports client to target location within given distance
+ * or just teleports forward a certain distance.
+ *
+ * @param client client int.
+ * @param origin New origin, or NULL_VECTOR for no change.
+ * @param angles New angles, or NULL_VECTOR for no change.
+ * @param velocity New velocity, or NULL_VECTOR for no change.
+ *
+ * @param return - no return
+ * 
+ */
+
+native W3TeleportEntity(int client, const float origin[3], const float angles[3], const float velocity[3]);
+
+/**
  * Called right before GetAngleVectors Calculations.
  *
  * Currently this is the current Angle formula:

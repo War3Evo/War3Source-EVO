@@ -200,7 +200,7 @@ public bool TeleportPlayer(int iClient, int iOwner, int iTeleporterEnt)
 				TimedParticle(iClient, "player_recent_teleport_blue", top, 5.0);
 			}*/
 
-			TeleportEntity(iClient, TeleporterPosition, NULL_VECTOR, NULL_VECTOR);
+			W3TeleportEntity(iClient, TeleporterPosition, NULL_VECTOR, NULL_VECTOR);
 			return true;
 		}
 	}

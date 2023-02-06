@@ -779,7 +779,7 @@ stock ReJump(const any:client,bool:extraforce=false) {
 				vVel[2] = JumpDistance[skill_level];
 			}
 
-			TeleportEntity(client, NULL_VECTOR, NULL_VECTOR, vVel);		// boost player
+			W3TeleportEntity(client, NULL_VECTOR, NULL_VECTOR, vVel);		// boost player
 		}
 	}
 }

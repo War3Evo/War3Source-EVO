@@ -369,9 +369,15 @@ public OnWar3EventDeath(victim,attacker){
 
 					//TeleportEntity(attacker, location, NULL_VECTOR, NULL_VECTOR);
 					//new bool:success = !War3_IsInSpawn(victim,true,location) && Teleport(attacker,location);
-					new bool:success = !War3_IsInSpawn(victim) && Teleport(attacker,location);
-					if(success)
+					
+					
+					
+					//new bool:success = !War3_IsInSpawn(victim) && Teleport(attacker,location);
+					if(!War3_IsInSpawn(victim))
 					{
+						//native W3Teleport(client,target=-1,Float:ScaleVectorDistance=-1.0,Float:distance=1200.0,raceid=-1,skillid=-1);
+		fdsfdsf				W3Teleport(client,_,location,NULL_VECTOR,NULL_VECTOR);
+
 #if GGAMETYPE == GGAME_TF2
 						if(TF2_GetPlayerClass(attacker)==TFClass_Heavy)
 						{

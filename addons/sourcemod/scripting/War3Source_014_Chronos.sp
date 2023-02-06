@@ -345,7 +345,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 					//	velocity[1]*=amt;
 						ScaleVector(velocity,leapPowerTF[skill_SKILL_ASSAULT]/len);
 						velocity[2]=oldz;
-						TeleportEntity(client, NULL_VECTOR, NULL_VECTOR, velocity);
+						W3TeleportEntity(client, NULL_VECTOR, NULL_VECTOR, velocity);
 						//SetEntDataVector(client,m_vecBaseVelocity,velocity,true); //CS
 					}
 
