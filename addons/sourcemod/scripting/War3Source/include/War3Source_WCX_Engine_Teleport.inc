@@ -65,7 +65,7 @@ forward Action:OnW3TeleportGetAngleVectorsPre(client, target, Float:angle[3]);
  * @param client
  * @param target
  *
- * @return Plugin_Handled if you plan to use this function to create
+ * @return Plugin_Handled if you plan to use this function to create a custom teleport
  * @return Plugin_Continue if okay
  * your own teleport entity function.
 */

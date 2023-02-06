@@ -46,6 +46,28 @@ public bool:War3Source_Engine_WCX_Engine_Teleport_InitNatives()
 	return true;
 }
 
+stock void Internal_TeleportEntity(int int_entity, const float float_origin[3], const float float_angles[3], const float float_velocity[3])
+{
+#if GGAMETYPE != GGAME_FOF
+	TeleportEntity(int_entity, float_origin ,NULL_VECTOR, NULL_VECTOR);
+#else
+	SetBuffRace( int_entity, bNoMoveMode, 0, true, _ );
+	CreateTimer( 0.05, StopTeleportFreeze, int_entity );
+	// Requires stop movement to work for FOF
+	SetEntPropVector(int_entity, Prop_Send, "m_vecOrigin", float_origin);
+#endif
+}
+
+#if GGAMETYPE == GGAME_FOF
+public Action:StopTeleportFreeze( Handle:timer, any:client )
+{
+	if( ValidPlayer( client ) )
+	{
+		War3_SetBuff( client, bNoMoveMode, 0, false );
+	}
+}
+#endif
+
 public bool:War3Source_Engine_WCX_Engine_Teleport_InitNativesForwards()
 {
 	g_OnW3Teleported=CreateGlobalForward("OnW3Teleported",ET_Ignore,Param_Cell,Param_Cell,Param_Float,Param_Cell,Param_Cell);
@@ -230,7 +252,8 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 		Call_Finish(_:returnVal);
 		if(returnVal == Plugin_Continue)
 		{
-			TeleportEntity(client,emptypos,NULL_VECTOR,NULL_VECTOR);
+			//Use Internal_TeleportEntity instead of TeleportEntity
+			Internal_TeleportEntity(client,emptypos,NULL_VECTOR,NULL_VECTOR);
 		}
 
 		War3_EmitSoundToAll(teleportSound,client);
@@ -259,7 +282,8 @@ public Action:checkTeleport(Handle:h,any:client){
 
 	if(GetVectorDistance(teleportpos[client],pos)<0.001)//he didnt move in this 0.1 second
 	{
-		TeleportEntity(client,oldpos[client],NULL_VECTOR,NULL_VECTOR);
+		//Use Internal_TeleportEntity instead of TeleportEntity
+		Internal_TeleportEntity(client,oldpos[client],NULL_VECTOR,NULL_VECTOR);
 		W3PrintHint(client,"Cannot teleport there");
 		if(PlayerProp[client][tele_raceid]>-1 && PlayerProp[client][tele_skillid]>-1)
 		{
