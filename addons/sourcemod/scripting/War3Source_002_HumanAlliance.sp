@@ -290,7 +290,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 	}
 }
 
-public OnW3Teleported(client,target,distance,raceid,skillid)
+public OnW3Teleported(int client,int target,float distance,int raceid,int skillid)
 {
 	if(ValidPlayer(client) && raceid==thisRaceID)
 	{
