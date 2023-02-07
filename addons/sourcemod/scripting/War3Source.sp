@@ -495,6 +495,16 @@ DelayedWar3SourceCfgExecute()
 	else
 	{
 		PrintToServer("[War3Source] Could not find war3source_tf2.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Trying to load cfg/war3source.cfg instead...");
+		if(FileExists("cfg/war3source.cfg"))
+		{
+			ServerCommand("exec war3source.cfg");
+			PrintToServer("[War3Source] Executing war3source.cfg");
+		}
+		else
+		{
+			PrintToServer("[War3Source] Could not find war3source.cfg.");
+		}
 	}
 #elseif GGAMETYPE == GGAME_CSGO
 	if(FileExists("cfg/war3source_csgo.cfg"))
@@ -504,7 +514,57 @@ DelayedWar3SourceCfgExecute()
 	}
 	else
 	{
-		PrintToServer("[War3Source] Could not find war3source.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Could not find war3source_csgo.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Trying to load cfg/war3source.cfg instead...");
+		if(FileExists("cfg/war3source.cfg"))
+		{
+			ServerCommand("exec war3source.cfg");
+			PrintToServer("[War3Source] Executing war3source.cfg");
+		}
+		else
+		{
+			PrintToServer("[War3Source] Could not find war3source.cfg.");
+		}
+	}
+#elseif GGAMETYPE == GGAME_FOF
+	if(FileExists("cfg/war3source_fof.cfg"))
+	{
+		ServerCommand("exec war3source_fof.cfg");
+		PrintToServer("[War3Source] Executing war3source_fof.cfg");
+	}
+	else
+	{
+		PrintToServer("[War3Source] Could not find war3source_fof.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Trying to load cfg/war3source.cfg instead...");
+		if(FileExists("cfg/war3source.cfg"))
+		{
+			ServerCommand("exec war3source.cfg");
+			PrintToServer("[War3Source] Executing war3source.cfg");
+		}
+		else
+		{
+			PrintToServer("[War3Source] Could not find war3source.cfg.");
+		}
+	}
+#elseif GGAMETYPE == GGAME_CSS
+	if(FileExists("cfg/war3source_css.cfg"))
+	{
+		ServerCommand("exec war3source_css.cfg");
+		PrintToServer("[War3Source] Executing war3source_css.cfg");
+	}
+	else
+	{
+		PrintToServer("[War3Source] Could not find war3source_css.cfg, we recommend all servers have this file");
+		PrintToServer("[War3Source] Trying to load cfg/war3source.cfg instead...");
+		if(FileExists("cfg/war3source.cfg"))
+		{
+			ServerCommand("exec war3source.cfg");
+			PrintToServer("[War3Source] Executing war3source.cfg");
+		}
+		else
+		{
+			PrintToServer("[War3Source] Could not find war3source.cfg.");
+		}
 	}
 #else
 	if(FileExists("cfg/war3source_other.cfg"))
@@ -515,6 +575,16 @@ DelayedWar3SourceCfgExecute()
 	else
 	{
 		PrintToServer("[War3Source] Could not find war3source configuration file, we recommend all servers have this file");
+		PrintToServer("[War3Source] Trying to load cfg/war3source.cfg instead...");
+		if(FileExists("cfg/war3source.cfg"))
+		{
+			ServerCommand("exec war3source.cfg");
+			PrintToServer("[War3Source] Executing war3source.cfg");
+		}
+		else
+		{
+			PrintToServer("[War3Source] Could not find war3source.cfg.");
+		}
 	}
 #endif
 
