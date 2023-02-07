@@ -56,6 +56,9 @@ stock void Internal_TeleportEntity(int int_entity, const float float_origin[3], 
 	CreateTimer( 0.05, StopTeleportFreeze, int_entity );
 	// Requires stop movement to work for FOF
 	SetEntPropVector(int_entity, Prop_Send, "m_vecOrigin", float_origin);
+	SetEntPropVector(int_entity, Prop_Send, "m_angRotation", float_angles);
+	SetEntPropVector(int_entity, Prop_Send, "m_vecOrigin", float_origin);
+
 #endif
 }
 

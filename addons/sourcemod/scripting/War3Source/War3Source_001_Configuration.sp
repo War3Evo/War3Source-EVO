@@ -7,6 +7,8 @@ War3Source_InitCVars()
 	gh_CVAR_DisableAllText = CreateConVar("war3DisableAllMessages", "0", "0 disabled / 1 enabled\nDisables all War3Source based text.");
 #endif
 
+	gh_CVAR_FOF_Max_Health = CreateConVar("war3_fof_max_health", "100", "the game wants 100-166, but I'm sure it can be anything.");
+
 	gh_CVAR_AllowInstantSpawn = CreateConVar("war3AllowInstantRaceChange", "0", "0 disabled / 1 enabled\nAllows players to change race instantly in spawn.");
 
 	gh_CVAR_War3Source_Pause = CreateConVar("war3pause", "0", "0 disabled / 1 enabled\nPauses all War3Source stuff, so plugins can be reloaded easier.");

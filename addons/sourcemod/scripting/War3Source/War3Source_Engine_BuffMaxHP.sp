@@ -59,7 +59,6 @@ setMax(client)
 
 		War3_SetMaxHP_INTERNAL(client,maxHP);
 		//DP("set max hp: %i",maxHP);
-
 		if(GetConVarBool(g_buffmaxhp_enable_tf2attributes))
 		{
 			TF2Attrib_SetByName(client,"max health additive bonus", 1.0*GetBuffSumInt(client,iAdditionalMaxHealth));
@@ -110,9 +109,12 @@ setMax(client)
 			SetEntityHealth(client,War3_GetMaxHP(client));
 	}
 #else
-
+	// Not TF2
 	if(ValidPlayer(client))
 	{
+#if GGAMETYPE == GGAME_FOF
+		War3_SetMaxHP_INTERNAL(client,RoundToNearest(GetConVarFloat(gh_CVAR_FOF_Max_Health)));
+#else
 		if(ORIGINALHP[client]>0)
 		{
 			//DP("ORIGHP setMax %i",ORIGINALHP[client]);
@@ -138,46 +140,47 @@ setMax(client)
 			//SetEntProp(client, Prop_Data, "m_iMaxHealth", maxHP);
 			//DP("set max hp: %i",maxHP);
 		}
+#endif
 	}
 #endif
 }
 
-new Handle:timers[33];
-public Action:thisSpawn(Handle:h,any:client)
-{
-		if(ValidPlayer(client))
-		{
-			new iClientHealth=GetClientHealth(client);
-			if(iClientHealth>1)
-			{
-				//DP("client health on spawn = %d",iClientHealth);
-				//DP("W3GetBuffSumInt(client,iAdditionalMaxHealth) on spawn = %d",W3GetBuffSumInt(client,iAdditionalMaxHealth));
-				ORIGINALHP[client]=iClientHealth - GetBuffSumInt(client,iAdditionalMaxHealth);
-				setMax(client);
-				new MaxHP=War3_GetMaxHP(client);
-				if(MaxHP>0)
-				{
-					//SetEntityHealth(client,MaxHP);
-					nsEntity_SetHealth(client, MaxHP);
-				}
-				timers[client]=INVALID_HANDLE;
-			}
-			else
-			{
-				timers[client]=CreateTimer(0.5, thisSpawn, client);
-				//DP("timers[]");
-			}
-		}
-}
 #if GGAMETYPE == GGAME_TF2
-public War3Source_Engine_BuffMaxHP_OnWar3EventSpawn(client)
-{
-	//DP("Spawned");
-	if(GetConVarBool(g_buffmaxhp_enable_tf2attributes))
+	new Handle:timers[33];
+	public Action:thisSpawn(Handle:h,any:client)
 	{
-		timers[client]=CreateTimer(1.0, thisSpawn, client);
+			if(ValidPlayer(client))
+			{
+				new iClientHealth=GetClientHealth(client);
+				if(iClientHealth>1)
+				{
+					//DP("client health on spawn = %d",iClientHealth);
+					//DP("W3GetBuffSumInt(client,iAdditionalMaxHealth) on spawn = %d",W3GetBuffSumInt(client,iAdditionalMaxHealth));
+					ORIGINALHP[client]=iClientHealth - GetBuffSumInt(client,iAdditionalMaxHealth);
+					setMax(client);
+					new MaxHP=War3_GetMaxHP(client);
+					if(MaxHP>0)
+					{
+						//SetEntityHealth(client,MaxHP);
+						nsEntity_SetHealth(client, MaxHP);
+					}
+					timers[client]=INVALID_HANDLE;
+				}
+				else
+				{
+					timers[client]=CreateTimer(0.5, thisSpawn, client);
+					//DP("timers[]");
+				}
+			}
 	}
-}
+	public War3Source_Engine_BuffMaxHP_OnWar3EventSpawn(client)
+	{
+		//DP("Spawned");
+		if(GetConVarBool(g_buffmaxhp_enable_tf2attributes))
+		{
+			timers[client]=CreateTimer(1.0, thisSpawn, client);
+		}
+	}
 #endif
 
 public War3Source_Engine_BuffMaxHP_OnWar3Event(client)

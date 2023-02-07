@@ -118,8 +118,11 @@ public War3Source_PlayerSpawnEvent(Handle:event,const String:name[],bool:dontBro
 		new client=GetClientOfUserId(userid);
 		if(ValidPlayer(client,true))
 		{
+#if GGAMETYPE == GGAME_FOF
+			War3_SetMaxHP_INTERNAL(client,RoundToNearest(GetConVarFloat(gh_CVAR_FOF_Max_Health)));
+#else
 			War3_SetMaxHP_INTERNAL(client,GetClientHealth(client));
-
+#endif
 			CheckPendingRace(client);
 			if(IsFakeClient(client)&&W3IsPlayerXPLoaded(client)&&GetRace(client)==0&&GetConVarInt(botsetraces)){ //W3IsPlayerXPLoaded(client) is for skipping until putin server is fired (which cleared variables)
 				int tries=100;

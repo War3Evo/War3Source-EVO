@@ -90,6 +90,7 @@ Handle hRaceLimitEnabled;
 Handle hChangeGameDescCvar;
 Handle hUseMetric;
 Handle botsetraces = null;
+Handle gh_CVAR_FOF_Max_Health;
 
 //==============================
 // War3Source_000_Engine_Hint
@@ -277,3 +278,9 @@ Handle mp_teamcashawards;
 Handle mp_playercashawards;
 bool CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
 #endif
+
+//=============================
+// War3Source_001_GameEvents
+//=============================
+
+

@@ -218,7 +218,7 @@ public Native_War3_HTMHP(Handle:plugin,numParams)
 
 	new client = GetNativeCell(1);
 	new addhp = GetNativeCell(2);
-	new maxhp=War3_GetMaxHP(client);
+	new maxhp = War3_GetMaxHP(client);
 	new currenthp=GetClientHealth(client);
 	if(currenthp<maxhp){ ///do not make hp lower
 		new newhp=GetClientHealth(client)+addhp;
