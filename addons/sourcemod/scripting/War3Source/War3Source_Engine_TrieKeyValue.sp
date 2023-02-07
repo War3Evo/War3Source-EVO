@@ -23,6 +23,7 @@ public Plugin:myinfo=
 public War3Source_Engine_TrieKeyValue_OnPluginStart()
 {
 	RegConsoleCmd("war3",cmdWar3,"War3 / SH internal variables and commands");
+	RegConsoleCmd("war3_no_desc",cmdWar3_no_desc,"War3 / SH internal variables and commands");
 }
 
 public bool:War3Source_Engine_TrieKeyValue_InitNatives()
@@ -148,8 +149,8 @@ public NW3GetCvarActualString(Handle:plugin,numParams){
 
 
 
-
-public Action:cmdWar3(client,args){
+public Action:cmdWar3_no_desc(client,args)
+{
 	if(client!=0&&!HasSMAccess(client,ADMFLAG_ROOT)){
 		ReplyToCommand(client,"No Access. This is not a command for players. say war3menu for the main menu");
 	}
@@ -162,7 +163,7 @@ public Action:cmdWar3(client,args){
 			GetCmdArg(1,arg1,sizeof(arg1));
 
 			if(StrEqual(arg1,"cvarlist")){
-				PrintCvars(client,args>1,2);
+				PrintCvars(client,args>1,2,false);
 				pass=true;
 			}
 
@@ -171,7 +172,51 @@ public Action:cmdWar3(client,args){
 				pass=true;
 			}
 			if (!pass&&args==1){
-				PrintCvars(client,true,1);
+				PrintCvars(client,true,1,false);
+				pass=true;
+			}
+		}
+
+		if(!pass){
+			new String:arg0[32];
+			new String:arg[32];
+			GetCmdArg(0,arg0,sizeof(arg0));
+			GetCmdArgString(arg, sizeof(arg));
+			ReplyToCommand(client,"-----------------------------------");
+			ReplyToCommand(client,"war3_no_desc <arg> ...  Unknown CMD: %s %s Args: %d",arg0,arg,args);
+			ReplyToCommand(client,"    Available commands:");
+			ReplyToCommand(client,"war3_no_desc cvarlist <optional prefix filter>");
+			ReplyToCommand(client,"war3_no_desc <cvar> <value>");
+			ReplyToCommand(client,"    Use double quotes when needed");
+			ReplyToCommand(client,"-----------------------------------");
+		}
+	}
+}
+
+public Action:cmdWar3(client,args)
+{
+	if(client!=0&&!HasSMAccess(client,ADMFLAG_ROOT)){
+		ReplyToCommand(client,"No Access. This is not a command for players. say war3menu for the main menu");
+	}
+	else{
+
+		new bool:pass=false;
+		if(args>=1){
+
+			new String:arg1[64];
+			GetCmdArg(1,arg1,sizeof(arg1));
+
+			if(StrEqual(arg1,"cvarlist")){
+				PrintCvars(client,args>1,2,true);
+				pass=true;
+			}
+
+			if (!pass&&args==2){
+				SetCvar(client);
+				pass=true;
+			}
+			if (!pass&&args==1){
+				PrintCvars(client,true,1,true);
 				pass=true;
 			}
 		}
@@ -191,7 +236,7 @@ public Action:cmdWar3(client,args){
 		}
 	}
 }
-PrintCvars(client,bool:hasfilter,filterarg){
+PrintCvars(client,bool:hasfilter,filterarg,bool:hasdesc){
 
 	new limit=GetArraySize(Cvararraylist);
 
@@ -209,8 +254,15 @@ PrintCvars(client,bool:hasfilter,filterarg){
 				StrCat(out1,32,"                                ");
 			}
 
-			GetArrayString(Cvararraylist2,i,out2,sizeof(out2)); //desc
-			ReplyToCommand(client,"%s%s",out1,out2);
+			if(hasdesc)
+			{
+				GetArrayString(Cvararraylist2,i,out2,sizeof(out2)); //desc
+				ReplyToCommand(client,"%s%s",out1,out2);
+			}
+			else
+			{
+				ReplyToCommand(client,"%s",out1);
+			}
 		}
 	}
 	else{
@@ -233,8 +285,15 @@ PrintCvars(client,bool:hasfilter,filterarg){
 					StrCat(out1,32,"                                ");
 				}
 
-				GetArrayString(Cvararraylist2,i,out2,sizeof(out2)); //desc
-				ReplyToCommand(client,"%s%s",out1,out2);
+				if(hasdesc)
+				{
+					GetArrayString(Cvararraylist2,i,out2,sizeof(out2)); //desc
+					ReplyToCommand(client,"%s%s",out1,out2);
+				}
+				else
+				{
+					ReplyToCommand(client,"%s",out1);
+				}
 			}
 		}
 	}
