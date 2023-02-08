@@ -4,7 +4,7 @@ War3Source_InitCVars()
 {
 #if MESSAGE_CONTROL_MODE == MODE_ENABLED
 	// This only disables War3Source text, if a race uses a different method to send text, this will not disable that method.
-	gh_CVAR_DisableAllText = CreateConVar("war3DisableAllMessages", "0", "0 disabled / 1 enabled\nDisables all War3Source based text.");
+	gh_CVAR_DisableAllText = CreateConVar("war3DisableMostMessages", "0", "0 disabled / 1 enabled\nDisables all War3Source based text.");
 #endif
 
 	gh_CVAR_FOF_Max_Health = CreateConVar("war3_fof_max_health", "100", "the game wants 100-166, but I'm sure it can be anything.");
