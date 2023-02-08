@@ -122,15 +122,7 @@ public OnPluginStart()
 	OrbFrostCvar=CreateConVar("war3_shop_orb_speed","0.6","Orb of Frost speed, 1.0 is normal speed, 0.6 default for orb.");
 	TomeCvar=CreateConVar("war3_shop_tome_xp","10","Experience awarded for Tome of Experience.");
 	SockCvar=CreateConVar("war3_shop_sock_gravity","0.4","Gravity used for Sock of Feather, 0.4 is default for sock, 1.0 is normal gravity");
-#if GGAMETYPE == GGAME_TF2
-	RegenHPTFCvar=CreateConVar("war3_shop_ring_hp_tf","4","How much HP is regenerated for TF.");
-#elseif GGAMETYPE == GGAME_FOF
-	RegenHPTFCvar=CreateConVar("war3_shop_ring_hp_fof","6","How much HP is regenerated for FOF.");
-#elseif GGAMETYPE == GGAME_CSS
-	RegenHPTFCvar=CreateConVar("war3_shop_ring_hp_css","4","How much HP is regenerated for CSS.");
-#elseif GGAMETYPE == GGAME_CSGO
-	RegenHPTFCvar=CreateConVar("war3_shop_ring_hp_csgo","4","How much HP is regenerated for CSGO.");
-#endif
+	RegenHPTFCvar=CreateConVar("war3_shop_ring_hp","4","How much HP is regenerated.");
 
 	CreateTimer(0.1,PointOneSecondLoop,_,TIMER_REPEAT);
 #if GGAMETYPE == GGAME_TF2
