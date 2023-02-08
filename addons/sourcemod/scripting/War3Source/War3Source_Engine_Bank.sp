@@ -24,7 +24,7 @@ public Plugin:myinfo=
 
 public War3Source_Engine_Bank_OnPluginStart()
 {
-	WithDrawTimeLimitCvar = CreateConVar("sm_bank_withdraw_timelimit","2700","default 2700 = 45 minutes");
+	WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700","default 2700 = 45 minutes");
 	CreateTimer(330.0,DoAutosave);
 }
 

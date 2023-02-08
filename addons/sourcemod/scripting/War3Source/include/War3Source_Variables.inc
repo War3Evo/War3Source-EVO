@@ -90,7 +90,10 @@ Handle hRaceLimitEnabled;
 Handle hChangeGameDescCvar;
 Handle hUseMetric;
 Handle botsetraces = null;
+
+#if GGAMETYPE == GGAME_FOF
 Handle gh_CVAR_FOF_Max_Health;
+#endif
 
 //==============================
 // War3Source_000_Engine_Hint

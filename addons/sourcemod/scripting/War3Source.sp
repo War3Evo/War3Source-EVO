@@ -349,6 +349,52 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 	PrintToServer(" #######    #    ####### #######  #####     #    ### ####### #     # ");
 	PrintToServer("");
 	PrintToServer("");
+	PrintToServer("");
+	PrintToServer("");
+	PrintToServer("");
+
+#if GGAMETYPE == GGAME_TF2
+			PrintToServer("#######    #######     #####  ");
+			PrintToServer("   #       #          #     # ");
+			PrintToServer("   #       #                # ");
+			PrintToServer("   #       #####       #####  ");
+			PrintToServer("   #       #          #       ");
+			PrintToServer("   #       #          #       ");
+			PrintToServer("   #       #          ####### ");
+
+#elseif GGAMETYPE == GGAME_CSS
+
+			PrintToServer(" #####      #####      #####  ");
+			PrintToServer("#     #    #     #    #     # ");
+			PrintToServer("#          #          #       ");
+			PrintToServer("#           #####      #####  ");
+			PrintToServer("#                #          # ");
+			PrintToServer("#     #    #     #    #     # ");
+			PrintToServer(" #####      #####      #####  ");
+
+#elseif GGAMETYPE == GGAME_CSGO
+
+			PrintToServer(" #####      #####      #####     ####### ");
+			PrintToServer("#     #    #     #    #     #    #     # ");
+			PrintToServer("#          #          #          #     # ");
+			PrintToServer("#           #####     #  ####    #     # ");
+			PrintToServer("#                #    #     #    #     # ");
+			PrintToServer("#     #    #     #    #     #    #     # ");
+			PrintToServer(" #####      #####      #####     ####### ");
+
+#elseif GGAMETYPE == GGAME_FOF
+
+			PrintToServer("#######    #######    ####### ");
+			PrintToServer("#          #     #    #       ");
+			PrintToServer("#          #     #    #       ");
+			PrintToServer("#####      #     #    #####   ");
+			PrintToServer("#          #     #    #       ");
+			PrintToServer("#          #     #    #       ");
+			PrintToServer("#          #######    #       ");
+
+#else
+			PrintToServer("UNKNOWN GAME"):
+#endif
 
 	char version[64];
 	Format(version,sizeof(version),"%s by %s",VERSION_NUM,AUTHORS);
