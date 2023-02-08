@@ -22,7 +22,8 @@ L 09/16/2022 - 03:14:29: [SM]   [2] Line 396, /home/lucifer/War3Source-EVO/addon
 L 
 */
 
-#if GGAMETYPE != GGAME_TF2
+// CSGO incompatible with HUD
+#if (GGAMETYPE == GGAME_CSGO)
 	#endinput
 #endif
 
@@ -133,7 +134,7 @@ public OnPluginStart()
 	RegConsoleCmd("sm_hud", Command_ToggleHUD, "Toggles the HUD on/off");
 	RegConsoleCmd("say hud", Command_ToggleHUD, "Toggles the HUD on/off");
 	RegConsoleCmd("say_team hud", Command_ToggleHUD, "Toggles the HUD on/off");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2 || GGAMETYPE == GGAME_FOF)
 	CreateTimer(1.0, HudInfo_Timer, _, TIMER_REPEAT);
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	CreateTimer(0.3, HudInfo_Timer, _, TIMER_REPEAT);
@@ -180,7 +181,11 @@ stock bool stockKeyHintText(int client, char format[254])
 
 public OnClientPutInServer(client)
 {
+#if (GGAMETYPE == GGAME_FOF)
+	g_bShowHUD[client] = true;
+#else
 	g_bShowHUD[client] = false;
+#endif
 	//GetRank(client);
 }
 
@@ -225,7 +230,7 @@ public Action:HudInfo_Timer(Handle:timer, any:whatclient)
 		//if (ValidPlayer(client) && Re_killtimer == 0)
 		if (ValidPlayer(client,true))
 		{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2 || GGAMETYPE == GGAME_FOF)
 			if(g_bShowHUD[client] == true)
 			{
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
