@@ -20,6 +20,9 @@ public OnPluginStart()
 	LoadRacesAndItemsOnMapStart=GetConVarBool(hCvarLoadRacesAndItemsOnMapStart);
 	HookConVarChange(hCvarLoadRacesAndItemsOnMapStart, hCvarLoadRacesAndItemsOnMapStartChanged);
 
+	// important ..must stay on top
+	War3Source_Engine_Sounds_OnPluginStart();
+
 	// DeciSecondLoop Timer
 	War3Source_Engine_DeciSecondLoop_Timer_OnPluginStart();
 
@@ -105,6 +108,13 @@ public OnPluginStart()
 	War3Source_Engine_GameData_OnPluginStart();
 
 	War3Source_003_RegisterPrivateForwards_OnPluginStart();
+
+
+#if GGAMETYPE == GGAME_FOF
+	// FOF player health change
+	War3Source_000_Engine_Misc_OnPluginStart();
+#endif
+
 
 	//g_Prof = CreateProfiler();
 	//g_Prof2 = CreateProfiler();

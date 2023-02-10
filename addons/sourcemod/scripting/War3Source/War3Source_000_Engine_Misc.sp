@@ -212,20 +212,84 @@ stock TE_ParticleToClient(client,String:Name[],Float:origin[3]=NULL_VECTOR,Float
 }
 #endif
 
+#if GGAMETYPE == GGAME_FOF
+public void War3Source_000_Engine_Misc_OnMapStart()
+{
+	CFoF_Player_m_iHealth = FindSendPropInfo("CFoF_Player","m_iHealth");
+	if (CFoF_Player_m_iHealth < 0 )
+	{
+		LogError("CFoF_Player_m_iHealth = %i",  CFoF_Player_m_iHealth);
+	}
+}
+public void War3Source_000_Engine_Misc_OnPluginStart()
+{
+	CFoF_Player_m_iHealth = FindSendPropInfo("CFoF_Player","m_iHealth");
+	if (CFoF_Player_m_iHealth < 0 )
+	{
+		LogError("CFoF_Player_m_iHealth = %i",  CFoF_Player_m_iHealth);
+	}
+}
+
+public bool CFoF_Player_m_iHealth_Set(int entity, int health)
+{
+	//War3_ChatMessage(entity, "CFoF_Player_m_iHealth_Set = %i", CFoF_Player_m_iHealth);
+	if(entity <= 0)
+	{
+		return false;
+	}
+/*
+	if(CFoF_Player_m_iHealth < 0)
+	{
+		return false;
+	}
+*/
+	int currenthp = GetEntData(entity, CFoF_Player_m_iHealth, 4);
+
+	//War3_ChatMessage(entity, "currenthp = %i", currenthp);
+	//War3_ChatMessage(entity, "health = %i", health);
+	if (currenthp == health)
+	{
+		return false;
+	}
+
+	SetEntData(entity, CFoF_Player_m_iHealth, health, 4, true);
+
+	if (currenthp < health)
+	{
+		//War3_ChatMessage(entity, "currenthp < health");
+		return true;
+	}
+
+	//War3_ChatMessage(entity, "false");
+	return false;
+
+}
+#endif
+
 public Native_War3_HTMHP(Handle:plugin,numParams)
 {
 	if(MapChanging || War3SourcePause) return false;
 
-	new client = GetNativeCell(1);
-	new addhp = GetNativeCell(2);
-	new maxhp = War3_GetMaxHP(client);
-	new currenthp=GetClientHealth(client);
-	if(currenthp<maxhp){ ///do not make hp lower
-		new newhp=GetClientHealth(client)+addhp;
-		if (newhp>maxhp){
+	int client = GetNativeCell(1);
+	int addhp = GetNativeCell(2);
+	int maxhp = War3_GetMaxHP(client);
+	int currenthp=GetClientHealth(client);
+	//War3_ChatMessage(client,"addhp = %i",addhp);
+	//War3_ChatMessage(client,"War3_GetMaxHP = %i",maxhp);
+	//War3_ChatMessage(client,"GetClientHealth = %i",currenthp);
+	//do not make hp lower
+	if(currenthp<maxhp)
+	{ 
+		int newhp=GetClientHealth(client)+addhp;
+		if (newhp>maxhp)
+		{
 			newhp=maxhp;
 		}
+#if GGAMETYPE == GGAME_FOF
+		CFoF_Player_m_iHealth_Set(client,newhp);
+#else
 		return nsEntity_SetHealth(client,newhp);
+#endif
 	}
 	return false;
 }
@@ -243,7 +307,11 @@ public Native_War3_HTBHP(Handle:plugin,numParams)
 		if (newhp>maxhp){
 			newhp=maxhp;
 		}
-		nsEntity_SetHealth(client,newhp);
+#if GGAMETYPE == GGAME_FOF
+		CFoF_Player_m_iHealth_Set(client,newhp);
+#else
+		return nsEntity_SetHealth(client,newhp);
+#endif
 	}
 
 	return 0;
@@ -259,7 +327,11 @@ public Native_War3_DecreaseHP(Handle:plugin,numParams)
 	if(newhp<1){
 		newhp=1;
 	}
+#if GGAMETYPE == GGAME_FOF
+	CFoF_Player_m_iHealth_Set(client,newhp);
+#else
 	nsEntity_SetHealth(client,newhp);
+#endif
 
 	return 0;
 }

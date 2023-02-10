@@ -7,9 +7,7 @@ public bool Internal_OnWar3EventSpawn(client)
 
 	ShouldCalcAura();
 
-#if GGAMETYPE == GGAME_TF2
 	War3Source_Engine_BuffMaxHP_OnWar3EventSpawn(client);
-#endif
 
 	War3Source_Engine_CooldownMgr_OnWar3EventSpawn(client);
 

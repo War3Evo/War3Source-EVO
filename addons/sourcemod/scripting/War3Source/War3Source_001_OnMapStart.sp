@@ -28,7 +28,7 @@ public OnMapStart()
 	}
 
 	MapStart=true;
-	
+
 	War3Source_Engine_Casting_OnMapStart();
 
 #if GGAMETYPE == GGAME_CSGO
@@ -63,6 +63,11 @@ public OnMapStart()
 
 	// No Reason to check interface versions
 	//OneTimeForwards();
+#if GGAMETYPE == GGAME_FOF
+	// FOF player health change
+	War3Source_000_Engine_Misc_OnMapStart();
+#endif
+
 
 	PrintToServer("War3Source:EVO OnMapStart Finished");
 }

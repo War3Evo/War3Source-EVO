@@ -24,10 +24,16 @@ native War3_DecreaseHP(client, decrease);
 // This one is actually used by HealToMaxHP, HealToBuffHP aswell as DecreaseHP
 stock bool:nsEntity_SetHealth(entity, health)
 {
-	new currenthp = GetEntProp(entity, Prop_Data, "m_iHealth");
+#if GGAMETYPE = GGAME_FOF
+	War3_HealToMaxHP(entity, health);
+#else
+	int currenthp = GetEntProp(entity, Prop_Data, "m_iHealth");
 
+	//War3_ChatMessage(entity, "currenthp = %i", currenthp);
+	//War3_ChatMessage(entity, "health to add = %i", health);
 	if (currenthp == health)
 	{
+		//War3_ChatMessage(entity, "1 return false");
 		return false;
 	}
 
@@ -36,10 +42,13 @@ stock bool:nsEntity_SetHealth(entity, health)
 
 	if (currenthp < health)
 	{
+		//War3_ChatMessage(entity, "1 return true");
 		return true;
 	}
 
+	//War3_ChatMessage(entity, "2 return true");
 	return false;
+#endif
 }
 
 /**
