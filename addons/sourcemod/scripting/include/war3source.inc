@@ -2019,7 +2019,7 @@ methodmap W3player
 
 	public void teleport(int target=-1, float ScaleVectorDistance=-1.0, float distance=1200.0, int raceid=-1, int skillid=-1)
 	{
-		W3Teleport2(this.index,target,ScaleVectorDistance,distance,raceid,skillid);
+		W3Teleport(this.index,target,ScaleVectorDistance,distance,raceid,skillid);
 	}
 	// Notify Player of the below:
 	public void skillactivated(int skill,bool activated)
