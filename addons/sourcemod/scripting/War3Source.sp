@@ -170,6 +170,8 @@
 #include "War3Source/War3Source_Engine_ShowMOTD.sp"
 #include "War3Source/War3Source_Engine_SkillEffects.sp"
 
+#include "War3Source/War3Source_Engine_Sounds.sp"
+
 // not usable currently under 1.7+ sourcemod (figure out later)
 //#include "War3Source/War3Source_Engine_Statistics.sp"
 //#include "War3Source/War3Source_Engine_StatSockets2.sp"
