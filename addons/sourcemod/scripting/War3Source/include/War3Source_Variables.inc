@@ -287,3 +287,22 @@ bool CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
 //=============================
 
 
+//=============================
+// War3Source_000_Engine_Misc
+//=============================
+#if GGAMETYPE == GGAME_FOF
+int CFoF_Player_m_iHealth;
+#endif
+
+
+//=============================
+// War3Source_Engine_Sounds
+//=============================
+char sound_file_original[PLATFORM_MAX_PATH];
+char sound_file_new[PLATFORM_MAX_PATH];
+
+// never used, but maybe?
+//bool SoundConfigLoaded = false;
+
+new Handle: array_sounds;
+

@@ -54,6 +54,8 @@ new CurrentClientsConnected;
 
 CacheFiles()
 {
+	LoadSoundsConfig();
+
 	// CACHE FILES HERE FOR NEXT MAP
 	//new bool:res;
 	if(!GetConVarBool(EnableDownloadsModuleCvar))
@@ -597,6 +599,17 @@ public int Native_War3_AddSound(Handle:plugin, numParams)
 	//PrintToServer("numParams %d",numParams);
 	char sSoundFile[1024];
 	GetNativeString(1, sSoundFile, sizeof(sSoundFile));
+
+	int sound_file_index = FindStringInArray(array_sounds, sSoundFile);
+	char sSoundFileReplacement[1024];
+
+	if(sound_file_index>-1) 
+	{
+		//replace
+		GetArrayString(array_sounds, sound_file_index + 1, sSoundFileReplacement, sizeof(sSoundFileReplacement));
+		strcopy(sSoundFile, sizeof(sSoundFileReplacement), sSoundFileReplacement);
+		SetNativeString(1, sSoundFile, sizeof(sSoundFileReplacement), false);
+	}
 
 	if(FindStringInArray(g_hSoundFile, sSoundFile)==-1) // if not found, add
 	{
