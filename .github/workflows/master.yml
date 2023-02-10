@@ -54,6 +54,7 @@ jobs:
           xargs rm -f < smlist19.txt || true
           rm -rf .git
           rm -rf .github
+          rm -rf *.wav
           
     - name: Create War3SourceEvo-TF2-plugins
       uses: actions/upload-artifact@v3
@@ -100,6 +101,7 @@ jobs:
           xargs rm -f < smlist19.txt || true
           rm -rf .git
           rm -rf .github
+          rm -rf *.wav
           
     - name: Create War3SourceEvo-TF2-MVM-plugins
       uses: actions/upload-artifact@v3
@@ -146,6 +148,7 @@ jobs:
           xargs rm -f < smlist19.txt || true
           rm -rf .git
           rm -rf .github
+          rm -rf *.mp3
           
     - name: Create War3SourceEvo-FOF-plugins
       uses: actions/upload-artifact@v3
@@ -192,6 +195,7 @@ jobs:
           xargs rm -f < smlist19.txt || true
           rm -rf .git
           rm -rf .github
+          rm -rf *.wav
           
     - name: Create War3SourceEvo-CSS-plugins
       uses: actions/upload-artifact@v3
@@ -238,6 +242,7 @@ jobs:
           xargs rm -f < smlist19.txt || true
           rm -rf .git
           rm -rf .github
+          rm -rf *.wav
           
     - name: Create War3SourceEvo-CSGO-plugins
       uses: actions/upload-artifact@v3
