@@ -49,7 +49,10 @@ public War3Source_Engine_Regen_OnGameFrame()
 			{
 				lastTickTime[client]+=period;
 				//PrintToChat(client,"regein tick %f %f",fbuffsum,now);
-				if(fbuffsum>0.01){ //heal
+
+				//heal
+				if(fbuffsum>0.01)
+				{
 					War3_HealToMaxHP(client,1);
 #if GGAMETYPE == GGAME_TF2
 					tf2displayskip[client]++;
@@ -63,16 +66,19 @@ public War3Source_Engine_Regen_OnGameFrame()
 #endif
 				}
 
-				if(fbuffsum<-0.01){ //decay
+				//decay
+				if(fbuffsum<-0.01)
+				{
 #if GGAMETYPE == GGAME_TF2
-					if(W3Chance(0.25)  && !IsInvis(client)){
+					if(W3Chance(0.25)  && !IsInvis(client))
+					{
 						GetClientAbsOrigin(client,playervec);
 						TE_ParticleToClient(0, GetApparentTeam(client)==TEAM_RED?"healthlost_red":"healthlost_blu", playervec);
 					}
 #endif
-					if(GetClientHealth(client)>1){
+					if(GetClientHealth(client)>1)
+					{
 						SetEntityHealth(client,GetClientHealth(client)-1);
-
 					}
 					else
 					{
