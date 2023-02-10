@@ -257,6 +257,14 @@ public Action:HudInfo_Timer(Handle:timer, any:whatclient)
 						War3_GetRaceName(race,racename,sizeof(racename));
 						new level=War3_GetLevel(client, race);
 
+#if (GGAMETYPE == GGAME_FOF)
+						Format(HUD_Text, sizeof(HUD_Text), "Race: %s\nLevel: %i/%i - XP: %i/%i\n",
+							racename,
+							level,
+							W3GetRaceMaxLevel(race),
+							War3_GetXP(client, race),
+							W3GetReqXP(level+1));
+#else
 						Format(HUD_Text, sizeof(HUD_Text), "Race: %s\nLevel: %i/%i - XP: %i/%i\nTotal Level: %d",
 							racename,
 							level,
@@ -264,16 +272,21 @@ public Action:HudInfo_Timer(Handle:timer, any:whatclient)
 							War3_GetXP(client, race),
 							W3GetReqXP(level+1),
 							GetClientTotalLevels(client));
+#endif
 							//War3_GetGold(client));
-#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
-						Format(HUD_Text, sizeof(HUD_Text), "%s - G: %i",
+#if (GGAMETYPE == GGAME_FOF)
+						Format(HUD_Text, sizeof(HUD_Text), "%s Gold: %i",
 							HUD_Text,
 							War3_GetGold(client));
 
-						Format(HUD_Text, sizeof(HUD_Text), "%s - D: %i",
+						Format(HUD_Text, sizeof(HUD_Text), "%s Diamonds: %i",
 							HUD_Text,
 							War3_GetDiamonds(client));
 
+						Format(HUD_Text, sizeof(HUD_Text), "%s MaxHP: %i",
+							HUD_Text,
+							War3_GetMaxHP(client));
+#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 						Format(HUD_Text, sizeof(HUD_Text), "%s - P: %i\n",
 							HUD_Text,
 							War3_GetPlatinum(client));
@@ -291,6 +304,7 @@ public Action:HudInfo_Timer(Handle:timer, any:whatclient)
 						//{
 							//Format(HUD_Text, sizeof(HUD_Text), "%s\nWar3rank: %d",HUD_Text, iRank[client]);
 						//}
+#if (GGAMETYPE != GGAME_FOF)
 						new Float:speedmulti=1.0;
 
 						if(!W3GetBuffHasTrue(client,bBuffDenyAll)){
@@ -308,6 +322,7 @@ public Action:HudInfo_Timer(Handle:timer, any:whatclient)
 						{
 							Format(HUD_Text, sizeof(HUD_Text), "%s\nSpd: %.2f",HUD_Text, speedmulti);
 						}
+#endif
 						/*
 						if(W3GetBuffMinFloat(client,fLowGravitySkill) != 1.0)
 						{
@@ -502,7 +517,7 @@ public T_RetrieveRankCache(Handle:owner,Handle:query,const String:error[],any:us
 }
 */
 
-
+#if (GGAMETYPE != GGAME_FOF)
 GetClientTotalLevels(client)
 {
   new total_level=0;
@@ -513,6 +528,6 @@ GetClientTotalLevels(client)
   }
   return  total_level;
 }
-
+#endif
 
 
