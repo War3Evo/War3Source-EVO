@@ -24,7 +24,7 @@ native War3_DecreaseHP(client, decrease);
 // This one is actually used by HealToMaxHP, HealToBuffHP aswell as DecreaseHP
 stock bool:nsEntity_SetHealth(entity, health)
 {
-#if GGAMETYPE = GGAME_FOF
+#if GGAMETYPE == GGAME_FOF
 	War3_HealToMaxHP(entity, health);
 #else
 	int currenthp = GetEntProp(entity, Prop_Data, "m_iHealth");
