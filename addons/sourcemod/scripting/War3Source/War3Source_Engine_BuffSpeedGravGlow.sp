@@ -69,10 +69,12 @@ public PostThinkPost(client)
 public bool:War3Source_Engine_BuffSpeedGravGlow_InitNatives()
 {
 	CreateNative("W3ReapplySpeed",NW3ReapplySpeed);//for races
-#if GGAMETYPE == GGAME_FOF
-	m_OffsetSpeed=FindSendPropInfo("CBasePlayer","m_flLaggedMovementValue");
-#else
+
+#if (GGAMETYPE == GGAME_TF2)
 	m_OffsetSpeed=FindSendPropInfo("CTFPlayer","m_flMaxspeed");
+#else 
+	// FOF, CSS, CSGO
+	m_OffsetSpeed=FindSendPropInfo("CBasePlayer","m_flLaggedMovementValue");
 #endif
 
 	if(m_OffsetSpeed==-1)
