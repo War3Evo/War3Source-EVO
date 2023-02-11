@@ -286,6 +286,8 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 		return Plugin_Continue;
 	}
 
+	bool SDK_Forwarded_OnTakeDamage_Changed = false;
+
 	if(ValidPlayer(victim,true))
 	{
 		//store old variables on local stack!
@@ -329,6 +331,7 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 			if(!GetBuffHasOneTrue(victim,bArmorMagicDenyAll))
 			{
 				damage=FloatMul(damage,MagicArmorMulti(victim));
+				SDK_Forwarded_OnTakeDamage_Changed = true;
 			}
 		}
 		else if((attacker_Owns_item!=1)&&!g_CurDamageIsTrueDamage&&!GetBuffHasOneTrue(victim,bfArmorPhysicalDenyAll))
@@ -359,6 +362,7 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 					}
 				}
 			}
+			SDK_Forwarded_OnTakeDamage_Changed = true;
 		}
 		if(!g_CurDamageIsWarcraft && ValidPlayer(attacker))
 		{
@@ -374,25 +378,25 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 			//DP("%f",ChanceModifier[attacker]);
 			LastDamageDealtTime[attacker]=GetGameTime();
 		}
+#if (GGAMETYPE == GGAME_TF2)
 		if(attacker!=inflictor)
 		{
 			if(inflictor>0 && IsValidEdict(inflictor))
 			{
-	new String:ent_name[64];
-	GetEdictClassname(inflictor,ent_name,64);
-			//	DP("ent name %s",ent_name);
-#if (GGAMETYPE == GGAME_TF2)
-	if(StrContains(ent_name,"obj_sentrygun",false)==0	&&!CvarEmpty(ChanceModifierSentry))
-	{
-		ChanceModifier[attacker]=GetConVarFloat(ChanceModifierSentry);
-	}
-	else if(StrContains(ent_name,"tf_projectile_sentryrocket",false)==0 &&!CvarEmpty(ChanceModifierSentryRocket))
-	{
-		ChanceModifier[attacker]=GetConVarFloat(ChanceModifierSentryRocket);
-	}
-#endif
+				new String:ent_name[64];
+				GetEdictClassname(inflictor,ent_name,64);
+						//	DP("ent name %s",ent_name);
+				if(StrContains(ent_name,"obj_sentrygun",false)==0	&&!CvarEmpty(ChanceModifierSentry))
+				{
+					ChanceModifier[attacker]=GetConVarFloat(ChanceModifierSentry);
+				}
+				else if(StrContains(ent_name,"tf_projectile_sentryrocket",false)==0 &&!CvarEmpty(ChanceModifierSentryRocket))
+				{
+					ChanceModifier[attacker]=GetConVarFloat(ChanceModifierSentryRocket);
+				}
 			}
 		}
+#endif
 		new bool:old_CanSetDamageMod=g_CanSetDamageMod;
 		new bool:old_CanDealDamage=g_CanDealDamage;
 		g_CanSetDamageMod=true;
@@ -468,7 +472,14 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 		#endif
 	}
 
-	return Plugin_Changed;
+	if (SDK_Forwarded_OnTakeDamage_Changed == true)
+	{
+		return Plugin_Changed;
+	}
+	else
+	{
+		return Plugin_Continue;
+	}
 }
 
 
