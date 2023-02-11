@@ -568,8 +568,11 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 #if GGAMETYPE == GGAME_FOF
 		//float currentmaxspeed=GetEntDataFloat(ClientX,FindSendPropInfo("CFoF_Player","m_flMaxspeed"));
 		float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
-#else
+#elseif GGAMETYPE == GGAME_TF2
 		float currentmaxspeed=GetEntDataFloat(ClientX,FindSendPropInfo("CTFPlayer","m_flMaxspeed"));
+#else
+	// CSS / CSGO
+	float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
 #endif
 		if(SpecTarget==true)
 		{

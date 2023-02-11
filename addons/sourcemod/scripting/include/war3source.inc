@@ -1855,36 +1855,36 @@ stock void RemoveCosmetics(iClient)
 
 
 // Stocks, Natives, and Forwards:
-#include "War3Source/include/War3Source_Aura"
-#include "War3Source/include/War3Source_Effects"
-#include "War3Source/include/War3Source_Wards"
-#include "War3Source/include/War3Source_Logging"
-#include "War3Source/include/War3Source_Damage"
-#include "War3Source/include/War3Source_Notifications"
-#include "War3Source/include/War3Source_Buffs"
+#include "War3Source/include/War3Source_Aura.inc"
+#include "War3Source/include/War3Source_Effects.inc"
+#include "War3Source/include/War3Source_Wards.inc"
+#include "War3Source/include/War3Source_Logging.inc"
+#include "War3Source/include/War3Source_Damage.inc"
+#include "War3Source/include/War3Source_Notifications.inc"
+#include "War3Source/include/War3Source_Buffs.inc"
 // Stocks, Natives, and Forwards:
-#include "War3Source/include/War3Source_stocks_precache"
-#include "War3Source/include/War3Source_stocks_misc"
+#include "War3Source/include/War3Source_stocks_precache.inc"
+#include "War3Source/include/War3Source_stocks_misc.inc"
 
 #if SHOPMENU3 == MODE_ENABLED
-#include "War3Source/include/War3Source_Shopmenu3"
+#include "War3Source/include/War3Source_Shopmenu3.inc"
 #endif
 
-#include "War3Source/include/War3Source_SkillEffects"
-#include "War3Source/include/War3Source_Engine_Download_Control"
-#include "War3Source/include/War3Source_XP_Gold"
-#include "War3Source/include/War3Source_Health"
-#include "War3Source/include/War3Soruce_CoolDown_Manager"
-#include "War3Source/include/War3Source_Messages"
-#include "War3Source/include/War3Source_SQL"
-#include "War3Source/include/War3Source_ShopItems"
-#include "War3Source/include/War3Source_ShopItems2"
+#include "War3Source/include/War3Source_SkillEffects.inc"
+#include "War3Source/include/War3Source_Engine_Download_Control.inc"
+#include "War3Source/include/War3Source_XP_Gold.inc"
+#include "War3Source/include/War3Source_Health.inc"
+#include "War3Source/include/War3Soruce_CoolDown_Manager.inc"
+#include "War3Source/include/War3Source_Messages.inc"
+#include "War3Source/include/War3Source_SQL.inc"
+#include "War3Source/include/War3Source_ShopItems.inc"
+#include "War3Source/include/War3Source_ShopItems2.inc"
 
-#include "War3Source/include/War3Source_Addon_Bank"
+#include "War3Source/include/War3Source_Addon_Bank.inc"
 
 #include "War3Source/include/War3Source_WardChecking"
-#include "War3Source/include/War3Source_WCX_Engine_Teleport"
-#include "War3Source/include/War3Source_Casting"
+#include "War3Source/include/War3Source_WCX_Engine_Teleport.inc"
+#include "War3Source/include/War3Source_Casting.inc"
 
 #include "War3Source/include/War3Source_OnW3SupplyLocker.inc"
 #include "War3Source/include/War3Source_OnW3HealthPickup.inc"
@@ -2019,7 +2019,7 @@ methodmap W3player
 
 	public void teleport(int target=-1, float ScaleVectorDistance=-1.0, float distance=1200.0, int raceid=-1, int skillid=-1)
 	{
-		W3Teleport(this.index,target,ScaleVectorDistance,distance,raceid,skillid);
+		War3_Teleport(this.index,target,ScaleVectorDistance,distance,raceid,skillid);
 	}
 	// Notify Player of the below:
 	public void skillactivated(int skill,bool activated)
@@ -2530,6 +2530,7 @@ public __pl_War3Source_SetNTVOptional()
 	// Skills
 	MarkNativeAsOptional("War3_SuicideBomber");
 	MarkNativeAsOptional("War3_Teleport");
+	MarkNativeAsOptional("War3_TeleportEntity");
 	// Ward stuff
 	MarkNativeAsOptional("War3_CreateWardBehavior");
 	MarkNativeAsOptional("War3_GetWardBehaviorsLoaded");
@@ -2624,7 +2625,6 @@ public __pl_War3Source_SetNTVOptional()
 
 	MarkNativeAsOptional("War3_ToggleCyborgSkin");
 
-	MarkNativeAsOptional("W3Teleport");
 
 	MarkNativeAsOptional("War3_SetCollidable");
 

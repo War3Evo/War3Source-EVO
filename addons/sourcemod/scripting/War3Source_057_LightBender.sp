@@ -441,7 +441,7 @@ stock Disco( client )
 	else
 	{
 		//GetClientAbsOrigin( ClientTarget[client], ClientPos[client] );
-		CreateTimer( 3.0, Teleport, client );
+		CreateTimer( 3.0, myTeleport, client );
 
 		new String:NameAttacker[64];
 		GetClientName( client, NameAttacker, 64 );
@@ -456,7 +456,7 @@ stock Disco( client )
 	}
 }
 
-public Action:Teleport( Handle:timer, any:client )
+public Action:myTeleport( Handle:timer, any:client )
 {
 	if( ValidPlayer( ClientTarget[client], true ) )
 	{
@@ -467,7 +467,7 @@ public Action:Teleport( Handle:timer, any:client )
 		//ClientPos[1] -= 50;
 		// lightbender teleports to his allly
 		//TeleportEntity( client, ClientPos, ang, NULL_VECTOR );
-		W3Teleport(client,ClientTarget[client],-1.0,999999.0,thisRaceID,ULT_DISCO);
+		War3_Teleport(client,ClientTarget[client],-1.0,999999.0,thisRaceID,ULT_DISCO);
 	}
 	else
 	{

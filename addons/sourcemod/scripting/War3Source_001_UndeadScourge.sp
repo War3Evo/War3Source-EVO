@@ -394,7 +394,7 @@ public Action:DoDeathReject(Handle:timer,any:userid)
 		player.respawn();
 		//nsEntity_SetHealth(client, death_reject_health[skilllevel]);
 		//War3_EmitSoundToAll(DeathRejectSound,client);
-		W3TeleportEntity(client, djPos[client], djAngle[client], NULL_VECTOR);
+		War3_TeleportEntity(client, djPos[client], djAngle[client], NULL_VECTOR);
 		player.RESwarn=false;
 		player.setcooldown(Reincarnation[skilllevel],thisRaceID,SKILL_SUICIDE,false,true);
 	}

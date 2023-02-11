@@ -521,8 +521,8 @@ public DistributeSkillPoints(client,race)
 		int max_attempts = isClientFake?2:15;
 		int attempts = 0;
 		int dependencyID=0;
-		while skillpoints > 0 && attempts <= max_attempts do
-		{
+		
+		do {
 			//PrintToChatAll("Applying skill points to bot (Attempt %i)", attempts);
 
 			skill = GetRandomInt(0, GetRaceSkillCount(race));
@@ -599,7 +599,7 @@ public DistributeSkillPoints(client,race)
 							if(!isClientFake) attempts = 0;
 						}
 			}
-		}
+		} while ((skillpoints > 0) && (attempts <= max_attempts));
 	}
 }
 

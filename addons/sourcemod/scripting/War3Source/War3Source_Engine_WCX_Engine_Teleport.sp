@@ -42,8 +42,8 @@ new Handle:g_OnW3Teleported;
 
 public bool:War3Source_Engine_WCX_Engine_Teleport_InitNatives()
 {
-	CreateNative("W3TeleportEntity", Native_W3TeleportEntity);
-	CreateNative("W3Teleport", Native_War3_Teleport);
+	CreateNative("War3_TeleportEntity", Native_W3TeleportEntity);
+	CreateNative("War3_Teleport", Native_War3_Teleport);
 	return true;
 }
 
@@ -114,16 +114,19 @@ public Native_W3TeleportEntity(Handle:plugin, numParams)
 
 public Native_War3_Teleport(Handle:plugin, numParams)
 {
-	new client = GetNativeCell(1);
-	if(ValidPlayer(client))
+	if(numParams >= 6)
 	{
-		PlayerProp[client][tele_target] = GetNativeCell(2);
-		PlayerProp[client][tele_target_ScaleVector_distance] = Float:GetNativeCell(3);
-		PlayerProp[client][tele_distance] = Float:GetNativeCell(4);
-		PlayerProp[client][tele_raceid] = GetNativeCell(5);
-		PlayerProp[client][tele_skillid] = GetNativeCell(6);
+		new client = GetNativeCell(1);
+		if(ValidPlayer(client))
+		{
+			PlayerProp[client][tele_target] = GetNativeCell(2);
+			PlayerProp[client][tele_target_ScaleVector_distance] = Float:GetNativeCell(3);
+			PlayerProp[client][tele_distance] = Float:GetNativeCell(4);
+			PlayerProp[client][tele_raceid] = GetNativeCell(5);
+			PlayerProp[client][tele_skillid] = GetNativeCell(6);
 
-		internal_Teleport(client,PlayerProp[client][tele_target],PlayerProp[client][tele_target_ScaleVector_distance],PlayerProp[client][tele_distance]);
+			internal_Teleport(client,PlayerProp[client][tele_target],PlayerProp[client][tele_target_ScaleVector_distance],PlayerProp[client][tele_distance]);
+		}
 	}
 }
 

@@ -264,7 +264,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 		{
 			if(War3_SkillNotInCooldown(client,thisRaceID,ULT_TELEPORT,true)) //not in the 0.2 second delay when we check stuck via moving
 			{
-				W3Teleport(client,_,_,TeleportDistance[ult_level],thisRaceID,ULT_TELEPORT);
+				War3_Teleport(client,_,_,TeleportDistance[ult_level],thisRaceID,ULT_TELEPORT);
 				/*
 				TPFailCDResetToRace[client]=War3_GetRace(client);
 				TPFailCDResetToSkill[client]=ULT_TELEPORT;

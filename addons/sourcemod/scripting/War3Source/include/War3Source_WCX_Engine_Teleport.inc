@@ -1,5 +1,5 @@
 /**
- * File: WCX_Engine_Teleport.inc
+ * File: War3Source_WCX_Engine_Teleport.inc
  * Author(s): El Diablo
  *
  */
@@ -24,8 +24,10 @@
  *
  * @param return - no return
  *
+ * 
+ * 
  */
-native W3Teleport(client,target=-1,Float:ScaleVectorDistance=-1.0,Float:distance=1200.0,raceid=-1,skillid=-1);
+native void War3_Teleport(int client,int target=-1,float ScaleVectorDistance=-1.0,float distance=1200.0,int raceid=-1,int skillid=-1);
 
 /**
  * Teleports client to target location within given distance
@@ -40,7 +42,7 @@ native W3Teleport(client,target=-1,Float:ScaleVectorDistance=-1.0,Float:distance
  * 
  */
 
-native W3TeleportEntity(int client, const float origin[3], const float angles[3], const float velocity[3]);
+native War3_TeleportEntity(int client, const float origin[3], const float angles[3], const float velocity[3]);
 
 /**
  * Called right before GetAngleVectors Calculations.
@@ -62,7 +64,7 @@ forward Action:OnW3TeleportGetAngleVectorsPre(client, target, Float:angle[3]);
 
 
 /**
- * Called right before W3Teleport triggers its own TeleportEntity.
+ * Called right before War3_Teleport triggers its own TeleportEntity.
  *
  * All checks have been made, as far a distances and stuff in the way.
  * This is the time it will teleport the entity.
@@ -73,7 +75,7 @@ forward Action:OnW3TeleportGetAngleVectorsPre(client, target, Float:angle[3]);
  *
  * If you would like to teleport the entity yourself, then return
  * Plugin_Handled after you teleport the entity
- * otherwise, W3Teleport will use this formula:
+ * otherwise, War3_Teleport will use this formula:
  * TeleportEntity(client,emptypos,NULL_VECTOR,NULL_VECTOR);
  * to teleport the entity.
  *
