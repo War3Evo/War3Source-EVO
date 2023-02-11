@@ -78,7 +78,7 @@ public bool War3Source_InitForwards()
 
 	Return_InitForwards = War3Source_Engine_WCX_Engine_Teleport_InitNativesForwards();
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	Return_InitForwards = War3Source_002_OnW3SupplyLocker_InitNativesForwards();
 #endif
 

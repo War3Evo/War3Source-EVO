@@ -154,7 +154,7 @@ public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int d
 		War3_DamageModPercent(0.0);
 	}
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	//if(ValidPlayer(attacker) && War3_GetRace(attacker) && ValidPlayer(victim) && (W3GetBuffHasTrue(victim,bStunned)||W3GetBuffHasTrue(victim,bBashed)))
 	if(ValidPlayer(attacker) && ValidPlayer(victim) && (War3_GetRace(attacker)==thisRaceID||War3_GetRace(victim)==thisRaceID) && (!War3_SkillNotInCooldown(attacker,thisRaceID,SKILL_STARE,false)||!War3_SkillNotInCooldown(victim,thisRaceID,SKILL_STARE,false)))
 	{

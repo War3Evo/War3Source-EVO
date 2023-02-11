@@ -92,7 +92,7 @@ native W3GetDamageType();
 //get inflictor of the last damage (TakeDmg forward) (ie sentry gun  is a different object than the attacker itself)
 native W3GetDamageInflictor();
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 //=============================================================================
 // Is client Sentry Owner?
 //=============================================================================

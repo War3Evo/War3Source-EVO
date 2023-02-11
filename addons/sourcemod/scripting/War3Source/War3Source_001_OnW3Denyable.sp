@@ -2,7 +2,7 @@
 
 public OnW3Denyable(W3DENY:event,client)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #if CYBORG_SKIN == MODE_ENABLED
 	War3Source_Engine_Cyborg_OnW3Denyable(W3DENY:event,client);
 #endif

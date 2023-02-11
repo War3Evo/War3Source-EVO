@@ -31,14 +31,14 @@ public OnMapStart()
 
 	War3Source_Engine_Casting_OnMapStart();
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 	War3Source_Engine_CSGO_Radar_OnMapStart();
 	War3Source_Engine_BuffSpeedGravGlow_OnMapStart();
 #endif
 
 	War3Source_Engine_CooldownMgr_OnMapStart();
 #if CYBORG_SKIN == MODE_ENABLED
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_Cyborg_OnMapStart();
 #endif
 #endif
@@ -51,7 +51,7 @@ public OnMapStart()
 	War3Source_Engine_Wards_Checking_OnMapStart();
 	War3Source_Engine_XPGold_OnMapStart();
 	War3Source_Engine_WCX_Engine_Skills_OnMapStart();
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_BotControl_OnMapStart();
 #endif
 	//War3Source_Engine_PlayerDeathWeapons_OnMapStart();
@@ -63,7 +63,7 @@ public OnMapStart()
 
 	// No Reason to check interface versions
 	//OneTimeForwards();
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 	// FOF player health change
 	War3Source_000_Engine_Misc_OnMapStart();
 #endif

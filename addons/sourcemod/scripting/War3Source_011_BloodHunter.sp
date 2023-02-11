@@ -156,7 +156,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(ultsnd);
+		War3_AddSound("Blood Hunter",ultsnd);
 	}
 }
 
@@ -168,7 +168,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 
 	if(race==thisRaceID && pressed && IsPlayerAlive(client))
 	{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(!Spying(client))
 		{
 #endif
@@ -212,7 +212,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 			{
 				W3MsgUltNotLeveled(client);
 			}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		}
 		else
 		{
@@ -291,7 +291,7 @@ public Action:RuptureCheckLoop(Handle:h,any:data)
 							//DP("damage %d War3_GetWar3DamageDealt %d",damage,War3_GetWar3DamageDealt());
 							War3_NotifyPlayerTookDamageFromSkill(i, attacker, damage, ULT_RUPTURE);
 						}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						War3_TF_ParticleToClient(0, GetClientTeam(i)==2?"healthlost_red":"healthlost_blu", origin);
 #endif
 					}
@@ -341,7 +341,7 @@ public Action:BloodCrazyDOTLoop(Handle:h,any:data)
 						}*/
 						new Float:pos[3];
 						GetClientAbsOrigin(i,pos);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						War3_TF_ParticleToClient(0, GetClientTeam(i)==2?"healthlost_red":"healthlost_blu", pos);
 #endif
 					}
@@ -366,7 +366,7 @@ public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int d
 		return;
 
 	if(ValidPlayer(victim)&&ValidPlayer(attacker)&&victim!=attacker&&GetClientTeam(victim)!=GetClientTeam(attacker)){ //fixed blood hunter not respecting skill immunity - Dagothur 1/19/2013
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(!W3IsOwnerSentry(attacker) && War3_GetRace(attacker)==thisRaceID&&!Hexed(attacker,false)){
 #else
 		if(War3_GetRace(attacker)==thisRaceID&&!Hexed(attacker,false)){
@@ -482,7 +482,7 @@ public Action:DeleteParticle(Handle:Timer, any:Particle)
 
 
 //
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public OnW3SupplyLocker(client)
 {
 	if(RaceDisabled)

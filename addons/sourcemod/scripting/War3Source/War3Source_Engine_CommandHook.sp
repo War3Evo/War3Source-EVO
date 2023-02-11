@@ -387,7 +387,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			bool allowChooseRace=CanSelectRace(client,x);
 			if(allowChooseRace==true)
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(gh_CVAR_AllowInstantSpawn.BoolValue && War3_IsInSpawn(client))
 				{
 					W3SetPendingRace(client,-1);
@@ -418,7 +418,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	}
 	else if(CommandCheck(arg1,"changejob")||CommandCheck(arg1,"changerace")||CommandCheck(arg1,"!changejob")||CommandCheck(arg1,"!changerace"))
 	{
-#if GGAMETYPE_JAILBREAK == JAILBREAK_ON
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 		SetPlayerProp(client,isDeveloper,true);
 #endif
 		DoFwd_War3_Event(DoShowChangeRaceMenu,client);
@@ -445,7 +445,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(client,"%s",version);
 		}
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 
 			PrintToConsole(client,"#######    #######     #####  ");
 			PrintToConsole(client,"   #       #          #     # ");
@@ -455,7 +455,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			PrintToConsole(client,"   #       #          #       ");
 			PrintToConsole(client,"   #       #          ####### ");
 
-#elseif GGAMETYPE == GGAME_CSS
+#elseif (GGAMETYPE == GGAME_CSS)
 
 			PrintToConsole(client," #####      #####      #####  ");
 			PrintToConsole(client,"#     #    #     #    #     # ");
@@ -465,7 +465,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			PrintToConsole(client,"#     #    #     #    #     # ");
 			PrintToConsole(client," #####      #####      #####  ");
 
-#elseif GGAMETYPE == GGAME_CSGO
+#elseif (GGAMETYPE == GGAME_CSGO)
 
 			PrintToConsole(client," #####      #####      #####     ####### ");
 			PrintToConsole(client,"#     #    #     #    #     #    #     # ");
@@ -475,7 +475,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			PrintToConsole(client,"#     #    #     #    #     #    #     # ");
 			PrintToConsole(client," #####      #####      #####     ####### ");
 
-#elseif GGAMETYPE == GGAME_FOF
+#elseif (GGAMETYPE == GGAME_FOF)
 
 			PrintToConsole(client,"#######    #######    ####### ");
 			PrintToConsole(client,"#          #     #    #       ");
@@ -565,10 +565,10 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				}
 			}
 		}
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 		//float currentmaxspeed=GetEntDataFloat(ClientX,FindSendPropInfo("CFoF_Player","m_flMaxspeed"));
 		float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 		float currentmaxspeed=GetEntDataFloat(ClientX,FindSendPropInfo("CTFPlayer","m_flMaxspeed"));
 #else
 	// CSS / CSGO

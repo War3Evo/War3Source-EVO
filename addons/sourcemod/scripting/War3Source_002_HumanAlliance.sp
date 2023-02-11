@@ -24,9 +24,9 @@ Handle ultCooldownCvar;
 float BashChance[7]={0.0,0.07,0.13,0.19,0.25,0.25,0.25};
 float TeleportDistance[7]={0.0,600.0,700.0,850.0,1000.0,1250.0,1500.0};
 
-//#if GGAMETYPE == GGAME_TF2
+//#if (GGAMETYPE == GGAME_TF2)
 //float InvisibilityAlphaTF[7]={1.0,0.84,0.68,0.56,0.40,0.35,0.30};
-//#elseif GGAMETYPE == GGAME_CSS
+//#elseif (GGAMETYPE == GGAME_CSS)
 //float InvisibilityAlphaTF[7]={1.0,0.90,0.8,0.7,0.6,0.5,0.4};
 //#endif
 
@@ -264,7 +264,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 		{
 			if(War3_SkillNotInCooldown(client,thisRaceID,ULT_TELEPORT,true)) //not in the 0.2 second delay when we check stuck via moving
 			{
-				War3_Teleport(client,_,_,TeleportDistance[ult_level],thisRaceID,ULT_TELEPORT);
+				War3Teleport(client,_,_,TeleportDistance[ult_level],thisRaceID,ULT_TELEPORT);
 				/*
 				TPFailCDResetToRace[client]=War3_GetRace(client);
 				TPFailCDResetToSkill[client]=ULT_TELEPORT;
@@ -290,7 +290,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 	}
 }
 
-public OnW3Teleported(int client,int target,float distance,int raceid,int skillid)
+public OnW3Teleported(client,target,distance,raceid,skillid)
 {
 	if(ValidPlayer(client) && raceid==thisRaceID)
 	{

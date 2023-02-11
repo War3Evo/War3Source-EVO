@@ -99,7 +99,7 @@ stock void War3_AddSoundFolder(char[] sBaseString, int maxlength, char[] sSoundF
 
 stock bool War3_AddCustomSound(char[] csound, bool precache = true, bool preload = true)
 {
-	War3_AddSound(csound);
+	War3_AddSound("War3_AddCustomSound",csound);
 }
 
 stock W3EmitSoundToAll(char[] csample,
@@ -121,7 +121,7 @@ stock W3EmitSoundToAll(char[] csample,
 native ValveGameEnum War3_GetGame();
 
 //some races need to see this even if they aren't tf2 :/ **What a waste of processer time!
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 /**
  * Stock for displaying the healthlost particle in TF2
  */

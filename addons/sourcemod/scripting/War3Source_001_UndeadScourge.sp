@@ -19,7 +19,7 @@ int thisRaceID;
 
 float CritDamageIncrease = 0.25;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 float Reincarnation[5]={0.0,60.0,50.0,40.0,30.0};
 float UnholySpeed[5]={1.0,1.05,1.10,1.15,1.24};
 float VampirePercent[5]={0.0,0.02,0.06,0.08,0.10};
@@ -30,7 +30,7 @@ float VampirePercent[5]={0.0,0.02,0.06,0.08,0.10};
 #endif
 
 bool RESwarn[MAXPLAYERSCUSTOM];
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 Handle ClientInfoMessage;
 #endif
 
@@ -56,7 +56,7 @@ methodmap ThisRacePlayer < W3player
 		public get() { return RESwarn[this.index]; }
 		public set( bool value ) { RESwarn[this.index] =  value; }
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	public void hudmessage( char szMessage[MAX_MESSAGE_LENGTH], any ... )
 	{
 		char szBuffer[MAX_MESSAGE_LENGTH];
@@ -120,7 +120,7 @@ public void OnWar3RaceDisabled(oldrace)
 public OnPluginStart()
 {
 	//LoadTranslations("w3s.race.undead.phrases");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	ClientInfoMessage = CreateHudSynchronizer();
 #endif
 
@@ -340,7 +340,7 @@ public OnWar3EventDeath(victim, attacker)
 
 	int race=W3GetVar(DeathRace);
 	int skill=pVictim.getskilllevel(thisRaceID,SKILL_SUICIDE);
-//#if GGAMETYPE == GGAME_TF2
+//#if (GGAMETYPE == GGAME_TF2)
 	//if(!Spying(victim))
 	//{
 //#endif
@@ -373,7 +373,7 @@ public OnWar3EventDeath(victim, attacker)
 	{
 		pVictim.message("{blue}Your Reincarnation skill is on cooldown.");
 	}
-//#if GGAMETYPE == GGAME_TF2
+//#if (GGAMETYPE == GGAME_TF2)
 	//}
 //#endif
 }
@@ -413,7 +413,7 @@ public Action:ResWarning(Handle:timer,any:userid)
 		player = ThisRacePlayer(client);
 		if(player && player.RESwarn)
 		{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			player.hudmessage("PREPARE TO REVIVE!");
 			//SetHudTextParams(-1.0, -1.0, 0.1, 255, 255, 0, 255);
 			//ShowSyncHudText(client, ClientInfoMessage, "PREPARE TO REVIVE!");

@@ -1,6 +1,6 @@
 #include <switchgamemode>
 
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 	#endinput
 #endif
 

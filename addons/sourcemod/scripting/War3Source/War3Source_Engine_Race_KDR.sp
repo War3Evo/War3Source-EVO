@@ -243,7 +243,7 @@ public War3Source_Engine_Race_KDR_OnPluginStart()
 		//Initialize_SQLTable();
 	//}
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	HookEvent("teamplay_round_start", War3Source_Engine_Race_KDR_HookRoundStart, EventHookMode_Post);
 	HookEvent("teamplay_waiting_begins", War3Source_Engine_Race_KDR_HookRoundStart, EventHookMode_Post);
 	HookEvent("teamplay_round_win", War3Source_Engine_Race_KDR_HookRoundEnd, EventHookMode_Post);
@@ -325,7 +325,7 @@ public War3Source_Engine_Race_KDR_OnWar3EventDeath(victim, attacker, deathrace, 
 	if(!ValidPlayer(attacker)) return;
 
 
-#if GGAMETYPE2 == GGAME_TF2_NORMAL
+#if (GGAMETYPE2 == GGAME_TF2_NORMAL)
 	// BOTS DONT COUNT IN KDR FOR RACES
 	if(IsFakeClient(victim)) return;
 	if(IsFakeClient(attacker)) return;
@@ -368,7 +368,7 @@ public bool:IsClientBot(client)
 
 public War3Source_Engine_Race_KDR_OnPluginEnd()
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	UnhookEvent("teamplay_round_start", War3Source_Engine_Race_KDR_HookRoundStart, EventHookMode_Post);
 	UnhookEvent("teamplay_waiting_begins", War3Source_Engine_Race_KDR_HookRoundStart, EventHookMode_Post);
 	UnhookEvent("teamplay_round_win", War3Source_Engine_Race_KDR_HookRoundEnd, EventHookMode_Post);

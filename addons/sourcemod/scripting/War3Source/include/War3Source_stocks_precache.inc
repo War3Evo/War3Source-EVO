@@ -1,6 +1,6 @@
 // War3Source_stocks_precache.inc
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 #define BEAMSPRITE_SOURCE "materials/sprites/laserbeam.vmt"
 #define HALOSPRITE_SOURCE "materials/sprites/halo.vmt"
 #else

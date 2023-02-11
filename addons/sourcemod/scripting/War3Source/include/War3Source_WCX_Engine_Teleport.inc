@@ -27,7 +27,7 @@
  * 
  * 
  */
-native void War3_Teleport(int client,int target=-1,float ScaleVectorDistance=-1.0,float distance=1200.0,int raceid=-1,int skillid=-1);
+native War3Teleport(client,target=-1,Float:ScaleVectorDistance=-1.0,Float:distance=1200.0,raceid=-1,skillid=-1);
 
 /**
  * Teleports client to target location within given distance
@@ -111,4 +111,4 @@ forward Action:OnW3TeleportLocationChecking(client,Float:playerVec[3]);
  * @param return - no return
  *
  */
-forward OnW3Teleported(int client,int target,float distance,int raceid,int skillid);
+forward OnW3Teleported(client,target,distance,raceid,skillid);

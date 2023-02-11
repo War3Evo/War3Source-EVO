@@ -3,7 +3,7 @@
 #include <war3source>
 #include "War3Source/include/War3Source_Engine_Teleport_To_Teleporter.inc"
 
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 	#endinput
 #endif
 

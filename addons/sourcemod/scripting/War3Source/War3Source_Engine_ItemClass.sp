@@ -13,7 +13,7 @@ new String:itemDescription[MAXITEMS][512];
 new String:itemShortDescription[MAXITEMS][256];
 
 // So that only these classes can see the item and buy it.
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new bool:itemClassShopmenu[MAXITEMS][10];
 #endif
 
@@ -44,7 +44,7 @@ public bool:War3Source_Engine_ItemClass_InitNatives()
 
 	CreateNative("War3_CreateShopItem",NWar3_CreateShopItem);
 	CreateNative("War3_CreateShopItemT",NWar3_CreateShopItemT);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	CreateNative("War3_TFSetItemClasses",NWar3_SetItemClasses);
 	CreateNative("War3_TFIsItemClass",NWar3_IsItemClass);
 #endif
@@ -111,7 +111,7 @@ public NWar3_CreateShopItemT(Handle:plugin,numParams)
 	LoadTranslations(buf);
 	return itemid;
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public NWar3_SetItemClasses(Handle:plugin,numParams)
 {
 	new itemid = GetNativeCell(1);

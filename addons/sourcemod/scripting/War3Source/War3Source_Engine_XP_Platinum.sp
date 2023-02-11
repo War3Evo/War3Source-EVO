@@ -53,7 +53,7 @@ public War3Source_Engine_XP_Platinum_OnPluginStart()
 //{
 	//if(sound_priority==PRIORITY_LOW)
 	//{
-		//War3_AddSound(levelupSound);
+		//War3_AddSound("War3Source_Engine_XP_Platinum",levelupSound);
 	//}
 //}
 
@@ -460,13 +460,13 @@ PlayerLeveledUpGem(client,String:TheItemName[64],String:CatName[32],String:ItemN
 
 		//new level = War3_GetLevel(client, race);
 
-#if GGAMETYPE == GGAME_TF2
-#if GGAMETYPE2 == GGAME_TF2_NORMAL
+#if (GGAMETYPE == GGAME_TF2)
+#if (GGAMETYPE2 == GGAME_TF2_NORMAL)
 		AttachThrowAwayParticle(client, "achieved", NULL_VECTOR, "partyhat", 5.0);
 		AttachThrowAwayParticle(client, "bday_1balloon", NULL_VECTOR, "partyhat", 5.0);
 		AttachThrowAwayParticle(client, "bday_balloon01", NULL_VECTOR, "partyhat", 5.0);
 		AttachThrowAwayParticle(client, "bday_balloon02", NULL_VECTOR, "partyhat", 5.0);
-#elseif GGAMETYPE2 == GGAME_PVM
+#elseif (GGAMETYPE2 == GGAME_PVM)
 		if(!IsFakeClient(client))
 		{
 			AttachThrowAwayParticle(client, "achieved", NULL_VECTOR, "partyhat", 5.0);
@@ -474,7 +474,7 @@ PlayerLeveledUpGem(client,String:TheItemName[64],String:CatName[32],String:ItemN
 			AttachThrowAwayParticle(client, "bday_balloon01", NULL_VECTOR, "partyhat", 5.0);
 			AttachThrowAwayParticle(client, "bday_balloon02", NULL_VECTOR, "partyhat", 5.0);
 		}
-#elseif GGAMETYPE2 == GGAME_MVM
+#elseif (GGAMETYPE2 == GGAME_MVM)
 		if(!IsFakeClient(client))
 		{
 			AttachThrowAwayParticle(client, "achieved", NULL_VECTOR, "partyhat", 5.0);

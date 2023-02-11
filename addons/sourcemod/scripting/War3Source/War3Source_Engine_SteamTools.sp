@@ -1,7 +1,7 @@
 // War3Source_Engine_SteamTools.sp
 
 
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 
 
 

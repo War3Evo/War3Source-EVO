@@ -17,7 +17,7 @@
 
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 enum ITEMENUM{
 	POSTHASTE=0,
 	TRINKET,
@@ -39,7 +39,7 @@ enum ITEMENUM{
 int ItemID[MAXITEMS2];
 
 // Regen Cash
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 bool CASH_REGEN_PLAYERS[MAXPLAYERSCUSTOM]=false;
 int MVM_CURRENT_CASH[MAXPLAYERSCUSTOM]=0;
 Handle cvarAmount;
@@ -72,7 +72,7 @@ public OnPluginStart()
 
 	//CreateTimer(1.0,test,_,TIMER_REPEAT);
 	//W3CreateCvar("w3shop2items","loaded","is the shop2 loaded");
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 	cvarAmount = CreateConVar("sm_cashregen_amount", "20", "Amount of money generated per increment", _, true, 0.0, true, 1000.0);
 	cvarTime = CreateConVar("sm_cashregen_time", "20", "Time between cash regens", _, true, 0.0);
 
@@ -103,7 +103,7 @@ public OnPluginStart()
 #endif
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 /*
 public OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 {
@@ -138,13 +138,13 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		ItemID[LIFETUBE]=War3_CreateShopItem2T("lifetube","+1 HP regeneration",40);
 		ItemID[SNAKE_BRACELET]=War3_CreateShopItem2T("sbracelt","+5% Evasion",10);
 		ItemID[FORTIFIED_BRACER]=War3_CreateShopItem2T("fbracer","+10 max HP",10);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		//ItemID[SCROLL_OF_ESSENCE]=War3_CreateShopItem2("Scroll of Essence","scrollessence","instant respawn","The essence of life flows back into you\nand gives you instant respawn.",60000);
 
 		//ItemID[DIE_LAUGHING]=War3_CreateShopItem2("Die Laughing","dielaughing","force enemy taunt on death","The person whom kills you is forced to taunt.",12000);
 		//ItemID[ITEM_BOOSTER]=War3_CreateShopItem2("Item Enhancer","itembooster","Boost Items from Shopmenu 1.",60);
 		//ItemID[SCROLL_OF_REVIVE]=War3_CreateShopItem2("Scroll of the Phoenix","scrollphoenix","Instant revive from death (like bloodmage revive on you).",300);
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 		ItemID[CASH_REGEN]=War3_CreateShopItem2("My Piggy Bank","mvmcashregen","MVM cash regeneration","Cash regeneration.",60000);
 #endif
 
@@ -152,7 +152,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 	}
 }
 
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 public OnMapStart()
 {
 	//War3_PrecacheSound(MyPiggyBankSound);
@@ -162,7 +162,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_BOTTOM)
 	{
-		War3_AddSound(MyPiggyBankSound);
+		War3_AddSound("MyPiggyBankSound",MyPiggyBankSound);
 	}
 }
 #endif
@@ -187,7 +187,7 @@ public OnItem2Purchase(client,item)
 		War3_SetBuffItem2(client,fHPRegenDeny,ItemID[FORTIFIED_BRACER],true);
 		War3_HealToMaxHP(client,10);
 	}
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 	if(item==ItemID[CASH_REGEN])
 	{
 		CASH_REGEN_PLAYERS[client]=true;
@@ -214,7 +214,7 @@ public OnItem2Lost(client,item){ //deactivate passives , client may have disconn
 		War3_SetBuffItem2(client,iAdditionalMaxHealth,ItemID[FORTIFIED_BRACER],0);
 		War3_SetBuffItem(client,fHPRegenDeny,ItemID[FORTIFIED_BRACER],false);
 	}
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 	if(item==ItemID[CASH_REGEN])
 	{
 		int tempint = War3_GetDiamonds(client)+40;
@@ -243,7 +243,7 @@ public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int d
 		}
 	}
 }
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 					//mvm_bomb_deploy_reset_by_player      OnRoundDeployReset
 public MVM_OnRoundStart(Handle:event, const String:name[], bool:dontBroadcast)
 {

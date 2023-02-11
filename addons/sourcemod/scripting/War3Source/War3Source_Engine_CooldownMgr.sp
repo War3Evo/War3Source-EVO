@@ -63,9 +63,9 @@ public War3Source_Engine_CooldownMgr_OnAddSound(sound_priority)
 	{
 		strcopy(ultimateReadySound,sizeof(ultimateReadySound),"war3source/ult_ready.mp3");
 		strcopy(abilityReadySound,sizeof(abilityReadySound),"war3source/ability_refresh.mp3");
-		War3_AddSound("ui/hint.wav",STOCK_SOUND);
-		War3_AddSound(abilityReadySound);
-		War3_AddSound(ultimateReadySound);
+		War3_AddSound("War3Source_Engine_CooldownMgr","ui/hint.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_CooldownMgr",abilityReadySound);
+		War3_AddSound("War3Source_Engine_CooldownMgr",ultimateReadySound);
 	}
 }
 

@@ -142,11 +142,11 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(ultsnd,STOCK_SOUND);
+		War3_AddSound("Lich",ultsnd,STOCK_SOUND);
 	}
 	if(sound_priority==PRIORITY_TOP)
 	{
-		War3_AddSound(novasnd,STOCK_SOUND);
+		War3_AddSound("Lich",novasnd,STOCK_SOUND);
 	}
 }
 
@@ -298,7 +298,7 @@ public OnWar3EventDeath(victim,attacker)
 				if(skill>0 && !Silenced(i))
 				{
 					new hpadd=DarkRitualAmt[skill];
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					SetEntityHealth(i,GetClientHealth(i)+hpadd);
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 					War3_HealToMaxHP(i,hpadd);

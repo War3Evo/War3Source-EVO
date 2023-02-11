@@ -9,7 +9,7 @@
 
 //#include "W3SIncs/War3Source_Interface"
 
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 	#endinput
 #endif
 

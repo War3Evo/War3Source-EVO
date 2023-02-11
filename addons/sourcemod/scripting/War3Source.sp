@@ -101,11 +101,11 @@
 #include "War3Source/War3Source_Engine_CommandHook.sp"
 #include "War3Source/War3Source_Engine_CooldownMgr.sp"
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 #include "War3Source/War3Source_Engine_CSGO_Radar.sp"
 #endif
 
-#if CYBORG_SKIN == MODE_ENABLED
+#if (CYBORG_SKIN == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_Cyborg.sp"
 #endif
 
@@ -120,35 +120,35 @@
 #include "War3Source/War3Source_Engine_HelpMenu.sp"
 #include "War3Source/War3Source_Engine_ItemClass.sp"
 #include "War3Source/War3Source_Engine_ItemClass2.sp"
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_ItemClass3.sp"
 #endif
 
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_ItemDatabase3.sp"
 #endif
 
 #include "War3Source/War3Source_Engine_ItemOwnership.sp"
 #include "War3Source/War3Source_Engine_ItemOwnership2.sp"
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_ItemOwnership3.sp"
 #endif
 #include "War3Source/War3Source_Engine_MenuChangerace.sp"
 #include "War3Source/War3Source_Engine_MenuItemsinfo.sp"
 #include "War3Source/War3Source_Engine_MenuItemsinfo2.sp"
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_MenuItemsinfo3.sp"
 #endif
 #include "War3Source/War3Source_Engine_MenuRacePlayerinfo.sp"
 #include "War3Source/War3Source_Engine_MenuShopmenu.sp"
 #include "War3Source/War3Source_Engine_MenuShopmenu2.sp"
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_MenuShopmenu3.sp"
 #endif
 #include "War3Source/War3Source_Engine_MenuSpendskills.sp"
 #include "War3Source/War3Source_Engine_MenuWar3Menu.sp"
 
-#if MESSAGE_CONTROL_MODE == MODE_ENABLED
+#if (MESSAGE_CONTROL_MODE == MODE_ENABLED)
 // added 1/27/2022 - csgo can't handle spammy war3source
 // I would rather rip it out of the source code, but maybe useful in
 // the future.
@@ -170,8 +170,6 @@
 #include "War3Source/War3Source_Engine_ShowMOTD.sp"
 #include "War3Source/War3Source_Engine_SkillEffects.sp"
 
-#include "War3Source/War3Source_Engine_Sounds.sp"
-
 // not usable currently under 1.7+ sourcemod (figure out later)
 //#include "War3Source/War3Source_Engine_Statistics.sp"
 //#include "War3Source/War3Source_Engine_StatSockets2.sp"
@@ -184,7 +182,7 @@
 #include "War3Source/War3Source_Engine_Weapon.sp"
 #include "War3Source/War3Source_Engine_XPGold.sp"
 
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/War3Source_Engine_XP_Platinum.sp"
 #endif
 
@@ -194,7 +192,7 @@
 #include "War3Source/War3Source_Engine_WCX_Engine_Skills.sp"
 #include "War3Source/War3Source_Engine_WCX_Engine_Teleport.sp"
 
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 #include "War3Source/War3Source_Engine_SteamTools.sp"
 #endif
 
@@ -204,7 +202,7 @@
 #include "War3Source/War3Source_Engine_Casting.sp"
 
 #include "War3Source/War3Source_002_OnW3HealthPickup.sp"
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #include "War3Source/War3Source_002_OnW3SupplyLocker.sp"
 #endif
 
@@ -249,25 +247,25 @@ public APLRes:AskPluginLoad2(Handle:plugin,bool:late,String:error[],err_max)
 	//DetermineGameMode();
 	char game[64];
 	GetGameFolderName(game, sizeof(game));
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if (strncmp(game, "tf", 2, false) != 0)
 	{
 		strcopy(error, err_max, "War3Source:EVO is currently built for TF2. Look for a compiled version for your game mode.");
 		return APLRes_Failure;
 	}
-#elseif GGAMETYPE == GGAME_CSS
+#elseif (GGAMETYPE == GGAME_CSS)
 	if (strncmp(game, "cstrike", 7, false) != 0)
 	{
 		strcopy(error, err_max, "War3Source:EVO is currently built for CSS. Look for a compiled version for your game mode.");
 		return APLRes_Failure;
 	}
-#elseif GGAMETYPE == GGAME_FOF
+#elseif (GGAMETYPE == GGAME_FOF)
 	if (strncmp(game, "fof", 3, false) != 0)
 	{
 		strcopy(error, err_max, "War3Source:EVO is currently built for FOF. Look for a compiled version for your game mode.");
 		return APLRes_Failure;
 	}
-#elseif GGAMETYPE == GGAME_CSGO
+#elseif (GGAMETYPE == GGAME_CSGO)
 	if (strncmp(game, "csgo", 4, false) != 0)
 	{
 		strcopy(error, err_max, "War3Source:EVO is currently built for CSGO. Look for a compiled version for your game mode.");
@@ -355,7 +353,7 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 	PrintToServer("");
 	PrintToServer("");
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			PrintToServer("#######    #######     #####  ");
 			PrintToServer("   #       #          #     # ");
 			PrintToServer("   #       #                # ");
@@ -364,7 +362,7 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 			PrintToServer("   #       #          #       ");
 			PrintToServer("   #       #          ####### ");
 
-#elseif GGAMETYPE == GGAME_CSS
+#elseif (GGAMETYPE == GGAME_CSS)
 
 			PrintToServer(" #####      #####      #####  ");
 			PrintToServer("#     #    #     #    #     # ");
@@ -374,7 +372,7 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 			PrintToServer("#     #    #     #    #     # ");
 			PrintToServer(" #####      #####      #####  ");
 
-#elseif GGAMETYPE == GGAME_CSGO
+#elseif (GGAMETYPE == GGAME_CSGO)
 
 			PrintToServer(" #####      #####      #####     ####### ");
 			PrintToServer("#     #    #     #    #     #    #     # ");
@@ -384,7 +382,7 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 			PrintToServer("#     #    #     #    #     #    #     # ");
 			PrintToServer(" #####      #####      #####     ####### ");
 
-#elseif GGAMETYPE == GGAME_FOF
+#elseif (GGAMETYPE == GGAME_FOF)
 
 			PrintToServer("#######    #######    ####### ");
 			PrintToServer("#          #     #    #       ");
@@ -534,7 +532,7 @@ LoadRacesAndItems()
 DelayedWar3SourceCfgExecute()
 {
 	PrintToServer("[War3Source:EVO] DelayedWar3SourceCfgExecute()");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(FileExists("cfg/war3source_tf2.cfg"))
 	{
 		ServerCommand("exec war3source_tf2.cfg");
@@ -554,7 +552,7 @@ DelayedWar3SourceCfgExecute()
 			PrintToServer("[War3Source] Could not find war3source.cfg.");
 		}
 	}
-#elseif GGAMETYPE == GGAME_CSGO
+#elseif (GGAMETYPE == GGAME_CSGO)
 	if(FileExists("cfg/war3source_csgo.cfg"))
 	{
 		ServerCommand("exec war3source_csgo.cfg");
@@ -574,7 +572,7 @@ DelayedWar3SourceCfgExecute()
 			PrintToServer("[War3Source] Could not find war3source.cfg.");
 		}
 	}
-#elseif GGAMETYPE == GGAME_FOF
+#elseif (GGAMETYPE == GGAME_FOF)
 	if(FileExists("cfg/war3source_fof.cfg"))
 	{
 		ServerCommand("exec war3source_fof.cfg");
@@ -594,7 +592,7 @@ DelayedWar3SourceCfgExecute()
 			PrintToServer("[War3Source] Could not find war3source.cfg.");
 		}
 	}
-#elseif GGAMETYPE == GGAME_CSS
+#elseif (GGAMETYPE == GGAME_CSS)
 	if(FileExists("cfg/war3source_css.cfg"))
 	{
 		ServerCommand("exec war3source_css.cfg");
@@ -636,10 +634,10 @@ DelayedWar3SourceCfgExecute()
 	}
 #endif
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	//if (IsMvM(true))
 	//{
-#if GGAMETYPE2 == GGAME_MVM
+#if (GGAMETYPE2 == GGAME_MVM)
 		if(FileExists("cfg/war3sourceMVM.cfg"))
 		{
 			ServerCommand("exec war3sourceMVM.cfg");

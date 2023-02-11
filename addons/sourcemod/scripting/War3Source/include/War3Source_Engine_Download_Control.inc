@@ -36,17 +36,18 @@
 /**
  * Adds Sounds to DownloadTable and Cache as needed.
  *
+ * @param SoundName: The name of the sound, could be race name, or anything else
  * @param soundfile: Sound file to cache
  * @param priority: Uses forward priority when called
 
  * @return nothing
  */
-//native void War3_AddSound(char[] soundfile,int stocksound=0,int priority=PRIORITY_TAKE_FORWARD,int RaceID=0);
-native void War3_AddSound(char[] soundfile,int stocksound=0,int priority=PRIORITY_TAKE_FORWARD);
+native void War3_AddSound(char[] SoundName,char[] soundfile,int stocksound=0,int priority=PRIORITY_TAKE_FORWARD);
 
 // WARD EVENTS
 
 forward OnAddSound(sound_priority);
+forward Action:OnAddSoundChange(char cSoundName[64], char cSoundFile[PLATFORM_MAX_PATH]);
 
 // STOCKS
 stock War3_EmitSound(const int[] iclients,

@@ -548,10 +548,10 @@ public Action:EnableThirdperson(client, args)
 {
 	if(!IsPlayerAlive(client))
 		PrintToChat(client, "[SM] Thirdperson view will be enabled when you spawn.");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	SetVariantInt(1);
 	AcceptEntityInput(client, "SetForcedTauntCam");
-#elseif GGAMETYPE == GGAME_CSS
+#elseif (GGAMETYPE == GGAME_CSS)
 	SetEntPropEnt(client, Prop_Send, "m_hObserverTarget", 0);
 	SetEntProp(client, Prop_Send, "m_iObserverMode", 1);
 	SetEntProp(client, Prop_Send, "m_bDrawViewmodel", 0);
@@ -565,10 +565,10 @@ public Action:DisableThirdperson(client, args)
 {
 	if(!IsPlayerAlive(client))
 		PrintToChat(client, "[SM] Thirdperson view disabled!");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	SetVariantInt(0);
 	AcceptEntityInput(client, "SetForcedTauntCam");
-#elseif GGAMETYPE == GGAME_CSS
+#elseif (GGAMETYPE == GGAME_CSS)
 		SetEntPropEnt(client, Prop_Send, "m_hObserverTarget", client);
 		SetEntProp(client, Prop_Send, "m_iObserverMode", 0);
 		SetEntProp(client, Prop_Send, "m_bDrawViewmodel", 1);

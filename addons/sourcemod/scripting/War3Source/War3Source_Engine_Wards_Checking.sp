@@ -354,7 +354,7 @@ public War3Source_Engine_Wards_Checking_OnMapStart()
 	BuildPath(Path_SM, path_corners, sizeof(path_corners), "configs/corners-wards-%s.cfg", mapName);
 	generateSpawnAreas();
 	Command_LoadWardCorners2();
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	decl String:mapname[128];
 	GetCurrentMap(mapname, sizeof(mapname));
 	//DP(mapname);
@@ -582,7 +582,7 @@ CheckWard(client)
 	}
 	return 0;
 }*/
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 bool:CanPlaceWardNearHere(client)
 {
 					if(TF2_GetPlayerClass(client)==TFClass_Engineer||TF2_GetPlayerClass(client)==TFClass_Medic)
@@ -647,7 +647,7 @@ public War3Source_Engine_Wards_Checking_OnW3Denyable(client)
 						War3_ChatMessage(client,"This ward is too close to another ward");
 					}
 				}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(CanPlaceWardNearHere(client))
 				{
 					W3Deny();

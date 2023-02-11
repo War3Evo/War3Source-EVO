@@ -10,7 +10,7 @@ public Plugin:myinfo =
 	description = "Default ward implementations"
 };*/
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new String:jarateSound0[]="vo/halloween_merasmus/sf12_wheel_jarate01.wav";
 new String:jarateSound1[]="vo/halloween_merasmus/sf12_wheel_jarate02.wav";
 new String:jarateSound2[]="vo/halloween_merasmus/sf12_wheel_jarate03.wav";
@@ -35,16 +35,16 @@ public War3Source_Engine_Wards_Wards_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_TOP)
 	{
-#if GGAMETYPE == GGAME_TF2
-		War3_AddSound(jarateSound0,STOCK_SOUND);
-		War3_AddSound(jarateSound1,STOCK_SOUND);
-		War3_AddSound(jarateSound2,STOCK_SOUND);
-		War3_AddSound(jarateSound3,STOCK_SOUND);
-		War3_AddSound(jarateSound4,STOCK_SOUND);
+#if (GGAMETYPE == GGAME_TF2)
+		War3_AddSound("War3Source_Engine_Wards_Wards",jarateSound0,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",jarateSound1,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",jarateSound2,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",jarateSound3,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",jarateSound4,STOCK_SOUND);
 #endif
-		War3_AddSound(wardDamageSound,STOCK_SOUND);
-		War3_AddSound(wardZap1,STOCK_SOUND);
-		War3_AddSound(wardZap2,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",wardDamageSound,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",wardZap1,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Wards_Wards",wardZap2,STOCK_SOUND);
 	}
 }
 
@@ -52,7 +52,7 @@ enum {
 	BEHAVIOR_DAMAGE=0,
 	BEHAVIOR_HEAL,
 	BEHAVIOR_SLOW,
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	BEHAVIOR_JARATE,
 #endif
 	BEHAVIOR_ZAP,
@@ -79,14 +79,14 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		BehaviorIndex[BEHAVIOR_DAMAGE] = War3_CreateWardBehavior("damage", "Damage ward", "Deals damage to targets");
 		BehaviorIndex[BEHAVIOR_HEAL] = War3_CreateWardBehavior("heal", "Healing ward", "Heals targets");
 		BehaviorIndex[BEHAVIOR_SLOW] = War3_CreateWardBehavior("disrupt", "Disruptive ward", "Disrupt players");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		BehaviorIndex[BEHAVIOR_JARATE] = War3_CreateWardBehavior("jarate", "Jarate ward", "Jarate players");
 		BehaviorIndex[BEHAVIOR_SENTRY_IMMUNITY] = War3_CreateWardBehavior("simmune", "Sentry Immunity Ward", "Gives Immunity to Sentry Detection");
 #endif
 		BehaviorIndex[BEHAVIOR_ZAP] = War3_CreateWardBehavior("zap", "Zap ward", "Zap players");
 	}
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public JarateBomber( victim, level, Float:duration )
 {
 	if( level > 0)
@@ -169,7 +169,7 @@ public Action:Slow_Turtled_Disable(Handle:timer, Handle:datapack)
 
 public OnWardPulse(wardindex, behavior, wardtarget)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(behavior != BehaviorIndex[BEHAVIOR_DAMAGE]
 	&& behavior != BehaviorIndex[BEHAVIOR_HEAL]
 	&& behavior != BehaviorIndex[BEHAVIOR_SLOW]
@@ -210,7 +210,7 @@ public OnWardPulse(wardindex, behavior, wardtarget)
 			//beamcolor = team == TEAM_BLUE ? {0, 200, 63, 255} : {255, 89, 246, 255};
 			beamcolor = {255, 89, 246, 255};
 		}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		else if (behavior == BehaviorIndex[BEHAVIOR_SENTRY_IMMUNITY])
 		{
 			beamcolor = {255, 128, 0, 255}; // orange?
@@ -298,7 +298,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 
 			if(DealDamage(victim, damage, owner, _, "weapon_wards"))
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				War3_ShowHealthLostParticle(victim);
 #endif
 				if(LastWardSound[victim]<(GetGameTime()-0.5))
@@ -336,7 +336,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			Tcolor[3]=40;
 			W3FlashScreen(victim,Tcolor);
 			W3FlashScreen(victim,Tcolor);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			War3_ShowHealthGainedParticle(victim);
 			War3_TFHealingEvent(victim, healAmount);
 #endif
@@ -399,7 +399,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			//WritePackCell(pack2, War3_GetRace(owner));
 		}
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	else if (behavior == BehaviorIndex[BEHAVIOR_SENTRY_IMMUNITY])
 	{
 		if(W3HasImmunity(victim, Immunity_Wards))
@@ -521,7 +521,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 
 			if(DealDamage(victim, damage, owner, _, "weapon_wards"))
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				War3_ShowHealthLostParticle(victim);
 #endif
 				if(LastWardSound[victim]<(GetGameTime()-0.2))
@@ -605,7 +605,7 @@ public Action:loadwards(client,args)
 	BehaviorIndex[BEHAVIOR_DAMAGE] = War3_CreateWardBehavior("damage", "Damage ward", "Deals damage to targets");
 	BehaviorIndex[BEHAVIOR_HEAL] = War3_CreateWardBehavior("heal", "Healing ward", "Heals targets");
 	BehaviorIndex[BEHAVIOR_SLOW] = War3_CreateWardBehavior("disrupt", "Disruptive ward", "Disrupt players");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	BehaviorIndex[BEHAVIOR_JARATE] = War3_CreateWardBehavior("jarate", "Jarate ward", "Jarate players");
 #endif
 	BehaviorIndex[BEHAVIOR_ZAP] = War3_CreateWardBehavior("zap", "Zap ward", "Zap players");

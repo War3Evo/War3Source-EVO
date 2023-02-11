@@ -6,7 +6,7 @@
 //used for some special things in interface
 #define WAR3MAIN
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 #define HIDE_RADAR			1<<12
 #define HIDEHUD_CHAT	1<<7	// Hide all communication elements (saytext, voice icon, etc)
 #endif
@@ -15,7 +15,7 @@
 
 //for all war3source or SH plugins, we define MAXPlAYERS as 66
 //just so pigs dont fly when you run a 64 slot server with HLTV
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #define MAXPLAYERSCUSTOM 34   //+2 of real for normal servers, add +X number of HLTV slots
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 #define MAXPLAYERSCUSTOM 66   //+2 of real for normal servers, add +X number of HLTV slots
@@ -930,9 +930,9 @@ enum ItemClassString
 //=============================
 // War3Source_Engine_Bank
 //=============================
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 #define DATABASENAME "bank"
-#elseif GGAMETYPE_JAILBREAK == JAILBREAK_ON
+#elseif (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 #define DATABASENAME "TF2Jail_bank"
 #endif
 

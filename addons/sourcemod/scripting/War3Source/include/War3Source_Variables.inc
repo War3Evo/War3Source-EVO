@@ -23,7 +23,7 @@ int W3VarArr[W3Var];
 
 int dummyreturn; //for your not used return values
 
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 bool bIsInSteamGroup[MAXPLAYERSCUSTOM] = false;
 #endif
 
@@ -91,7 +91,7 @@ Handle hChangeGameDescCvar;
 Handle hUseMetric;
 Handle botsetraces = null;
 
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 Handle gh_CVAR_FOF_Max_Health;
 #endif
 
@@ -125,7 +125,7 @@ Handle g_OnWar3_BANK_PlayerLoadData = INVALID_HANDLE;
 //=============================
 // War3Source_Engine_BuffMaxHP
 //=============================
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 Handle g_buffmaxhp_enable_tf2attributes;
 #endif
 
@@ -250,7 +250,7 @@ Handle Cvartrie;
 Handle Cvararraylist; //cvar
 Handle Cvararraylist2; //cvar definition
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 Handle gh_MaxSpeedLimitConvar;
 float fWar3_MaxSpeedLimit = 1.4;
 #endif
@@ -276,7 +276,7 @@ float speedWeSet[MAXPLAYERSCUSTOM];
 //=============================
 // War3Source_Engine_CSGO_Radar
 //=============================
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 Handle mp_teamcashawards;
 Handle mp_playercashawards;
 bool CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
@@ -290,19 +290,7 @@ bool CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
 //=============================
 // War3Source_000_Engine_Misc
 //=============================
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 int CFoF_Player_m_iHealth;
 #endif
-
-
-//=============================
-// War3Source_Engine_Sounds
-//=============================
-char sound_file_original[PLATFORM_MAX_PATH];
-char sound_file_new[PLATFORM_MAX_PATH];
-
-// never used, but maybe?
-//bool SoundConfigLoaded = false;
-
-new Handle: array_sounds;
 

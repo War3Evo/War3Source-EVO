@@ -47,7 +47,7 @@ public Native_War3_ShakeScreen(Handle:plugin,numParams)
 	new Float:noise=GetNativeCell(4);
 	if(ValidPlayer(client,false))
 	{
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 		new Handle:hBf=StartMessageOne("Shake",client);
 		if(hBf!=INVALID_HANDLE)
 		{
@@ -81,7 +81,7 @@ public Native_War3_SpawnPlayer(Handle:plugin,numParams)
 	if(ValidPlayer(client,false) && (ignore_check!=0 || !IsPlayerAlive(client)))
 	{
 		//War3Respawn(client);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		TF2_RespawnPlayer(client);
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 		CS_RespawnPlayer(client);
@@ -91,7 +91,7 @@ public Native_War3_SpawnPlayer(Handle:plugin,numParams)
 }
 
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public Native_War3_IsUbered(Handle:plugin,numParams)
 {
 	if(MapChanging || War3SourcePause) return false;
@@ -212,7 +212,7 @@ stock TE_ParticleToClient(client,String:Name[],Float:origin[3]=NULL_VECTOR,Float
 }
 #endif
 
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 public void War3Source_000_Engine_Misc_OnMapStart()
 {
 	CFoF_Player_m_iHealth = FindSendPropInfo("CFoF_Player","m_iHealth");
@@ -285,7 +285,7 @@ public Native_War3_HTMHP(Handle:plugin,numParams)
 		{
 			newhp=maxhp;
 		}
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 		CFoF_Player_m_iHealth_Set(client,newhp);
 #else
 		return nsEntity_SetHealth(client,newhp);
@@ -307,7 +307,7 @@ public Native_War3_HTBHP(Handle:plugin,numParams)
 		if (newhp>maxhp){
 			newhp=maxhp;
 		}
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 		CFoF_Player_m_iHealth_Set(client,newhp);
 #else
 		return nsEntity_SetHealth(client,newhp);
@@ -327,7 +327,7 @@ public Native_War3_DecreaseHP(Handle:plugin,numParams)
 	if(newhp<1){
 		newhp=1;
 	}
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 	CFoF_Player_m_iHealth_Set(client,newhp);
 #else
 	nsEntity_SetHealth(client,newhp);

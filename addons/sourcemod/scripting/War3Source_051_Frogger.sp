@@ -14,11 +14,11 @@
 //#include "sdkhooks"
 //#include <sdkhooks>
 //#include "W3SIncs/War3Source_Interface"
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 	#endinput
 #endif
 
-#if GGAMETYPE2 != GGAME_TF2_NORMAL
+#if (GGAMETYPE2 != GGAME_TF2_NORMAL)
 	#endinput
 #endif
 
@@ -26,7 +26,7 @@
 	#endinput
 #endif
 
-#if GGAMETYPE_JAILBREAK != JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK != JAILBREAK_OFF)
 	#endinput
 #endif
 //#assert GGAMEMODE == MODE_WAR3SOURCE
@@ -605,7 +605,7 @@ public OnAddSound(sound_priority)
 	{
 		strcopy(leapsnd,sizeof(leapsnd),"war3source/chronos/timeleap.mp3");
 
-		War3_AddSound(leapsnd);
+		War3_AddSound("Frogger",leapsnd);
 	}
 }
 public void OnAbilityCommand(int client, int ability, bool pressed, bool bypass)

@@ -105,7 +105,7 @@ public Engine_WCX_Engine_Vampire_OnWar3EventPostHurt(victim,attacker,float damag
 {
 		if(!isWarcraft && ValidPlayer(victim) && ValidPlayer(attacker, true) && attacker != victim && GetClientTeam(victim) != GetClientTeam(attacker))
 		{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(!IsOwnerSentry(attacker))
 			{
 #endif
@@ -148,7 +148,7 @@ public Engine_WCX_Engine_Vampire_OnWar3EventPostHurt(victim,attacker,float damag
 								LeechHP(victim, attacker, damage, fVampirePercentage, true);
 						}
 				}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			}
 #endif
 		}
@@ -158,7 +158,7 @@ public Engine_WCX_Engine_Vampire_OnWar3EventPostHurt(victim,attacker,float damag
 /*
 public OnW3TakeDmgBullet(victim, attacker, Float:damage)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(!IsOwnerSentry(attacker))
 		{
 #endif
@@ -207,7 +207,7 @@ public OnW3TakeDmgBullet(victim, attacker, Float:damage)
 						}
 				}
 			}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		}
 #endif
 }

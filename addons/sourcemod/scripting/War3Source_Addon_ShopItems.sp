@@ -27,7 +27,7 @@ enum{
 	ANKH=0,
 	BOOTS,
 	CLAW,
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	CLOAK,
 #endif
 	MASK,
@@ -41,24 +41,24 @@ enum{
 	HELM,
 	SHIELD,
 	GAUNTLET,
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	FIREORB,
 #endif
 	COURAGE,
 	FAITH,
 	ARMBAND,
 	ANTIWARD,
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	UBER50,
 #endif
 	ARMOR_PIERCING,
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	ANTIHACKITEM,
 	MBOOTS,
 	MRING,
 	MHEALTH,
 #endif
-#if GGAMETYPE2 == GGAME_PVM
+#if (GGAMETYPE2 == GGAME_PVM)
 	LEATHER,
 	CHAINMAIL,
 	BANDEDMAIL,
@@ -71,7 +71,7 @@ enum{
 int shopItem[MAXITEMS];//
 bool bDidDie[65]; // did they die before spawning?
 Handle BootsSpeedCvar;
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 #endif
 Handle ClawsAttackCvar;
 Handle MaskDeathCvar;
@@ -89,7 +89,7 @@ int MoneyOffsetCS;
 Handle ShieldRestrictionCvar;
 
 // fireorb
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 float g_fExtinguishNow[MAXPLAYERS];
 const Float:fSecondsTillExtinguish = 3.0;
 #endif
@@ -106,7 +106,7 @@ public Plugin:myinfo =
 public void OnAllPluginsLoaded()
 {
 	W3Hook(W3Hook_OnW3TakeDmgAll, OnW3TakeDmgAll);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	W3Hook(W3Hook_OnW3TakeDmgBullet, OnW3TakeDmgBullet);
 #endif
 	W3Hook(W3Hook_OnWar3Event, OnWar3Event);
@@ -125,7 +125,7 @@ public OnPluginStart()
 	RegenHPTFCvar=CreateConVar("war3_shop_ring_hp","4","How much HP is regenerated.");
 
 	CreateTimer(0.1,PointOneSecondLoop,_,TIMER_REPEAT);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	CreateTimer(1.0,SecondLoop,_,TIMER_REPEAT);
 #endif
 
@@ -137,7 +137,7 @@ public OnPluginStart()
 	LoadTranslations("w3s.item.courage.phrases");
 	LoadTranslations("w3s.item.antiward.phrases");
 	LoadTranslations("w3s.item.uberme.phrases");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	LoadTranslations("w3s.item.fireorb.phrases");
 #endif
 
@@ -151,24 +151,24 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_TOP)
 	{
-		War3_AddSound(helmSound0,STOCK_SOUND);
-		War3_AddSound(helmSound1,STOCK_SOUND);
-		War3_AddSound(helmSound2,STOCK_SOUND);
-		War3_AddSound(helmSound3,STOCK_SOUND);
+		War3_AddSound("shopmenu1",helmSound0,STOCK_SOUND);
+		War3_AddSound("shopmenu1",helmSound1,STOCK_SOUND);
+		War3_AddSound("shopmenu1",helmSound2,STOCK_SOUND);
+		War3_AddSound("shopmenu1",helmSound3,STOCK_SOUND);
 	}
 	if(sound_priority==PRIORITY_LOW)
 	{
 		strcopy(masksnd,sizeof(masksnd),"war3source/mask.mp3");
-		War3_AddSound(masksnd);
+		War3_AddSound("shopmenu1",masksnd);
 	}
 }
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 bool war3ready;
 #endif
 public OnWar3LoadRaceOrItemOrdered(num)
 {
 	if(num==40){
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 		war3ready=true;
 #endif
 		for(new x=0;x<MAXITEMS;x++)
@@ -176,7 +176,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		shopItem[BOOTS]=War3_CreateShopItemT("boot","fun faster",3,2500);
 
 		shopItem[CLAW]=War3_CreateShopItemT("claw","extra dmg to enemy",3,5000);
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 		shopItem[CLOAK]=War3_CreateShopItemT("cloak","partially invisible",2,1000);
 #endif
 
@@ -202,7 +202,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		shopItem[SHIELD]=War3_CreateShopItemT("shield","immunity to skills",3,2000);
 
 		shopItem[GAUNTLET]=War3_CreateShopItem("Gauntlet of Endurance","gauntlet","35 more max hp","Increases max health by 35 HP",5,3000);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		shopItem[FIREORB]=War3_CreateShopItemT("fireorb","chance fire enemy", 10, 4000);
 #endif
 
@@ -214,7 +214,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 
 		shopItem[ANTIWARD]=War3_CreateShopItemT("antiward","immunity to wards",3,3000);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		shopItem[UBER50]=War3_CreateShopItem("+50 Uber","uber50","+50 uber","+50 Uber is added to your current uber",150,3000);
 		War3_TFSetItemClasses(shopItem[UBER50],TFClass_Medic);
 		War3_SetItemProperty(shopItem[UBER50], ITEM_USED_ON_BUY,true);
@@ -223,7 +223,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		shopItem[ARMOR_PIERCING]=War3_CreateShopItem("Physical Armor Piercing","piercing","pierce physical armor",
 		"Upgrades your weapons with ability to penetrate physical armor.\nRequires Oil of Penetration",20,3500);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		shopItem[ANTIHACKITEM]=War3_CreateShopItem("Building Anti-Hack","stophack","stop hacks","When a someone tries to hack your building,\nthis item will be used instead.\n(single use item)",20,3000);
 		War3_TFSetItemClasses(shopItem[ANTIHACKITEM],TFClass_Engineer);
 		War3_SetItemProperty(shopItem[ANTIHACKITEM], ITEM_USED_ON_BUY,false);
@@ -236,7 +236,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		War3_TFSetItemClasses(shopItem[MHEALTH],TFClass_Medic);
 #endif
 
-#if GGAMETYPE2 == GGAME_PVM
+#if (GGAMETYPE2 == GGAME_PVM)
 		// Armor
 		shopItem[LEATHER]=War3_CreateShopItem("Leather Armor +12","leather","+12 phys armor","Increases physical armor by +12",24,3000);
 		shopItem[CHAINMAIL]=War3_CreateShopItem("Chainmail Armor +14","chainmail","+14 phys armor","Increases physical armor by +14",28,3000);
@@ -263,7 +263,7 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		War3_AddItemBuff(shopItem[SHIELD], bImmunitySkills, true);
 		War3_AddItemBuff(shopItem[GAUNTLET], iAdditionalMaxHealth, 35);
 		War3_AddItemBuff(shopItem[ARMBAND], fAttackSpeed, 1.15);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		War3_AddItemBuff(shopItem[ANTIHACKITEM], bImmunityHacks, true);
 #endif
 	}
@@ -274,7 +274,7 @@ public OnWar3PluginReady()
 	ServerCommand("war3 faith_itemcategory \"Defense\"");
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 int HealingTarget[MAXPLAYERSCUSTOM];
 public Action:SecondLoop(Handle:timer,any:data)
 {
@@ -382,12 +382,12 @@ public Action:PointOneSecondLoop(Handle:timer,any:data)
 {
 	if(W3Paused()) return Plugin_Continue;
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	if(war3ready){
 		doCloak();
 	}
 #endif
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	for(int client=1; client <= MaxClients; client++)
 	{
 		if(ValidPlayer(client, true))
@@ -406,7 +406,7 @@ public Action:PointOneSecondLoop(Handle:timer,any:data)
 #endif
 	return Plugin_Continue;
 }
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 public doCloak() //this loop should detec weapon chnage and add a new alpha
 {
 	for(int x=1;x<=MaxClients;x++)
@@ -438,7 +438,7 @@ public OnW3Denyable(W3DENY:event,client)
 		W3Deny();
 		War3_ChatMessage(client, "Cannot wear Necklace and Shield at the same time.");
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if((event == DN_CanBuyItem1) && (W3GetVar(EventArg1) == shopItem[MBOOTS]) && TF2_GetPlayerClass(client) != TFClass_Medic)
 	{
 		W3Deny();
@@ -462,7 +462,7 @@ public OnItemPurchase(client,item)
 	{
 		War3_NotifyPlayerItemActivated(client,shopItem[PLATES],true);
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	else if(item==shopItem[MBOOTS])
 	{
 		War3_NotifyPlayerItemActivated(client,shopItem[MBOOTS],true);
@@ -489,7 +489,7 @@ public OnItemPurchase(client,item)
 	{
 		War3_NotifyPlayerItemActivated(client,shopItem[HELM],true);
 	}
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	else if(item==shopItem[CLOAK])
 	{
 		War3_NotifyPlayerItemActivated(client,shopItem[CLOAK],true);
@@ -527,7 +527,7 @@ public OnItemPurchase(client,item)
 		if(add_xp<0)	add_xp=0;
 
 		bool SteamCheck=false;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(add_xp!=0&&War3_IsInSteamGroup(client))
 		{
 			add_xp=add_xp*2;
@@ -576,7 +576,7 @@ public OnItemPurchase(client,item)
 		}
 		War3_NotifyPlayerItemActivated(client,shopItem[COURAGE],true);
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	else if(item==shopItem[UBER50]&&ValidPlayer(client))
 	{
 		if(TF2_GetPlayerClass(client)==TFClass_Medic)
@@ -596,7 +596,7 @@ public OnItemPurchase(client,item)
 
 //deactivate BUFFS AND PASSIVES
 public OnItemLost(client,item){ //deactivate passives , client may have disconnected
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	if(item==shopItem[CLOAK])
 	{
 		War3_SetBuffItem(client,fInvisibilityItem,shopItem[CLOAK],1.0);
@@ -615,7 +615,7 @@ public OnItemLost(client,item){ //deactivate passives , client may have disconne
 		War3_SetBuffItem(client,fArmorPhysical,shopItem[COURAGE],0.0);
 		War3_NotifyPlayerItemActivated(client,shopItem[COURAGE],false);
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	else if(item==shopItem[FIREORB])
 	{
 		War3_NotifyPlayerItemActivated(client,shopItem[FIREORB],false);
@@ -686,7 +686,7 @@ public OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 	if (ValidPlayer(victim))
 	{
 		bDidDie[victim]=true;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		g_fExtinguishNow[victim] = 0.0; //fireorb
 
 		if(War3_GetOwnsItem(victim, shopItem[FIREORB]))
@@ -710,7 +710,7 @@ public OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 		{
 			War3_SetOwnsItem(victim,shopItem[CLAW],false);
 		}
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 		if(War3_GetOwnsItem(victim,shopItem[CLOAK]))
 		{
 			War3_SetOwnsItem(victim,shopItem[CLOAK],false); // cloak
@@ -780,14 +780,14 @@ public OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 		{
 			War3_SetOwnsItem(victim,shopItem[ARMBAND],false);
 		}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(War3_GetOwnsItem(victim,shopItem[ANTIHACKITEM]))
 		{
 			War3_SetOwnsItem(victim,shopItem[ANTIHACKITEM],false);
 		}
 #endif
 
-#if GGAMETYPE2 == GGAME_PVM
+#if (GGAMETYPE2 == GGAME_PVM)
 		if(War3_GetOwnsItem(victim, shopItem[LEATHER]))
 		{
 			War3_SetOwnsItem(victim, shopItem[LEATHER], false);
@@ -844,7 +844,7 @@ same error above except with shopmenu items
 
 public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(!W3IsOwnerSentry(attacker))
 	{
 #endif
@@ -965,7 +965,7 @@ public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 				}
 			}
 		}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	}
 #endif
 }
@@ -988,7 +988,7 @@ public void OnWar3Event(W3EVENT event,int client)
 	}
 	if(event == CanBuyItem)
 	{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		new item = W3GetVar(EventArg1);
 		//W3SetVar(EventArg2, 1);
 		if(item==shopItem[UBER50] && TF2_GetPlayerClass(client)!=TFClass_Medic)
@@ -1034,7 +1034,7 @@ public Action:SDK_Forwarded_TraceAttack(victim, &attacker, &inflictor, &Float:da
 			War3_EmitSoundToAll(helmSound3,victim);
 		}
 		W3FlashScreen(victim,RGBA_COLOR_WHITE);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		decl Float:pos[3];
 		GetClientEyePosition(victim, pos);
 		pos[2] += 4.0;
@@ -1056,7 +1056,7 @@ public Action:SDK_Forwarded_TraceAttack(victim, &attacker, &inflictor, &Float:da
 			War3_EmitSoundToAll(helmSound3,victim);
 		}
 		W3FlashScreen(victim,RGBA_COLOR_BLACK);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		decl Float:pos[3];
 		GetClientEyePosition(victim, pos);
 		pos[2] += 4.0;
@@ -1077,10 +1077,10 @@ stock SetMoney(player,money)
 	SetEntData(player,MoneyOffsetCS,money);
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if (!W3IsOwnerSentry(attacker))
 	{
 #endif
@@ -1128,7 +1128,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 				}
 			}
 		}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	}
 #endif
 }

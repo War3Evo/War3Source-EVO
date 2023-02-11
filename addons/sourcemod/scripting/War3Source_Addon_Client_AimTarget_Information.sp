@@ -9,7 +9,7 @@
 
 #include <war3source>
 
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 	#endinput
 #endif
 
@@ -135,7 +135,7 @@ public Action:ClientAimTarget(Handle:timer,any:userid)
 			//GetClientTeam(client)!=GetClientTeam(target) ???
 			if(ValidPlayer(target))
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(!Spying(target))
 				{
 #endif
@@ -161,7 +161,7 @@ public Action:ClientAimTarget(Handle:timer,any:userid)
 					//float pDIST = GetPlayerDistance(client,target);
 					int rDist = RoundToFloor(FloatMul(pDIST,0.10));
 					ShowSyncHudText(client, ClientNameInfoMessage, "(%s level %d | DST %d Feet)",racename,War3_GetLevel(target, raceid),rDist);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				}
 #endif
 			}
@@ -237,7 +237,7 @@ public Action:ClientAimTarget(Handle:timer,any:userid)
 	}
 }
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 public void OnAllPluginsLoaded()
 {
 	W3Hook(W3Hook_OnWar3EventSpawn, OnWar3EventSpawn);

@@ -231,11 +231,11 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound(ultsnd);
+		War3_AddSound("Naix - Lifestealer",ultsnd);
 	}
 	if(sound_priority==PRIORITY_BOTTOM)
 	{
-		War3_AddSound(skill1snd);
+		War3_AddSound("Naix - Lifestealer",skill1snd);
 	}
 }
 
@@ -370,7 +370,7 @@ public OnWar3EventDeath(victim,attacker){
 					{
 						War3_TeleportEntity(attacker,location,NULL_VECTOR,NULL_VECTOR);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						if(TF2_GetPlayerClass(attacker)==TFClass_Heavy)
 						{
 							War3_CooldownMGR(attacker,10.0,thisRaceID,SKILL_INFEST,true,true);

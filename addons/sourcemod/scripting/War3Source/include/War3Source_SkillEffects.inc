@@ -47,7 +47,7 @@ native War3_BashEffect(victim, attacker);
  */
 native War3_WardVisualEffect(wardindex, beamcolor[4], ownerteam=0, wardTarget=WARD_TARGET_ENEMYS, bool:outward=false);
 native War3_WardZapVisualEffect(wardindex, beamcolor[4], ownerteam=0, wardTarget=WARD_TARGET_ENEMYS, bool:zap=false, thewardtarget=-1);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 /**
  * Stock for displaying the healthlost particle in TF2
  */

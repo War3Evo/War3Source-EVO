@@ -62,7 +62,7 @@ public War3Source_Engine_PlayerClass_OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_LOW)
 	{
 		strcopy(levelupSound,sizeof(levelupSound),"war3source/levelupcaster.mp3");
-		War3_AddSound(levelupSound);
+		War3_AddSound("War3Source_Engine_PlayerClass",levelupSound);
 	}
 }
 

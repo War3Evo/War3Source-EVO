@@ -25,7 +25,7 @@ public void Load_Hooks()
 	HooksLoaded = true;
 
 	W3Hook(W3Hook_OnW3TakeDmgAllPre, OnW3TakeDmgAllPre);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	W3Hook(W3Hook_OnW3TakeDmgBulletPre, OnW3TakeDmgBulletPre);
 #endif
 	W3Hook(W3Hook_OnW3TakeDmgAll, OnW3TakeDmgAll);
@@ -39,7 +39,7 @@ public void UnLoad_Hooks()
 	HooksLoaded = false;
 
 	W3UnhookAll(W3Hook_OnW3TakeDmgAllPre);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	W3UnhookAll(W3Hook_OnW3TakeDmgBulletPre);
 #endif
 	W3UnhookAll(W3Hook_OnW3TakeDmgAll);
@@ -220,7 +220,7 @@ public Action OnW3TakeDmgAllPre(int victim, int attacker, float damage)
 			decl Float:pos[3];
 			GetClientEyePosition(victim, pos);
 			pos[2] += 4.0;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			War3_TF_ParticleToClient(0, "miss_text", pos); //to the attacker at the enemy pos
 #endif
 
@@ -458,7 +458,7 @@ CleanUP(client){
 	}
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int damagecustom)
 {
 	//if(RaceDisabled)
@@ -488,7 +488,7 @@ public Action:EndTauntkill(Handle:t,any:client)
 }
 
 //
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public OnW3SupplyLocker(client)
 {
 	if(RaceDisabled)

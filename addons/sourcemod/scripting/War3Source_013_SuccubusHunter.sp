@@ -252,7 +252,7 @@ public void OnWar3EventSpawn (int client)
 			dollar *= skulls[client];
 			xp *= skulls[client];
 
-//#if GGAMETYPE == GGAME_CSS
+//#if (GGAMETYPE == GGAME_CSS)
 	//		new old_health=GetClientHealth(client);
 		//	SetEntityHealth(client,old_health+hp);
 //#endif
@@ -664,7 +664,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 				{
 					//assaultskip[client]+=2;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if (TF2_HasTheFlag(client))
 						return Plugin_Continue;
 #endif
@@ -716,7 +716,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 					War3_CooldownMGR(client,assaultcooldown,thisRaceID,SKILL_ASSAULT,_,_);
 					//new color[4] = {255,127,0,255};
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if (!War3_IsCloaked(client))
 					{
 #endif
@@ -746,7 +746,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 								}
 							}
 						}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					}
 #endif
 				}

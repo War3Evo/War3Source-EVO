@@ -4,7 +4,7 @@
 
 // if the extension is unable to load, Buff MaxHP will still run.
 //#undef REQUIRE_PLUGIN
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #tryinclude <tf2attributes>
 #endif
 
@@ -18,7 +18,7 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };*/
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public War3Source_Engine_BuffMaxHP_OnPluginStart()
 {
 	if(!GetConVarBool(g_buffmaxhp_enable_tf2attributes))
@@ -48,7 +48,7 @@ GetMaxHP(client)
 
 setMax(client)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(GetConVarBool(g_buffmaxhp_enable_tf2attributes) && ValidPlayer(client))
 	{
 		//DP("ORIGHP setMax %i",ORIGINALHP[client]);
@@ -112,7 +112,7 @@ setMax(client)
 	// Not TF2
 	if(ValidPlayer(client))
 	{
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 		War3_SetMaxHP_INTERNAL(client,RoundToNearest(GetConVarFloat(gh_CVAR_FOF_Max_Health)));
 #else
 		if(ORIGINALHP[client]>0)
@@ -145,7 +145,7 @@ setMax(client)
 #endif
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new Handle:timers[33];
 public Action:thisSpawn(Handle:h,any:client)
 {
@@ -179,11 +179,11 @@ public War3Source_Engine_BuffMaxHP_OnWar3EventSpawn(client)
 {
 	if(ValidPlayer(client))
 	{
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 
 		War3_SetMaxHP_INTERNAL(client,RoundToNearest(GetConVarFloat(gh_CVAR_FOF_Max_Health)));
 		
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 
 		if(GetConVarBool(g_buffmaxhp_enable_tf2attributes))
 		{
@@ -199,7 +199,7 @@ public War3Source_Engine_BuffMaxHP_OnWar3Event(client)
 		if((internal_W3GetVar(EventArg1)==iAdditionalMaxHealth || internal_W3GetVar(EventArg1)==fMaxHealth)&&ValidPlayer(client,false)){
 				if (GetMaxHP(client) != War3_GetMaxHP(client))
 				{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if(GetConVarBool(g_buffmaxhp_enable_tf2attributes))
 					{
 						setMax(client);
@@ -231,7 +231,7 @@ public War3Source_Engine_BuffMaxHP_OnWar3Event(client)
 }
 
 // NON-TF2 ATTRIBUTES VERSION:
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public OnConfigsExecuted()
 {
 	if(!GetConVarBool(g_buffmaxhp_enable_tf2attributes))
@@ -253,7 +253,7 @@ public War3Source_Engine_BuffMaxHP_OnClientPutInServer(client)
 	}
 }
 // FOF COMPLAINS THAT SDKHook_GetMaxHealth ISN'T USED WITH FOF
-#elseif GGAMETYPE != GGAME_FOF
+#elseif (GGAMETYPE != GGAME_FOF)
 public War3Source_Engine_BuffMaxHP_OnClientPutInServer(client)
 {
 	SDKHook(client, SDKHook_GetMaxHealth, OnGetMaxHealth);
@@ -276,11 +276,11 @@ public War3Source_Engine_BuffMaxHP_OnClientDisconnect(client)
 	ORIGINALHP[client]=0;
 }
 
-#if GGAMETYPE != GGAME_FOF
+#if (GGAMETYPE != GGAME_FOF)
 public Action:OnGetMaxHealth(client, &maxhealth)
 {
 	if(MapChanging || War3SourcePause) return Plugin_Continue;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if (ValidPlayer(client) && !GetConVarBool(g_buffmaxhp_enable_tf2attributes))
 	{
 		if((GetBuffSumInt(client,iAdditionalMaxHealth)>0 || GetBuffStackedFloat(client,fMaxHealth)!=1.0) && !GetBuffHasOneTrue(client,bBuffDenyAll))

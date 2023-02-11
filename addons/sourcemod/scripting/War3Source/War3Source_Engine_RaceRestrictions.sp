@@ -14,12 +14,12 @@ public Plugin:myinfo=
 */
 public War3Source_Engine_RaceRestrictions_OnPluginStart()
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	HookEvent("player_changeclass", ItemRestrictions_PlayerChangeClassEvent, EventHookMode_Post);
 #endif
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public ItemRestrictions_PlayerChangeClassEvent(Handle:event,const String:name[],bool:dontBroadcast)
 {
 	int userid=GetEventInt(event,"userid");
@@ -244,7 +244,7 @@ enum TFClassType
 	TFClass_Spy,
 	TFClass_Engineer
 };*/
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			char classlist[][32]={"unknown","scout","sniper","soldier","demoman","medic","heavy","pyro","spy","engineer"};
 			new class=_:TF2_GetPlayerClass(client);
 			char classstring[32];

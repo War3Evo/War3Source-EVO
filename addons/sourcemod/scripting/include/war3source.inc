@@ -27,15 +27,15 @@
 #include <sdktools>
 #include <sdktools_functions>
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #include <tf2>
 #include <tf2_stocks>
+#include <morecolors>
+#elseif (GGAMETYPE == GGAME_FOF)
 #include <morecolors>
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO) 
 #include <cstrike>
 #include <colors>
-#elseif GGAMETYPE == GGAME_FOF
-#include <morecolors>
 #else
 #include <colors>
 #endif
@@ -87,7 +87,7 @@ native W3GetRaceFaction(race,String:strReturn[],maxsize);
 
 native bool:War3_IsNewPlayer(client);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 native War3_ToggleCyborgSkin(client,bool:toggle);
 #endif
 
@@ -201,7 +201,7 @@ native W3ClearSkillLevels(client, race);
  */
 native War3_RestoreItemsFromDeath(client,bool:payforit=true,bool:csmoney=false);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 // Checks if a player is in steam group
 // returns true if they are in steam group
 native War3_IsInSteamGroup(client);
@@ -336,7 +336,7 @@ native bool:War3_CachedDucking(client);
  */
 //native War3_CachedDeadWeaponName(client,weapon_iterator,String:output_buffer[],output_size);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 /**
  * Is player ubered (TF2)
  * @param client:
@@ -515,7 +515,7 @@ native W3LogNotError(const String:fmt[],any:...);
 native War3_SuicideBomber(client, Float:location[], Float:damage, race_skillid, Float:radius, bool:effect=true);
 
 //disabled due to human race requirements..for now
-//native bool:War3_Teleport(client, Float:distance);
+//native bool:War3Teleport(client, Float:distance);
 
 //native War3_StringMath(String:equation[]);
 
@@ -903,7 +903,7 @@ stock W3PrintHint(int client, const char[] format, any ...)
 
 	//halflife.inc
 	//native void PrintHintText(int client, const char[] format, any ...);
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 	War3_ChatMessage(client, buffer);
 #else
 	PrintHintText(client, buffer);
@@ -911,7 +911,7 @@ stock W3PrintHint(int client, const char[] format, any ...)
 }
 
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 stock void CSGO_RADAR(int client,bool TurnON)
 {
 	if(ValidPlayer(client) && !IsFakeClient(client))
@@ -1126,7 +1126,7 @@ stock Handle:War3_NearEntByName(client,String:ent_name[],Float:distance)
 	}
 	return INVALID_HANDLE;
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 /**
  * Stock, checks if a player is near an engineer building.
  * @param client: Client's index.
@@ -1456,7 +1456,7 @@ stock bool:W3Chance(Float:chancepercent=1.0) {
 stock GetCSMoney(client) {
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	return GetEntProp(client, Prop_Send, "m_iAccount");
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 	return GetEntProp(client, Prop_Send, "m_nCurrency");
 #else
 	return 0;
@@ -1474,7 +1474,7 @@ stock SetCSMoney(client, newamount) {
 		newamount = 32767;
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	SetEntProp(client, Prop_Send, "m_iAccount", newamount);
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 	SetEntProp(client, Prop_Send, "m_nCurrency", newamount);
 #endif
 }
@@ -1544,7 +1544,7 @@ stock GetTeamColor(client,String:retstr[],maxlen)
 	return;
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 stock bool:TF2_HasTheFlag(client)
 {
 	new ent = -1;
@@ -1610,7 +1610,7 @@ stock Float:GetPlayerDistance(client1,client2) {
 	GetClientAbsOrigin(client2,vec2);
 	return GetVectorDistance(vec1,vec2);
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 stock bool:Spying(client)
 {
 	// Can a class really be disguised if not SPY?  or cloaked if not spy??
@@ -1635,7 +1635,7 @@ stock GetApparentTeam(client) {
 native W3IsBuffInvised(client); //returns true if client alpha is <50
 
 //invisible or cloaked?
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 stock IsInvis(client) {
 	return (TF2_IsPlayerInCondition(client, TFCond_Cloaked)
 			|| W3IsBuffInvised(client));
@@ -1713,7 +1713,7 @@ stock Float:AbsoluteTime() {
 	return GetEngineTime();
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 stock bool:IsMvM(bool:forceRecalc = false)
 {
 //	new String:mapname[256];
@@ -1866,7 +1866,7 @@ stock void RemoveCosmetics(iClient)
 #include "War3Source/include/War3Source_stocks_precache.inc"
 #include "War3Source/include/War3Source_stocks_misc.inc"
 
-#if SHOPMENU3 == MODE_ENABLED
+#if (SHOPMENU3 == MODE_ENABLED)
 #include "War3Source/include/War3Source_Shopmenu3.inc"
 #endif
 
@@ -2003,7 +2003,7 @@ methodmap W3player
 	{
 		public get() { return W3GetPlayerProp(this.index,talentsLoaded); }
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	property TFClassType class
 	{
 		public get() {
@@ -2019,7 +2019,7 @@ methodmap W3player
 
 	public void teleport(int target=-1, float ScaleVectorDistance=-1.0, float distance=1200.0, int raceid=-1, int skillid=-1)
 	{
-		War3_Teleport(this.index,target,ScaleVectorDistance,distance,raceid,skillid);
+		War3Teleport(this.index,target,ScaleVectorDistance,distance,raceid,skillid);
 	}
 	// Notify Player of the below:
 	public void skillactivated(int skill,bool activated)
@@ -2199,7 +2199,7 @@ methodmap W3player
 			}
 		}
 	}
-#if defined _War3Source_Talents_included
+#if (defined _War3Source_Talents_included)
 	public int getpoint(TFClassType ClassType, eTree TheTree, eBox TheBox)
 	{
 		return War3_GetTalentBox(this.index, ClassType, TheTree, TheBox);
@@ -2267,14 +2267,14 @@ public SharedPlugin:__pl_War3Source =
 {
 	name = "War3Source",
 	file = "War3Source.smx",
-#if defined REQUIRE_PLUGIN
+#if (defined REQUIRE_PLUGIN)
 	required = 1,
 #else
 	required = 0,
 #endif
 };
 
-#if !defined REQUIRE_PLUGIN
+#if (!defined REQUIRE_PLUGIN)
 public __pl_War3Source_SetNTVOptional()
 {
 	MarkNativeAsOptional("W3GetReqXP");
@@ -2327,7 +2327,7 @@ public __pl_War3Source_SetNTVOptional()
 	// Shopmenu
 	MarkNativeAsOptional("War3_CreateShopItem");
 	MarkNativeAsOptional("War3_CreateShopItemT");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	MarkNativeAsOptional("War3_TFSetItemClasses");
 	MarkNativeAsOptional("War3_TFIsItemClass");
 #endif
@@ -2366,7 +2366,7 @@ public __pl_War3Source_SetNTVOptional()
 	// Shopmenu3
 	MarkNativeAsOptional("W3CreateShopItem3");
 	MarkNativeAsOptional("W3CreateShopItem3T");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	MarkNativeAsOptional("War3_TFSetItem3Classes");
 	MarkNativeAsOptional("War3_TFIsItem3Class");
 #endif
@@ -2394,7 +2394,7 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("War3_ShowXP");
 	MarkNativeAsOptional("W3GetMaxGold");
 	MarkNativeAsOptional("War3_RestoreItemsFromDeath");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	MarkNativeAsOptional("War3_IsInSteamGroup");
 #endif
 	MarkNativeAsOptional("War3_GetOwnsItem");
@@ -2433,7 +2433,7 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("War3_CachedDeadWeaponName");
 	*/
 	MarkNativeAsOptional("War3_DamageModPercent");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	MarkNativeAsOptional("War3_IsUbered");
 	MarkNativeAsOptional("War3_HasFlag");
 	MarkNativeAsOptional("War3_IsCloaked");
@@ -2484,7 +2484,7 @@ public __pl_War3Source_SetNTVOptional()
 	MarkNativeAsOptional("W3GetDamageType");
 	MarkNativeAsOptional("W3GetDamageInflictor");
 	MarkNativeAsOptional("W3ChanceModifier");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	MarkNativeAsOptional("W3IsOwnerSentry");
 #endif
 	MarkNativeAsOptional("W3Hint");
@@ -2529,7 +2529,7 @@ public __pl_War3Source_SetNTVOptional()
 
 	// Skills
 	MarkNativeAsOptional("War3_SuicideBomber");
-	MarkNativeAsOptional("War3_Teleport");
+	MarkNativeAsOptional("War3Teleport");
 	MarkNativeAsOptional("War3_TeleportEntity");
 	// Ward stuff
 	MarkNativeAsOptional("War3_CreateWardBehavior");

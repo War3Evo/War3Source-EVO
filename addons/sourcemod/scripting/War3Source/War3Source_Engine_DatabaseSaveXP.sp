@@ -4,11 +4,11 @@
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 #define XP_GOLD_DATABASENAME "war3source_evo"
 //#define XP_GOLD_DATABASENAME_WAR3SOURCE_RACES "war3sourceraces"
 #define XP_GOLD_DATABASENAME_RACEDATA1 "war3source_evo_racedata1"
-#elseif GGAMETYPE_JAILBREAK == JAILBREAK_ON
+#elseif (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 #define XP_GOLD_DATABASENAME "TF2Jail_war3source_evo"
 //#define XP_GOLD_DATABASENAME_WAR3SOURCE_RACES "TF2Jail_war3source_evo_races"
 #define XP_GOLD_DATABASENAME_RACEDATA1 "TF2Jail_war3source_evo_racedata1"
@@ -373,7 +373,7 @@ War3Source_LoadPlayerData(client) //war3source calls this
 	if(hDB) // no bots and steamid
 	{
 		//new bool:SteamIDExists = GetClientAuthString(client,steamid,sizeof(steamid));
-//#if GGAMETYPE == GGAME_CSGO
+//#if (GGAMETYPE == GGAME_CSGO)
 	//	Convert_CSGO_ID_TO_TF2_SteamID(steamid,sizeof(steamid));
 //#else
 	//	Convert_UniqueID_TO_SteamID(steamid,sizeof(steamid));
@@ -701,9 +701,9 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
 				//while ((W3RaceHasFlag(newrace, "hidden")||W3RaceHasFlag(newrace, "steamgroup"))&&(!StrEqual(requiredflagstr, "0", false)||!StrEqual(requiredflagstr, "", false)))
 				GetRaceShortname(newrace,short_name,sizeof(short_name));
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 				while(StrContains("warden, undead, mage, nightelf, crypt, bh, naix, succubus, chronos, luna, lightbender,",short_name) == -1)//
-#elseif GGAMETYPE_JAILBREAK == JAILBREAK_ON
+#elseif (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 				while(StrContains("crypt, bh, succubus, luna",short_name) == -1)//
 #endif
 				{

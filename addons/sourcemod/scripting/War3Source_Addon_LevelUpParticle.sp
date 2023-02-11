@@ -36,7 +36,7 @@ public OnAllPluginsLoaded()
 }
 public OnMapStart()
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3_PrecacheParticle("achieved");
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	PrecacheModel("effects/combinemuzzle2.vmt");
@@ -57,13 +57,13 @@ public void OnWar3Event(W3EVENT event,int client)
 		new race = War3_GetRace(client);
 
 		new level = War3_GetLevel(client, race);
-#if GGAMETYPE == GGAME_TF2
-#if GGAMETYPE2 == GGAME_TF2_NORMAL
+#if (GGAMETYPE == GGAME_TF2)
+#if (GGAMETYPE2 == GGAME_TF2_NORMAL)
 		AttachThrowAwayParticle(client, "achieved", NULL_VECTOR, "partyhat", 5.0);
 		AttachThrowAwayParticle(client, "bday_1balloon", NULL_VECTOR, "partyhat", 5.0);
 		AttachThrowAwayParticle(client, "bday_balloon01", NULL_VECTOR, "partyhat", 5.0);
 		AttachThrowAwayParticle(client, "bday_balloon02", NULL_VECTOR, "partyhat", 5.0);
-#elseif GGAMETYPE2 == GGAME_PVM
+#elseif (GGAMETYPE2 == GGAME_PVM)
 		if(!IsFakeClient(client))
 		{
 			AttachThrowAwayParticle(client, "achieved", NULL_VECTOR, "partyhat", 5.0);

@@ -153,8 +153,8 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(hammerboltsound);
-		War3_AddSound(ultsnd);
+		War3_AddSound("Hammerstorm",hammerboltsound);
+		War3_AddSound("Hammerstorm",ultsnd);
 	}
 }
 
@@ -162,7 +162,7 @@ public OnAddSound(sound_priority)
 public void OnWar3EventSpawn (int client)
 {
 	bStrengthActivated[client] = false;
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 	W3ResetPlayerColor(client, thisRaceID);
 #endif
 }

@@ -44,7 +44,7 @@ enum W3PlayerProp
 	//iTomeCount,
 	//iAutoBuyMaxGoldItem,
 	iGraphics,
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	TFClassType:CurrentClass
 #endif
 }

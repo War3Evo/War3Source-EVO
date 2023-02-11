@@ -21,7 +21,7 @@ public Action:Event_Inventory(Handle:event, const String:name[], bool:dontBroadc
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
 
 #if CYBORG_SKIN == MODE_ENABLED
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	Cyborg_Event_Inventory(client, name, dontBroadcast);
 #endif
 #endif

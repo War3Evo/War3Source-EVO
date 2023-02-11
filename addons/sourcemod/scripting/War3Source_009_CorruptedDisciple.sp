@@ -178,14 +178,14 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(overload1);
-		War3_AddSound(overloadzap);
-		War3_AddSound(overloadstate);
+		War3_AddSound("Corrupted Disciple",overload1);
+		War3_AddSound("Corrupted Disciple",overloadzap);
+		War3_AddSound("Corrupted Disciple",overloadstate);
 	}
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound(taunt1);
-		War3_AddSound(taunt2);
+		War3_AddSound("Corrupted Disciple",taunt1);
+		War3_AddSound("Corrupted Disciple",taunt2);
 	}
 }
 
@@ -319,7 +319,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 			War3_ChatMessage(client,"{lightgreen}Overload is already active!");
 			return;
 		}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(Spying(client))
 		{
 			War3_ChatMessage(client,"{lightgreen}You can not be spying and use Overload at the same time!");
@@ -379,7 +379,7 @@ public Action:UltimateLoop(Handle:timer,any:userid)
 		{
 			if(ValidPlayer(i,true) && ValidPlayer(attacker,true))
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(Spying(attacker))
 				{
 					besttarget=0;
@@ -591,7 +591,7 @@ public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 						heal=ConduitMaxHeal[War3_GetSkillLevel(ConduitBy[attacker],thisRaceID,SKILL_CONDUIT)];
 					}
 					War3_HealToBuffHP(victim,ConduitSubtractDamage[attacker]);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if(heal>=0){
 						decl Float:pos[3];
 						GetClientEyePosition(victim, pos);
@@ -656,7 +656,7 @@ public OnClientPutInServer(i){
 
 
 //
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public OnW3SupplyLocker(client)
 {
 	if(RaceDisabled)

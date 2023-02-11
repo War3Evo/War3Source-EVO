@@ -72,13 +72,13 @@ public War3Source_Engine_WCX_Engine_Skills_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_TOP)
 	{
-		War3_AddSound("weapons/explode1.wav",STOCK_SOUND);
-		War3_AddSound("ambient/atmosphere/city_skypass1.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_WCX_Engine_Skills","weapons/explode1.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_WCX_Engine_Skills","ambient/atmosphere/city_skypass1.wav",STOCK_SOUND);
 	}
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
 		strcopy(explosionSound1,sizeof(explosionSound1),"war3source/particle_suck1.mp3");
-		War3_AddSound(explosionSound1);
+		War3_AddSound("War3Source_Engine_WCX_Engine_Skills",explosionSound1);
 	}
 }
 

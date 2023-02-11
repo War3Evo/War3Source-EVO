@@ -37,7 +37,7 @@ public bool:War3Source_Engine_BuffSystem_InitNatives()
 	CreateNative("War3_SetBuffItem3",Native_War3_SetBuffItem3);//foritems
 
 	CreateNative("War3_ShowBuffs",Native_War3_ShowBuffs);//foritems
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	CreateNative("War3_ShowSpeedBuff",Native_War3_ShowSpeedBuff);//foritems
 #endif
 
@@ -93,14 +93,14 @@ public Native_War3_ShowBuffs(Handle:plugin,numParams) //buff is from an item
 			ShowInvisBuff(client);
 			ShowRegenBuff(client);
 			ShowVampireBuff(client);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			ShowSpeedBuff(client,true);
 #endif
 		}
 	}
 }
 // This is mainly part of the Cyborg Medic Job, as nothing else currently uses this buff information as a native:
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public Native_War3_ShowSpeedBuff(Handle:plugin,numParams) //buff is from an item
 {
 	if(numParams==1) //client,race,buffindex,value
@@ -338,7 +338,7 @@ public War3Source_Engine_BuffSystem_OnClientPutInServer(client)
 	}
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 int OldSpeedBuffValue2[MAXPLAYERSCUSTOM];
 #endif
 bool TimerSpeedBuff[MAXPLAYERSCUSTOM];
@@ -529,7 +529,7 @@ ShowRegenBuff(client)
 			War3_ChatMessage(client,"You now gain {green}0{default} hit points per second.");
 	}
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 ShowSpeedBuff(client,bool:bypass=false)
 {
 	if(ValidPlayer(client))
@@ -636,7 +636,7 @@ public Action:SpeedBuffTimer(Handle:timer,any:userid)
 	new client=GetClientOfUserId(userid);
 	if(ValidPlayer(client))
 	{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		ShowSpeedBuff(client);
 #endif
 	}

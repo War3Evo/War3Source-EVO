@@ -70,7 +70,7 @@ public dodge_internal_OnW3TakeDmgBulletPre(victim,attacker,Float:damage)
 							Call_PushCell(victim);
 							Call_PushCell(attacker);
 							Call_Finish(dummyresult);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 							decl Float:pos[3];
 							GetClientEyePosition(victim, pos);
 							pos[2] += 4.0;
@@ -121,7 +121,7 @@ public dodge_internal_OnW3TakeDmgBulletPre(victim,attacker,Float:damage)
 							Call_PushCell(victim);
 							Call_PushCell(attacker);
 							Call_Finish(dummyresult);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 							decl Float:pos[3];
 							GetClientEyePosition(victim, pos);
 							pos[2] += 4.0;

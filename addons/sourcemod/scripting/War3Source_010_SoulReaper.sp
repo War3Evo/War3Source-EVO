@@ -152,8 +152,8 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(judgesnd);
-		War3_AddSound(ultsnd);
+		War3_AddSound("Soul Reaper",judgesnd);
+		War3_AddSound("Soul Reaper",ultsnd);
 	}
 }
 

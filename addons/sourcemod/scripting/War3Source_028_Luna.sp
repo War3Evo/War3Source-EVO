@@ -122,7 +122,7 @@ public OnMapStart()
 	//LightModel = PrecacheModel( "models/effects/vol_light.mdl" ); // orginally enabled
 
 	HaloSprite=War3_PrecacheHaloSprite();
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 	CoreSprite = PrecacheModel( "effects/combinemuzzle1.vmt" );
 	if (CoreSprite <= 0 ) LogError("Error PrecacheModel effects/combinemuzzle1.vmt");
 	MoonSprite = PrecacheModel( "particle/particle_glow_01" );
@@ -151,7 +151,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_HIGH)
 	{
-		War3_AddSound(beamsnd);
+		War3_AddSound("Luna Moonfang",beamsnd);
 	}
 }
 
@@ -161,7 +161,7 @@ public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 	if(num==RACE_ID_NUMBER||(reloadrace_id>0&&StrEqual("luna",shortname,false)))
 	{
 
-		thisRaceID=War3_CreateNewRace("Luna Moonfang ","luna",reloadrace_id,"Lucent Beam,Eclipse");
+		thisRaceID=War3_CreateNewRace("Luna Moonfang","luna",reloadrace_id,"Lucent Beam,Eclipse");
 		SKILL_MOONBEAM=War3_AddRaceSkill(thisRaceID,"Lucent Beam","Luna concentrates on the moon`s energy and channels it forcefully to the surface, 3-7/4-8/5-9/6-10 dmg. Autocast. 3s cooldown.",false,4);
 		SKILL_BOUNCE=War3_AddRaceSkill(thisRaceID,"Moon Glaive","Allows Luna to attack extra enemies with each Glaive attack.",false,4);
 		SKILL_AURA=War3_AddRaceSkill(thisRaceID,"Lunar Blessing","Nearby ranged units gain the power of the moon. +1-4 damage",false,4);
@@ -287,7 +287,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 				// So that players' sentry does not proc this skill
 				// Less chance to Proc for based on your class.
 				//
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(!W3IsOwnerSentry(attacker) && skill_level > 0 && SkillAvailable(attacker,thisRaceID,SKILL_MOONBEAM,false))
 #else
 				if(skill_level > 0 && SkillAvailable(attacker,thisRaceID,SKILL_MOONBEAM,false))
@@ -490,7 +490,7 @@ public Action:Timer_EclipseLoop( Handle:timer, any:attacker )
 		GetClientAbsOrigin(attacker,AttackerPos);
 		decl Float:TargetPos[3];
 		for (new i = 1; i <= MaxClients; i++) {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(ValidPlayer(i,true)&& teamattacker != GetClientTeam(i) && teamattacker!=GetApparentTeam(i) && !Spying(i))
 #else
 			if(ValidPlayer(i,true)&& teamattacker != GetClientTeam(i))

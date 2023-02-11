@@ -30,6 +30,10 @@ public War3Source_Engine_MenuSpendskills_OnWar3Event(client)
 //TODO: add translation support
 stock bool:HasDependency(client,race,skill,String:buffer[],maxlen,bool:is_ult)
 {
+	if(race<=0)
+	{
+		return false;
+	}
 	//Check if our skill has a dependency
 	new dependencyID = War3_GetDependency(race, skill, SkillDependency:ID);
 	if( dependencyID != INVALID_DEPENDENCY ) {

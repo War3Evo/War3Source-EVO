@@ -7,7 +7,7 @@ War3Source_InitCVars()
 	gh_CVAR_DisableAllText = CreateConVar("war3DisableMostMessages", "0", "0 disabled / 1 enabled\nDisables all War3Source based text.");
 #endif
 
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 	gh_CVAR_FOF_Max_Health = CreateConVar("war3_fof_max_health", "100", "the game wants 100-166, but I'm sure it can be anything.");
 #endif
 
@@ -19,7 +19,7 @@ War3Source_InitCVars()
 
 	gh_AllowDeveloperPowers = CreateConVar("war3_allow_developer_powers", "0", "0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc.");
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	gh_MaxSpeedLimitConvar = CreateConVar("war3_maxspeed_limit", "9999.0", "9999.0 to disable speed limit. Must be a float.\nControls the overall speed limit of Warcraft, and allows TF2 speed bonuses to exceed it.");
 
 	HookConVarChange(gh_MaxSpeedLimitConvar, War3ConVarChanged);
@@ -50,7 +50,7 @@ War3Source_InitCVars()
 //=============================
 // War3Source_Engine_BuffMaxHP
 //=============================
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	g_buffmaxhp_enable_tf2attributes = CreateConVar("tf2_attributes", "0", "1 = enabled, 0 is default.");
 #endif
 
@@ -77,7 +77,7 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 			War3_ChatMessage(0,"{yellow}War3Source:EVO has now resumed.");
 		}
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	else if(cvar == gh_MaxSpeedLimitConvar)
 	{
 		fWar3_MaxSpeedLimit = StringToFloat(newVal);

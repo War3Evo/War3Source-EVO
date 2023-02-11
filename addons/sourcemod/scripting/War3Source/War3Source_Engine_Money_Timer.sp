@@ -9,7 +9,7 @@
 
 //#pragma semicolon 1
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new Handle:HudGoldDiamondMessage;
 #endif
 
@@ -28,13 +28,13 @@ public Plugin:myinfo =
 */
 public War3Source_Engine_Money_Timer_OnPluginStart()
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	HudGoldDiamondMessage = CreateHudSynchronizer();
 #endif
 
 	CreateTimer(30.0,Timer_UpdateInfo);
 	CreateTimer(60.0,Timer_Diamonds);
-#if GGAMETYPE_JAILBREAK == JAILBREAK_ON
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 	CreateTimer(60.0,Timer_Gold);
 #endif
 }
@@ -163,7 +163,7 @@ public Action:Timer_UpdateInfo(Handle:timer)
 						oldVals[i][2]=platinum;
 						Format(buffer,sizeof(buffer)," Platinum: %i%s (Type !war3menu)",platinum,platinumChange);
 					}
-	#if GGAMETYPE == GGAME_TF2
+	#if (GGAMETYPE == GGAME_TF2)
 					if(TF2_GetPlayerClass(i)!=TFClass_Engineer)
 					{
 						if(RotateNum[i]==0) {
@@ -201,7 +201,7 @@ public Action:Timer_UpdateInfo(Handle:timer)
 
 					Format(buffer,sizeof(buffer)," G %i%s | D %i%s | P %i%s ",gold,goldChange,diamonds,diamondsChange,platinum,platinumChange);
 
-	#if GGAMETYPE == GGAME_TF2
+	#if (GGAMETYPE == GGAME_TF2)
 					if(TF2_GetPlayerClass(i)!=TFClass_Engineer)
 					{
 						SetHudTextParams(0.02, 0.08, 1.02, 255, 255, 0, 255);
@@ -221,7 +221,7 @@ public Action:Timer_UpdateInfo(Handle:timer)
 				{
 
 					Format(buffer,sizeof(buffer)," G %i%s | D %i%s | P %i%s ",gold,goldChange,diamonds,diamondsChange,platinum,platinumChange);
-	#if GGAMETYPE == GGAME_TF2
+	#if (GGAMETYPE == GGAME_TF2)
 					if(TF2_GetPlayerClass(i)!=TFClass_Engineer)
 					{
 						SetHudTextParams(0.02, 0.04, 1.02, 255, 255, 0, 255);
@@ -261,7 +261,7 @@ public Action:Timer_Diamonds(Handle:timer, any:userid)
 	CreateTimer(60.0,Timer_Diamonds);
 }
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_ON
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 public Action:Timer_Gold(Handle:timer, any:userid)
 {
 	if(!MapChanging && !War3SourcePause)

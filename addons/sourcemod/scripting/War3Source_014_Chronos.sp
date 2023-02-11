@@ -88,7 +88,7 @@ public void Load_Hooks()
 	//PrintToChatAll("HooksLoaded = true");
 
 	W3Hook(W3Hook_OnW3TakeDmgAllPre, OnW3TakeDmgAllPre);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	W3Hook(W3Hook_OnW3TakeDmgBulletPre, OnW3TakeDmgBulletPre);
 #endif
 	W3Hook(W3Hook_OnW3TakeDmgBullet, OnW3TakeDmgBullet);
@@ -102,7 +102,7 @@ public void UnLoad_Hooks()
 	//PrintToChatAll("HooksLoaded = false");
 
 	W3UnhookAll(W3Hook_OnW3TakeDmgAllPre);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	W3UnhookAll(W3Hook_OnW3TakeDmgBulletPre);
 #endif
 	W3UnhookAll(W3Hook_OnW3TakeDmgBullet);
@@ -208,8 +208,8 @@ public OnAddSound(sound_priority)
 		strcopy(leapsnd,sizeof(leapsnd),"war3source/chronos/timeleap.mp3");
 		strcopy(spheresnd,sizeof(spheresnd),"war3source/chronos/sphere.mp3");
 
-		War3_AddSound(leapsnd);
-		War3_AddSound(spheresnd);
+		War3_AddSound("Chronos",leapsnd);
+		War3_AddSound("Chronos",spheresnd);
 	}
 }
 
@@ -307,7 +307,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 				{
 					//assaultskip[client]+=2;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if (TF2_HasTheFlag(client))
 						return Plugin_Continue;
 #endif
@@ -597,7 +597,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 	//PrintToChatAll("Damage: %i",dmgamount);
 	//PrintToChatAll("Post Damage Triggered!");
 	//PrintToChatAll("Post Damage Triggered!");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(ValidPlayer(victim,true)&&ValidPlayer(attacker,true) && !W3IsOwnerSentry(attacker))
 #else
 	if(ValidPlayer(victim,true)&&ValidPlayer(attacker,true))
@@ -611,7 +611,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 		{
 			if(!W3HasImmunity(attacker,Immunity_Skills))
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(TF2_IsPlayerInCondition(victim,TFCond_DeadRingered))
 				{
 					new Float:mathx=float(dmgamount)*0.10;
@@ -833,7 +833,7 @@ public Action:RemoveAllTeleport(Handle:timer, any:client)
 }
 
 */
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int damagecustom)
 {
 	//if(RaceDisabled)

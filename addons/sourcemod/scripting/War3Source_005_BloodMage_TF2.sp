@@ -35,7 +35,7 @@ int thisRaceID;
 
 int SKILL_REVIVE, SKILL_BANISH, SKILL_MONEYSTEAL,ULT_FLAMESTRIKE;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 Handle ClientReviveMessage;
 #endif
 
@@ -139,7 +139,7 @@ public OnPluginStart()
 	HookEvent("player_team",PlayerTeamEvent);
 
 	//LoadTranslations("w3s.race.mage.phrases");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	ClientReviveMessage = CreateHudSynchronizer();
 
 
@@ -163,7 +163,7 @@ public Action ResWarning(Handle timer,any userid)
 	{
 		if(RESwarn[client] && ValidPlayer(client))
 		{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			SetHudTextParams(-1.0, -1.0, 0.1, 255, 255, 0, 255);
 			ShowSyncHudText(client, ClientReviveMessage, "PREPARE FOR CHANCE TO REVIVE!");
 #else
@@ -221,7 +221,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound(reviveSound);
+		War3_AddSound("Blood Mage",reviveSound);
 	}
 }
 
@@ -430,7 +430,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 
 	if(IS_PLAYER(victim)&&IS_PLAYER(attacker)&&attacker!=victim&&GetClientTeam(attacker)!=GetClientTeam(victim))
 	{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(!W3IsOwnerSentry(attacker))
 		{
 #endif
@@ -510,7 +510,7 @@ public Action OnW3TakeDmgBullet(int victim, int attacker, float damage)
 					}
 				}
 			}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		}
 #endif
 	}
@@ -854,7 +854,7 @@ public bool:CanHitThis(entityhit, mask, any:data)
 
 
 //
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public OnW3SupplyLocker(client)
 {
 	if(RaceDisabled)

@@ -164,7 +164,7 @@ public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 {
 	if(RaceDisabled)
 		return;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(!W3IsOwnerSentry(attacker))
 	{
 #endif
@@ -375,7 +375,7 @@ public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 				}*/
 			}
 		}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	}
 #endif
 }
@@ -467,7 +467,7 @@ public Action:myTeleport( Handle:timer, any:client )
 		//ClientPos[1] -= 50;
 		// lightbender teleports to his allly
 		//TeleportEntity( client, ClientPos, ang, NULL_VECTOR );
-		War3_Teleport(client,ClientTarget[client],-1.0,999999.0,thisRaceID,ULT_DISCO);
+		War3Teleport(client,ClientTarget[client],-1.0,999999.0,thisRaceID,ULT_DISCO);
 	}
 	else
 	{

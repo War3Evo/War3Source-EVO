@@ -46,7 +46,7 @@ enum ItemClassString
 	engineer = TFClass_Engineer
 }
 */
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 native War3_TFSetItem3Classes(itemid,any:...);
 // If TFClassType is set for TFClass_Unknown, then all classes have access to this item.
 // use  War3_TFIsItemClass(itemid,TF2_GetPlayerClass(client));

@@ -106,7 +106,7 @@ public Action:quickerspawn(Handle:timer, any:client)
 	if(ValidPlayer(client) && !IsPlayerAlive(client) && IsNewPlayer[client])
 	{
 		War3_ChatMessage(client, "{green}[New Player Fast Respawn]{lightgreen}Because your new on our servers, you get a slightly faster respawn.");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		TF2_RespawnPlayer(client);
 #else
 		War3_SpawnPlayer(client);
@@ -121,7 +121,7 @@ public War3Source_Engine_NewPlayers_OnW3TakeDmgAllPre(victim,attacker,Float:dama
 	{
 		//if(GetRandomFloat(0.0,1.0)<NewPlayerDamage2ModChance)
 		//{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if (TF2_GetPlayerClass(attacker) != TFClass_Sniper)
 		{
 			DamageModPercent(NewPlayerDamageMod);

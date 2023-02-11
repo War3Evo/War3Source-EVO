@@ -89,7 +89,7 @@ Cool things learned this race:
 **That max health in tf2 is stupid.
 */
 float RoarRadius=400.0;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new Float:RoarDuration[5]={0.0,0.2,0.4,0.6,0.7};
 #endif
 new Float:RoarCooldownTime=25.0;
@@ -135,7 +135,7 @@ public OnPluginEnd()
 		War3_RaceOnPluginEnd("dragonborn_o");
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 //#define TRAILSMOKE "explosion_trailSmoke"
 #define BURNINGPLAYER "burningplayer_flyingbits"
 #define WATER_BULLET "water_bulletsplash01"
@@ -144,7 +144,7 @@ public OnPluginEnd()
 //#define YIKES_TEXT "yikes_text"
 #define NEMESIS_RED "particle_nemesis_burst_red"
 #define NEMESIS_BLUE "particle_nemesis_burst_blue"
-#elseif GGAMETYPE == GGAME_CSGO
+#elseif (GGAMETYPE == GGAME_CSGO)
 //#define TRAILSMOKE "explosion_trailSmoke"
 #define BURNINGPLAYER "office_fire"
 #define WATER_BULLET "water_splash_02_vertical"
@@ -184,9 +184,9 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(roarsound);
-		War3_AddSound(ultsndblue);
-		War3_AddSound(ultsndred);
+		War3_AddSound("Dragonborn",roarsound);
+		War3_AddSound("Dragonborn",ultsndblue);
+		War3_AddSound("Dragonborn",ultsndred);
 	}
 }
 
@@ -212,7 +212,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 					War3_EmitSoundToAll(ultsndblue,client);
 					War3_EmitSoundToAll(ultsndblue,target); //play sound to target ... - Dagothur 1/16/2013
 					GetClientAbsOrigin(target,victimvec);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					TF2_AddCondition(target, TFCond_Jarated, 5.0);
 #else
 					DP("ULTIMATE DRAGONBREATH skill is not currently working correctly for CSGO yet.");
@@ -243,7 +243,7 @@ public Action:HalfSecondTimer(Handle:timer,any:clientz) //footsy flame/water eff
 	{
 		if(ValidPlayer(client, true))
 		{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(War3_GetRace(client) == thisRaceID&&!IsInvis(client))
 #else
 			if(War3_GetRace(client) == thisRaceID)
@@ -252,7 +252,7 @@ public Action:HalfSecondTimer(Handle:timer,any:clientz) //footsy flame/water eff
 				GetClientAbsOrigin(client,dragvec);
 				//dragvec[2]+=35.0;  Crotch Level lololol Firecrotch
 				dragvec[2]+=15;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				AttachThrowAwayParticle(client, GetApparentTeam(client) == TEAM_BLUE?WATER_BULLET:BURNINGPLAYER, dragvec, "", 1.5);
 #endif
 			}
@@ -304,7 +304,7 @@ public void OnAbilityCommand(int client, int ability, bool pressed, bool bypass)
 									War3_EmitSoundToAll(roarsound,client);
 									War3_EmitSoundToAll(roarsound,i); //fixed playing the roar sound to the affected player; this used to play it to the client, which as you can see above, resulted in it being played twice - Dagothur 1/16/2013
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 									TF2_StunPlayer(i, RoarDuration[skilllvl], _, TF_STUNFLAGS_GHOSTSCARE,client);
 #else
 									DP("SKILL_ROAR is not currently working for CSGO yet.");

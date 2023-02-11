@@ -28,7 +28,7 @@ new XPShortTermKillXP[MAXLEVELXPDEFINED+1];
 // not game specific
 new Handle:RoundWinXPCvar;
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 new Handle:BotIgnoreXPCvar;
 new Handle:HeadshotXPCvar;
 new Handle:MeleeXPCvar;
@@ -50,7 +50,7 @@ public War3Source_Engine_XPGold_OnPluginStart()
 {
 	//CreateConVar("XPGold",PLUGIN_VERSION,"[War3Source:EVO] XP Gold system",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	BotIgnoreXPCvar=CreateConVar("war3_ignore_bots_xp","0","Set to 1 to not award XP for killing bots");
 	HeadshotXPCvar=CreateConVar("war3_percent_headshotxp","20","Percent of kill XP awarded additionally for headshots");
 	MeleeXPCvar=CreateConVar("war3_percent_meleexp","120","Percent of kill XP awarded additionally for melee/knife kills");
@@ -66,7 +66,7 @@ public War3Source_Engine_XPGold_OnPluginStart()
 	AssistGoldCvar=CreateConVar("war3_assistgold","1");
 
 	ParseXPSettingsFile();
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(!HookEventEx("teamplay_round_win",War3Source_Engine_XPGold_War3Source_RoundOverEvent)) //usual win xp
 	{
 		PrintToServer("[War3Source:EVO] Could not hook the teamplay_round_win event.");
@@ -113,10 +113,10 @@ public War3Source_Engine_XPGold_OnAddSound(sound_priority)
 		strcopy(meleeKiller,sizeof(meleeKiller),"war3source/gotchaknife.mp3");
 		strcopy(meleeKilled,sizeof(meleeKilled),"war3source/gotchaknife.mp3");
 		strcopy(headshotKiller,sizeof(headshotKiller),"war3source/bheadshot.mp3");
-		War3_AddSound(meleeKiller);
-		War3_AddSound(meleeKilled);
-		War3_AddSound(headshotKiller);
-		//War3_AddSound(levelupSound);
+		War3_AddSound("War3Source_Engine_XPGold",meleeKiller);
+		War3_AddSound("War3Source_Engine_XPGold",meleeKilled);
+		War3_AddSound("War3Source_Engine_XPGold",headshotKiller);
+		//War3_AddSound("War3Source_Engine_XPGold",levelupSound);
 	}
 }
 
@@ -201,7 +201,7 @@ public NW3GiveXPGold(Handle:plugin,args){
 
 public NW3GiveFakeXPGold(Handle:plugin,args){
 	new clientIndex=GetNativeCell(1);
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	new victimIndex=GetNativeCell(2);
 	new assisterIndex=GetNativeCell(3);
 #endif
@@ -210,20 +210,20 @@ public NW3GiveFakeXPGold(Handle:plugin,args){
 	new gold=GetNativeCell(6);
 	new String:strreason[64];
 	GetNativeString(7,strreason,sizeof(strreason));
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	new bool:extra1=bool:GetNativeCell(8); // is_hs
 	new bool:extra2=bool:GetNativeCell(9); // is_melee
 #endif
 	if(awardby==XPAwardByFakeKill && gold==0 && xp==0)
 	{
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 		GiveKillXPCreds(clientIndex,victimIndex,extra1,extra2, true);
 #endif
 		return;
 	}
 	if(awardby==XPAwardByFakeAssist && gold==0 && xp==0)
 	{
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 		GiveAssistKillXP(assisterIndex, true);
 #endif
 		return;
@@ -243,7 +243,7 @@ ParseXPSettingsFile(){
 	new Handle:keyValue=CreateKeyValues("War3SourceSettings");
 
 	decl String:path[1024];
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if (!IsMvM(true))
 		BuildPath(Path_SM,path,sizeof(path),"configs/war3source.ini");
 	else
@@ -488,7 +488,7 @@ public ShowXP(client)
 		War3_ChatMessage(client,"%T","{racename} - Level {amount} - {amount} XP",client,racename,level,GetXP(client,race));
 }
 //main plugin forwards this, does not forward on spy dead ringer, blocks double forward within same frame of same victim
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 public War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker)
 {
 	Handle event=internal_W3GetVar(SmEvent);
@@ -654,7 +654,7 @@ TryToGiveXPGold(client,W3XPAwardedBy:awardedfromevent,xp,gold,String:awardedprin
 
 
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 GiveKillXPCreds(client,playerkilled,bool:headshot,bool:melee,bool:IsFake)
 {
 	//PrintToChatAll("1");

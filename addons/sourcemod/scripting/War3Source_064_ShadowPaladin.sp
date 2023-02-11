@@ -228,7 +228,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound(ultimateSound,_,thisRaceID);
+		War3_AddSound("Shadow Paladin",ultimateSound,_,thisRaceID);
 	}
 }
 
@@ -365,7 +365,7 @@ public Action OnW3TakeDmgAllPre(int victim, int attacker, float damage)
 			{
 				if(!W3HasImmunity(attacker,Immunity_Ultimates))
 				{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					decl Float:pos[3];
 					GetClientEyePosition(victim, pos);
 					pos[2] += 4.0;

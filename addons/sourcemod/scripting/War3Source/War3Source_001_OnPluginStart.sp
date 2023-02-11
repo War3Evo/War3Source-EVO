@@ -20,9 +20,6 @@ public OnPluginStart()
 	LoadRacesAndItemsOnMapStart=GetConVarBool(hCvarLoadRacesAndItemsOnMapStart);
 	HookConVarChange(hCvarLoadRacesAndItemsOnMapStart, hCvarLoadRacesAndItemsOnMapStartChanged);
 
-	// important ..must stay on top
-	War3Source_Engine_Sounds_OnPluginStart();
-
 	// DeciSecondLoop Timer
 	War3Source_Engine_DeciSecondLoop_Timer_OnPluginStart();
 
@@ -30,13 +27,13 @@ public OnPluginStart()
 	War3Source_Engine_Aura_OnPluginStart();
 	War3Source_Engine_Bank_OnPluginStart();
 	War3Source_Engine_BuffHelper_OnPluginStart();
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_BuffMaxHP_OnPluginStart();
 #endif
 	War3Source_Engine_BuffSystem_OnPluginStart();
 	War3Source_Engine_CommandHook_OnPluginStart();
 #if CYBORG_SKIN == MODE_ENABLED
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_Cyborg_OnPluginStart();
 #endif
 #endif
@@ -65,7 +62,7 @@ public OnPluginStart()
 #endif
 	War3Source_Engine_MenuSpendskills_OnPluginStart();
 	War3Source_Engine_Money_Timer_OnPluginStart();
-//#if GGAMETYPE_JAILBREAK != JAILBREAK_OFF
+//#if (GGAMETYPE_JAILBREAK != JAILBREAK_OFF)
 	War3Source_Engine_NewPlayers_OnPluginStart();
 //#endif
 	War3Source_Engine_PlayerClass_OnPluginStart();
@@ -88,12 +85,12 @@ public OnPluginStart()
 #endif
 	War3Source_Engine_WCX_Engine_Bash_OnPluginStart();
 	War3Source_Engine_WCX_Engine_Skills_OnPluginStart();
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 	War3Source_Engine_SteamTools_OnPluginStart();
 #endif
 	War3Source_Engine_BotControl_OnPluginStart();
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_002_OnW3SupplyLocker_OnPluginStart();
 #endif
 
@@ -110,7 +107,7 @@ public OnPluginStart()
 	War3Source_003_RegisterPrivateForwards_OnPluginStart();
 
 
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 	// FOF player health change
 	War3Source_000_Engine_Misc_OnPluginStart();
 #endif

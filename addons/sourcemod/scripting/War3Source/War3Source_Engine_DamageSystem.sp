@@ -7,7 +7,7 @@ new String:helmSound1[]="physics/metal/metal_solid_impact_bullet2.wav";
 new String:helmSound2[]="physics/metal/metal_solid_impact_bullet3.wav";
 new String:helmSound3[]="physics/metal/metal_solid_impact_bullet4.wav";
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new Handle:PyroW3ChanceModifierCvar;
 new Handle:HeavyW3ChanceModifierCvar;
 #endif
@@ -30,7 +30,7 @@ new g_NextDamageIsTrueDamage=0;
 new dummyresult;
 
 //global
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new ownerOffset;
 #endif
 
@@ -52,7 +52,7 @@ public Plugin:myinfo=
 public War3Source_Engine_DamageSystem_OnPluginStart()
 {
 	//CreateConVar("DamageSystem",PLUGIN_VERSION,"War3Source:EVO Damage System",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	PyroW3ChanceModifierCvar=CreateConVar("war3_pyro_w3chancemod","0.500","Float 0.0 - 1.0");
 	HeavyW3ChanceModifierCvar=CreateConVar("war3_heavy_w3chancemod","0.666","Float 0.0 - 1.0");
 
@@ -64,15 +64,15 @@ public War3Source_Engine_DamageSystem_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_TOP)
 	{
-		War3_AddSound(helmSound0,STOCK_SOUND);
-		War3_AddSound(helmSound1,STOCK_SOUND);
-		War3_AddSound(helmSound2,STOCK_SOUND);
-		War3_AddSound(helmSound3,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_DamageSystem",helmSound0,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_DamageSystem",helmSound1,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_DamageSystem",helmSound2,STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_DamageSystem",helmSound3,STOCK_SOUND);
 	}
 }
 
 //cvar handle
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new Handle:ChanceModifierSentry;
 new Handle:ChanceModifierSentryRocket;
 #endif
@@ -91,11 +91,11 @@ public bool:War3Source_Engine_DamageSystem_InitNatives()
 	CreateNative("W3GetDamageStack",NW3GetDamageStack);
 
 	CreateNative("W3ChanceModifier",Native_W3ChanceModifier);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	CreateNative("W3IsOwnerSentry",Native_W3IsOwnerSentry);
 #endif
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	ChanceModifierSentry=CreateConVar("war3_chancemodifier_sentry","","None to use attack rate dependent chance modifier. Set from 0.0 to 1.0 chance modifier for sentry, this will override time dependent chance modifier");
 	ChanceModifierSentryRocket=CreateConVar("war3_chancemodifier_sentryrocket","","None to use attack rate dependent chance modifier. Set from 0.0 to 1.0 chance modifier for sentry, this will override time dependent chance modifier");
 #endif
@@ -192,7 +192,7 @@ public War3Source_Engine_DamageSystem_OnClientDisconnect(client){
 	SDKUnhook(client,SDKHook_OnTakeDamage,SDK_Forwarded_OnTakeDamage);
 	SDKUnhook(client, SDKHook_OnTakeDamagePost, OnTakeDamagePostHook);
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 stock bool:IsOwnerSentry(client,bool:UseInternalInflictor=true,ExternalInflictor=0)
 {
 	new pSentry;
@@ -231,7 +231,7 @@ stock Float:fChanceModifier(attacker)
 		return 1.0;
 	}
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	new Float:tempChance = GetRandomFloat(0.0,1.0);
 	switch (TF2_GetPlayerClass(attacker))
 	{
@@ -381,7 +381,7 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 	new String:ent_name[64];
 	GetEdictClassname(inflictor,ent_name,64);
 			//	DP("ent name %s",ent_name);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(StrContains(ent_name,"obj_sentrygun",false)==0	&&!CvarEmpty(ChanceModifierSentry))
 	{
 		ChanceModifier[attacker]=GetConVarFloat(ChanceModifierSentry);
@@ -483,7 +483,7 @@ public OnTakeDamagePostHook(victim, attacker, inflictor, Float:damage, damagetyp
 		}
 
 		//Block uber hits (no actual damage)
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(War3_IsUbered(victim))
 		{
 				return 0;

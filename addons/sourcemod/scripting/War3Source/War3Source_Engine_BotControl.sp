@@ -16,7 +16,7 @@ public Plugin:myinfo =
 // ########################## BOT EVASION ################################
 new Handle:botEvasionCvar = INVALID_HANDLE;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 new bool:IsMVMmap=false;
 #endif
 // ########################## BOT RACE/LEVEL SCRAMBLER ###################
@@ -56,7 +56,7 @@ public War3Source_Engine_BotControl_OnPluginStart()
 	RegAdminCmd("sm_setbot", SetTestBotRace, ADMFLAG_SLAY, "SetTestBotRace.");
 
 // Bots can be completely invis for FOF --needs fixing.
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 	botsetraces = CreateConVar("war3_bots_use_races", "0", "Enable/Disable races for bots");
 #else
 	botsetraces = CreateConVar("war3_bots_use_races", "1", "Enable/Disable races for bots");
@@ -73,7 +73,7 @@ public War3Source_Engine_BotControl_OnPluginStart()
 
 	//g_bEnabled = GetConVarBool(botsetraces);
 	//HookConVarChange(botsetraces, ConVarChange_GiveBotsRaces);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	HookEvent("teamplay_round_win", Event_ScrambleNow);
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 	HookEvent("round_start", Event_ScrambleNow);
@@ -93,7 +93,7 @@ tf_bot_sniper_aim_error and tf_bot_sniper_aim_steady_rate
 
 	LoadTranslations ("w3s.addon.botcontrol.phrases");
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public War3Source_Engine_BotControl_OnMapStart()
 {
 	new String:mapName[128];
@@ -236,7 +236,7 @@ public War3Source_Engine_BotControl_OnW3TakeDmgAllPre(victim, attacker, Float:da
 				W3FlashScreen(victim, RGBA_COLOR_BLUE);
 				DamageModPercent(0.0);
 				W3MsgEvaded(victim, attacker);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				decl Float:pos[3];
 				GetClientEyePosition(victim, pos);
 				pos[2] += 4.0;
@@ -365,7 +365,7 @@ public void PickRace(client)
 		int level = BotMaxLevel[variableRace];
 
 
-#if GGAMETYPE2 == GGAME_PVM
+#if (GGAMETYPE2 == GGAME_PVM)
 		if (!W3RaceHasFlag(race, "botsonly"))
 		{
 			//DP("bots only not found");
@@ -373,7 +373,7 @@ public void PickRace(client)
 		}
 		if(race<1)
 			race=1;
-#elseif GGAMETYPE2 == GGAME_MVM
+#elseif (GGAMETYPE2 == GGAME_MVM)
 		if (!W3RaceHasFlag(race, "botsonly"))
 		{
 			//DP("bots only not found");
@@ -381,7 +381,7 @@ public void PickRace(client)
 		}
 		if(race<1)
 			race=1;
-#elseif GGAMETYPE2 == GGAME_TF2_NORMAL
+#elseif (GGAMETYPE2 == GGAME_TF2_NORMAL)
 		// MVM was returning bad race id -1 .. so here is a patch:
 		if(race<1)
 			race=1;
@@ -400,7 +400,7 @@ public void PickRace(client)
 		SetLevel(client, race, level);
 		DistributeSkillPoints(client,race);
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public War3Source_Engine_BotControl_OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 {
 		if(MapChanging || War3SourcePause) return 0;
@@ -463,7 +463,7 @@ ScrambleBots()
 
 				int level = BotMaxLevel[variableRace];
 
-#if GGAMETYPE2 == GGAME_PVM
+#if (GGAMETYPE2 == GGAME_PVM)
 				if (!W3RaceHasFlag(race, "botsonly"))
 				{
 					//DP("bots only not found");
@@ -471,7 +471,7 @@ ScrambleBots()
 				}
 				if(race<1)
 					race=1;
-#elseif GGAMETYPE2 == GGAME_MVM
+#elseif (GGAMETYPE2 == GGAME_MVM)
 				if (!W3RaceHasFlag(race, "botsonly"))
 				{
 					//DP("bots only not found");
@@ -479,7 +479,7 @@ ScrambleBots()
 				}
 				if(race<1)
 					race=1;
-#elseif GGAMETYPE2 == GGAME_TF2_NORMAL
+#elseif (GGAMETYPE2 == GGAME_TF2_NORMAL)
 				// MVM was returning bad race id -1 .. so here is a patch:
 				if(race<1)
 					race=1;

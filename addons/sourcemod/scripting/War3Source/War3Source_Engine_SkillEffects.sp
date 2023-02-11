@@ -53,7 +53,7 @@ public War3Source_Engine_SkillEffects_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(sMaskSound);
+		War3_AddSound("War3Source_Engine_SkillEffects",sMaskSound);
 	}
 }
 
@@ -68,7 +68,7 @@ public Native_EvadeDamage(Handle:plugin, numParams)
 	{
 		W3FlashScreen(victim, RGBA_COLOR_BLUE);
 		W3Hint(victim, HINT_SKILL_STATUS, 1.0, "You Evaded a Shot");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		decl Float:pos[3];
 		GetClientEyePosition(victim, pos);
 		pos[2] += 4.0;

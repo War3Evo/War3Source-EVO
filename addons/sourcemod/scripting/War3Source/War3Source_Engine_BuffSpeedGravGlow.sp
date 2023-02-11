@@ -25,7 +25,7 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };*/
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 public void War3Source_Engine_BuffSpeedGravGlow_OnMapStart()
 {
 		Handle hCvar = FindConVar("sv_disable_immunity_alpha");
@@ -113,7 +113,7 @@ public NW3GetSpeedMulti(Handle:plugin,numParams)
 	int client=GetNativeCell(1);
 	if(ValidPlayer(client,true)){
 		float multi=1.0;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(TF2_IsPlayerInCondition(client,TFCond_SpeedBuffAlly)){
 			multi=1.35;
 		}
@@ -221,7 +221,7 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 				}
 				if(skipcheckingwearables[client]<=0)
 				{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					int ent=-1;
 					while ((ent = FindEntityByClassname(ent, "tf_wearable")) != -1)
 					{
@@ -362,7 +362,7 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 					}
 				}
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(fWar3_MaxSpeedLimit>0.0)
 				{
 					if(bMaxSpeedDebugMessages==true)
@@ -525,7 +525,7 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 				}
 #endif
 
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 				SetEntDataFloat(client,m_OffsetSpeed,fnewmaxspeed,true);  // Testing for FOF
 #else
 				SetEntDataFloat(client,m_OffsetSpeed,fnewmaxspeed,true);

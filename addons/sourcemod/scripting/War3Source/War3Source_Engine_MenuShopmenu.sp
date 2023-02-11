@@ -29,7 +29,7 @@ public War3Source_Engine_MenuShopmenu_OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_LOW)
 	{
 		strcopy(buyTombSound,sizeof(buyTombSound),"war3source/tomes.mp3");
-		War3_AddSound(buyTombSound);
+		War3_AddSound("War3Source_Engine_MenuShopmenu",buyTombSound);
 	}
 }
 
@@ -154,7 +154,7 @@ ShowMenuShop(client, const String:category[]="") {
 	new cost;
 	bool drawitemdisabled=false;
 	new ItemsLoaded = totalItemsLoaded;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	bool SteamGroupRequired=false;
 #endif
 	bool useCategory = GetConVarBool(hUseCategorysCvar);
@@ -184,7 +184,7 @@ ShowMenuShop(client, const String:category[]="") {
 		//}
 		//War3_TFIsItemClass has a internal GAMETF Checking.. if not GAMETF it auto returns true.
 		// Create a back button every 7 items
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		if(!internal_W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden")&&internal_War3_TFIsItemClass(x,TF2_GetPlayerClass(client)))
 		{
 #else
@@ -214,7 +214,7 @@ ShowMenuShop(client, const String:category[]="") {
 						Format(linestr,sizeof(linestr),"%s - %d Gold",itemname,cost);
 					}
 				}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(!bIsInSteamGroup[client]&&W3ItemHasFlag(x,"steamgroup"))
 				{
 					Format(linestr,sizeof(linestr),"%s *Steam Group Required*",linestr);
@@ -251,7 +251,7 @@ ShowMenuShop(client, const String:category[]="") {
 			}
 		}//
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(SteamGroupRequired)
 	{
 		War3_ChatMessage(client,"Please join our Steam Group.");
@@ -481,7 +481,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 				if(add_xp<0)	add_xp=0;
 				bool SteamCheck=false;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(add_xp!=0&&bIsInSteamGroup[client])
 				{
 					add_xp=add_xp*2;

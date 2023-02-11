@@ -1,11 +1,9 @@
 // War3Source_Engine_GameData.sp
 
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #define    GAMEDATA    "war3source.games"
 new Handle:g_hIsMeleeWeapon = INVALID_HANDLE;
-#else
-#define    GAMEDATA    ""
 #endif
 
 /*
@@ -24,7 +22,7 @@ public bool:War3Source_Engine_GameData_InitNatives()
 	CreateNative("War3_IsUsingMeleeWeapon", NativeCall:Native_War3_IsUsingMeleeWeapon);
 	return true;
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 Handle:FindIsMeleeWeapon(Handle:hGameConf)
 {
 	/* See if we can directly tell SDKTools what address we wan't to call. */
@@ -70,7 +68,7 @@ public War3Source_Engine_GameData_OnPluginStart()
 	 */
 	//if(GameTF())
 	//{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	new Handle:hGameConf = LoadGameConfigFile(GAMEDATA);
 	if(hGameConf == INVALID_HANDLE)
 	{
@@ -104,7 +102,7 @@ public bool:Native_War3_IsUsingMeleeWeapon(Handle:plugin, numParams)
 					//GetEdictClassname(ent, sWeaponName, sizeof(sWeaponName));
 					//return StrEqual(sWeaponName, "weapon_knife", false);
 				//}
-#if GGAMETYPE == GGAME_CSS
+#if (GGAMETYPE == GGAME_CSS)
 			char sWeaponName[64];
 			GetEdictClassname(ent, sWeaponName, sizeof(sWeaponName));
 			return (StrContains(sWeaponName, "knife", false) != -1);
@@ -114,7 +112,7 @@ public bool:Native_War3_IsUsingMeleeWeapon(Handle:plugin, numParams)
 					//GetEdictClassname(ent, sWeaponName, sizeof(sWeaponName));
 					//return (StrContains(sWeaponName, "knife", false) != -1);
 				//}
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 			char sWeaponName[64];
 			GetEdictClassname(ent, sWeaponName, sizeof(sWeaponName));
 			return (StrContains(sWeaponName, "knife", false) != -1);
@@ -135,7 +133,7 @@ public bool:Native_War3_IsUsingMeleeWeapon(Handle:plugin, numParams)
 				//}
 			//case Game_TF:
 			//{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(g_hIsMeleeWeapon == INVALID_HANDLE)
 			{
 				LogError("Failed to lookup \"IsMeleeWeapon\" function. Using Stock function instead.");

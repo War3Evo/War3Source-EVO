@@ -119,11 +119,11 @@ public OnPluginEnd()
 		War3_RaceOnPluginEnd("darkelf_o");
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 //#define TELEPORTER_RED "teleporter_red_entrance"
 //#define TELEPORTER_BLUE "teleporter_blue_entrance"
 #define GHOST_SMOKE "ghost_smoke"
-#elseif GGAMETYPE == GGAME_CSGO
+#elseif (GGAMETYPE == GGAME_CSGO)
 //#define TELEPORTER_RED "teleporter_red_entrance"
 //#define TELEPORTER_BLUE "teleporter_blue_entrance"
 #define GHOST_SMOKE "office_smoke"

@@ -18,7 +18,7 @@ public bool War3Source_InitNatives()
 
 	CreateNative("War3_SpawnPlayer",Native_War3_SpawnPlayer);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	CreateNative("War3_IsUbered",Native_War3_IsUbered);
 
 	//CreateNative("War3_PrecacheSound",Native_War3_PrecacheSound);
@@ -98,7 +98,7 @@ public bool War3Source_InitNatives()
 	Return_InitNatives = War3Source_Engine_CooldownMgr_InitNatives();
 
 #if CYBORG_SKIN == MODE_ENABLED
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	Return_InitNatives = War3Source_Engine_Cyborg_InitNatives();
 #endif
 #endif
@@ -179,7 +179,7 @@ public bool War3Source_InitNatives()
 	Return_InitNatives = War3Source_Engine_WCX_Engine_Skills_InitNatives();
 
 	Return_InitNatives = War3Source_Engine_WCX_Engine_Teleport_InitNatives();
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 	Return_InitNatives = War3Source_Engine_SteamTools_InitNatives();
 #endif
 

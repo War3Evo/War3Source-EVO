@@ -43,13 +43,13 @@ new Handle:g_OnW3Teleported;
 public bool:War3Source_Engine_WCX_Engine_Teleport_InitNatives()
 {
 	CreateNative("War3_TeleportEntity", Native_W3TeleportEntity);
-	CreateNative("War3_Teleport", Native_War3_Teleport);
+	CreateNative("War3Teleport", NativeWar3Teleport);
 	return true;
 }
 
 stock void Internal_TeleportEntity(int int_entity, const float float_origin[3], const float float_angles[3], const float float_velocity[3])
 {
-#if GGAMETYPE != GGAME_FOF
+#if (GGAMETYPE != GGAME_FOF)
 	TeleportEntity(int_entity, float_origin ,NULL_VECTOR, NULL_VECTOR);
 #else
 	SetBuffRace( int_entity, bNoMoveMode, 0, true, _ );
@@ -62,7 +62,7 @@ stock void Internal_TeleportEntity(int int_entity, const float float_origin[3], 
 #endif
 }
 
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 public Action:StopTeleportFreeze( Handle:timer, any:client )
 {
 	if( ValidPlayer( client ) )
@@ -89,7 +89,7 @@ public War3Source_Engine_WCX_Engine_Teleport_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(teleportSound);
+		War3_AddSound("War3Source_Engine_WCX_Engine_Teleport",teleportSound);
 	}
 }
 
@@ -112,7 +112,7 @@ public Native_W3TeleportEntity(Handle:plugin, numParams)
 }
 
 
-public Native_War3_Teleport(Handle:plugin, numParams)
+public NativeWar3Teleport(Handle:plugin, numParams)
 {
 	if(numParams >= 6)
 	{

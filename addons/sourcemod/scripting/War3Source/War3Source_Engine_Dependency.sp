@@ -130,7 +130,8 @@ public NWar3_SetRaceDependency(Handle:plugin,numParams)
 		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
 	}
 	new iRace = GetNativeCell(1);
-	if(iRace>0) {
+	if(iRace>0)
+	{
 		new iRequiredRace = GetNativeCell(2);
 		if(iRequiredRace>0)
 		{
@@ -224,10 +225,11 @@ public NWar3_GetDependency(Handle:plugin,numParams)
 		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
 	}
 	new iRace = GetNativeCell(1);
-	if(iRace>0) {
+	if(iRace>0)
+	{
 		new iSkill = GetNativeCell(2);
 		new iIndex = GetNativeCell(3);
 		return skillDependency[iRace][iSkill][iIndex];
 	}
-	else return ThrowNativeError(SP_ERROR_NATIVE,"race is invalid!");
+	else return false;
 }

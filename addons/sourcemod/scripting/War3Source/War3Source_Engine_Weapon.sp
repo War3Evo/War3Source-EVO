@@ -84,7 +84,7 @@ GetCurrentWeaponEnt(client)
 		// Reason for if then statement: Exception reported: Offset 0 is invalid
 		if(m_OffsetActiveWeapon>0)
 		{
-#if GGAMETYPE != GGAME_TF2
+#if (GGAMETYPE != GGAME_TF2)
 			// CSGO
 			int wep = GetEntDataEnt2(client,m_OffsetActiveWeapon);
 #else

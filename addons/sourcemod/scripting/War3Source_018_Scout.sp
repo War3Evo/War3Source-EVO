@@ -266,7 +266,7 @@ public void OnWar3EventSpawn (int client)
 	}
 	if(InInvis[client]||InFade[client]){
 		War3_SetBuff(client,fInvisibilitySkill,thisRaceID,1.0);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 		TF2_RemoveCondition(client, TFCond_Stealthed);
 		//SetVariantInt(0);
 		if (AcceptEntityInput(client, "EnableShadow"))
@@ -301,7 +301,7 @@ public void OnAbilityCommand(int client, int ability, bool pressed, bool bypass)
 					{
 						War3_SetBuff(client,bDisarm,thisRaceID,true);
 						bDisarmed[client]=true;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						TF2_AddCondition(client, TFCond_Stealthed, 2400.0);
 						SetVariantInt(1);
 						if (AcceptEntityInput(client, "DisableShadow"))
@@ -373,7 +373,7 @@ public EndFade(client)
 
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 		War3_SetBuff(client,fInvisibilitySkill,thisRaceID,1.0);
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 		TF2_RemoveCondition(client, TFCond_Stealthed);
 		//SetVariantInt(0);
 		if (AcceptEntityInput(client, "EnableShadow"))
@@ -394,7 +394,7 @@ public Action:EndInvis(Handle:timer,any:client)
 	{
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 		War3_SetBuff(client,fInvisibilitySkill,thisRaceID,1.0);
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 		TF2_RemoveCondition(client, TFCond_Stealthed);
 		//SetVariantInt(0);
 		if (AcceptEntityInput(client, "EnableShadow"))
@@ -451,7 +451,7 @@ public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int d
 {
 	//if(RaceDisabled)
 		//return;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(ValidPlayer(attacker) && ValidPlayer(victim) && War3_GetRace(attacker)==thisRaceID && !War3_SkillNotInCooldown(attacker,thisRaceID,SKILL_INVIS,false))
 	{
 		switch (damagecustom)
@@ -605,7 +605,7 @@ public Action:DeciSecondTimer(Handle:t){
 
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 					War3_SetBuff(client,fInvisibilitySkill,thisRaceID,0.03);
-#elseif GGAMETYPE == GGAME_TF2
+#elseif (GGAMETYPE == GGAME_TF2)
 					TF2_AddCondition(client, TFCond_Stealthed,2400.0);
 					//SetVariantInt(1);
 					if (AcceptEntityInput(client, "DisableShadow"))
@@ -661,7 +661,7 @@ public OnW3PlayerAuraStateChanged(client,tAuraID,bool:inAura,level,AuraStack,Aur
 			{
 				War3_SetBuff(client,bInvisibilityDenyAll,thisRaceID,false);
 			}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(ValidPlayer(client,true) && !Spying(client))
 			{
 				TF2_RemoveCondition(client, TFCond_Stealthed);
@@ -677,7 +677,7 @@ public OnW3PlayerAuraStateChanged(client,tAuraID,bool:inAura,level,AuraStack,Aur
 
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public TF2_OnConditionRemoved(client, TFCond:condition)
 {
 	if(RaceDisabled)
@@ -745,7 +745,7 @@ public Action:SDK_FORWARD_TRANSMIT(entity, client)
 	if(RaceDisabled)
 		return Plugin_Continue;
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	if(entity!=client
 	&& InFade[client]
 	&& ValidPlayer(entity)

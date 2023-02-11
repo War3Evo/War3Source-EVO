@@ -14,7 +14,7 @@ public Plugin:myinfo=
 */
 
 //new Float:nextRegenTime[MAXPLAYERSCUSTOM];
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 int tf2displayskip[MAXPLAYERSCUSTOM]; //health sign particle
 #endif
 float lastTickTime[MAXPLAYERSCUSTOM];
@@ -25,7 +25,7 @@ public War3Source_Engine_Regen_OnWar3EventSpawn(client)
 }
 public War3Source_Engine_Regen_OnGameFrame()
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	decl Float:playervec[3];
 #endif
 
@@ -54,9 +54,10 @@ public War3Source_Engine_Regen_OnGameFrame()
 				if(fbuffsum>0.01)
 				{
 					War3_HealToMaxHP(client,1);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					tf2displayskip[client]++;
-					if(tf2displayskip[client]>4 && !IsInvis(client)){
+					if(tf2displayskip[client]>4 && !IsInvis(client))
+					{
 						new Float:VecPos[3];
 						GetClientAbsOrigin(client,VecPos);
 						VecPos[2]+=55.0;
@@ -69,7 +70,7 @@ public War3Source_Engine_Regen_OnGameFrame()
 				//decay
 				if(fbuffsum<-0.01)
 				{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if(W3Chance(0.25)  && !IsInvis(client))
 					{
 						GetClientAbsOrigin(client,playervec);
@@ -82,7 +83,7 @@ public War3Source_Engine_Regen_OnGameFrame()
 					}
 					else
 					{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						DealDamage(client,1,_,_,"bleed_kill",_,W3DMGTYPE_TRUEDMG);
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 						DealDamage(client,1,_,_,"damageovertime",_,W3DMGTYPE_TRUEDMG);

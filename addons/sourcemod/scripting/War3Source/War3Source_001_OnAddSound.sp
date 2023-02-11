@@ -3,7 +3,7 @@
 public OnAddSound(sound_priority)
 {
 	War3Source_Engine_CooldownMgr_OnAddSound(sound_priority);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #if CYBORG_SKIN == MODE_ENABLED
 	War3Source_Engine_Cyborg_OnAddSound(sound_priority);
 #endif

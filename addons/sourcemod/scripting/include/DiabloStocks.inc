@@ -4,7 +4,7 @@
 
 #include <switchgamemode>
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 #include <tf2_stocks>
 #endif
 
@@ -260,7 +260,7 @@ stock bool:KvGetYesOrNo(Handle:kv, const String:key[], bool:curdefault)
 }
 
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 //=======================================================================
 //                                 TF2 Stocks
 //=======================================================================

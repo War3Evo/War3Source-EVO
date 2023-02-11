@@ -44,6 +44,7 @@ new Handle:g_hStockSound = INVALID_HANDLE;
 
 // Event handles
 new Handle:g_OnAddSoundHandle = INVALID_HANDLE;
+new Handle:g_OnAddSoundChangeHandle = INVALID_HANDLE;
 
 new Handle:EnableDownloadsModuleCvar = INVALID_HANDLE;
 
@@ -54,7 +55,7 @@ new CurrentClientsConnected;
 
 CacheFiles()
 {
-	LoadSoundsConfig();
+	//LoadSoundsConfig();
 
 	// CACHE FILES HERE FOR NEXT MAP
 	//new bool:res;
@@ -575,6 +576,8 @@ public War3Source_Engine_Download_Control_OnMapEnd()
 public bool:War3Source_Engine_Download_Control_InitNativesForwards()
 {
 	g_OnAddSoundHandle = CreateGlobalForward("OnAddSound", ET_Ignore, Param_Cell);
+	g_OnAddSoundChangeHandle = CreateGlobalForward("OnAddSoundChange", ET_Hook, Param_String, Param_String);
+	
 	return true;
 }
 
@@ -598,19 +601,18 @@ public int Native_War3_AddSound(Handle:plugin, numParams)
 {
 	//PrintToServer("numParams %d",numParams);
 	char sSoundFile[1024];
-	GetNativeString(1, sSoundFile, sizeof(sSoundFile));
+	char sSoundName[64];
+	GetNativeString(1, sSoundName, sizeof(sSoundName)); 
+	GetNativeString(2, sSoundFile, sizeof(sSoundFile));
 
-	int sound_file_index = FindStringInArray(array_sounds, sSoundFile);
-	char sSoundFileReplacement[1024];
-
-	if(sound_file_index>-1) 
-	{
-		//replace
-		GetArrayString(array_sounds, sound_file_index + 1, sSoundFileReplacement, sizeof(sSoundFileReplacement));
-		strcopy(sSoundFile, sizeof(sSoundFileReplacement), sSoundFileReplacement);
-		SetNativeString(1, sSoundFile, sizeof(sSoundFileReplacement), false);
-	}
-
+	new Action:OnAddSoundRes = Plugin_Continue;
+	// Forward to External for swapping sounds before adding
+	Call_StartForward(g_OnAddSoundChangeHandle);
+	Call_PushString(sSoundName);
+	// This allows sSoundFile to be changed:
+	Call_PushStringEx(sSoundFile, sizeof(sSoundFile), SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
+	Call_Finish(OnAddSoundRes);
+	
 	if(FindStringInArray(g_hSoundFile, sSoundFile)==-1) // if not found, add
 	{
 		int stocksound = GetNativeCell(2);

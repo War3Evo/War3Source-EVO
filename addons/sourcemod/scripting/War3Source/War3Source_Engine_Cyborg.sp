@@ -3,7 +3,7 @@
 #pragma semicolon 1
 
 #if CYBORG_SKIN == MODE_ENABLED
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 /*
 public Plugin:myinfo =
 {
@@ -93,7 +93,7 @@ public Action:SoundHook(clients[64], &numClients, String:sound[PLATFORM_MAX_PATH
 		new String:soundchk[PLATFORM_MAX_PATH];
 		Format(soundchk, sizeof(soundchk), "sound/%s", sound);
 		if (!FileExists(soundchk, true)) return Plugin_Continue;
-		War3_AddSound(sound,1,PRIORITY_LOW);
+		War3_AddSound("War3Source_Engine_Cyborg",sound,1,PRIORITY_LOW);
 		return Plugin_Changed;
 	}
 	return Plugin_Continue;
@@ -267,24 +267,24 @@ public War3Source_Engine_Cyborg_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_TOP) //tf2 stock should load very fast
 	{
-		War3_AddSound("mvm/sentrybuster/mvm_sentrybuster_explode.wav",STOCK_SOUND);
-		War3_AddSound("mvm/sentrybuster/mvm_sentrybuster_intro.wav",STOCK_SOUND);
-		War3_AddSound("mvm/sentrybuster/mvm_sentrybuster_loop.wav",STOCK_SOUND);
-		War3_AddSound("mvm/sentrybuster/mvm_sentrybuster_spin.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Cyborg","mvm/sentrybuster/mvm_sentrybuster_explode.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Cyborg","mvm/sentrybuster/mvm_sentrybuster_intro.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Cyborg","mvm/sentrybuster/mvm_sentrybuster_loop.wav",STOCK_SOUND);
+		War3_AddSound("War3Source_Engine_Cyborg","mvm/sentrybuster/mvm_sentrybuster_spin.wav",STOCK_SOUND);
 		for (new i = 1; i <= 18; i++)
 		{
 			decl String:snd[PLATFORM_MAX_PATH];
 			Format(snd, sizeof(snd), "mvm/player/footsteps/robostep_%s%i.wav", (i < 10) ? "0" : "", i);
-			War3_AddSound(snd,1);
+			War3_AddSound("War3Source_Engine_Cyborg",snd,1);
 			if (i <= 4)
 			{
 				Format(snd, sizeof(snd), "mvm/sentrybuster/mvm_sentrybuster_step_0%i.wav", i);
-				War3_AddSound(snd,STOCK_SOUND);
+				War3_AddSound("War3Source_Engine_Cyborg",snd,STOCK_SOUND);
 			}
 			if (i <= 6)
 			{
 				Format(snd, sizeof(snd), "vo/mvm_sentry_buster_alerts0%i.wav", i);
-				War3_AddSound(snd,STOCK_SOUND);
+				War3_AddSound("War3Source_Engine_Cyborg",snd,STOCK_SOUND);
 			}
 		}
 	}

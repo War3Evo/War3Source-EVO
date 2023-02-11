@@ -173,7 +173,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			//		racelist[x]=x+1;
 			//	}
 			//}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			bool SteamGroupRequired=false;
 #endif
 			bool VIPRequired=false;
@@ -206,7 +206,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 
 				draw_ITEMDRAW_DEFAULT=false;
 				VIPRequired=false;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				SteamGroupRequired=false;
 #endif
 
@@ -221,7 +221,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 					VIPRequired=true;
 					//DP("VIPRequired=true;");
 				}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				else if(!bIsInSteamGroup[client]&&RaceHasFlag(x,"steamgroup"))
 				{
 					GetRaceName(x,rname,sizeof(rname));
@@ -299,7 +299,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 				//}
 				//else
 				//{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				else if(bIsInSteamGroup[client] && RaceHasFlag(x,"steamgroup"))
 				{
 					// Lets not fill up the display, this would tell them the race is a steam group race
@@ -321,7 +321,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 					//Format(rdisp,sizeof(rdisp),"%s\n%s",rdisp,"please consider donating");
 				//}
 				//else
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(!IsVip && SteamGroupRequired)
 				{
 					Format(rdisp,sizeof(rdisp),"%s\n%s",rdisp,"Join our Steam Group");
@@ -355,7 +355,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 				}
 
 			}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(SteamGroupRequired==true)
 			{
 				War3_ChatMessage(client,"Please join our steam group!");
@@ -392,7 +392,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 				// Iteriate through the races and print them out
 				int racelist[MAXRACES];
 				int racedisplay=GetRaceList(racelist);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				bool SteamGroupRequired=false;
 #endif
 				bool value=true;
@@ -459,7 +459,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 							Format(requirement,sizeof(requirement),"(VIP Only)");
 							draw_ITEMDRAW_DEFAULT=false;
 						}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						else if(!bIsInSteamGroup[client]&&RaceHasFlag(x,"steamgroup"))
 						{
 							//Format(rdisp,sizeof(rdisp),"%s *Steam Group Required*",rdisp);
@@ -515,7 +515,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 						}
 
 					}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					if(SteamGroupRequired==true)
 					{
 						War3_ChatMessage(client,"Please join our Steam Group.");

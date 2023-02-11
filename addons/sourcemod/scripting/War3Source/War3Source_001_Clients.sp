@@ -15,7 +15,7 @@ public OnClientConnected(client)
 #endif
 
 	War3Source_Engine_Wards_Engine_OnClientConnected(client);
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 	War3Source_Engine_SteamTools_OnClientConnected(client);
 #endif
 }
@@ -26,12 +26,12 @@ public OnClientPutInServer(client)
 	//DatabaseSaveXP now handles clearing of vars and triggering retrieval
 
 	War3Source_Engine_DatabaseSaveXP_OnClientPutInServer(client);
-#if GGAMETYPE != GGAME_FOF
+#if (GGAMETYPE != GGAME_FOF)
 	War3Source_Engine_BuffMaxHP_OnClientPutInServer(client);
 #endif
 	War3Source_Engine_BuffSystem_OnClientPutInServer(client);
 #if CYBORG_SKIN == MODE_ENABLED
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_Cyborg_OnClientPutInServer(client);
 #endif
 #endif
@@ -39,12 +39,12 @@ public OnClientPutInServer(client)
 	War3Source_Engine_ItemOwnership_OnClientPutInServer(client);
 	//War3Source_Engine_Statistics_OnClientPutInServer(client);
 	War3Source_Engine_Weapon_OnClientPutInServer(client);
-#if GGAMETYPE != GGAME_CSGO
+#if (GGAMETYPE != GGAME_CSGO)
 	War3Source_Engine_SteamTools_OnClientPutInServer(client);
 #endif
 	//disabled
 	//War3Source_Engine_Talents_OnClientPutInServer(client);
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 	War3Source_Engine_BuffSpeedGravGlow_OnClientPutInServer(client);
 	War3Source_Engine_CSGO_Radar_OnClientChange(client);
 #endif
@@ -58,7 +58,7 @@ public OnClientDisconnect(client)
 		Internal_SaveBank(client);
 		Clear_Variables(client);
 	}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_BuffMaxHP_OnClientDisconnect(client);
 #if CYBORG_SKIN == MODE_ENABLED
 	War3Source_Engine_Cyborg_OnClientDisconnect(client);
@@ -76,7 +76,7 @@ public OnClientDisconnect(client)
 
 	War3Source_Engine_Casting_OnClientDisconnect(client);
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 	War3Source_Engine_CSGO_Radar_OnClientChange(client);
 #endif
 }

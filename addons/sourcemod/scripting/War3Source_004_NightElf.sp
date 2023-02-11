@@ -157,7 +157,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(entangleSound);
+		War3_AddSound(RACE_LONGNAME,entangleSound);
 	}
 }
 
@@ -179,7 +179,7 @@ public OnWar3LoadRaceOrItemOrdered2(num,reloadrace_id,String:shortname[])
 	}
 }
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public OnClientDisconnect(client)
 {
 	if(RaceDisabled)
@@ -205,7 +205,7 @@ public OnRaceChanged(client,oldrace,newrace)
 /* ****************************** InitPassiveSkills ************************** */
 public InitPassiveSkills(client)
 {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	ThisRacePlayer player = ThisRacePlayer(client);
 	int activeweapon = FindSendPropInfo("CTFPlayer", "m_hActiveWeapon");
 	int activeweapondata = GetEntDataEnt2(player.index, activeweapon);
@@ -225,12 +225,12 @@ public RemovePassiveSkills(client)
 {
 	ThisRacePlayer player = ThisRacePlayer(client);
 	player.setbuff(fInvisibilitySkill,thisRaceID,1.0);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	SDKUnhook(client,SDKHook_WeaponSwitchPost,SDK_OnWeaponSwitchPost);
 	player.HasPhlogistinator=false;
 #endif
 }
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 public SDK_OnWeaponSwitchPost(client, weapon)
 {
 	if(RaceDisabled)
@@ -304,7 +304,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 		// Spys should be visible to use this ultimate
 		if(skill_level>0)
 		{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			if(!Spying(player.index))
 			{
 #endif
@@ -320,7 +320,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 
 					if(iTarget.alive)
 					{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						if(!Spying(iTarget.index))
 						{
 #endif
@@ -330,7 +330,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 							//War3_CooldownMGR(client,15.0,thisRaceID,ULT_ENTANGLE,false,true);
 							player.setcooldown(15.0,thisRaceID,ULT_ENTANGLE,false,true);
 
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						}
 #endif
 					}
@@ -339,7 +339,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 						W3MsgNoTargetFound(player.index,distance);
 					}
 				}
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 			}
 			else
 			{
@@ -410,7 +410,7 @@ public Action OnW3TakeDmgBulletPre(int victim, int attacker, float damage, int d
 						War3_DamageModPercent(0.0); //NO DAMAMGE
 
 						W3MsgEvaded(iVictim.index,iAttacker.index);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						float pos[3];
 						GetClientEyePosition(iVictim.index, pos);
 						pos[2] += 4.0;

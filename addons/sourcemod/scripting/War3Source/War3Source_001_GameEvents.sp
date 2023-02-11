@@ -46,15 +46,15 @@ public Internal_OnWar3EventDeath(victim,attacker,deathrace,distance,attacker_hpl
 	War3Source_Engine_Wards_Engine_OnWar3EventDeath(victim, attacker);
 
 	War3Source_Engine_Wards_Wards_OnWar3EventDeath(victim, attacker);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	War3Source_Engine_BotControl_OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft);
 #endif
 
-#if GGAMETYPE_JAILBREAK == JAILBREAK_OFF
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
 	War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker);
 #endif
 
-#if GGAMETYPE == GGAME_CSGO
+#if (GGAMETYPE == GGAME_CSGO)
 	War3Source_Engine_CSGO_Radar_OnWar3EventDeath(victim);
 #endif
 }
@@ -116,7 +116,7 @@ public War3Source_PlayerSpawnEvent(Handle:event,const String:name[],bool:dontBro
 		new client=GetClientOfUserId(userid);
 		if(ValidPlayer(client,true))
 		{
-#if GGAMETYPE == GGAME_FOF
+#if (GGAMETYPE == GGAME_FOF)
 			War3_SetMaxHP_INTERNAL(client,RoundToNearest(GetConVarFloat(gh_CVAR_FOF_Max_Health)));
 #else
 			War3_SetMaxHP_INTERNAL(client,GetClientHealth(client));

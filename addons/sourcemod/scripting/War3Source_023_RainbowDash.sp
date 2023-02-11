@@ -201,7 +201,7 @@ public Action:SonicBoomCheckLoop(Handle:h,any:data)
 				{
 
 					GetClientAbsOrigin(i,origin);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					//War3_TF_ParticleToClient(0, GetClientTeam(i)==2?"soldierbuff_red_buffed":"soldierbuff_blue_buffed", origin);
 					//ThrowAwayParticle(GetClientTeam(i)==2?"soldierbuff_red_buffed":"soldierbuff_blue_buffed", origin, 0.3);
 					AttachThrowAwayParticle(i, GetClientTeam(i)==2?"soldierbuff_red_buffed":"soldierbuff_blue_buffed",origin, "chest", 4.0);
@@ -298,7 +298,7 @@ public void OnAbilityCommand(int client, int ability, bool pressed, bool bypass)
 			{
 				if(SkillAvailable(client,thisRaceID,SKILL_SPEED)){
 					inSpeed[client]=true;
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					TF2_AddCondition(client,TFCond_SpeedBuffAlly,6.0);
 #endif
 					War3_SetBuff(client,fMaxSpeed,thisRaceID,abilityspeed[skill_level]);
@@ -312,7 +312,7 @@ public void OnAbilityCommand(int client, int ability, bool pressed, bool bypass)
 }
 public Action:EndSpeed(Handle:t,any:client){
 	//DP("end");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 	TF2_RemoveCondition(client,TFCond_SpeedBuffAlly);
 #endif
 	War3_SetBuff(client,fMaxSpeed,thisRaceID,1.0);
@@ -388,7 +388,7 @@ public void OnUltimateCommand(int client, int race, bool pressed, bool bypass)
 
 					decl Float:TargetPos[3];
 					for (new i = 1; i <= MaxClients; i++) {
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						if(ValidPlayer(i,true) && GetClientTeam(i) == GetClientTeam(client)&&GetClientTeam(client) == GetApparentTeam(i)) {
 #elseif  GGAMETYPE == GGAME_CSGO
 						if(ValidPlayer(i,true) && GetClientTeam(i) == GetClientTeam(client)) {
@@ -449,7 +449,7 @@ public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 				if(War3_DealDamage(victim,idamage,attacker,_,"sonicboom",W3DMGORIGIN_ULTIMATE,W3DMGTYPE_PHYSICAL))
 				{
 					//DP("deal damage = true (Immunity check)");
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 					decl Float:pos[3];
 					GetClientEyePosition(victim, pos);
 					pos[2] += 4.0;
@@ -519,7 +519,7 @@ public OnW3TakeDmgBulletPre(victim,attacker,Float:damage)
 						War3_DamageModPercent(0.0); //NO DAMAMGE
 
 						W3MsgEvaded(victim,attacker);
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 						decl Float:pos[3];
 						GetClientEyePosition(victim, pos);
 						pos[2] += 4.0;

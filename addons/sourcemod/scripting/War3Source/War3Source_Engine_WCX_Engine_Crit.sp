@@ -152,7 +152,7 @@ public void War3Source_Engine_WCX_Engine_Crit_OnWar3EventPostHurt(int victim, in
 		{
 			if(CritPercentIncrease>0)
 			{
-#if GGAMETYPE == GGAME_TF2
+#if (GGAMETYPE == GGAME_TF2)
 				if(ValidPlayer(attacker,true) && !IsOwnerSentry(attacker))
 #else // css or csgo
 				if(ValidPlayer(attacker,true))

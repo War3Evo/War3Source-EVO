@@ -43,7 +43,7 @@
 
 //meanwhile in coding...
 
-//#if GGAMETYPE == GGAME_TF2
+//#if (GGAMETYPE == GGAME_TF2)
 
 //actual codes
 
