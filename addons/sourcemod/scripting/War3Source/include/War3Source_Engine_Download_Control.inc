@@ -6,8 +6,6 @@
 #define _Download_Control_included
 
 //#define MAX_SOUND_FILES 5000
-#define STOCK_SOUND 1
-
 /**
  * @section Bitwise values definitions for admin flags.
  */

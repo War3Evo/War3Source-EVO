@@ -156,7 +156,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound("Blood Hunter",ultsnd);
+		War3_AddSound("Blood Hunter",ultsnd,CUSTOM_SOUND);
 	}
 }
 

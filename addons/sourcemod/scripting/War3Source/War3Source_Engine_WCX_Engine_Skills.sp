@@ -78,7 +78,7 @@ public War3Source_Engine_WCX_Engine_Skills_OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
 		strcopy(explosionSound1,sizeof(explosionSound1),"war3source/particle_suck1.mp3");
-		War3_AddSound("War3Source_Engine_WCX_Engine_Skills",explosionSound1);
+		War3_AddSound("War3Source_Engine_WCX_Engine_Skills",explosionSound1,CUSTOM_SOUND);
 	}
 }
 

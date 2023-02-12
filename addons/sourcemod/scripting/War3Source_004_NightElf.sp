@@ -157,7 +157,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound(RACE_LONGNAME,entangleSound);
+		War3_AddSound(RACE_LONGNAME,entangleSound,CUSTOM_SOUND);
 	}
 }
 

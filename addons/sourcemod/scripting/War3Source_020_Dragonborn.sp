@@ -184,9 +184,9 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound("Dragonborn",roarsound);
-		War3_AddSound("Dragonborn",ultsndblue);
-		War3_AddSound("Dragonborn",ultsndred);
+		War3_AddSound("Dragonborn",roarsound,CUSTOM_SOUND);
+		War3_AddSound("Dragonborn",ultsndblue,CUSTOM_SOUND);
+		War3_AddSound("Dragonborn",ultsndred,CUSTOM_SOUND);
 	}
 }
 

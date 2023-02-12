@@ -221,7 +221,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound("Blood Mage",reviveSound);
+		War3_AddSound("Blood Mage",reviveSound,CUSTOM_SOUND);
 	}
 }
 

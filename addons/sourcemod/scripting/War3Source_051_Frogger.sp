@@ -605,7 +605,7 @@ public OnAddSound(sound_priority)
 	{
 		strcopy(leapsnd,sizeof(leapsnd),"war3source/chronos/timeleap.mp3");
 
-		War3_AddSound("Frogger",leapsnd);
+		War3_AddSound("Frogger",leapsnd,CUSTOM_SOUND);
 	}
 }
 public void OnAbilityCommand(int client, int ability, bool pressed, bool bypass)

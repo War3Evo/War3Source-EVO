@@ -159,7 +159,7 @@ public OnAddSound(sound_priority)
 	if(sound_priority==PRIORITY_LOW)
 	{
 		strcopy(masksnd,sizeof(masksnd),"war3source/mask.mp3");
-		War3_AddSound("shopmenu1",masksnd);
+		War3_AddSound("shopmenu1",masksnd,CUSTOM_SOUND);
 	}
 }
 #if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)

@@ -113,9 +113,9 @@ public War3Source_Engine_XPGold_OnAddSound(sound_priority)
 		strcopy(meleeKiller,sizeof(meleeKiller),"war3source/gotchaknife.mp3");
 		strcopy(meleeKilled,sizeof(meleeKilled),"war3source/gotchaknife.mp3");
 		strcopy(headshotKiller,sizeof(headshotKiller),"war3source/bheadshot.mp3");
-		War3_AddSound("War3Source_Engine_XPGold",meleeKiller);
-		War3_AddSound("War3Source_Engine_XPGold",meleeKilled);
-		War3_AddSound("War3Source_Engine_XPGold",headshotKiller);
+		War3_AddSound("War3Source_Engine_XPGold",meleeKiller,CUSTOM_SOUND);
+		War3_AddSound("War3Source_Engine_XPGold",meleeKilled,CUSTOM_SOUND);
+		War3_AddSound("War3Source_Engine_XPGold",headshotKiller,CUSTOM_SOUND);
 		//War3_AddSound("War3Source_Engine_XPGold",levelupSound);
 	}
 }

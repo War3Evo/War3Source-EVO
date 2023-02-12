@@ -162,7 +162,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_BOTTOM)
 	{
-		War3_AddSound("MyPiggyBankSound",MyPiggyBankSound);
+		War3_AddSound("MyPiggyBankSound",MyPiggyBankSound,CUSTOM_SOUND);
 	}
 }
 #endif

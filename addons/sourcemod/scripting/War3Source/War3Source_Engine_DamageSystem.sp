@@ -286,6 +286,19 @@ public Action:SDK_Forwarded_OnTakeDamage(victim,&attacker,&inflictor,&Float:dama
 		return Plugin_Continue;
 	}
 
+/**
+ * 
+L 02/11/2023 - 16:06:19: [SM] Exception reported: Callback-provided entity 10 for attacker is invalid
+L 02/11/2023 - 16:06:19: [SM] Blaming: War3Source.smx::SDK_Forwarded_OnTakeDamage
+L 02/11/2023 - 16:06:19: [SM] Exception reported: Callback-provided entity 10 for attacker is invalid
+L 02/11/2023 - 16:06:19: [SM] Blaming: War3Source.smx::SDK_Forwarded_OnTakeDamage
+L 02/11/2023 - 16:06:19: [SM] Exception reported: Callback-provided entity 10 for attacker is invalid
+L 02/11/2023 - 16:06:19: [SM] Blaming: War3Source.smx::SDK_Forwarded_OnTakeDamage
+ * 
+
+reason I created bool SDK_Forwarded_OnTakeDamage_Changed = false;
+
+*/
 	bool SDK_Forwarded_OnTakeDamage_Changed = false;
 
 	if(ValidPlayer(victim,true))

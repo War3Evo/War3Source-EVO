@@ -458,7 +458,7 @@ bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloa
 	new String:StringDetail[2048];
 	// Precache only stock files (Bypass history check)
 
-	PrintToServer(SoundModify);
+	//PrintToServer(SoundModify);
 
 	TrimString(SoundModify);
 
@@ -597,7 +597,8 @@ public bool:War3Source_Engine_Download_Control_InitNatives()
 	return true;
 }
 
-public int Native_War3_AddSound(Handle:plugin, numParams)
+//native void War3_AddSound(char[] SoundName,char[] soundfile,int stocksound=0,int priority=PRIORITY_TAKE_FORWARD);
+public Native_War3_AddSound(Handle:plugin, numParams)
 {
 	//PrintToServer("numParams %d",numParams);
 	char sSoundFile[1024];
@@ -612,31 +613,50 @@ public int Native_War3_AddSound(Handle:plugin, numParams)
 	// This allows sSoundFile to be changed:
 	Call_PushStringEx(sSoundFile, sizeof(sSoundFile), SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
 	Call_Finish(OnAddSoundRes);
-	
-	if(FindStringInArray(g_hSoundFile, sSoundFile)==-1) // if not found, add
-	{
-		int stocksound = GetNativeCell(2);
-		PushArrayCell(g_hStockSound, stocksound);
 
-		int priority = GetNativeCell(3);
+	//PrintToServer("*Call_PushStringEx*******************sSoundFile: %s", sSoundFile);
+
+	if (OnAddSoundRes == Plugin_Changed)
+	{
+		//PrintToServer("OnAddSoundRes == Plugin_Changed");
+		if(FindStringInArray(g_hSoundFile, sSoundFile)==-1) // if not found, add
+		{
+			//PrintToServer("if(FindStringInArray(g_hSoundFile, sSoundFile)==-1)");
+			int stocksound = GetNativeCell(3);
+			PushArrayCell(g_hStockSound, stocksound);
+
+			int priority = GetNativeCell(4);
+			if(priority==PRIORITY_TAKE_FORWARD)
+			{
+				priority = Forward_Priority;
+			}
+			PushArrayCell(g_hPriority, priority);
+			PushArrayString(g_hSoundFile, sSoundFile);
+
+			/*
+			if(numParams==4)
+			{
+				int iRaceID = GetNativeCell(4);
+				PushArrayCell(g_hRaceIDSound, iRaceID);
+			}
+			else
+			{
+				PushArrayCell(g_hRaceIDSound, 0);
+			}*/
+		}
+	}
+	else
+	{
+		//PrintToServer("OnAddSoundRes != Plugin_Changed");
+		int stocksound = GetNativeCell(3);
+		PushArrayCell(g_hStockSound, stocksound);
+		int priority = GetNativeCell(4);
 		if(priority==PRIORITY_TAKE_FORWARD)
 		{
 			priority = Forward_Priority;
 		}
 		PushArrayCell(g_hPriority, priority);
 		PushArrayString(g_hSoundFile, sSoundFile);
-
-		/*
-		if(numParams==4)
-		{
-			int iRaceID = GetNativeCell(4);
-			PushArrayCell(g_hRaceIDSound, iRaceID);
-		}
-		else
-		{
-			PushArrayCell(g_hRaceIDSound, 0);
-		}*/
-
 	}
 }
 

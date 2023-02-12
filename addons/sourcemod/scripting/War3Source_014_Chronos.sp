@@ -208,8 +208,8 @@ public OnAddSound(sound_priority)
 		strcopy(leapsnd,sizeof(leapsnd),"war3source/chronos/timeleap.mp3");
 		strcopy(spheresnd,sizeof(spheresnd),"war3source/chronos/sphere.mp3");
 
-		War3_AddSound("Chronos",leapsnd);
-		War3_AddSound("Chronos",spheresnd);
+		War3_AddSound("Chronos",leapsnd,CUSTOM_SOUND);
+		War3_AddSound("Chronos",spheresnd,CUSTOM_SOUND);
 	}
 }
 

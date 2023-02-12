@@ -93,7 +93,7 @@ public Action:SoundHook(clients[64], &numClients, String:sound[PLATFORM_MAX_PATH
 		new String:soundchk[PLATFORM_MAX_PATH];
 		Format(soundchk, sizeof(soundchk), "sound/%s", sound);
 		if (!FileExists(soundchk, true)) return Plugin_Continue;
-		War3_AddSound("War3Source_Engine_Cyborg",sound,1,PRIORITY_LOW);
+		War3_AddSound("War3Source_Engine_Cyborg",sound,STOCK_SOUND,PRIORITY_LOW);
 		return Plugin_Changed;
 	}
 	return Plugin_Continue;
@@ -275,7 +275,7 @@ public War3Source_Engine_Cyborg_OnAddSound(sound_priority)
 		{
 			decl String:snd[PLATFORM_MAX_PATH];
 			Format(snd, sizeof(snd), "mvm/player/footsteps/robostep_%s%i.wav", (i < 10) ? "0" : "", i);
-			War3_AddSound("War3Source_Engine_Cyborg",snd,1);
+			War3_AddSound("War3Source_Engine_Cyborg",snd,STOCK_SOUND);
 			if (i <= 4)
 			{
 				Format(snd, sizeof(snd), "mvm/sentrybuster/mvm_sentrybuster_step_0%i.wav", i);

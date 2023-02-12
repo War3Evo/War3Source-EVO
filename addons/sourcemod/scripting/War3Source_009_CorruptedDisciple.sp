@@ -178,14 +178,14 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound("Corrupted Disciple",overload1);
-		War3_AddSound("Corrupted Disciple",overloadzap);
-		War3_AddSound("Corrupted Disciple",overloadstate);
+		War3_AddSound("Corrupted Disciple",overload1,CUSTOM_SOUND);
+		War3_AddSound("Corrupted Disciple",overloadzap,CUSTOM_SOUND);
+		War3_AddSound("Corrupted Disciple",overloadstate,CUSTOM_SOUND);
 	}
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound("Corrupted Disciple",taunt1);
-		War3_AddSound("Corrupted Disciple",taunt2);
+		War3_AddSound("Corrupted Disciple",taunt1,CUSTOM_SOUND);
+		War3_AddSound("Corrupted Disciple",taunt2,CUSTOM_SOUND);
 	}
 }
 

@@ -151,7 +151,7 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_HIGH)
 	{
-		War3_AddSound("Luna Moonfang",beamsnd);
+		War3_AddSound("Luna Moonfang",beamsnd,CUSTOM_SOUND);
 	}
 }
 

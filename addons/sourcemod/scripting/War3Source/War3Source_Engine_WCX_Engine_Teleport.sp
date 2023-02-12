@@ -89,7 +89,7 @@ public War3Source_Engine_WCX_Engine_Teleport_OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound("War3Source_Engine_WCX_Engine_Teleport",teleportSound);
+		War3_AddSound("War3Source_Engine_WCX_Engine_Teleport",teleportSound,CUSTOM_SOUND);
 	}
 }
 

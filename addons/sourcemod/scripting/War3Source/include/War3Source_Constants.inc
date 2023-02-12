@@ -956,3 +956,7 @@ enum ItemClassString
 #define SPELLCOLOR_BROWN	"139 69 19"
 #define SPELLCOLOR_VIOLET	"238 130 238"
 
+// SOUNDS
+
+#define CUSTOM_SOUND 0
+#define STOCK_SOUND 1

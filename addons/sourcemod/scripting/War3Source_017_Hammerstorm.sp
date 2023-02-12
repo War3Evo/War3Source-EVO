@@ -153,8 +153,8 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_MEDIUM)
 	{
-		War3_AddSound("Hammerstorm",hammerboltsound);
-		War3_AddSound("Hammerstorm",ultsnd);
+		War3_AddSound("Hammerstorm",hammerboltsound,CUSTOM_SOUND);
+		War3_AddSound("Hammerstorm",ultsnd,CUSTOM_SOUND);
 	}
 }
 

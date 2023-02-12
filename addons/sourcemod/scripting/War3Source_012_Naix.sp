@@ -231,11 +231,11 @@ public OnAddSound(sound_priority)
 {
 	if(sound_priority==PRIORITY_LOW)
 	{
-		War3_AddSound("Naix - Lifestealer",ultsnd);
+		War3_AddSound("Naix - Lifestealer",ultsnd,CUSTOM_SOUND);
 	}
 	if(sound_priority==PRIORITY_BOTTOM)
 	{
-		War3_AddSound("Naix - Lifestealer",skill1snd);
+		War3_AddSound("Naix - Lifestealer",skill1snd,CUSTOM_SOUND);
 	}
 }
 
