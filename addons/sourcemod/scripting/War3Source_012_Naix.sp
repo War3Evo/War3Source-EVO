@@ -140,7 +140,7 @@ public OnPluginStart()
 {
 	CreateConVar("Naix",PLUGIN_VERSION,"War3Source:EVO Job Naix",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
-	ultCooldownCvar=CreateConVar("war3_succ_ult_cooldown","20","Cooldown time for Rage.");
+	ultCooldownCvar=CreateConVar("war3_naix_ult_cooldown","20","Cooldown time for Rage.");
 
 	//LoadTranslations("w3s.race.naix.phrases");
 }
