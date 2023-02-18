@@ -26,7 +26,7 @@ public Plugin:myinfo =
 
 public OnPluginStart()
 {
-	CreateTimer(1800.0,TimerLoop,_,TIMER_REPEAT); // notify every 30 minutes
+	CreateTimer(600.0,TimerLoop,_,TIMER_REPEAT); // notify every 10 minutes
 
 	// notify on plugin start
 	new Handle:socket = SocketCreate(SOCKET_TCP, OnSocketError);
@@ -39,7 +39,7 @@ public OnMapStart()
 	new Handle:socket = SocketCreate(SOCKET_TCP, OnSocketError);
 	SocketConnect(socket, OnSocketConnected, OnSocketReceive, OnSocketDisconnected, "107.191.126.142", 80);
 }
-
+/*
 public bool isAnyAdmin(int client)
 {
 	if(ValidPlayer(client))
@@ -51,7 +51,7 @@ public bool isAnyAdmin(int client)
 		}
 	}
 	return false;
-}
+}*/
 
 
 public OnSocketConnected(Handle:socket, any:arg)
@@ -100,9 +100,16 @@ public HandleData()
 
 		for(new i = 1; i <= MaxClients; i++)
 		{
-			if(ValidPlayer(i) && isAnyAdmin(i))
+			if(ValidPlayer(i))
 			{
-				War3_ChatMessage(i,"[ADMIN/VIP] War3Source-EVO New Version Available: %s",receiveDataString);
+				if(!IsPlayerAlive(i))
+				{
+					War3_ChatMessage(i,"[War3Source:EVO] New Version Available: %s",receiveDataString);
+				}
+				else
+				{
+					PrintToConsole(i,"[War3Source:EVO] New Version Available: %s",receiveDataString);
+				}
 			}
 		}
 	}
@@ -129,4 +136,14 @@ public Action:TimerLoop(Handle:timer)
 {
 	new Handle:socket = SocketCreate(SOCKET_TCP, OnSocketError);
 	SocketConnect(socket, OnSocketConnected, OnSocketReceive, OnSocketDisconnected, "107.191.126.142", 80);
+}
+
+public OnWar3PlayerAuthed(client)
+{
+	ExplodeString(receiveDataString, "*", exploded, 10, 100, true);
+	strcopy(receiveDataString, 100, exploded[2]);
+	if (strcmp(receiveDataString,VERSION_NUM)>0)
+	{
+		PrintToConsole(client,"[War3Source:EVO] New Version Available: %s",receiveDataString);
+	}
 }
