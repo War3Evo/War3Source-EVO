@@ -94,7 +94,7 @@ public OnPluginStart()
 	War3Source_002_OnW3SupplyLocker_OnPluginStart();
 #endif
 
-#if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
+#if (GGAMETYPE == GGAME_CSGO)
 	War3Source_Engine_CSGO_Radar_OnPluginStart();
 #endif
 
