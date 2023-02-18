@@ -103,3 +103,4 @@ forward OnCooldownExpired(client,raceID,skillNum,bool:expiredByTime);
 
 forward OnCooldownStarted(client,raceID,skillNum);
 
+forward OnCooldownTimer(client,raceID,skillNum,TimeRemaining);

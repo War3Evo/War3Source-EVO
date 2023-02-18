@@ -207,6 +207,15 @@ public Action:Command_ToggleHUD(client, args)
 	return Plugin_Handled;
 }
 
+new CooldownPointer[MAXPLAYERSCUSTOM][MAXRACES];
+
+public OnCooldownTimer(client,raceID,skillNum,TimeRemaining)
+{
+	if(War3_IsSkillUltimate(raceID,skillNum) == true)
+	{
+		CooldownPointer[client][raceID]=TimeRemaining;
+	}
+}
 
 
 //public Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast)
@@ -294,6 +303,10 @@ public Action:HudInfo_Timer(Handle:timer, any:whatclient)
 						Format(HUD_Text, sizeof(HUD_Text), "%sHP: %i MAXHP: %i",
 							HUD_Text,
 							GetClientHealth(client),War3_GetMaxHP(client));
+
+						Format(HUD_Text, sizeof(HUD_Text), "%s\nULT CD: %i",
+							HUD_Text,
+							CooldownPointer[client][race]);
 
 #endif
 						//Format(HUD_Text, sizeof(HUD_Text), "%s - Diamonds: %i",

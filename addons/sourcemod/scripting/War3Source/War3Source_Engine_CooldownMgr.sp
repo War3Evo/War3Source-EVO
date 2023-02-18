@@ -15,7 +15,7 @@ new String:abilityReadySound[256]; //="war3source/ability_refresh.mp3";
 
 Handle g_CooldownExpiredForwardHandle;
 Handle g_CooldownStartedForwardHandle;
-
+Handle g_OnCooldownTimerForwardHandle;
 
 new CooldownPointer[MAXPLAYERSCUSTOM][MAXRACES][MAXSKILLCOUNT];
 
@@ -92,6 +92,7 @@ public bool:War3Source_Engine_CooldownMgr_InitNativesForwards()
 {
 	g_CooldownExpiredForwardHandle=CreateGlobalForward("OnCooldownExpired",ET_Ignore,Param_Cell,Param_Cell,Param_Cell,Param_Cell);
 	g_CooldownStartedForwardHandle=CreateGlobalForward("OnCooldownStarted",ET_Ignore,Param_Cell,Param_Cell,Param_Cell);
+	g_OnCooldownTimerForwardHandle=CreateGlobalForward("OnCooldownTimer",ET_Ignore,Param_Cell,Param_Cell,Param_Cell,Param_Cell);
 	return true;
 }
 
@@ -299,6 +300,27 @@ CheckCooldownsForExpired(bool:expirespawn,clientthatspawned=0)
 				expired=true;
 			}
 
+			float fTimeremaining=Cooldown[i][cexpiretime]-GetEngineTime();
+			int timeremaining=RoundToCeil(fTimeremaining);
+			float tremain1 = timeremaining + 0.25;
+			float tremain2 = timeremaining - 0.25;
+
+			if (fTimeremaining >= tremain2 && fTimeremaining <= tremain1)
+			{
+				//push cooldown timer
+
+				//g_OnCooldownTimerForwardHandle=CreateGlobalForward("OnCooldownTimer",ET_Ignore,Param_Cell,Param_Cell,Param_Cell,Param_Cell);
+				Call_StartForward(g_OnCooldownTimerForwardHandle);
+				Call_PushCell(Cooldown[i][cclient]);
+				Call_PushCell(Cooldown[i][crace]);
+				Call_PushCell(Cooldown[i][cskill]);
+				Call_PushCell(timeremaining);
+				new result;
+				Call_Finish(result); //this will be returned to ?
+
+			}
+
+
 
 			if(expired)
 			{
@@ -317,7 +339,7 @@ CheckCooldownsForExpired(bool:expirespawn,clientthatspawned=0)
 				new client=Cooldown[i][cclient];
 				new race=Cooldown[i][crace];
 				new skill=Cooldown[i][cskill];
-				new timeremaining=RoundToCeil(Cooldown[i][cexpiretime]-GetEngineTime());
+				//new timeremaining=RoundToCeil(Cooldown[i][cexpiretime]-GetEngineTime());
 				if(GetRace(client)==Cooldown[i][crace] && GetSkillLevel(client,race,skill)>0&& timeremaining<=5 && Cooldown[i][cprintmsgonexpire]==true){ //is this race, and has this skill
 
 					if(arraylist[client]==INVALID_HANDLE){
