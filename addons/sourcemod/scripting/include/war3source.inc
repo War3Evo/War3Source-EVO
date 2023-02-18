@@ -33,9 +33,12 @@
 #include <morecolors>
 #elseif (GGAMETYPE == GGAME_FOF)
 #include <morecolors>
-#elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO) 
+#elseif (GGAMETYPE == GGAME_CSGO) 
 #include <cstrike>
 #include <colors>
+#elseif (GGAMETYPE == GGAME_CSS) 
+#include <cstrike>
+#include <morecolors>
 #else
 #include <colors>
 #endif
