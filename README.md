@@ -33,6 +33,8 @@ It will prompt you for the installation directory and other information as it ne
 
 THIS IS A FULL INSTALL OF STEAM SERVER, SOURCEMOD, METAMOD, and War3Source-EVO!
 
+DO NOT USE THIS TO UPDATE.  It will over write your cfg files. I'm working on a update script.
+
 * CSS ./installcss.sh
 * CSGO ./installcsgo.sh
 * TF2 ./installtf2.sh
