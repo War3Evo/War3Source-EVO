@@ -21,6 +21,23 @@ make pull requests to our [Github repository](https://github.com/War3Evo/War3Sou
 For further information on the War3Source Evoultion project, please visit our project
 website at [War3Evo.info](http://www.war3evo.info/).
 
+## Install
+
+The easiest way to install is to use the provided installation scripts.
+
+The scripts was created using Debian 11. If you use a different Linux OS, your mileage may vary.
+
+You will need to be a SUDO user to fully install using this script because it requires installing special libraries for the game server.
+
+It will prompt you for the installation directory and other information as it needs.
+
+THIS IS A FULL INSTALL OF STEAM SERVER, SOURCEMOD, METAMOD, and War3Source-EVO!
+
+CSS ./installcss.sh
+CSGO ./installcsgo.sh
+TF2 ./installtf2.sh
+FOF ./installfof.sh
+
 ## Players having trouble downloading files from your CSGO server?
 
 Make sure every player puts this into their console to enable downloads:
