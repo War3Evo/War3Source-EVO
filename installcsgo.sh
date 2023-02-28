@@ -54,8 +54,28 @@ read -p "[${GAME_SWITCHER}] Press ENTER to continue" readTMP
 echo
 sudo apt-get update
 sudo dpkg --add-architecture i386
-sudo apt-get install wget tar nano git screen
-sudo apt-get install clang lib32gcc1 lib32gcc-s1 lib32stdc++-7-dev lib32stdc++6 lib32z1 lib32z1-dev libc6-i386 libbz2-1.0:i386 libncurses5:i386 libtinfo5:i386 libcurl3-gnutls:i386 libsdl2-2.0-0:i386 linux-libc-dev:i386 libc6-dev-i386
+sudo apt-get install wget
+sudo apt-get install git
+sudo apt-get install tar
+sudo apt-get install screen
+sudo apt-get install nano
+sudo apt-get install lib32gcc1
+sudo apt-get install lib32gcc-s1
+#
+# You may or may not need these libraries for your linux server
+# uncomment if you want to see if they help you install steam server
+#
+#sudo apt-get install clang
+#sudo apt-get install lib32stdc++6
+#sudo apt-get install lib32z1
+sudo apt-get install libc6-i386
+#sudo apt-get install libbz2-1.0:i386
+#sudo apt-get install libncurses5:i386
+#sudo apt-get install libtinfo5:i386
+#sudo apt-get install libcurl3-gnutls:i386
+#sudo apt-get install libsdl2-2.0-0:i386
+sudo apt-get install linux-libc-dev:i386
+#sudo apt-get install libc6-dev-i386
 echo
 echo 'Some systems may complain about not see all files for apt-get,'
 echo 'try to install anyhow, your system may not need them.'
