@@ -33,10 +33,10 @@ It will prompt you for the installation directory and other information as it ne
 
 THIS IS A FULL INSTALL OF STEAM SERVER, SOURCEMOD, METAMOD, and War3Source-EVO!
 
-CSS ./installcss.sh
-CSGO ./installcsgo.sh
-TF2 ./installtf2.sh
-FOF ./installfof.sh
+* CSS ./installcss.sh
+* CSGO ./installcsgo.sh
+* TF2 ./installtf2.sh
+* FOF ./installfof.sh
 
 ## Players having trouble downloading files from your CSGO server?
 
