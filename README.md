@@ -46,6 +46,10 @@ Make sure every player puts this into their console to enable downloads:
 
 * sv_allowupload 1
 
+OR
+
+Get a fastDL server and set your sv_downloadurl (see link --> https://developer.valvesoftware.com/wiki/Sv_downloadurl)
+
 This will allow the server to upload to the client. By default the clients have this disabled.
 
 ## Compile & Server Requirements
