@@ -5,6 +5,13 @@
 # You should install using a SUDO USER and not root user for security purposes.
 # SUDO is needed for apt-get install and for getting the public ip address for this server via ifconfig.
 
+#    CSS - 232330
+#    CSGO - 740
+#    FOF - 295230
+#    TF2 - 232250
+#    L4D - 222840
+#    L4D2 - 222860
+
 serverAPPid="232330"
 
 gamePath1="css"
@@ -13,11 +20,31 @@ gamePath2="cstrike"
 
 RNAME="hlserver"
 
+# Game switcher for War3Source-EVO compiling
+# either CSS or CSGO or TF2 or FOF
+GAME_SWITCHER="CSS"
+
 # example /home/steamgameserver
 # CPATH actually will install in what ever directory you start this script in,
 # not really your home path, otherwise you can change $PWD to $HOME
 # if you prefer the home path.
 CPATH=$PWD
+
+# spaceREQ
+# CSGO 35
+# TF2 10
+# CSS 3
+# FOF 4
+
+spaceREQ=35
+HDspace=$(df --output=avail -h ${CPATH} | sed '1d;s/[^0-9]//g')
+
+if [[ $HDspace -le $spaceREQ ]]; then
+     echo "You will need at least ${spaceREQ}GB of hard drive space before installing ${GAME_SWITCHER}!"
+     echo "You only have ${HDspace}GB hard drive free space on ${CPATH}"
+     df -h
+     exit
+fi
 
 # example /home/steamgameserver/hlserver
 installPath="$CPATH/$RNAME"
@@ -48,9 +75,28 @@ read -p "Press ENTER to continue" readTMP
 echo
 sudo apt-get update
 sudo dpkg --add-architecture i386
-sudo apt-get install wget tar nano git screen
-sudo apt-get install clang lib32gcc1 lib32gcc-s1 lib32stdc++-7-dev lib32stdc++6 lib32z1 lib32z1-dev libc6-i386 libbz2-1.0:i386 libncurses5:i386 libtinfo5:i386 libcurl3-gnutls:i386 libsdl2-2.0-0:i386 linux-libc-dev:i386 libc6-dev-i386
-echo
+sudo apt-get install wget
+sudo apt-get install git
+sudo apt-get install tar
+sudo apt-get install screen
+sudo apt-get install nano
+sudo apt-get install lib32gcc1
+sudo apt-get install lib32gcc-s1
+sudo apt-get install lib32stdc++6
+sudo apt-get install libc6-i386
+sudo apt-get install linux-libc-dev:i386
+#
+# You may need these libraries for your linux server
+# Uncomment if you want to see if they help you install or run the steam server
+#
+#sudo apt-get install clang
+#sudo apt-get install lib32z1
+#sudo apt-get install libbz2-1.0:i386
+#sudo apt-get install libncurses5:i386
+#sudo apt-get install libtinfo5:i386
+#sudo apt-get install libcurl3-gnutls:i386
+#sudo apt-get install libsdl2-2.0-0:i386
+#sudo apt-get install libc6-dev-i386echo
 echo 'Some systems may complain about not see all files for apt-get,'
 echo 'try to install anyhow, your system may not need them.'
 echo
@@ -59,13 +105,13 @@ echo 'Defaults will be surrounded by () unless it says (required)'
 echo
 echo 'What directory would you like to install in?'
 echo
-read -p "Install Directory ($installPath)" readInstallPath
+read -p "[${GAME_SWITCHER}] Install Directory ($installPath)" readInstallPath
 if [[ "$readInstallPath" ]]; then
     $installPath = $readInstallPath
 fi
 echo
 echo "SteamCMD Directory is ${installPath}"
-echo "Game Directory is ${gameInstallPath}"
+echo "${GAME_SWITCHER} Game Directory is ${gameInstallPath}"
 echo "Sourcemod/MetaMod/War3Source Directory is ${SourceMetaModWar3InstallPath}"
 echo
 echo
@@ -79,7 +125,7 @@ test -e "${SourceMetaModWar3InstallPath}" || mkdir "${SourceMetaModWar3InstallPa
 #read -p "Press ENTER to continue" readTMP
 
 # Download and Extract SteamCMD
-wget "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" -O steamcmd_linux.tar.gz
+test -e "steamcmd_linux.tar.gz" || wget "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" -O steamcmd_linux.tar.gz
 tar -zxvf steamcmd_linux.tar.gz --directory "${installPath}"
 
 # Create SteamCMD Script file
@@ -131,9 +177,9 @@ tar --list -f "${SourceMetaModWar3InstallPath}/sourcemod-1.9-linux.tar.gz" > "${
 #
 # Give spcomp the required permissions
 chmod a+x "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/spcomp_1.9.0.6261"
-chmod a+x "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/game_switcher_CSS.sh"
+chmod a+x "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/game_switcher_${GAME_SWITCHER}.sh"
 chmod a+x "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/compile_for_github_action.sh"
-bash -c "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/game_switcher_CSS.sh"
+bash -c "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/game_switcher_${GAME_SWITCHER}.sh"
 bash -c "${SourceMetaModWar3InstallPath}/addons/sourcemod/scripting/compile_for_github_action.sh" || true
 # uncomment below if you want to stop at this point
 #read -p "Press ENTER to continue" readTMP
@@ -147,7 +193,7 @@ rm -rf .git
 #read -p "BEFORE SOURCMOE 1.11 ** Press ENTER to continue" readTMP
 
 # Download SourceMod
-wget "http://www.sourcemod.net/latest.php?version=1.11&os=linux" -O sourcemod-1.11-linux.tar.gz
+test -e "sourcemod-1.11-linux.tar.gz" || wget "http://www.sourcemod.net/latest.php?version=1.11&os=linux" -O sourcemod-1.11-linux.tar.gz
 
 # Extract SourceMod
 tar -zxvf sourcemod-1.11-linux.tar.gz --directory "${SourceMetaModWar3InstallPath}"
@@ -155,7 +201,7 @@ tar -zxvf sourcemod-1.11-linux.tar.gz --directory "${SourceMetaModWar3InstallPat
 #read -p "Press ENTER to continue" readTMP
 
 # Download MetaMod
-wget "https://www.metamodsource.net/latest.php?version=1.11&os=linux" -O metamod-1.11-linux.tar.gz
+test -e "metamod-1.11-linux.tar.gz" || wget "https://www.metamodsource.net/latest.php?version=1.11&os=linux" -O metamod-1.11-linux.tar.gz
 
 # Extract Metamod
 tar --overwrite -zxvf metamod-1.11-linux.tar.gz --directory "${SourceMetaModWar3InstallPath}"
@@ -163,11 +209,11 @@ tar --overwrite -zxvf metamod-1.11-linux.tar.gz --directory "${SourceMetaModWar3
 # Steam Account ID
 echo "You can get your Steam Game Server Account from here:"
 echo "https://steamcommunity.com/dev/managegameservers"
-read -p "Please enter Steam Game Server Account (required):" readSteamAccount
+read -p "[${GAME_SWITCHER}] Please enter Steam Game Server Account (required):" readSteamAccount
 
 publicIPaddress=$(sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1');
-read -p "Server IP Address (${publicIPaddress}):" readServerIPAddress
-read -p "Server Port (27015):" readServerPort
+read -p "[${GAME_SWITCHER}] Server IP Address (${publicIPaddress}):" readServerIPAddress
+read -p "[${GAME_SWITCHER}] Server Port (27015):" readServerPort
 
 ServerIP=$publicIPaddress
 
@@ -183,15 +229,15 @@ fi
 
 if [[ "$readSteamAccount" ]]; then
     echo "screen -mS css ${gameInstallPath}/srcds_run -game cstrike -secure -console -usercon +map de_dust +ip ${ServerIP} +port ${ServerPort} -autoupdate +sv_consistency 0 +sv_pure 0 +map de_dust2 +maxplayers 32 +exec server.cfg +sv_setsteamaccount ${readSteamAccount} -steam_dir ${installPath} -steamcmd_script ${steamcmdFile}" > "${installPath}/startCSS.sh"
-    chmod a+x "${installPath}/startCSS.sh"
+    chmod a+x "${installPath}/start${GAME_SWITCHER}.sh"
     echo "*******************************************************************"
-    echo "${installPath}/startCSS.sh has been created for you:"
-    cat "${installPath}/startCSS.sh"
+    echo "${installPath}/start${GAME_SWITCHER}.sh has been created for you:"
+    cat "${installPath}/start${GAME_SWITCHER}.sh"
     echo "*******************************************************************"
     echo "*******************************************************************"
     echo "[READ EVERYTHING FIRST]"
     echo "Then to run server type this below and press enter:"
-    echo "${installPath}/startCSS.sh"
+    echo "${installPath}/start${GAME_SWITCHER}.sh"
     echo "*******************************************************************"
     echo "*******************************************************************"
     echo "ctrl + a then press d to leave server running in the background"
