@@ -106,8 +106,8 @@ public void Internal_War3_Event(W3EVENT event,int client)
 			new Handle: war3_help_menu_cfg = FindConVar("war3_help_menu_cfg");
 			if(war3_help_menu_cfg!=INVALID_HANDLE)
 			{
-				// if 0, show original war3evo help menu
-				if(GetConVarBool(war3_help_menu_cfg)==0)
+				// if false, show original war3evo help menu
+				if(GetConVarBool(war3_help_menu_cfg)==false)
 				{
 					War3Source_Engine_MenuWar3Menu_OnWar3Event(client);
 					return;

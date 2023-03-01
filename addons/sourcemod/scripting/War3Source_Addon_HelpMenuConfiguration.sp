@@ -11,7 +11,7 @@ public Plugin:myinfo =
 	url = "war3source.com"
 };
 
-int iStringSize = 100;
+#define iStringSize 100
 
 char sQuestion[iStringSize];
 char sFakeClientCommandEx[iStringSize];
@@ -130,13 +130,13 @@ public int LoadConfig()
 	new Handle: kv = CreateKeyValues("TF2");
 #endif
 
-	FileToKeyValues(kv, "addons/sourcemod/configs/war3sources_help_menu.cfg");
+	FileToKeyValues(kv, "addons/sourcemod/configs/war3source_help_menu.cfg");
 
 	if (!KvGotoFirstSubKey(kv))
 	{
-		return ThrowNativeError(80070002, "Unable to load addons/sourcemod/configs/war3sources_help_menu.cfg for this game.");
+		return ThrowNativeError(80070066, "Unable to load addons/sourcemod/configs/war3source_help_menu.cfg for this game.");
 	}
-	if (DebugOn() == true) { PrintToServer("2-LOADING SOUNDS CONFIG..."); }
+	if (DebugOn() == true) { PrintToServer("2-LOADING CONFIG..."); }
 
 	// clear array and reload for every map change
 	// just in case server admin wants to change sound
@@ -157,7 +157,7 @@ public int LoadConfig()
 		KvGetString(kv, "servercommand", sConsoleMessage, sizeof(sConsoleMessage));
 
 		// prevent duplicates
-		find_index = FindStringInArray(old_array_sounds, sQuestion);
+		find_index = FindStringInArray(array_question, sQuestion);
 		if(find_index == -1) // if not found, add
 		{
 			//Store data in array
@@ -250,28 +250,28 @@ public War3Source_War3Menu_Select(Handle:menu,MenuAction:action,client,selection
 
 			// FakeClientCommandEx
 			char cCommandStr[iStringSize];
-			GetArrayString(array_fakeclientcommandex, i, cCommandStr, sizeof(cCommandStr));
+			GetArrayString(array_fakeclientcommandex, selection, cCommandStr, sizeof(cCommandStr));
 			if(!StrEqual(cCommandStr, ""))
 			{
 				FakeClientCommandEx(client,cCommandStr);
 			}
 			
 			// War3_ChatMessage
-			GetArrayString(array_chatmessage, i, cCommandStr, sizeof(cCommandStr));
+			GetArrayString(array_chatmessage, selection, cCommandStr, sizeof(cCommandStr));
 			if(!StrEqual(cCommandStr, ""))
 			{
 				War3_ChatMessage(client,cCommandStr);
 			}
 
 			// PrintToConsole
-			GetArrayString(array_consolemessage, i, cCommandStr, sizeof(cCommandStr));
+			GetArrayString(array_consolemessage, selection, cCommandStr, sizeof(cCommandStr));
 			if(!StrEqual(cCommandStr, ""))
 			{
 				PrintToConsole(client,cCommandStr);
 			}
 
 			// ServerCommand
-			GetArrayString(array_servercommand, i, cCommandStr, sizeof(cCommandStr));
+			GetArrayString(array_servercommand, selection, cCommandStr, sizeof(cCommandStr));
 			if(!StrEqual(cCommandStr, ""))
 			{
 				ServerCommand(cCommandStr);
