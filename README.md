@@ -29,7 +29,7 @@ The scripts was created using Debian 11. If you use a different Linux OS, your m
 
 You will need to be a SUDO user to fully install using this script because it requires installing special libraries for the game server.
 
-If you run the script for the first time and the server doesn't install correctly, open the script and uncomment all the #sudo apt-get install comments so that it can install those other libraries that your Linux may need.  Then try the script again.  If it still doesn't install correctly, report this issue along with what Linux OS your installing to and any other helpful information like the output of the install.
+If you run the script for the first time and the server doesn't install correctly, open the script and uncomment all the #sudo apt-get install comments so that it can install those other libraries that your Linux may need.  Then try the script again.  If it still doesn't install correctly, report this issue along with what Linux OS your installing to and any other helpful information like the output of the install.  If a install doesn't install correctly it's usually because your missing a Linux library.  If you install a Linux library that isn't in our script, and it helps your install, please let us know.
 
 It will prompt you for the installation directory and other information as it needs.
 
