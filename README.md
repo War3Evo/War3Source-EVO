@@ -31,16 +31,36 @@ You will need to be a SUDO user to fully install using this script because it re
 
 If you run the script for the first time and the server doesn't install correctly, open the script and uncomment all the #sudo apt-get install comments so that it can install those other libraries that your Linux may need.  Then try the script again.  If it still doesn't install correctly, report this issue along with what Linux OS your installing to and any other helpful information like the output of the install.  If a install doesn't install correctly it's usually because your missing a Linux library.  If you install a Linux library that isn't in our script, and it helps your install, please let us know.
 
-It will prompt you for the installation directory and other information as it needs.
+It will prompt you for the installation directory and other information as it needs.installcsgo.sh
 
 THIS IS A FULL INSTALL OF STEAM SERVER, SOURCEMOD, METAMOD, and War3Source-EVO!
 
 DO NOT USE THIS TO UPDATE.  It will over write your cfg files. I'm working on a update script.
 
 * CSS ./installcss.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installcss.sh" -O installcss.sh
+chmod +x installcss.sh
+./installcss.sh
+```
 * CSGO ./installcsgo.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installcsgo.sh" -O installcsgo.sh
+chmod +x installcsgo.sh
+./installcsgo.sh
+```
 * TF2 ./installtf2.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installtf2.sh" -O installtf2.sh
+chmod +x installcss.sh
+./installcss.sh
+```
 * FOF ./installfof.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installfof.sh" -O installfof.sh
+chmod +x installfof.sh
+./installfof.sh
+```
 
 ## Players having trouble downloading files from your CSGO server?
 
