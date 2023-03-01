@@ -647,6 +647,14 @@ DelayedWar3SourceCfgExecute()
 #endif
 	//}
 #endif
+
+	// executes global war3source.cfg file
+	if(FileExists("cfg/war3source.cfg"))
+	{
+			ServerCommand("exec war3source.cfg");
+			PrintToServer("[War3Source] Executing war3source.cfg");
+	}
+
 }
 //=============================================================================
 // War3Source_HookEvents

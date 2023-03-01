@@ -294,3 +294,27 @@ bool CSGO_Radar_Changed[MAXPLAYERSCUSTOM];
 int CFoF_Player_m_iHealth;
 #endif
 
+//=============================
+// War3Source_Engine_NewPlayers.sp
+//=============================
+
+
+new bool:NewPlayerIsEnabled=true;
+new bool:IsNewPlayer[MAXPLAYERSCUSTOM];
+new NewPlayerDays=7;
+new Float:NewPlayerDamageMod=0.90;
+
+new bool:NewPlayerRandomRaceEnabled=true;
+new String:NewPlayerRandomRaces[512];
+new NewPlayerStartingGold=250;
+new NewPlayerStartingLevel=-999;
+
+new Handle:NewPlayerCvar;
+new Handle:NewPlayerDaysCvar;
+new Handle:NewPlayerDamageModCvar;
+
+new Handle:NewPlayerRandomRaceEnabledCvar;
+new Handle:NewPlayerRandomRacesCvar;
+new Handle:NewPlayerStartingGoldCvar;
+new Handle:NewPlayerStartingLevelCvar;
+

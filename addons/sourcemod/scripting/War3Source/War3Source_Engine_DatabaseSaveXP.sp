@@ -694,42 +694,104 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				// Set New Player Job
 				//War3_SetRace(client,1);
 
-				new String:requiredflagstr[32];
-				new racesloaded = GetRacesLoaded();
-				new newrace = GetRandomInt(1, racesloaded);
-				new countit=0;
-				GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
-				//while ((W3RaceHasFlag(newrace, "hidden")||W3RaceHasFlag(newrace, "steamgroup"))&&(!StrEqual(requiredflagstr, "0", false)||!StrEqual(requiredflagstr, "", false)))
-				GetRaceShortname(newrace,short_name,sizeof(short_name));
-#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
-				while(StrContains("warden, undead, mage, nightelf, crypt, bh, naix, succubus, chronos, luna, lightbender,",short_name) == -1)//
-#elseif (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
-				while(StrContains("crypt, bh, succubus, luna",short_name) == -1)//
-#endif
+				new newrace = 0;
+				if(NewPlayerIsEnabled==true)
 				{
-					PrintToServer("%s",short_name);
-					countit++;
-					newrace = GetRandomInt(1, racesloaded);
-					GetRaceShortname(newrace,short_name,sizeof(short_name));
-					//W3GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
-					if(countit>22)
+					if(NewPlayerRandomRaceEnabled==true)
 					{
-						newrace=1;
-						//requiredflagstr="0";
-						break;
+						new String:requiredflagstr[32];
+						new racesloaded = GetRacesLoaded();
+						newrace = GetRandomInt(1, racesloaded);
+						new countit=0;
+						GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
+						//while ((W3RaceHasFlag(newrace, "hidden")||W3RaceHasFlag(newrace, "steamgroup"))&&(!StrEqual(requiredflagstr, "0", false)||!StrEqual(requiredflagstr, "", false)))
+						GetRaceShortname(newrace,short_name,sizeof(short_name));
+		#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
+						new String:RandomRacesStrDB[512];
+						if(StrEqual(NewPlayerRandomRaces,""))
+						{
+							strcopy(RandomRacesStrDB, 500, "warden, undead, mage, nightelf, crypt, bh, naix, succubus, chronos, luna, lightbender,");
+						}
+						else
+						{
+							strcopy(RandomRacesStrDB, sizeof(NewPlayerRandomRaces), NewPlayerRandomRaces);
+						}
+						while(StrContains(RandomRacesStrDB,short_name) == -1)
+		#elseif (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
+						new String:RandomRacesStrDB[512];
+						if(StrEqual(NewPlayerRandomRaces,""))
+						{
+							strcopy(RandomRacesStrDB, 500, "crypt, bh, succubus, luna");
+						}
+						else
+						{
+							strcopy(RandomRacesStrDB, sizeof(NewPlayerRandomRaces), NewPlayerRandomRaces);
+						}
+						while(StrContains(RandomRacesStrDB,short_name) == -1)
+	    #else
+						new String:RandomRacesStrDB[512];
+						if(StrEqual(NewPlayerRandomRaces,""))
+						{
+							strcopy(RandomRacesStrDB, 500, "warden, undead, mage, nightelf, crypt, bh, naix, succubus, chronos, luna, lightbender,");
+						}
+						else
+						{
+							strcopy(RandomRacesStrDB, sizeof(NewPlayerRandomRaces), NewPlayerRandomRaces);
+						}
+						while(StrContains(RandomRacesStrDB,short_name) == -1)
+		#endif
+						{
+							PrintToServer("%s",short_name);
+							countit++;
+							newrace = GetRandomInt(1, racesloaded);
+							GetRaceShortname(newrace,short_name,sizeof(short_name));
+							//W3GetRaceAccessFlagStr(newrace,requiredflagstr,sizeof(requiredflagstr));
+							if(countit>22)
+							{
+								newrace=1;
+								//requiredflagstr="0";
+								break;
+							}
+						}
+						SetRace(client,newrace);
 					}
+					else
+					{
+						newrace = 0;
+						SetRace(client,0);
+					}
+
+					War3_SetGold(client,NewPlayerStartingGold);
+
+					// New First race will be MAX level race: (added 10 april 2015)
+
+					int SetRaceLevel = GetRaceMaxLevel(newrace);
+					//if(W3GetRaceMaxLevel(newrace)>10)
+					//{
+					if(NewPlayerStartingLevel==-999) // set race max level
+					{
+						SetLevel(client, newrace, SetRaceLevel);
+					}
+					else if(NewPlayerStartingLevel>SetRaceLevel) // set race max level
+					{
+						SetLevel(client, newrace, SetRaceLevel);
+					}
+					else if(NewPlayerStartingLevel>0) // set desired race level
+					{
+						SetLevel(client, newrace, NewPlayerStartingLevel);
+					}
+					else
+					{
+						SetLevel(client, newrace, 0);
+					}
+					//}
 				}
-				SetRace(client,newrace);
-				War3_SetGold(client,250);
-
-				// New First race will be MAX level race: (added 10 april 2015)
-
-				int SetRaceLevel = 10;
-				//if(W3GetRaceMaxLevel(newrace)>10)
-				//{
-				SetRaceLevel = GetRaceMaxLevel(newrace);
-				SetLevel(client, newrace, SetRaceLevel);
-				//}
+				else
+				{
+					SetRace(client,0);
+					SetLevel(client, newrace, 0);
+					War3_SetGold(client,0);
+				}
 			}
 		}
 		else if(SQL_GetRowCount(hndl) >1)

@@ -10,15 +10,6 @@
 /*                what ever race they wish to go against.                     */
 /* ========================================================================== */
 
-new bool:IsEnabled=true;
-new bool:IsNewPlayer[MAXPLAYERSCUSTOM];
-new NewPlayerDays=7;
-new Float:NewPlayerDamageMod=0.90;
-
-new Handle:NewPlayerCvar;
-new Handle:NewPlayerDaysCvar;
-new Handle:NewPlayerDamageModCvar;
-
 /*
 public Plugin:myinfo =
 {
@@ -36,9 +27,20 @@ public War3Source_Engine_NewPlayers_OnPluginStart()
 	NewPlayerDaysCvar=CreateConVar("war3_newplayer_days","1","How long a new player is considered new after join date.");
 	NewPlayerDamageModCvar=CreateConVar("war3_newplayer_damage_mod","0.90","0.0 = 100% damage reduction, 0.90 = 10% damage reduction, 1.0 = no damage reduction",0,true,0.0,true,1.0);
 
+	NewPlayerRandomRaceEnabledCvar=CreateConVar("war3_newplayer_random_race_enabled","1","1 for on, 0 for off. (default 1)");
+	NewPlayerRandomRacesCvar=CreateConVar("war3_newplayer_random_races","warden, undead, mage, nightelf, crypt, bh, naix, succubus, chronos, luna, lightbender,","warden, undead, mage, nightelf, crypt, bh, naix, succubus, chronos, luna, lightbender,");
+	NewPlayerStartingGoldCvar=CreateConVar("war3_newplayer_starting_gold","1","1 for on, 0 for off. (default 1)");
+	NewPlayerStartingLevelCvar=CreateConVar("war3_newplayer_starting_level","-999","-999 for max, 0 to 9999 (default -999)");
+
+
 	HookConVarChange(NewPlayerCvar, W3CvarNewPlayerCvar);
 	HookConVarChange(NewPlayerDaysCvar, W3CvarNewPlayerDaysCvar);
 	HookConVarChange(NewPlayerDamageModCvar, W3CvarNewPlayerDamageModCvar);
+
+	HookConVarChange(NewPlayerRandomRaceEnabledCvar, W3CvarNewPlayerRandomRaceEnabledCvar);
+	HookConVarChange(NewPlayerRandomRacesCvar, W3CvarNewPlayerRandomRacesCvar);
+	HookConVarChange(NewPlayerStartingGoldCvar, W3CvarNewPlayerStartingGoldCvar);
+	HookConVarChange(NewPlayerStartingLevelCvar, W3CvarNewPlayerStartingLevelCvar);
 
 	// old sm_newplayerlist
 	RegAdminCmd("newplayerlist",Command_newplayerlist,ADMFLAG_BAN,"Allows an administrator to see all new players.");
@@ -74,9 +76,9 @@ public W3CvarNewPlayerCvar(Handle:cvar, const String:oldValue[], const String:ne
 	new value = StringToInt(newValue);
 	SetConVarInt(NewPlayerCvar,value);
 	if(value==1)
-		IsEnabled=true;
+		NewPlayerIsEnabled=true;
 	else
-		IsEnabled=false;
+		NewPlayerIsEnabled=false;
 }
 public W3CvarNewPlayerDaysCvar(Handle:cvar, const String:oldValue[], const String:newValue[])
 {
@@ -90,11 +92,42 @@ public W3CvarNewPlayerDamageModCvar(Handle:cvar, const String:oldValue[], const 
 	SetConVarFloat(NewPlayerDamageModCvar,value);
 	NewPlayerDamageMod=value;
 }
+public W3CvarNewPlayerRandomRaceEnabledCvar(Handle:cvar, const String:oldValue[], const String:newValue[])
+{
+	// new player random races enabled
+	new value = StringToInt(newValue);
+	SetConVarInt(NewPlayerRandomRaceEnabledCvar,value);
+	if(value==1)
+		NewPlayerRandomRaceEnabled=true;
+	else
+		NewPlayerRandomRaceEnabled=false;
+}
+public W3CvarNewPlayerRandomRacesCvar(Handle:cvar, const String:oldValue[], const String:newValue[])
+{
+	// new player random races string
+    strcopy(NewPlayerRandomRaces, 511, newValue); 
+	SetConVarString(NewPlayerRandomRacesCvar, newValue); 
+}
+public W3CvarNewPlayerStartingGoldCvar(Handle:cvar, const String:oldValue[], const String:newValue[])
+{
+	// new player starting gold
+	new value = StringToInt(newValue);
+	SetConVarInt(NewPlayerStartingGoldCvar,value);
+	NewPlayerStartingGold=value;
+}
+public W3CvarNewPlayerStartingLevelCvar(Handle:cvar, const String:oldValue[], const String:newValue[])
+{
+	// new player starting level
+	new value = StringToInt(newValue);
+	SetConVarInt(NewPlayerStartingLevelCvar,value);
+	NewPlayerStartingLevel=value;
+}
+
 
 public War3Source_Engine_NewPlayers_OnWar3EventDeath(victim, attacker, deathrace, distance, attacker_hpleft)
 {
 	if(victim!=attacker && ValidPlayer(victim) && ValidPlayer(attacker)
-	&& IsNewPlayer[victim] && IsEnabled && !IsFakeClient(victim) )
+	&& IsNewPlayer[victim] && NewPlayerIsEnabled && !IsFakeClient(victim) )
 	{
 		CreateTimer(4.5,quickerspawn,victim);
 	}
@@ -117,7 +150,7 @@ public Action:quickerspawn(Handle:timer, any:client)
 
 public War3Source_Engine_NewPlayers_OnW3TakeDmgAllPre(victim,attacker,Float:damage)
 {
-	if(ValidPlayer(victim) && ValidPlayer(attacker) && IsEnabled && !IsFakeClient(victim) && IsNewPlayer[victim])
+	if(ValidPlayer(victim) && ValidPlayer(attacker) && NewPlayerIsEnabled && !IsFakeClient(victim) && IsNewPlayer[victim])
 	{
 		//if(GetRandomFloat(0.0,1.0)<NewPlayerDamage2ModChance)
 		//{
@@ -154,7 +187,7 @@ public Internal_Engine_NewPlayers_OnWar3PlayerAuthedHandle(client)
 
 public Native_War3_IsNewPlayer(Handle:plugin,numParams) //buff is from an item
 {
-	if(numParams==1 && IsEnabled) //client,race,buffindex,value
+	if(numParams==1 && NewPlayerIsEnabled) //client,race,buffindex,value
 	{
 		new client=GetNativeCell(1);
 		//if(CurrentPlayerTotalLevels[client]<=NewPlayerMaxLevel&&!IsFakeClient(client))
