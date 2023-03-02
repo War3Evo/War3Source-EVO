@@ -31,7 +31,24 @@ sourcemodversion="1.11"
 # ***********************************
 # ***********************************
 
-serverAPPid="740"
+# developer varaible
+# false allows me to see the git log only
+update_war3=true
+
+todayDate=$(date +"%b %d %Y")
+startTime="'Feb 28 2023'"
+updateDate="'Feb 28 2023'"
+
+test -e "time_start_do_not.delete" && startTime=$(cat time_start_do_not.delete)
+if [[ $todayDate == $startTime ]]; then
+	startTime="'Feb 28 2023'"
+	updateDate="'Feb 28 2023'"
+else
+	updateDate="${startTime}"
+fi
+
+# overwrite file with new date every time the script runs
+date +"%b %d %Y" > time_start_do_not.delete
 
 gamePath1="csgo"
 
@@ -83,16 +100,16 @@ echo 'You can change these options in the updatecsgo.sh top of file'
 echo 'by changing the words from true to false or false to true'
 echo '*'
 if $update_steam_server; then
-    echo '* STEAM SERVER UPDATER'    
+    echo '* STEAM SERVER UPDATER'
 fi
 if $update_metamod; then
-    echo '* METAMOD UPDATER'    
+    echo '* METAMOD UPDATER'
 fi
 if $update_sourcemod; then
-    echo '* SOURCEMOD UPDATER'    
+    echo '* SOURCEMOD UPDATER'
 fi
 if $update_war3source_evo; then
-    echo '* WAR3SOURCE-EVO UPDATER'    
+    echo '* WAR3SOURCE-EVO UPDATER'
 fi
 echo '*'
 echo 'Just hit enter key for defaults, unless you want to change them.'
@@ -145,6 +162,7 @@ if $update_sourcemod; then
 fi
 
 if $update_war3source_evo; then
+if $update_war3; then
     # remove old War3Source plugin files
     #rm -v "${SourceMetaModWar3InstallPath}/addons/plugins/War3Source*.smx"
     #read -p "Press ENTER to continue" readTMP
@@ -157,10 +175,10 @@ if $update_war3source_evo; then
 
     # Remove old files
     test -e "${CPATH}/War3Source-EVO" && rm -rf "${CPATH}/War3Source-EVO"
-
+fi
     # git clone War3Source
     git clone https://github.com/War3Evo/War3Source-EVO.git
-
+if $update_war3; then
     # Copy possible new sounds
     cp -rf "${CPATH}/War3Source-EVO/sound" "${SourceMetaModWar3InstallPath}"
 
@@ -184,20 +202,22 @@ if $update_war3source_evo; then
     # Backup Files
     cp -vrf "${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
     #echo "Backed up ${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins to ${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
-    read -p "Press ENTER to continue" readTMP
+    #read -p "Press ENTER to continue" readTMP
 
     # Copy Compiled plugins
     cp -vrf "${CPATH}/War3Source-EVO/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
-    read -p "Press ENTER to continue" readTMP
+    #read -p "Press ENTER to continue" readTMP
 
     # Clean up & Remove SM 1.9
-    xargs rm -f < "${CPATH}/War3Source-EVO/smlist19.txt" || true
-
+    xargs rm -rf < "${CPATH}/War3Source-EVO/smlist19.txt" || true
+    #read -p "Press ENTER to continue" readTMP
+fi
     # GIT update information
     currentPTH=$PWD
     test -e "${CPATH}/War3Source-EVO" && cd "${CPATH}/War3Source-EVO/"
-    test -e "${CPATH}/War3Source-EVO" && git --no-pager log --since='Feb 28 2023'
+    test -e "${CPATH}/War3Source-EVO" && git --no-pager log --reverse --since="${updateDate}"
     test -e "${CPATH}/War3Source-EVO" && cd "${currentPTH}"
+
     echo ""
     echo "Any files with -end of file- errors during compiling is normal"
     echo "it means, those files are not compiled for your game mode."
