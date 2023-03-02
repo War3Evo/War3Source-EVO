@@ -146,7 +146,7 @@ bash -c "${SCRIPT_RUN}"
 #read -p "Press ENTER to continue" readTMP
 
 # git clone War3Source
-git clone https://github.com/git-timmons/War3Source-EVO.git
+git clone https://github.com/War3Evo/War3Source-EVO.git
 cp -vrf ./War3Source-EVO/cfg "${SourceMetaModWar3InstallPath}"
 # uncomment below if you want to stop at this point
 #read -p "Press ENTER to continue" readTMP
