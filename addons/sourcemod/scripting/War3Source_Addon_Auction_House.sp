@@ -57,6 +57,7 @@ public APLRes:AskPluginLoad2(Handle:plugin,bool:late,String:error[],err_max)
 	CreateNative("War3_ReservedGold",NW3GetReservedGold);
 
 	RegPluginLibrary("W3AuctionHouse");
+	return APLRes_Success;
 }
 
 public OnWar3PlayerAuthed(client)
