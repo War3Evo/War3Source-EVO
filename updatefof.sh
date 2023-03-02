@@ -35,6 +35,9 @@ sourcemodversion="1.11"
 # false allows me to see the git log only
 update_war3=true
 
+# branch of War3Source-EVO
+git_branch="master"
+
 todayDate=$(date +"%b %d %Y")
 startTime="'Feb 28 2023'"
 updateDate="'Feb 28 2023'"
@@ -177,7 +180,7 @@ if $update_war3; then
     test -e "${CPATH}/War3Source-EVO" && rm -rf "${CPATH}/War3Source-EVO"
 fi
     # git clone War3Source
-    git clone https://github.com/War3Evo/War3Source-EVO.git
+    git clone https://github.com/War3Evo/War3Source-EVO.git --branch ${git_branch}
 if $update_war3; then
     # Copy possible new sounds
     cp -rf "${CPATH}/War3Source-EVO/sound" "${SourceMetaModWar3InstallPath}"
