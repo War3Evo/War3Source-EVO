@@ -215,7 +215,6 @@ ShowWar3Menu(client)
 	{
 		GetArrayString(array_question, i, cQT, sizeof(cQT));
 		Format(menustr,sizeof(menustr),cQT);
-		new String:numstr[4];
 		Format(numstr,sizeof(numstr),"%d",i);
 
 		AddMenuItem(war3Menu,numstr,menustr);
