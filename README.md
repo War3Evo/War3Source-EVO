@@ -3,6 +3,7 @@
 * [Introduction](#introduction)
 * [Requirements](#requirements)
 * [Install](#install)
+* [Update](#update)
 * [Changelogs](#changelogs)
 * [Reporting issues](#reporting-issues)
 * [Submitting fixes](#submitting-fixes)
@@ -61,6 +62,42 @@ wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installfof
 chmod +x installfof.sh
 ./installfof.sh
 ```
+
+## Update
+
+The easiest way to update is to using the provided update scripts.
+
+The only pain will be reading the git commit log to make sure you get the latest news on updates for your configuration file.  Which the update script will print out at the end of the update.  Make sure you scroll back and read it.  Or read it here: https://github.com/War3Evo/War3Source-EVO/commits/master
+
+These update files currently only update War3Source-EVO.  I will work on something to help with sourcemod / metamod updates too. Keep watching for updates to this script, because it will get updated also when I am able to get sourcemod / metamod updates added.  If you badly need sourcemod / metamod update because your server "broke" use the install script to do it, but backup your config and cfg files first!
+
+These updates will backup files into folders with part of the word as "backup" and a date of backup.  They will not write to cfg or config files, you'll need to make those changes yourself.
+
+Make sure the same diretory you used install*.sh is the same directory you use this script in!
+
+* CSS ./updatecss.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installcss.sh" -O updatecss.sh
+chmod +x updatecss.sh
+./updatecss.sh
+```
+* CSGO ./updatecsgo.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/updatecsgo.sh" -O updatecsgo.sh
+chmod +x updatecsgo.sh
+./updatecsgo.sh
+```
+* TF2 ./updatetf2.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/updatetf2.sh" -O updatetf2.sh
+chmod +x updatetf2.sh
+./updatetf2.sh
+```
+* FOF ./updatefof.sh
+```
+wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installfof.sh" -O updatefof.sh
+chmod +x updatefof.sh
+./updatefof.sh
 
 ## Players having trouble downloading files from your CSGO server?
 
