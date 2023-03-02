@@ -4,7 +4,7 @@
 * [Requirements](#requirements)
 * [Install](#install)
 * [Update](#update)
-* [Changelogs](#changelogs)
+* [Oldinfo](#oldinfo)
 * [Reporting issues](#reporting-issues)
 * [Submitting fixes](#submitting-fixes)
 * [Copyright](#copyright)
@@ -21,6 +21,29 @@ make pull requests to our [Github repository](https://github.com/War3Evo/War3Sou
 
 For further information on the War3Source Evoultion project, please visit our project
 website at [War3Evo.info](http://www.war3evo.info/).
+
+## Requirements
+
+### Hard Drive Space Requirements
+* CSGO - 35 GB
+* CSS - 3 GB
+* TF2 - 10 GB
+* FOF - 4 GB
+
+### Minium Memory Requirements
+* CSGO 1 GB / 1 GB SWAP
+* CSS 512 MB / 256 MB SWAP
+* TF2 512 MB / 256 MB SWAP
+* FOF 512 MB / 256 MB SWAP
+
+### Software Requirements
+* Steam Server (SteamCMD) - https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD
+* MetaMod - https://www.metamodsource.net/downloads.php?branch=stable
+* SourceMod - https://www.sourcemod.net/downloads.php?branch=stable
+* War3Source-EVo - https://github.com/War3Evo/War3Source-EVO
+
+### Steam Server Requirements
+* Steam Game Server Account Management - https://steamcommunity.com/dev/managegameservers
 
 ## Install
 
@@ -75,6 +98,8 @@ These updates will backup files into folders with part of the word as "backup" a
 
 Make sure the same diretory you used install*.sh is the same directory you use this script in!
 
+These scripts download the git, compile the latest War3Source-EVO, and copy files to your server directory.
+
 * CSS ./updatecss.sh
 ```
 wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installcss.sh" -O updatecss.sh
@@ -98,6 +123,7 @@ chmod +x updatetf2.sh
 wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installfof.sh" -O updatefof.sh
 chmod +x updatefof.sh
 ./updatefof.sh
+```
 
 ## Players having trouble downloading files from your CSGO server?
 
@@ -115,18 +141,18 @@ Get a fastDL server and set your sv_downloadurl (see link --> https://developer.
 
 * https://github.com/War3Evo/War3Source-EVO/wiki/Compile-&-Server-Requirements
 
-## Changelogs
+## Oldinfo
 
 Read file [CHANGELOGS](CHANGELOG.md).
 
-## Reporting issues
+## Reporting Issues
 
 Issues can be reported via the [Github issue tracker](https://github.com/War3Evo/War3Source-EVO/issues).
 
 Please take the time to review existing issues before submitting your own to
 prevent duplicates.
 
-## Submitting fixes
+## Submitting Fixes
 
 SourcePawn fixes are submitted as pull requests via Github.
 For SQL only fixes, open a ticket; if a bug report exists for the bug, post on an existing ticket.
@@ -157,4 +183,4 @@ Read file [COPYING](LICENSE).
 
 * [Website](http://www.war3evo.info/)
 * [Wiki](https://github.com/War3Evo/War3Source-EVO/wiki)
-* [Discord](https://discord.gg/uhTfXYgJfB)
+* [Discord Invite](https://discord.gg/uhTfXYgJfB)
