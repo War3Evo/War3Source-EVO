@@ -1,5 +1,36 @@
 #!/usr/bin/env bash
 
+# ***********************************
+# OPTIONS
+#
+# true or false
+update_steam_server=true
+
+# true or false
+update_metamod=true
+
+# true or false
+update_sourcemod=true
+
+# true or false
+update_war3source_evo=true
+
+# latest known stable version 1.11
+metaversion="1.11"
+
+# latest known stable version 1.11
+sourcemodversion="1.11"
+
+# ***********************************
+# ***********************************
+# DO NOT CHANGE BELOW THIS LINE
+# DO NOT CHANGE BELOW THIS LINE
+# DO NOT CHANGE BELOW THIS LINE
+# DO NOT CHANGE BELOW THIS LINE
+# DO NOT CHANGE BELOW THIS LINE
+# ***********************************
+# ***********************************
+
 serverAPPid="740"
 
 gamePath1="csgo"
@@ -48,7 +79,21 @@ SourceMetaModWar3InstallPath="${gameInstallPath}/${gamePath2}"
 
 echo '*************************************************************************'
 echo '*'
-echo '* WAR3SOURCE-EVO UPDATER ONLY'
+echo 'You can change these options in the updatecsgo.sh top of file'
+echo 'by changing the words from true to false or false to true'
+echo '*'
+if $update_steam_server; then
+    echo '* STEAM SERVER UPDATER'    
+fi
+if $update_metamod; then
+    echo '* METAMOD UPDATER'    
+fi
+if $update_sourcemod; then
+    echo '* SOURCEMOD UPDATER'    
+fi
+if $update_war3source_evo; then
+    echo '* WAR3SOURCE-EVO UPDATER'    
+fi
 echo '*'
 echo 'Just hit enter key for defaults, unless you want to change them.'
 echo 'Defaults will be surrounded by () unless it says (required)'
@@ -66,67 +111,105 @@ if [[ "$readInstallPath" ]]; then
     $installPath = $readInstallPath
 fi
 
-# remove old War3Source plugin files
-#rm -v "${SourceMetaModWar3InstallPath}/addons/plugins/War3Source*.smx"
-#read -p "Press ENTER to continue" readTMP
+if $update_steam_server; then
+    # Give Permissions
+    SCRIPT_PATH="${installPath}/steamcmd.sh"
+    chmod a+x "${SCRIPT_PATH}"
 
-date=$(date '+%m-%d-%Y')
+    # UPDATE STEAM SERVER
+    SCRIPT_RUN="${SCRIPT_PATH} +runscript ${steamcmdFile}"
+    bash -c "${SCRIPT_RUN}"
+fi
 
-# Backup Files if exists
-test -e "${CPATH}/War3Source-EVO" && cp -vrf "${CPATH}/War3Source-EVO" "${CPATH}/War3Source-EVO-Backup-${date}"
-test -e "${CPATH}/War3Source-EVO" && read -p "Press ENTER to continue" readTMP
+if $update_metamod; then
+    # remove old metamod file
+    rm -f 'metamod*'
+    # Download MetaMod
+    wget "https://www.metamodsource.net/latest.php?version=${metaversion}&os=linux" -O "metamod-${metaversion}-linux.tar.gz"
 
-# Remove old files
-test -e "${CPATH}/War3Source-EVO" && rm -rf "${CPATH}/War3Source-EVO"
+    # Extract Metamod
+    tar --overwrite -zxvf "metamod-${metaversion}-linux.tar.gz" "addons/metamod/bin/" --directory "${SourceMetaModWar3InstallPath}"
+fi
 
-# git clone War3Source
-git clone https://github.com/War3Evo/War3Source-EVO.git
+if $update_sourcemod; then
+    # remove old sourcemod file
+    rm -f 'sourcemod*'
 
-# Copy possible new sounds
-cp -rf "${CPATH}/War3Source-EVO/sound" "${SourceMetaModWar3InstallPath}"
+    # Download SourceMod
+    wget "http://www.sourcemod.net/latest.php?version=${sourcemodversion}&os=linux" -O "sourcemod-${sourcemodversion}-linux.tar.gz"
 
-# Get SourceMod 1.9 Required to compile War3Source-EVO
-wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O "${CPATH}/War3Source-EVO/sourcemod-1.9-linux.tar.gz"
-tar -zxvf "${CPATH}/War3Source-EVO/sourcemod-1.9-linux.tar.gz" --directory "${CPATH}/War3Source-EVO"
+    # Extract SourceMod
+    tar --overwrite -zxvf "sourcemod-${sourcemodversion}-linux.tar.gz" "addons/sourcemod/bin/" --directory "${SourceMetaModWar3InstallPath}"
+    tar --overwrite -zxvf "sourcemod-${sourcemodversion}-linux.tar.gz" "addons/sourcemod/extensions/" --directory "${SourceMetaModWar3InstallPath}"
+    tar --overwrite -zxvf "sourcemod-${sourcemodversion}-linux.tar.gz" "addons/sourcemod/gamedata/" --directory "${SourceMetaModWar3InstallPath}"
+fi
 
-# Extract SourceMod as List
-tar --list -f "${CPATH}/War3Source-EVO/sourcemod-1.9-linux.tar.gz" > "${CPATH}/War3Source-EVO/smlist19.txt"
-#
-# Give spcomp the required permissions
-chmod a+x "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/spcomp_1.9.0.6261"
-chmod a+x "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/game_switcher_${GAME_SWITCHER}.sh"
-chmod a+x "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/compile_for_github_action.sh"
-bash -c "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/game_switcher_${GAME_SWITCHER}.sh"
-bash -c "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/compile_for_github_action.sh" || true
-# uncomment below if you want to stop at this point
-echo "Compiled."
-#read -p "Press ENTER to continue" readTMP
+if $update_war3source_evo; then
+    # remove old War3Source plugin files
+    #rm -v "${SourceMetaModWar3InstallPath}/addons/plugins/War3Source*.smx"
+    #read -p "Press ENTER to continue" readTMP
 
-# Backup Files
-cp -vrf "${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
-#echo "Backed up ${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins to ${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
-read -p "Press ENTER to continue" readTMP
+    date=$(date '+%m-%d-%Y')
 
-# Copy Compiled plugins
-cp -vrf "${CPATH}/War3Source-EVO/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
-read -p "Press ENTER to continue" readTMP
+    # Backup Files if exists
+    test -e "${CPATH}/War3Source-EVO" && cp -vrf "${CPATH}/War3Source-EVO" "${CPATH}/War3Source-EVO-Backup-${date}"
+    test -e "${CPATH}/War3Source-EVO" && read -p "Press ENTER to continue" readTMP
 
-# Clean up & Remove SM 1.9
-xargs rm -f < "${CPATH}/War3Source-EVO/smlist19.txt" || true
+    # Remove old files
+    test -e "${CPATH}/War3Source-EVO" && rm -rf "${CPATH}/War3Source-EVO"
 
-# GIT update information
-currentPTH=$PWD
-test -e "${CPATH}/War3Source-EVO" && cd "${CPATH}/War3Source-EVO/"
-test -e "${CPATH}/War3Source-EVO" && git --no-pager log --since='Feb 28 2023'
-test -e "${CPATH}/War3Source-EVO" && cd "${currentPTH}"
-echo ""
-echo "Always remember to check https://github.com/War3Evo/War3Source-EVO to see"
-echo
-echo "SCROLL UP for changes information"
+    # git clone War3Source
+    git clone https://github.com/War3Evo/War3Source-EVO.git
 
-# after git log delete git
-test -e "${CPATH}/.github" && rm -rf "${CPATH}/War3Source-EVO/.github"
-test -e "${CPATH}/War3Source-EVO/.git" && rm -rf "${CPATH}/War3Source-EVO/.git"
-rm -rf "${CPATH}/War3Source-EVO"
+    # Copy possible new sounds
+    cp -rf "${CPATH}/War3Source-EVO/sound" "${SourceMetaModWar3InstallPath}"
+
+    # Get SourceMod 1.9 Required to compile War3Source-EVO
+    wget "http://www.sourcemod.net/latest.php?version=1.9&os=linux" -O "${CPATH}/War3Source-EVO/sourcemod-1.9-linux.tar.gz"
+    tar -zxvf "${CPATH}/War3Source-EVO/sourcemod-1.9-linux.tar.gz" --directory "${CPATH}/War3Source-EVO"
+
+    # Extract SourceMod as List
+    tar --list -f "${CPATH}/War3Source-EVO/sourcemod-1.9-linux.tar.gz" > "${CPATH}/War3Source-EVO/smlist19.txt"
+    #
+    # Give spcomp the required permissions
+    chmod a+x "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/spcomp_1.9.0.6261"
+    chmod a+x "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/game_switcher_${GAME_SWITCHER}.sh"
+    chmod a+x "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/compile_for_github_action.sh"
+    bash -c "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/game_switcher_${GAME_SWITCHER}.sh"
+    bash -c "${CPATH}/War3Source-EVO/addons/sourcemod/scripting/compile_for_github_action.sh" || true
+    # uncomment below if you want to stop at this point
+    echo "Compiled."
+    #read -p "Press ENTER to continue" readTMP
+
+    # Backup Files
+    cp -vrf "${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
+    #echo "Backed up ${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins to ${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
+    read -p "Press ENTER to continue" readTMP
+
+    # Copy Compiled plugins
+    cp -vrf "${CPATH}/War3Source-EVO/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
+    read -p "Press ENTER to continue" readTMP
+
+    # Clean up & Remove SM 1.9
+    xargs rm -f < "${CPATH}/War3Source-EVO/smlist19.txt" || true
+
+    # GIT update information
+    currentPTH=$PWD
+    test -e "${CPATH}/War3Source-EVO" && cd "${CPATH}/War3Source-EVO/"
+    test -e "${CPATH}/War3Source-EVO" && git --no-pager log --since='Feb 28 2023'
+    test -e "${CPATH}/War3Source-EVO" && cd "${currentPTH}"
+    echo ""
+    echo "Any files with -end of file- errors during compiling is normal"
+    echo "it means, those files are not compiled for your game mode."
+    echo ""
+    echo "Always remember to check https://github.com/War3Evo/War3Source-EVO to see"
+    echo
+    echo "SCROLL UP for changes information"
+
+    # after git log delete git
+    test -e "${CPATH}/.github" && rm -rf "${CPATH}/War3Source-EVO/.github"
+    test -e "${CPATH}/War3Source-EVO/.git" && rm -rf "${CPATH}/War3Source-EVO/.git"
+    rm -rf "${CPATH}/War3Source-EVO"
+fi
 
 echo UPDATE COMPLETED
