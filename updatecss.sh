@@ -214,6 +214,9 @@ if $update_war3; then
     # Copy Translations
     cp -vrf --remove-destination "${CPATH}/War3Source-EVO/addons/sourcemod/translations" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
 
+    # Copy Extensions
+    cp -vrf --remove-destination "${CPATH}/War3Source-EVO/addons/sourcemod/extensions" "${SourceMetaModWar3InstallPath}/addons/sourcemod" | tee -a update_log.txt
+
     # Store difference between CFG and CONFIG files and output them at the end
     diff -ar "${CPATH}/War3Source-EVO/cfg" "${SourceMetaModWar3InstallPath}/cfg" > CFGdifferences.txt
     diff -ar "${CPATH}/War3Source-EVO/addons/sourcemod/configs" "${SourceMetaModWar3InstallPath}/addons/sourcemod/configs" > CONFIGdifferences.txt
