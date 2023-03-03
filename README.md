@@ -55,6 +55,14 @@ You will need to be a SUDO user to fully install using this script because it re
 
 If you run the script for the first time and the server doesn't install correctly, open the script and uncomment all the #sudo apt-get install comments so that it can install those other libraries that your Linux may need.  Then try the script again.  If it still doesn't install correctly, report this issue along with what Linux OS your installing to and any other helpful information like the output of the install.  If a install doesn't install correctly it's usually because your missing a Linux library.  If you install a Linux library that isn't in our script, and it helps your install, please let us know.
 
+If you plan to use a non-sudo or non-root user to run this server for security purposes,
+then you'll need to change the ownership before and after the script.
+
+* Before script example
+``` sudo chown -R YourSudoYourName:YourSudoYourName /home/NonSudoUser ```
+* After script example
+``` sudo chown -R NonSudoUser:NonSudoUser /home/NonSudoUser ```
+
 It will prompt you for the installation directory and other information as it needs.installcsgo.sh
 
 THIS IS A FULL INSTALL OF STEAM SERVER, SOURCEMOD, METAMOD, and War3Source-EVO!
@@ -87,6 +95,8 @@ chmod +x installfof.sh
 ```
 
 ## Update
+
+_Can be ran as a Non-Root / Non-Sudo user as long as the user owns all the directories._
 
 The easiest way to update is to using the provided update scripts.
 
