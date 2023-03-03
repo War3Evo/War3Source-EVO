@@ -90,15 +90,17 @@ chmod +x installfof.sh
 
 The easiest way to update is to using the provided update scripts.
 
-The only pain will be reading the git commit log to make sure you get the latest news on updates for your configuration file.  Which the update script will print out at the end of the update.  Make sure you scroll back and read it.  Or read it here: https://github.com/War3Evo/War3Source-EVO/commits/master
+Make sure you read the git commit log for updates: https://github.com/War3Evo/War3Source-EVO/commits/master
 
-These update files currently only update War3Source-EVO.  I will work on something to help with sourcemod / metamod updates too. Keep watching for updates to this script, because it will get updated also when I am able to get sourcemod / metamod updates added.  If you badly need sourcemod / metamod update because your server "broke" use the install script to do it, but backup your config and cfg files first!
+**_You can edit the .sh file based on true or false depending on what you want to update. Do you want to update the Steam Server, SourceMod, MetaMod, and or War3Source-EVO?  You can change that in the top of the .sh file. Make sure you do not change the formatting. Adding or removing spaces can create errors in the script!_**
+
+_If before the update you had no plug-in issues, but after the update you do.  You may have to either restore from the backup files or backup your config and cfg files, then use the install*.sh script._
 
 These updates will backup files into folders with part of the word as "backup" and a date of backup.  They will not write to cfg or config files, you'll need to make those changes yourself.
 
 Make sure the same diretory you used install*.sh is the same directory you use this script in!
 
-These scripts download the git, compile the latest War3Source-EVO, and copy files to your server directory.
+At the end of the update script, it should output the git commit log.  Scroll up to see past updates info for changes you may need to make to your configuration files.
 
 * CSS ./updatecss.sh
 ```
