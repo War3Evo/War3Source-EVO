@@ -4,6 +4,16 @@
 
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
+#if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
+#define XP_GOLD_DATABASENAME "war3source_evo"
+//#define XP_GOLD_DATABASENAME_WAR3SOURCE_RACES "war3sourceraces"
+#define XP_GOLD_DATABASENAME_RACEDATA1 "war3source_evo_racedata1"
+#elseif (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
+#define XP_GOLD_DATABASENAME "TF2Jail_war3source_evo"
+//#define XP_GOLD_DATABASENAME_WAR3SOURCE_RACES "TF2Jail_war3source_evo_races"
+#define XP_GOLD_DATABASENAME_RACEDATA1 "TF2Jail_war3source_evo_racedata1"
+#endif
+
 public Plugin:myinfo=
 {
 	name="War3Source Admin Console",
@@ -13,9 +23,22 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };
 
+new Handle:hCvar_RemovePlayer;
+bool can_remove_player = false;
+
 public OnPluginStart()
 {
 	LoadTranslations("w3s._common.phrases");
+	LoadTranslations("common.phrases");
+
+	can_remove_player = false;
+
+	// Created to prevent unauthorized removal of players
+	hCvar_RemovePlayer=CreateConVar("war3_removeplayer_enabled","0","1 to enable, 0 to disable. default 0");
+	HookConVarChange(hCvar_RemovePlayer, ConVarChanged_ConVars);
+
+	// Created for debug purposes
+	RegConsoleCmd("war3_removeplayer",War3Source_CMDRemovePlayer,"Removes player from database");
 
 	RegConsoleCmd("war3_setxp",War3Source_CMDSetXP,"Set a player's XP");
 	RegConsoleCmd("war3_givexp",War3Source_CMD_GiveXP,"Give a player XP");
@@ -34,6 +57,114 @@ public OnPluginStart()
 	RegConsoleCmd("war3_setsh3level2",War3Source_CMD_SetSH3level2,"set a player's gem sh3 2nd half level");
 #endif
 
+}
+
+public ConVarChanged_ConVars(Handle:convar, const String:oldValue[], const String:newValue[])
+{
+	if(convar == hCvar_RemovePlayer)
+	{
+		can_remove_player = GetConVarBool(hCvar_RemovePlayer);
+	}
+}
+
+public Action War3Source_CMDRemovePlayer(int client,int args)
+{
+	if(can_remove_player == false)
+	{
+		ReplyToCommand(client,"war3_removeplayer_enabled is not enabled!");
+	}
+	else if(client!=0&&!HasSMAccess(client,ADMFLAG_ROOT))
+	{
+		ReplyToCommand(client,"No Access");
+	}
+	else if(args!=1)
+		PrintToConsole(client,"%T","[War3Source:EVO] The syntax of the command is: war3_removeplayer <player>",client);
+	else
+	{
+		char match[64];
+		GetCmdArg(1,match,sizeof(match));
+		char buf[32];
+		GetCmdArg(2,buf,sizeof(buf));
+		char adminname[64];
+		if(client!=0)
+			GetClientName(client,adminname,sizeof(adminname));
+		else
+			adminname="Console";
+		int playerlist[66];
+		int results=War3Source_PlayerParse(match,playerlist);
+
+		new Handle:hDB = INVALID_HANDLE;
+		hDB = W3GetVar(hDatabase);
+
+		new Handle:war3_savexp_cvar = INVALID_HANDLE;
+		war3_savexp_cvar = W3GetVar(hSaveEnabledCvar);
+
+		int OldSetting = GetConVarInt(war3_savexp_cvar);
+
+		SetConVarInt(war3_savexp_cvar,0);
+
+		for(int x=0;x<results;x++)
+		{
+			new steamaccountid = GetSteamAccountID(client);
+
+			char name[64];
+			GetClientName(playerlist[x],name,sizeof(name));
+
+			War3_ChatMessage(client,"Your being deleted from database.");
+
+			KickClient(client, "%t", "Kicked by admin");
+
+			// Remove player from database
+			hDB = W3GetVar(hDatabase);
+
+			if(hDB) // no bots and steamid
+			{
+				PrintToServer("steamaccountid = %d",steamaccountid);
+
+				new String:longquery[256];
+
+				//Prepare select query for main data
+				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE accountid='%d'",XP_GOLD_DATABASENAME,steamaccountid);
+
+				StringMap QueryCode = new StringMap();
+				QueryCode.SetValue("client",client);
+				QueryCode.SetString("query",longquery);
+
+				SQL_TQuery(hDB,T_CallbackDeletePlayer,longquery,QueryCode,DBPrio_High);
+
+				PrintToServer(longquery);
+
+				// race data too
+
+				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE accountid='%d'",XP_GOLD_DATABASENAME_RACEDATA1,steamaccountid);
+
+				StringMap QueryCode2 = new StringMap();
+				QueryCode2.SetValue("client",client);
+				QueryCode2.SetString("query",longquery);
+
+				SQL_TQuery(hDB,T_CallbackDeletePlayer,longquery,QueryCode2,DBPrio_High);
+
+				PrintToServer(longquery);
+
+			}
+			else
+			{
+				ReplyToCommand(client,"Error Accessing Database");
+			}
+
+			//PrintToConsole(client,"%T","[War3Source:EVO] You just set {player} XP to {amount}",client,name,xp);
+			//War3_ChatMessage(playerlist[x],"%T","Admin {player} set your XP to {amount}",playerlist[x],adminname,xp);
+		}
+		SetConVarInt(war3_savexp_cvar,OldSetting);
+		if(results==0)
+			PrintToConsole(client,"%T","[War3Source:EVO] No players matched your query",client);
+	}
+	return Plugin_Handled;
+}
+public void T_CallbackDeletePlayer(Handle owner,Handle hndl,const char[] error, StringMap QueryCode)
+{
+	PrintToServer("[War3Source:EVO] T_CallbackDeletePlayer()");
+	PrintToServer("[War3Source:EVO] %s",error);
 }
 
 #if SHOPMENU3 == MODE_ENABLED
