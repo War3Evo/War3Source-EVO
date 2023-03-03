@@ -6,9 +6,9 @@
 	}
 
 	//War3Source_Engine_AdminConsole.sp
-	"[War3Source:EVO] The syntax of the command is: war3_removeplayer <player>""
+	"[War3Source:EVO] The syntax of the command is: war3_removeplayer <player>"
 	{
-		"en"		"[War3Source:EVO] The syntax of the command is: war3_removeplayer <player>""
+		"en"		"[War3Source:EVO] The syntax of the command is: war3_removeplayer <player>"
 	}
 	"[War3Source:EVO] The syntax of the command is: war3_setxp <player> <xp>"
 	{
