@@ -103,7 +103,9 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 
 		SetConVarInt(war3_savexp_cvar,0);
 
-		for(int x=0;x<results;x++)
+		//for(int x=0;x<results;x++)
+		int x=0;
+		while(x<results)
 		{
 			new steamaccountid = GetSteamAccountID(client);
 
@@ -114,6 +116,7 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 
 			KickClient(client, "%t", "Kicked by admin");
 			results-=1;
+			x+=1;
 
 			// Remove player from database
 			hDB = W3GetVar(hDatabase);
@@ -125,7 +128,7 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 				new String:longquery[256];
 
 				//Prepare select query for main data
-				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE accountid='%d'",XP_GOLD_DATABASENAME,steamaccountid);
+				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE steamid='%d';",XP_GOLD_DATABASENAME,steamaccountid);
 
 				StringMap QueryCode = new StringMap();
 				QueryCode.SetValue("client",client);
@@ -137,7 +140,7 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 
 				// race data too
 
-				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE accountid='%d'",XP_GOLD_DATABASENAME_RACEDATA1,steamaccountid);
+				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE steamid='%d';",XP_GOLD_DATABASENAME_RACEDATA1,steamaccountid);
 
 				StringMap QueryCode2 = new StringMap();
 				QueryCode2.SetValue("client",client);
