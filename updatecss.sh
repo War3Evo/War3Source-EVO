@@ -204,12 +204,19 @@ if $update_war3; then
 
     # Backup Files
     cp -vrf "${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
-    #echo "Backed up ${SourceMetaModWar3InstallPath}/addons/sourcemod/plugins to ${SourceMetaModWar3InstallPath}/addons/sourcemod/pluginsbackup-${date}"
-    #read -p "Press ENTER to continue" readTMP
 
     # Copy Compiled plugins
-    cp -vrf "${CPATH}/War3Source-EVO/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
-    #read -p "Press ENTER to continue" readTMP
+    cp -vrf --remove-destination "${CPATH}/War3Source-EVO/addons/sourcemod/plugins" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
+
+    # Backup Translations
+    cp -vrf "${SourceMetaModWar3InstallPath}/addons/sourcemod/translations" "${SourceMetaModWar3InstallPath}/addons/sourcemod/translations-${date}"
+
+    # Copy Translations
+    cp -vrf --remove-destination "${CPATH}/War3Source-EVO/addons/sourcemod/translations" "${SourceMetaModWar3InstallPath}/addons/sourcemod"
+
+    # Store difference between CFG and CONFIG files and output them at the end
+    diff -ar "${CPATH}/War3Source-EVO/cfg" "${SourceMetaModWar3InstallPath}/cfg" > CFGdifferences.txt
+    diff -ar "${CPATH}/War3Source-EVO/addons/sourcemod/configs" "${SourceMetaModWar3InstallPath}/addons/sourcemod/configs" > CONFIGdifferences.txt
 
     # Clean up & Remove SM 1.9
     xargs rm -rf < "${CPATH}/War3Source-EVO/smlist19.txt" || true
@@ -234,5 +241,14 @@ fi
     test -e "${CPATH}/War3Source-EVO/.git" && rm -rf "${CPATH}/War3Source-EVO/.git"
     rm -rf "${CPATH}/War3Source-EVO"
 fi
+
+echo "You can type 'cat CFGdifferences.txt' without the quotes to see this again."
+echo "Here's the difference between CFG and yours.cat CFGdifferences.txt"
+cat CFGdifferences.txt
+read -p "press enter to continue" readSSS
+echo ""
+echo "You can type 'cat CONFIGdifferences.txt' without the quotes to see this again."
+echo "Here's the difference between CFG and yours.cat CONFIGdifferences.txt"
+cat CONFIGdifferences.txt
 
 echo UPDATE COMPLETED
