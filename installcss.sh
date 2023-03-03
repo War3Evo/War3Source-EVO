@@ -36,7 +36,7 @@ CPATH=$PWD
 # CSS 3
 # FOF 4
 
-spaceREQ=35
+spaceREQ=3
 HDspace=$(df --output=avail -h ${CPATH} | sed '1d;s/[^0-9]//g')
 
 if [[ $HDspace -le $spaceREQ ]]; then
@@ -71,7 +71,7 @@ echo 'Know that installing this as root is a security risk! SUDO user is HIGHLY 
 echo
 echo 'You will need to type in your password, even if your not root to exit on some systems. ctrl+c does not always exit.'
 echo
-read -p "Press ENTER to continue" readTMP
+read -p "[${GAME_SWITCHER}] Press ENTER to continue" readTMP
 echo
 sudo apt-get update
 sudo dpkg --add-architecture i386
@@ -96,7 +96,8 @@ sudo apt-get install linux-libc-dev:i386
 #sudo apt-get install libtinfo5:i386
 #sudo apt-get install libcurl3-gnutls:i386
 #sudo apt-get install libsdl2-2.0-0:i386
-#sudo apt-get install libc6-dev-i386echo
+#sudo apt-get install libc6-dev-i386
+echo
 echo 'Some systems may complain about not see all files for apt-get,'
 echo 'try to install anyhow, your system may not need them.'
 echo
@@ -193,7 +194,7 @@ rm -rf .git
 #read -p "BEFORE SOURCMOE 1.11 ** Press ENTER to continue" readTMP
 
 # Download SourceMod
-test -e "sourcemod-1.11-linux.tar.gz" || wget "http://www.sourcemod.net/latest.php?version=1.11&os=linux" -O sourcemod-1.11-linux.tar.gz
+test -e "sourcemod-1.11-linux.tar.gz" ||  wget "http://www.sourcemod.net/latest.php?version=1.11&os=linux" -O sourcemod-1.11-linux.tar.gz
 
 # Extract SourceMod
 tar -zxvf sourcemod-1.11-linux.tar.gz --directory "${SourceMetaModWar3InstallPath}"
@@ -201,13 +202,13 @@ tar -zxvf sourcemod-1.11-linux.tar.gz --directory "${SourceMetaModWar3InstallPat
 #read -p "Press ENTER to continue" readTMP
 
 # Download MetaMod
-test -e "metamod-1.11-linux.tar.gz" || wget "https://www.metamodsource.net/latest.php?version=1.11&os=linux" -O metamod-1.11-linux.tar.gz
+test -e "metamod-1.11-linux.tar.gz" ||  wget "https://www.metamodsource.net/latest.php?version=1.11&os=linux" -O metamod-1.11-linux.tar.gz
 
 # Extract Metamod
 tar --overwrite -zxvf metamod-1.11-linux.tar.gz --directory "${SourceMetaModWar3InstallPath}"
 
 # Steam Account ID
-echo "You can get your Steam Game Server Account from here:"
+echo "You can get your ${GAME_SWITCHER} Steam Game Server Account from here:"
 echo "https://steamcommunity.com/dev/managegameservers"
 read -p "[${GAME_SWITCHER}] Please enter Steam Game Server Account (required):" readSteamAccount
 
@@ -228,7 +229,7 @@ if [[ "$readServerPort" ]]; then
 fi
 
 if [[ "$readSteamAccount" ]]; then
-    echo "screen -mS css ${gameInstallPath}/srcds_run -game cstrike -secure -console -usercon +map de_dust +ip ${ServerIP} +port ${ServerPort} -autoupdate +sv_consistency 0 +sv_pure 0 +map de_dust2 +maxplayers 32 +exec server.cfg +sv_setsteamaccount ${readSteamAccount} -steam_dir ${installPath} -steamcmd_script ${steamcmdFile}" > "${installPath}/startCSS.sh"
+    echo "screen -mS css ${gameInstallPath}/srcds_run -game cstrike -secure -console -usercon +map de_dust +ip ${ServerIP} +port ${ServerPort} -autoupdate +sv_consistency 0 +sv_pure 0 +map de_dust2 +maxplayers 32 +exec server.cfg +sv_setsteamaccount ${readSteamAccount} -steam_dir ${installPath} -steamcmd_script ${steamcmdFile}" > "${installPath}/start${GAME_SWITCHER}.sh"
     chmod a+x "${installPath}/start${GAME_SWITCHER}.sh"
     echo "*******************************************************************"
     echo "${installPath}/start${GAME_SWITCHER}.sh has been created for you:"

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# This script was built using Debian 11 OpenVZ server
+# This script will download and install Steam Server, Sourcemod, Metamod, and compile and install War3Source-EVO for CSS
+# You should install using a SUDO USER and not root user for security purposes.
+# SUDO is needed for apt-get install and for getting the public ip address for this server via ifconfig.
+
 #    CSS - 232330
 #    CSGO - 740
 #    FOF - 295230
@@ -24,6 +29,22 @@ GAME_SWITCHER="FOF"
 # not really your home path, otherwise you can change $PWD to $HOME
 # if you prefer the home path.
 CPATH=$PWD
+
+# spaceREQ
+# CSGO 35
+# TF2 10
+# CSS 3
+# FOF 4
+
+spaceREQ=4
+HDspace=$(df --output=avail -h ${CPATH} | sed '1d;s/[^0-9]//g')
+
+if [[ $HDspace -le $spaceREQ ]]; then
+     echo "You will need at least ${spaceREQ}GB of hard drive space before installing ${GAME_SWITCHER}!"
+     echo "You only have ${HDspace}GB hard drive free space on ${CPATH}"
+     df -h
+     exit
+fi
 
 # example /home/steamgameserver/hlserver
 installPath="$CPATH/$RNAME"
@@ -54,8 +75,28 @@ read -p "[${GAME_SWITCHER}] Press ENTER to continue" readTMP
 echo
 sudo apt-get update
 sudo dpkg --add-architecture i386
-sudo apt-get install wget tar nano git screen
-sudo apt-get install clang lib32gcc1 lib32gcc-s1 lib32stdc++-7-dev lib32stdc++6 lib32z1 lib32z1-dev libc6-i386 libbz2-1.0:i386 libncurses5:i386 libtinfo5:i386 libcurl3-gnutls:i386 libsdl2-2.0-0:i386 linux-libc-dev:i386 libc6-dev-i386
+sudo apt-get install wget
+sudo apt-get install git
+sudo apt-get install tar
+sudo apt-get install screen
+sudo apt-get install nano
+sudo apt-get install lib32gcc1
+sudo apt-get install lib32gcc-s1
+sudo apt-get install lib32stdc++6
+sudo apt-get install libc6-i386
+sudo apt-get install linux-libc-dev:i386
+#
+# You may need these libraries for your linux server
+# Uncomment if you want to see if they help you install or run the steam server
+#
+#sudo apt-get install clang
+#sudo apt-get install lib32z1
+#sudo apt-get install libbz2-1.0:i386
+#sudo apt-get install libncurses5:i386
+#sudo apt-get install libtinfo5:i386
+#sudo apt-get install libcurl3-gnutls:i386
+#sudo apt-get install libsdl2-2.0-0:i386
+#sudo apt-get install libc6-dev-i386
 echo
 echo 'Some systems may complain about not see all files for apt-get,'
 echo 'try to install anyhow, your system may not need them.'

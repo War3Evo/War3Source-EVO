@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# This script was built using Debian 11 OpenVZ server
+# This script will download and install Steam Server, Sourcemod, Metamod, and compile and install War3Source-EVO for CSS
+# You should install using a SUDO USER and not root user for security purposes.
+# SUDO is needed for apt-get install and for getting the public ip address for this server via ifconfig.
+
 #    CSS - 232330
 #    CSGO - 740
 #    FOF - 295230
