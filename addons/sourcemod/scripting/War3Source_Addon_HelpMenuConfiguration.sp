@@ -53,6 +53,15 @@ public APLRes:AskPluginLoad2Custom(Handle:myself,bool:late,String:error[],err_ma
 	return APLRes_Success;
 }
 
+public OnAllPluginsLoaded()
+{
+	W3Hook(W3Hook_OnWar3Event, OnWar3Event);
+}
+public OnPluginEnd()
+{
+	W3UnhookAll(W3Hook_OnWar3Event);
+}
+
 public OnPluginStart()
 {
 	RegAdminCmd("printhelpmenu", printhelpmenu, ADMFLAG_ROOT);
@@ -119,18 +128,28 @@ public Action printhelpmenu(int client, int args)
 public int LoadConfig()
 {
 	if (DebugOn() == true) { PrintToServer("1-LOADING HELP CONFIG..."); }
-// auto grabs for game mode:
-#if (GGAMETYPE == GGAME_CSS)
-	new Handle: kv = CreateKeyValues("CSS");
-#elseif (GGAMETYPE == GGAME_CSGO)
-	new Handle: kv = CreateKeyValues("CSGO");
-#elseif (GGAMETYPE == GGAME_FOF)
-	new Handle: kv = CreateKeyValues("FOF");
-#elseif (GGAMETYPE == GGAME_TF2)
-	new Handle: kv = CreateKeyValues("TF2");
-#endif
+
+	new Handle: kv = CreateKeyValues("war3sourcehelpmenu");
 
 	FileToKeyValues(kv, "addons/sourcemod/configs/war3source_help_menu.cfg");
+	KvRewind(kv);
+
+// auto grabs for game mode:
+#if (GGAMETYPE == GGAME_CSS)
+	if(!KvJumpToKey(kv,"CSS"))
+		SetFailState("error, key value for levels configuration not found");
+#elseif (GGAMETYPE == GGAME_CSGO)
+	if(!KvJumpToKey(kv,"CSGO"))
+		SetFailState("error, key value for levels configuration not found");
+#elseif (GGAMETYPE == GGAME_FOF)
+	if(!KvJumpToKey(kv,"FOF"))
+		SetFailState("error, key value for levels configuration not found");
+#elseif (GGAMETYPE == GGAME_TF2)
+	if(!KvJumpToKey(kv,"TF2"))
+		SetFailState("error, key value for levels configuration not found");
+#else
+	ThrowNativeError(80070666, "ERROR: UNSUPPORTED GAME MODE");
+#endif
 
 	if (!KvGotoFirstSubKey(kv))
 	{
@@ -191,7 +210,7 @@ public int LoadConfig()
 
 public void OnWar3Event(W3EVENT event,int client)
 {
-	if(!War3_HelpMenu_Enabled()) return;
+	if(War3_HelpMenu_Enabled()==false) return;
 
 	if(event==DoShowWar3Menu)
 	{
