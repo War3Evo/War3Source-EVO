@@ -107,6 +107,8 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 		int x=0;
 		while(x<results)
 		{
+			if(!ValidPlayer(x)) continue;
+
 			new steamaccountid = GetSteamAccountID(client);
 
 			char name[64];
