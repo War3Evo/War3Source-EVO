@@ -52,9 +52,9 @@ public Action:AuctionAds(Handle:timer,any:userid)
 //=============================================================================
 public APLRes:AskPluginLoad2(Handle:plugin,bool:late,String:error[],err_max)
 {
-	MarkNativeAsOptional("War3_ReservedGold");
-
 	CreateNative("War3_ReservedGold",NW3GetReservedGold);
+
+	MarkNativeAsOptional("War3_ReservedGold");
 
 	RegPluginLibrary("W3AuctionHouse");
 	return APLRes_Success;
