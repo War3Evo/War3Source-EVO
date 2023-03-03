@@ -107,18 +107,15 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 		int x=0;
 		while(x<results)
 		{
+			x+=1;
 			if(!ValidPlayer(x)) continue;
 
-			new steamaccountid = GetSteamAccountID(client);
+			new steamaccountid = GetSteamAccountID(x);
 
 			char name[64];
 			GetClientName(playerlist[x],name,sizeof(name));
 
-			War3_ChatMessage(client,"Your being deleted from database.");
-
-			KickClient(client, "%t", "Kicked by admin");
-			results-=1;
-			x+=1;
+			War3_ChatMessage(x,"Your being deleted from database.");
 
 			// Remove player from database
 			hDB = W3GetVar(hDatabase);
@@ -133,7 +130,7 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE steamid='%d';",XP_GOLD_DATABASENAME,steamaccountid);
 
 				StringMap QueryCode = new StringMap();
-				QueryCode.SetValue("client",client);
+				QueryCode.SetValue("client",x);
 				QueryCode.SetString("query",longquery);
 
 				SQL_TQuery(hDB,T_CallbackDeletePlayer,longquery,QueryCode,DBPrio_High);
@@ -145,7 +142,7 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 				Format(longquery,sizeof(longquery),"DELETE FROM %s WHERE steamid='%d';",XP_GOLD_DATABASENAME_RACEDATA1,steamaccountid);
 
 				StringMap QueryCode2 = new StringMap();
-				QueryCode2.SetValue("client",client);
+				QueryCode2.SetValue("client",x);
 				QueryCode2.SetString("query",longquery);
 
 				SQL_TQuery(hDB,T_CallbackDeletePlayer,longquery,QueryCode2,DBPrio_High);
@@ -169,8 +166,22 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 }
 public void T_CallbackDeletePlayer(Handle owner,Handle hndl,const char[] error, StringMap QueryCode)
 {
+	int client;
+
+	QueryCode.GetValue("client", client);
+
+	if(ValidPlayer(client))
+	{
+		KickClient(client, "%t", "Kicked by admin");
+	}
+
 	PrintToServer("[War3Source:EVO] T_CallbackDeletePlayer()");
 	PrintToServer("[War3Source:EVO] %s",error);
+
+	if(QueryCode != null)
+	{
+		QueryCode.Close();
+	}
 }
 
 #if SHOPMENU3 == MODE_ENABLED
