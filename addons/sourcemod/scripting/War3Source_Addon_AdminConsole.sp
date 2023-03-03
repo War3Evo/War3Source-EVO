@@ -113,6 +113,7 @@ public Action War3Source_CMDRemovePlayer(int client,int args)
 			War3_ChatMessage(client,"Your being deleted from database.");
 
 			KickClient(client, "%t", "Kicked by admin");
+			results-=1;
 
 			// Remove player from database
 			hDB = W3GetVar(hDatabase);
