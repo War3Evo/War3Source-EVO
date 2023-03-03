@@ -75,7 +75,10 @@ public Action:Command_Refresh(args)
 	{
 		if(ValidPlayer(client,false) && !IsFakeClient(client))
 		{
-			Steam_RequestGroupStatus(client, GetConVarInt(g_hClanID));
+			if(LibraryExists("SteamTools"))
+			{
+				Steam_RequestGroupStatus(client, GetConVarInt(g_hClanID));
+			}
 		}
 	}
 	PrintToServer("[W3E] Repolling groupstatus...");
@@ -110,7 +113,10 @@ public War3Source_Engine_SteamTools_OnClientPutInServer(client)
 		if(check_steamtools()) {
 			new iGroupID = GetConVarInt(g_hClanID);
 			if(iGroupID != 0) {
-				Steam_RequestGroupStatus(client, iGroupID);
+				if(LibraryExists("SteamTools"))
+				{
+					Steam_RequestGroupStatus(client, iGroupID);
+				}
 			}
 		}
 	}
@@ -122,7 +128,10 @@ public Action:WelcomeAdvertTimer (Handle:timer, any:client)
 	{
 		if(ValidPlayer(x,false) && !IsFakeClient(x))
 		{
-			Steam_RequestGroupStatus(x, GetConVarInt(g_hClanID));
+			if(LibraryExists("SteamTools"))
+			{
+				Steam_RequestGroupStatus(x, GetConVarInt(g_hClanID));
+			}
 		}
 	}
 	//PrintToServer("[W3E] Repolling groupstatus...");
