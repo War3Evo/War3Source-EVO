@@ -1,5 +1,7 @@
 // War3Source_000_Engine_Log.sp
 
+// TRANSLATIONS DONE
+
 /*
 public Plugin:myinfo=
 {

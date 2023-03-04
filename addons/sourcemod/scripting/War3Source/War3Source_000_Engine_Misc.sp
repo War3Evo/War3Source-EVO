@@ -1,5 +1,7 @@
 // War3Source_000_Engine_Misc.sp
 
+// TRANSLATIONS DONE
+
 public Native_W3FlashScreen(Handle:plugin,numParams)
 {
 	if(MapChanging || War3SourcePause) return;
@@ -150,11 +152,14 @@ stock TE_ParticleToClient(client,String:Name[],Float:origin[3]=NULL_VECTOR,Float
 		Float:angles[3]=NULL_VECTOR,entindex=-1,attachtype=-1,attachpoint=-1,bool:resetParticles=true,
 		Float:delay=0.0)
 {
+	// translation buffter
+	char wcstbuffer[128];
 	// find string table
 	new tblidx = FindStringTable("ParticleEffectNames");
 	if (tblidx==INVALID_STRING_TABLE)
 	{
-		LogError("Could not find string table: ParticleEffectNames");
+		Format(wcstbuffer, sizeof(wcstbuffer), "[War3Source:EVO] %t","Could not find string table: ParticleEffectNames");
+		LogError(wcstbuffer);
 		return 0;
 	}
 
@@ -174,7 +179,8 @@ stock TE_ParticleToClient(client,String:Name[],Float:origin[3]=NULL_VECTOR,Float
 	}
 	if (stridx==INVALID_STRING_INDEX)
 	{
-		LogError("Could not find particle: %s", Name);
+		Format(wcstbuffer, sizeof(wcstbuffer), "[War3Source:EVO] %T","Could not find particle: {name}",LANG_SERVER,Name);
+		LogError(wcstbuffer);
 		return 0;
 	}
 

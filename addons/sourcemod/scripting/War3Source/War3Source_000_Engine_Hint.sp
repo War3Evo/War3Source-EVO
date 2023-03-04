@@ -1,5 +1,7 @@
 // War3Source_000_Engine_Hint.sp
 
+// TRANSLATIONS DONE
+
 new UserMsg:umHintText;
 
 /*
@@ -17,7 +19,11 @@ public War3Source_000_Engine_Hint_OnPluginStart()
 	umHintText = GetUserMessageId("HintText");
 
 	if (umHintText == INVALID_MESSAGE_ID)
-		SetFailState("This game doesn't support HintText???");
+	{
+		char buffer[128];
+		Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+		SetFailState(buffer);
+	}
 
 	HookUserMessage(umHintText, MsgHook_HintText,true);
 }

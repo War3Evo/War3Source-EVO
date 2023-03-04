@@ -6,16 +6,11 @@
 //=============================================================================
 public OnMapStart()
 {
-	
+
 	// moved to gameEvents.sp
 	//MapChanging = false;
 
 	PrintToServer("War3Source:EVO OnMapStart Start");
-
-	if(!MapStart)
-	{
-		LoadTranslations("w3s._common.phrases");
-	}
 
 	if(LoadRacesAndItemsOnMapStart)
 	{
@@ -26,8 +21,6 @@ public OnMapStart()
 		LoadRacesAndItems();
 		RacesAndItemsLoaded=true;
 	}
-
-	MapStart=true;
 
 	War3Source_Engine_Casting_OnMapStart();
 

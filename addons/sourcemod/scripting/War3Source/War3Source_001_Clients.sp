@@ -1,5 +1,7 @@
 // War3Source_000_Clients.sp
 
+// TRANSLATIONS DONE
+
 public bool:OnClientConnect(client,String:rejectmsg[], maxlen)
 {
 	new bool:Return_OnClientConnect=true;

@@ -6,6 +6,10 @@
 
 public OnPluginStart()
 {
+	// LoadTranslations on PluginStart();
+	LoadTranslations("w3s._common.phrases");
+	LoadTranslations("w3s.000_engine_phrases");
+
 	PrintToServer("--------------------------OnPluginStart----------------------");
 
 	if(GetExtensionFileStatus("sdkhooks.ext") < 1)

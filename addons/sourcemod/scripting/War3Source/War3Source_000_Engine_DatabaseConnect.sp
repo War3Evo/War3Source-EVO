@@ -1,5 +1,7 @@
 // War3Source_000_Engine_DatabaseConnect.sp
 
+// TRANSLATIONS DONE
+
 /*
 public Plugin:myinfo=
 {
@@ -13,7 +15,7 @@ public Plugin:myinfo=
 
 public ConnectDB()
 {
-	PrintToServer("[W3S] Connecting to Database");
+	PrintToServer("[War3Source:EVO] %t","Connecting to Database");
 	new String:sCachedDBIName[256];
 	new String:dbErrorMsg[512];
 
@@ -59,6 +61,7 @@ public ConnectDB()
 		LogError("ERRMSG:(%s)",error);
 		W3LogError("ERRMSG:(%s)",error);
 		CreateWar3GlobalError("ERR: Could not connect to Database");
+		PrintToServer("[War3Source:EVO] %t","Could not connect to Database");
 	}
 	else
 	{
@@ -76,6 +79,7 @@ public ConnectDB()
 			PrintToServer("##     ##    ##    ##    ## ##    ##  ##       ");
 			PrintToServer("##     ##    ##     ######   ##### ## ######## ");
 			PrintToServer("");
+			PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
 		}
 		else if(StrEqual(driver_ident,"sqlite",false))
 		{
@@ -89,12 +93,12 @@ public ConnectDB()
 			PrintToServer("##    ## ##    ##  ##        ##     ##    ##       ");
 			PrintToServer(" ######   ##### ## ######## ####    ##    ######## ");
 			PrintToServer("");
+			PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
 		}
 		else
 		{
 			War3SQLType=SQLType_Unknown;
 		}
-		PrintToServer("[War3Source:EVO] SQL connection successful, driver %s",driver_ident);
 		SQL_LockDatabase(hDB);
 		SQL_FastQuery(hDB, "SET NAMES \"UTF8\"");
 		SQL_UnlockDatabase(hDB);
