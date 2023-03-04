@@ -55,7 +55,6 @@ int bHasDiedThisFrame[MAXPLAYERSCUSTOM];
 Handle hCvarLoadRacesAndItemsOnMapStart;
 bool LoadRacesAndItemsOnMapStart;
 bool RacesAndItemsLoaded;
-bool MapStart;
 
 //=============================
 // war3source.inc
