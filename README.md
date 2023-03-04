@@ -9,6 +9,7 @@
 * [Submitting fixes](#submitting-fixes)
 * [Copyright](#copyright)
 * [Links](#links)
+* To Do List(#to-do-list)
 
 ## Introduction
 
@@ -196,3 +197,15 @@ Read file [COPYING](LICENSE).
 * [Website](http://www.war3evo.info/)
 * [Wiki](https://github.com/War3Evo/War3Source-EVO/wiki)
 * [Discord Invite](https://discord.gg/uhTfXYgJfB)
+
+## To Do List
+
+This isn't in order of priority 
+
+[ ] Finish Translations
+[ ] Upgrade from SourceMod 1.9 to the latest
+[ ] Add new Races
+[ ] Rework the wiki
+[ ] create a shell script to promopt for configuration changes
+
+
