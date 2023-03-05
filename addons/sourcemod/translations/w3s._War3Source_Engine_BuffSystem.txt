@@ -1,0 +1,97 @@
+// w3s._War3Source_Engine_BuffSystem.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+// }
+
+"Phrases"
+{
+	"You are now {amount} percent visibile."
+	{
+		"#format"		"{1:i}"
+		"en"			"You are now {green}{1}{default} percent visibile."
+	}
+	"You now have {amount} percent physical armor damage reduction."
+	{
+		"#format"		"{1:i}"
+		"en"			"You now have {green}{1}{default} percent physical armor damage reduction."
+	}
+	"You now have {amount} percent magical armor damage reduction."
+	{
+		"#format"		"{1:i}"
+		"en"			"You now have {green}{1}{default} percent magical armor damage reduction."
+	}
+	"You now have {amount} percent attack speed buff."
+	{
+		"#format"		"{1:i}"
+		"en"			"You now have {green}{1}{default} percent attack speed buff."
+	}
+	"You now gain {amount} percent damage as health."
+	{
+		"#format"		"{1:i}"
+		"en"			"You now gain {green}{1}{default} percent damage as health."
+	}
+	"You now gain {amount} hit points per second."
+	{
+		"#format"		"{1:i}"
+		"en"			"You now gain {green}{1}{default} hit points per second."
+	}
+	"You move at {amount} percent {speed} than normal."
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"You move at {green}{1}{default} percent {green}{2}{default} than normal."
+	}
+	"You move at normal speed."
+	{
+		"#format"		""
+		"en"			"You move at {green}normal{default} speed."
+	}
+	"Your new Buffs:"
+	{
+		"#format"		""
+		"en"			"{lightgreen}Your new Buffs{default}:"
+	}
+	"invalid buff index"
+	{
+		"#format"		""
+		"en"			"invalid buff index"
+	}
+}

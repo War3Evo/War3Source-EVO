@@ -1,0 +1,354 @@
+// w3s._War3Source_Engine_CommandHook.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+// }
+
+"Phrases"
+{
+	"{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes."
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1} is currently paused, please wait until {2} resumes."
+	}
+	"The proper commands are +ability, +ability1 ... and +ultimate"
+	{
+		"#format"		""
+		"en"			"The proper commands are +ability, +ability1 ... and +ultimate"
+	}
+	"You can now cr instantly in spawn."
+	{
+		"#format"		""
+		"en"			"You can now cr instantly in spawn."
+	}
+	"You will change to {racename} race on death or spawn."
+	{
+		"#format"		"{1:s}"
+		"en"			"You will change to {1} race on death or spawn."
+	}
+	"You can not select that race."
+	{
+		"#format"		""
+		"en"			"You can not select that race."
+	}
+	"Could not find race."
+	{
+		"#format"		""
+		"en"			"Could not find race."
+	}
+	// show xp commands
+	"showxp"
+	{
+		"#format"		""
+		"en"			"showxp"
+	}
+	"xp"
+	{
+		"#format"		""
+		"en"			"xp"
+	}
+	"changerace"
+	{
+		"#format"		""
+		"en"			"changerace"
+	}
+	// show buffs commands
+	"buff"
+	{
+		"#format"		""
+		"en"			"buff"
+	}
+	"buffs"
+	{
+		"#format"		""
+		"en"			"buffs"
+	}
+	"showbuff"
+	{
+		"#format"		""
+		"en"			"showbuff"
+	}
+	"showbuffs"
+	{
+		"#format"		""
+		"en"			"showbuffs"
+	}
+	// help menu commands
+	"war3help"
+	{
+		"#format"		""
+		"en"			"war3help"
+	}
+	"help"
+	{
+		"#format"		""
+		"en"			"help"
+	}
+	"wchelp"
+	{
+		"#format"		""
+		"en"			"wchelp"
+	}
+	"war3"
+	{
+		"#format"		""
+		"en"			"war3"
+	}
+	// Do Show Items Info Menu
+	"itemsinfo"
+	{
+		"#format"		""
+		"en"			"itemsinfo"
+	}
+	"iteminfo"
+	{
+		"#format"		""
+		"en"			"iteminfo"
+	}
+	// Do Show Items Info Menu 2
+	"itemsinfo2
+	{
+		"#format"		""
+		"en"			"itemsinfo2"
+	}
+	"iteminfo2"
+	{
+		"#format"		""
+		"en"			"iteminfo2"
+	}
+	// Do Show Items Info Menu 3
+	"itemsinfo3"
+	{
+		"#format"		""
+		"en"			"itemsinfo3"
+	}
+	"iteminfo3"
+	{
+		"#format"		""
+		"en"			"iteminfo3"
+	}
+	// Do Show Race info Menu
+	"raceinfo"
+	{
+		"#format"		""
+		"en"			"raceinfo"
+	}
+	// tell player how much gold they have
+	"mygold"
+	{
+		"#format"		""
+		"en"			"mygold"
+	}
+	"gold"
+	{
+		"#format"		""
+		"en"			"gold"
+	}
+	"Gold: {amount}"
+	{
+		"#format"		"{1:i}"
+		"en"			"Gold: {1}"
+	}
+	// tell player how many diamonds they have
+	"mydiamonds"
+	{
+		"#format"		""
+		"en"			"mydiamonds"
+	}
+	"diamonds"
+	{
+		"#format"		""
+		"en"			"diamonds"
+	}
+	"diamond"
+	{
+		"#format"		""
+		"en"			"diamond"
+	}
+	"Diamonds: {amount}"
+	{
+		"#format"		"{1:i}"
+		"en"			"Diamonds: {1}"
+	}
+	// tell player before speed
+	"beforespeed"
+	{
+		"#format"		""
+		"en"			"beforespeed"
+	}
+	"Your before speed is {amount}."
+	{
+		"#format"		"{1:f}"
+		"en"			"Your before speed is {1}."
+	}
+	// debug info
+	"vars"
+	{
+		"#format"		""
+		"en"			"vars"
+	}
+	"fclassbasespeed is {fAmount}"
+	{
+		"#format"		"{1:f}"
+		"en"			"fclassbasespeed is {1}"
+	}
+	"fBeforeSpeedDifferenceMULTI is {fAmount}"
+	{
+		"#format"		"{1:f}"
+		"en"			"fBeforeSpeedDifferenceMULTI is {1}"
+	}
+	"fWarCraftBonus_AND_TF2Bonus is {fAmount}"
+	{
+		"#format"		"{1:f}"
+		"en"			"fWarCraftBonus_AND_TF2Bonus is {1}"
+	}
+	"fnewmaxspeed is {fAmount}"
+	{
+		"#format"		"{1:f}"
+		"en"			"fnewmaxspeed is {1}"
+	}
+	// tell a admin or player the target player's speed if spectating, otherwise their own speed
+	"speed"
+	{
+		"#format"		""
+		"en"			"speed"
+	}
+	"While being spectator,\nYou must be spectating a player to get player's speed."
+	{
+		"#format"		""
+		"en"			"While being spectator,\nYou must be spectating a player to get player's speed."
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+}
