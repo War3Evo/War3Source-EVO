@@ -157,12 +157,17 @@ public Action:colour_test(client, args){
 
 char command2[256];
 char command3[256];
+char command4[256];
 
-public bool:CommandCheck(String:compare[],String:command[])
+// compare is what they type in
+// command is the command needed
+public bool:CommandCheck(String:compare[],String:command[256])
 {
-	Format(command2,sizeof(command2),"\\%s",command);
-	Format(command3,sizeof(command3),"/%s",command);
-	if(!strcmp(compare,command,false)||!strcmp(compare,command2,false)||!strcmp(compare,command3,false))
+	Format(command,sizeof(command),"%T",command,GetTrans());
+	Format(command2,sizeof(command2),"\\%T",command,GetTrans());
+	Format(command3,sizeof(command3),"/%T",command,GetTrans());
+	Format(command4,sizeof(command4),"!%T",command,GetTrans());
+	if(!strcmp(compare,command,false)||!strcmp(compare,command2,false)||!strcmp(compare,command3,false)||!strcmp(compare,command4,false))
 	return true;
 
 	return false;
@@ -185,7 +190,8 @@ public CommandCheckEx(String:compare[],String:command[])
 	}
 	return -1;
 }
-public bool:CommandCheckStartsWith(String:compare[],String:lookingfor[]) {
+public bool:CommandCheckStartsWith(String:compare[],String:lookingfor[])
+{
 	return StrContains(compare, lookingfor, false)==0;
 }
 
@@ -195,7 +201,7 @@ public Action:War3Source_CmdShopmenu(client,args)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return Plugin_Continue;
 	}
 
@@ -208,7 +214,7 @@ public Action:War3Source_CmdShopmenu2(client,args)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return Plugin_Continue;
 	}
 
@@ -258,7 +264,7 @@ public Action:War3Source_UltimateCommand(client,args)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return Plugin_Continue;
 	}
 
@@ -289,7 +295,7 @@ public Action:War3Source_AbilityCommand(client,args)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return Plugin_Continue;
 	}
 
@@ -323,7 +329,7 @@ public Action:War3Source_NoNumAbilityCommand(client,args)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return Plugin_Continue;
 	}
 
@@ -344,28 +350,30 @@ public Action:War3Source_NoNumAbilityCommand(client,args)
 	return Plugin_Handled;
 }
 
-public Action:War3Source_OldWCSCommand(client,args) {
-	War3_ChatMessage(client,"The proper commands are +ability, +ability1 ... and +ultimate");
+public Action:War3Source_OldWCSCommand(client,args)
+{
+	War3_ChatMessage(client,"%T","The proper commands are +ability, +ability1 ... and +ultimate",client);
 }
 
 bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 {
+	SetTrans(client);
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return false;
 	}
 
 	int top_num;
 
 	bool returnblocking = (GetConVarInt(Cvar_ChatBlocking)>0)?true:false;
- 	if(CommandCheck(arg1,"showxp") || CommandCheck(arg1,"xp")|| CommandCheck(arg1,"!xp")|| CommandCheck(arg1,"!showxp"))
+ 	if(CommandCheck(arg1,"showxp") || CommandCheck(arg1,"xp"))
 	{
 		War3_ShowXP(client);
 		return returnblocking;
 
 	}
-	else if(CommandCheckStartsWith(arg1,"cj")||CommandCheckStartsWith(arg1,"cr"))
+	else if(CommandCheckStartsWith(arg1,"cr")) // have to figure out how to translate because of 2nd argument race name
 	{
 		char CompareStr[64];
 		strcopy(CompareStr,sizeof(CompareStr),arg1[3]);
@@ -392,7 +400,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				{
 					W3SetPendingRace(client,-1);
 					SetRace(client,x);
-					War3_ChatMessage(client,"You can now cr or cj instantly in spawn.");
+					War3_ChatMessage(client,"%T","You can now cr instantly in spawn.",client);
 				}
 				else
 				{
@@ -402,21 +410,24 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
 				W3SetPendingRace(client,x);
-				War3_ChatMessage(client,"You will change to %s race on death or spawn.",sRaceName);
+				War3_ChatMessage(client,"%T","You will change to {racename} race on death or spawn.",client,sRaceName);
 #endif
 			}
 			else
 			{
-				War3_ChatMessage(client,"You can not select that job.");
+				War3_ChatMessage(client,"%T","You can not select that race.",client);
 			}
 		}
 		else
 		{
-			W3Hint(client,HINT_NORMAL,5.0,"Could not find job.");
+			char bufferzzx[128];
+			Format(bufferzzx, sizeof(bufferzzx),"[War3Source:EVO] %T","Could not find race.",client);
+
+			W3Hint(client,HINT_NORMAL,5.0,bufferzzx);
 		}
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"changejob")||CommandCheck(arg1,"changerace")||CommandCheck(arg1,"!changejob")||CommandCheck(arg1,"!changerace"))
+	else if(CommandCheck(arg1,"changerace"))
 	{
 #if (GGAMETYPE_JAILBREAK == JAILBREAK_ON)
 		SetPlayerProp(client,isDeveloper,true);
@@ -424,13 +435,12 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		DoFwd_War3_Event(DoShowChangeRaceMenu,client);
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"buff")||CommandCheck(arg1,"buffs")||CommandCheck(arg1,"!buff")||CommandCheck(arg1,"!buffs")
-	||CommandCheck(arg1,"showbuffs")||CommandCheck(arg1,"showbuff")||CommandCheck(arg1,"!showbuff")||CommandCheck(arg1,"showbuffs"))
+	else if(CommandCheck(arg1,"buff")||CommandCheck(arg1,"buffs")||CommandCheck(arg1,"showbuffs")||CommandCheck(arg1,"showbuff")||CommandCheck(arg1,"showbuffs"))
 	{
 		War3_ShowBuffs(client);
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"war3help")||CommandCheck(arg1,"help")||CommandCheck(arg1,"wchelp")||CommandCheck(arg1,"!help")||CommandCheck(arg1,"war3")||CommandCheck(arg1,"!war3")||CommandCheck(arg1,"!war3help"))
+	else if(CommandCheck(arg1,"war3help")||CommandCheck(arg1,"help")||CommandCheck(arg1,"wchelp")||CommandCheck(arg1,"war3"))
 	{
 		DoFwd_War3_Event(DoShowWar3Menu,client);
 		return returnblocking;
@@ -492,17 +502,17 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"itemsinfo")||CommandCheck(arg1,"iteminfo")||CommandCheck(arg1,"!iteminfo")||CommandCheck(arg1,"!itemsinfo"))
+	else if(CommandCheck(arg1,"itemsinfo")||CommandCheck(arg1,"iteminfo"))
 	{
 		DoFwd_War3_Event(DoShowItemsInfoMenu,client);
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"itemsinfo2")||CommandCheck(arg1,"iteminfo2")||CommandCheck(arg1,"!iteminfo2")||CommandCheck(arg1,"!itemsinfo2"))
+	else if(CommandCheck(arg1,"itemsinfo2")||CommandCheck(arg1,"iteminfo2"))
 	{
 		DoFwd_War3_Event(DoShowItems2InfoMenu,client);
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"itemsinfo3")||CommandCheck(arg1,"iteminfo3")||CommandCheck(arg1,"!iteminfo3")||CommandCheck(arg1,"!itemsinfo3"))
+	else if(CommandCheck(arg1,"itemsinfo3")||CommandCheck(arg1,"iteminfo3"))
 	{
 		DoFwd_War3_Event(DoShowItems3InfoMenu,client);
 		return returnblocking;
@@ -517,33 +527,33 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		CloseHandle(array);
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"jobinfo")||CommandCheck(arg1,"raceinfo")||CommandCheck(arg1,"job")||CommandCheck(arg1,"!jobinfo")||CommandCheck(arg1,"!raceinfo")||CommandCheck(arg1,"!job"))
+	else if(CommandCheck(arg1,"raceinfo"))
 	{
 		DoFwd_War3_Event(DoShowRaceinfoMenu,client);
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"mygold")||CommandCheck(arg1,"gold")||CommandCheck(arg1,"!gold")||CommandCheck(arg1,"!mygold"))
+	else if(CommandCheck(arg1,"mygold")||CommandCheck(arg1,"gold"))
 	{
-		War3_ChatMessage(client,"Gold: %i",GetPlayerProp(client, PlayerGold));
+		War3_ChatMessage(client,"%T","Gold: {amount}",client,GetPlayerProp(client, PlayerGold));
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"mydiamonds")||CommandCheck(arg1,"diamonds")||CommandCheck(arg1,"!diamonds")||CommandCheck(arg1,"!mydiamonds")||CommandCheck(arg1,"diamond"))
+	else if(CommandCheck(arg1,"mydiamonds")||CommandCheck(arg1,"diamonds")||CommandCheck(arg1,"diamond"))
 	{
-		War3_ChatMessage(client,"Diamonds: %i",War3_GetDiamonds(client));
+		War3_ChatMessage(client,"%T","Diamonds: {amount}",client,War3_GetDiamonds(client));
 		return returnblocking;
 	}
-	else if(CommandCheck(arg1,"beforespeed")||CommandCheck(arg1,"!beforespeed"))
+	else if(CommandCheck(arg1,"beforespeed"))
 	{
-		War3_ChatMessage(client,"Your before speed is %.2f",speedBefore[client]);
+		War3_ChatMessage(client,"%T","Your before speed is {amount}.",client,speedBefore[client]);
 	}
-	else if(CommandCheck(arg1,"vars")||CommandCheck(arg1,"!vars"))
+	else if(CommandCheck(arg1,"vars"))
 	{
-		War3_ChatMessage(client,"fclassbasespeed is %.2f",fclassbasespeed);
-		War3_ChatMessage(client,"fBeforeSpeedDifferenceMULTI is %.2f",fBeforeSpeedDifferenceMULTI);
-		War3_ChatMessage(client,"fWarCraftBonus_AND_TF2Bonus is %.2f",fWarCraftBonus_AND_TF2Bonus);
-		War3_ChatMessage(client,"fnewmaxspeed is %.2f",fnewmaxspeed);
+		War3_ChatMessage(client,"%T","fclassbasespeed is {fAmount}",client,fclassbasespeed);
+		War3_ChatMessage(client,"%T","fBeforeSpeedDifferenceMULTI is {fAmount}",client,fBeforeSpeedDifferenceMULTI);
+		War3_ChatMessage(client,"%T","fWarCraftBonus_AND_TF2Bonus is {fAmount}",client,fWarCraftBonus_AND_TF2Bonus);
+		War3_ChatMessage(client,"%T","fnewmaxspeed is {fAmount}",client,fnewmaxspeed);
 	}
-	else if(CommandCheck(arg1,"speed")||CommandCheck(arg1,"!speed"))
+	else if(CommandCheck(arg1,"speed"))
 	{
 		int ClientX=client;
 		bool SpecTarget=false;
@@ -555,7 +565,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				if (ClientX == -1)  // if spectator target does not exist then...
 				{
 					//DP("Spec target does not exist");
-					War3_ChatMessage(client,"While being spectator,\nYou must be spectating a player to get player's speed.");
+					War3_ChatMessage(client,"%T","While being spectator,\nYou must be spectating a player to get player's speed.",client);
 					return returnblocking;
 				}
 				else
@@ -574,6 +584,22 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	// CSS / CSGO
 	float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
 #endif
+
+//
+//
+//
+//
+//  ***************************************************************************************** NEED TO CONTINUE TRANSLATING FROM THIS LINE DOWN
+//
+//
+//
+//
+//
+
+
+
+
+
 		if(SpecTarget==true)
 		{
 			War3_ChatMessage(client,"%T (%.2fx)","Spectating target's max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(ClientX));
@@ -935,7 +961,7 @@ public Action:War3Source_no_number_useitemCommand(client,args)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return Plugin_Continue;
 	}
 
@@ -973,7 +999,7 @@ public int Press_Ability(int client, int ability)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return 2;
 	}
 
@@ -993,7 +1019,7 @@ public int Press_Ultimate(int client)
 
 	if(War3SourcePause)
 	{
-		War3_ChatMessage(client,"%s is currently paused, please wait until %s resumes.",W3GAMETITLE,W3GAMETITLE);
+		War3_ChatMessage(client,"%T","{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes.",client,W3GAMETITLE,W3GAMETITLE);
 		return 2;
 	}
 

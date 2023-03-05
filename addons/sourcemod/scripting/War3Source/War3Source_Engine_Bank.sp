@@ -1,5 +1,7 @@
 // War3Source_Engine_Bank.sp
 
+// MOSTLY TRANSLATED
+
 enum W3Bank
 {
 	bool:hasbank,
@@ -24,7 +26,10 @@ public Plugin:myinfo=
 
 public War3Source_Engine_Bank_OnPluginStart()
 {
-	WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700","default 2700 = 45 minutes");
+	char buffer[128];
+
+	Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","default 2700 = 45 minutes");
+	WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
 	CreateTimer(330.0,DoAutosave);
 }
 
@@ -83,7 +88,7 @@ public NWar3_DepositGoldBank(Handle:plugin,numParams){
 		}
 		else
 		{
-			War3_ChatMessage(client, "You don't have enough gold on hand.");
+			War3_ChatMessage(client, "%T","You don't have enough gold on hand.",client);
 			return false;
 		}
 	}
@@ -97,7 +102,7 @@ public NWar3_WithdrawGoldBank(Handle:plugin,numParams){
 		bool Bypass=GetNativeCell(3);
 		if(!withdrawalTime0(p_bank[client][W3Bank_timestamp]) && !Bypass)
 		{
-			War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold. Please wait %s to withdraw.",War3_GetGold(client),p_bank[client][W3Bank_gold],withdrawalTime1(p_bank[client][W3Bank_timestamp]));
+			War3_ChatMessage(client,"%T","On hand: {decimal} Gold. !balance: {decimal} Gold. Please wait {string} to withdraw.",client,War3_GetGold(client),p_bank[client][W3Bank_gold],withdrawalTime1(p_bank[client][W3Bank_timestamp]));
 			return false;
 		}
 		else
@@ -110,12 +115,12 @@ public NWar3_WithdrawGoldBank(Handle:plugin,numParams){
 			{
 				if (amount > p_bank[client][W3Bank_gold])
 				{
-					War3_ChatMessage(client, "On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold. You don't have enough gold in the bank.",War3_GetGold(client),p_bank[client][W3Bank_gold]);
+					War3_ChatMessage(client, "%T","On hand: {decimal} Gold. !balance: {decimal} Gold. You don't have enough gold in the bank.",client,War3_GetGold(client),p_bank[client][W3Bank_gold]);
 					return false;
 				}
 				else if ((playerGold+amount) > maxGold )
 				{
-					War3_ChatMessage(client, "That withdrawal would put you over the gold cap (%i).",maxGold);
+					War3_ChatMessage(client, "%T","That withdrawal would put you over the gold cap ({integer}}).",client,maxGold);
 					return false;
 				}
 				else if (amount <= p_bank[client][W3Bank_gold])

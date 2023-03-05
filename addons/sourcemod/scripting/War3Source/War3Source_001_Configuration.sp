@@ -1,5 +1,7 @@
 // War3Source_001_Configuration.sp
 
+// TRANSLATED
+
 War3Source_InitCVars()
 {
 	char wcstbuffer[128];
@@ -107,11 +109,10 @@ public War3ConVarChanged(Handle:cvar, const String:oldVal[], const String:newVal
 		float fSniper = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Sniper));
 		float fHeavy = FloatMul(fWar3_MaxSpeedLimit,TF2_GetClassSpeed(TFClass_Heavy));
 
-// NEEDS TO BE TRANSLATED... TO BE CONTINUED.
-
-		War3_ChatMessage(0,"{yellow}Scout %.2f | Soldier %.2f | Demo %.2f",fScout,fSoldier,fDemo);
-		War3_ChatMessage(0,"{yellow}Medic %.2f | Pyro %.2f | Spy %.2f",fMedic,fPyro,fSpy);
-		War3_ChatMessage(0,"{yellow}Engineer %.2f | Sniper %.2f | Heavy %.2f",fEngineer,fSniper,fHeavy);
+		//War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+		War3_ChatMessage(0,"%T","Scout {float} | Soldier {float} | Demo {float}",fScout,fSoldier,fDemo);
+		War3_ChatMessage(0,"%T","Medic {amount} | Pyro {amount} | Spy {amount}",fMedic,fPyro,fSpy);
+		War3_ChatMessage(0,"%T","Engineer {amount} | Sniper {amount} | Heavy {amount}",fEngineer,fSniper,fHeavy);
 
 		// force speed update on all alive clients
 		for(int client=1;client<=MaxClients;client++)

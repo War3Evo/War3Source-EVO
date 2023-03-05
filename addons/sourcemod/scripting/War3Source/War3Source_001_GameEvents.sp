@@ -1,5 +1,7 @@
 // War3Source_001_GameEvents.sp
 
+// TRANSLATED
+
 public bool Internal_OnWar3EventSpawn(client)
 {
 	// War3Source_000_Engine_Hint.sp
@@ -98,14 +100,17 @@ public War3Source_PlayerSpawnEvent(Handle:event,const String:name[],bool:dontBro
 	if(MapChanging==true)
 	{
 		MapChangingCount++;
-		PrintToServer("MapChangingCount = %d",MapChangingCount);
+		PrintToServer("[War3Source:EVO] %T","MapChangingCount = {decimal}",LANG_SERVER,MapChangingCount);
 	}
 
 	if(MapChanging && MapChangingCount>=6)
 	{
 		MapChanging=false;
 		MapChangingCount=0;
-		PrintToServer("MapChanging = false");
+
+		char wcstgbuffer[128];
+		Format(wcstgbuffer, sizeof(wcstgbuffer), "[War3Source:EVO] %t","MapChanging = false");
+		PrintToServer(wcstgbuffer);
 	}
 
 	if(MapChanging || War3SourcePause) return 0;

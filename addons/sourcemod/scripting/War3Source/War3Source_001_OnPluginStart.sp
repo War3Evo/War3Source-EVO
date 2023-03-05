@@ -1,5 +1,7 @@
 // War3Source_001_OnPluginStart.sp
 
+// TRANSLATED
+
 //=============================================================================
 // OnPluginStart
 //=============================================================================
@@ -9,16 +11,26 @@ public OnPluginStart()
 	// LoadTranslations on PluginStart();
 	LoadTranslations("w3s._common.phrases");
 	LoadTranslations("w3s.000_engine_phrases");
+	LoadTranslations("w3s.001_engine_phrases");
+	LoadTranslations("w3s.003_RegisterPrivateForwards");
+	LoadTranslations("w3s._War3Source_Engine_Aura");
+	LoadTranslations("w3s._War3Source_Engine_Bank");
+	LoadTranslations("w3s._War3Source_Engine_BotControl");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
 
-	PrintToServer("--------------------------OnPluginStart----------------------");
+	PrintToServer("[War3Source:EVO] %t","--------------------------OnPluginStart----------------------");
 
 	if(GetExtensionFileStatus("sdkhooks.ext") < 1)
-		SetFailState("SDK Hooks is not loaded.");
+		SetFailState("[War3Source:EVO] %t","SDK Hooks is not loaded.");
 
 	if(!War3Source_HookEvents())
-		SetFailState("[War3Source:EVO] There was a failure in initiating event hooks.");
+		SetFailState("[War3Source:EVO] %t","There was a failure in initiating event hooks.");
 	if(!War3Source_InitCVars()) //especially sdk hooks
-		SetFailState("[War3Source:EVO] There was a failure in initiating console variables.");
+		SetFailState("[War3Source:EVO] %t","There was a failure in initiating console variables.");
 
 	hCvarLoadRacesAndItemsOnMapStart=CreateConVar("war3_Load_RacesAndItems_every_map","0","0 = Disable | 1 = Enable");
 	LoadRacesAndItemsOnMapStart=GetConVarBool(hCvarLoadRacesAndItemsOnMapStart);
@@ -120,5 +132,5 @@ public OnPluginStart()
 	//g_Prof = CreateProfiler();
 	//g_Prof2 = CreateProfiler();
 
-	PrintToServer("[War3Source:EVO] Plugin finished loading.\n-------------------END OnPluginStart-------------------");
+	PrintToServer("[War3Source:EVO] %t","Plugin finished loading.\n-------------------END OnPluginStart-------------------");
 }

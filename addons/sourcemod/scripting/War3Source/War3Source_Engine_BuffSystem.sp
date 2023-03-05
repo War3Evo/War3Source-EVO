@@ -1,5 +1,7 @@
 // War3Source_Engine_BuffSystem.sp
 
+// TO DO .. TRASNLATE THROW ERROR 3/5/2023
+
 #define PLUGIN_VERSION "3.0"
 
 //for debuff index, see constants, its in an enum
@@ -452,9 +454,9 @@ ShowInvisBuff(client)
 		currentAttribute=currentAttribute*100.0;
 		new percentage=RoundToFloor(currentAttribute);
 		if(currentAttribute>0.0 && currentAttribute<100.0)
-			War3_ChatMessage(client,"You are now {green}%i{default} percent visibile.",percentage);
+			War3_ChatMessage(client,"%T","You are now {amount} percent visibile.",client,percentage);
 		else //if(currentAttribute==0.0)
-			War3_ChatMessage(client,"You are now {green}100{default} percent visibile.");
+			War3_ChatMessage(client,"%T","You are now {amount} percent visibile.",client,100);
 	}
 }
 ShowArmorPhysical(client)
@@ -465,9 +467,9 @@ ShowArmorPhysical(client)
 		new percentage=RoundToFloor(FloatMul(PhysicalArmorMulti(client),100.0));
 		percentage=100-percentage;
 		if(currentAttribute>0.0)
-			War3_ChatMessage(client,"You now have {green}%i{default} percent physical armor damage reduction.",percentage);
+			War3_ChatMessage(client,"%T","You now have {amount} percent physical armor damage reduction.",client,percentage);
 		else if(currentAttribute==0.0)
-			War3_ChatMessage(client,"You now have {green}0{default} percent physical armor damage reduction.");
+			War3_ChatMessage(client,"%T","You now have {amount} percent physical armor damage reduction.",client,0);
 	}
 }
 ShowArmorMagic(client)
@@ -478,9 +480,9 @@ ShowArmorMagic(client)
 		new percentage=RoundToFloor(FloatMul(MagicArmorMulti(client),100.0));
 		percentage=100-percentage;
 		if(currentAttribute>0.0)
-			War3_ChatMessage(client,"You now have {green}%i{default} percent magical armor damage reduction.",percentage);
+			War3_ChatMessage(client,"%T","You now have {amount} percent magical armor damage reduction.",client,percentage);
 		else if(currentAttribute==0.0)
-			War3_ChatMessage(client,"You now have {green}0{default} percent magical armor damage reduction.");
+			War3_ChatMessage(client,"%T","You now have {amount} percent magical armor damage reduction.",client,0);
 	}
 }
 ShowAttackSpeed(client)
@@ -495,9 +497,9 @@ ShowAttackSpeed(client)
 		currentAttribute=currentAttribute*100.0;
 		new percentage=RoundToFloor(currentAttribute);
 		if(currentAttribute!=1.0)
-			War3_ChatMessage(client,"You now have {green}%i{default} percent attack speed buff.",percentage);
+			War3_ChatMessage(client,"%T","You now have {amount} percent attack speed buff.",client,percentage);
 		else if(currentAttribute==1.0)
-			War3_ChatMessage(client,"You now have {green}0{default} percent attack speed buff.");
+			War3_ChatMessage(client,"%T","You now have {amount} percent attack speed buff.",client,0);
 	}
 }
 ShowVampireBuff(client)
@@ -512,9 +514,9 @@ ShowVampireBuff(client)
 		currentAttribute=currentAttribute*100.0;
 		new percentage=RoundToFloor(FloatSub(100.0,currentAttribute));
 		if(currentAttribute>0.0)
-			War3_ChatMessage(client,"You now gain {green}%i{default} percent damage as health.",percentage);
+			War3_ChatMessage(client,"%T","You now gain {amount} percent damage as health.",client,percentage);
 		else if(currentAttribute==0.0)
-			War3_ChatMessage(client,"You now gain {green}0{default} percent damage as health.");
+			War3_ChatMessage(client,"%T","You now gain {amount} percent damage as health.",client,0);
 	}
 }
 ShowRegenBuff(client)
@@ -524,9 +526,9 @@ ShowRegenBuff(client)
 		new Float:currentAttribute=Float:BuffCached[client][fHPRegen];
 		new percentage=RoundToFloor(currentAttribute);
 		if(currentAttribute>0.0)
-			War3_ChatMessage(client,"You now gain {green}%i{default} hit points per second.",percentage);
+			War3_ChatMessage(client,"%T","You now gain {amount} hit points per second.",client,percentage);
 		else if(currentAttribute==0.0)
-			War3_ChatMessage(client,"You now gain {green}0{default} hit points per second.");
+			War3_ChatMessage(client,"%T","You now gain {amount} hit points per second.",client,0);
 	}
 }
 #if (GGAMETYPE == GGAME_TF2)
@@ -545,11 +547,11 @@ ShowSpeedBuff(client,bool:bypass=false)
 		if(OldSpeedBuffValue2[client]!=percentage||bypass)
 		{
 			if(currentmaxspeed>TF2_GetClassSpeed(TF2_GetPlayerClass(client)))
-				War3_ChatMessage(client,"You move at {green}%i{default} percent {green}faster{default} than normal.",percentage);
+				War3_ChatMessage(client,"%T","You move at {amount} percent {speed} than normal.",client,percentage,"faster");
 			else if(currentmaxspeed<TF2_GetClassSpeed(TF2_GetPlayerClass(client)))
-				War3_ChatMessage(client,"You move at {green}%i{default} percent {green}slower{default} than normal.",percentage);
+				War3_ChatMessage(client,"%T","You move at {amount} percent {speed} than normal.",client,percentage,"slower");
 			else if(currentmaxspeed==TF2_GetClassSpeed(TF2_GetPlayerClass(client)))
-				War3_ChatMessage(client,"You move at {green}normal{default} speed.",percentage);
+				War3_ChatMessage(client,"%T","You move at normal speed.",client);
 		}
 		OldSpeedBuffValue2[client]=percentage;
 	}
@@ -570,7 +572,7 @@ DisplayBuffsTimer(any:userid)
 	new client=GetClientOfUserId(userid);
 	if(ValidPlayer(client))
 	{
-		War3_ChatMessage(client,"{lightgreen}Your new Buffs{default}:");
+		War3_ChatMessage(client,"%T","Your new Buffs:",client);
 		War3_ShowBuffs(client);
 	}
 }
@@ -709,7 +711,7 @@ stock any:CalcBuffMax(client,W3Buff:buffindex)
 		}
 		return value;
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1;
 }
 stock any:CalcBuffMin(client,W3Buff:buffindex)
@@ -727,7 +729,7 @@ stock any:CalcBuffMin(client,W3Buff:buffindex)
 		}
 		return value;
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1;
 }
 CalcBuffMinInt(client,W3Buff:buffindex)
@@ -745,7 +747,7 @@ CalcBuffMinInt(client,W3Buff:buffindex)
 		}
 		return value;
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1;
 }
 stock bool:CalcBuffHasOneTrue(client,W3Buff:buffindex)
@@ -763,7 +765,7 @@ stock bool:CalcBuffHasOneTrue(client,W3Buff:buffindex)
 		return false;
 
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return false;
 }
 
@@ -780,7 +782,7 @@ stock Float:CalcBuffStackedFloat(client,W3Buff:buffindex)
 		}
 		return value;
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1.0;
 }
 
@@ -799,7 +801,7 @@ stock CalcBuffSumInt(client,W3Buff:buffindex)
 		}
 		return value;
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1;
 }
 
@@ -817,7 +819,7 @@ stock CalcBuffSumFloat(client,W3Buff:buffindex)
 		}
 		return value;
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1;
 }
 //Returns the most recent value set by any race
@@ -833,7 +835,7 @@ stock CalcBuffRecentValue(client,W3Buff:buffindex,race)
 			return BuffCached[client][buffindex];
 		}
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return -1;
 }
 ////////getting cached values!
@@ -846,7 +848,7 @@ stock GetBuffLastValue(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return false;
 }
 stock bool:GetBuffHasOneTrue(client,W3Buff:buffindex)
@@ -858,7 +860,7 @@ stock bool:GetBuffHasOneTrue(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return false;
 }
 stock Float:GetBuffStackedFloat(client,W3Buff:buffindex)
@@ -870,7 +872,7 @@ stock Float:GetBuffStackedFloat(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return 0.0;
 }
 stock GetBuffSumInt(client,W3Buff:buffindex)
@@ -882,7 +884,7 @@ stock GetBuffSumInt(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return false;
 }
 stock Float:GetBuffSumFloat(client,W3Buff:buffindex)
@@ -899,7 +901,7 @@ stock Float:GetBuffSumFloat(client,W3Buff:buffindex)
 			return 0.0;
 		}
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return 0.0;
 }
 stock Float:GetBuffMaxFloat(client,W3Buff:buffindex)
@@ -911,7 +913,7 @@ stock Float:GetBuffMaxFloat(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return 0.0;
 }
 stock Float:GetBuffMinFloat(client,W3Buff:buffindex)
@@ -923,7 +925,7 @@ stock Float:GetBuffMinFloat(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return 0.0;
 }
 GetBuffMinInt(client,W3Buff:buffindex)
@@ -935,7 +937,7 @@ GetBuffMinInt(client,W3Buff:buffindex)
 		}
 		return BuffCached[client][buffindex];
 	}
-	LogError("invalid buff index");
+	LogError("%t","invalid buff index");
 	return 0;
 }
 

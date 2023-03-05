@@ -1,6 +1,8 @@
 //War3Source_001_OnMapStart
 // moved from War3Source.sp
 
+// TRANSLATED
+
 //=============================================================================
 // OnMapStart
 //=============================================================================
@@ -10,7 +12,7 @@ public OnMapStart()
 	// moved to gameEvents.sp
 	//MapChanging = false;
 
-	PrintToServer("War3Source:EVO OnMapStart Start");
+	PrintToServer("[War3Source:EVO] %t","OnMapStart Start");
 
 	if(LoadRacesAndItemsOnMapStart)
 	{
@@ -62,6 +64,6 @@ public OnMapStart()
 #endif
 
 
-	PrintToServer("War3Source:EVO OnMapStart Finished");
+	PrintToServer("[War3Source:EVO] %t","OnMapStart Finished");
 }
 

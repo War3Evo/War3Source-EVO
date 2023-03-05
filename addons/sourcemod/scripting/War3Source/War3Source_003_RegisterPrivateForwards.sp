@@ -1,5 +1,7 @@
 // War3Source_003_RegisterPrivateForwards.sp
 
+// TRANSLATED
+
 public bool War3Source_003_RegisterPrivateForwards_InitNatives()
 {
 	CreateNative("W3Hook", Native_Hook);
@@ -17,8 +19,13 @@ ConVar enable_races_mapstart = null;
 
 public void War3Source_003_RegisterPrivateForwards_OnPluginStart()
 {
-	disable_races_mapend = CreateConVar("war3_disable_races_mapend","1","Disable races on round end?");
-	enable_races_mapstart = CreateConVar("war3_enable_races_mapstart","1","Enable races on round start?");
+	char buffer[128];
+
+	Format(buffer, sizeof(buffer), "%t","Disable races on round end?");
+	disable_races_mapend = CreateConVar("war3_disable_races_mapend","1",buffer);
+
+	Format(buffer, sizeof(buffer), "%t","Enable races on round start?");
+	enable_races_mapstart = CreateConVar("war3_enable_races_mapstart","1",buffer);
 }
 
 public void War3Source_003_RegisterPrivateForwards_OnMapStart()

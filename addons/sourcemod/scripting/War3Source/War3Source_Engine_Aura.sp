@@ -1,5 +1,7 @@
 // War3Source_Engine_Aura.sp
 
+// TRANSLATED
+
 /*
 public Plugin:myinfo =
 {
@@ -60,7 +62,7 @@ public NW3RegisterAura(Handle:plugin,numParams)
 	}
 	else
 	{
-		ThrowError("CANNOT REGISTER ANY MORE AURAS");
+		ThrowError("[War3Source:EVO] %t","CANNOT REGISTER ANY MORE AURAS");
 	}
 
 	return -1;
@@ -100,7 +102,7 @@ public NW3RegisterChangingDistanceAura(Handle:plugin,numParams)
 	}
 	else
 	{
-		ThrowError("CANNOT REGISTER ANY MORE AURAS");
+		ThrowError("[War3Source:EVO] %t","CANNOT REGISTER ANY MORE AURAS");
 	}
 
 	return -1;

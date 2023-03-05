@@ -2,6 +2,7 @@
 
 ////BUFF SYSTEM
 
+// TRANSLATED
 
 /* moved to variables includes file
  * int m_OffsetSpeed=-1;
@@ -31,11 +32,12 @@ public void War3Source_Engine_BuffSpeedGravGlow_OnMapStart()
 		Handle hCvar = FindConVar("sv_disable_immunity_alpha");
 		if(hCvar == null)
 		{
-			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
-			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
-			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
-			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
-			PrintToServer("CSGO: Couldn't find cvar: \"sv_disable_immunity_alpha\"");
+			PrintToServer("[War3Source:EVO] %t","CSGO: Couldn't find cvar: sv_disable_immunity_alpha");
+			PrintToServer("[War3Source:EVO] %t","CSGO: Couldn't find cvar: sv_disable_immunity_alpha");
+			PrintToServer("[War3Source:EVO] %t","CSGO: Couldn't find cvar: sv_disable_immunity_alpha");
+			PrintToServer("[War3Source:EVO] %t","CSGO: Couldn't find cvar: sv_disable_immunity_alpha");
+			PrintToServer("[War3Source:EVO] %t","CSGO: Couldn't find cvar: sv_disable_immunity_alpha");
+			PrintToServer("[War3Source:EVO] %t","CSGO: Couldn't find cvar: sv_disable_immunity_alpha");
 			return;
 		}
 
@@ -49,7 +51,7 @@ public ConVarChange_DisableImmunityAlpha(Handle convar, const char[] oldValue, c
 	{
 		/* Force enable sv_disable_immunity_alpha */
 		SetConVarInt(convar, 1);
-		PrintToServer("[W3SE] sv_disable_immunity_alpha is locked and can't be changed!");
+		PrintToServer("[War3Source:EVO] %t","sv_disable_immunity_alpha is locked and can't be changed!");
 	}
 }
 public War3Source_Engine_BuffSpeedGravGlow_OnClientPutInServer(client)
@@ -79,13 +81,13 @@ public bool:War3Source_Engine_BuffSpeedGravGlow_InitNatives()
 
 	if(m_OffsetSpeed==-1)
 	{
-		PrintToServer("[War3Source:EVO] Error finding speed offset.");
+		PrintToServer("[War3Source:EVO] %t","Error finding speed offset.");
 	}
 
 	m_OffsetClrRender=FindSendPropInfo("CBaseAnimating","m_clrRender");
 	if(m_OffsetClrRender==-1)
 	{
-		PrintToServer("[War3Source:EVO] Error finding render color offset.");
+		PrintToServer("[War3Source:EVO] %t","Error finding render color offset.");
 	}
 
 	CreateNative("W3IsBuffInvised",NW3IsBuffInvised);
@@ -201,13 +203,15 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 					alpha=alpha2;
 				}
 				else{
-					LogError("alpha playertracking out of bounds 0 - 255");
+					LogError("[War3Source:EVO] %t","alpha playertracking out of bounds 0 - 255");
 				}
 				if(GetBuffHasOneTrue(client,bInvisibilityDenyAll)||W3GetBuffHasTrue(client,bBuffDenyAll) ){
 					if( /*bDeniedInvis[client]==false &&*/ alpha<222) ///buff is not denied
 					{
 						bDeniedInvis[client]=true;
-						W3Hint(client,HINT_NORMAL,4.0,"Cannot Invis. Being revealed");
+						decl String:webtbufferz[128];
+						Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+						W3Hint(client,HINT_NORMAL,4.0,webtbufferz);
 					}
 					alpha=255;
 				}

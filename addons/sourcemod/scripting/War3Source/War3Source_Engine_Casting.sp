@@ -1,5 +1,7 @@
 //War3Source_Engine_Casting.sp
 
+// TRANSLATED
+
 
 bool g_bThirdPersonEnabled[MAXPLAYERS+1] = false;
 bool g_bThirdPersonForced[MAXPLAYERS+1] = false;
@@ -84,8 +86,8 @@ public NWar3_CancelSpell(Handle:plugin,numParams)
 			decl String:sSkillName[32];
 			GetRaceSkillName(GetRace(target),castingid,STRING(sSkillName));
 
-			War3_ChatMessage(0,"%s%s {default}successfully canceled %s%s's {default}spell {green}%s!",
-				sClientTeamTag,sClientName,sTargetTeamTag,sTargetName,sSkillName);
+			War3_ChatMessage(0,"%T","{clientteamcolor}{clientname} successfully canceled {targetteamcolor}{targetname}'s spell {skillname}!",
+				LANG_SERVER,sClientTeamTag,sClientName,sTargetTeamTag,sTargetName,sSkillName);
 
 		}
 		else if(target==0 && castingid==0)
@@ -94,7 +96,7 @@ public NWar3_CancelSpell(Handle:plugin,numParams)
 		}
 		else
 		{
-			War3_ChatMessage(client,"Spell no longer exists.");
+			War3_ChatMessage(client,"%T","Spell no longer exists.",client);
 		}
 	}
 }
@@ -104,7 +106,7 @@ ShowPlayerCancelSpellMenu(client)
 	SetTrans(client);
 	Handle CancelSpellMenu=CreateMenu(ShowCancelSpellinfoSelected);
 	SetMenuExitButton(CancelSpellMenu,true);
-	SetMenuTitle(CancelSpellMenu,"[Magic] Cancel Spell Menu");
+	SetMenuTitle(CancelSpellMenu,"%T","[Magic] Cancel Spell Menu",client);
 	decl String:str[128];
 	decl String:selectioninfo[12];
 	decl String:sSkillName[32];
@@ -140,7 +142,7 @@ ShowPlayerCancelSpellMenu(client)
 		}
 		if(retrievals==0)
 		{
-			War3_ChatMessage(client,"{red}Could not find any spells being cast.");
+			War3_ChatMessage(client,"%T","Could not find any spells being cast.",client);
 			return;
 		}
 	}
@@ -186,8 +188,8 @@ public ShowCancelSpellinfoSelected(Handle:menu,MenuAction:action,client,selectio
 			GetRaceSkillName(GetRace(target),castingid,STRING(sSkillName));
 
 
-			War3_ChatMessage(0,"%s%s {default}successfully canceled %s%s's {default}spell {green}%s!",
-							sClientTeamTag,sClientName,sTargetTeamTag,sTargetName,sSkillName);
+			War3_ChatMessage(0,"%T","{clientteamcolor}{clientname} successfully canceled {targetteamcolor}{targetname}'s spell {skillname}!",
+							LANG_SERVER,sClientTeamTag,sClientName,sTargetTeamTag,sTargetName,sSkillName);
 
 			Call_StartForward(g_OnWar3CancelSpell_Post);
 			Call_PushCell(client);
@@ -547,7 +549,7 @@ public Action:SetViewOnSpawn(Handle:timer, any:client)
 public Action:EnableThirdperson(client, args)
 {
 	if(!IsPlayerAlive(client))
-		PrintToChat(client, "[SM] Thirdperson view will be enabled when you spawn.");
+		PrintToChat(client, "%T","Thirdperson view will be enabled when you spawn.",client);
 #if (GGAMETYPE == GGAME_TF2)
 	SetVariantInt(1);
 	AcceptEntityInput(client, "SetForcedTauntCam");
@@ -564,7 +566,7 @@ public Action:EnableThirdperson(client, args)
 public Action:DisableThirdperson(client, args)
 {
 	if(!IsPlayerAlive(client))
-		PrintToChat(client, "[SM] Thirdperson view disabled!");
+		PrintToChat(client, "%T","Thirdperson view disabled!",client);
 #if (GGAMETYPE == GGAME_TF2)
 	SetVariantInt(0);
 	AcceptEntityInput(client, "SetForcedTauntCam");

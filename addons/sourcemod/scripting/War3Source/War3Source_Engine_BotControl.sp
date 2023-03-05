@@ -1,5 +1,7 @@
 // War3Source_Engine_BotControl.sp
 
+// TO-DO ... TRANSLATE CONVARS 3/5/2023
+
 #include <war3source>
 
 /*
@@ -140,7 +142,7 @@ public Action:SetTestBotRace(client, args)
 	}
 	else
 	{
-		War3_ChatMessage(0,"{cyan}Error could not find war3_bots_use_races (stopped)");
+		War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
 		return Plugin_Handled;
 	}
 
@@ -178,12 +180,12 @@ public Action:SetTestBotRace(client, args)
 		}
 		else
 		{
-			War3_ChatMessage(0,"{cyan}Bot can not select that job.");
+			War3_ChatMessage(0,"%t","Bot can not select that race.");
 		}
 	}
 	else
 	{
-		War3_ChatMessage(0,"{cyan}Bot could not find job.");
+		War3_ChatMessage(0,"%t","Bot could not find race.");
 	}
 
 	//War3_bots_distribute_sp(target);

@@ -86,4 +86,68 @@
 	{
 		"en"			"{yellow}War3Source:EVO has now resumed."
 	}
+	"Scout {amount} | Soldier {amount} | Demo {amount}"
+	{
+		"#format"		"{1:f},{2:f},{3:f}"
+		"en"			"{yellow}Scout {1} | Soldier {2} | Demo {3}"
+	}
+	"Medic {amount} | Pyro {amount} | Spy {amount}"
+	{
+		"#format"		"{1:f},{2:f},{3:f}"
+		"en"			"{yellow}Medic {1} | Pyro {2} | Spy {3}"
+	}
+	"Engineer {amount} | Sniper {amount} | Heavy {amount}"
+	{
+		"#format"		"{1:f},{2:f},{3:f}"
+		"en"			"{yellow}Engineer {1} | Sniper {2} | Heavy {3}"
+	}
+
+	// War3Source_001_GameEvents.sp
+	"MapChangingCount = {decimal}"
+	{
+		"#format"		"{1:d}"
+		"en"			"MapChangingCount = {1}"
+	}
+	"MapChanging = false"
+	{
+		"en"			"MapChanging = false"
+	}
+
+	// War3Source_001_OnMapEnd.sp
+	"MapChanging = true"
+	{
+		"en"			"MapChanging = true"
+	}
+
+	// War3Source_001_OnMapStart.sp
+	"OnMapStart Start"
+	{
+		"en"			"OnMapStart Start"
+	}
+	"OnMapStart Finished"
+	{
+		"en"			"OnMapStart Finished"
+	}
+
+	// War3Source_001_OnPluginStart.sp
+	"--------------------------OnPluginStart----------------------"
+	{
+		"en"			"--------------------------OnPluginStart----------------------"
+	}
+	"SDK Hooks is not loaded."
+	{
+		"en"			"SDK Hooks is not loaded."
+	}
+	"There was a failure in initiating event hooks."
+	{
+		"en"			"There was a failure in initiating event hooks."
+	}
+	"There was a failure in initiating console variables."
+	{
+		"en"			"There was a failure in initiating console variables."
+	}
+	"Plugin finished loading.\n-------------------END OnPluginStart-------------------"
+	{
+		"en"			"Plugin finished loading.\n-------------------END OnPluginStart-------------------"
+	}
 }
