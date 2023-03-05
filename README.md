@@ -1,5 +1,10 @@
 # ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evoultion Gamemode for Sourcemod
 
+3/5/2023
+The develop branch is currently working on making War3source fully translatable.
+Players will soon be able to type commands in thier own language for War3Source:EVO.
+Anyone willing to help with translating for your language, see the Develop branch for the **_new translation files_** and submit to discussion or issue area of github. If you install this mod using the linux install script, you can change the git branch inside the upgrade script.
+
 * [Introduction](#introduction)
 * [Requirements](#requirements)
 * [Install](#install)
