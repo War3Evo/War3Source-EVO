@@ -173,7 +173,7 @@ public bool:CommandCheck(String:compare[],String:command[256])
 	return false;
 }
 
-public CommandCheckEx(String:compare[],String:command[])
+public CommandCheckEx(String:compare[],String:command[])  // may not be able to be translated??
 {
 	if(StrEqual(command,"",false))
 	return -1;
@@ -192,6 +192,15 @@ public CommandCheckEx(String:compare[],String:command[])
 }
 public bool:CommandCheckStartsWith(String:compare[],String:lookingfor[])
 {
+	char arg3[2][128];
+	int exnum=ExplodeString(compare," ",arg3,2,128,true);
+	if(exnum>0)
+	{
+		if(CommandCheck(arg3[0],lookingfor)) // allows to check translated
+		{
+			return true;
+		}
+	}
 	return StrContains(compare, lookingfor, false)==0;
 }
 
@@ -373,7 +382,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		return returnblocking;
 
 	}
-	else if(CommandCheckStartsWith(arg1,"cr")) // have to figure out how to translate because of 2nd argument race name
+	else if(CommandCheckStartsWith(arg1,"cr"))
 	{
 		char CompareStr[64];
 		strcopy(CompareStr,sizeof(CompareStr),arg1[3]);
@@ -584,49 +593,35 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 	// CSS / CSGO
 	float currentmaxspeed=GetEntDataFloat(client,m_OffsetSpeed);
 #endif
-
-//
-//
-//
-//
-//  ***************************************************************************************** NEED TO CONTINUE TRANSLATING FROM THIS LINE DOWN
-//
-//
-//
-//
-//
-
-
-
-
-
 		if(SpecTarget==true)
 		{
-			War3_ChatMessage(client,"%T (%.2fx)","Spectating target's max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(ClientX));
+			//War3_ChatMessage(client,"%T (%.2fx)","Spectating target's max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(ClientX));
+			War3_ChatMessage(client,"%T","Spectating target's max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(ClientX));
 		}
 		else
 		{
-			War3_ChatMessage(client,"%T (%.2fx)","Your max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(client));
+			//War3_ChatMessage(client,"%T (%.2fx)","Your max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(client));
+			War3_ChatMessage(client,"%T","Your max speed is {amount}",client,currentmaxspeed,W3GetSpeedMulti(client));
 		}
 	}
 	else if(CommandCheck(arg1,"maxhp"))
 	{
 		int maxhp = War3_GetMaxHP(client);
-		War3_ChatMessage(client,"Your max health is: %d",maxhp);
+		War3_ChatMessage(client,"%T","Your max health is: {amount}",client,maxhp);
 	}
 	if(GetRace(client)>0)
 	{
-		if(CommandCheck(arg1,"skillsinfo")||CommandCheck(arg1,"skl")||CommandCheck(arg1,"!skillsinfo"))
+		if(CommandCheck(arg1,"skillsinfo")||CommandCheck(arg1,"skl"))
 		{
 			W3ShowSkillsInfo(client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"resetskills")||CommandCheck(arg1,"!resetskills"))
+		else if(CommandCheck(arg1,"resetskills")
 		{
 			DoFwd_War3_Event(DoResetSkills,client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"spendskills")||CommandCheck(arg1,"!spendskills"))
+		else if(CommandCheck(arg1,"spendskills"))
 		{
 			int race=GetRace(client);
 			if(GetLevelsSpent(client,race)<War3_GetLevel(client,race))
@@ -635,27 +630,27 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(client,"%T","You do not have any skill points to spend, if you want to reset your skills use resetskills",client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"shopmenu")||CommandCheck(arg1,"sh1")||CommandCheck(arg1,"!sh1")||CommandCheck(arg1,"/sh1"))
+		else if(CommandCheck(arg1,"shopmenu")||CommandCheck(arg1,"sh1"))
 		{
 			DoFwd_War3_Event(DoShowShopMenu,client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"shopmenu2")||CommandCheck(arg1,"sh2")||CommandCheck(arg1,"!sh2")||CommandCheck(arg1,"/sh2"))
+		else if(CommandCheck(arg1,"shopmenu2")||CommandCheck(arg1,"sh2"))
 		{
 			DoFwd_War3_Event(DoShowShopMenu2,client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"shopmenu3")||CommandCheck(arg1,"sh3")||CommandCheck(arg1,"!sh3")||CommandCheck(arg1,"/sh3"))
+		else if(CommandCheck(arg1,"shopmenu3")||CommandCheck(arg1,"sh3"))
 		{
 			DoFwd_War3_Event(DoShowShopMenu3,client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"war3menu")||CommandCheck(arg1,"w3e")||CommandCheck(arg1,"wcs")||CommandCheck(arg1,"!war3menu")||CommandCheck(arg1,"!w3e")||CommandCheck(arg1,"!wcs"))
+		else if(CommandCheck(arg1,"war3menu")||CommandCheck(arg1,"w3e")||CommandCheck(arg1,"wcs"))
 		{
 			DoFwd_War3_Event(DoShowWar3Menu,client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"levelbank")||CommandCheck(arg1,"!levelbank"))
+		else if(CommandCheck(arg1,"levelbank"))
 		{
 			if(W3SaveEnabled())
 			{
@@ -669,7 +664,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				return returnblocking;
 			}
 		}
-		else if(CommandCheck(arg1,"war3rank")||CommandCheck(arg1,"!war3rank"))
+		else if(CommandCheck(arg1,"war3rank"))
 		{
 			if(W3SaveEnabled())
 			{
@@ -701,21 +696,21 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			DoFwd_War3_Event(DoShowPlayerInfoTarget,client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"buyprevious")||CommandCheck(arg1,"bp")||CommandCheck(arg1,"!buyprevious")||CommandCheck(arg1,"!bp"))
+		else if(CommandCheck(arg1,"buyprevious")||CommandCheck(arg1,"bp"))
 		{
 			War3_RestoreItemsFromDeath(client,true);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"myitems")||CommandCheck(arg1,"!myitems"))
+		else if(CommandCheck(arg1,"myitems"))
 		{
 			internal_W3SetVar(EventArg1,client);
 			DoFwd_War3_Event(DoShowPlayerItemsOwnTarget,client);
 			return returnblocking;
 		}
-		else if(CommandCheckStartsWith(arg1,"drop")||CommandCheckStartsWith(arg1,"!drop"))
+		else if(CommandCheckStartsWith(arg1,"drop"))
 		{
 			char arg3[2][16];
-			int exnum=ExplodeString(arg1," ",arg3,2,64,true);
+			int exnum=ExplodeString(arg1," ",arg3,2,16,true);
 			if(exnum>1)
 			{
 				int itemid = internal_GetItemIdByShortname(arg3[1]);
@@ -723,7 +718,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				{
 					//drop shopmenu 1 item
 					SetOwnsItem(client,itemid,false);
-					War3_ChatMessage(client,"You dropped %s",arg3[1]);
+					War3_ChatMessage(client,"%T","You dropped {itemname}",client,arg3[1]);
 					return returnblocking;
 				}
 				else
@@ -733,18 +728,23 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 					{
 						//drop shopmenu 2 item
 						War3_SetOwnsItem2(client,itemid,false);
-						War3_ChatMessage(client,"You dropped %s",arg3[1]);
+						War3_ChatMessage(client,"%T","You dropped {itemname}",client,arg3[1]);
 						return returnblocking;
 					}
 				}
+				War3_ChatMessage(client,"%T","Could not find any shopitem named %s",client,arg3[1]);
+				return returnblocking;	
 			}
-			War3_ChatMessage(client,"Could not find any shopitem named %s",arg3[1]);
-			return returnblocking;
+			else
+			{
+				War3_ChatMessage(client,"%T","please use format: drop item",client,arg3[1]);
+				return returnblocking;		
+			}
 		}
-		else if(CommandCheckStartsWith(arg1,"gems")||CommandCheckStartsWith(arg1,"myitems3")||CommandCheckStartsWith(arg1,"!myitems3")||CommandCheckStartsWith(arg1,"!gems"))
+		else if(CommandCheckStartsWith(arg1,"gems")||CommandCheckStartsWith(arg1,"myitems3"))
 		{
-			char arg2[2][64];
-			int exnum=ExplodeString(arg1," ",arg2,2,64,true);
+			char arg2[2][128];
+			int exnum=ExplodeString(arg1," ",arg2,2,128,true);
 			int found=0;
 			if(exnum>1)
 			{
@@ -774,7 +774,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			}
 			return returnblocking;
 		}
-		else if((top_num=CommandCheckEx(arg1,"war3top"))>0)
+		else if((top_num=CommandCheckEx(arg1,"war3top"))>0) // can not be translated because the # is right next to name war3top100
 		{
 			if(top_num>100) top_num=100;
 			if(W3SaveEnabled())
@@ -792,30 +792,45 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		{
 			char sPlayerName[128];
 			GetClientName(client,sPlayerName,sizeof(sPlayerName));
-			War3_ChatMessage(0,"{green}%s {default}has {green}%d {default}gold on hand, {green}%d {default}gold in the bank, {green}%d {default}diamonds, and {green}%d {default}platinum.",sPlayerName,GetPlayerProp(client, PlayerGold),War3_GetGoldBank(client),War3_GetDiamonds(client),War3_GetPlatinum(client));
+			War3_ChatMessage(0,"%T","{name} has {GoldInHand} gold on hand, {Gold} gold in the bank, {Diamonds} diamonds, and {Platinum} platinum.",
+								LANG_SERVER,sPlayerName,GetPlayerProp(client, PlayerGold),War3_GetGoldBank(client),War3_GetDiamonds(client),War3_GetPlatinum(client));
 			return returnblocking;
 		}
 		else if(CommandCheckStartsWith(arg1,"saygold"))
 		{
 			char sPlayerName[128];
 			GetClientName(client,sPlayerName,sizeof(sPlayerName));
-			War3_ChatMessage(0,"{green}%s {default}has {green}%d {default}gold.",sPlayerName,GetPlayerProp(client, PlayerGold));
+			War3_ChatMessage(0,"%T","{name} has {gold} gold.",LANG_SERVER,sPlayerName,GetPlayerProp(client, PlayerGold));
 			return returnblocking;
 		}
 		else if(CommandCheckStartsWith(arg1,"saydiamond"))
 		{
 			char sPlayerName[128];
 			GetClientName(client,sPlayerName,sizeof(sPlayerName));
-			War3_ChatMessage(0,"{green}%s {default}has {green}%d {default}diamonds.",sPlayerName,War3_GetDiamonds(client));
+			War3_ChatMessage(0,"%T","{name} has {diamonds} diamonds.",LANG_SERVER,sPlayerName,War3_GetDiamonds(client));
 			return returnblocking;
 		}
 		else if(CommandCheckStartsWith(arg1,"sayplatinum"))
 		{
 			char sPlayerName[128];
 			GetClientName(client,sPlayerName,sizeof(sPlayerName));
-			War3_ChatMessage(0,"{green}%s {default}has {green}%d {default}platinum.",sPlayerName,War3_GetPlatinum(client));
+			War3_ChatMessage(0,"%T","{name} has {platinum} platinum.",LANG_SERVER,sPlayerName,War3_GetPlatinum(client));
 			return returnblocking;
 		}
+//
+//
+//
+//
+//
+// ************************************************************************** CONTINUE TO TRANSLATE FROM HERE TO BELOW
+//
+//
+//
+//
+//
+//
+//
+
 		else if(CommandCheckStartsWith(arg1,"!balance")||CommandCheckStartsWith(arg1,"!bank_balance"))
 		{
 			char TmpWithDrawTime[256];

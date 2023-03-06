@@ -85,6 +85,12 @@
 		"#format"		""
 		"en"			"xp"
 	}
+	// change race <race> without < and >
+	"cr"
+	{
+		"#format"		""
+		"en"			"cr"
+	}
 	"changerace"
 	{
 		"#format"		""
@@ -164,6 +170,12 @@
 	{
 		"#format"		""
 		"en"			"iteminfo3"
+	}
+	// playerinfo <player name> without < and > and no spaces.
+	"playerinfo"
+	{
+		"#format"		""
+		"en"			"playerinfo"
 	}
 	// Do Show Race info Menu
 	"raceinfo"
@@ -256,36 +268,254 @@
 		"#format"		""
 		"en"			"While being spectator,\nYou must be spectating a player to get player's speed."
 	}
+	// copyed from old file w3s._common.phrases.txt
+	"Spectating target's max speed is {amount}"
+	{
+		"#format"	"{1:.2f}"
+		"en"		"Spectating target's max speed is {1}"
+	}
+	// say command
+	"maxhp"
+	{
+		"#format"		""
+		"en"			"maxhp"
+	}
+	// copyed from old file w3s._common.phrases.txt
+	"Your max speed is {amount}"
+	{
+		"#format"	"{1:.2f}"
+		"en"		"Your max speed is {1}"
+	}
+	"Your max health is: {amount}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Your max health is: {1}"
+	}
+	// say command
+	"skillsinfo"
+	{
+		"#format"		""
+		"en"			"skillsinfo"
+	}
+	// say command
+	"skl"
+	{
+		"#format"		""
+		"en"			"skl"
+	}
+	// say command
+	"resetskills"
+	{
+		"#format"		""
+		"en"			"resetskills"
+	}
+	// say command
+	"spendskills"
+	{
+		"#format"		""
+		"en"			"spendskills"
+	}
+	// say command shopmenu
+	"shopmenu"
+	{
+		"#format"		""
+		"en"			"shopmenu"
+	}
+	// say command shopmenu
+	"sh1"
+	{
+		"#format"		""
+		"en"			"sh1"
+	}
+	// say command shopmenu2
+	"shopmenu2"
+	{
+		"#format"		""
+		"en"			"shopmenu2"
+	}
+	// say command shopmenu2
+	"sh2"
+	{
+		"#format"		""
+		"en"			"sh2"
+	}
+	// say command shopmenu3
+	"shopmenu3"
+	{
+		"#format"		""
+		"en"			"shopmenu3"
+	}
+	// say command shopmenu3
+	"sh3"
+	{
+		"#format"		""
+		"en"			"sh3"
+	}
+	// say command war3menu
+	"war3menu"
+	{
+		"#format"		""
+		"en"			"war3menu"
+	}
+	// say command war3menu
+	"w3e"
+	{
+		"#format"		""
+		"en"			"w3e"
+	}
+	// say command war3menu
+	"wcs"
+	{
+		"#format"		""
+		"en"			"wcs"
+	}
+	// say command levelbank
+	"levelbank"
+	{
+		"#format"		""
+		"en"			"levelbank"
+	}
+	// say command war3rank
+	"war3rank"
+	{
+		"#format"		""
+		"en"			"war3rank"
+	}
+		"This server does not save XP, feature disabled"
+	{
+		"en"		"This server doesn't save XP, feature disabled."
+	}
+	// say command war3stats
+	"war3stats"
+	{
+		"#format"		""
+		"en"			"war3stats"
+	}
+	// say command to allow player to have the server tell their client to reconnect to server
+	"!retry"
+	{
+		"#format"		""
+		"en"			"!retry"
+	}
+	// say command 
+	"war3dev"
+	{
+		"#format"		""
+		"en"			"war3dev"
+	}
+	"War3Source:EVO Developers"
+	{
+		"en"		"El Diablo (STEAM_0:1:35173666) and LORD DAGOTHUR [X]-RATED (STEAM_0:0:5027348) are developers for War3Source:EVO."
+	}
+	// say command myinfo
+	"myinfo"
+	{
+		"#format"		""
+		"en"			"myinfo"
+	}
+	// say command buyprevious
+	"buyprevious"
+	{
+		"#format"		""
+		"en"			"buyprevious"
+	}
+	// say command buyprevious
+	"bp"
+	{
+		"#format"		""
+		"en"			"bp"
+	}
+	// say command myitems
+	"myitems"
+	{
+		"#format"		""
+		"en"			"myitems"
+	}
+	// say command drop
+	"drop"
+	{
+		"#format"		""
+		"en"			"drop"
+	}
+	"You dropped {itemname}"
+	{
+		"#format"		"{1:s}"
+		"en"			"You dropped {1}"
+	}
+	"please use format: drop item"
+	{
+		"#format"		""
+		"en"			"please use format: drop item"
+	}
+	// say command gems
+	"gems"
+	{
+		"#format"		""
+		"en"			"gems"
+	}
+	// say command 
+	"myitems3"
+	{
+		"#format"		""
+		"en"			"myitems3"
+	}
+	// say command saybank
+	"saybank"
+	{
+		"#format"		""
+		"en"			"saybank"
+	}
+	"{name} has {GoldInHand} gold on hand, {Gold} gold in the bank, {Diamonds} diamonds, and {Platinum} platinum."
+	{
+		"#format"		"{1:s},{2:d},{3:d},{4:d},{5:d}"
+		"en"			"{green}{1} {default}has {green}{2} {default}gold on hand, {green}{3} {default}gold in the bank, {green}{4} {default}diamonds, and {green}{5} {default}platinum."
+	}
+	// say command saygold
+	"saygold"
+	{
+		"#format"		""
+		"en"			"saygold"
+	}
+	"{name} has {gold} gold."
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			"{green}{1} {default}has {green}{2} {default}gold."
+	}
+	// say command saydiamond
+	"saydiamond"
+	{
+		"#format"		""
+		"en"			"saydiamond"
+	}
+	"{name} has {diamonds} diamonds."
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			"{green}{1} {default}has {green}{2} {default}diamonds."
+	}
+	// say command sayplatinum
+	"sayplatinum"
+	{
+		"#format"		""
+		"en"			"sayplatinum"
+	}
+	"{name} has {platinum} platinum."
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			"{green}{1} {default}has {green}{2} {default}platinum."
+	}
+	// say command 
 	""
 	{
 		"#format"		""
 		"en"			""
 	}
+	// say command 
 	""
 	{
 		"#format"		""
 		"en"			""
 	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
+	// say command 
 	""
 	{
 		"#format"		""
