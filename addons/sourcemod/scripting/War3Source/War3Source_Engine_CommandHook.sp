@@ -831,14 +831,15 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 //
 //
 
-		else if(CommandCheckStartsWith(arg1,"!balance")||CommandCheckStartsWith(arg1,"!bank_balance"))
+		else if(CommandCheck(arg1,"balance")||CommandCheck(arg1,"bank_balance"))
 		{
 			char TmpWithDrawTime[256];
 			War3_BankWithdrawTimeLeft(client,TmpWithDrawTime,sizeof(TmpWithDrawTime));
-			War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold. Please wait %s to withdraw",GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client), TmpWithDrawTime);
+			War3_ChatMessage(client,"%T","On hand: {gold} Gold. !balance: {bankgold} Gold. Please wait {withdrawtime} to withdraw",client,
+							GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client), TmpWithDrawTime);
 			return returnblocking;
 		}
-		else if(CommandCheckStartsWith(arg1,"!deposit"))
+		else if(CommandCheckStartsWith(arg1,"deposit"))
 		{
 			int Amount=0;
 			if(StrContains(arg1[9], "all", false)==0)

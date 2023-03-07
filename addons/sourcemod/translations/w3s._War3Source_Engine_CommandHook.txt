@@ -503,24 +503,53 @@
 		"#format"		"{1:s},{2:d}"
 		"en"			"{green}{1} {default}has {green}{2} {default}platinum."
 	}
-	// say command 
+	// say command balance
+	"balance"
+	{
+		"#format"		""
+		"en"			"balance"
+	}
+	"bank_balance"
+	{
+		"#format"		""
+		"en"			"bank_balance"
+	}
+	"On hand: {gold} Gold. balance: {bankgold} Gold. Please wait {withdrawtime} to withdraw"
+	{
+		"#format"		"{1:d},{2:d},{3:s}"
+		"en"			"On hand: {green}{1} {default}Gold. balance: {green}{2} {default}Gold. Please wait {3} to withdraw"
+	}
+	// say command deposit
+	"deposit"
+	{
+		"#format"		""
+		"en"			"deposit"
+	}
+	// say command
 	""
 	{
 		"#format"		""
 		"en"			""
 	}
-	// say command 
+	// say command
 	""
 	{
 		"#format"		""
 		"en"			""
 	}
-	// say command 
+	// say command
 	""
 	{
 		"#format"		""
 		"en"			""
 	}
+	// say command
+	""
+	{
+		"#format"		""
+		"en"			""
+	}
+	// say command
 	""
 	{
 		"#format"		""
