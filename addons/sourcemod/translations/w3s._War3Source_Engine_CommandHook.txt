@@ -525,89 +525,81 @@
 		"#format"		""
 		"en"			"deposit"
 	}
-	// say command
-	""
+	"On hand: {gold} Gold. !balance: {bankgold} Gold."
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d},{2:d}"
+		"en"			"On hand: {green}{1} {default}Gold. !balance: {green}{2} {default}Gold."
 	}
-	// say command
-	""
+	"On hand: {gold} Gold. !balance: {bankgold} Gold. Please try !deposit 1"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d},{2:d}"
+		"en"			"On hand: {green}{1} {default}Gold. !balance: {green}{2} {default}Gold. Please try !deposit 1"
 	}
-	// say command
-	""
+	// say command withdraw
+	"withdraw"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"withdraw"
 	}
-	// say command
-	""
+	"On hand: {gold} Gold. !balance: {bankgold} Gold. Please try !withdraw 1"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d},{2:d}"
+		"en"			"On hand: {green}{1} {default}Gold. !balance: {green}{2} {default}Gold. Please try !withdraw 1"
 	}
-	// say command
-	""
+	// say command tome
+	"tome"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"tome"
 	}
-	""
+	"Select a race first!!"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Select a race first!!"
 	}
-	""
+	"Your pressed +ability, but the map is changing"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ability, but the map is changing"
 	}
-	""
+	"Your pressed +ability, but war3 is paused"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ability, but war3 is paused"
 	}
-	""
+	"Your pressed +ability"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ability"
 	}
-	""
+	"Your pressed +ability2, but the map is changing"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ability2, but the map is changing"
 	}
-	""
+	"Your pressed +ability2, but war3 is paused"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ability2, but war3 is paused"
 	}
-	""
+	"Your pressed +ability2"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ability2"
 	}
-	""
+	"Your pressed +ultimate, but the map is changing"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ultimate, but the map is changing"
 	}
-	""
+	"Your pressed +ultimate, but war3 is paused"
 	{
 		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ultimate, but war3 is paused"
 	}
-	""
+	"Your pressed +ultimate"
 	{
 		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
+		"en"			"Your pressed +ultimate"
 	}
 }

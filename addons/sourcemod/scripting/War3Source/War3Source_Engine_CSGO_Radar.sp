@@ -1,5 +1,7 @@
 // War3Source_Engine_CSGO_Radar.sp
 
+// MOSTLY TRANSLATED
+
 public void War3Source_Engine_CSGO_Radar_OnClientChange(int client)
 {
     CSGO_Radar_Changed[client]=false;
@@ -48,12 +50,12 @@ public Action:Timer_CheckMenu(Handle:timer)
                     if(SendConVarValue(i, mp_teamcashawards, "0")==false)  // turn money off
                     {
                         PrintToServer("[WAR3SOURCE:EVO] mp_teamcashawards 0 ERROR");
-                        War3_ChatMessage(0,"mp_teamcashawards 0 ERROR -->CSGO RADAR"); // to everyone
+                        War3_ChatMessage(0,"%t","mp_teamcashawards 0 ERROR -->CSGO RADAR"); // to everyone
                     }
                     if(SendConVarValue(i, mp_playercashawards, "0")==false)  // turn money off
                     {
                         PrintToServer("WAR3SOURCE:EVO mp_playercashawards 0 ERROR");
-                        War3_ChatMessage(0,"mp_teamcashawards 0 ERROR -->CSGO RADAR"); // to everyone
+                        War3_ChatMessage(0,"%t","mp_playercashawards 0 ERROR -->CSGO RADAR"); // to everyone
                     }
                     CSGO_Radar_Changed[i]=true;
                 }
@@ -65,12 +67,12 @@ public Action:Timer_CheckMenu(Handle:timer)
                 if(SendConVarValue(i, mp_teamcashawards, "1")==false)  // turn money back on
                 {
                     PrintToServer("[WAR3SOURCE:EVO] mp_teamcashawards 1 ERROR");
-                    War3_ChatMessage(0,"mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
+                    War3_ChatMessage(0,"%t","mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
                 }
                 if(SendConVarValue(i, mp_playercashawards, "1")==false)  // turn money back on
                 {
                     PrintToServer("WAR3SOURCE:EVO mp_playercashawards 1 ERROR");
-                    War3_ChatMessage(0,"mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
+                    War3_ChatMessage(0,"%t","mp_teamcashawards 1 ERROR -->CSGO RADAR"); // to everyone
                 }
                 CSGO_Radar_Changed[i]=false;    // Radar is no longer forced off
                 }

@@ -1,5 +1,7 @@
 // War3Source_Engine_CommandHook.sp
 
+// TRANSLATED
+
 #define BLUETEAMCHATCOLOR "blue"
 #define REDTEAMCHATCOLOR "red"
 
@@ -817,20 +819,6 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(0,"%T","{name} has {platinum} platinum.",LANG_SERVER,sPlayerName,War3_GetPlatinum(client));
 			return returnblocking;
 		}
-//
-//
-//
-//
-//
-// ************************************************************************** CONTINUE TO TRANSLATE FROM HERE TO BELOW
-//
-//
-//
-//
-//
-//
-//
-
 		else if(CommandCheck(arg1,"balance")||CommandCheck(arg1,"bank_balance"))
 		{
 			char TmpWithDrawTime[256];
@@ -855,21 +843,16 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			{
 				if(War3_DepositGoldBank(client,Amount))
 				{
-					War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold.",GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
+					War3_ChatMessage(client,"%T","On hand: {gold} Gold. !balance: {bankgold} Gold.",client,GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
 				}
 			}
 			else
 			{
-				War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold. Please try !deposit 1",GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
+				War3_ChatMessage(client,"%T","On hand: {gold} Gold. !balance: {bankgold} Gold. Please try !deposit 1",client,GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
 			}
 			return returnblocking;
 		}
-		else if(CommandCheckStartsWith(arg1,"!bank_deposit"))
-		{
-			War3_ChatMessage(client,"Please use !deposit instead of !bank_deposit");
-			return returnblocking;
-		}
-		else if(CommandCheckStartsWith(arg1,"!withdraw"))
+		else if(CommandCheckStartsWith(arg1,"withdraw"))
 		{
 			//DP("%s ... [%s]",arg1,arg1[10]);
 			int Amount=0;
@@ -878,7 +861,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 				Amount=W3GetMaxGold(99)-GetPlayerProp(client, PlayerGold);
 				if(Amount<=0)
 				{
-					War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold.",GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
+					War3_ChatMessage(client,"%T","On hand: {gold} Gold. !balance: {bankgold} Gold.",client,GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
 					return returnblocking;
 				}
 			}
@@ -891,18 +874,13 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			{
 				if(War3_WithdrawGoldBank(client,Amount))
 				{
-					War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold.",GetPlayerProp(client, PlayerGold) ,War3_GetGoldBank(client));
+					War3_ChatMessage(client,"%T","On hand: {gold} Gold. !balance: {bankgold} Gold.",client,GetPlayerProp(client, PlayerGold), War3_GetGoldBank(client));
 				}
 			}
 			else
 			{
-				War3_ChatMessage(client,"On hand: {green}%d {default}Gold. !balance: {green}%d {default}Gold. Please try !withdraw 1",GetPlayerProp(client, PlayerGold) ,War3_GetGoldBank(client));
+				War3_ChatMessage(client,"%T","On hand: {gold} Gold. !balance: {bankgold} Gold. Please try !withdraw 1",client,GetPlayerProp(client, PlayerGold) ,War3_GetGoldBank(client));
 			}
-			return returnblocking;
-		}
-		else if(CommandCheckStartsWith(arg1,"!bank_withdraw"))
-		{
-			War3_ChatMessage(client,"Please use !withdraw instead of !bank_withdraw");
 			return returnblocking;
 		}
 		char itemshort[100];
@@ -960,7 +938,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 		{
 			if(W3IsPlayerXPLoaded(client))
 			{
-				War3_ChatMessage(client,"Select a job first!!");
+				War3_ChatMessage(client,"%T","Select a race first!!",client);
 				DoFwd_War3_Event(DoShowChangeRaceMenu,client);
 			}
 			return returnblocking;
@@ -1057,51 +1035,51 @@ public Action Listener_Voice(int client, const char[] command, int argc) {
 		int ability = Press_Ability(client, 0);
 		if(ability==1)
 		{
-			PrintToChat(client,"Your pressed +ability, but the map is changing");
+			PrintToChat(client,"%T","Your pressed +ability, but the map is changing",client);
 			return Plugin_Handled;
 		}
 		else if(ability==2)
 		{
-			PrintToChat(client,"Your pressed +ability, but war3 is paused");
+			PrintToChat(client,"%T","Your pressed +ability, but war3 is paused",client);
 			return Plugin_Handled;
 		}
 		else if(ability==0)
 		{
-			PrintToChat(client,"Your pressed +ability");
+			PrintToChat(client,"%T","Your pressed +ability",client);
 			return Plugin_Handled;
 		}
 	} else if (StrEqual(arguments, "2 1")) {
 		int ability = Press_Ability(client, 2);
 		if(ability==1)
 		{
-			PrintToChat(client,"Your pressed +ability2, but the map is changing");
+			PrintToChat(client,"%T","Your pressed +ability2, but the map is changing",client);
 			return Plugin_Handled;
 		}
 		else if(ability==2)
 		{
-			PrintToChat(client,"Your pressed +ability2, but war3 is paused");
+			PrintToChat(client,"%T","Your pressed +ability2, but war3 is paused",client);
 			return Plugin_Handled;
 		}
 		else if(ability==0)
 		{
-			PrintToChat(client,"Your pressed +ability2");
+			PrintToChat(client,"%T","Your pressed +ability2",client);
 			return Plugin_Handled;
 		}
 	} else if (StrEqual(arguments, "2 3")) {
 		int ultimate = Press_Ultimate(client);
 		if(ultimate==1)
 		{
-			PrintToChat(client,"Your pressed +ultimate, but the map is changing");
+			PrintToChat(client,"%T","Your pressed +ultimate, but the map is changing",client);
 			return Plugin_Handled;
 		}
 		else if(ultimate==2)
 		{
-			PrintToChat(client,"Your pressed +ultimate, but war3 is paused");
+			PrintToChat(client,"%T","Your pressed +ultimate, but war3 is paused",client);
 			return Plugin_Handled;
 		}
 		else if(ultimate==0)
 		{
-			PrintToChat(client,"Your pressed +ultimate");
+			PrintToChat(client,"%T","Your pressed +ultimate",client);
 			return Plugin_Handled;
 		}
 	}
