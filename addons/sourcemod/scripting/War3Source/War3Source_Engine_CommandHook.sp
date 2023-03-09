@@ -618,7 +618,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			W3ShowSkillsInfo(client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"resetskills")
+		else if(CommandCheck(arg1,"resetskills"))
 		{
 			DoFwd_War3_Event(DoResetSkills,client);
 			return returnblocking;
@@ -735,12 +735,12 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 					}
 				}
 				War3_ChatMessage(client,"%T","Could not find any shopitem named %s",client,arg3[1]);
-				return returnblocking;	
+				return returnblocking;
 			}
 			else
 			{
 				War3_ChatMessage(client,"%T","please use format: drop item",client,arg3[1]);
-				return returnblocking;		
+				return returnblocking;
 			}
 		}
 		else if(CommandCheckStartsWith(arg1,"gems")||CommandCheckStartsWith(arg1,"myitems3"))

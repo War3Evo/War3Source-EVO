@@ -120,7 +120,7 @@ public NWar3_WithdrawGoldBank(Handle:plugin,numParams){
 				}
 				else if ((playerGold+amount) > maxGold )
 				{
-					War3_ChatMessage(client, "%T","That withdrawal would put you over the gold cap ({integer}}).",client,maxGold);
+					War3_ChatMessage(client, "%T","That withdrawal would put you over the gold cap ({integer}).",client,maxGold);
 					return false;
 				}
 				else if (amount <= p_bank[client][W3Bank_gold])

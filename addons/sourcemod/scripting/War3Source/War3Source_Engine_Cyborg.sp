@@ -1,5 +1,7 @@
 // War3Source_Engine_Cyborg.sp
 
+// TRANSLATED
+
 #pragma semicolon 1
 
 #if CYBORG_SKIN == MODE_ENABLED
@@ -129,7 +131,7 @@ public War3Source_Engine_Cyborg_OnW3Denyable(W3DENY:event,client)
 		if(CheckForCyborg(client))
 		{
 			W3Deny();
-			War3_ChatMessage(client, "Cyborgs can't feel the effects of these items!");
+			War3_ChatMessage(client, "%T","Cyborgs can't feel the effects of these items!",client);
 		}
 	}
 	if((event == DN_CanBuyItem1) && (internal_W3GetVar(EventArg1) == War3_GetItemIdByShortname("ring")))
@@ -137,7 +139,7 @@ public War3Source_Engine_Cyborg_OnW3Denyable(W3DENY:event,client)
 		if(CheckForCyborg(client))
 		{
 			W3Deny();
-			War3_ChatMessage(client, "Cyborgs can't feel the effects of these items!");
+			War3_ChatMessage(client, "%T","Cyborgs can't feel the effects of these items!",client);
 		}
 	}
 	if((event == DN_CanBuyItem1) && (internal_W3GetVar(EventArg1) == War3_GetItemIdByShortname("gauntlet")))
@@ -145,7 +147,7 @@ public War3Source_Engine_Cyborg_OnW3Denyable(W3DENY:event,client)
 		if(CheckForCyborg(client))
 		{
 			W3Deny();
-			War3_ChatMessage(client, "Cyborgs can't feel the effects of these items!");
+			War3_ChatMessage(client, "%T","Cyborgs can't feel the effects of these items!",client);
 		}
 	}
 	if((event == DN_CanBuyItem1) && (internal_W3GetVar(EventArg1) == War3_GetItemIdByShortname("hope")))
@@ -153,7 +155,7 @@ public War3Source_Engine_Cyborg_OnW3Denyable(W3DENY:event,client)
 		if(CheckForCyborg(client))
 		{
 			W3Deny();
-			War3_ChatMessage(client, "Cyborgs can't feel the effects of these items!");
+			War3_ChatMessage(client, "%T","Cyborgs can't feel the effects of these items!",client);
 		}
 	}
 }

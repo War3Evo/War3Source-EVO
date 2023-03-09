@@ -21,6 +21,14 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_Casting");
 	LoadTranslations("w3s._War3Source_Engine_CommandHook");
 	LoadTranslations("w3s._War3Source_Engine_CSGO_Radar");
+	LoadTranslations("w3s._War3Source_Engine_Cyborg");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
+	LoadTranslations("");
 
 	PrintToServer("[War3Source:EVO] %t","--------------------------OnPluginStart----------------------");
 

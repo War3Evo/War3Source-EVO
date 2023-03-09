@@ -66,7 +66,7 @@ public bool:War3Source_Engine_DatabaseSaveXP_InitNatives()
 
 public War3Source_Engine_DatabaseSaveXP_OnPluginStart()
 {
-	PrintToServer("War3Source:EVO War3Source_Engine_DatabaseSaveXP_OnPluginStart Start");
+	PrintToServer("[War3Source:EVO] %T","War3Source_Engine_DatabaseSaveXP_OnPluginStart Start",LANG_SERVER);
 	//CreateConVar("DataBaseSaveXP",PLUGIN_VERSION,"[War3Source:EVO] DataBase Save XP",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	m_SaveXPConVar=CreateConVar("war3_savexp","1");
@@ -80,7 +80,7 @@ public War3Source_Engine_DatabaseSaveXP_OnPluginStart()
 	g_OnWar3PlayerAuthedHandle=CreateGlobalForward("OnWar3PlayerAuthed",ET_Ignore,Param_Cell,Param_Cell);
 
 	CreateTimer(GetConVarFloat(m_AutosaveTime),Database_DoAutosave);
-	PrintToServer("War3Source:EVO War3Source_Engine_DatabaseSaveXP_OnPluginStart END");
+	PrintToServer("[War3Source:EVO] %T","War3Source_Engine_DatabaseSaveXP_OnPluginStart END",LANG_SERVER);
 }
 
 public NW3SaveXP(Handle:plugin,numParams)
@@ -102,7 +102,7 @@ public NW3SaveEnabled(Handle:plugin,numParams)
 // the database connect handles this
 public War3Source_Engine_DatabaseSaveXP_OnWar3Event(client)
 {
-	PrintToServer("[War3Source:EVO] War3Source_Engine_DatabaseSaveXP_OnWar3Event()");
+	PrintToServer("[War3Source:EVO] %T","War3Source_Engine_DatabaseSaveXP_OnWar3Event()",LANG_SERVER);
 	hDB=internal_W3GetVar(hDatabase);
 	War3SQLType=internal_W3GetVar(hDatabaseType);
 	Initialize_SQLTable();
@@ -114,7 +114,7 @@ public War3Source_Engine_DatabaseSaveXP_OnWar3Event(client)
 
 Initialize_SQLTable()
 {
-	PrintToServer("[War3Source:EVO] Initialize SQLTable Main Table START");
+	PrintToServer("[War3Source:EVO] %T","Initialize SQLTable Main Table START",LANG_SERVER);
 	if(hDB!=INVALID_HANDLE)
 	{
 
@@ -194,7 +194,7 @@ Initialize_SQLTable()
 				else{
 					Format(shortquery,sizeof(shortquery),"ALTER TABLE %s CHANGE credits gold INT",XP_GOLD_DATABASENAME);
 					SQL_FastQueryLogOnError(hDB,shortquery);
-					PrintToServer("[War3Source:EVO] Tried to change column from 'credits' to 'gold'");
+					PrintToServer("[War3Source:EVO] %T","Tried to change column from 'credits' to 'gold'",LANG_SERVER);
 				}
 			}
 			if(!SQL_FieldNameToNum(query, "diamonds", dummy))
@@ -215,7 +215,7 @@ Initialize_SQLTable()
 		query=SQL_Query(hDB,shortquery);
 		if(query==INVALID_HANDLE)
 		{
-			PrintToServer("[War3Source:EVO] %s doesnt exist, creating!!!",XP_GOLD_DATABASENAME_RACEDATA1) ;
+			PrintToServer("[War3Source:EVO] %T","{database} doesnt exist, creating!!!",LANG_SERVER,XP_GOLD_DATABASENAME_RACEDATA1) ;
 			new String:longquery2[4000];
 			Format(longquery2,sizeof(longquery2),"CREATE TABLE %s (steamid varchar(64), accountid int, raceshortname varchar(16), level int,  xp int, last_seen int)  %s",XP_GOLD_DATABASENAME_RACEDATA1,War3SQLType==SQLType_MySQL?"DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci":"");
 
@@ -226,7 +226,7 @@ Initialize_SQLTable()
 			!SQL_FastQueryLogOnError(hDB,shortquery)
 			)
 			{
-				SetFailState("[War3Source:EVO] ERROR in the creation of the SQL table %s",XP_GOLD_DATABASENAME_RACEDATA1);
+				SetFailState("[War3Source:EVO] %T","ERROR in the creation of the SQL table {tablename}",LANG_SERVER,XP_GOLD_DATABASENAME_RACEDATA1);
 			}
 			Format(shortquery,sizeof(shortquery),"SELECT * from %s LIMIT 1",XP_GOLD_DATABASENAME_RACEDATA1);
 			query=SQL_Query(hDB,shortquery); //get a nother handle for next table check
@@ -235,7 +235,7 @@ Initialize_SQLTable()
 		//do another check for handle, cuz we may have just created database
 		if(query==INVALID_HANDLE)
 		{
-			SetFailState("War3Source invalid handle to data, ");
+			SetFailState("[War3Source:EVO] %T","invalid handle to data, ",LANG_SERVER);
 		}
 		else
 		{	//table exists by now, add skill columns if not exists
@@ -267,13 +267,13 @@ Initialize_SQLTable()
 	else
 		PrintToServer("hDB invalid 123");
 
-	PrintToServer("[War3Source:EVO] Initialize SQLTable Main Table END");
+	PrintToServer("[War3Source:EVO] %T","Initialize SQLTable Main Table END",LANG_SERVER);
 }
 
 
 public Action:Database_DoAutosave(Handle:timer,any:data)
 {
-	PrintToServer("[War3Source:EVO] Database_DoAutosave()");
+	PrintToServer("[War3Source:EVO] %T","Database_DoAutosave()",LANG_SERVER);
 	if(W3SaveEnabled() && !MapChanging)
 	{
 		for(new x=1;x<=MaxClients;x++)
@@ -284,7 +284,7 @@ public Action:Database_DoAutosave(Handle:timer,any:data)
 			}
 		}
 		if(GetConVarInt(hCvarPrintOnSave)>0){
-			War3_ChatMessage(0,"Saving all player XP and updating stats");
+			War3_ChatMessage(0,"%t","Saving all player XP and updating stats");
 		}
 	}
 	CreateTimer(GetConVarFloat(m_AutosaveTime),Database_DoAutosave);
@@ -299,7 +299,7 @@ public Action:Database_DoAutosave(Handle:timer,any:data)
 
 War3Source_SavePlayerData(client,race)
 {
-	PrintToServer("[War3Source:EVO] War3Source_SavePlayerData()");
+	PrintToServer("[War3Source:EVO] %T","War3Source_SavePlayerData()",LANG_SERVER);
 	if(hDB && W3SaveEnabled() && !IsFakeClient(client)&&W3IsPlayerXPLoaded(client))
 	{
 		War3_SavePlayerRace(client,race); //only save their current race
@@ -314,7 +314,7 @@ War3Source_SavePlayerData(client,race)
 //retrieve
 public War3Source_Engine_DatabaseSaveXP_OnClientPutInServer(client)
 {
-	PrintToServer("[War3Source:EVO] OnClientPutInServer %d",client);
+	PrintToServer("[War3Source:EVO] %T","OnClientPutInServer {clientnumber}",LANG_SERVER,client);
 	//DP("PUTIN");
 	//DP("PUTINW3");
 	SetPlayerProp(client,xpLoaded,false); //set race 0 may trigger unwanted behavior, block it first
@@ -344,7 +344,7 @@ public War3Source_Engine_DatabaseSaveXP_OnClientPutInServer(client)
 }
 public War3Source_Engine_DatabaseSaveXP_OnClientDisconnect(client)
 {
-	PrintToServer("[War3Source:EVO] OnClientDisconnect %d",client);
+	PrintToServer("[War3Source:EVO] %T","OnClientDisconnect {clientnumber}",LANG_SERVER,client);
 	if(GetPlayerProp(client,bPutInServer)){ //he must have joined (not just connected) server already
 		if(W3SaveEnabled() && W3IsPlayerXPLoaded(client)){
 #if SHOPMENU3 == MODE_ENABLED
@@ -362,9 +362,9 @@ public War3Source_Engine_DatabaseSaveXP_OnClientDisconnect(client)
 //SELECT STATEMENTS HERE
 War3Source_LoadPlayerData(client) //war3source calls this
 {
-	PrintToServer("[War3Source:EVO] LoadPlayerData %d",client);
+	PrintToServer("[War3Source:EVO] %T","LoadPlayerData %d",LANG_SERVER,client);
 	PrintToServer("");
-	PrintToServer("War3Source_LoadPlayerData(client)");
+	PrintToServer("%t","War3Source_LoadPlayerData(client)");
 
 		//DP("LOAD");
 	//need space for steam id
@@ -382,7 +382,7 @@ War3Source_LoadPlayerData(client) //war3source calls this
 
 		new steamaccountid = GetSteamAccountID(client);
 
-		PrintToServer("steamaccountid = %d",steamaccountid);
+		PrintToServer("[War3Source:EVO] %T","steamaccountid = {steamaccountid}",LANG_SERVER,steamaccountid);
 
 		new String:longquery[4000];
 		//Prepare select query for main data
@@ -398,7 +398,7 @@ War3Source_LoadPlayerData(client) //war3source calls this
 
 		PrintToServer(longquery);
 
-		PrintToConsole(client,"[War3Source:EVO] XP retrieval query: sending MAIN and load all jobs request! Time: %d",GetGameTime());
+		PrintToConsole(client,"[War3Source:EVO] %T","XP retrieval query: sending MAIN and load all jobs request! Time: {GetGameTime}",client,GetGameTime());
 		SetPlayerProp(client,sqlStartLoadXPTime,GetGameTime());
 
 		//Lets get race data too
@@ -418,13 +418,13 @@ War3Source_LoadPlayerData(client) //war3source calls this
 
 public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] error, StringMap QueryCode)
 {
-	PrintToServer("[War3Source:EVO] T_CallbackSelectPDataMain()");
+	PrintToServer("[War3Source:EVO] %T","T_CallbackSelectPDataMain()",LANG_SERVER);
 	int client;
 
 	QueryCode.GetValue("client", client);
 
 	SQLCheckForErrors(hndl,error,"T_CallbackSelectPDataMain",QueryCode);
-	PrintToServer("T_CallbackSelectPDataMain ERRORS? %s",error);
+	PrintToServer("[War3Source:EVO] %T","T_CallbackSelectPDataMain ERRORS? %s",LANG_SERVER,error);
 
 	if(QueryCode != null)
 	{
@@ -444,9 +444,9 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 			SelectPDataMainSteamIDLookUp[client]=true;
 			//Well the database is fucked up
 			//TODO: add retry for select query
-			LogError("[War3Source:EVO] ERROR: SELECT player data failed! Check DATABASE settings!");
+			LogError("[War3Source:EVO] %T","ERROR: SELECT player data failed! Check DATABASE settings!",LANG_SERVER);
 
-			PrintToConsole(client,"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead...");
+			PrintToConsole(client,"[War3Source:EVO] %T","CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead...",client);
 
 			decl String:steamid[64];
 
@@ -455,8 +455,8 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 			{
 				if(GetClientAuthId(client,AuthId_Steam2,STRING(steamid),true))
 				{
-					PrintToConsole(client,"Please wait while we look up your steamid account information for warcraft.");
-					PrintToServer("couldn't find account id, looking for steamid = %s",steamid);
+					PrintToConsole(client,"[War3Source:EVO] %T","Please wait while we look up your steamid account information for",client);
+					PrintToServer("[War3Source:EVO] %T","couldn't find account id, looking for steamid = {steamid}",LANG_SERVER,steamid);
 
 					new String:longquery[4000];
 					Format(longquery,sizeof(longquery),"SELECT accountid,currentrace,gold,diamonds,platinum,levelbankV2,join_date FROM %s WHERE steamid='%s'",XP_GOLD_DATABASENAME,steamid);
@@ -472,11 +472,10 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				}
 				else
 				{
-					PrintToConsole(client,"ERROR RETRIEVING YOUR STEAM ID!");
-					PrintToConsole(client,"ERROR RETRIEVING YOUR STEAM ID!");
-					PrintToConsole(client,"ERROR RETRIEVING YOUR STEAM ID!");
-					PrintToConsole(client,"ERROR RETRIEVING YOUR STEAM ID!");
-					LogError("[War3Source:EVO] ERROR: could not retrieve steam id %s (after not finding accountid)",steamid);
+					PrintToConsole(client,"[War3Source:EVO] %T","ERROR RETRIEVING YOUR STEAM ID!",client);
+					PrintToConsole(client,"[War3Source:EVO] %T","ERROR RETRIEVING YOUR STEAM ID!",client);
+					PrintToConsole(client,"[War3Source:EVO] %T","ERROR RETRIEVING YOUR STEAM ID!",client);
+					LogError("[War3Source:EVO] %T","ERROR: could not retrieve steam id {steamid} (after not finding accountid)",LANG_SERVER,steamid);
 				}
 			}
 		}
@@ -485,33 +484,33 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 	{
 		if(SQL_GetRowCount(hndl) == 1)
 		{
-			PrintToServer("SQL_GetRowCount(hndl) == 1");
+			PrintToServer("SQL_GetRowCount(hndl) == 1"); //debug info
 			SQL_Rewind(hndl);
 
 			if(!SQL_FetchRow(hndl))
 			{
 				//This would be pretty fucked to occur here
-				LogError("[War3Source:EVO] Unexpected error loading player data, could not FETCH row. Check DATABASE settings!");
+				LogError("[War3Source:EVO] %T","Unexpected error loading player data, could not FETCH row. Check DATABASE settings!",LANG_SERVER);
 				PrintToServer("");
-				PrintToServer("[War3Source:EVO] Unexpected error loading player data, could not FETCH row. Check DATABASE settings!");
+				PrintToServer("[War3Source:EVO] %T","Unexpected error loading player data, could not FETCH row. Check DATABASE settings!",LANG_SERVER);
 				return;
 			}
 			else{
-				PrintToServer("GETTING PLAYER INFO");
-				PrintToServer("GETTING PLAYER INFO");
-				PrintToServer("GETTING PLAYER INFO");
+				PrintToServer("[War3Source:EVO] %T","GETTING PLAYER INFO",LANG_SERVER);
+				PrintToServer("[War3Source:EVO] %T","GETTING PLAYER INFO",LANG_SERVER);
+				PrintToServer("[War3Source:EVO] %T","GETTING PLAYER INFO",LANG_SERVER);
 
 				char ssteamid[64];
 				new bool:SteamIDExists = GetClientAuthId(client,AuthId_Steam2,STRING(ssteamid),true);
 
 				if(W3SQL_ISNULL(hndl,"accountid"))
 				{
-					PrintToServer("ACCOUNT ID IS NULL");
-					PrintToServer("ACCOUNT ID IS NULL");
+					PrintToServer("[War3Source:EVO] %T","ACCOUNT ID IS NULL",LANG_SERVER);
+					PrintToServer("[War3Source:EVO] %T","ACCOUNT ID IS NULL",LANG_SERVER);
 					new steamaccountid = GetSteamAccountID(client);
 					if(steamaccountid>0 && SteamIDExists)
 					{
-						PrintToServer("ACCOUNT %d STEAMID %s",steamaccountid,ssteamid);
+						PrintToServer("[War3Source:EVO] %T","ACCOUNT {account} STEAMID {steamid}",LANG_SERVER,steamaccountid,ssteamid);
 
 						new String:shortquery[256];
 						Format(shortquery,sizeof(shortquery),
@@ -529,26 +528,26 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 
 				new TheJoinDate=W3SQLPlayerInt(hndl,"join_date");
 				SetPlayerProp(client,JoinDate,TheJoinDate);
-				PrintToServer("[War3Source:EVO] Setting join_date %d",TheJoinDate);
+				PrintToServer("[War3Source:EVO] %T","Setting join_date {joindate}",LANG_SERVER,TheJoinDate);
 
 				//Get the gold from the query
 				new cred=W3SQLPlayerInt(hndl,"gold");
 				//Set the gold for player
-				PrintToServer("[War3Source:EVO] Setting Gold %d",cred);
-				PrintToConsole(client,"[War3Source:EVO] Setting Gold %d",cred);
+				PrintToServer("[War3Source:EVO] %T","Setting Gold {gold}",cred);
+				PrintToConsole(client,"[War3Source:EVO] %T","Setting Gold {gold}",client,cred);
 				War3_SetGold(client,cred);
 
 
 				new diamonds=W3SQLPlayerInt(hndl,"diamonds");
 				//Set the gold for player
-				PrintToConsole(client,"[War3Source:EVO] Setting Diamonds %d",diamonds);
-				PrintToServer("[War3Source:EVO] Setting Diamonds %d",diamonds);
+				PrintToConsole(client,"[War3Source:EVO] %T","Setting Diamonds {diamonds}",client,diamonds);
+				PrintToServer("[War3Source:EVO] %T","Setting Diamonds {diamonds}",LANG_SERVER,diamonds);
 				War3_SetDiamonds(client,diamonds);
 
 
 				new platinum=W3SQLPlayerInt(hndl,"platinum");
-				PrintToConsole(client,"[War3Source:EVO] Setting Platinum %d",platinum);
-				PrintToServer("[War3Source:EVO] Setting Platinum %d",platinum);
+				PrintToConsole(client,"[War3Source:EVO] %T","Setting Platinum {platinum}",client,platinum);
+				PrintToServer("[War3Source:EVO] %T","Setting Platinum {platinum}",LANG_SERVER,platinum);
 				War3_SetPlatinum(client,platinum);
 
 				new levelbankamount=W3SQLPlayerInt(hndl,"levelbankV2");
@@ -556,8 +555,8 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				if(W3GetLevelBank(client)>levelbankamount){ //whichever is higher
 					levelbankamount=W3GetLevelBank(client);
 				}
-				PrintToConsole(client,"[War3Source:EVO] Setting levelbank %d",levelbankamount);
-				PrintToServer("[War3Source:EVO] Setting levelbank %d",levelbankamount);
+				PrintToConsole(client,"[War3Source:EVO] %T","Setting levelbank {levelbank}",client,levelbankamount);
+				PrintToServer("[War3Source:EVO] %T","Setting levelbank {levelbank}",LANG_SERVER,levelbankamount);
 				W3SetLevelBank(client,levelbankamount);
 
 
@@ -565,16 +564,16 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 				new String:currentrace[16];
 				if(!W3SQLPlayerString(hndl,"currentrace",currentrace,sizeof(currentrace)))
 				{
-					LogError("[War3Source:EVO] Unexpected error loading player currentrace. Check DATABASE settings!");
+					LogError("[War3Source:EVO] %T","Unexpected error loading player currentrace. Check DATABASE settings!",LANG_SERVER);
 					return;
 				}
-				PrintToConsole(client,"[War3Source:EVO] War3 MAIN retrieval: gold %d Time %d",cred,GetGameTime());
-				PrintToConsole(client,"[War3Source:EVO] Diamonds %d",diamonds);
-				PrintToConsole(client,"[War3Source:EVO] Platinum %d",platinum);
+				PrintToConsole(client,"[War3Source:EVO] %T","War3 MAIN retrieval: gold {gold} Time {time}",client,cred,GetGameTime());
+				PrintToConsole(client,"[War3Source:EVO] %T","Diamonds {diamonds}",client,diamonds);
+				PrintToConsole(client,"[War3Source:EVO] %T","Platinum {platinum}",client,platinum);
 
-				PrintToServer("[War3Source:EVO] War3 MAIN retrieval: gold %d Time %d",cred,GetGameTime());
-				PrintToServer("[War3Source:EVO] Diamonds %d",diamonds);
-				PrintToServer("[War3Source:EVO] Platinum %d",platinum);
+				PrintToServer("[War3Source:EVO] %T","War3 MAIN retrieval: gold {gold} Time {time}",LANG_SERVER,cred,GetGameTime());
+				PrintToServer("[War3Source:EVO] %T","Diamonds {diamonds}",LANG_SERVER,diamonds);
+				PrintToServer("[War3Source:EVO] %T","Platinum {platinum}",LANG_SERVER,platinum);
 
 				new raceFound=0; // worst case senario set player to race 0 <<-- changed to 1 so that they must have a race
 				if(GetConVarInt(hSetRaceOnJoinCvar)>0)
@@ -613,9 +612,9 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 
 				if(GetClientAuthId(client,AuthId_Steam2,STRING(ssteamid),true))
 				{
-					PrintToConsole(client,"Please wait while we look up your steamid account information for warcraft.");
+					PrintToConsole(client,"%T [War3Source:EVO]","Please wait while we look up your steamid account information for",client);
 
-					PrintToServer("couldn't find account id, looking for steamid = %s",ssteamid);
+					PrintToServer("[War3Source:EVO] %T","couldn't find account id, looking for steamid = {steamid}",LANG_SERVER,steamid);
 
 					new String:longquery[4000];
 					Format(longquery,sizeof(longquery),"SELECT accountid,currentrace,gold,diamonds,platinum,levelbankV2,join_date FROM %s WHERE steamid='%s'",XP_GOLD_DATABASENAME,ssteamid);
@@ -643,9 +642,9 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 			/////////CREATE A WAR3 EVENT///////////////
 			///////////////////////////////////////////
 
-			PrintToServer("NEW PLAYER SETUP");
-			PrintToServer("NEW PLAYER SETUP");
-			PrintToServer("NEW PLAYER SETUP");
+			PrintToServer("[War3Source:EVO] %T","NEW PLAYER SETUP",LANG_SERVER);
+			PrintToServer("[War3Source:EVO] %T","NEW PLAYER SETUP",LANG_SERVER);
+			PrintToServer("[War3Source:EVO] %T","NEW PLAYER SETUP",LANG_SERVER);
 
 			//Not in database so add
 			decl String:steamid[64];
@@ -799,8 +798,8 @@ public void T_CallbackSelectPDataMain(Handle owner,Handle hndl,const char[] erro
 			// this is a WTF moment here
 			//should probably purge these records and get the player to rejoin but I'm lazy
 			//and don't want to write that
-			LogError("[War3Source:EVO] Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: %d)",SQL_GetRowCount(hndl));
-			PrintToServer("[War3Source:EVO] Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: %d)",SQL_GetRowCount(hndl));
+			LogError("[War3Source:EVO] %T","Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: {rows})",LANG_SERVER,SQL_GetRowCount(hndl));
+			PrintToServer("[War3Source:EVO] %T","Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: {rows})",LANG_SERVER,SQL_GetRowCount(hndl));
 		}
 	}
 }
@@ -814,7 +813,7 @@ public void T_CallbackInsertPDataMain(Handle owner,Handle query,const char[] err
 	{
 		QueryCode.Close();
 	}
-	PrintToServer("POSSIBLE ERRORS? %s",error);
+	PrintToServer("[War3Source:EVO] %T","POSSIBLE ERRORS? {errormessages}",LANG_SERVER,error);
 }
 
 
@@ -838,7 +837,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 		QueryCode.Close();
 	}
 
-	PrintToServer("T_CallbackSelectPDataRace POSSIBLE ERRORS? %s",error);
+	PrintToServer("[War3Source:EVO] %T","T_CallbackSelectPDataRace POSSIBLE ERRORS? {errormessages}",LANG_SERVER,error);
 
 	if(!ValidPlayer(client))
 		return;
@@ -897,7 +896,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 
 
 					char printstr[500];
-					Format(printstr,sizeof(printstr),"[War3Source:EVO] XP Ret: Job %s Level %d XP %d Time %f...",raceshortname,level,pxp,GetGameTime());
+					Format(printstr,sizeof(printstr),"[War3Source:EVO] %T","XP Ret: Job {1} Level {2} XP {3} Time {4}...",client,raceshortname,level,pxp,GetGameTime());
 
 
 
@@ -925,7 +924,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			}
 		}
 		if(retrievals>0){
-			PrintToConsole(client,"[War3Source:EVO] Successfully retrieved data jobs, total of %d jobs were returned, %d are running on this server",retrievals,usefulretrievals);
+			PrintToConsole(client,"[War3Source:EVO] %T","Successfully retrieved data jobs, total of {numofraces} races were returned, {totalracesnum} are running on this server",client,retrievals,usefulretrievals);
 		}
 		else if(retrievals<=0&&GetRacesLoaded()>0)
 		{//no xp record
@@ -935,9 +934,9 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			{
 				//Well the database is fucked up
 				//TODO: add retry for select query
-				LogError("[War3Source:EVO] ERROR: SELECT player data failed! Check DATABASE settings!");
+				LogError("[War3Source:EVO] %T","ERROR: SELECT player data failed! Check DATABASE settings!",LANG_SERVER);
 
-				War3_ChatMessage(client,"{red}CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead...");
+				War3_ChatMessage(client,"[War3Source:EVO] {red} %T","CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead...",client);
 
 				char steamid[64];
 
@@ -946,8 +945,8 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 				{
 					SelectPDataRaceSteamIDLookUp[client]=true;
 
-					PrintToServer("couldn't find account id, looking for steamid = %s",steamid);
-					LogError("[War3Source:EVO] Couldn't find account id, looking for steamid = %s",steamid);
+					PrintToServer("[War3Source:EVO] %T","couldn't find account id, looking for steamid = {steamid}",LANG_SERVER,steamid);
+					LogError("[War3Source:EVO] %T","couldn't find account id, looking for steamid = {steamid}",LANG_SERVER,steamid);
 
 					new String:longquery[4000];
 					Format(longquery,sizeof(longquery),"SELECT * FROM %s WHERE steamid='%s'",XP_GOLD_DATABASENAME_RACEDATA1,steamid);
@@ -965,7 +964,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			}
 
 			DoFwd_War3_Event(PlayerIsNewToServer,client);
-			PrintToServer("W3CreateEvent(PlayerIsNewToServer,client)");
+			//PrintToServer("W3CreateEvent(PlayerIsNewToServer,client)");
 		}
 		new inserts;
 		new RacesLoaded = GetRacesLoaded();
@@ -1009,13 +1008,13 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 		}
 		if(inserts>0){
 
-			PrintToConsole(client,"[War3Source:EVO] Inserting fresh level xp data for %d jobs",inserts);
+			PrintToConsole(client,"[War3Source:EVO] %T","Inserting fresh level xp data for {inserts} races",client,inserts);
 		}
 
 
 		SetPlayerProp(client,xpLoaded,true);
 		//War3_ChatMessage(client,"Successfully retrieved save data");
-		PrintToConsole(client,"[War3Source:EVO] XP RETRIEVED IN %f seconds",GetGameTime()-Float:GetPlayerProp(client,sqlStartLoadXPTime)) ;
+		PrintToConsole(client,"[War3Source:EVO] %T","XP RETRIEVED IN {seconds} seconds",client,GetGameTime()-Float:GetPlayerProp(client,sqlStartLoadXPTime)) ;
 
 		if(GetRace(client)<=0 && desiredRaceOnJoin[client]>0){
 
@@ -1060,9 +1059,9 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 		{
 			//Well the database is fucked up
 			//TODO: add retry for select query
-			LogError("[War3Source:EVO] ERROR: SELECT player data failed! Check DATABASE settings!");
+			LogError("[War3Source:EVO] %T","ERROR: SELECT player data failed! Check DATABASE settings!",LANG_SERVER);
 
-			War3_ChatMessage(client,"{red}CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead...");
+			War3_ChatMessage(client,"[War3Source:EVO] {red} %T","CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead...",client);
 
 			char steamid[64];
 
@@ -1071,8 +1070,8 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			{
 				SelectPDataRaceSteamIDLookUp[client]=true;
 
-				PrintToServer("couldn't find account id, looking for steamid = %s",steamid);
-				LogError("[War3Source:EVO] Couldn't find account id, looking for steamid = %s",steamid);
+				PrintToServer("[War3Source:EVO] %T","couldn't find account id, looking for steamid = {steamid}",LANG_SERVER,steamid);
+				LogError("[War3Source:EVO] %T","couldn't find account id, looking for steamid = {steamid}",LANG_SERVER,steamid);
 
 				new String:longquery[4000];
 				Format(longquery,sizeof(longquery),"SELECT * FROM %s WHERE steamid='%s'",XP_GOLD_DATABASENAME_RACEDATA1,steamid);
@@ -1114,7 +1113,7 @@ public void T_CallbackInsertPDataRace(Handle owner,Handle query,const char[] err
 //save a race using new db style
 War3_SavePlayerRace(client,race)
 {
-	PrintToServer("[War3Source:EVO] SavePlayerRace client %d race %d",client,race);
+	PrintToServer("[War3Source:EVO] %T","SavePlayerRace client {client} race {race}",LANG_SERVER,client,race);
 	//DP("save");
 	if(hDB && W3SaveEnabled() && GetPlayerProp(client,xpLoaded)&&race>0)
 	{
@@ -1154,7 +1153,7 @@ War3_SavePlayerRace(client,race)
 
 			char racename[32];
 			GetRaceName(race,racename,sizeof(racename));
-			PrintToConsole(client,"[War3Source:EVO] Saving XP for job %s: LVL %d XP %d",racename,level,xp);
+			PrintToConsole(client,"[War3Source:EVO] %T","Saving XP for race {racename}: LVL {level} XP {xp}",client,racename,level,xp);
 
 			//XP safety?
 			//	new level=War3_GetLevel(client,x);
@@ -1188,7 +1187,7 @@ public void T_CallbackSavePlayerRace(Handle owner,Handle hndl,const char[] error
 
 War3_SavePlayerMainData(client)
 {
-	PrintToServer("[War3Source:EVO] SavePlayerMainData client %d",client);
+	PrintToServer("[War3Source:EVO] %T","SavePlayerMainData client {clientnumber}",LANG_SERVER,client);
 	if(hDB &&W3IsPlayerXPLoaded(client))
 	{
 		//PrintToServer("client %d mainxp",client);
@@ -1250,7 +1249,7 @@ public void T_CallbackUpdatePDataMain(Handle owner,Handle query,const char[] err
 
 DoForwardOnWar3PlayerAuthed(client)
 {
-	PrintToServer("[War3Source:EVO] DoForwardOnWar3PlayerAuthed client %d",client);
+	PrintToServer("[War3Source:EVO] %T","DoForwardOnWar3PlayerAuthed client %d",LANG_SERVER,client);
 	Internal_Engine_NewPlayers_OnWar3PlayerAuthedHandle(client);
 
 	Call_StartForward(g_OnWar3PlayerAuthedHandle);
