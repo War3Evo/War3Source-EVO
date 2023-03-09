@@ -16,11 +16,11 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_Aura");
 	LoadTranslations("w3s._War3Source_Engine_Bank");
 	LoadTranslations("w3s._War3Source_Engine_BotControl");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
+	LoadTranslations("w3s._War3Source_Engine_BuffSpeedGravGlow");
+	LoadTranslations("w3s._War3Source_Engine_BuffSystem");
+	LoadTranslations("w3s._War3Source_Engine_Casting");
+	LoadTranslations("w3s._War3Source_Engine_CommandHook");
+	LoadTranslations("w3s._War3Source_Engine_CSGO_Radar");
 
 	PrintToServer("[War3Source:EVO] %t","--------------------------OnPluginStart----------------------");
 
