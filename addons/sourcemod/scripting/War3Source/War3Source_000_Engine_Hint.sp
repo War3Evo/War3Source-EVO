@@ -90,7 +90,7 @@ public DeleteObject(client)
 		new Handle:arr=objarray[client][i];
 		if (arr)
 		{
-			//PrintToServer("%d",arr));
+			//PrintToServer("%d",arr);
 			CloseHandle(arr); //this is the array created above
 			objarray[client][i] = INVALID_HANDLE;
 		}

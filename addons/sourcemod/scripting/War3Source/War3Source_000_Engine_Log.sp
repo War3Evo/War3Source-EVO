@@ -12,7 +12,7 @@ public Plugin:myinfo=
 	url="http://war3source.com/"
 };*/
 
-public NW3Log(Handle:plugin,numParams)//{const String:fmt[],any:...)
+public NW3Log(Handle:plugin,numParams)//const String:fmt[],any:...)
 {
 
 	decl String:outstr[1000];
@@ -32,7 +32,7 @@ public NW3Log(Handle:plugin,numParams)//{const String:fmt[],any:...)
 	FlushFile(hW3Log);
 }
 
-public NW3LogError(Handle:plugin,numParams)//{const String:fmt[],any:...)
+public NW3LogError(Handle:plugin,numParams)//const String:fmt[],any:...)
 {
 
 	decl String:outstr[1000];
@@ -52,7 +52,7 @@ public NW3LogError(Handle:plugin,numParams)//{const String:fmt[],any:...)
 	FlushFile(hW3LogError);
 }
 
-public NW3LogNotError(Handle:plugin,numParams)//{const String:fmt[],any:...)
+public NW3LogNotError(Handle:plugin,numParams)//const String:fmt[],any:...)
 {
 
 	decl String:outstr[1000];
@@ -72,7 +72,8 @@ public NW3LogNotError(Handle:plugin,numParams)//{const String:fmt[],any:...)
 	FlushFile(hW3LogNotError);
 }
 
-public NCreateWar3GlobalError(Handle:plugin,numParams){
+public NCreateWar3GlobalError(Handle:plugin,numParams)
+{
 	decl String:outstr[1000];
 
 	FormatNativeString(0,

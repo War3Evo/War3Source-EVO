@@ -157,18 +157,18 @@ public Action:colour_test(client, args){
 	return Plugin_Handled;
 }
 
-char command2[256];
-char command3[256];
-char command4[256];
+char command2[128];
+char command3[128];
+char command4[128];
 
 // compare is what they type in
 // command is the command needed
-public bool:CommandCheck(String:compare[],String:command[256])
+public bool:CommandCheck(String:compare[],String:command[])
 {
-	Format(command,sizeof(command),"%T",command,GetTrans());
-	Format(command2,sizeof(command2),"\\%T",command,GetTrans());
-	Format(command3,sizeof(command3),"/%T",command,GetTrans());
-	Format(command4,sizeof(command4),"!%T",command,GetTrans());
+	Format(command,128,"%T",command,GetTrans());
+	Format(command2,128,"\\%T",command,GetTrans());
+	Format(command3,128,"/%T",command,GetTrans());
+	Format(command4,128,"!%T",command,GetTrans());
 	if(!strcmp(compare,command,false)||!strcmp(compare,command2,false)||!strcmp(compare,command3,false)||!strcmp(compare,command4,false))
 	return true;
 
@@ -194,8 +194,8 @@ public CommandCheckEx(String:compare[],String:command[])  // may not be able to 
 }
 public bool:CommandCheckStartsWith(String:compare[],String:lookingfor[])
 {
-	char arg3[2][128];
-	int exnum=ExplodeString(compare," ",arg3,2,128,true);
+	char arg3[2][256];
+	int exnum=ExplodeString(compare," ",arg3,2,256,true);
 	if(exnum>0)
 	{
 		if(CommandCheck(arg3[0],lookingfor)) // allows to check translated

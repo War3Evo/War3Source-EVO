@@ -4,7 +4,8 @@ public OnGameFrame()
 {
 	if(!MapChanging || War3SourcePause)
 	{
-		for(new i=1;i<MaxClients;i++){   // was MAXPLAYERSCUSTOM
+		for(new i=1;i<MaxClients;i++) // was MAXPLAYERSCUSTOM
+		{
 			bHasDiedThisFrame[i]=0;
 		}
 	}

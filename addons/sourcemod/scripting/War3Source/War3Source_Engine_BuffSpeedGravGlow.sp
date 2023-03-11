@@ -100,6 +100,7 @@ public NW3ReapplySpeed(Handle:plugin,numParams)
 	int client=GetNativeCell(1);
 	Internal_W3ReapplySpeed(client);
 }
+
 public Internal_W3ReapplySpeed(int client)
 {
 	reapplyspeed[client]++;
@@ -113,10 +114,12 @@ public NW3IsBuffInvised(Handle:plugin,numParams)
 public NW3GetSpeedMulti(Handle:plugin,numParams)
 {
 	int client=GetNativeCell(1);
-	if(ValidPlayer(client,true)){
+	if(ValidPlayer(client,true))
+	{
 		float multi=1.0;
 #if (GGAMETYPE == GGAME_TF2)
-		if(TF2_IsPlayerInCondition(client,TFCond_SpeedBuffAlly)){
+		if(TF2_IsPlayerInCondition(client,TFCond_SpeedBuffAlly))
+		{
 			multi=1.35;
 		}
 #endif
@@ -140,7 +143,8 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 					gravity=gravity1<gravity2?gravity1:gravity2;
 				}
 				///now lets set the grav
-				if(GetEntityGravity(client)!=gravity){ ///gravity offset is somewhoe different for each person? this offset is got on PutInServer
+				if(GetEntityGravity(client)!=gravity) ///gravity offset is somewhoe different for each person? this offset is got on PutInServer
+				{
 					SetEntityGravity(client,gravity);
 				}
 				///GLOW
@@ -153,22 +157,26 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 #else
 				int limit=totalItemsLoaded+GetRacesLoaded()+W3GetItems2Loaded();
 #endif
-				for(int i=0;i<=limit;i++){
+				for(int i=0;i<=limit;i++)
+				{
 					if(GetBuff(client,iGlowPriority,i)>highestvalue)
 					{
 						highestvalue=GetBuff(client,iGlowPriority,i);
 						bestindex=i;
 						settime=Float:GetBuff(client,fGlowSetTime,i);
 					}
-					else if(GetBuff(client,iGlowPriority,i)==highestvalue&&highestvalue>0){ //equal priority
-						if(GetBuff(client,fGlowSetTime,i)>settime){ //only if this one set it sooner
+					else if(GetBuff(client,iGlowPriority,i)==highestvalue&&highestvalue>0) //equal priority
+					{
+						if(GetBuff(client,fGlowSetTime,i)>settime) //only if this one set it sooner
+						{
 							highestvalue=GetBuff(client,iGlowPriority,i);
 							bestindex=i;
 							settime=Float:GetBuff(client,fGlowSetTime,i);
 						}
 					}
 				}
-				if(bestindex>-1){
+				if(bestindex>-1)
+				{
 					r=GetBuff(client,iGlowRed,bestindex);
 					g=GetBuff(client,iGlowGreen,bestindex);
 					b=GetBuff(client,iGlowBlue,bestindex);
@@ -182,7 +190,8 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 				if(GetPlayerB(client)!=b)
 					set=true;
 				//alpha set is after invis block, not here
-				if(set){
+				if(set)
+				{
 					//	PrintToChatAll("%d %d %d %d",r,g,b,alpha);
 					SetPlayerRGB(client,r,g,b);
 				}
@@ -194,18 +203,22 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 
 				}
 				float itemalpha=GetBuffMinFloat(client,fInvisibilityItem);
-				if(falpha!=1.0){
+				if(falpha!=1.0)
+				{
 					itemalpha=Pow(itemalpha,0.75);
 				}
 				falpha=FloatMul(falpha,itemalpha);
 				int alpha2=RoundFloat(       FloatMul(255.0,falpha)  );
-				if(alpha2>=0&&alpha2<=255){
+				if(alpha2>=0&&alpha2<=255)
+				{
 					alpha=alpha2;
 				}
-				else{
+				else
+				{
 					LogError("[War3Source:EVO] %t","alpha playertracking out of bounds 0 - 255");
 				}
-				if(GetBuffHasOneTrue(client,bInvisibilityDenyAll)||W3GetBuffHasTrue(client,bBuffDenyAll) ){
+				if(GetBuffHasOneTrue(client,bInvisibilityDenyAll)||W3GetBuffHasTrue(client,bBuffDenyAll) )
+				{
 					if( /*bDeniedInvis[client]==false &&*/ alpha<222) ///buff is not denied
 					{
 						bDeniedInvis[client]=true;
@@ -215,11 +228,13 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 					}
 					alpha=255;
 				}
-				else{
+				else
+				{
 					bDeniedInvis[client]=false;
 				}
 				static skipcheckingwearables[MAXPLAYERSCUSTOM];
-				if(GetEntityAlpha(client)!=alpha){
+				if(GetEntityAlpha(client)!=alpha)
+				{
 					SetEntityAlpha(client,alpha);
 					skipcheckingwearables[client]=0;
 				}
@@ -231,7 +246,8 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 					{
 						if(GetEntPropEnt(ent,Prop_Send, "m_hOwnerEntity")==client)
 						{
-							if(GetEntityAlpha(ent)!=alpha){
+							if(GetEntityAlpha(ent)!=alpha)
+							{
 								SetEntityAlpha(ent,alpha);
 							}
 						}
@@ -240,7 +256,8 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 					{
 						if(GetEntPropEnt(ent,Prop_Send, "m_hOwnerEntity")==client)
 						{
-							if(GetEntityAlpha(ent)!=alpha){
+							if(GetEntityAlpha(ent)!=alpha)
+							{
 								SetEntityAlpha(ent,alpha);
 							}
 						}
@@ -258,7 +275,8 @@ public Engine_BuffSpeedGravGlow_DeciSecondTimer()
 					}
 					skipcheckingwearables[client]=10;
 				}
-				else{
+				else
+				{
 					skipcheckingwearables[client]--;
 				}
 				invisWeaponAttachments[client]=alpha<200?true:false;
@@ -323,7 +341,7 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 
 			//DP("speed %f, speedbefore %f , we set %f",currentmaxspeed,speedBefore[client],speedWeSet[client]);
 
-			if(currentmaxspeed!=speedWeSet[client]) ///SO DID engien set a new speed? copy that!! //TFIsDefaultMaxSpeed(client,currentmaxspeed)){ //ONLY IF NOT SET YET
+			if(currentmaxspeed!=speedWeSet[client]) ///SO DID engien set a new speed? copy that!! //TFIsDefaultMaxSpeed(client,currentmaxspeed)) //ONLY IF NOT SET YET
 			{
 				speedBefore[client]=currentmaxspeed;
 				reapplyspeed[client]++;
@@ -537,17 +555,21 @@ public War3Source_Engine_BuffSpeedGravGlow_OnGameFrame()
 			}
 			new MoveType:currentmovetype=GetEntityMoveType(client);
 			new MoveType:shouldmoveas=MOVETYPE_WALK;
-			if(GetBuffHasOneTrue(client,bNoMoveMode)){
+			if(GetBuffHasOneTrue(client,bNoMoveMode))
+			{
 				shouldmoveas=MOVETYPE_NONE;
 			}
-			if(GetBuffHasOneTrue(client,bNoClipMode)){
+			if(GetBuffHasOneTrue(client,bNoClipMode))
+			{
 				shouldmoveas=MOVETYPE_NOCLIP;
 			}
-			else if(GetBuffHasOneTrue(client,bFlyMode)&&!W3GetBuffHasTrue(client,bFlyModeDeny)){
+			else if(GetBuffHasOneTrue(client,bFlyMode)&&!W3GetBuffHasTrue(client,bFlyModeDeny))
+			{
 				shouldmoveas=MOVETYPE_FLY;
 			}
 
-			if(currentmovetype!=shouldmoveas){
+			if(currentmovetype!=shouldmoveas)
+			{
 				SetEntityMoveType(client,shouldmoveas);
 			}
 		}
@@ -561,7 +583,8 @@ stock SetEntityAlpha(index,alpha)
 {
 	new String:class[32];
 	GetEntityNetClass(index, class, sizeof(class) );
-	if(FindSendPropInfo(class,"m_nRenderFX")>-1){
+	if(FindSendPropInfo(class,"m_nRenderFX")>-1)
+	{
 		SetEntityRenderMode(index,RENDER_TRANSCOLOR);
 		SetEntityRenderColor(index,GetPlayerR(index),GetPlayerG(index),GetPlayerB(index),alpha);
 	}
