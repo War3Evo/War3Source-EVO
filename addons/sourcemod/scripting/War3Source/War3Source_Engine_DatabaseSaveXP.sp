@@ -1,5 +1,7 @@
 // War3Source_Engine_DatabaseSaveXP.sp
 
+// TRANSLATED
+
 //#define PLUGIN_VERSION "0.0.0.1"
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
