@@ -185,8 +185,7 @@ public War3Source_Stats_Selected(Handle:menu,MenuAction:action,client,selection)
 			War3Source_Stats_Player(client,target);
 		else
 		{
-			//War3_ChatMessage(client,"%T","The player you selected has left the server",client);
-			War3_ChatMessage(client,"The player you selected has left the server");
+			War3_ChatMessage(client,"%T","The player you selected has left the server",client);
 			War3Source_Stats(client);
 		}
 	}
@@ -218,14 +217,12 @@ public War3Source_Stats_Player(client,target)
 		decl String:race_name[32];
 		GetRaceName(GetRace(target),race_name,sizeof(race_name));
 		new goldtitle=GetPlayerProp(target, PlayerGold);
-		//SetMenuTitle(playerInfo,"%T\n","[War3Source:EVO] Info for {player}. Current Job: {racename} gold: {amount}",client,playername,race_name,gold);
-		SetMenuTitle(playerInfo,"[War3Source:EVO] Info for %s. Current Job: %s gold: %d",playername,race_name,goldtitle);
+		SetMenuTitle(playerInfo,"%T\n","[War3Source:EVO] Info for {player}. Current Job: {racename} gold: {amount}",client,playername,race_name,gold);
 		DisplayMenu(playerInfo,client,20);
 	}
 	else
 	{
-		//War3_ChatMessage(client,"%T","The player has disconnected from the server",client);
-		War3_ChatMessage(client,"The player has disconnected from the server");
+		War3_ChatMessage(client,"%T","The player has disconnected from the server",client);
 		War3Source_Stats(client);
 	}
 }
@@ -276,8 +273,7 @@ public War3Source_Stats_Player_Race(client,target,race_num)
 		new level=War3_GetLevel(target,race_num);
 		new xp=GetXP(target,race_num);
 
-		//Format(longbuf,sizeof(longbuf),"%T\n","[War3Source:EVO] {racename} info for {player}. Level: {amount} XP: {amount}",client,race_name,playername,level,xp);
-		Format(longbuf,sizeof(longbuf),"[War3Source:EVO] %s info for %s. Level: %d XP: %d\n",race_name,playername,level,xp);
+		Format(longbuf,sizeof(longbuf),"%T\n","[War3Source:EVO] {racename} info for {player}. Level: {amount} XP: {amount}",client,race_name,playername,level,xp);
 
 		new SkillCount = GetRaceSkillCount(race_num);
 		for(new i=1;i<=SkillCount;i++){
@@ -285,14 +281,12 @@ public War3Source_Stats_Player_Race(client,target,race_num)
 			if(GetRaceSkillName(race_num,i,skillname,sizeof(skillname))>0)
 			{
 				new skilllevel=GetSkillLevelINTERNAL(target,race_num,i);
-				//Format(longbuf,sizeof(longbuf),"%s%T\n",longbuf,"{skillname} - Level {amount}",client,skillname,skilllevel);
-				Format(longbuf,sizeof(longbuf),"%s %s - Level %d\n",longbuf,skillname,skilllevel);
+				Format(longbuf,sizeof(longbuf),"%s%T\n",longbuf,"{skillname} - Level {amount}",client,skillname,skilllevel);
 			}
 		}
 
 		new String:menuback[32];
-		//Format(menuback,sizeof(menuback),"%T","Back",client);
-		Format(menuback,sizeof(menuback),"Back");
+		Format(menuback,sizeof(menuback),"%T","Back",client);
 
 		SetMenuTitle(playerInfo,"%s\n \n",longbuf);
 		decl String:target_str[8];
@@ -302,8 +296,7 @@ public War3Source_Stats_Player_Race(client,target,race_num)
 	}
 	else
 	{
-		//War3_ChatMessage(client,"%T","The player has disconnected from the server",client);
-		War3_ChatMessage(client,"The player has disconnected from the server");
+		War3_ChatMessage(client,"%T","The player has disconnected from the server",client);
 		War3Source_Stats(client);
 	}
 
@@ -322,8 +315,7 @@ public War3Source_Stats_PRS(Handle:menu,MenuAction:action,client,selection)
 			War3Source_Stats_Player(client,target);
 		else
 		{
-			//War3_ChatMessage(client,"%T","The player you selected has left the server",client);
-			War3_ChatMessage(client,"The player you selected has left the server");
+			War3_ChatMessage(client,"%T","The player you selected has left the server",client);
 			War3Source_Stats(client);
 		}
 	}
@@ -350,19 +342,19 @@ War3Source_War3Top(client,top_num,cur_place=0)
 	if(top_num>iTopCount)
 		top_num=iTopCount;
 	new String:menuText[512];
-	//Format(menuText,sizeof(menuText),"%T\n","[War3Source:EVO] Top {amount} ({amount}-{amount})",client,top_num,cur_place+1,total_display);
-	Format(menuText,sizeof(menuText),"[War3Source:EVO] Top %d (%d-%d)\n",top_num,cur_place+1,total_display);
+	Format(menuText,sizeof(menuText),"[War3Source:EVO] %T\n","Top {amount} ({amount}-{amount})",client,top_num,cur_place+1,total_display);
 	new x2=0;
 	//for(new x=cur_place;x<total_display;x++)
 	for(new x=cur_place;x<99;x++)
 	{
-		if(StrContains(Top100Name[x],"[A]",true)!=-1 && StrContains(Top100Name[x],"-W3E-",false)!=-1 && GetConVarInt(NoAdminWar3Top10Cvar)==1)
-		{
-			continue;
-		}
+		// old W3E stuff to disinclude old player members
+		//if(StrContains(Top100Name[x],"[A]",true)!=-1 && StrContains(Top100Name[x],"-W3E-",false)!=-1 && GetConVarInt(NoAdminWar3Top10Cvar)==1)
+		//{
+		//	continue;
+		//}
 		if(x2<total_display)
 		{
-			Format(menuText,sizeof(menuText),"%s%d - %s (Lvl. %d, %d XP)\n",menuText,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+			Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
 			x2++;
 		}
 	}
@@ -371,12 +363,9 @@ War3Source_War3Top(client,top_num,cur_place=0)
 	new String:menuexit[32];
 	new String:menunext[32];
 	new String:menuprevious[32];
-	//Format(menuexit,sizeof(menuexit),"%T","Exit",client);
-	Format(menuexit,sizeof(menuexit),"Exit");
-	//Format(menunext,sizeof(menunext),"%T","Next",client);
-	Format(menunext,sizeof(menunext),"Next");
-	//Format(menuprevious,sizeof(menuprevious),"%T","Previous",client);
-	Format(menuprevious,sizeof(menuprevious),"Previous");
+	Format(menuexit,sizeof(menuexit),"%T","Exit",client);
+	Format(menunext,sizeof(menunext),"%T","Next",client);
+	Format(menuprevious,sizeof(menuprevious),"%T","Previous",client);
 
 	AddMenuItem(topMenu,"",menuexit);
 	Format(data_str,sizeof(data_str),"n.%d.%d",top_num,cur_place);
