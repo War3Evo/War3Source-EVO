@@ -1,0 +1,313 @@
+// w3s._War3Source_Engine_CommandHook.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+// }
+
+"Phrases"
+{
+	"War3Source_Engine_DatabaseSaveXP_OnPluginStart Start"
+	{
+		"#format"		""
+		"en"			"War3Source_Engine_DatabaseSaveXP_OnPluginStart Start"
+	}
+	"War3Source_Engine_DatabaseSaveXP_OnPluginStart END"
+	{
+		"#format"		""
+		"en"			"War3Source_Engine_DatabaseSaveXP_OnPluginStart END"
+	}
+	"War3Source_Engine_DatabaseSaveXP_OnWar3Event()"
+	{
+		"#format"		""
+		"en"			"War3Source_Engine_DatabaseSaveXP_OnWar3Event()"
+	}
+	"Initialize SQLTable Main Table START"
+	{
+		"#format"		""
+		"en"			"Initialize SQLTable Main Table START"
+	}
+	"Tried to change column from 'credits' to 'gold'"
+	{
+		"#format"		""
+		"en"			"Tried to change column from 'credits' to 'gold'"
+	}
+	"{database} doesnt exist, creating!!!"
+	{
+		"#format"		"{1:s}"
+		"en"			"{1} doesnt exist, creating!!!"
+	}
+	"ERROR in the creation of the SQL table {tablename}"
+	{
+		"#format"		"{1:s}"
+		"en"			"ERROR in the creation of the SQL table {1}"
+	}
+	// keep 1 space at the end 
+	"invalid handle to data, "
+	{
+		"#format"		""
+		"en"			"invalid handle to data, "
+	}
+	"Initialize SQLTable Main Table END"
+	{
+		"#format"		""
+		"en"			"Initialize SQLTable Main Table END"
+	}
+	"Database_DoAutosave()"
+	{
+		"#format"		""
+		"en"			"Database_DoAutosave()"
+	}
+	"Saving all player XP and updating stats"
+	{
+		"#format"		""
+		"en"			"Saving all player XP and updating stats"
+	}
+	"War3Source_SavePlayerData()"
+	{
+		"#format"		""
+		"en"			"War3Source_SavePlayerData()"
+	}
+	"OnClientPutInServer {clientnumber}"
+	{
+		"#format"		"{1:d}"
+		"en"			"OnClientPutInServer {1}"
+	}
+	"OnClientDisconnect {clientnumber}"
+	{
+		"#format"		"{1:d}"
+		"en"			"OnClientDisconnect {1}"
+	}
+	"LoadPlayerData {clientnumber}"
+	{
+		"#format"		"{1:d}"
+		"en"			"LoadPlayerData {1}"
+	}
+	"War3Source_LoadPlayerData(client)"
+	{
+		"#format"		""
+		"en"			"War3Source_LoadPlayerData(client)"
+	}
+	"steamaccountid = {steamaccountid}"
+	{
+		"#format"		"{1:d}"
+		"en"			"steamaccountid = {1}"
+	}
+	"XP retrieval query: sending MAIN and load all jobs request! Time: {GetGameTime}"
+	{
+		"#format"		"{1:d}"
+		"en"			"XP retrieval query: sending MAIN and load all jobs request! Time: {1}"
+	}
+	"T_CallbackSelectPDataMain()"
+	{
+		"#format"		""
+		"en"			"T_CallbackSelectPDataMain()"
+	}
+	"T_CallbackSelectPDataMain ERRORS? {errormessage}"
+	{
+		"#format"		"{1:s}"
+		"en"			"T_CallbackSelectPDataMain ERRORS? {1}"
+	}
+	"ERROR: SELECT player data failed! Check DATABASE settings!"
+	{
+		"#format"		""
+		"en"			"ERROR: SELECT player data failed! Check DATABASE settings!"
+	}
+	"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	{
+		"#format"		""
+		"en"			"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	}
+	"Please wait while we look up your steamid account information for"
+	{
+		"#format"		""
+		"en"			"Please wait while we look up your steamid account information for"
+	}
+	"ERROR: could not retrieve steam id {steamid} (after not finding accountid)"
+	{
+		"#format"		"{1:s}"
+		"en"			"ERROR: could not retrieve steam id {1} (after not finding accountid)"
+	}
+	"Unexpected error loading player data, could not FETCH row. Check DATABASE settings!"
+	{
+		"#format"		""
+		"en"			"Unexpected error loading player data, could not FETCH row. Check DATABASE settings!"
+	}
+	"GETTING PLAYER INFO"
+	{
+		"#format"		""
+		"en"			"GETTING PLAYER INFO"
+	}
+	"ACCOUNT ID IS NULL"
+	{
+		"#format"		""
+		"en"			"ACCOUNT ID IS NULL"
+	}
+	"ACCOUNT {account} STEAMID {steamid}"
+	{
+		"#format"		"{1:d},{2:,s}"
+		"en"			"ACCOUNT {1} STEAMID {2}"
+	}
+	"Setting join_date {joindate}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Setting join_date {1}"
+	}
+	"Setting Gold {gold}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Setting Gold {1}"
+	}
+	"Setting Diamonds {diamonds}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Setting Diamonds {1}"
+	}
+	"Setting Platinum {platinum}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Setting Platinum {1}"
+	}
+	"Setting levelbank {levelbank}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Setting levelbank {1}"
+	}
+	"Unexpected error loading player currentrace. Check DATABASE settings!"
+	{
+		"#format"		""
+		"en"			"Unexpected error loading player currentrace. Check DATABASE settings!"
+	}
+	"War3 MAIN retrieval: gold {gold} Time {time}"
+	{
+		"#format"		"{1:d},{2:d}"
+		"en"			"War3 MAIN retrieval: gold {1} Time {2}"
+	}
+	"Diamonds {diamonds}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Diamonds {1}"
+	}
+	"Platinum {platinum}"
+	{
+		"#format"		"{1:d}"
+		"en"			"Platinum {1}"
+	}
+	"couldn't find account id, looking for steamid = {steamid}"
+	{
+		"#format"		"{1:s}"
+		"en"			"couldn't find account id, looking for steamid = {1}"
+	}
+	"ERROR RETRIEVING YOUR STEAM ID!"
+	{
+		"#format"		""
+		"en"			"ERROR RETRIEVING YOUR STEAM ID!"
+	}
+	"NEW PLAYER SETUP"
+	{
+		"#format"		""
+		"en"			"NEW PLAYER SETUP"
+	}
+	"Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: {rows})"
+	{
+		"#format"		"{1:d}"
+		"en"			"Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: {1})"
+	}
+	"POSSIBLE ERRORS? {errormessages}"
+	{
+		"#format"		"{1:s}"
+		"en"			"POSSIBLE ERRORS? {1}"
+	}
+	"T_CallbackSelectPDataRace POSSIBLE ERRORS? {errormessages}"
+	{
+		"#format"		"{1:s}"
+		"en"			"T_CallbackSelectPDataRace POSSIBLE ERRORS? {1}"
+	}
+	"XP Ret: Job %s Level %d XP %d Time %f..."
+	{
+		"#format"		"{1:s},{2:d},{3:d},{4:f}"
+		"en"			"XP Ret: Job {1} Level {2} XP {3} Time {4}..."
+	}
+	"Successfully retrieved data jobs, total of {numofraces} races were returned, {totalracesnum} are running on this server"
+	{
+		"#format"		"{1:d},{2:d}"
+		"en"			"Successfully retrieved data races, total of {1} races were returned, {2} are running on this server"
+	}
+	"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	{
+		"#format"		""
+		"en"			"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	}
+	"ERROR: SELECT player data failed! Check DATABASE settings!"
+	{
+		"#format"		""
+		"en"			"ERROR: SELECT player data failed! Check DATABASE settings!"
+	}
+	"Inserting fresh level xp data for {inserts} races"
+	{
+		"#format"		"{1:d}"
+		"en"			"Inserting fresh level xp data for {1} races"
+	}
+	"XP RETRIEVED IN {seconds} seconds"
+	{
+		"#format"		"{1:f}"
+		"en"			"XP RETRIEVED IN {1} seconds"
+	}
+	"SavePlayerRace client {client} race {race}"
+	{
+		"#format"		"{1:d},{2:d}"
+		"en"			"SavePlayerRace client {1} race {2}"
+	}
+	"Saving XP for race {racename}: LVL {level} XP {xp}"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"Saving XP for race {1}: LVL {2} XP {3}"
+	}
+	"SavePlayerMainData client {clientnumber}"
+	{
+		"#format"		"{1:d}"
+		"en"			"SavePlayerMainData client {1}"
+	}
+	"DoForwardOnWar3PlayerAuthed client {clientnumber}"
+	{
+		"#format"		"{1:d}"
+		"en"			"DoForwardOnWar3PlayerAuthed client {1}"
+	}
+}
