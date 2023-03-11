@@ -63,7 +63,7 @@ public OnPluginStart()
 #endif
 	War3Source_Engine_DamageSystem_OnPluginStart();
 	War3Source_Engine_DatabaseSaveXP_OnPluginStart();
-	War3Source_Engine_DatabaseTop100_OnPluginStart();
+	//War3Source_Engine_DatabaseTop100_OnPluginStart();
 	War3Source_Engine_Dependency_OnPluginStart();
 	War3Source_Engine_Download_Control_OnPluginStart();
 	War3Source_Engine_Easy_Buff_OnPluginStart();

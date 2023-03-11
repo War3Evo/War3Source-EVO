@@ -12,7 +12,7 @@ new String:Top100Steamid[101][64];
 new Top100totallevel[101];
 new Top100totalxp[101];
 
-new Handle:NoAdminWar3Top10Cvar;
+//new Handle:NoAdminWar3Top10Cvar;
 
 /*
 public Plugin:myinfo=
@@ -25,10 +25,10 @@ public Plugin:myinfo=
 };
 */
 
-public War3Source_Engine_DatabaseTop100_OnPluginStart()
-{
-	NoAdminWar3Top10Cvar=CreateConVar("war3_admin_no_display_war3top10","0","1 = do not display admins in war3top10 (default 0)");
-}
+//public War3Source_Engine_DatabaseTop100_OnPluginStart()
+//{
+//	NoAdminWar3Top10Cvar=CreateConVar("war3_admin_no_display_war3top10","0","1 = do not display admins in war3top10 (default 0)");
+//}
 public War3Source_Engine_DatabaseTop100_OnMapStart()
 {
 	War3Source_UpdateStats();
@@ -217,7 +217,7 @@ public War3Source_Stats_Player(client,target)
 		decl String:race_name[32];
 		GetRaceName(GetRace(target),race_name,sizeof(race_name));
 		new goldtitle=GetPlayerProp(target, PlayerGold);
-		SetMenuTitle(playerInfo,"%T\n","[War3Source:EVO] Info for {player}. Current Job: {racename} gold: {amount}",client,playername,race_name,gold);
+		SetMenuTitle(playerInfo,"%T\n","[War3Source:EVO] Info for {player}. Current Job: {racename} gold: {amount}",client,playername,race_name,goldtitle);
 		DisplayMenu(playerInfo,client,20);
 	}
 	else
