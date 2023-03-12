@@ -1,5 +1,7 @@
 // War3Source_Engine_Dependency.sp
 
+// TRANSLATED
+
 /* War3Source Skill Dependency Engine
  * Authors  : Vulpone & DonRevan
  * Version  : 1.0 Public
@@ -127,7 +129,7 @@ RemoveRaceDependency(iRace,iRequiredRace)
 public NWar3_SetRaceDependency(Handle:plugin,numParams)
 {
 	if(numParams != 3) {
-		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
+		return ThrowNativeError(SP_ERROR_NATIVE,"%t","number of params is invalid!");
 	}
 	new iRace = GetNativeCell(1);
 	if(iRace>0)
@@ -141,16 +143,16 @@ public NWar3_SetRaceDependency(Handle:plugin,numParams)
 			}
 			return 0;
 		}
-		else return ThrowNativeError(SP_ERROR_NATIVE,"required race is invalid!");
+		else return ThrowNativeError(SP_ERROR_NATIVE,"%t","required race is invalid!");
 	}
-	else return ThrowNativeError(SP_ERROR_NATIVE,"race is invalid!");
+	else return ThrowNativeError(SP_ERROR_NATIVE,"%t","race is invalid!");
 }
 
 //native War3_RemoveRaceDependency(iRaceID);
 public NWar3_RemoveRaceDependency(Handle:plugin,numParams)
 {
 	if(numParams != 2) {
-		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
+		return ThrowNativeError(SP_ERROR_NATIVE,"%t","number of params is invalid!");
 	}
 	new iRace = GetNativeCell(1);
 	new iRequiredRace = GetNativeCell(1);
@@ -159,14 +161,14 @@ public NWar3_RemoveRaceDependency(Handle:plugin,numParams)
 		RemoveRaceDependency(iRace,iRequiredRace);
 		return 1;
 	}
-	else return ThrowNativeError(SP_ERROR_NATIVE,"race is invalid!");
+	else return ThrowNativeError(SP_ERROR_NATIVE,"%t","race is invalid!");
 }
 
 //native War3_GetRaceDependency(iRaceID, RaceDependency:eInfo=ID);
 public NWar3_FindRaceDependency(Handle:plugin,numParams)
 {
 	if(numParams != 2) {
-		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
+		return ThrowNativeError(SP_ERROR_NATIVE,"%t","number of params is invalid!");
 	}
 	new iRace = GetNativeCell(1);
 	if(iRace>0) {
@@ -174,9 +176,9 @@ public NWar3_FindRaceDependency(Handle:plugin,numParams)
 		if(iFindRace>0) {
 			return FindRaceDependency(iRace,iFindRace);
 		}
-		else return ThrowNativeError(SP_ERROR_NATIVE,"iFindRace is invalid!");
+		else return ThrowNativeError(SP_ERROR_NATIVE,"%t","iFindRace is invalid!");
 	}
-	else return ThrowNativeError(SP_ERROR_NATIVE,"iRace is invalid!");
+	else return ThrowNativeError(SP_ERROR_NATIVE,"%t","iRace is invalid!");
 }
 
 
@@ -185,7 +187,7 @@ public NWar3_FindRaceDependency(Handle:plugin,numParams)
 public NWar3_AddDependency(Handle:plugin,numParams)
 {
 	if(numParams != 4) {
-		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
+		return ThrowNativeError(SP_ERROR_NATIVE,"%t","number of params is invalid!");
 	}
 	new iRace = GetNativeCell(1);
 	if(iRace>0) {
@@ -199,13 +201,13 @@ public NWar3_AddDependency(Handle:plugin,numParams)
 		}
 		return 0;
 	}
-	else return ThrowNativeError(SP_ERROR_NATIVE,"race is invalid!");
+	else return ThrowNativeError(SP_ERROR_NATIVE,"%t","race is invalid!");
 }
 
 public NWar3_RemDependency(Handle:plugin,numParams)
 {
 	if(numParams != 2) {
-		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
+		return ThrowNativeError(SP_ERROR_NATIVE,"%t","number of params is invalid!");
 	}
 	new iRace = GetNativeCell(1);
 	if(iRace>0) {
@@ -216,13 +218,13 @@ public NWar3_RemDependency(Handle:plugin,numParams)
 		}
 		return 1;
 	}
-	else return ThrowNativeError(SP_ERROR_NATIVE,"race is invalid!");
+	else return ThrowNativeError(SP_ERROR_NATIVE,"%t","race is invalid!");
 }
 
 public NWar3_GetDependency(Handle:plugin,numParams)
 {
 	if(numParams != 3) {
-		return ThrowNativeError(SP_ERROR_NATIVE,"numParams is invalid!");
+		return ThrowNativeError(SP_ERROR_NATIVE,"%t","number of params is invalid!");
 	}
 	new iRace = GetNativeCell(1);
 	if(iRace>0)

@@ -1,5 +1,7 @@
 // War3Source_Engine_DeciSecondLoop_Timer.sp
 
+// TRANSLATED
+
 public War3Source_Engine_DeciSecondLoop_Timer_OnPluginStart()
 {
 	CreateTimer(0.1,DeciSecondLoop,_,TIMER_REPEAT);
@@ -20,7 +22,7 @@ public Action:DeciSecondLoop(Handle:timer)
 				{
 					if(GetGameTime()>LastLoadingHintMsg[client]+4.0)
 					{
-						W3PrintHint(client,"Loading XP... Please Wait");
+						W3PrintHint(client, "%T", "Loading XP... Please Wait", client);
 						LastLoadingHintMsg[client]=GetGameTime();
 					}
 					continue;

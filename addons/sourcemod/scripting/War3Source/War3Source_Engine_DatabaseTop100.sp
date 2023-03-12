@@ -1,5 +1,7 @@
 // War3Source_Engine_DatabaseTop100.sp
 
+// TRANSLATED
+
 new bool:bRankCached[MAXPLAYERSCUSTOM];
 new iRank[MAXPLAYERSCUSTOM];
 new iTotalPlayersDB[MAXPLAYERSCUSTOM]; // this is also cached per client, eg one player might see 1/20 when another sees 2/21
