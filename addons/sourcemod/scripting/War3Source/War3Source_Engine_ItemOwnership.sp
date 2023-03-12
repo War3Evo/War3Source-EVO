@@ -1,5 +1,24 @@
 // War3Source_Engine_ItemOwnership.sp
 
+//
+//
+//
+//
+//
+//
+//
+//
+//  START TRANSLATING HERE DOWN NEXT 3/12/2023
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 

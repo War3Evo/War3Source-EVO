@@ -1,5 +1,7 @@
 // War3Source_Engine_ItemOwnership3.sp
 
+// SHOP MENU 3 ISN'T USED ... NOT TRANSLATED
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 new Handle:g_OnItemSkillLevelChangedHandle;

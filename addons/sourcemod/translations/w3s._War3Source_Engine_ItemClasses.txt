@@ -1,4 +1,4 @@
-// w3s._War3Source_Engine_DatabaseTop100.txt
+// w3s._War3Source_Engine_ItemClass.txt
 //
 // SetTrans(client) right before calling a function that has no client
 //
@@ -42,58 +42,93 @@
 // 		"#format"		""
 // 		"en"			""
 // 	}
+//
 // }
 
 "Phrases"
 {
-	"The player you selected has left the server"
+	// All
+	"MAX ITEMS REACHED, CANNOT REGISTER {titemname}"
+	{
+		"#format"		"{1:s}"
+		"en"			"MAX ITEMS REACHED, CANNOT REGISTER {1}"
+	}
+	"ZEROTH ITEM"
 	{
 		"#format"		""
-		"en"			"The player you selected has left the server"
+		"en"			"ZEROTH ITEM"
 	}
-	"[War3Source:EVO] Info for {player}. Current Race: {racename} gold: {amount}"
+	// War3Source_Engine_ItemClass
+	"use cs money instead of gold"
 	{
-		"#format"	"{1:s},{2:s},{3:d}"
-		"en"		"[War3Source:EVO] Info for {1}.\nCurrent Race: {2}\ngold: {3}"
+		"#format"		""
+		"en"			"use cs money instead of gold"
 	}
-	"The player has disconnected from the server"
+	"item cost with gold"
 	{
-		"en"		"The player has disconnected from the server."
+		"#format"		""
+		"en"			"item cost with gold"
 	}
-	"[War3Source:EVO] {racename} info for {player}. Level: {amount} XP: {amount}"
+	"item cost with cs money"
 	{
-		"#format"	"{1:s},{2:s},{3:d},{4:d}"
-		"en"		"[War3Source:EVO] {1} info for {2}.\nLevel: {3}\nXP: {4}"
+		"#format"		""
+		"en"			"item cost with cs money"
 	}
-	"{skillname} - Level {amount}"
+	"item order"
 	{
-		"#format"	"{1:s},{2:d}"
-		"en"		"{1} - Level {2}"
+		"#format"		""
+		"en"			"item order"
 	}
-	"Back"
+	"item flags"
 	{
-		"en"		"Back"
+		"#format"		""
+		"en"			"item flags"
 	}
-	"Exit"
+	"item category"
 	{
-		"en"		"Exit"
+		"#format"		""
+		"en"			"item category"
 	}
-	"Next"
+	// War3Source_Engine_ItemClass2
+	"item2 cost with diamonds"
 	{
-		"en"		"Next"
+		"#format"		""
+		"en"			"item2 cost with diamonds"
 	}
-	"Previous"
+	"item2 order"
 	{
-		"en"		"Previous"
+		"#format"		""
+		"en"			"item2 order"
 	}
-	"Top {amount} ({amount}-{amount})"
+	"item2 flags"
 	{
-		"#format"	"{1:d},{2:d},{3:d}"
-		"en"		"Top {1} ({2}-{3})"
+		"#format"		""
+		"en"			"item2 flags"
 	}
-	"{rank} - {player} (Lvl. {amount}, {amount} XP)"
+	"item2 category"
 	{
-		"#format"	"{1:d},{2:s},{3:d},{4:d}"
-		"en"		"{1} - {2} (Lvl. {3}, {4} XP)"
+		"#format"		""
+		"en"			"item2 category"
+	}
+	// War3Source_Engine_ItemClass3
+	"item2 cost with diamonds"
+	{
+		"#format"		""
+		"en"			"item3 cost with platinum"
+	}
+	"item2 order"
+	{
+		"#format"		""
+		"en"			"item3 order"
+	}
+	"item2 flags"
+	{
+		"#format"		""
+		"en"			"item3 flags"
+	}
+	"item2 category"
+	{
+		"#format"		""
+		"en"			"item3 category"
 	}
 }

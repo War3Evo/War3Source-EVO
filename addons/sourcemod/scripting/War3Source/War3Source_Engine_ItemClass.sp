@@ -1,5 +1,9 @@
 // War3Source_Engine_ItemClass.sp
 
+// uses w3s._War3Source_Engine_ItemClasses.txt translations
+
+// TRANSLATED
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 // moved to variables
@@ -372,22 +376,24 @@ public NW3GetItemCategory(Handle:plugin,numParams)
 CreateNewItem(String:titemname[] ,String:titemshortname[] ,String:titemshortdesc[] ,String:titemdescription[], itemcostgold,itemcostmoney,usecsmoney=0){
 
 	if(totalItemsLoaded+1==MAXITEMS){ //make sure we didnt reach our item capacity limit
-		LogError("MAX ITEMS REACHED, CANNOT REGISTER %s",titemname);
+		LogError("[War3Source:EVO] %T","MAX ITEMS REACHED, CANNOT REGISTER {titemname}", LANG_SERVER, titemname);
 		return -1;
 	}
 
 	//first item registering, fill in the  zeroth  along
-	if(totalItemsLoaded==0){
-
-		Format(itemName[0],31,"ZEROTH ITEM");
-
+	if(totalItemsLoaded==0)
+	{
+		Format(itemName[0],31,"%t","ZEROTH ITEM");
 	}
-	else{
+	else
+	{
 		decl String:shortnameexisted[16];
 		new ItemsLoaded = W3GetItemsLoaded();
-		for(new i=1;i<=ItemsLoaded;i++){
+		for(new i=1;i<=ItemsLoaded;i++)
+		{
 			GetItemShortname(i,shortnameexisted,sizeof(shortnameexisted));
-			if(StrEqual(titemshortname,shortnameexisted)){
+			if(StrEqual(titemshortname,shortnameexisted))
+			{
 				return i; //item already exists
 			}
 		}
@@ -404,23 +410,31 @@ CreateNewItem(String:titemname[] ,String:titemshortname[] ,String:titemshortdesc
 	strcopy(itemDescription[titemid], 511, titemdescription);
 
 	new String:cvarstr[32];
+	new String:transbuffstr[32];
+
+	Format(transbuffstr,sizeof(transbuffstr),"%t","use cs money instead of gold");
 	Format(cvarstr,sizeof(cvarstr),"%s_usecsmoney",titemshortname);
-	itemCSmoney[titemid]=W3CreateCvarInt(cvarstr,usecsmoney,"use cs money instead of gold");
+	itemCSmoney[titemid]=W3CreateCvarInt(cvarstr,usecsmoney,transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item cost with gold");
 	Format(cvarstr,sizeof(cvarstr),"%s_goldcost",titemshortname);
-	itemGoldCost[titemid]=W3CreateCvarInt(cvarstr,itemcostgold,"item cost with gold");
+	itemGoldCost[titemid]=W3CreateCvarInt(cvarstr,itemcostgold,transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item cost with cs money");
 	Format(cvarstr,sizeof(cvarstr),"%s_moneycost",titemshortname);
-	itemMoneyCost[titemid]=W3CreateCvarInt(cvarstr,itemcostmoney,"item cost with cs money");
+	itemMoneyCost[titemid]=W3CreateCvarInt(cvarstr,itemcostmoney,transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item order");
 	Format(cvarstr,sizeof(cvarstr),"%s_itemorder",titemshortname);
-	itemOrderCvar[titemid]=W3CreateCvarInt(cvarstr,titemid*100,"item order");
+	itemOrderCvar[titemid]=W3CreateCvarInt(cvarstr,titemid*100,transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item flags");
 	Format(cvarstr,sizeof(cvarstr),"%s_itemflags",titemshortname);
-	itemFlagsCvar[titemid]=W3CreateCvar(cvarstr,"0","item flags");
+	itemFlagsCvar[titemid]=W3CreateCvar(cvarstr,"0",transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item category");
 	Format(cvarstr,sizeof(cvarstr),"%s_itemcategory",titemshortname);
-	itemCategoryCvar[titemid]=W3CreateCvar(cvarstr,"0","item category");
+	itemCategoryCvar[titemid]=W3CreateCvar(cvarstr,"0",transbuffstr);
 
 	return titemid; //this will be the new item's id / index
 }

@@ -1,5 +1,7 @@
 // War3Source_Engine_HelpMenu.sp
 
+// TRANSLATED
+
 new Handle:vecHelpCommands;
 #define HELPCOMMAND_COUNT GetArraySize(vecHelpCommands)
 
@@ -18,7 +20,7 @@ public War3Source_Engine_HelpMenu_OnPluginStart()
 {
 
 	if(!War3Source_InitiateHelpVector())
-		SetFailState("[War3Source:EVO] There was a failure in creating the help vector, definitely halting.");
+		SetFailState("[War3Source:EVO] %T","There was a failure in creating the help vector, definitely halting.", LANG_SERVER);
 	War3Source_InitHelpCommands();
 }
 
@@ -78,7 +80,7 @@ War3Source_War3Help(client)
 {
 	new Handle:helpMenu=CreateMenu(War3Source_HelpMenu_Selected);
 	SetMenuExitButton(helpMenu,true);
-	SetMenuTitle(helpMenu,"%T","[War3Source:EVO] Select a command for more info",client);
+	SetMenuTitle(helpMenu,"[War3Source:EVO] %T","Select a command for more info",client);
 	decl String:commandname[64];
 	decl String:helpbuf[4];
 	new Handle:commandHandle;
@@ -133,9 +135,9 @@ War3Source_HelpMenu_Command(client,command)
 	Format(strdesc,sizeof(strdesc),"%T",desc,client);
 
 	Format(strdesc,sizeof(strdesc),"%T%s\n \n","Description:",client,strdesc);
-	SetMenuTitle(helpMenu_Command,"%T\n \n%s","[War3Source:EVO] War3Evo Command - {cmd}",client,strcmd,strdesc);
+	SetMenuTitle(helpMenu_Command,"[War3Source:EVO] %T\n \n%s","Command - {cmd}",client,strcmd,strdesc);
 
-	new String:backtohelp[32];
+	decl String:backtohelp[32];
 	Format(backtohelp,sizeof(backtohelp),"%T","Back to help commands",client);
 	AddMenuItem(helpMenu_Command,"backtohelp",backtohelp);
 	DisplayMenu(helpMenu_Command,client,MENU_TIME_FOREVER);

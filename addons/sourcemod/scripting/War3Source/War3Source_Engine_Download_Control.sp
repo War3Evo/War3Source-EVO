@@ -1,5 +1,7 @@
 // War3Source_Engine_Download_Control.sp
 
+// TRANSLATED
+
 /*
 public Plugin:myinfo=
 {
@@ -128,7 +130,8 @@ UpdateDownloadControl()
 
 		new iMaxDownloads=CurrentClientsConnected*GetConVarInt(imaxdownloadsCvar);
 
-		Format(StringDetail,sizeof(StringDetail),"imaxdownloadsCvar %d * CurrentClientsConnected %d = iMaxDownloads %d", GetConVarInt(imaxdownloadsCvar), CurrentClientsConnected, iMaxDownloads);
+		// imaxdownloadsCvar %d * CurrentClientsConnected %d = iMaxDownloads %d"
+		Format(StringDetail,sizeof(StringDetail),"%T","Maximum downloads CVAR {imaxdownloadsCvar} * Current Clients Connected {CurrentClientsConnected} = New Maximum Downloads {iMaxDownloads}",LANG_SERVER, GetConVarInt(imaxdownloadsCvar), CurrentClientsConnected, iMaxDownloads);
 		LogDownloads(StringDetail);
 
 		for(new i = 0; i < GetArraySize(g_hSoundFile); i++)
@@ -139,27 +142,27 @@ UpdateDownloadControl()
 			{
 				if(GetArrayCell(g_hPriority, i)==PRIORITY_TOP)
 				{
-					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_TOP) ALL FILES %s", TempBuffer);
+					Format(StringDetail,sizeof(StringDetail),"%T","PRIORITY_TOP {filename}", LANG_SERVER, TempBuffer);
 					LogDownloads(StringDetail);
 				}
 				else if(GetArrayCell(g_hPriority, i)==PRIORITY_HIGH)
 				{
-					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_HIGH) ALL FILES %s", TempBuffer);
+					Format(StringDetail,sizeof(StringDetail),"%T","PRIORITY_HIGH {filename}", LANG_SERVER, TempBuffer);
 					LogDownloads(StringDetail);
 				}
 				else if(GetArrayCell(g_hPriority, i)==PRIORITY_MEDIUM)
 				{
-					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_MEDIUM) ALL FILES %s", TempBuffer);
+					Format(StringDetail,sizeof(StringDetail),"%T","PRIORITY_MEDIUM {filename}", LANG_SERVER, TempBuffer);
 					LogDownloads(StringDetail);
 				}
 				else if(GetArrayCell(g_hPriority, i)==PRIORITY_LOW)
 				{
-					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_LOW) ALL FILES %s", TempBuffer);
+					Format(StringDetail,sizeof(StringDetail),"%T","PRIORITY_LOW {filename}", LANG_SERVER, TempBuffer);
 					LogDownloads(StringDetail);
 				}
 				else if(GetArrayCell(g_hPriority, i)==PRIORITY_BOTTOM)
 				{
-					Format(StringDetail,sizeof(StringDetail),"(PRIORITY_BOTTOM) ALL FILES %s", TempBuffer);
+					Format(StringDetail,sizeof(StringDetail),"%T","PRIORITY_BOTTOM {filename}", LANG_SERVER, TempBuffer);
 					LogDownloads(StringDetail);
 				}
 				//Format(StringDetail,sizeof(StringDetail),"ALL FILES %s", TempBuffer);
@@ -168,7 +171,7 @@ UpdateDownloadControl()
 			DownloadCount++;
 		}
 
-		Format(StringDetail,sizeof(StringDetail),"DownloadCount %d", DownloadCount);
+		Format(StringDetail,sizeof(StringDetail),"DownloadCount {DownloadCount}", DownloadCount);
 		LogDownloads(StringDetail);
 	}
 	else
@@ -179,7 +182,7 @@ UpdateDownloadControl()
 
 		new iMaxDownloads=CurrentClientsConnected*GetConVarInt(imaxdownloadsCvar);
 
-		Format(StringDetail,sizeof(StringDetail),"imaxdownloadsCvar %d * CurrentClientsConnected %d = iMaxDownloads %d", GetConVarInt(imaxdownloadsCvar), CurrentClientsConnected, iMaxDownloads);
+		Format(StringDetail,sizeof(StringDetail),"%T","Maximum downloads CVAR {imaxdownloadsCvar} * Current Clients Connected {CurrentClientsConnected} = New Maximum Downloads {iMaxDownloads}", LANG_SERVER, GetConVarInt(imaxdownloadsCvar), CurrentClientsConnected, iMaxDownloads);
 		LogDownloads(StringDetail);
 
 		if(GetConVarBool(EnableTopDownloadsCvar))
@@ -192,7 +195,7 @@ UpdateDownloadControl()
 					AddSoundFiles(TempBuffer,i,666,0);
 					if(GetConVarBool(Log_TOP_prioirtyCvar))
 					{
-						Format(StringDetail,sizeof(StringDetail),"PRIORITY_TOP %s", TempBuffer);
+						Format(StringDetail,sizeof(StringDetail),"%T","PRIORITY_TOP {filename}", LANG_SERVER, TempBuffer);
 						LogDownloads(StringDetail);
 					}
 					DownloadCount++;
@@ -217,7 +220,7 @@ UpdateDownloadControl()
 
 					if(GetConVarBool(Log_HIGH_prioirtyCvar))
 					{
-						Format(StringDetail,sizeof(StringDetail),"PRIORITY_HIGH %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						Format(StringDetail,sizeof(StringDetail),"%s %T","PRIORITY_HIGH","{filename} Count {count} Download Count {downloadcount}", LANG_SERVER, TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
 						LogDownloads(StringDetail);
 					}
 					DownloadCount++;
@@ -241,7 +244,7 @@ UpdateDownloadControl()
 					}
 					if(GetConVarBool(Log_MEDIUM_prioirtyCvar))
 					{
-						Format(StringDetail,sizeof(StringDetail),"PRIORITY_MEDIUM %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						Format(StringDetail,sizeof(StringDetail),"%s %T","PRIORITY_MEDIUM","{filename} Count {count} Download Count {downloadcount}", LANG_SERVER, TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
 						LogDownloads(StringDetail);
 					}
 					DownloadCount++;
@@ -265,7 +268,7 @@ UpdateDownloadControl()
 					}
 					if(GetConVarBool(Log_LOW_prioirtyCvar))
 					{
-						Format(StringDetail,sizeof(StringDetail),"PRIORITY_LOW %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						Format(StringDetail,sizeof(StringDetail),"%s %T","PRIORITY_LOW","{filename} Count {count} Download Count {downloadcount}", LANG_SERVER, TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
 						LogDownloads(StringDetail);
 					}
 					DownloadCount++;
@@ -289,7 +292,7 @@ UpdateDownloadControl()
 					}
 					if(GetConVarBool(Log_BOTTOM_prioirtyCvar))
 					{
-						Format(StringDetail,sizeof(StringDetail),"PRIORITY_BOTTOM %s Count %d Download Count %d", TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
+						Format(StringDetail,sizeof(StringDetail),"%s %T","PRIORITY_BOTTOM","{filename} Count {count} Download Count {downloadcount}", LANG_SERVER, TempBuffer, iMaxDownloadsNow-iCount, DownloadCount-TOPDownloadCount);
 						LogDownloads(StringDetail);
 					}
 					DownloadCount++;
@@ -365,7 +368,7 @@ public Action soundcache(int client, int args)
 
 LogDownloads(String:LogThis[2048])
 {
-		new String:szFile[256];
+		new String:szFile[PLATFORM_MAX_PATH];
 		BuildPath(Path_SM, szFile, sizeof(szFile), "logs/download_control.log");
 		LogToFile(szFile, LogThis);
 }
@@ -499,7 +502,7 @@ bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloa
 		PrintToServer("STOCK SOUND: %s",SoundModify);
 		if(!War3_Internal_PreCacheSound(SoundModify, false))
 		{
-			Format(StringDetail,sizeof(StringDetail),"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file \"%s\" not found", SoundModify);
+			Format(StringDetail,sizeof(StringDetail),"%T","War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file '{filename}' not found", LANG_SERVER, SoundModify);
 			LogDownloads(StringDetail);
 		}
 		else
@@ -516,7 +519,7 @@ bool:AddSoundFiles(const String:sound[PLATFORM_MAX_PATH],iSoundIndex,iMaxDownloa
 		PrintToServer("CUSTOM SOUND: %s",SoundModify);
 		if(!War3_Internal_PreCacheSound(SoundModify, false))
 		{
-			Format(StringDetail,sizeof(StringDetail),"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file \"%s\" not found", SoundModify);
+			Format(StringDetail,sizeof(StringDetail),"%T","War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file '{filename}' not found", LANG_SERVER, SoundModify);
 			LogDownloads(StringDetail);
 		}
 		else

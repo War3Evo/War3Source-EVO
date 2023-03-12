@@ -1,4 +1,4 @@
-// w3s._War3Source_Engine_CommandHook.txt
+// w3s._War3Source_Engine_CSGO_Radar.txt
 //
 // SetTrans(client) right before calling a function that has no client
 //

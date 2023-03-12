@@ -1,5 +1,7 @@
 // War3Source_Engine_MenuItemsinfo3.sp
 
+// SHOP MENU 3 ISN'T USED ... NOT TRANSLATED
+
 /*
 public Plugin:myinfo=
 {

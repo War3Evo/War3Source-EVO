@@ -1,5 +1,7 @@
 // War3Source_Engine_ItemClass2.sp
 
+// uses w3s._War3Source_Engine_ItemClasses.txt translations
+
 ///race instance variables
 //RACE ID = index of [MAXRACES], raceid 1 is raceName[1][32]
 
@@ -197,23 +199,28 @@ public NW3GetItem2Catagory(Handle:plugin,numParams)
 
 CreateNewItem2(String:titemname[] ,String:titemshortname[] ,String:titemshortdesc[] ,String:titemdescription[], itemcostgold){
 
-	if(totalItems2Loaded+1==MAXITEMS){ //make sure we didnt reach our item capacity limit
-		LogError("MAX ITEMS REACHED, CANNOT REGISTER %s",titemname);
+	if(totalItems2Loaded+1==MAXITEMS)
+	{ 
+		//make sure we didnt reach our item capacity limit
+
+		LogError("%T","MAX ITEMS REACHED, CANNOT REGISTER {titemname}", LANG_SERVER, titemname);
 		return -1;
 	}
 
 	//first item registering, fill in the  zeroth  along
-	if(totalItems2Loaded==0){
-
-		Format(item2Name[0],31,"ZEROTH ITEM");
-
+	if(totalItems2Loaded==0)
+	{
+		Format(item2Name[0],31,"%t","ZEROTH ITEM");
 	}
-	else{
+	else
+	{
 		decl String:shortnameexisted[16];
 		new ItemsLoaded = W3GetItems2Loaded();
-		for(new i=1;i<=ItemsLoaded;i++){
+		for(new i=1;i<=ItemsLoaded;i++)
+		{
 			GetItem2Shortname(i,shortnameexisted,sizeof(shortnameexisted));
-			if(StrEqual(titemshortname,shortnameexisted)){
+			if(StrEqual(titemshortname,shortnameexisted))
+			{
 				return i; //item already exists
 			}
 		}
@@ -230,17 +237,23 @@ CreateNewItem2(String:titemname[] ,String:titemshortname[] ,String:titemshortdes
 	strcopy(item2Description[titemid], 511, titemdescription);
 
 	char cvarstr[32];
+	new String:transbuffstr[32];
+
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item2 cost with diamonds");
 	Format(cvarstr,sizeof(cvarstr),"%s_diamondcost",titemshortname);
-	item2diamondCost[titemid]=W3CreateCvarInt(cvarstr,itemcostgold,"item2 cost with diamonds");
+	item2diamondCost[titemid]=W3CreateCvarInt(cvarstr,itemcostgold,transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item2 order");
 	Format(cvarstr,sizeof(cvarstr),"%s_item2order",titemshortname);
-	item2OrderCvar[titemid]=W3CreateCvarInt(cvarstr,titemid*200,"item2 order");
+	item2OrderCvar[titemid]=W3CreateCvarInt(cvarstr,titemid*200,transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item2 flags");
 	Format(cvarstr,sizeof(cvarstr),"%s_item2flags",titemshortname);
-	item2FlagsCvar[titemid]=W3CreateCvar(cvarstr,"0","item2 flags");
+	item2FlagsCvar[titemid]=W3CreateCvar(cvarstr,"0",transbuffstr);
 
+	Format(transbuffstr,sizeof(transbuffstr),"%t","item2 category");
 	Format(cvarstr,sizeof(cvarstr),"%s_item2category",titemshortname);
-	item2CategoryCvar[titemid]=W3CreateCvar(cvarstr,"0","item2 category");
+	item2CategoryCvar[titemid]=W3CreateCvar(cvarstr,"0",transbuffstr);
 
 	return titemid; //this will be the new item's id / index
 }

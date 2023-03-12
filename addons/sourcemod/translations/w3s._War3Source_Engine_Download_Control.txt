@@ -1,4 +1,4 @@
-// w3s._War3Source_Engine_DatabaseTop100.txt
+// w3s._War3Source_Engine_Download_Control.txt
 //
 // SetTrans(client) right before calling a function that has no client
 //
@@ -46,54 +46,49 @@
 
 "Phrases"
 {
-	"The player you selected has left the server"
+	"Maximum downloads CVAR {imaxdownloadsCvar} * Current Clients Connected {CurrentClientsConnected} = New Maximum Downloads {iMaxDownloads}"
 	{
-		"#format"		""
-		"en"			"The player you selected has left the server"
+		"#format"		"{1:d},{2:d},{3:d}"
+		"en"			"Maximum downloads CVAR {1} * Current Clients Connected {2} = New Maximum Downloads {3}"
 	}
-	"[War3Source:EVO] Info for {player}. Current Race: {racename} gold: {amount}"
+	"PRIORITY_TOP {filename}"
 	{
-		"#format"	"{1:s},{2:s},{3:d}"
-		"en"		"[War3Source:EVO] Info for {1}.\nCurrent Race: {2}\ngold: {3}"
+		"#format"		"{1:s}"
+		"en"			"TOP PRIORITY: {1}"
 	}
-	"The player has disconnected from the server"
+	"PRIORITY_HIGH {filename}"
 	{
-		"en"		"The player has disconnected from the server."
+		"#format"		"{1:s}"
+		"en"			"HIGH PRIORITY: {1}"
 	}
-	"[War3Source:EVO] {racename} info for {player}. Level: {amount} XP: {amount}"
+	"PRIORITY_MEDIUM {filename}"
 	{
-		"#format"	"{1:s},{2:s},{3:d},{4:d}"
-		"en"		"[War3Source:EVO] {1} info for {2}.\nLevel: {3}\nXP: {4}"
+		"#format"		"{1:s}"
+		"en"			"MEDIUM PRIORITY: {1}"
 	}
-	"{skillname} - Level {amount}"
+	"PRIORITY_LOW {filename}"
 	{
-		"#format"	"{1:s},{2:d}"
-		"en"		"{1} - Level {2}"
+		"#format"		"{1:s}"
+		"en"			"LOW PRIORITY: {1}"
 	}
-	"Back"
+	"PRIORITY_BOTTOM {filename}"
 	{
-		"en"		"Back"
+		"#format"		"{1:s}"
+		"en"			"BOTTOM PRIORITY: {1}"
 	}
-	"Exit"
+	"DownloadCount {DownloadCount}"
 	{
-		"en"		"Exit"
+		"#format"		"{1:d}"
+		"en"			"Download count {1}"
 	}
-	"Next"
+	"{filename} Count {count} Download Count {downloadcount}"
 	{
-		"en"		"Next"
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"{1} Count {2} Download Count {3}"
 	}
-	"Previous"
+	"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file '{filename}' not found"
 	{
-		"en"		"Previous"
-	}
-	"Top {amount} ({amount}-{amount})"
-	{
-		"#format"	"{1:d},{2:d},{3:d}"
-		"en"		"Top {1} ({2}-{3})"
-	}
-	"{rank} - {player} (Lvl. {amount}, {amount} XP)"
-	{
-		"#format"	"{1:d},{2:s},{3:d},{4:d}"
-		"en"		"{1} - {2} (Lvl. {3}, {4} XP)"
+		"#format"		"{1:s}"
+		"en"			"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file '{1}' not found"
 	}
 }

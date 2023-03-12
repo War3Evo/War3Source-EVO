@@ -1,5 +1,7 @@
 // War3Source_Engine_GameData.sp
 
+// TRANSLATED
+
 
 #if (GGAMETYPE == GGAME_TF2)
 #define    GAMEDATA    "war3source.games"
@@ -73,14 +75,14 @@ public War3Source_Engine_GameData_OnPluginStart()
 	if(hGameConf == INVALID_HANDLE)
 	{
 		/* couldn't open gamedata file. */
-		SetFailState("Failed to load gamedata \"%s\"", GAMEDATA);
+		SetFailState("%T","Failed to load gamedata {filename}", LANG_SERVER, GAMEDATA);
 		return;
 	}
 
 	if((g_hIsMeleeWeapon = FindIsMeleeWeapon(hGameConf)) == INVALID_HANDLE)
 	{
 		/* failed to prepare sdkcall. */
-		LogError("Couldn't finalize SDK call preparation of \"IsMeleeWeapon\"!");
+		LogError("%t","Couldn't finalize SDK call preparation of {IsMeleeWeapon}!");
 	}
 #endif
 	//}
@@ -136,7 +138,7 @@ public bool:Native_War3_IsUsingMeleeWeapon(Handle:plugin, numParams)
 #if (GGAMETYPE == GGAME_TF2)
 			if(g_hIsMeleeWeapon == INVALID_HANDLE)
 			{
-				LogError("Failed to lookup \"IsMeleeWeapon\" function. Using Stock function instead.");
+				LogError("%t","Failed to lookup 'IsMeleeWeapon' function. Using Stock function instead.");
 				char sWeaponName[64];
 				GetEdictClassname(ent, sWeaponName, sizeof(sWeaponName));
 				return W3IsDamageFromMelee(sWeaponName);

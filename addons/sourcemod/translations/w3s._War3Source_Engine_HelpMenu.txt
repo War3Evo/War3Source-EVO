@@ -1,4 +1,4 @@
-// w3s._War3Source_Engine_DatabaseTop100.txt
+// w3s._War3Source_Engine_HelpMenu.txt
 //
 // SetTrans(client) right before calling a function that has no client
 //
@@ -42,58 +42,34 @@
 // 		"#format"		""
 // 		"en"			""
 // 	}
+//
 // }
 
 "Phrases"
 {
-	"The player you selected has left the server"
+	"There was a failure in creating the help vector, definitely halting."
 	{
 		"#format"		""
-		"en"			"The player you selected has left the server"
+		"en"			"There was a failure in creating the help vector, definitely halting."
 	}
-	"[War3Source:EVO] Info for {player}. Current Race: {racename} gold: {amount}"
+	"Select a command for more info"
 	{
-		"#format"	"{1:s},{2:s},{3:d}"
-		"en"		"[War3Source:EVO] Info for {1}.\nCurrent Race: {2}\ngold: {3}"
+		"#format"		""
+		"en"			"Select a command for more info"
 	}
-	"The player has disconnected from the server"
+	"Description:"
 	{
-		"en"		"The player has disconnected from the server."
+		"#format"		""
+		"en"			"Description:"
 	}
-	"[War3Source:EVO] {racename} info for {player}. Level: {amount} XP: {amount}"
+	"Command - {cmd}"
 	{
-		"#format"	"{1:s},{2:s},{3:d},{4:d}"
-		"en"		"[War3Source:EVO] {1} info for {2}.\nLevel: {3}\nXP: {4}"
+		"#format"		"{1:s}"
+		"en"			"Command - {1}"
 	}
-	"{skillname} - Level {amount}"
+	"Back to help commands"
 	{
-		"#format"	"{1:s},{2:d}"
-		"en"		"{1} - Level {2}"
-	}
-	"Back"
-	{
-		"en"		"Back"
-	}
-	"Exit"
-	{
-		"en"		"Exit"
-	}
-	"Next"
-	{
-		"en"		"Next"
-	}
-	"Previous"
-	{
-		"en"		"Previous"
-	}
-	"Top {amount} ({amount}-{amount})"
-	{
-		"#format"	"{1:d},{2:d},{3:d}"
-		"en"		"Top {1} ({2}-{3})"
-	}
-	"{rank} - {player} (Lvl. {amount}, {amount} XP)"
-	{
-		"#format"	"{1:d},{2:s},{3:d},{4:d}"
-		"en"		"{1} - {2} (Lvl. {3}, {4} XP)"
+		"#format"		""
+		"en"			"Back to help commands"
 	}
 }
