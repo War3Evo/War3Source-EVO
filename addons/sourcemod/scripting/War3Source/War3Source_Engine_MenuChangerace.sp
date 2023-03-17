@@ -1,5 +1,7 @@
 // War3Source_Engine_MenuChangerace.sp
 
+// TRANSLATED
+
 //race cat defs
 new Handle:hUseCategories,Handle:hCanDrawCat,Handle:hAllowCategoryDefault,Handle:hAllowAllRacesCategory;
 new String:strCategories[MAXCATS][64];
@@ -17,9 +19,17 @@ public Plugin:myinfo=
 
 public War3Source_Engine_MenuChangerace_OnPluginStart()
 {
-	hUseCategories = CreateConVar("war3_jobcats","0","If non-zero job categories will be enabled");
-	hAllowCategoryDefault = CreateConVar("war3_allow_default_cats","0","Allow Default categories to show in category menu? (default 0)");
-	hAllowAllRacesCategory = CreateConVar("war3_allow_all_races_cats","0","Allow Default categories to show in category menu? (default 1)");
+	char mncrbuffer[128];
+
+	Format(mncrbuffer, sizeof(mncrbuffer), "[War3Source:EVO] %t","If non-zero race categories will be enabled");
+	hUseCategories = CreateConVar("war3_racecats","0",mncrbuffer);
+
+	Format(mncrbuffer, sizeof(mncrbuffer), "[War3Source:EVO] %t","Allow Default Categories to show in category menu? (default 0)");
+	hAllowCategoryDefault = CreateConVar("war3_allow_default_cats","0",mncrbuffer);
+
+	Format(mncrbuffer, sizeof(mncrbuffer), "[War3Source:EVO] %t","Allow All Races Categories to show in category menu? (default 0)");
+	hAllowAllRacesCategory = CreateConVar("war3_allow_all_races_cats","0",mncrbuffer);
+
 	RegServerCmd("war3_reloadcats", Command_ReloadCats);
 }
 
@@ -36,7 +46,7 @@ public bool:War3Source_Engine_MenuChangerace_InitNatives()
 }
 
 public Action:Command_ReloadCats(args) {
-	PrintToServer("[WAR3] forcing job categories to be refreshed..");
+	PrintToServer("[War3Source:EVO] %T","forcing race categories to be refreshed..",LANG_SERVER);
 	refreshCategories();
 	return Plugin_Handled;
 }
@@ -120,7 +130,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			if(strlen(War3Source_Engine_MenuChangerace_dbErrorMsg)){
 				Format(title,sizeof(title),"%s\n \n",War3Source_Engine_MenuChangerace_dbErrorMsg);
 			}
-			Format(title,sizeof(title),"%s%T",title,"[War3Source:EVO] Select a category",GetTrans()) ;
+			Format(title,sizeof(title),"%s[War3Source:EVO] %T",title,"Select a category",GetTrans()) ;
 			if(W3GetLevelBank(client)>0){
 				Format(title,sizeof(title),"%s\n%T\n",title,"You Have {amount} levels in levelbank. Say levelbank to use it",GetTrans(), W3GetLevelBank(client));
 			}
@@ -129,7 +139,9 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			//Prepend 'All Jobs' entry.
 			if(GetConVarBool(hAllowAllRacesCategory))
 			{
-				AddMenuItem(crMenu,"-1","All Races/Jobs");
+				decl String:strCRMenu[64];
+				Format(strCRMenu,sizeof(strCRMenu),"%T","All Races",client);
+				AddMenuItem(crMenu,"-1",strCRMenu);
 			}
 			//At first we gonna add the categories
 			for(new i=1;i<CatCount;i++) {
@@ -141,7 +153,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 						new amount=GetNewRacesInCat(client,strCat);
 						if(amount>0) {
 							decl String:buffer[64];
-							Format(buffer,sizeof(buffer),"%s (%i new jobs)",strCat,amount);
+							Format(buffer,sizeof(buffer),"%T","{strCat} ({amount} new races)",client,strCat,amount);
 						}
 						AddMenuItem(crMenu,strCat,strCat);
 					}
@@ -156,7 +168,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 			if(strlen(War3Source_Engine_MenuChangerace_dbErrorMsg)){
 				Format(title,sizeof(title),"%s\n \n",War3Source_Engine_MenuChangerace_dbErrorMsg);
 			}
-			Format(title,sizeof(title),"%s%T",title,"[War3Source:EVO] Select your desired job",GetTrans()) ;
+			Format(title,sizeof(title),"%s[War3Source:EVO] %T",title,"Select your desired race",GetTrans()) ;
 			if(W3GetLevelBank(client)>0){
 				Format(title,sizeof(title),"%s\n%T\n",title,"You Have {amount} levels in levelbank. Say levelbank to use it",GetTrans(), W3GetLevelBank(client));
 			}
@@ -324,7 +336,7 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 #if (GGAMETYPE == GGAME_TF2)
 				if(!IsVip && SteamGroupRequired)
 				{
-					Format(rdisp,sizeof(rdisp),"%s\n%s",rdisp,"Join our Steam Group");
+					Format(rdisp,sizeof(rdisp),"%s\n%T",rdisp,"Join our Steam Group",client);
 				}
 				else
 				{
@@ -358,14 +370,14 @@ War3Source_ChangeRaceMenu(client,bool:forceUncategorized=false)
 #if (GGAMETYPE == GGAME_TF2)
 			if(SteamGroupRequired==true)
 			{
-				War3_ChatMessage(client,"Please join our steam group!");
+				War3_ChatMessage(client,"%T","Please join our steam group!",client);
 			}
 #endif
 		}
 		DisplayMenu(crMenu,client,MENU_TIME_FOREVER);
 	}
 	else{
-		War3_ChatMessage(client,"XP failed to load! Please reconnect!");
+		War3_ChatMessage(client,"%T","XP failed to load! Please reconnect!",client);
 	}
 
 }
@@ -387,8 +399,9 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 
 				Handle crMenu=CreateMenu(War3Source_CRMenu_Selected);
 				SetMenuExitButton(crMenu,true);
-				Format(title,sizeof(title),"%T","[War3Source:EVO] Select your desired job",GetTrans());
-				SetMenuTitle(crMenu,"%s\nCategory: %s\n",title,sItem);
+				Format(title,sizeof(title),"[War3Source:EVO] %T","Select your desired race",GetTrans());
+				Format(title,sizeof(title),"%s\n%T\n",title,"Category: {category}",GetTrans(),title,sItem);
+				SetMenuTitle(crMenu,"%T",title);
 				// Iteriate through the races and print them out
 				int racelist[MAXRACES];
 				int racedisplay=GetRaceList(racelist);
@@ -396,7 +409,10 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 				bool SteamGroupRequired=false;
 #endif
 				bool value=true;
-				AddMenuItem(crMenu,"-1","[Return to Categories]");
+
+				new String:STRcrMenu[32];
+				Format(STRcrMenu,sizeof(STRcrMenu),"%T","[Return to Categories]",GetTrans());
+				AddMenuItem(crMenu,"-1",STRcrMenu);
 				for(int i=0;i<racedisplay;i++)
 				{
 					int	x=racelist[i];
@@ -456,14 +472,14 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 						if(!StrEqual(requiredflagstr, "0", false)&&!StrEqual(requiredflagstr, "", false))
 						{
 							//Format(rdisp,sizeof(rdisp),"%s (VIP Only)",rdisp);
-							Format(requirement,sizeof(requirement),"(VIP Only)");
+							Format(requirement,sizeof(requirement),"%T","(VIP Only)",GetTrans());
 							draw_ITEMDRAW_DEFAULT=false;
 						}
 #if (GGAMETYPE == GGAME_TF2)
 						else if(!bIsInSteamGroup[client]&&RaceHasFlag(x,"steamgroup"))
 						{
 							//Format(rdisp,sizeof(rdisp),"%s *Steam Group Required*",rdisp);
-							Format(requirement,sizeof(requirement),"*Steam Group Required*");
+							Format(requirement,sizeof(requirement),"*%T*","Steam Group Required",GetTrans());
 
 							draw_ITEMDRAW_DEFAULT=false;
 							//AddMenuItem(crMenu,rbuf,rdisp,ITEMDRAW_DISABLED);
@@ -483,7 +499,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 							{
 								// Lets not fill up the display, this would tell them the race is a steam group race
 
-								Format(requirement,sizeof(requirement),"(Steam Group)");
+								Format(requirement,sizeof(requirement),"%T","(Steam Group)",GetTrans());
 
 							}
 
@@ -518,7 +534,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 #if (GGAMETYPE == GGAME_TF2)
 					if(SteamGroupRequired==true)
 					{
-						War3_ChatMessage(client,"Please join our Steam Group.");
+						War3_ChatMessage(client,"%T","Please join our Steam Group.",client);
 					}
 #endif
 				}
@@ -672,13 +688,13 @@ public War3Source_CRMenu_Selected(Handle:menu,MenuAction:action,client,selection
 							{
 								W3SetPendingRace(client,-1);
 								SetRace(client,race_selected);
-								War3_ChatMessage(client,"You can now changerace or changejob instantly in spawn.");
+								War3_ChatMessage(client,"%T","You can now (changerace) instantly in spawn.",client);
 							}
 							else
 							{
-								War3_ChatMessage(client,"You must be in {green}spawn{default} to have instant job/race changing.",buf);
+								War3_ChatMessage(client,"%T","You must be in {green}spawn{default} to have instant race changing.",client);
 								W3SetPendingRace(client,race_selected);
-								War3_ChatMessage(client,"You will be {green}%s{default} after death or spawn",buf);
+								War3_ChatMessage(client,"%T","You will be {racename} after death or spawn",client,buf);
 							}
 							//}
 							//else
@@ -689,7 +705,7 @@ public War3Source_CRMenu_Selected(Handle:menu,MenuAction:action,client,selection
 						}
 						else
 						{
-							War3_ChatMessage(client,"Only in JailBreak Warcraft can you switch races instantly!",buf);
+							War3_ChatMessage(client,"%T","Only in JailBreak Warcraft can you switch races instantly!",client);
 							W3SetPendingRace(client,-1);
 							SetRace(client,race_selected);
 						}
@@ -702,7 +718,7 @@ public War3Source_CRMenu_Selected(Handle:menu,MenuAction:action,client,selection
 
 						//PrintToChatAll("2");
 						//print is in setrace
-						//War3_ChatMessage(client,"You are now %s",buf);
+						War3_ChatMessage(client,"%T","You are now {racename}.",client,buf);
 
 						W3DoLevelCheck(client);
 					}

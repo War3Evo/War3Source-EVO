@@ -26,7 +26,9 @@ public Plugin:myinfo=
 
 public War3Source_Engine_ItemOwnership_OnPluginStart()
 {
-	hitemRestrictionCvar=CreateConVar("war3_item_restrict","","Disallow items in shopmenu, shortname separated by comma only ie:'claw,orb'");
+	char weiobuffer[128];
+	Format(weiobuffer, sizeof(weiobuffer), "[War3Source:EVO] %t","Disallow items in shopmenu, shortname separated by comma only ie:'claw,orb'");
+	hitemRestrictionCvar=CreateConVar("war3_item_restrict","",weiobuffer);
 	hCvarMaxShopitems=CreateConVar("war3_max_shopitems","2");
 }
 
@@ -414,7 +416,7 @@ CheckForRestrictedItemsOnRace(client)
 
 				new String:itemname[64];
 				W3GetItemName(itemid,itemname,sizeof(itemname));
-				War3_ChatMessage(client,"%T","{itemname} is restricted on job {racename}, item has been removed",client,itemname,racename);
+				War3_ChatMessage(client,"%T","{itemname} is restricted on race {racename}, item has been removed",client,itemname,racename);
 
 				internal_W3SetVar(TheItemBoughtOrLost,itemid);
 				DoFwd_War3_Event(DoForwardClientLostItem,client); //old item

@@ -47,7 +47,12 @@
 
 "Phrases"
 {
-	// All
+	// Only w3s._War3Source_Engine_ItemOwnership uses below.  2 or 3 doesn't need translations.
+	"Disallow items in shopmenu, shortname separated by comma only ie:'claw,orb'"
+	{
+		"#format"		""
+		"en"			"Disallow items in shopmenu, shortname separated by comma only ie:'claw,orb'"
+	}
 	"<<buyprevious>>You have more items than allowed by server. Correct adjustments will be made."
 	{
 		"#format"		""
@@ -98,141 +103,9 @@
 		"#format"		"{1:s}"
 		"en"			"{red}<<buyprevious>>{default}Item Discarded: {green}{1}{default} (You didn't own this item on death)."
 	}
-	"{itemname} is restricted on job {racename}, item has been removed"
+	"{itemname} is restricted on race {racename}, item has been removed"
 	{
 		"#format"	"{1:s},{2:s}"
-		"en"		"{1} is restricted on job {2}, item has been removed."
+		"en"		"{1} is restricted on race {2}, item has been removed."
 	}
-	// 
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-
 }
