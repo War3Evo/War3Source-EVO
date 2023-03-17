@@ -110,7 +110,7 @@
 		"#format"		""
 		"en"			"item2 category"
 	}
-	// War3Source_Engine_ItemClass3
+	// 
 	"item2 cost with diamonds"
 	{
 		"#format"		""

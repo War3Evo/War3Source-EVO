@@ -1,23 +1,6 @@
 // War3Source_Engine_ItemOwnership.sp
 
-//
-//
-//
-//
-//
-//
-//
-//
-//  START TRANSLATING HERE DOWN NEXT 3/12/2023
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// TRANSLATED
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
@@ -117,11 +100,11 @@ public NWar3_RestoreItemsFromDeath(Handle:plugin,numParams)
 				}
 				if(counter>maxitemsallowed)
 				{
-					War3_ChatMessage(client,"{red}<<buyprevious>>{default}You have more items than allowed by server.\n{green}<<buyprevious>>{default}Correct adjustments will be made.");
+					War3_ChatMessage(client,"%T","<<buyprevious>>You have more items than allowed by server. Correct adjustments will be made.",client);
 				}
 				if(checkit==true)
 				{
-					War3_ChatMessage(client,"{red}<<buyprevious>>{default}You already{red} own{default} these items{default}.");
+					War3_ChatMessage(client,"%T","<<buyprevious>>You already own these items.",client);
 					return false;
 				}
 				counter = 0;
@@ -139,7 +122,7 @@ public NWar3_RestoreItemsFromDeath(Handle:plugin,numParams)
 					{
 						GetItemName(i,String_itemName,64);
 						SetOwnsItem(client,i,false);
-						War3_ChatMessage(client,"{red}<<buyprevious>>{default}Item Discarded: {green}%s{default} (You didn't own this item on death).",String_itemName);
+						War3_ChatMessage(client,"%T","<<buyprevious>>Item Discarded: {item} (You didn't own this item on death).",client,String_itemName);
 					}
 				}
 				// Find the Items
@@ -165,18 +148,18 @@ public NWar3_RestoreItemsFromDeath(Handle:plugin,numParams)
 									numTotalCost = numTotalCost + War3_Temp_ItemCost;
 									SetOwnsItem(client,i,true);
 									GetItemName(i,String_itemName,64);
-									War3_ChatMessage(client,"{red}<<buyprevious>>{default}You bought {green}%s{default}.",String_itemName);
+									War3_ChatMessage(client,"%T","<<buyprevious>>You bought {item}.",client,String_itemName);
 									counter++;
 								}
 								else
 								{
-									War3_ChatMessage(client,"{red}<<buyprevious>>{default}You can not afford {green}%s{default}.",String_itemName);
+									War3_ChatMessage(client,"%T","<<buyprevious>>You can not afford {item}.",client,String_itemName);
 								}
 							}
 							else
 							{
 								GetItemName(i,String_itemName,64);
-								War3_ChatMessage(client,"{red}<<buyprevious>>{default}You already own it! Skipping: {green}%s{default}.",String_itemName);
+								War3_ChatMessage(client,"%T","<<buyprevious>>You already own it! Skipping: {item}.",client,String_itemName);
 								counter++;
 							}
 						}
@@ -193,9 +176,9 @@ public NWar3_RestoreItemsFromDeath(Handle:plugin,numParams)
 				// Tell them the total cost
 				// To do: if cost == 0 then tell them they didn't buy anything.
 				if(csmoney==true)
-					War3_ChatMessage(client,"{red}<<buyprevious>>{default}Total cost ${green}%i {default}.",numTotalCost);
+					War3_ChatMessage(client,"%T","<<buyprevious>>Total cost ${itemcost}.",client,numTotalCost);
 				else
-					War3_ChatMessage(client,"{red}<<buyprevious>>{default}Total cost {green}%i {default}gold.",numTotalCost);
+					War3_ChatMessage(client,"%T","<<buyprevious>>Total cost {itemcost} gold.",client,numTotalCost);
 			}
 			else
 			{
@@ -209,14 +192,14 @@ public NWar3_RestoreItemsFromDeath(Handle:plugin,numParams)
 				{
 					SetOwnsItem(client,i,true);
 					GetItemName(i,String_itemName,64);
-					War3_ChatMessage(client,"{red}<<buyprevious>>{default}You receive {green}%s{default}.",String_itemName);
+					War3_ChatMessage(client,"<<buyprevious>>You receive {item}.",String_itemName);
 					counter++;
 				}
 				if(RestoreItemsFromDeath_playerOwnsItem[client][i]==false && GetOwnsItem(client,i))
 				{
 					SetOwnsItem(client,i,false);
 					GetItemName(i,String_itemName,64);
-					War3_ChatMessage(client,"{red}<<buyprevious>>{default}Item Discarded: {green}%s{default} (You didn't own this item on death).",String_itemName);
+					War3_ChatMessage(client,"%T","<<buyprevious>>Item Discarded: {item} (You didn't own this item on death).",client,String_itemName);
 				}
 				if(counter>=maxitemsallowed)
 					break;
