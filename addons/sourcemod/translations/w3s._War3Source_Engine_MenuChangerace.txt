@@ -1,0 +1,180 @@
+// w3s._War3Source_Engine_MenuChangerace.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+//
+// }
+
+"Phrases"
+{
+	"If non-zero race categories will be enabled"
+	{
+		"#format"		""
+		"en"			"If non-zero race categories will be enabled"
+	}
+	"Allow Default Categories to show in category menu? (default 0)"
+	{
+		"#format"		""
+		"en"			"Allow Default Categories to show in category menu? (default 0)"
+	}
+	"Allow All Races Categories to show in category menu? (default 0)"
+	{
+		"#format"		""
+		"en"			"Allow All Races Categories to show in category menu? (default 0)"
+	}
+	"forcing race categories to be refreshed.."
+	{
+		"#format"		""
+		"en"			"forcing race categories to be refreshed.."
+	}
+	"Select a category"
+	{
+		"#format"		""
+		"en"			"Select a category"
+	}
+	"You Have {amount} levels in levelbank. Say levelbank to use it"
+	{
+		"#format"	"{1:d}"
+		"en"		"You Have {1} levels in levelbank.\nSay levelbank to use it."
+	}
+	"All Races"
+	{
+		"#format"		""
+		"en"			"All Races"
+	}
+	"{strCat} ({amount} new races)"
+	{
+		"#format"		"{1:s},{2:i}"
+		"en"			"{1} ({2} new races)"
+	}
+	"Select your desired race"
+	{
+		"#format"	""
+		"en"		"Select your desired race"
+	}
+	"Category: {category}"
+	{
+		"#format"		"{1:s}"
+		"en"		"Category: {1}"
+	}
+	"{racename} [L {amount}]"
+	{
+		"#format"	"{1:s},{2:d}"
+		"en"		"{1} [L {2}]"
+	}
+	"reqlvl {amount}"
+	{
+		"#format"	"{1:d}"
+		"en"		"ReqLvl {1}"
+	}
+	"Join our Steam Group"
+	{
+		"#format"	""
+		"en"		"Join our Steam Group"
+	}
+	"Please join our steam group!"
+	{
+		"#format"	""
+		"en"		"Please join our steam group!"
+	}
+	"XP failed to load! Please reconnect!"
+	{
+		"#format"	""
+		"en"		"XP failed to load! Please reconnect!"
+	}
+	"[Return to Categories]"
+	{
+		"#format"		""
+		"en"			"[Return to Categories]"
+	}
+	"(VIP Only)"
+	{
+		"#format"		""
+		"en"			"(VIP Only)"
+	}
+	"Steam Group Required"
+	{
+		"#format"		""
+		"en"			"Steam Group Required"
+	}
+	"(Steam Group)"
+	{
+		"#format"		""
+		"en"			"(Steam Group)"
+	}
+	"Please join our Steam Group."
+	{
+		"#format"		""
+		"en"			"Please join our Steam Group."
+	}
+	"You are already {racename}"
+	{
+		"#format"	"{1:s}"
+		"en"		"You are already {1}"
+	}
+	"You can now (changerace) instantly in spawn."
+	{
+		"#format"		""
+		"en"			"You can now (changerace) instantly in spawn."
+	}
+	"You must be in spawn to have instant race changing."
+	{
+		"#format"		""
+		"en"			"You must be in {green}spawn{default} to have instant race changing."
+	}
+	"You will be {racename} after death or spawn"
+	{
+		"#format"		"{1:s}"
+		"en"			"You will be {green}{1}{default} after death or spawn"
+	}
+	"Only in JailBreak Warcraft can you switch races instantly!"
+	{
+		"#format"		""
+		"en"			"Only in JailBreak Warcraft can you switch races instantly!"
+	}
+	"You are now {racename}."
+	{
+		"#format"		"{1:s}"
+		"en"			"You are now {1}."
+	}
+}
