@@ -22,13 +22,22 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_CommandHook");
 	LoadTranslations("w3s._War3Source_Engine_CSGO_Radar");
 	LoadTranslations("w3s._War3Source_Engine_Cyborg");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
-	LoadTranslations("");
+	LoadTranslations("w3s._War3Source_Engine_DatabaseSaveXP");
+	LoadTranslations("w3s._War3Source_Engine_DatabaseTop100");
+	LoadTranslations("w3s._War3Source_Engine_DeciSecondLoop_Timer");
+	LoadTranslations("w3s._War3Source_Engine_Dependency");
+	LoadTranslations("w3s._War3Source_Engine_Download_Control");
+	LoadTranslations("w3s._War3Source_Engine_GameData");
+	LoadTranslations("w3s._War3Source_Engine_HelpMenu");
+	LoadTranslations("w3s._War3Source_Engine_ItemClasses");
+	LoadTranslations("w3s._War3Source_Engine_ItemOwnerships");
+	// LoadTranslations("");
+	// LoadTranslations("");
+	// LoadTranslations("");
+	// LoadTranslations("");
+	// LoadTranslations("");
+	// LoadTranslations("");
+	// LoadTranslations("");
 
 	PrintToServer("[War3Source:EVO] %t","--------------------------OnPluginStart----------------------");
 
