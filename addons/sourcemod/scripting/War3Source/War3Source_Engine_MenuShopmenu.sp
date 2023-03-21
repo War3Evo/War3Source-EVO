@@ -15,7 +15,10 @@ new String:buyTombSound[256]; //="war3source/tomes.mp3";
 
 public War3Source_Engine_MenuShopmenu_OnPluginStart()
 {
-	hUseCategorysCvar=CreateConVar("war3_buyitems_category", "0", "Enable/Disable shopitem categorys", 0, true, 0.0, true, 1.0);
+	char buffer[128];
+	Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","Enable/Disable shopitem categorys");
+
+	hUseCategorysCvar=CreateConVar("war3_buyitems_category", "0", buffer, 0, true, 0.0, true, 1.0);
 }
 
 //public OnMapStart()
@@ -71,12 +74,12 @@ ShowMenuShopCategory(client)
 	//	gold = 0;
 
 	new String:title[300];
-	Format(title,sizeof(title),"[War3Source:EVO] Select an item category to browse. You have %d/%d items",GetClientItemsOwned(client),iGetMaxShopitemsPerPlayer(client));
+	Format(title,sizeof(title),"[War3Source:EVO] %T","Select an item category to browse. You have {itemsowned}/{maxitemsperplayer} items",GetClientItemsOwned(client),iGetMaxShopitemsPerPlayer(client));
 
 #if (GGAMETYPE == GGAME_TF2 || GGAMETYPE == GGAME_FOF)
-	Format(title,sizeof(title),"%s\n \n Your current balance: %d/%d gold.",title, gold, W3GetMaxGold(client));
+	Format(title,sizeof(title),"%s\n \n %T",title,"{min}/{max} gold.", client, gold, W3GetMaxGold(client));
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
-	Format(title,sizeof(title),"%s\n \n %d/%d gold $%d money",title, gold, W3GetMaxGold(client),GetCSMoney(client));
+	Format(title,sizeof(title),"%s\n \n %T",title,"{min}/{max} gold ${csmoney} money", client, gold, W3GetMaxGold(client),GetCSMoney(client));
 #endif
 	SetMenuTitle(shopMenu, title);
 
@@ -123,7 +126,8 @@ ShowMenuShopCategory(client)
 	DisplayMenu(shopMenu,client,20);
 }
 
-ShowMenuShop(client, const String:category[]="") {
+ShowMenuShop(client, const String:category[]="")
+{
 	SetTrans(client);
 	new Handle:shopMenu=CreateMenu(War3Source_ShopMenu_Selected);
 	SetMenuExitButton(shopMenu,true);
@@ -136,13 +140,13 @@ ShowMenuShop(client, const String:category[]="") {
 
 
 	new String:title[300];
-	Format(title,sizeof(title),"[War3Source:EVO] Select an item to buy. You have %d/%d items",GetClientItemsOwned(client),iGetMaxShopitemsPerPlayer(client));
+	Format(title,sizeof(title),"[War3Source:EVO] %T","Select an item to buy. You have {amount}/{amount} items",client,GetClientItemsOwned(client),iGetMaxShopitemsPerPlayer(client));
 #if (GGAMETYPE == GGAME_TF2 || GGAMETYPE == GGAME_FOF)
 	//Format(title,sizeof(title),"%s%T\n \n",title,"You have {amount} Gold",GetTrans(),gold);
 	//Format(title,sizeof(title),"%s\n \n You have %i Gold and [%i] Reserved Gold.",title, gold, ReservedGold);
-	Format(title,sizeof(title),"%s\n \n Your current balance: %d/%d gold.",title, gold, W3GetMaxGold(client));
+	Format(title,sizeof(title),"%s\n \n %T",title,"{min}/{max} gold.",client, gold, W3GetMaxGold(client));
 #elseif (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
-	Format(title,sizeof(title),"%s\n \n %d/%d gold $%d money",title, gold, W3GetMaxGold(client),GetCSMoney(client));
+	Format(title,sizeof(title),"%s\n \n %T",title,"{min}/{max} gold ${csmoney} money",client, gold, W3GetMaxGold(client),GetCSMoney(client));
 #endif
 
 	SetMenuTitle(shopMenu,title);
@@ -161,7 +165,9 @@ ShowMenuShop(client, const String:category[]="") {
 	//new BackButton=0;
 	if (useCategory)
 	{
-		AddMenuItem(shopMenu,"-1","[Return to Categories]");
+		new String:STRcrMenu[32];
+		Format(STRcrMenu,sizeof(STRcrMenu),"%T","[Return to Categories]",client);
+		AddMenuItem(shopMenu,"-1",STRcrMenu);
 	}
 
 	for(new x=1;x<=ItemsLoaded;x++)
@@ -186,11 +192,10 @@ ShowMenuShop(client, const String:category[]="") {
 		// Create a back button every 7 items
 #if (GGAMETYPE == GGAME_TF2)
 		if(!internal_W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden")&&internal_War3_TFIsItemClass(x,TF2_GetPlayerClass(client)))
-		{
 #else
 		if(!internal_W3IsItemDisabledGlobal(x)&&!W3ItemHasFlag(x,"hidden"))
-		{
 #endif
+		{
 			W3GetItemCategory(x, itemcategory, sizeof(itemcategory));
 
 			if ((!StrEqual(category, "") && StrEqual(category, itemcategory)) || (StrEqual(category, "")))
@@ -203,7 +208,7 @@ ShowMenuShop(client, const String:category[]="") {
 						Format(linestr,sizeof(linestr),">%s - $%d",itemname,cost);
 					}
 					else {
-						Format(linestr,sizeof(linestr),">%s - %d Gold",itemname,cost);
+						Format(linestr,sizeof(linestr),">{itemname} - {cost} Gold",itemname,cost);
 					}
 				}
 				else {
@@ -211,13 +216,13 @@ ShowMenuShop(client, const String:category[]="") {
 						Format(linestr,sizeof(linestr),"%s - $%d",itemname,cost);
 					}
 					else {
-						Format(linestr,sizeof(linestr),"%s - %d Gold",itemname,cost);
+						Format(linestr,sizeof(linestr),"{itemname} - {cost} Gold",itemname,cost);
 					}
 				}
 #if (GGAMETYPE == GGAME_TF2)
 				if(!bIsInSteamGroup[client]&&W3ItemHasFlag(x,"steamgroup"))
 				{
-					Format(linestr,sizeof(linestr),"%s *Steam Group Required*",linestr);
+					Format(linestr,sizeof(linestr),"%T","{steamgroup} *Steam Group Required*",client,linestr);
 					//AddMenuItem(shopMenu,itembuf,linestr,ITEMDRAW_DISABLED);
 					drawitemdisabled=true;
 					SteamGroupRequired=true;
@@ -229,7 +234,7 @@ ShowMenuShop(client, const String:category[]="") {
 					//AddMenuItem(crMenu,rbuf,rdisp,(minlevel<=W3GetTotalLevels(client)||StrEqual(steamid,"STEAM_0:1:35173666",false)?ITEMDRAW_DEFAULT:ITEMDRAW_DISABLED);
 					if(W3ItemHasFlag(x,"steamgroup"))
 					{
-						Format(linestr,sizeof(linestr),"%s <Steam Group Enabled>",linestr);
+						Format(linestr,sizeof(linestr),"%T","{steamgroup} <Steam Group Enabled>",client,linestr);
 					}
 					//AddMenuItem(shopMenu,itembuf,linestr,(W3IsItemDisabledForRace(War3_GetRace(client),x) || W3IsItemDisabledGlobal(x) || War3_GetOwnsItem(client,x))?ITEMDRAW_DISABLED:ITEMDRAW_DEFAULT);
 				}
@@ -254,7 +259,7 @@ ShowMenuShop(client, const String:category[]="") {
 #if (GGAMETYPE == GGAME_TF2)
 	if(SteamGroupRequired)
 	{
-		War3_ChatMessage(client,"Please join our Steam Group.");
+		War3_ChatMessage(client,"%T","Please join our Steam Group.",client);
 	}
 #endif
 	if (useCategory)
@@ -362,7 +367,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 				int TempCost=cost_num*tomect;
 				if(TempCost>bankplusgoldamount)
 				{
-					War3_ChatMessage(client,"You do not have enough money on hand + in the bank to buy that many tomes!");
+					War3_ChatMessage(client,"%T","You do not have enough money on hand + in the bank to buy that many tomes!",client);
 					return;
 				}
 				else
@@ -382,6 +387,56 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 					if(boughtnum>0)
 					{
 						int WithdrewAmount=boughtnum*cost_num;
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//  CONTINUE TRANSLATING HERE
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 						War3_ChatMessage(client,"Withdrew {green}%d {default}Gold from bank. New Balance: {green}%d {default}Gold.",WithdrewAmount,War3_GetGoldBank(client));
 						//tomect-=boughtnum;
 					}

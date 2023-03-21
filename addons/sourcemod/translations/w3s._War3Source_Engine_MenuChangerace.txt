@@ -122,11 +122,6 @@
 		"#format"	""
 		"en"		"XP failed to load! Please reconnect!"
 	}
-	"[Return to Categories]"
-	{
-		"#format"		""
-		"en"			"[Return to Categories]"
-	}
 	"(VIP Only)"
 	{
 		"#format"		""
@@ -141,11 +136,6 @@
 	{
 		"#format"		""
 		"en"			"(Steam Group)"
-	}
-	"Please join our Steam Group."
-	{
-		"#format"		""
-		"en"			"Please join our Steam Group."
 	}
 	"You are already {racename}"
 	{

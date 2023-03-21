@@ -18,4 +18,13 @@
 	{
 		"en"		"Previous"
 	}
+	"[Return to Categories]"
+	{
+		"en"			"[Return to Categories]"
+	}
+	"Please join our Steam Group."
+	{
+		"#format"		""
+		"en"			"Please join our Steam Group."
+	}
 }
