@@ -1,5 +1,7 @@
 // War3Source_Engine_MenuItemsinfo2.sp
 
+// TRANSLATED 3/21/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 /*
@@ -20,7 +22,7 @@ ShowMenu2Itemsinfo(client){
 	SetTrans(client);
 	new Handle:helpMenu=CreateMenu(ShowMenu2ItemsinfoSelected);
 	SetMenuExitButton(helpMenu,true);
-	SetMenuTitle(helpMenu,"%T","[War3Source:EVO] Shopmenu items",client);
+	SetMenuTitle(helpMenu,"[War3Source:EVO] %T","Shopmenu items 2",client);
 	decl String:str[64];
 	decl String:numstr[4];
 
@@ -69,7 +71,7 @@ public ShowMenu2Itemsinfo2(client,itemnum){
 
 
 
-	Format(str,sizeof(str),"%T\n%s","[War3Source:EVO] Item: {item} (identifier: {id})",client,str,shortname,str2);
+	Format(str,sizeof(str),"[War3Source:EVO] %T\n%s","Item: {item} (identifier: {id})",client,str,shortname,str2);
 
 	SetMenuTitle(helpMenu,str);
 

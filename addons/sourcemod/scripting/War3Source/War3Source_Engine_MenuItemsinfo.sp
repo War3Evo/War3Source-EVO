@@ -1,21 +1,6 @@
 // War3Source_Engine_MenuItemsinfo.sp
 
-//
-//
-//
-//
-//
-//  START NEXT TRANSLATIONS HERE 3/17/2023
-//
-//
-//
-//
-//
-//
-//
-//
-
-
+// TRANSLATED 3/21/2023
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 /*
@@ -38,7 +23,7 @@ ShowMenuItemsinfo(client){
 	SetTrans(client);
 	new Handle:helpMenu=CreateMenu(ShowMenuItemsinfoSelected);
 	SetMenuExitButton(helpMenu,true);
-	SetMenuTitle(helpMenu,"[War3Source:EVO] Shopmenu items");
+	SetMenuTitle(helpMenu,"[War3Source:EVO] %T","Shopmenu items",client);
 	decl String:str[64];
 	decl String:numstr[4];
 
@@ -87,13 +72,12 @@ public ShowMenuItemsinfo2(client,itemnum){
 
 
 
-	//Format(str,sizeof(str),"%T\n%s","[War3Source:EVO] Item: {item} (identifier: {id})",client,str,shortname,str2);
-	Format(str,sizeof(str),"%s[War3Source:EVO] Item: %s (identifier: %s)",str,shortname,str2);
+	//Format(str,sizeof(str),"%s[War3Source:EVO] Item: %s (identifier: %s)",str,shortname,str2);
+	Format(str,sizeof(str),"[War3Source:EVO] %T\n%s","Item: {item} (identifier: {id})",client,str,shortname,str2);
 
 	SetMenuTitle(helpMenu,str);
 
-	//Format(str,sizeof(str),"%T","Back",client);
-	Format(str,sizeof(str),"Back");
+	Format(str,sizeof(str),"%T","Back",client);
 
 	AddMenuItem(helpMenu,"-1",str);
 	DisplayMenu(helpMenu,client,MENU_TIME_FOREVER);

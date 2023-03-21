@@ -1,6 +1,6 @@
 // War3Source_Engine_MenuItemsinfo3.sp
 
-// SHOP MENU 3 ISN'T USED ... NOT TRANSLATED
+// TRANSLATED 3/21/2023
 
 /*
 public Plugin:myinfo=
@@ -19,7 +19,7 @@ public War3Source_Engine_MenuItemsinfo3_OnWar3Event(client)
 ShowMenu3Itemsinfo(client){
 	new Handle:helpMenu=CreateMenu(ShowMenu3ItemsinfoSelected);
 	SetMenuExitButton(helpMenu,true);
-	SetMenuTitle(helpMenu,"[War3Source:EVO] Shopmenu items");
+	SetMenuTitle(helpMenu,"[War3Source:EVO] %T","Shopmenu items 3",client);
 	decl String:str[64];
 	decl String:numstr[4];
 
@@ -65,9 +65,7 @@ public ShowMenu3Itemsinfo3(client,itemnum){
 	decl String:str3[1024];
 	W3GetItem3Desc(itemnum,str3,sizeof(str3));
 
-
-
-	Format(str,sizeof(str),"\n[War3Source:EVO] Item: %s (identifier: %s)\n%s",str,shortname,str3);
+	Format(str,sizeof(str),"[War3Source:EVO] %T","Item: {item} (identifier: {id}) {item3desc}",client,str,shortname,str3);
 
 	SetMenuTitle(helpMenu,str);
 

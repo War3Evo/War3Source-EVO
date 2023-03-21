@@ -32,7 +32,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_ItemClasses");
 	LoadTranslations("w3s._War3Source_Engine_ItemOwnerships");
 	LoadTranslations("w3s._War3Source_Engine_MenuChangerace");
-	// LoadTranslations("");
+	LoadTranslations("w3s._War3Source_Engine_MenuItemsinfos.txt");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");

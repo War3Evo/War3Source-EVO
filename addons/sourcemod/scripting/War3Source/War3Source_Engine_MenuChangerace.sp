@@ -401,7 +401,7 @@ public War3Source_CRMenu_SelCat(Handle:menu,MenuAction:action,client,selection)
 				SetMenuExitButton(crMenu,true);
 				Format(title,sizeof(title),"[War3Source:EVO] %T","Select your desired race",GetTrans());
 				Format(title,sizeof(title),"%s\n%T\n",title,"Category: {category}",GetTrans(),title,sItem);
-				SetMenuTitle(crMenu,"%T",title);
+				SetMenuTitle(crMenu,"%s",title);
 				// Iteriate through the races and print them out
 				int racelist[MAXRACES];
 				int racedisplay=GetRaceList(racelist);
