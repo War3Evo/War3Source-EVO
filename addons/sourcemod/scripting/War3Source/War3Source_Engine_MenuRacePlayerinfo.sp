@@ -1,5 +1,7 @@
 // War3Source_Engine_MenuRacePlayerinfo.sp
 
+// TRANSLATED 3/21/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 /*
@@ -19,12 +21,15 @@ Handle ShowTargetSelfPlayerItemsCvar;
 
 public War3Source_Engine_MenuRacePlayerinfo_OnPluginStart()
 {
+	char buffer[128];
+	
 	//CreateConVar("MenuRacePlayerInfo",PLUGIN_VERSION,"[War3Source:EVO] Menu Core",FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 	// No Spendskill level restrictions on non-ultimates (Requires mapchange)
-	ShowOtherPlayerItemsCvar=CreateConVar("war3_show_playerinfo_other_player_items","1","0 disables showing other players items using playerinfo. [default 1]");
+	Format(buffer, sizeof(buffer), "[War3Source:EVO] %T","0 disables showing other players items using playerinfo. [default 1]", LANG_SERVER);
+	ShowOtherPlayerItemsCvar=CreateConVar("war3_show_playerinfo_other_player_items","1",buffer);
 	//war3_show_playerinfo_targetself_items 0
-	ShowTargetSelfPlayerItemsCvar=CreateConVar("war3_show_playerinfo_targetself_items","1","0 disables showing targeting yourself items using playerinfo. [default 1]");
-
+	Format(buffer, sizeof(buffer), "[War3Source:EVO] %T","0 disables showing targeting yourself items using playerinfo. [default 1]", LANG_SERVER);
+	ShowTargetSelfPlayerItemsCvar=CreateConVar("war3_show_playerinfo_targetself_items","1",buffer);
 }			//War3_playertargetItemMenu
 
 public War3Source_Engine_MenuRacePlayerinfo_OnWar3Event(W3EVENT:event,client){
@@ -61,7 +66,7 @@ ShowMenu3Raceinfo(client)
 	SetTrans(client);
 	Handle hMenu=CreateMenu(War3_raceinfoSelected);
 	SetMenuExitButton(hMenu,true);
-	SetMenuTitle(hMenu,"%T\n ","[War3Source:EVO] Select a job for more info",client);
+	SetMenuTitle(hMenu,"[War3Source:EVO] %T\n ","Select a race for more info",client);
 	// Iteriate through the races and print them out
 
 	char rbuf[4];
@@ -167,7 +172,7 @@ public War3_ShowParticularRaceInfoMenu(client,raceid)
 	char selectioninfo[32];
 
 
-	SetMenuTitle(hMenu,"%T\n \n","[War3Source:EVO] Information for job: {racename} (LVL {amount}/{amount})",client,racename,War3_GetLevel(client,raceid),GetRaceMaxLevel(raceid));
+	SetMenuTitle(hMenu,"[War3Source:EVO] %T\n \n","Information for job: {racename} (LVL {amount}/{amount})",client,racename,War3_GetLevel(client,raceid),GetRaceMaxLevel(raceid));
 
 
 
@@ -199,7 +204,7 @@ public War3_ShowParticularRaceInfoMenu(client,raceid)
 				Format(str,sizeof(str),"%T","{skillname} (LVL {amount}/{amount})",client,skillname,level,GetRaceSkillMaxLevel(raceid,x));
 			}
 
-			Format(selectioninfo,sizeof(selectioninfo),"%d,skill,%d",raceid,x);
+			Format(selectioninfo,sizeof(selectioninfo),"%d,skill,%d",raceid,x); // DONT TRANSLATE..does not display to player
 
 
 			if(raceinfoshowskillnumber[client]==x)
@@ -240,9 +245,9 @@ public War3_ShowParticularRaceInfoMenu(client,raceid)
 
 	if(CanSelectRace(client,raceid,true))
 	{
-		Format(selectioninfo,sizeof(selectioninfo),"%d,changejob,%d",7,raceid);
+		Format(selectioninfo,sizeof(selectioninfo),"%d,changerace,%d",7,raceid);
 		char str[100];
-		Format(str,sizeof(str),"%T \n","Change to this Job",client);
+		Format(str,sizeof(str),"%T \n","Change to this race",client);
 		AddMenuItem(hMenu,selectioninfo,str);
 	}
 
@@ -310,7 +315,7 @@ public War3_particularraceinfoSelected(Handle:menu,MenuAction:action,client,sele
 			//else if(StrEqual(exploded[1],"jobinfo")){
 			//	ShowMenu3Raceinfo(client);
 			//}
-			else if(StrEqual(exploded[1],"changejob")){
+			else if(StrEqual(exploded[1],"changerace")){
 				int jobnum=StringToInt(exploded[2]);
 				//char buf[32];
 				//GetRaceName(jobnum,buf,sizeof(buf));
@@ -367,7 +372,7 @@ War3_playersWhoAreThisRaceMenu(client,raceid)
 	char racename[32];
 	GetRaceName(raceid,racename,sizeof(racename));
 
-	SetMenuTitle(hMenu,"%T\n \n","[War3Source:EVO] People who are job: {racename}",client,racename);
+	SetMenuTitle(hMenu,"[War3Source:EVO] %T\n \n","People who are race: {racename}",client,racename);
 
 	char playername[64];
 	char war3playerbuf[4];
@@ -450,7 +455,7 @@ War3_PlayerInfoMenu(client,String:arg[]){
 			//redundant code..maybe we should optmize?
 			Handle hMenu=CreateMenu(War3_playerinfoSelected1);
 			SetMenuExitButton(hMenu,true);
-			SetMenuTitle(hMenu,"%T\n ","[War3Source:EVO] Select a player to view its information",client);
+			SetMenuTitle(hMenu,"[War3Source:EVO] %T\n ","Select a player to view its information",client);
 			// Iteriate through the players and print them out
 			char playername[32];
 			char war3playerbuf[4];
@@ -464,8 +469,8 @@ War3_PlayerInfoMenu(client,String:arg[]){
 				GetRaceName(GetRace(clientindex),racename,sizeof(racename));
 
 				// Replace No Race w/ No Job
-				if(StrEqual("No Race",racename,true))
-					strcopy(racename, sizeof(racename), "No Job");
+				//if(StrEqual("No Race",racename,true))
+				//	strcopy(racename, sizeof(racename), "No Job");
 
 				if(GetRace(clientindex)>0)
 				{
@@ -564,16 +569,16 @@ War3_playertargetMenu(client,target)
 
 	char title[3000];
 
-	Format(title,sizeof(title),"%T\n \n","[War3Source:EVO] Information for {player}",client,targetname);
+	Format(title,sizeof(title),"[War3Source:EVO] %T\n \n","Information for {player}",client,targetname);
 	Format(title,sizeof(title),"%s\n \nTotal levels: %d ",title,GetClientTotalLevels(target));
 
 	if(level<GetRaceMaxLevel(raceid)){
-		Format(title,sizeof(title),"%s%T",title,"Current Job: {racename} (LVL {amount}/{amount}) XP: {amount}/{amount}",client,racename,level,GetRaceMaxLevel(raceid),GetXP(target,raceid),W3GetReqXP(level+1));
+		Format(title,sizeof(title),"%s%T",title,"Current Race: {racename} (LVL {amount}/{amount}) XP: {amount}/{amount}",client,racename,level,GetRaceMaxLevel(raceid),GetXP(target,raceid),W3GetReqXP(level+1));
 	}else{
-		Format(title,sizeof(title),"%s%T",title,"Current Job: {racename} (LVL {amount}/{amount}) XP: {amount}",client,racename,level,GetRaceMaxLevel(raceid),GetXP(target,raceid));
+		Format(title,sizeof(title),"%s%T",title,"Current Race: {racename} (LVL {amount}/{amount}) XP: {amount}",client,racename,level,GetRaceMaxLevel(raceid),GetXP(target,raceid));
 	}
 	//Format(title,sizeof(title),"%s\n",title);
-	Format(title,sizeof(title),"%s\nRace kdr: %.2f\n",title,GetRaceKDR(raceid));
+	Format(title,sizeof(title),"%s\n%T",title,"Race kdr: {kdr}",client,GetRaceKDR(raceid));
 
 	int SkillCount = GetRaceSkillCount(raceid);
 	for(int x=1;x<=SkillCount;x++)
@@ -672,10 +677,10 @@ War3_playertargetMenu(client,target)
 	AddMenuItem(hMenu,buf,str);
 
 	char selectionDisplayBuff[64];
-	Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T","See {racename} Job information",client,racename)  ;
+	Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T","See {racename} Race information",client,racename)  ;
 	AddMenuItem(hMenu,buf,selectionDisplayBuff);
 
-	Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T","See all players with job {racename}",client,racename) ;
+	Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T","See all players with Race {racename}",client,racename) ;
 	AddMenuItem(hMenu,buf,selectionDisplayBuff);
 
 	Format(selectionDisplayBuff,sizeof(selectionDisplayBuff),"%T","Spectate Player",client) ;
