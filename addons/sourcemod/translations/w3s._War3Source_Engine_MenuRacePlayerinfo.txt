@@ -1,0 +1,180 @@
+// w3s._War3Source_Engine_MenuRacePlayerinfo.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+//
+// }
+
+"Phrases"
+{
+	"0 disables showing other players items using playerinfo. [default 1]"
+	{
+		"#format"		""
+		"en"			"0 disables showing other players items using playerinfo. [default 1]"
+	}
+	"0 disables showing targeting yourself items using playerinfo. [default 1]"
+	{
+		"#format"		""
+		"en"			"0 disables showing targeting yourself items using playerinfo. [default 1]"
+	}
+	"Select a race for more info"
+	{
+		"#format"		""
+		"en"			"Select a race for more info"
+	}
+	"Information for job: {racename} (LVL {amount}/{amount})"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"Information for job: {1} (LVL {2}/{3})"
+	}
+	"Ultimate: {skillname} (LVL {amount}/{amount})"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"Ultimate: {1} (LVL {2}/{3})"
+	}
+	"{skillname} (LVL {amount}/{amount})"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"{1} (LVL {2}/{3})"
+	}
+	"Change to this race"
+	{
+		"#format"		""
+		"en"			"Change to this race"
+	}
+	"People who are race: {racename}"
+	{
+		"#format"		"{1:s}"
+		"en"			"People who are race: {1}"
+	}
+	"{player} (Level {amount}) [{team}]"
+	{
+		"#format"		"{1:s},{2:d},{3:s}"
+		"en"			"{1} (Level {2}) [{3}]"
+	}
+	"Player has left the server"
+	{
+		"#format"		""
+		"en"			"Player has left the server"
+	}
+	"Select a player to view its information"
+	{
+		"#format"		""
+		"en"			"Select a player to view its information"
+	}
+	"{player} ({racename} LVL {amount})"
+	{
+		"#format"		"{1:s},{2:s},{3:d}"
+		"en"			"{1} ({2} LVL {3})"
+	}
+	"{player} ({racename})"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1} ({2})"
+	}
+	"Player has left the server"
+	{
+		"#format"		""
+		"en"			"Player has left the server"
+	}
+	"Information for {player}"
+	{
+		"#format"		"{1:s}"
+		"en"			"Information for {1}"
+	}
+	"Current Race: {racename} (LVL {amount}/{amount}) XP: {amount}/{amount}"
+	{
+		"#format"		"{1:s},{2:d},{3:d},{4:d},{5:d}"
+		"en"			"Current Race: {1} (LVL {2}/{3}) XP: {4}/{5}"
+	}
+	"Current Race: {racename} (LVL {amount}/{amount}) XP: {amount}"
+	{
+		"#format"		"{1:s},{2:d},{3:d},{4:d}"
+		"en"			"Current Race: {1} (LVL {2}/{3}) XP: {4}"
+	}
+	"Race kdr: {kdr}"
+	{
+		"#format"		"{1:.2f}"
+		"en"			"Race kdr: %.2f\n"
+	}
+	"Items:"
+	{
+		"#format"		""
+		"en"			"Items:"
+	}
+	"Physical Armor: {amount} (+-{amount}%)"
+	{
+		"#format"		"{1:.1f},{2:s},{3:.1f}"
+		"en"			"Physical Armor: {1} ({2}{3}%)"
+	}
+	"PImagicArmor: {amount} (+-{amount}%)"
+	{
+		"#format"		"{1:.1f},{2:s},{3:.1f}"
+		"en"			"PImagicArmor: {1} ({2}{3}%)"
+	}
+	"See {racename} Race information"
+	{
+		"#format"		"{1:s}"
+		"en"			"See {1} Race information"
+	}
+	"See all players with Race {racename}"
+	{
+		"#format"		"{1:s}"
+		"en"			"See all players with Race {1}"
+	}
+	"Spectate Player"
+	{
+		"#format"		""
+		"en"			"Spectate Player"
+	}
+	"Refresh"
+	{
+		"#format"		""
+		"en"			"Refresh"
+	}
+	"Player Not Alive"
+	{
+		"#format"		""
+		"en"			"Player Not Alive"
+	}
+}
