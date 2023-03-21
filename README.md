@@ -45,7 +45,7 @@ website at [War3Evo.info](http://www.war3evo.info/).
 ### Software Requirements
 * Steam Server (SteamCMD) - https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD
 * MetaMod - https://www.metamodsource.net/downloads.php?branch=stable
-* SourceMod - https://www.sourcemod.net/downloads.php?branch=stable
+* SourceMod requires 1.9 to compile - Runs on the latest version - https://www.sourcemod.net/downloads.php?branch=stable
 * War3Source-EVo - https://github.com/War3Evo/War3Source-EVO
 
 ### Steam Server Requirements
