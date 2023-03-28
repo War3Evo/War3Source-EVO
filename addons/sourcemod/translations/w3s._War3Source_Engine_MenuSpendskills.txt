@@ -1,0 +1,78 @@
+
+// w3s._War3Source_Engine_MenuSpendskills.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+//
+// }
+
+"Phrases"
+{
+	"Set to 1 to require no limit on non-ultimate spendskills"
+	{
+		"en"			"Set to 1 to require no limit on non-ultimate spendskills"
+	}
+	"Ultimate: {skillname} [Requires {level} lvl on {skillname2}]"
+	{
+		"#format"		"{1:s},{2:d},{3:s}"
+		"en"			"Ultimate: {1} [Requires {2} lvl on {3}]"
+	}
+	"{skillname} [Requires {level} lvl on {skillname2}]"
+	{
+		"#format"		"{1:s},{2:d},{3:s}"
+		"en"			"{1} [Requires {2} lvl on {3}]"
+	}
+	"You do not have any skill points to spend, if you want to reset your skills use resetskills"
+	{
+		"en"			"You do not have any skill points to spend, if you want to reset your skills use resetskills"
+	}
+	"Select your desired skill. ({skillcount}/{level})"
+	{
+		"#format"		"{1:d},{2:d}"
+		"en"			"Select your desired skill. ({1}/{2})"
+	}
+	"no description"
+	{
+		"en"			"no description"	
+	}
+}

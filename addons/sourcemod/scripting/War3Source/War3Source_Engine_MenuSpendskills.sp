@@ -18,7 +18,9 @@ new Handle:NoSpendSkillsLimitCvar;
 public War3Source_Engine_MenuSpendskills_OnPluginStart()
 {
 	// No Spendskill level restrictions on non-ultimates (Requires mapchange)
-	NoSpendSkillsLimitCvar=CreateConVar("war3_no_spendskills_limit","0","Set to 1 to require no limit on non-ultimate spendskills");
+	decl String:ccvbufferz[128];
+	Format(ccvbufferz, sizeof(ccvbufferz), "%t","Set to 1 to require no limit on non-ultimate spendskills");
+	NoSpendSkillsLimitCvar=CreateConVar("war3_no_spendskills_limit","0",ccvbufferz);
 }
 
 public War3Source_Engine_MenuSpendskills_OnWar3Event(client)
@@ -50,9 +52,9 @@ stock bool:HasDependency(client,race,skill,String:buffer[],maxlen,bool:is_ult)
 				decl String:skillname2[64]; // depending skill
 				GetRaceSkillName(race,dependencyID,skillname2,sizeof(skillname2));
 				if(is_ult)
-					Format(buffer,maxlen,"Ultimate: %s [Requires %d lvl on %s]",skillname,(requiredLVL-currentLVL),skillname2);
+					Format(buffer,maxlen,"%T","Ultimate: {skillname} [Requires {level} lvl on {skillname2}]",client,skillname,(requiredLVL-currentLVL),skillname2);
 				else
-					Format(buffer,maxlen,"%s [Requires %d lvl on %s]",skillname,(requiredLVL-currentLVL),skillname2);
+					Format(buffer,maxlen,"%T","{skillname} [Requires {level} lvl on {skillname2}]",client,skillname,(requiredLVL-currentLVL),skillname2);
 				return true;
 			}
 		}
@@ -68,10 +70,10 @@ War3Source_SkillMenu(client)
 	{
 		SetTrans(client);
 		new race_num=GetRace(client);
-		if(!(GetLevelsSpent(client,race_num)<War3_GetLevel(client,race_num))){
+		if(!(GetLevelsSpent(client,race_num)<War3_GetLevel(client,race_num)))
+		{
 			War3_ChatMessage(client,"%T","You do not have any skill points to spend, if you want to reset your skills use resetskills",client);
 		}
-
 		else if(race_num>0)
 		{
 			new Handle:sMenu=CreateMenu(War3Source_SMenu_Selected);
@@ -80,7 +82,7 @@ War3Source_SkillMenu(client)
 			SetMenuExitButton(sMenu,true);
 			SetMenuExitBackButton(sMenu,true); //SetMenuExitButton
 			SetMenuPagination(sMenu,3);
-			SetMenuTitle(sMenu,"%T\n \n","[War3Source:EVO] Select your desired skill. ({amount}/{amount})",client,skillcount,level);
+			SetMenuTitle(sMenu,"[War3Source:EVO] %T\n \n","Select your desired skill. ({skillcount}/{level})",client,skillcount,level);
 			decl String:skillname[64];
 			new curskilllevel;
 
@@ -122,7 +124,7 @@ War3Source_SkillMenu(client)
 								}
 								else
 								{
-									Format(str,sizeof(str),"%s:\nno description",buf);
+									Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 									AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
 								}
 							}
@@ -144,7 +146,7 @@ War3Source_SkillMenu(client)
 										}
 										else
 										{
-											Format(str,sizeof(str),"%s:\nno description",buf);
+											Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 											AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
 										}
 									}
@@ -165,7 +167,7 @@ War3Source_SkillMenu(client)
 											}
 											else
 											{
-												Format(str,sizeof(str),"%s:\nno description",buf);
+												Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 												AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
 											}
 										}
@@ -184,7 +186,7 @@ War3Source_SkillMenu(client)
 											}
 											else
 											{
-												Format(str,sizeof(str),"%s:\nno description",buf);
+												Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 												AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
 											}
 										}
@@ -194,6 +196,34 @@ War3Source_SkillMenu(client)
 						else
 						{
 							// ULTIMATE SKILL LISTING
+
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 							NEED TO FINISH BELOW WITH THE SAME TASK AS ABOVE
+// 
+//							- FINISH TRANSLATIONS 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 							//if(level>=curskilllevel*2+1+){
 							Format(sbuf,sizeof(sbuf),"%d",x);
