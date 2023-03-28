@@ -1,3 +1,4 @@
+
 // w3s._War3Source_Engine_MenuShopmenu.txt
 //
 // SetTrans(client) right before calling a function that has no client
@@ -97,204 +98,64 @@
 		"#format"		""
 		"en"			"You do not have enough money on hand + in the bank to buy that many tomes!"
 	}
-	""
+	"Withdrew {WithdrewAmount} Gold from bank. New Balance: {War3_GetGoldBank} Gold."
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s},{2:d}"
+		"en"			"Withdrew {green}{1} {default}Gold from bank. New Balance: {green}{2} {default}Gold."
 	}
-	""
+	"{amount} Tomes of Experience"
 	{
-		"#format"		""
-		"en"			""
+		"#format"	"{1:d}"
+		"en"		"{1} Tomes of Experience"
 	}
-	""
+	"{itemname} is disabled"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s}"
+		"en"			"{1} is disabled"
 	}
-	""
+	"{itemname} is disabled for {racename}"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1} is disabled for {2}"
 	}
-	""
+	"You already own {itemname}"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s}"
+		"en"			"You already own {1}"
 	}
-	""
+	"You cannot afford {itemname}"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s}"
+		"en"			"You cannot afford {1}"
 	}
-	""
+	"You have {cred} Gold. It costs {cost_num} Gold."
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d},{2:d}"
+		"en"			"You have {1} Gold. It costs {2} Gold."
 	}
-	""
+	"You have successfully purchased {itemname}"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s}"
+		"en"			"You have successfully purchased {1}"
 	}
-	""
+	"You have gained {amount} XP"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d}"
+		"en"			"You have gained {1} XP"
 	}
-	""
+	"You already have a max of {maxitems} items. Choose an item to replace with {itemname}. You will not get gold back"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d},{2:s}"
+		"en"			"You already have a max of {1} items. Choose an item to replace with {2}. You will not get gold back"
 	}
-	""
+	"Your current balance on hand is {gold}/{maxgold} Gold"
 	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:d},{2:d}"
+		"en"			"Your current balance on hand is {1}/{2} Gold"
 	}
-	""
+	"You have successfully purchased {itemname}"
 	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
+		"#format"		"{1:s}"
+		"en"			"You have successfully purchased {1}"
 	}
 }

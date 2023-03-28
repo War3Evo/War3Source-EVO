@@ -1,5 +1,7 @@
 // War3Source_Engine_MenuShopmenu.sp
 
+// TRANSLATED
+
 /*
 public Plugin:myinfo=
 {
@@ -388,56 +390,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 					{
 						int WithdrewAmount=boughtnum*cost_num;
 
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//  CONTINUE TRANSLATING HERE
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-						War3_ChatMessage(client,"Withdrew {green}%d {default}Gold from bank. New Balance: {green}%d {default}Gold.",WithdrewAmount,War3_GetGoldBank(client));
+						War3_ChatMessage(client,"%T","Withdrew {WithdrewAmount} Gold from bank. New Balance: {War3_GetGoldBank} Gold.", client, WithdrewAmount, War3_GetGoldBank(client));
 						//tomect-=boughtnum;
 					}
 					if(tomect>1)
@@ -449,7 +402,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 
 
 				// buy more than one tome
-				Format(itemname,sizeof(itemname),"%d Tomes of Experience",tomect);
+				Format(itemname,sizeof(itemname),"%T","{amount} Tomes of Experience",client,tomect);
 				//cost_num*=tomect;
 			}
 		}
@@ -465,7 +418,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 		int race=GetRace(client);
 		if(internal_W3IsItemDisabledGlobal(item))
 		{
-			War3_ChatMessage(client,"%s is disabled",itemname);
+			War3_ChatMessage(client,"%T","{itemname} is disabled",client,itemname);
 			canbuy=false;
 		}
 
@@ -473,19 +426,19 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 		{
 			char racename[32];
 			GetRaceName(race,racename,sizeof(racename));
-			War3_ChatMessage(client,"You may not purchase %s when you are %s",itemname,racename);
+			War3_ChatMessage(client,"%T","You may not purchase {itemname} when you are {racename}",client,itemname,racename);
 			canbuy=false;
 		}
 		else if(GetOwnsItem(client,item))
 		{
-			War3_ChatMessage(client,"You already own %s",itemname);
+			War3_ChatMessage(client,"%T","You already own {itemname}",client,itemname);
 			canbuy=false;
 		}
 		else if((W3IsItemCSmoney(item)?money:cred)<cost_num)
 		{
-			War3_ChatMessage(client,"You cannot afford %s",itemname);
+			War3_ChatMessage(client,"%T","You cannot afford {itemname}",client,itemname);
 			if(W3IsItemCSmoney(item)==false)
-				War3_ChatMessage(client,"You have %i Gold. It costs %i Gold.",cred,cost_num);
+				War3_ChatMessage(client,"%T","You have {cred} Gold. It costs {cost_num} Gold.",client,cred,cost_num);
 			if(reshowmenu && !IsFakeClient(client)) {
 			bool useCategory = GetConVarBool(hUseCategorysCvar);
 			if (useCategory)
@@ -523,7 +476,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 				//War3_SetGold(client,cred-cost_num);
 				SetPlayerProp(client, PlayerGold, (cred-cost_num));
 			}
-			War3_ChatMessage(client,"You have successfully purchased %s",itemname);
+			War3_ChatMessage(client,"%T","You have successfully purchased {itemname}",client,itemname);
 
 			if(tomecount>1)
 			{
@@ -563,7 +516,7 @@ War3_TriedToBuyItem(client,item,bool:reshowmenu=true,tomecount=0) {
 				SetXP(client,race,GetXP(client,race)+add_xp);
 				W3DoLevelCheck(client);
 				SetOwnsItem(client,item,false);
-				War3_ChatMessage(client,"+{amount} XP",add_xp);
+				War3_ChatMessage(client,"%T","You have gained {amount} XP",client,add_xp);
 				War3_ShowXP(client);
 				//DP("first");
 			}
@@ -586,7 +539,7 @@ War3M_ExceededMaxItemsMenuBuy(client)
 	char itemname[64];
 	W3GetItemName(WantsToBuy[client],itemname,sizeof(itemname));
 
-	SetMenuTitle(hMenu,"[War3Source:EVO] You already have a max of %d items. Choose an item to replace with %s. You will not get gold back",iGetMaxShopitemsPerPlayer(client),itemname);
+	SetMenuTitle(hMenu,"[War3Source:EVO] %T\n","You already have a max of {maxitems} items. Choose an item to replace with {itemname}. You will not get gold back",client,iGetMaxShopitemsPerPlayer(client),itemname);
 
 	char itembuf[4];
 	char linestr[96];
@@ -632,9 +585,9 @@ public OnSelectExceededMaxItemsMenuBuy(Handle:menu,MenuAction:action,client,sele
 					GetItemName(WantsToBuy[client],itemname,sizeof(itemname));
 
 					if((W3IsItemCSmoney(WantsToBuy[client])?money:cred)<cost_num) {
-						War3_ChatMessage(client,"You cannot afford %s",itemname);
+						War3_ChatMessage(client,"%T","You cannot afford {itemname}",client,itemname);
 						if(W3IsItemCSmoney(WantsToBuy[client])==false)
-							War3_ChatMessage(client,"Your current balance on hand is %d/%d Gold.",cred,W3GetMaxGold(client));
+							War3_ChatMessage(client,"%T","Your current balance on hand is {gold}/{maxgold} Gold",client,cred,W3GetMaxGold(client));
 							//War3_ChatMessage(client,"You have %d/%d Gold and [%d] Reserved Gold.",cred,W3GetMaxGold(client),ReservedGold);
 						bool useCategory = GetConVarBool(hUseCategorysCvar);
 						if (useCategory)
@@ -654,7 +607,7 @@ public OnSelectExceededMaxItemsMenuBuy(Handle:menu,MenuAction:action,client,sele
 							//cred = cred + ReservedGold;
 							War3_SetGold(client,cred-cost_num);
 						}
-						War3_ChatMessage(client,"You have successfully purchased %s",itemname);
+						War3_ChatMessage(client,"%T","You have successfully purchased {itemname}",client,itemname);
 
 						internal_W3SetVar(TheItemBoughtOrLost,WantsToBuy[client]);
 						DoFwd_War3_Event(DoForwardClientBoughtItem,client); //old item
