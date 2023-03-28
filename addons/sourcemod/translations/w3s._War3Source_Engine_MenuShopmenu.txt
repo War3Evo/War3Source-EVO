@@ -186,6 +186,122 @@
 		"en"			"You already have a max of {1} items. Choose an item to replace with {2}. You will not get Diamonds back"
 	}
 	// War3Source_Engine_MenuShopmenu3.sp
-	
-
+	"Select an item category to browse. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"#format"		"{1:d},{2:d}"
+		"en"			"Select an item category to browse. You have {1}/{2} items"
+	}
+	"You have {amount} Platinum."
+	{
+		"#format"		"{1:d}"
+		"en"			"You have {1} Platinum."
+	}
+	"Current race: {racename}"
+	{
+		"#format"		"{1:s}"
+		"en"			"Current race: {1}"
+	}
+	"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!"
+	{
+		"en"			"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!"
+	}
+	"Red - raw power/offense"
+	{
+		"en"			"Red - raw power/offense"
+	}
+	"Yellow - modifiers"
+	{
+		"en"			"Yellow - modifiers"
+	}
+	"Blue - recovery"
+	{
+		"en"			"Blue - recovery"
+	}
+	"Orange - matching red and yellow"
+	{
+		"en"			"Orange - matching red and yellow"
+	}
+	"Green - matching yellow and blue"
+	{
+		"en"			"Green - matching yellow and blue"
+	}
+	"Purple - matching blue and red"
+	{
+		"en"			"Purple - matching blue and red"
+	}
+	"Select an [{category}] item to buy. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"Select an [{1}] item to buy. You have {2}/{3} items"
+	}
+	"Select an item to buy. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"#format"		"{1:d},{2:d}"
+		"en"			"Select an item to buy. You have {1}/{2} items"
+	}
+	"You have {amount} Platinum"
+	{
+		"#format"		"{1:d}"
+		"en"			"You have {1} Platinum"
+	}
+	">{itemname} - {amount} Platinum"
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			">{1} - {2} Platinum"
+	}
+	"{itemname} - {amount} Platinum"
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			"{1} - {2} Platinum"
+	}
+	"You already have a [{item}] item. Choose an item to replace with [{item}] {otheritem}. You will not get Platinum back!"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"You already have a [{1}] item.\nChoose an item to replace with [{2}] {3}.\nYou will not get Platinum back!"
+	}
+	"You can only have one [{item}] item per race."
+	{
+		"#format"		"{1:s}"
+		"en"			"You can only have one [{1}] item per race."
+	}
+	"You already have a max of {itemcount} items. Choose an item to replace with [{item}] {otheritem}. You will not get Platinum back"
+	{
+		"#format"		"{1:d},{2:s},{3:s}"
+		"en"			"You already have a max of {1} items.\nChoose an item to replace with [{2}] {3}.\nYou will not get Platinum back"
+	}
+	"You can only have one [{itemname}] item per race."
+	{
+		"#format"		"{1:s}"
+		"en"			"You can only have one [{1}] item per race."
+	}
+	// \nInformation for {playername}\n \n{racename} has:\n \n
+	"Information for {playername} {racename} has:"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"\nInformation for {1}\n \n{2} has:\n \n"
+	}
+	"{TmpStr}: lvl {itemlvl}/{maxlvl}"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"{1}: lvl {2}/{3}"
+	}
+	"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}"
+	{
+		"#format"		"{1:s},{2:d},{3:d},{4:d},{5:d}"
+		"en"			"{1}: lvl {2}/{3} xp: {4}/{5}"
+	}
+	"BUY [{category}] {str}?\n\n{str3}"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"BUY [{1}] {2}?\n\n{3}"
+	}
+	"Costs: {cost} Platinum"
+	{
+		"#format"		"{1:d}"
+		"en"			"Costs: {1} Platinum"
+	}
+	"Buy"
+	{
+		"en"			"Buy"
+	}
 }

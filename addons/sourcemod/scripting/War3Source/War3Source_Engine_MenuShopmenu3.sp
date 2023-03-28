@@ -1,6 +1,6 @@
 // War3Source_Engine_MenuShopmenu3.sp
 
-// SHOP MENU 3 ISN'T USED ... NOT TRANSLATED
+// TRANSLATED to w3s._War3Source_Engine_MenuShopmenu.txt
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
@@ -50,17 +50,17 @@ ShowMenu3ShopCategory(client)
 	new platinum = War3_GetPlatinum(client);
 
 	new String:title[300];
-	Format(title,sizeof(title),"\nSelect an item category to browse. You have %d/%d items",GetClientItems3Owned(client),GetMaxShopitems3PerPlayer());
+	Format(title,sizeof(title),"%T","Select an item category to browse. You have {itemsowned}/{maxitemsperplayer} items",client,GetClientItems3Owned(client),GetMaxShopitems3PerPlayer());
 
-	Format(title,sizeof(title),"%s\n \n You have %i Platinum.",title, platinum);
+	Format(title,sizeof(title),"%s%T\n \n ",title,"You have {amount} Platinum.",client, title, platinum);
 
 	new String:racename[32];
 	new race=GetRace(client);
 	GetRaceName(race,racename,sizeof(racename));
 
-	Format(title,sizeof(title),"%s\n Current job: %s\n",title, racename);
-	Format(title,sizeof(title),"%s\n GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!\n",title);
-	Format(title,sizeof(title),"%s\n GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!\n",title);
+	Format(title,sizeof(title),"%s\n %T\n",title,"Current race: {racename}",client, racename);
+	Format(title,sizeof(title),"%s\n %T\n",title,"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!",client);
+	Format(title,sizeof(title),"%s\n %T\n",title,"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!",client);
 	SetMenuTitle(shopMenu, title);
 
 	new Handle:h_ItemCategorys = CreateArray(ByteCountToCells(64));
@@ -82,33 +82,40 @@ ShowMenu3ShopCategory(client)
 	}
 
 	// fill the menu with the categorys
+	decl String:scatbufferz[128];
 	while(GetArraySize(h_ItemCategorys))
 	{
 		GetArrayString(h_ItemCategorys, 0, category, sizeof(category));
 
 		if(StrEqual(category,"Red"))
 		{
-			AddMenuItem(shopMenu, category, "Red - raw power/offense", ITEMDRAW_DEFAULT);
+			Format(scatbufferz, sizeof(scatbufferz), "%T","Red - raw power/offense",client);
+			AddMenuItem(shopMenu, category, scatbufferz, ITEMDRAW_DEFAULT);
 		}
 		else if(StrEqual(category,"Yellow"))
 		{
-			AddMenuItem(shopMenu, category, "Yellow - modifiers", ITEMDRAW_DEFAULT);
+			Format(scatbufferz, sizeof(scatbufferz), "%T","Yellow - modifiers",client);
+			AddMenuItem(shopMenu, category, scatbufferz, ITEMDRAW_DEFAULT);
 		}
 		else if(StrEqual(category,"Blue"))
 		{
-			AddMenuItem(shopMenu, category, "Blue - recovery", ITEMDRAW_DEFAULT);
+			Format(scatbufferz, sizeof(scatbufferz), "%T","Blue - recovery",client);
+			AddMenuItem(shopMenu, category, scatbufferz, ITEMDRAW_DEFAULT);
 		}
 		else if(StrEqual(category,"Orange"))
 		{
-			AddMenuItem(shopMenu, category, "Orange - matching red and yellow", ITEMDRAW_DEFAULT);
+			Format(scatbufferz, sizeof(scatbufferz), "%T","Orange - matching red and yellow",client);
+			AddMenuItem(shopMenu, category, scatbufferz, ITEMDRAW_DEFAULT);
 		}
 		else if(StrEqual(category,"Green"))
 		{
-			AddMenuItem(shopMenu, category, "Green - matching yellow and blue", ITEMDRAW_DEFAULT);
+			Format(scatbufferz, sizeof(scatbufferz), "%T","Green - matching yellow and blue",client);
+			AddMenuItem(shopMenu, category, scatbufferz, ITEMDRAW_DEFAULT);
 		}
 		else if(StrEqual(category,"Purple"))
 		{
-			AddMenuItem(shopMenu, category, "Purple - matching blue and red", ITEMDRAW_DEFAULT);
+			Format(scatbufferz, sizeof(scatbufferz), "%T","Purple - matching blue and red",client);
+			AddMenuItem(shopMenu, category, scatbufferz, ITEMDRAW_DEFAULT);
 		}
 		else
 		{
@@ -152,20 +159,20 @@ ShowMenu3Shop3(client, const String:category[]=""){
 	new String:title[300];
 
 	if(!StrEqual(category, ""))
-		Format(title,sizeof(title),"\nSelect an [%s] item to buy. You have %d/%d items",category,GetClientItems3Owned(client),GetMaxShopitems3PerPlayer());
+		Format(title,sizeof(title),"%T\n","Select an [{category}] item to buy. You have {itemsowned}/{maxitemsperplayer} items",client,category,GetClientItems3Owned(client),GetMaxShopitems3PerPlayer());
 	else
-		Format(title,sizeof(title),"\nSelect an item to buy. You have %d/%d items",GetClientItems3Owned(client),GetMaxShopitems3PerPlayer());
+		Format(title,sizeof(title),"%T\n","Select an item to buy. You have {itemsowned}/{maxitemsperplayer} items",client,GetClientItems3Owned(client),GetMaxShopitems3PerPlayer());
 
 	new String:racename[32];
 	new race=GetRace(client);
 	GetRaceName(race,racename,sizeof(racename));
 
-	Format(title,sizeof(title),"%s\n \n You have %d Platinum\n",title,Platinum);
+	Format(title,sizeof(title),"%s\n \n %T\n",title,"You have {amount} Platinum",client,Platinum);
 
-	Format(title,sizeof(title),"%s\n Current job: %s\n",title, racename);
+	Format(title,sizeof(title),"%s\n %T\n",title,"Current race: {racename}",client, racename);
 
-	Format(title,sizeof(title),"%s\n GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!\n",title);
-	Format(title,sizeof(title),"%s\n GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!\n",title);
+	Format(title,sizeof(title),"%s\n %T\n",title,"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!",client);
+	Format(title,sizeof(title),"%s\n %T\n",title,"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!",client);
 	//Format(title,sizeof(title),"%s\n",title,category);
 
 	SetMenuTitle(shopMenu3,title);
@@ -176,7 +183,9 @@ ShowMenu3Shop3(client, const String:category[]=""){
 	decl cost;
 	new Items3Loaded = W3GetItems3Loaded();
 
-	AddMenuItem(shopMenu3,"-1","[Return to Categories]");
+	new String:STRcrMenu[32];
+	Format(STRcrMenu,sizeof(STRcrMenu),"%T","[Return to Categories]",client);
+	AddMenuItem(shopMenu3,"-1",STRcrMenu);
 
 	//DP("Items2Loaded = %i",Items2Loaded);
 	for(new x=1;x<=Items3Loaded;x++)
@@ -201,11 +210,11 @@ ShowMenu3Shop3(client, const String:category[]=""){
 					//DP("W3GetItem3Cost = %i",cost);
 					if(War3_GetOwnsItem3(client,race,x))
 					{
-						Format(linestr3,sizeof(linestr3),">%s - %d Platinum",itemname3,cost);
+						Format(linestr3,sizeof(linestr3),"%T",">{itemname} - {amount} Platinum",client,itemname3,cost);
 					}
 					else
 					{
-						Format(linestr3,sizeof(linestr3),"%s - %d Platinum",itemname3,cost);
+						Format(linestr3,sizeof(linestr3),"%T","{itemname} - {amount} Platinum",client,itemname3,cost);
 					}
 					//AddMenuItem(shopMenu3,itembuf3,linestr3,(W3IsItem3DisabledForRace(GetRace(client),x) || W3IsItem3DisabledGlobal(x) || War3_GetOwnsItem3(client,x))?ITEMDRAW_DISABLED:ITEMDRAW_DEFAULT);
 					if(Platinum>=cost)
@@ -216,7 +225,9 @@ ShowMenu3Shop3(client, const String:category[]=""){
 			}
 		}
 	}
-	AddMenuItem(shopMenu3,"-1","[Return to Categories]");
+	new String:STRcrMenu[32];
+	Format(STRcrMenu,sizeof(STRcrMenu),"%T","[Return to Categories]",client);
+	AddMenuItem(shopMenu3,"-1",STRcrMenu);
 
 	DisplayMenu(shopMenu3,client,MENU_TIME_FOREVER);
 }
@@ -269,22 +280,22 @@ InternalTriedToBuyItem3(client,item,bool:reshowmenu=true){
 		new bool:canbuy=true;
 
 		if(W3IsItem3DisabledGlobal(item)){
-			War3_ChatMessage(client,"%s is disabled",itemname3);
+			War3_ChatMessage(client,"%T","{itemname} is disabled",client,itemname3);
 			canbuy=false;
 		}
 		else if(W3IsItem3DisabledForRace(race,item)){
 
 			new String:racename3[32];
 			GetRaceName(race,racename3,sizeof(racename3));
-			War3_ChatMessage(client,"You may not purchase %s when you are %s",itemname3,racename3);
+			War3_ChatMessage(client,"%T","You may not purchase {itemname} when you are {racename}",client,itemname3,racename3);
 			canbuy=false;
 		}
 		else if(War3_GetOwnsItem3(client,race,item)){
-			War3_ChatMessage(client,"You already own %s",itemname3);
+			War3_ChatMessage(client,"%T","You already own {itemname}",client,itemname3);
 			canbuy=false;
 		}
 		else if(cred<cost_num){
-			War3_ChatMessage(client,"You cannot afford %s",itemname3);
+			War3_ChatMessage(client,"%T","You cannot afford {itemname}",client,itemname3);
 			if(reshowmenu){
 				ShowMenu3ShopCategory(client);
 			}
@@ -321,7 +332,7 @@ InternalTriedToBuyItem3(client,item,bool:reshowmenu=true){
 		if(canbuy){
 			War3_SetPlatinum(client,cred-cost_num);
 
-			War3_ChatMessage(client,"You have successfully purchased %s",itemname3);
+			War3_ChatMessage(client,"%T","You have successfully purchased {itemname}",client,itemname3);
 
 
 			internal_W3SetVar(TheItemBoughtOrLost,item);
@@ -349,7 +360,10 @@ InternalGemSlotItemsMenuBuy(client)
 	decl String:linestr3[96];
 	decl String:TmpStr[32];
 	new bool:display=false;
-	AddMenuItem(hInternalMenu,"-1","[Return to Categories]");
+
+	new String:STRcrMenu[32];
+	Format(STRcrMenu,sizeof(STRcrMenu),"%T","[Return to Categories]",client);
+	AddMenuItem(hInternalMenu,"-1",STRcrMenu);
 
 	if(W3CompareTwoItemCategories(WantsToBuy3[client],War3_GetItemId1(client,race))==true&&War3_GetOwnsItem3(client,race,War3_GetItemId1(client,race)))
 	{
@@ -389,9 +403,9 @@ InternalGemSlotItemsMenuBuy(client)
 	W3GetItem3Name(WantsToBuy3[client],itemname3,63);
 
 	if(display)
-		SetMenuTitle(hInternalMenu,"You already have a [%s] item.\nChoose an item to replace with [%s] %s.\nYou will not get Platinum back!",categorySTR,categorySTR,itemname3);
+		SetMenuTitle(hInternalMenu,"%T","You already have a [{item}] item. Choose an item to replace with [{item}] {otheritem}. You will not get Platinum back!",client,categorySTR,categorySTR,itemname3);
 	else
-		SetMenuTitle(hInternalMenu,"You can only have one [%s] item per job.",categorySTR);
+		SetMenuTitle(hInternalMenu,"%T","You can only have one [{item}] item per race.",client,categorySTR);
 
 	//DP("Display Menu");
 	DisplayMenu(hInternalMenu,client,MENU_TIME_FOREVER);
@@ -422,7 +436,7 @@ public OnSelectAlreadyHaveGemSlotItemsMenuBuy(Handle:menu,MenuAction:action,clie
 
 
 				if(cred<cost_num){
-					War3_ChatMessage(client,"You cannot afford %s",itemname3);
+					War3_ChatMessage(client,"%T","You cannot afford {itemname}",client,itemname3);
 					ShowMenu3Shop3(client);
 				}
 				else{
@@ -434,7 +448,7 @@ public OnSelectAlreadyHaveGemSlotItemsMenuBuy(Handle:menu,MenuAction:action,clie
 
 					War3_SetPlatinum(client,cred-cost_num);
 
-					War3_ChatMessage(client,"You have successfully purchased %s",itemname3);
+					War3_ChatMessage(client,"%T","You have successfully purchased {itemname}",client,itemname3);
 
 					internal_W3SetVar(TheItemBoughtOrLost,WantsToBuy3[client]);
 					internal_W3SetVar(TheRaceItemBoughtOrLost,GetRace(client));
@@ -463,7 +477,9 @@ InternalExceededMaxItemsMenu3Buy(client)
 	decl String:TmpStr[32];
 	new race=GetRace(client);
 
-	AddMenuItem(hMenu,"-1","[Return to Categories]");
+	new String:STRcrMenu[32];
+	Format(STRcrMenu,sizeof(STRcrMenu),"%T","[Return to Categories]",client);
+	AddMenuItem(hMenu,"-1",STRcrMenu);
 
 	//if(W3CompareItemCategories(WantsToBuy3[client],War3_GetItemId1(client,race))==false&&War3_GetOwnsItem3(client,race,War3_GetItemId1(client,race)))
 	if(War3_GetOwnsItem3(client,race,War3_GetItemId1(client,race)))
@@ -506,9 +522,9 @@ InternalExceededMaxItemsMenu3Buy(client)
 	W3GetItem3Category(WantsToBuy3[client],categorySTR,31);
 
 	if(itemsexists)
-		SetMenuTitle(hMenu,"You already have a max of %d items.\nChoose an item to replace with [%s] %s.\nYou will not get Platinum back",GetMaxShopitems3PerPlayer(),categorySTR,itemname3);
+		SetMenuTitle(hMenu,"%T","You already have a max of {itemcount} items. Choose an item to replace with [{item}] {otheritem}. You will not get Platinum back",client,GetMaxShopitems3PerPlayer(),categorySTR,itemname3);
 	else
-		SetMenuTitle(hMenu,"You can only have one [%s] item per job.",categorySTR);
+		SetMenuTitle(hMenu,"%T","You can only have one [{itemname}] item per race.",client,categorySTR);
 
 
 	/*
@@ -558,7 +574,7 @@ public OnSelectExceededMaxItemsMenu3Buy(Handle:menu,MenuAction:action,client,sel
 
 
 				if(cred<cost_num){
-					War3_ChatMessage(client,"You cannot afford %s",itemname3);
+					War3_ChatMessage(client,"%T","You cannot afford {itemname}",client,itemname3);
 					ShowMenu3Shop3(client);
 				}
 				else{
@@ -570,7 +586,7 @@ public OnSelectExceededMaxItemsMenu3Buy(Handle:menu,MenuAction:action,client,sel
 
 					War3_SetPlatinum(client,cred-cost_num);
 
-					War3_ChatMessage(client,"You have successfully purchased %s",itemname3);
+					War3_ChatMessage(client,"%T","You have successfully purchased {itemname}",client,itemname3);
 
 					internal_W3SetVar(TheItemBoughtOrLost,WantsToBuy3[client]);
 					internal_W3SetVar(TheRaceItemBoughtOrLost,GetRace(client));
@@ -617,7 +633,7 @@ War3_playertargetItemMenu3(client,target){
 		new String:playername[128];
 		GetClientName(target,playername,127);
 
-		Format(title,sizeof(title),"\nInformation for %s\n \n%s has:\n \n",playername,racename);
+		Format(title,sizeof(title),"%T","\nInformation for {playername}\n \n{racename} has:\n \n",client,playername,racename);
 
 		//Format(title,sizeof(title),"%s\n \n",title);
 
@@ -647,12 +663,12 @@ War3_playertargetItemMenu3(client,target){
 			maxlvl=W3GetItem3maxlevel1(itemid1);
 			W3GetItem3levelName(itemid1,TmpStr,31,skill1);
 			if(itemlvl==maxlvl)
-				Format(title,sizeof(title),"%s\n%s: lvl %d/%d\n\n",title,TmpStr,itemlvl,maxlvl);
+				Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl}",client,TmpStr,itemlvl,maxlvl);
 			else
 			{
 				itemxp=War3_GetItemXP(target, race, itemid1);
 				itemMaxXp=W3GetReqXP(itemlvl+1);
-				Format(title,sizeof(title),"%s\n%s: lvl %d/%d xp: %d/%d\n\n",title,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
+				Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}",client,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
 			}
 			maxlvl=W3GetItem3maxlevel2(itemid1);
 			if(maxlvl>0)
@@ -661,12 +677,12 @@ War3_playertargetItemMenu3(client,target){
 				maxlvl=W3GetItem3maxlevel2(itemid1);
 				W3GetItem3levelName(itemid1,TmpStr,31,skill2);
 				if(itemlvl==maxlvl)
-					Format(title,sizeof(title),"%s\n%s: lvl %d/%d\n\n",title,TmpStr,itemlvl,maxlvl);
+					Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl}",client,TmpStr,itemlvl,maxlvl);
 				else
 				{
 					itemxp=War3_GetItemXP2(target, race, itemid1);
 					itemMaxXp=W3GetReqXP(itemlvl+1);
-					Format(title,sizeof(title),"%s\n%s: lvl %d/%d xp: %d/%d\n\n",title,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
+					Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}",client,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
 				}
 			}
 			Format(title,sizeof(title),"%s\n \n",title);
@@ -682,12 +698,12 @@ War3_playertargetItemMenu3(client,target){
 			maxlvl=W3GetItem3maxlevel1(itemid2);
 			W3GetItem3levelName(itemid2,TmpStr,31,skill1);
 			if(itemlvl==maxlvl)
-				Format(title,sizeof(title),"%s\n%s: lvl %d/%d\n\n",title,TmpStr,itemlvl,maxlvl);
+				Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl}",client,TmpStr,itemlvl,maxlvl);
 			else
 			{
 				itemxp=War3_GetItemXP(target, race, itemid2);
 				itemMaxXp=W3GetReqXP(itemlvl+1);
-				Format(title,sizeof(title),"%s\n%s: lvl %d/%d xp: %d/%d\n\n",title,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
+				Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}",client,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
 			}
 			maxlvl=W3GetItem3maxlevel2(itemid2);
 			if(maxlvl>0)
@@ -696,12 +712,12 @@ War3_playertargetItemMenu3(client,target){
 				maxlvl=W3GetItem3maxlevel2(itemid2);
 				W3GetItem3levelName(itemid2,TmpStr,31,skill2);
 				if(itemlvl==maxlvl)
-					Format(title,sizeof(title),"%s\n%s: lvl %d/%d\n\n",title,TmpStr,itemlvl,maxlvl);
+					Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl}",client,TmpStr,itemlvl,maxlvl);
 				else
 				{
 					itemxp=War3_GetItemXP2(target, race, itemid2);
 					itemMaxXp=W3GetReqXP(itemlvl+1);
-					Format(title,sizeof(title),"%s\n%s: lvl %d/%d xp: %d/%d\n\n",title,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
+					Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}",client,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
 				}
 			}
 			Format(title,sizeof(title),"%s\n \n",title);
@@ -717,12 +733,12 @@ War3_playertargetItemMenu3(client,target){
 			maxlvl=W3GetItem3maxlevel1(itemid3);
 			W3GetItem3levelName(itemid3,TmpStr,31,skill1);
 			if(itemlvl==maxlvl)
-				Format(title,sizeof(title),"%s\n%s: lvl %d/%d\n\n",title,TmpStr,itemlvl,maxlvl);
+				Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl}",client,TmpStr,itemlvl,maxlvl);
 			else
 			{
 				itemxp=War3_GetItemXP(target, race, itemid3);
 				itemMaxXp=W3GetReqXP(itemlvl+1);
-				Format(title,sizeof(title),"%s\n%s: lvl %d/%d xp: %d/%d\n\n",title,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
+				Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}",client,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
 			}
 			maxlvl=W3GetItem3maxlevel2(itemid3);
 			if(maxlvl>0)
@@ -731,12 +747,12 @@ War3_playertargetItemMenu3(client,target){
 				maxlvl=W3GetItem3maxlevel2(itemid3);
 				W3GetItem3levelName(itemid3,TmpStr,31,skill2);
 				if(itemlvl==maxlvl)
-					Format(title,sizeof(title),"%s\n%s: lvl %d/%d\n\n",title,TmpStr,itemlvl,maxlvl);
+					Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl}",client,TmpStr,itemlvl,maxlvl);
 				else
 				{
 					itemxp=War3_GetItemXP2(target, race, itemid3);
 					itemMaxXp=W3GetReqXP(itemlvl+1);
-					Format(title,sizeof(title),"%s\n%s: lvl %d/%d xp: %d/%d\n\n",title,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
+					Format(title,sizeof(title),"%s\n%T\n\n",title,"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}",client,TmpStr,itemlvl,maxlvl,itemxp,itemMaxXp);
 				}
 			}
 			Format(title,sizeof(title),"%s\n \n",title);
@@ -750,9 +766,9 @@ War3_playertargetItemMenu3(client,target){
 		new String:buf[3];
 
 		IntToString(target,buf,sizeof(buf));
-		//new String:str[16];
-		//Format(str,sizeof(str),"Refresh");
-		AddMenuItem(hMenu,buf,"Refresh");
+		new String:RefreshStr[16];
+		Format(RefreshStr,sizeof(RefreshStr),"%T","Refresh",client);
+		AddMenuItem(hMenu,buf,RefreshStr);
 
 		DisplayMenu(hMenu,client,MENU_TIME_FOREVER);
 }
@@ -766,7 +782,7 @@ public War3_playertargetItemMenu3Selected3(Handle:menu,MenuAction:action,client,
 		GetMenuItem(menu,selection,SelectionInfo,sizeof(SelectionInfo),SelectionStyle, SelectionDispText,sizeof(SelectionDispText));
 		new target=StringToInt(SelectionInfo);
 		if(!ValidPlayer(target)){
-			War3_ChatMessage(client,"Player has left the server");
+			War3_ChatMessage(client,"%T","Player has left the server",client);
 		}
 		else
 		{
@@ -808,20 +824,21 @@ public Show_Menu3Itemsinfo3(client,itemnum){
 	decl cost;
 	cost=W3GetItem3Cost(itemnum);
 
-	Format(title,sizeof(title),"\nBUY [%s] %s?\n\n%s",category,str,str3);
+	Format(title,sizeof(title),"\n%T","BUY [{category}] {str}?\n\n{str3}",client,category,str,str3);
 
-	Format(title,sizeof(title),"%s\n\nCurrent Job: %s\n",title,racename);
+	Format(title,sizeof(title),"%s\n\n%T\n",title,"Current race: {racename}",client,racename);
 
-	Format(title,sizeof(title),"%s\n\nCosts: %d Platinum\n\n",title,cost);
+	Format(title,sizeof(title),"%s\n\n%T\n",title,"Costs: {cost} Platinum",client,cost);
 
 
 	SetMenuTitle(helpMenu,title);
 
 	decl String:itembuf3[16];
 	Format(itembuf3,sizeof(itembuf3),"%d,%d",itemnum,itemnum);
-	AddMenuItem(helpMenu,itembuf3,"Buy");
+	Format(str,sizeof(str),"%T","Buy",client);
+	AddMenuItem(helpMenu,itembuf3,str);
 
-	Format(str,sizeof(str),"Back");
+	Format(str,sizeof(str),"%T","Back",client);
 	Format(itembuf3,sizeof(itembuf3),"%d,-1",itemnum);
 	AddMenuItem(helpMenu,itembuf3,str);
 
