@@ -1,5 +1,7 @@
 // War3Source_Engine_MenuShopmenu2.sp
 
+// TRANSLATED
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 //new Handle:hShopMenu2RequiredFlag;
@@ -46,7 +48,7 @@ ShowMenuShop2(client){
 	new Diamonds=War3_GetDiamonds(client);
 
 	new String:title[300];
-	Format(title,sizeof(title),"%T\n","[War3Source:EVO] Select an item to buy. You have {amount}/{amount} items",GetTrans(),GetClientItems2Owned(client),GetMaxShopitems2PerPlayer(client));
+	Format(title,sizeof(title),"[War3Source:EVO] %T\n","Select an item to buy. You have {amount}/{amount} items",GetTrans(),GetClientItems2Owned(client),GetMaxShopitems2PerPlayer(client));
 	Format(title,sizeof(title),"%s%T\n \n",title,"You have {amount} Diamonds",GetTrans(),Diamonds);
 
 	SetMenuTitle(shopMenu2,title);
@@ -188,7 +190,7 @@ InternalExceededMaxItemsMenuBuy(client)
 	decl String:itemname2[64];
 	W3GetItemName(WantsToBuy2[client],itemname2,sizeof(itemname2));
 
-	SetMenuTitle(hMenu,"%T\n","[War3Source:EVO] You already have a max of {amount} items. Choose an item to replace with {itemname}. You will not get Diamonds back",GetTrans(),GetMaxShopitems2PerPlayer(client),itemname2);
+	SetMenuTitle(hMenu,"%s%T\n","[War3Source:EVO] ","You already have a max of {amount} items. Choose an item to replace with {itemname}. You will not get Diamonds back",GetTrans(),GetMaxShopitems2PerPlayer(client),itemname2);
 
 	decl String:itembuf2[4];
 	decl String:linestr2[96];

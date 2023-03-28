@@ -48,6 +48,7 @@
 
 "Phrases"
 {
+	//War3Source_Engine_MenuShopmenu.sp
 	"Enable/Disable shopitem categorys"
 	{
 		"#format"		""
@@ -158,4 +159,33 @@
 		"#format"		"{1:s}"
 		"en"			"You have successfully purchased {1}"
 	}
+	// War3Source_Engine_MenuShopmenu2.sp
+	"You have {amount} Diamonds"
+	{
+		"#format"		"{1:d}"
+		"en"			"You have {1} Diamonds"
+	}
+	">{itemname} - {amount} Diamonds"
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			">{1} - {2} Diamonds"
+	}
+	"{itemname} - {amount} Diamonds"
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			"{1} - {2} Diamonds"
+	}
+	"You may not purchase {itemname} when you are {racename}"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"You may not purchase {1} when you are {2}"
+	}
+	"You already have a max of {amount} items. Choose an item to replace with {itemname}. You will not get Diamonds back"
+	{
+		"#format"		"{1:d},{2:s}"
+		"en"			"You already have a max of {1} items. Choose an item to replace with {2}. You will not get Diamonds back"
+	}
+	// War3Source_Engine_MenuShopmenu3.sp
+	
+
 }
