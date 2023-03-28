@@ -27,4 +27,13 @@
 		"#format"		""
 		"en"			"Please join our Steam Group."
 	}
+	"Player has left the server"
+	{
+		"#format"		""
+		"en"			"Player has left the server"
+	}
+	"Refresh"
+	{
+		"en"			"Refresh"
+	}
 }

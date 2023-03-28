@@ -92,11 +92,6 @@
 		"#format"		"{1:s},{2:d},{3:s}"
 		"en"			"{1} (Level {2}) [{3}]"
 	}
-	"Player has left the server"
-	{
-		"#format"		""
-		"en"			"Player has left the server"
-	}
 	"Select a player to view its information"
 	{
 		"#format"		""
@@ -111,11 +106,6 @@
 	{
 		"#format"		"{1:s},{2:s}"
 		"en"			"{1} ({2})"
-	}
-	"Player has left the server"
-	{
-		"#format"		""
-		"en"			"Player has left the server"
 	}
 	"Information for {player}"
 	{
