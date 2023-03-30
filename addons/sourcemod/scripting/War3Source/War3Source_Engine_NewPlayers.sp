@@ -1,5 +1,11 @@
 // War3Source_Engine_NewPlayers.sp
 
+//
+// TRANSLATED mostly... 3/30/2023
+//
+// TO DO:
+// - need to add ability for translations to work with convars for this file
+
 /* ========================================================================== */
 /*                                                                            */
 /*                                                                          */
@@ -20,26 +26,6 @@ public Plugin:myinfo =
 	url = "http://Www.war3evo.info"
 };
 */
-
-
-//
-//
-//
-//
-//
-//
-// Need to translate this file next using %T and client and change variables to {}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 public War3Source_Engine_NewPlayers_OnPluginStart()
 {
@@ -68,7 +54,7 @@ public War3Source_Engine_NewPlayers_OnPluginStart()
 
 public Action:Command_newplayerlist(client, args)
 {
-	PrintToConsole(client,"New Players:");
+	PrintToConsole(client,"%T","New Players:",client);
 
 	decl String:player_name[65];
 	for (new i = 1; i <= MaxClients; i++)
@@ -79,7 +65,7 @@ public Action:Command_newplayerlist(client, args)
 			PrintToConsole(client,"%s",player_name);
 		}
 	}
-	PrintToConsole(client,"End of New Players");
+	PrintToConsole(client,"%T","End of New Players",client);
 	return Plugin_Handled;
 }
 
@@ -158,7 +144,7 @@ public Action:quickerspawn(Handle:timer, any:client)
 
 	if(ValidPlayer(client) && !IsPlayerAlive(client) && IsNewPlayer[client])
 	{
-		War3_ChatMessage(client, "{green}[New Player Fast Respawn]{lightgreen}Because your new on our servers, you get a slightly faster respawn.");
+		War3_ChatMessage(client, "%T","{green}[New Player Fast Respawn]{lightgreen}Because your new on our servers, you get a slightly faster respawn.",client);
 #if (GGAMETYPE == GGAME_TF2)
 		TF2_RespawnPlayer(client);
 #else
