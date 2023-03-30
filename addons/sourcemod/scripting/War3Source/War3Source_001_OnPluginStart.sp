@@ -39,6 +39,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_MenuWar3Menu");
 	LoadTranslations("w3s._War3Source_Engine_Money_Timer");
 	LoadTranslations("w3s._War3Source_Engine_NewPlayers");
+	LoadTranslations("w3s._War3Source_Engine_Notifications");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");
