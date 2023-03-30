@@ -37,6 +37,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_MenuShopmenu");
 	LoadTranslations("w3s._War3Source_Engine_MenuSpendskills");
 	LoadTranslations("w3s._War3Source_Engine_MenuWar3Menu");
+	LoadTranslations("w3s._War3Source_Engine_Money_Timer");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");

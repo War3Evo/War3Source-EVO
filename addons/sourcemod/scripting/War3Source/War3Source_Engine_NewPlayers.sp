@@ -21,6 +21,26 @@ public Plugin:myinfo =
 };
 */
 
+
+//
+//
+//
+//
+//
+//
+// Need to translate this file next using %T and client and change variables to {}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 public War3Source_Engine_NewPlayers_OnPluginStart()
 {
 	NewPlayerCvar=CreateConVar("war3_newplayer_enabled","1","1 for on, 0 for off. (default 1)");

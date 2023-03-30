@@ -1,5 +1,7 @@
 // War3Source_Engine_Money_Timer.sp
 
+// TRANSLATED 3/29/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 #if (GGAMETYPE == GGAME_CSS || GGAMETYPE == GGAME_CSGO)
@@ -93,7 +95,6 @@ public Action:Timer_UpdateInfo(Handle:timer)
 		//SetStatNumbers();
 		for(new i;i<=MaxClients;i++)
 		{
-
 			if(ValidPlayer(i) && !IsFakeClient(i) && ( GetPlayerProp(i,iGoldDiamondHud)==1))
 			{
 				//PrintToServer("%i",i);
@@ -154,14 +155,14 @@ public Action:Timer_UpdateInfo(Handle:timer)
 						}
 					}
 					if(RotateNum[i]==0) {
-						Format(buffer,sizeof(buffer)," Gold: %i%s (Type !war3menu)",gold,goldChange);
+						Format(buffer,sizeof(buffer),"%s%T"," ","Gold: {gold}{goldChange} (Type !war3menu)",i,gold,goldChange);
 						oldVals[i][0]=gold;
 					} else if (RotateNum[i]==1) {
-						Format(buffer,sizeof(buffer)," Diamonds: %i%s (Type !war3menu)",diamonds,diamondsChange);
+						Format(buffer,sizeof(buffer),"%s%T"," ","Diamonds: {diamonds}{diamondsChange} (Type !war3menu)",i,diamonds,diamondsChange);
 						oldVals[i][1]=diamonds;
 					} else if (RotateNum[i]==2) {
 						oldVals[i][2]=platinum;
-						Format(buffer,sizeof(buffer)," Platinum: %i%s (Type !war3menu)",platinum,platinumChange);
+						Format(buffer,sizeof(buffer),"%s%T"," ","Platinum: {platinum}{platinumChange} (Type !war3menu)",i,platinum,platinumChange);
 					}
 	#if (GGAMETYPE == GGAME_TF2)
 					if(TF2_GetPlayerClass(i)!=TFClass_Engineer)
@@ -199,7 +200,7 @@ public Action:Timer_UpdateInfo(Handle:timer)
 				else if(GetPlayerProp(i,iRotateHUD)==0)
 				{
 
-					Format(buffer,sizeof(buffer)," G %i%s | D %i%s | P %i%s ",gold,goldChange,diamonds,diamondsChange,platinum,platinumChange);
+					Format(buffer,sizeof(buffer),"%s%T "," ","G {gold}{goldChange} | D {diamonds}{diamondsChange} | P {platinum}{platinumChange}",i,gold,goldChange,diamonds,diamondsChange,platinum,platinumChange);
 
 	#if (GGAMETYPE == GGAME_TF2)
 					if(TF2_GetPlayerClass(i)!=TFClass_Engineer)
@@ -220,7 +221,7 @@ public Action:Timer_UpdateInfo(Handle:timer)
 				else if(GetPlayerProp(i,iRotateHUD)==3)
 				{
 
-					Format(buffer,sizeof(buffer)," G %i%s | D %i%s | P %i%s ",gold,goldChange,diamonds,diamondsChange,platinum,platinumChange);
+					Format(buffer,sizeof(buffer),"%s%T%s"," ","G {gold}{goldChange} | D {diamonds}{diamondsChange} | P {platinum}{platinumChange}",i,gold,goldChange,diamonds,diamondsChange,platinum,platinumChange," ");
 	#if (GGAMETYPE == GGAME_TF2)
 					if(TF2_GetPlayerClass(i)!=TFClass_Engineer)
 					{
