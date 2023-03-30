@@ -2,6 +2,8 @@
 /*
 #assert GGAMEMODE == MODE_WAR3SOURCE
 
+// TRANSLTED 3/29/2023
+
 public Plugin:myinfo=
 {
 	name="War3Source war3menu",
@@ -18,7 +20,7 @@ public War3Source_Engine_MenuWar3Menu_OnWar3Event(client)
 
 ShowWar3Menu(client){
 	new Handle:war3Menu=CreateMenu(War3Source_War3Menu_Select);
-	SetMenuTitle(war3Menu,"[War3Source:EVO] Type the command in quotes into chat!");
+	SetMenuTitle(war3Menu,"[War3Source:EVO] %T","Type the command in quotes into chat!",client);
 	//new limit=9;
 	//new String:transbuf[32];
 	new String:menustr[100];
@@ -34,84 +36,83 @@ ShowWar3Menu(client){
 		AddMenuItem(war3Menu,numstr,menustr);
 	}*/
 
-
-	Format(menustr,sizeof(menustr),"What are my skills and their levels? - \"!myinfo\"");
+	Format(menustr,sizeof(menustr),"%T","What are my skills and their levels? - \"!myinfo\"",client);
 	Format(numstr,sizeof(numstr),"0");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"What are all the races? - \"!raceinfo\"");
+	Format(menustr,sizeof(menustr),"%T","What are all the races? - \"!raceinfo\"",client);
 	Format(numstr,sizeof(numstr),"1");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Change my race - \"!changerace\"");
+	Format(menustr,sizeof(menustr),"%T","Change my race - \"!changerace\"",client);
 	Format(numstr,sizeof(numstr),"2");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"What races are people playing? - \"!playerinfo\" ");
+	Format(menustr,sizeof(menustr),"%T","What races are people playing? - \"!playerinfo\"",client);
 	Format(numstr,sizeof(numstr),"3");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Buy items with gold that last until death - \"!sh1\"");
+	Format(menustr,sizeof(menustr),"%T","Buy items with gold that last until death - \"!sh1\"",client);
 	Format(numstr,sizeof(numstr),"4");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Buy items with diamonds that last until map change - \"!sh2\"");
+	Format(menustr,sizeof(menustr),"%T","Buy items with diamonds that last until map change - \"!sh2\"",client);
 	Format(numstr,sizeof(numstr),"5");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Buy items with platinum that last forever - \"!sh3\"");
+	Format(menustr,sizeof(menustr),"%T","Buy items with platinum that last forever - \"!sh3\"",client);
 	Format(numstr,sizeof(numstr),"6");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"How do I bind a key? - \"!bind\"");
+	Format(menustr,sizeof(menustr),"%T","How do I bind a key? - \"!bind\"",client);
 	Format(numstr,sizeof(numstr),"7");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Reset my current race's skills - \"!resetskills\"");
+	Format(menustr,sizeof(menustr),"%T","Reset my current race's skills - \"!resetskills\"",client);
 	Format(numstr,sizeof(numstr),"8");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Spend my unused skill points - \"!spendskills\"");
+	Format(menustr,sizeof(menustr),"%T","Spend my unused skill points - \"!spendskills\"",client);
 	Format(numstr,sizeof(numstr),"9");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Spend my levelbanks - \"!levelbank\"");
+	Format(menustr,sizeof(menustr),"%T","Spend my levelbanks - \"!levelbank\"",client);
 	Format(numstr,sizeof(numstr),"10");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Open the forums - \"!forums\"");
+	Format(menustr,sizeof(menustr),"%T","Open the forums - \"!forums\"",client);
 	Format(numstr,sizeof(numstr),"11");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Open the donor page - \"!donate\"");
+	Format(menustr,sizeof(menustr),"%T","Open the donor page - \"!donate\"",client);
 	Format(numstr,sizeof(numstr),"12");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"How do I tag up for bonus xp/gold? - \"!taghelp\"");
+	Format(menustr,sizeof(menustr),"%T","How do I tag up for bonus xp/gold? - \"!taghelp\"",client);
 	Format(numstr,sizeof(numstr),"13");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"How do I view the players with the most levels? - \"!war3top10\"");
+	Format(menustr,sizeof(menustr),"%T","How do I view the players with the most levels? - \"!war3top10\"",client);
 	Format(numstr,sizeof(numstr),"14");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Open the full commands listing - \"!commands\"");
+	Format(menustr,sizeof(menustr),"%T","Open the full commands listing - \"!commands\"",client);
 	Format(numstr,sizeof(numstr),"15");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"View recent mod updates - \"!update\"");
+	Format(menustr,sizeof(menustr),"%T","View recent mod updates - \"!update\"",client);
 	Format(numstr,sizeof(numstr),"16");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Shopmenu (sh1) information  - \"!itemsinfo\"");
+	Format(menustr,sizeof(menustr),"%T","Shopmenu (sh1) information  - \"!itemsinfo\"",client);
 	Format(numstr,sizeof(numstr),"17");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Shopmenu2 (sh2) information  - \"!itemsinfo2\"");
+	Format(menustr,sizeof(menustr),"%T","Shopmenu2 (sh2) information  - \"!itemsinfo2\"",client);
 	Format(numstr,sizeof(numstr),"18");
 	AddMenuItem(war3Menu,numstr,menustr);
 
-	Format(menustr,sizeof(menustr),"Shopmenu3 (sh3) information  - \"!itemsinfo3\"");
+	Format(menustr,sizeof(menustr),"%T","Shopmenu3 (sh3) information  - \"!itemsinfo3\"",client);
 	Format(numstr,sizeof(numstr),"19");
 	AddMenuItem(war3Menu,numstr,menustr);
 

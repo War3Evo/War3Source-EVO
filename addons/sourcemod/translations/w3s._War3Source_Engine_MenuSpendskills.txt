@@ -108,5 +108,4 @@
 	{
 		"en"			"{lightgreen}You did not select any skills.\nYour skills were auto assigned.\nType resetskills in chat to reconfigure them.{default}"
 	}
-
 }

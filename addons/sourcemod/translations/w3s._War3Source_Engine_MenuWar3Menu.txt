@@ -48,65 +48,109 @@
 
 "Phrases"
 {
-	"Set to 1 to require no limit on non-ultimate spendskills"
+	"Type the command in quotes into chat!"
 	{
-		"en"			"Set to 1 to require no limit on non-ultimate spendskills"
+		"#format"		""
+		"en"			"Type the command in quotes into chat!"
 	}
-	"Ultimate: {skillname} [Requires {level} lvl on {skillname2}]"
+	"What are my skills and their levels? - \"!myinfo\""
 	{
-		"#format"		"{1:s},{2:d},{3:s}"
-		"en"			"Ultimate: {1} [Requires {2} lvl on {3}]"
+		"#format"		""
+		"en"			"What are my skills and their levels? - \"!myinfo\""
 	}
-	"{skillname} [Requires {level} lvl on {skillname2}]"
+	"What are all the races? - \"!raceinfo\""
 	{
-		"#format"		"{1:s},{2:d},{3:s}"
-		"en"			"{1} [Requires {2} lvl on {3}]"
+		"#format"		""
+		"en"			"What are all the races? - \"!raceinfo\""
 	}
-	"You do not have any skill points to spend, if you want to reset your skills use resetskills"
+	"Change my race - \"!changerace\""
 	{
-		"en"			"You do not have any skill points to spend, if you want to reset your skills use resetskills"
+		"#format"		""
+		"en"			"Change my race - \"!changerace\""
 	}
-	"Select your desired skill. ({skillcount}/{level})"
+	"What races are people playing? - \"!playerinfo\""
 	{
-		"#format"		"{1:d},{2:d}"
-		"en"			"Select your desired skill. ({1}/{2})"
+		"#format"		""
+		"en"			"What races are people playing? - \"!playerinfo\""
 	}
-	"no description"
+	"Buy items with gold that last until death - \"!sh1\""
 	{
-		"en"			"no description"	
+		"#format"		""
+		"en"			"Buy items with gold that last until death - \"!sh1\""
 	}
-	"(Ultimate: {skillname} [{curskilllevel} / {maxskilllevel}])"
+	"Buy items with diamonds that last until map change - \"!sh2\""
 	{
-		"#format"		"{1:s},{2:d},{3:d}"
-		"en"			"(Ultimate: {1} [{2} / {3}])"
+		"#format"		""
+		"en"			"Buy items with diamonds that last until map change - \"!sh2\""
 	}
-	"[Requires lvl {amount}]"
+	"Buy items with platinum that last forever - \"!sh3\""
 	{
-		"#format"		"{1:d}"
-		"en"			"[Requires lvl {1}]"
+		"#format"		""
+		"en"			"Buy items with platinum that last forever - \"!sh3\""
 	}
-	"{skillname} [{curskilllevel} / {maxskilllevel}]"
+	"How do I bind a key? - \"!bind\""
 	{
-		"#format"		"{1:s},{2:d},{3:d}"
-		"en"			"{1} [{2} / {3}]"
+		"#format"		""
+		"en"			"How do I bind a key? - \"!bind\""
 	}
-	"{skillname} is now level {amount}"
+	"Reset my current race's skills - \"!resetskills\""
 	{
-		"#format"		"{1:s},{2:d}"
-		"en"			"{1} is now level {2}"
+		"#format"		""
+		"en"			"Reset my current race's skills - \"!resetskills\""
 	}
-	"You can not choose a skill without gaining another level"
+	"Spend my unused skill points - \"!spendskills\""
 	{
-		"en"			"You can not choose a skill without gaining another level"
+		"#format"		""
+		"en"			"Spend my unused skill points - \"!spendskills\""
 	}
-	"You need to be at least level {amount} to choose an ultimate"
+	"Spend my levelbanks - \"!levelbank\""
 	{
-		"#format"		"{1:d}"
-		"en"			"You need to be at least level {1} to choose an ultimate"
+		"#format"		""
+		"en"			"Spend my levelbanks - \"!levelbank\""
 	}
-	"You did not select any skills. Your skills were auto assigned. Type resetskills in chat to reconfigure them."
+	"Open the forums - \"!forums\""
 	{
-		"en"			"{lightgreen}You did not select any skills.\nYour skills were auto assigned.\nType resetskills in chat to reconfigure them.{default}"
+		"#format"		""
+		"en"			"Open the forums - \"!forums\""
 	}
-
+	"Open the donor page - \"!donate\""
+	{
+		"#format"		""
+		"en"			"Open the donor page - \"!donate\""
+	}
+	"How do I tag up for bonus xp/gold? - \"!taghelp\""
+	{
+		"#format"		""
+		"en"			"How do I tag up for bonus xp/gold? - \"!taghelp\""
+	}
+	"How do I view the players with the most levels? - \"!war3top10\""
+	{
+		"#format"		""
+		"en"			"How do I view the players with the most levels? - \"!war3top10\""
+	}
+	"Open the full commands listing - \"!commands\""
+	{
+		"#format"		""
+		"en"			"Open the full commands listing - \"!commands\""
+	}
+	"View recent mod updates - \"!update\""
+	{
+		"#format"		""
+		"en"			"View recent mod updates - \"!update\""
+	}
+	"Shopmenu (sh1) information  - \"!itemsinfo\""
+	{
+		"#format"		""
+		"en"			"Shopmenu (sh1) information  - \"!itemsinfo\""
+	}
+	"Shopmenu2 (sh2) information  - \"!itemsinfo2\""
+	{
+		"#format"		""
+		"en"			"Shopmenu2 (sh2) information  - \"!itemsinfo2\""
+	}
+	"Shopmenu3 (sh3) information  - \"!itemsinfo3\""
+	{
+		"#format"		""
+		"en"			"Shopmenu3 (sh3) information  - \"!itemsinfo3\""
+	}
 }
