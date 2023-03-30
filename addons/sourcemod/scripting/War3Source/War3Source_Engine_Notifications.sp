@@ -150,7 +150,7 @@ public Native_NotifyPlayerItemActivated(Handle:plugin, numParams)
 //
 //					There's still stuff to translate.  I need to test this before translating the next set of files.
 //
-//
+//					ONCE YOU FINISH TRNASLATENING THIS FILE, TEST IT TO MAKE SURE IT WORKS BY TESTING ON THE SERVER!
 //
 //
 //
