@@ -36,4 +36,24 @@
 	{
 		"en"			"Refresh"
 	}
+	"ULTIMATE"
+	{
+		"en"			"ULTIMATE"
+	}
+	"SKILL"
+	{
+		"en"			"SKILL"
+	}
+	"ultimate"
+	{
+		"en"			"ultimate"
+	}
+	"skill"
+	{
+		"en"			"skill"
+	}
+	"item"
+	{
+		"en"			"item"
+	}
 }

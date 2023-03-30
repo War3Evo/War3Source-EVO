@@ -89,20 +89,22 @@ public Native_NotifyPlayerSkillActivated(Handle:plugin, numParams)
 	{
 		if(IsSkillUltimate(race, skill))
 		{
-			strcopy(sSkillType, sizeof(sSkillType), "ULTIMATE");
+			// was strcopy
+			Format(sSkillType, sizeof(sSkillType), "%T", "ULTIMATE", client);
 		}
 		else
 		{
-			strcopy(sSkillType, sizeof(sSkillType), "SKILL");
+			// was strcopy
+			Format(sSkillType, sizeof(sSkillType), "%T", "SKILL", client);
 		}
 
 		if(activated)
 		{
-			War3_ChatMessage(client,"{default}[{green}%s {blue}%s {green}ACTIVATED{default}]",sSkillType,sSkillName);
+			War3_ChatMessage(client,"%T","[{sSkillType} {sSkillName} ACTIVATED]",client,sSkillType,sSkillName);
 		}
 		else
 		{
-			War3_ChatMessage(client,"{default}[{green}%s {blue}%s {green}DEACTIVATED{default}]",sSkillType,sSkillName);
+			War3_ChatMessage(client,"%T","[{sSkillType} {sSkillName} DEACTIVATED]",client,sSkillType,sSkillName);
 		}
 	}
 }
@@ -124,12 +126,82 @@ public Native_NotifyPlayerItemActivated(Handle:plugin, numParams)
 
 	if(activated)
 	{
-		War3_ChatMessage(client,"{default}[{green}ITEM {blue}%s {green}ACTIVATED{default}]",sItemName);
+		War3_ChatMessage(client,"%T","[ITEM {sSkillName} ACTIVATED]",client,sItemName);
 	}
 	else
 	{
-		War3_ChatMessage(client,"{default}[{green}ITEM {blue}%s {green}DEACTIVATED{default}]",sItemName);
+		War3_ChatMessage(client,"%T","[ITEM {sSkillName} DEACTIVATED]",client,sItemName);
 	}
+}
+
+// String:sSkillName[32]
+//stock War3_ChatMessage(client, const String:szMessage[], any:...)
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//					NotifyTranslateFunction replaces repeated code, but I'm unsure if it works
+//
+//					There's still stuff to translate.  I need to test this before translating the next set of files.
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+NotifyTranslateFunction(iTarget,bool:IsSkill,skillORitem,String:sSkillName[32],String:sSkillType[32])
+{
+	new race=GetRace(iTarget);
+	new String:TMPsSkillType[32];
+
+	if(IsSkill)
+	{
+		if(!IsValidSkill(race,skillORitem)) return 0;
+
+		if(GetRaceSkillName(race, skillORitem, sSkillName, sizeof(sSkillName))>0)
+		{
+			if(IsSkillUltimate(race, skillORitem))
+			{
+				//strcopy(sSkillType, sizeof(sSkillType), "ultimate");
+				Format(TMPsSkillType, sizeof(TMPsSkillType), "%T", "ultimate", iTarget);
+				strcopy(sSkillType, sizeof(sSkillType), TMPsSkillType);
+			}
+			else
+			{
+				//strcopy(sSkillType, sizeof(sSkillType), "skill");
+				Format(TMPsSkillType, sizeof(TMPsSkillType), "%T", "skill", iTarget);
+				strcopy(sSkillType, sizeof(sSkillType), TMPsSkillType);
+			}
+		}
+		else
+		{
+			LogError("Notifications - NotifyPlayerTookDamageFunction - Lookup of GetRaceSkillName(%d,%d,%s,sizeof(%d))",race,skillORitem,sSkillName,sizeof(sSkillName));
+			return 0;
+		}
+	}
+	else
+	{
+		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
+		Format(TMPsSkillType, sizeof(TMPsSkillType), "%T", "item", iTarget);
+		strcopy(sSkillType, sizeof(sSkillType), TMPsSkillType);
+	}	
 }
 
 
@@ -155,7 +227,7 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 	GetClientName(victim, sVictimName, sizeof(sVictimName));
 
 	//SetTrans(attacker);
-	if(IsSkill)
+	/*if(IsSkill)
 	{
 		if(!IsValidSkill(race,skillORitem)) return 0;
 
@@ -163,11 +235,13 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 		{
 			if(IsSkillUltimate(race, skillORitem))
 			{
-				strcopy(sSkillType, sizeof(sSkillType), "ultimate");
+				//strcopy(sSkillType, sizeof(sSkillType), "ultimate");
+				Format(sSkillType, sizeof(sSkillType), "%T", "ultimate", attacker);
 			}
 			else
 			{
-				strcopy(sSkillType, sizeof(sSkillType), "skill");
+				//strcopy(sSkillType, sizeof(sSkillType), "skill");
+				Format(sSkillType, sizeof(sSkillType), "%T", "skill", attacker);
 			}
 		}
 		else
@@ -179,9 +253,9 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 	else
 	{
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
-		strcopy(sSkillType, sizeof(sSkillType), "item");
-	}
-
+		strcopy(sSkillType, sizeof(sSkillType), "%T", "item", attacker);
+	}*/
+	NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType);
 
 	decl String:sTmpString[256];
 	Format(sTmpString,sizeof(sTmpString)," %s %s", sAttackerName, sSkillName);
@@ -194,9 +268,12 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 			MessageCount[attacker]+=damage;
 			MessageTimer[attacker]=GetGameTime();
 
-			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "You did +%i damage to %s with %s", damage, sVictimName, sSkillName);
-			PrintToConsole(attacker, "[%d] You did +%i damage to %s with %s", MessageCount[attacker], damage, sVictimName, sSkillName);
-			War3_ChatMessage(attacker,"{default}[{red}%d{default}] You did [{green}+%d{default}] damage to [{green}%s{default}] with {green}%s{default} [{green}%s{default}]!", MessageCount[attacker], damage, sVictimName, sSkillType, sSkillName);
+			// You did +%i damage to %s with %s
+			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "%T","You did +{iDamage} damage to {sVictimName} with {sSkillName}", attacker, damage, sVictimName, sSkillName);
+			// [%d] You did +%i damage to %s with %s
+			PrintToConsole(attacker,"%T","[{MessageCount} You did +{iDamage} damage to {sVictimName} with {sSkillName}", attacker, MessageCount[attacker], damage, sVictimName, sSkillName);
+			// {default}[{red}%d{default}] You did [{green}+%d{default}] damage to [{green}%s{default}] with {green}%s{default} [{green}%s{default}]!
+			War3_ChatMessage(attacker,"%T","[{MessageCount}] You did [+{iDamage}] damage to [{sVictimName}] with {sSkillType} [{sSkillName}]!", attacker, MessageCount[attacker], damage, sVictimName, sSkillType, sSkillName);
 		}
 		else
 		{
@@ -204,11 +281,43 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 			MessageTimer[attacker]=GetGameTime();
 			strcopy(MessageString1[attacker], 255, sTmpString);
 
-			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "You did +%i damage to %s with %s", damage, sVictimName, sSkillName);
-			PrintToConsole(attacker, "[%d] You did +%i damage to %s with %s", MessageCount[attacker], damage, sVictimName, sSkillName);
-			War3_ChatMessage(attacker,"{default}[{red}%d{default}] You did [{green}+%d{default}] damage to [{green}%s{default}] with {green}%s{default} [{green}%s{default}]!", MessageCount[attacker], damage, sVictimName, sSkillType, sSkillName);
+			// You did +%i damage to %s with %s
+			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "%T","You did +{iDamage} damage to {sTarget} with {sSkillName}", attacker, damage, sVictimName, sSkillName);
+			// [%d] You did +%i damage to %s with %s
+			PrintToConsole(attacker,"%T","[{MessageCount} You did +{iDamage} damage to {sTarget} with {sSkillName}", attacker, MessageCount[attacker], damage, sVictimName, sSkillName);
+			// {default}[{red}%d{default}] You did [{green}+%d{default}] damage to [{green}%s{default}] with {green}%s{default} [{green}%s{default}]!
+			War3_ChatMessage(attacker,"%T","[{MessageCount}] You did [+{iDamage}] damage to [{sTarget}] with {sSkillType} [{sSkillName}]!", attacker, MessageCount[attacker], damage, sVictimName, sSkillType, sSkillName);
 		}
 	}
+
+	/*if(IsSkill)
+	{
+		if(!IsValidSkill(race,skillORitem)) return 0;
+
+		if(GetRaceSkillName(race, skillORitem, sSkillName, sizeof(sSkillName))>0)
+		{
+			if(IsSkillUltimate(race, skillORitem))
+			{
+				//strcopy(sSkillType, sizeof(sSkillType), "ultimate");
+				Format(sSkillType, sizeof(sSkillType), "%T", "ultimate", victim);
+			}
+			else
+			{
+				//strcopy(sSkillType, sizeof(sSkillType), "skill");
+				Format(sSkillType, sizeof(sSkillType), "%T", "skill", victim);
+			}
+		}
+		else
+		{
+			LogError("Notifications - NotifyPlayerTookDamageFunction - Lookup of GetRaceSkillName(%d,%d,%s,sizeof(%d))",race,skillORitem,sSkillName,sizeof(sSkillName));
+			return 0;
+		}
+	}
+	else
+	{
+		strcopy(sSkillType, sizeof(sSkillType), "%T", "item", victim);
+	}*/
+	NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType);
 
 	if(GetPlayerProp(victim,iCombatMessages)==1)
 	{
@@ -217,9 +326,9 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 			MessageCount[victim]+=damage;
 			MessageTimer[victim]=GetGameTime();
 
-			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%s did %i damage to you with %s", sAttackerName, damage, sSkillName);
-			PrintToConsole(victim, "[%d] %s did %i damage to you with %s", MessageCount[victim], sAttackerName, damage, sSkillName);
-			War3_ChatMessage(victim,"{default}[{red}%d{default}] [{green}%s{default}] did [{green}+%d{default}] damage to you with {green}%s{default} [{green}%s{default}] as a {green}%s{default}!", MessageCount[victim], sAttackerName, damage, sSkillType, sSkillName, sRaceName);
+			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%T", "{sAttackerName} did {iDamage} damage to you with {sSkillName}", victim, sAttackerName, damage, sSkillName);
+			PrintToConsole(victim, "%T", "[{MessageCount} {sAttackerName} did {iDamage} damage to you with {sSkillName}", victim, MessageCount[victim], sAttackerName, damage, sSkillName);
+			War3_ChatMessage(victim,"%T","[{MessageCount}] [{sAttackerName}] did [+{iDamage}] damage to you with {sSkillType} [{sSkillName}] as a {sRaceName}!", victim, MessageCount[victim], sAttackerName, damage, sSkillType, sSkillName, sRaceName);
 		}
 		else if(attacker!=victim)
 		{
@@ -227,9 +336,9 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 			MessageTimer[victim]=GetGameTime();
 			strcopy(MessageString1[victim], 255, sTmpString);
 
-			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%s did %i damage to you with %s", sAttackerName, damage, sSkillName);
-			PrintToConsole(victim, "[%d] %s did %i damage to you with %s", MessageCount[victim], sAttackerName, damage, sSkillName);
-			War3_ChatMessage(victim,"{default}[{red}%d{default}] [{green}%s{default}] did [{green}+%d{default}] damage to you with {green}%s{default} [{green}%s{default}] as a {green}%s{default}!", MessageCount[victim], sAttackerName, damage, sSkillType, sSkillName, sRaceName);
+			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%T", "{sAttackerName} did {iDamage} damage to you with {sSkillName}", victim, sAttackerName, damage, sSkillName);
+			PrintToConsole(victim, "%T", "[{MessageCount} {sAttackerName} did {iDamage} damage to you with {sSkillName}", victim, MessageCount[victim], sAttackerName, damage, sSkillName);
+			War3_ChatMessage(victim,"%T","[{MessageCount}] [{sAttackerName}] did [+{iDamage}] damage to you with {sSkillType} [{sSkillName}] as a {sRaceName}!", victim, MessageCount[victim], sAttackerName, damage, sSkillType, sSkillName, sRaceName);
 		}
 	}
 	return 1;
@@ -289,7 +398,7 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 	GetRaceName(race,sRaceName,sizeof(sRaceName));
 
 	//SetTrans(attacker);
-	if(IsSkill)
+	/*if(IsSkill)
 	{
 		if(GetRaceSkillName(race, skillORitem, sSkillName, sizeof(sSkillName))>0)
 		{
@@ -312,8 +421,8 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 	{
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
 		strcopy(sSkillType, sizeof(sSkillType), "item");
-	}
-
+	}*/
+	NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType);
 
 	decl String:sTmpString[256];
 	Format(sTmpString,sizeof(sTmpString)," %s %s", sAttackerName, sSkillName);
@@ -341,6 +450,8 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 			War3_ChatMessage(attacker,"{default}[{blue}%d{default}] You leeched [{green}+%d{default}] health from [{green}%s{default}] with {blue}%s{default} [{green}%s{default}]!", MessageCount[attacker], health, sVictimName, sSkillType, sSkillName);
 		}
 	}
+
+	NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType);
 
 	if(GetPlayerProp(victim,iCombatMessages)==1)
 	{
@@ -449,7 +560,7 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 	//}
 	//else
 	//{
-	if(IsSkill)
+	/*if(IsSkill)
 	{
 		if(!IsValidSkill(race,skillORitem)) return 0;
 
@@ -474,7 +585,8 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 	{
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
 		strcopy(sSkillType, sizeof(sSkillType), "item");
-	}
+	}*/
+	NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType);
 	//}
 
 	//new health=1;
@@ -510,6 +622,8 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 			War3_ChatMessage(victim,"{default}You are immune to %s [{green}%s{default}] from [{green}%s{default}]!", sSkillType, sSkillName, sAttackerName);
 		}
 	}
+
+	NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType);
 
 	if(GetPlayerProp(attacker,iCombatMessages)==1)
 	{
