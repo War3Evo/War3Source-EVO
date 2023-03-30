@@ -1,0 +1,112 @@
+
+// w3s._War3Source_Engine_Notifications.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+//
+// }
+
+"Phrases"
+{
+	// {default}[{green}{sSkillType} {blue}{sSkillName} {green}ACTIVATED{default}]
+	"[{sSkillType} {sSkillName} ACTIVATED]"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{default}[{green}{1} {blue}{2} {green}ACTIVATED{default}]"
+	}
+	// {default}[{green}%s {blue}%s {green}DEACTIVATED{default}]
+	"[{sSkillType} {sSkillName} DEACTIVATED]"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{default}[{green}{1} {blue}{2} {green}DEACTIVATED{default}]"
+	}
+	// {default}[{green}ITEM {blue}%s {green}ACTIVATED{default}]
+	"[ITEM {sSkillName} ACTIVATED]"
+	{
+		"#format"		"{1:s}"
+		"en"			"{default}[{green}ITEM {blue}{1} {green}ACTIVATED{default}]"
+	}
+	// {default}[{green}ITEM {blue}%s {green}DEACTIVATED{default}]
+	"[ITEM {sSkillName} DEACTIVATED]"
+	{
+		"#format"		"{1:s}"
+		"en"			"{default}[{green}ITEM {blue}{1} {green}DEACTIVATED{default}]"
+	}
+	// You did +%i damage to %s with %s
+	"You did +{iDamage} damage to {sVictimName} with {sSkillName}"
+	{
+		"#format"		"{1:d},{2:s},{3:s}"
+		"en"			"You did +{1} damage to {2} with {3}"
+	}
+	// [%d] You did +%i damage to %s with %s
+	"[{MessageCount} You did +{iDamage} damage to {sVictimName} with {sSkillName}"
+	{
+		"#format"		"{1:d},{2:d},{3:s},{4:s}"
+		"en"			"[{1}] You did +{2} damage to {3} with {4}"
+	}
+	// {default}[{red}%d{default}] You did [{green}+%d{default}] damage to [{green}%s{default}] with {green}%s{default} [{green}%s{default}]!
+	"[{MessageCount}] You did [+{iDamage}] damage to [{sVictimName}] with {sSkillType} [{sSkillName}]!"
+	{
+		"#format"		"{1:d},{2:d},{3:s},{4:s},{5:s}"
+		"en"			"{default}[{red}{1}{default}] You did [{green}+{2}{default}] damage to [{green}{3}{default}] with {green}{4}{default} [{green}{5}{default}]!"
+	}
+	// %s did %i damage to you with %s
+	"{sAttackerName} did {iDamage} damage to you with {sSkillName}"
+	{
+		"#format"		"{1:s},{2:d},{3:s}"
+		"en"			"{1} did {2} damage to you with {3}"
+	}
+	// [%d] %s did %i damage to you with %s
+	"[{MessageCount} {sAttackerName} did {iDamage} damage to you with {sSkillName}"
+	{
+		"#format"		"{1:d},{2:s},{3:d},{4:s}"
+		"en"			"[{1}] {2} did {3} damage to you with {4}"
+	}
+	// {default}[{red}%d{default}] [{green}%s{default}] did [{green}+%d{default}] damage to you with {green}%s{default} [{green}%s{default}] as a {green}%s{default}!
+	"[{MessageCount}] [{sAttackerName}] did [+{iDamage}] damage to you with {sSkillType} [{sSkillName}] as a {sRaceName}!"
+	{
+		"#format"		"{1:d},{2:s},{3:d},{4:s},{5:s},{6:s}"
+		"en"			"{default}[{red}{1}{default}] [{green}{2}{default}] did [{green}+{3}{default}] damage to you with {green}{4}{default} [{green}{5}{default}] as a {green}{6}{default}!"
+	}
+	
+}
