@@ -35,6 +35,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_MenuItemsinfos");
 	LoadTranslations("w3s._War3Source_Engine_MenuRacePlayerinfo");
 	LoadTranslations("w3s._War3Source_Engine_MenuShopmenu");
+	LoadTranslations("w3s._War3Source_Engine_MenuSpendskills");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");

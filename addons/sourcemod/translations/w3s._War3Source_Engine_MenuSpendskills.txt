@@ -75,4 +75,38 @@
 	{
 		"en"			"no description"	
 	}
+	"(Ultimate: {skillname} [{curskilllevel} / {maxskilllevel}])"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"(Ultimate: {1} [{2} / {3}])"
+	}
+	"[Requires lvl {amount}]"
+	{
+		"#format"		"{1:d}"
+		"en"			"[Requires lvl {1}]"
+	}
+	"{skillname} [{curskilllevel} / {maxskilllevel}]"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"{1} [{2} / {3}]"
+	}
+	"{skillname} is now level {amount}"
+	{
+		"#format"		"{1:s},{2:d}"
+		"en"			"{1} is now level {2}"
+	}
+	"You can not choose a skill without gaining another level"
+	{
+		"en"			"You can not choose a skill without gaining another level"
+	}
+	"You need to be at least level {amount} to choose an ultimate"
+	{
+		"#format"		"{1:d}"
+		"en"			"You need to be at least level {1} to choose an ultimate"
+	}
+	"You did not select any skills. Your skills were auto assigned. Type resetskills in chat to reconfigure them."
+	{
+		"en"			"{lightgreen}You did not select any skills.\nYour skills were auto assigned.\nType resetskills in chat to reconfigure them.{default}"
+	}
+
 }

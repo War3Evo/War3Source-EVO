@@ -1,5 +1,6 @@
 // War3Source_Engine_MenuSpendskills.sp
 
+// TRANSLATED 3/29/2023
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
@@ -197,38 +198,10 @@ War3Source_SkillMenu(client)
 						{
 							// ULTIMATE SKILL LISTING
 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 							NEED TO FINISH BELOW WITH THE SAME TASK AS ABOVE
-// 
-//							- FINISH TRANSLATIONS 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-
 							//if(level>=curskilllevel*2+1+){
 							Format(sbuf,sizeof(sbuf),"%d",x);
 							//Format(buf,sizeof(buf),"%T ","Ultimate: {skillname} (Skill Level {amount})",client,skillname,curskilllevel+1);
-							Format(buf,sizeof(buf),"(Ultimate: %s [%d / %d])",skillname,curskilllevel,maxskilllevel);
+							Format(buf,sizeof(buf),"%T","(Ultimate: {skillname} [{curskilllevel} / {maxskilllevel}])",client,skillname,curskilllevel,maxskilllevel);
 							if((level<GetMinUltLevel()))
 							{
 								Format(buf,sizeof(buf),"%s %T",buf,"[Requires lvl {amount}]",client,GetMinUltLevel());
@@ -249,7 +222,7 @@ War3Source_SkillMenu(client)
 								}
 								else
 								{
-									Format(str,sizeof(str),"%s:\nno description",buf);
+									Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 									AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
 								}
 							}
@@ -270,7 +243,7 @@ War3Source_SkillMenu(client)
 									}
 									else
 									{
-										Format(str,sizeof(str),"%s:\nno description",buf);
+										Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 										AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DEFAULT);
 									}
 								}
@@ -288,7 +261,7 @@ War3Source_SkillMenu(client)
 									}
 									else
 									{
-										Format(str,sizeof(str),"%s:\nno description",buf);
+										Format(str,sizeof(str),"%s:\n%T",buf,"no description",client);
 										AddMenuItem(sMenu,sbuf,str,ITEMDRAW_DISABLED);
 									}
 								}
@@ -331,7 +304,7 @@ War3Source_SkillMenu(client)
 					{
 						Format(sbuf,sizeof(sbuf),"%d",x);
 						//Format(buf,sizeof(buf),"%T","{skillname} (Skill Level {amount})",client,skillname,curskilllevel); //maxskilllevel
-						Format(buf,sizeof(buf),"%s [%d / %d]",skillname,curskilllevel,maxskilllevel);
+						Format(buf,sizeof(buf),"%T","{skillname} [{curskilllevel} / {maxskilllevel}]",client,skillname,curskilllevel,maxskilllevel);
 						AddMenuItem(sMenu,sbuf,buf,ITEMDRAW_DISABLED);
 					}
 				}
@@ -421,7 +394,7 @@ public War3Source_SMenu_Selected(Handle:menu,MenuAction:action,client,selection)
 				new race=GetRace(client);
 				if(GetLevelsSpent(client,race)<War3_GetLevel(client,race))
 				{
-					War3_ChatMessage(client,"{lightgreen}You did not select any skills.\nYour skills were auto assigned.\nType resetskills in chat to reconfigure them.{default}");
+					War3_ChatMessage(client,"%T","You did not select any skills. Your skills were auto assigned. Type resetskills in chat to reconfigure them.",client);
 					War3_bots_distribute_sp(client);
 				}
 			}
