@@ -1,6 +1,7 @@
-# ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evoultion Gamemode for Sourcemod
+# ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evolution Win/Linux/Mac Server for CSGO, CSS, TF2, and FOF
+Requires Sourcemod - install.sh script for Linux installs everything needed
 
-* [What is War3Evo War3Source Revolution](#what-is-war3evo-war3source-revolution)
+* [What is War3Evo War3Source Evolution](#what-is-war3evo-war3source-evolution)
 * [Discord Server invite](#discord)
 * [Introduction](#introduction)
 * [Keyboard Bindings](#keyboard-bindings-for-pushing-buttons-for-your-abilities-and-ultimate)
@@ -15,7 +16,7 @@
 * [Links](#links)
 * [To Do List](#to-do-list)
 
-## What is War3Evo War3Source Revolution?
+## What is War3Evo War3Source Evolution?
 
 From https://war3source.com/:
 War3Source brings the Warcraft 3 leveling style and races into the game. It is originally based on the amxmodx (AMX) version War3FT.
