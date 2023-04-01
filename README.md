@@ -3,6 +3,7 @@
 * [What is War3Evo War3Source Revolution](#what-is-war3evo-war3source-revolution)
 * [Discord Server invite](#discord)
 * [Introduction](#introduction)
+* [Keyboard Bindings](#keyboard-bindings-for-pushing-buttons-for-your-abilities-and-ultimate)
 * [Requirements](#requirements)
 * [Install](#install)
 * [Update](#update)
@@ -24,6 +25,10 @@ Each standard race has total of 16 levels, made up of 3 skills and 1 ultimate wh
 War3Source features a modular design where races can be coded independently and loaded into the main plugin. Independent plugins (Addons) can be created to complement or change aspects War3Source.
 
 There are also shop items in W3S as there are in all Warcraft mods.
+
+It comes with several pre-made races, and shop items to get you started.  There's plans to offer bundle packs of new races in the future or you can create your own.
+
+You can always join a discussion about new features you'd like to see or report bugs in the issue list.
 
 To further extend this information:
 
@@ -84,9 +89,11 @@ These items you buy only once and lasts until map change.
 ### TF2 MVM Game Mode
 * mvmcashregen "My Piggy Bank" - MVM cash regeneration
 
-* +ability is a command that you can bind to a key on your keyboard in order to use that ability in game.
-* +ability2 is a command that you can bind to a key on your keyboard in order to use that ability in game.
-* +ultimate is a command that you can bind to a key on your keyboard in order to use that ability in game.
+### Keyboard Bindings for pushing buttons for your abilities and ultimate
+Players will need to gain access to their developer console for the game in order to create keyboard bindings for the game.
+* :video_game: +ability is a command that you can bind to a key on your keyboard in order to use that ability in game.
+* :video_game: +ability2 is a command that you can bind to a key on your keyboard in order to use that ability in game.
+* :video_game: +ultimate is a command that you can bind to a key on your keyboard in order to use that ability in game.
 
 ### Race Skills and Abilities you'll have to play the game to find out 
 
