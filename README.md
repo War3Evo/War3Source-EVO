@@ -1,5 +1,5 @@
 # ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evolution Win/Linux/Mac Server for CSGO, CSS, TF2, and FOF
-Requires Sourcemod - install.sh script for Linux installs everything needed
+Requires Sourcemod and Steamcmd - install.sh script for Linux installs everything needed
 
 * [What is War3Evo War3Source Evolution](#what-is-war3evo-war3source-evolution)
 * [Discord Server invite](#discord)
