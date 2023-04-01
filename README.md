@@ -1,10 +1,7 @@
 # ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evoultion Gamemode for Sourcemod
 
-3/5/2023
-The develop branch is currently working on making War3source fully translatable.
-Players will soon be able to type commands in thier own language for War3Source:EVO.
-Anyone willing to help with translating for your language, see the Develop branch for the **_new translation files_** and submit to discussion or issue area of github. If you install this mod using the linux install script, you can change the git branch inside the upgrade script.
-
+* [What is War3Evo War3Source Revolution](#what-is-war3evo-war3source-revolution)
+* [Discord Server invite](#discord)
 * [Introduction](#introduction)
 * [Requirements](#requirements)
 * [Install](#install)
@@ -12,9 +9,125 @@ Anyone willing to help with translating for your language, see the Develop branc
 * [Oldinfo](#oldinfo)
 * [Reporting issues](#reporting-issues)
 * [Submitting fixes](#submitting-fixes)
+* [Development and Roadmap](#development-and-roadmap)
 * [Copyright](#copyright)
 * [Links](#links)
 * To Do List(#to-do-list)
+
+## What is War3Evo War3Source Revolution
+
+```
+From https://war3source.com/:
+War3Source brings the Warcraft 3 leveling style and races into the game. It is originally based on the amxmodx (AMX) version War3FT.
+
+Each standard race has total of 16 levels, made up of 3 skills and 1 ultimate where each skill/ultimate can be leveled 4 times for a total of 16 levels.
+
+War3Source features a modular design where races can be coded independently and loaded into the main plugin. Independent plugins (Addons) can be created to complement or change aspects War3Source.
+
+There are also shop items in W3S as there are in all Warcraft mods.
+
+To further extend this information:
+
+War3Source: Evolution expands on War3Source.
+
+W3Faction created by Don Revan was updated in War3Evo's War3Source. You can build races that use W3Factions to determine if a player shares the same faction or not. You could create a race that uses factions in order to give bonuses or negatives to a player race. A W3Faction can be anything you want... elf, dwarf, orc, etc. OR wood, stone, fire OR Light, Dark, Grey... whatever you desire in your race.
+
+Casting allows you to implement a delay in your race before "casting a spell" with spell effects that "shows" others that your about to cast a spell.
+
+Wards allows you to implement a area on the map that would be placed for a certain amount of seconds. The ward could be used to help your team or hurt the other team or both. The ward is visible to everyone and is color coded. Usually there is a timer and a limited number of wards a race can put down.
+
+Shop Menu 1 Items - Costs Gold
+These items lasts until player death.
+boot - fun faster
+claw - extra dmg to enemy
+cloak - partially invisible
+mask - gain hp on hit
+lace - immunity to ultimates
+orb - slow on hit
+ring - regenerate hit points
+tome - buy xp
+sock - less gravity
+oil - Coats your weapons with ability to penetrate plates and helm.
+plate - Prevents All Damage to Chest.
+helm - no headshots to self
+shield - immunity to skills
+fireorb - chance fire enemy
+courage - 15% dmg reduction
+faith - 15% magic dmg reduction
+antiward - immunity to wards
+piercing - pierce physical armor
+
+TF2 Engineer Only Shop Items
+stophack - When a someone tries to hack your building, this item will be used instead. (single use item)
+
+TF2 Medic Only Shop Items
+uber50 - +50 uber
+mboots - Gives healing target increased movement speed
+mring - Gives healing target regeneration of hp
+mhealth - Gives healing target extra hp
+
+TF2 PVM Game Mode
+leather - +12 phys armor
+chainmail - +14 phys armor
+bandedmail - +16 phys armor
+halfplate - +18 phys armor
+fullplate - +20 phys armor
+dragonmail - +50 magic armor
+
+Shop Menu 2 Items - Costs Diamonds
+These items you buy only once and lasts until map change.
+posthaste - +3% speed
+lifetube - +1 HP regeneration
+trinket - +0.5 HP regeneration
+sbracelt - +5% Evasion
+fbracer - +10 max HP
+
+TF2 MVM Game Mode
+mvmcashregen "My Piggy Bank" - MVM cash regeneration
+
++ability is a command that you can bind to a key on your keyboard in order to use that ability in game.
++ability2 is a command that you can bind to a key on your keyboard in order to use that ability in game.
++ultimate is a command that you can bind to a key on your keyboard in order to use that ability in game.
+
+Race Skills and Abilities you'll have to play the game to find out 
+
+Race Passive Ultimates - does not use +ultimate to activate
+Undead Scourge - Reincarnation - When you die, you revive on the spot. Has a 60/50/40/30 second cooldown.
+Scout - Marksman - Standing still for 1 second, scout is able to deal 1.2-1.6x damage the further the target.\n1000 units or more deals maximum damage
+
+Race Activate Ultimates - uses +ultimate to activate
+Human Alliance - Teleport - Teleport toward where you aim. 600/700/850/1000 range. Ultimate Immunity has 350 blocking radius.
+Entangling Roots - Bind enemies to the ground, rendering them immobile for 0.25/0.50/0.75/1.0 seconds. Distance of increases per level units.
+Blood Mage TF2 - Flame Strike - Burn the enemy over time for 10 damage 4-10 times. 50/60/70/80ft. range
+Corrupted Disciple - Overload - Shocks the lowest hp enemy around you per second while you gain damage per hit
+Soul Reaper - Demonic Execution - Deals a large amount of damage based on how much of the enemy's health is missing
+Blood Hunter - Hemorrhage - The target will take damage if he moves. Duration Scales 4/5/6/7 seconds.
+N'aix - Rage - Naix goes into a maddened Rage, gaining 15-40% attack speed for 2-5 seconds
+Succubus Hunter - Deamonic Transformation - Get More speed, and more HP. Costs 1/2/3/4 SKULLs
+Chronos - Chronosphere - Rip space and time to trap enemy. Trapped victims cannot move and can only deal/receive melee damage, Sphere protects chornos from outside damage. It lasts 3/3.5/4/4.5 seconds
+Lich - Death And Decay - Deals 2/4/6/8 magic damage to all enemies on map
+Sacred Warrior - Life Break - Damage yourself (10/15/20/25%% of maxHP) to deal a great amount of damage (20/30/40/50%% of victim's maxHP)
+Hammerstorm - Gods Strength - Greatly enhance your damage by 20/30/40/50 percent for a short amount of time.
+Dark Elf - DarkOrb - Blind a player. 0.5-2 second duration & 1000 Range
+Fluttershy - BeGentle - Target cannot deal damage for 1-1.8 seconds
+Dragonborn TF2 - Dragons Breath - Applies jarate effect. 400-700 range.
+Rarity - Hold - Hold and blinds player up to 2.3 seconds
+Rainbow Dash - Sonic Rainboom - Buff teammates' damage around you for 4 sec, 200-400 units. Must be in speed (ability) mode to cast.
+Luna Moonfang - Eclipse - Calls to the moon`s magic, summoning a concentrated burst of Lucent Beams to damage targets around Luna. 4-10 beams.
+Frogger TF2 - Lilly Pads - [Lvl 1]Can use any teleporter (blue/red) [Lvl 2]Teleporters instant recharge when you walk thru them [Lvl 3]Mini-Instant level 3 teleporter [Lvl 4]Build Double Dispensers
+Light Bender - Flash - Teleport a random ally to you!
+Shadow Paladin TF2 - Big Bad Voodoo - You are invulnerable from physical attacks for 0.66/1.0/1.33/1.66 seconds
+Soul Medic TF2 - Soul Swap - You swap HP with your partner. You become ubered for 2/3/4/5 seconds. CD: 60s
+
+Technical
+Races loaded in War3EVo's War3Source are in memory, but functions inside the addons is disabled if they are not used by any player or bot. This helps in reducing wasted CPU cycles.
+```
+
+## Discord
+
+Server Invite:
+
+* https://discord.gg/uhTfXYgJfB
 
 ## Introduction
 
@@ -174,6 +287,13 @@ prevent duplicates.
 
 SourcePawn fixes are submitted as pull requests via Github.
 For SQL only fixes, open a ticket; if a bug report exists for the bug, post on an existing ticket.
+
+## Development and Roadmap
+
+3/5/2023
+The develop branch is currently working on making War3source fully translatable.
+Players will soon be able to type commands in thier own language for War3Source:EVO.
+Anyone willing to help with translating for your language, see the Develop branch for the **_new translation files_** and submit to discussion or issue area of github. If you install this mod using the linux install script, you can change the git branch inside the upgrade script.
 
 ## Contributor Rules
 
