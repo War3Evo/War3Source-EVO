@@ -1,22 +1,32 @@
 # ![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source Evolution Win/Linux/Mac Server for CSGO, CSS, TF2, and FOF
 Requires Sourcemod and Steamcmd - install.sh script for Linux installs everything needed
 
-* [What is War3Evo War3Source Evolution](#what-is-war3evo-war3source-evolution)
-* [Discord Server invite](#discord)
-* [Introduction](#introduction)
-* [Keyboard Bindings](#keyboard-bindings-for-pushing-buttons-for-your-abilities-and-ultimate)
-* [Requirements](#requirements)
-* [Install](#install)
-* [Update](#update)
-* [Oldinfo](#oldinfo)
-* [Reporting issues](#reporting-issues)
-* [Submitting fixes](#submitting-fixes)
-* [Development and Roadmap](#development-and-roadmap)
-* [Copyright](#copyright)
-* [Links](#links)
-* [To Do List](#to-do-list)
+* :grey_question:[What is War3Evo War3Source Evolution](#what-is-war3evo-war3source-evolution)
+* :sparkles:[Discord Server invite](#discord)
+* :grey_exclamation:[Introduction](#introduction)
+* :video_game:[Keyboard Bindings](#keyboard-bindings-for-pushing-buttons-for-your-abilities-and-ultimate)
+* :star:[Requirements](#requirements)
+* :point_right:[Install](#install)
+* :rotating_light:[Update](#update)
+* :older_man:[Oldinfo](#oldinfo)
+* :speech_balloon:[Reporting issues](#reporting-issues)
+* :hammer:[Submitting fixes](#submitting-fixes)
+* :bulb:[Submit Ideas](#submitting-ideas)
+* :globe_with_meridians:[Development and Roadmap](#development-and-roadmap)
+* :copyright:[Copyright](#copyright)
+* :link:[Links](#links)
+* :clipboard:[To Do List](#to-do-list)
 
-## What is War3Evo War3Source Evolution?
+## Discord
+![](https://dcbadge.vercel.app/api/shield/521064507121074210)
+
+Server Invite:
+
+[![](https://dcbadge.vercel.app/api/server/uhTfXYgJfB)](https://discord.gg/uhTfXYgJfB)
+
+* https://discord.gg/uhTfXYgJfB
+
+## What is War3Evo War3Source Evolution:grey_question:
 
 From https://war3source.com/:
 War3Source brings the Warcraft 3 leveling style and races into the game. It is originally based on the amxmodx (AMX) version War3FT.
@@ -27,13 +37,9 @@ War3Source features a modular design where races can be coded independently and 
 
 There are also shop items in W3S as there are in all Warcraft mods.
 
-It comes with several pre-made races, and shop items to get you started.  There's plans to offer bundle packs of new races in the future or you can create your own.
+It comes with several pre-made races, and :shopping: shop items to get you started.  There's plans to offer bundle packs of new races in the future or you can create your own.
 
-You can always join a discussion about new features you'd like to see or report bugs in the issue list.
-
-To further extend this information:
-
-War3Source: Evolution expands on War3Source.
+![logo](https://avatars.githubusercontent.com/u/3613045?s=50) War3Source: Evolution expands on War3Source.
 
 &#x1F537;**W3Faction**&#x1F539;created by Don Revan was updated in War3Evo's War3Source. You can build races that use W3Factions to determine if a player shares the same faction or not. You could create a race that uses factions in order to give bonuses or negatives to a player race. A W3Faction can be anything you want... elf, dwarf, orc, etc. OR wood, stone, fire OR Light, Dark, Grey... whatever you desire in your race.
 
@@ -43,20 +49,20 @@ War3Source: Evolution expands on War3Source.
 
 ### :shopping:Shop Menu 1 Items - Costs Gold :coin:
 These items lasts until player death.  Server owner can change the prices of these items in the war3source*.cfg files.  *.cfg files are text based files.
-* boot - fun faster
+* :boot:boot - fun faster
 * claw - extra dmg to enemy
 * cloak - partially invisible
 * mask - gain hp on hit
 * lace - immunity to ultimates
 * orb - slow on hit
-* ring - regenerate hit points
+* :ring:ring - regenerate hit points
 * tome - buy xp
 * sock - less gravity
 * oil - Coats your weapons with ability to penetrate plates and helm.
 * plate - Prevents All Damage to Chest.
 * helm - no headshots to self
 * shield - immunity to skills
-* fireorb - chance fire enemy
+* :fire:fireorb - chance fire enemy
 * courage - 15% dmg reduction
 * faith - 15% magic dmg reduction
 * antiward - immunity to wards
@@ -67,9 +73,9 @@ These items lasts until player death.  Server owner can change the prices of the
 
 ### TF2 Medic Only Shop Items
 * uber50 - +50 uber
-* mboots - Gives healing target increased movement speed
-* mring - Gives healing target regeneration of hp
-* mhealth - Gives healing target extra hp
+* :boot:mboots - Gives healing target increased movement speed
+* :ring:mring - Gives healing target regeneration of hp
+* :heartbeat:mhealth - Gives healing target extra hp
 
 ### TF2 PVM Game Mode
 * leather - +12 phys armor
@@ -79,16 +85,16 @@ These items lasts until player death.  Server owner can change the prices of the
 * fullplate - +20 phys armor
 * dragonmail - +50 magic armor
 
-### :shopping:Shop Menu 2 Items - Costs Diamonds :diamonds:
+### :shopping:Shop Menu 2 Items - Costs Diamonds :gem:
 These items you buy only once and lasts until map change.
-* posthaste - +3% speed
-* lifetube - +1 HP regeneration
-* trinket - +0.5 HP regeneration
+* :running:posthaste - +3% speed
+* :two_hearts:lifetube - +1 HP regeneration
+* :heart:trinket - +0.5 HP regeneration
 * sbracelt - +5% Evasion
 * fbracer - +10 max HP
 
 ### TF2 MVM Game Mode
-* mvmcashregen "My Piggy Bank" - MVM cash regeneration
+* :moneybag:mvmcashregen "My Piggy Bank" - MVM cash regeneration
 
 ### Keyboard Bindings for pushing buttons for your abilities and ultimate
 Players will need to gain access to their developer console for the game in order to create keyboard bindings for the game.
@@ -99,79 +105,69 @@ Players will need to gain access to their developer console for the game in orde
 ### Race Skills and Abilities you'll have to play the game to find out 
 
 ### Race Passive Ultimates - does not use +ultimate to activate
-* Undead Scourge - Reincarnation - When you die, you revive on the spot. Has a 60/50/40/30 second cooldown.
-* Scout - Marksman - Standing still for 1 second, scout is able to deal 1.2-1.6x damage the further the target.\n1000 units or more deals maximum damage
+* :ambulance:Undead Scourge - Reincarnation - When you die, you revive on the spot. Has a 60/50/40/30 second cooldown.
+* :flashlight:Scout - Marksman - Standing still for 1 second, scout is able to deal 1.2-1.6x damage the further the target.\n1000 units or more deals maximum damage
 
 ### Race Activate Ultimates - uses +ultimate to activate
-* Human Alliance - Teleport - Teleport toward where you aim. 600/700/850/1000 range. Ultimate Immunity has 350 blocking radius.
-* Entangling Roots - Bind enemies to the ground, rendering them immobile for 0.25/0.50/0.75/1.0 seconds. Distance of increases per level units.
-* Blood Mage TF2 - Flame Strike - Burn the enemy over time for 10 damage 4-10 times. 50/60/70/80ft. range
-* Corrupted Disciple - Overload - Shocks the lowest hp enemy around you per second while you gain damage per hit
-* Soul Reaper - Demonic Execution - Deals a large amount of damage based on how much of the enemy's health is missing
-* Blood Hunter - Hemorrhage - The target will take damage if he moves. Duration Scales 4/5/6/7 seconds.
-* N'aix - Rage - Naix goes into a maddened Rage, gaining 15-40% attack speed for 2-5 seconds
-* Succubus Hunter - Deamonic Transformation - Get More speed, and more HP. Costs 1/2/3/4 SKULLs
-* Chronos - Chronosphere - Rip space and time to trap enemy. Trapped victims cannot move and can only deal/receive melee damage, Sphere protects chornos from outside damage. It lasts 3/3.5/4/4.5 seconds
-* Lich - Death And Decay - Deals 2/4/6/8 magic damage to all enemies on map
-* Sacred Warrior - Life Break - Damage yourself (10/15/20/25%% of maxHP) to deal a great amount of damage (20/30/40/50%% of victim's maxHP)
-* Hammerstorm - Gods Strength - Greatly enhance your damage by 20/30/40/50 percent for a short amount of time.
-* Dark Elf - DarkOrb - Blind a player. 0.5-2 second duration & 1000 Range
-* Fluttershy - BeGentle - Target cannot deal damage for 1-1.8 seconds
-* Dragonborn TF2 - Dragons Breath - Applies jarate effect. 400-700 range.
-* Rarity - Hold - Hold and blinds player up to 2.3 seconds
-* Rainbow Dash - Sonic Rainboom - Buff teammates' damage around you for 4 sec, 200-400 units. Must be in speed (ability) mode to cast.
-* Luna Moonfang - Eclipse - Calls to the moon`s magic, summoning a concentrated burst of Lucent Beams to damage targets around Luna. 4-10 beams.
-* Frogger TF2 - Lilly Pads - [Lvl 1]Can use any teleporter (blue/red) [Lvl 2]Teleporters instant recharge when you walk thru them [Lvl 3]Mini-Instant level 3 teleporter [Lvl 4]Build Double Dispensers
-* Light Bender - Flash - Teleport a random ally to you!
-* Shadow Paladin TF2 - Big Bad Voodoo - You are invulnerable from physical attacks for 0.66/1.0/1.33/1.66 seconds
-* Soul Medic TF2 - Soul Swap - You swap HP with your partner. You become ubered for 2/3/4/5 seconds. CD: 60s
+* :boom:Human Alliance - Teleport - Teleport toward where you aim. 600/700/850/1000 range. Ultimate Immunity has 350 blocking radius.
+* :evergreen_tree:Entangling Roots - Bind enemies to the ground, rendering them immobile for 0.25/0.50/0.75/1.0 seconds. Distance of increases per level units.
+* :fire:Blood Mage TF2 - Flame Strike - Burn the enemy over time for 10 damage 4-10 times. 50/60/70/80ft. range
+* :smiling_imp:Corrupted Disciple - Overload - Shocks the lowest hp enemy around you per second while you gain damage per hit
+* :broken_heart:Soul Reaper - Demonic Execution - Deals a large amount of damage based on how much of the enemy's health is missing
+* :droplet:Blood Hunter - Hemorrhage - The target will take damage if he moves. Duration Scales 4/5/6/7 seconds.
+* :rage:N'aix - Rage - Naix goes into a maddened Rage, gaining 15-40% attack speed for 2-5 seconds
+* :skull:Succubus Hunter - Deamonic Transformation - Get More speed, and more HP. Costs 1/2/3/4 SKULLs
+* :watch:Chronos - Chronosphere - Rip space and time to trap enemy. Trapped victims cannot move and can only deal/receive melee damage, Sphere protects chornos from outside damage. It lasts 3/3.5/4/4.5 seconds
+* :zap:Lich - Death And Decay - Deals 2/4/6/8 magic damage to all enemies on map
+* :hocho:Sacred Warrior - Life Break - Damage yourself (10/15/20/25%% of maxHP) to deal a great amount of damage (20/30/40/50%% of victim's maxHP)
+* :milky_way:Hammerstorm - Gods Strength - Greatly enhance your damage by 20/30/40/50 percent for a short amount of time.
+* :crystal_ball:Dark Elf - DarkOrb - Blind a player. 0.5-2 second duration & 1000 Range
+* :rose:Fluttershy - BeGentle - Target cannot deal damage for 1-1.8 seconds
+* :no_smoking:Dragonborn TF2 - Dragons Breath - Applies jarate effect. 400-700 range.
+* :zzz:Rarity - Hold - Hold and blinds player up to 2.3 seconds
+* :rainbow::dash:Rainbow Dash - Sonic Rainboom - Buff teammates' damage around you for 4 sec, 200-400 units. Must be in speed (ability) mode to cast.
+* :last_quarter_moon_with_face:Luna Moonfang - Eclipse - Calls to the moon`s magic, summoning a concentrated burst of Lucent Beams to damage targets around Luna. 4-10 beams.
+* :frog:Frogger TF2 - Lilly Pads - [Lvl 1]Can use any teleporter (blue/red) [Lvl 2]Teleporters instant recharge when you walk thru them [Lvl 3]Mini-Instant level 3 teleporter [Lvl 4]Build Double Dispensers
+* :boom:Light Bender - Flash - Teleport a random ally to you!
+* :eyeglasses:Shadow Paladin TF2 - Big Bad Voodoo - You are invulnerable from physical attacks for 0.66/1.0/1.33/1.66 seconds
+* :syringe:Soul Medic TF2 - Soul Swap - You swap HP with your partner. You become ubered for 2/3/4/5 seconds. CD: 60s
 
 ### Technical
 Races loaded in War3EVo's War3Source are in memory, but functions inside the addons is disabled if they are not used by any player or bot. This helps in reducing wasted CPU cycles.
-
-## Discord
-
-![](https://dcbadge.vercel.app/api/shield/521064507121074210)
-
-Server Invite:
-
-[![](https://dcbadge.vercel.app/api/server/uhTfXYgJfB)](https://discord.gg/uhTfXYgJfB)
-
-* https://discord.gg/uhTfXYgJfB
 
 ## Introduction
 
 War3Source Evoultion is a *RPG* Gamemode based mostly in Sourcepawn.
 
-It is completely open source; community involvement is highly encouraged.
+It is completely open source; :family:community involvement is highly encouraged.
 
-If you wish to contribute ideas or code, please visit our site linked below or
+If you wish to contribute :bulb:ideas or :page_with_curl:code, please visit our site linked below or
 make pull requests to our [Github repository](https://github.com/War3Evo/War3Source-EVO/pulls).
 
-For further information on the War3Source Evoultion project, please visit our project
+For further information on the War3Source Evoultion scroll:project, please visit our scroll:project
 website at [War3Evo.info](http://www.war3evo.info/).
 
 ## Requirements
 
-### Hard Drive Space Requirements
+### :floppy_disk:Hard Drive Space Requirements
 * CSGO - 35 GB
 * CSS - 3 GB
 * TF2 - 10 GB
 * FOF - 4 GB
 
-### Minium Memory Requirements
+### :computer:Minium Memory Requirements
 * CSGO 1 GB / 1 GB SWAP
 * CSS 512 MB / 256 MB SWAP
 * TF2 512 MB / 256 MB SWAP
 * FOF 512 MB / 256 MB SWAP
 
-### Software Requirements
+### :bell:Software Requirements
 * Steam Server (SteamCMD) - https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD
 * MetaMod - https://www.metamodsource.net/downloads.php?branch=stable
 * SourceMod requires 1.9 to compile - Runs on the latest version - https://www.sourcemod.net/downloads.php?branch=stable
 * War3Source-EVo - https://github.com/War3Evo/War3Source-EVO
 
-### Steam Server Requirements
+### :key:Steam Server Requirements
 * Steam Game Server Account Management - https://steamcommunity.com/dev/managegameservers
 
 ## Install
@@ -286,17 +282,21 @@ Get a fastDL server and set your sv_downloadurl (see link --> https://developer.
 
 Read file [CHANGELOGS](CHANGELOG.md).
 
-## Reporting Issues
+## :speech_balloon:Reporting Issues
 
 Issues can be reported via the [Github issue tracker](https://github.com/War3Evo/War3Source-EVO/issues).
 
 Please take the time to review existing issues before submitting your own to
 prevent duplicates.
 
-## Submitting Fixes
+## :hammer:Submitting Fixes
 
 SourcePawn fixes are submitted as pull requests via Github.
 For SQL only fixes, open a ticket; if a bug report exists for the bug, post on an existing ticket.
+
+## :bulb:Submitting Ideas
+
+https://github.com/War3Evo/War3Source-EVO/discussions/categories/ideas
 
 ## Development and Roadmap
 
