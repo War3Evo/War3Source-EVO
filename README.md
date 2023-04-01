@@ -15,7 +15,7 @@
 * [Links](#links)
 * [To Do List](#to-do-list)
 
-## What is War3Evo War3Source Revolution
+## What is War3Evo War3Source Revolution?
 
 From https://war3source.com/:
 War3Source brings the Warcraft 3 leveling style and races into the game. It is originally based on the amxmodx (AMX) version War3FT.
@@ -40,7 +40,7 @@ War3Source: Evolution expands on War3Source.
 
 &#x1F537;**Wards**&#x1F539;allows you to implement a area on the map that would be placed for a certain amount of seconds. The ward could be used to help your team or hurt the other team or both. The ward is visible to everyone and is color coded. Usually there is a timer and a limited number of wards a race can put down.
 
-### Shop Menu 1 Items - Costs Gold :moneybag:
+### :shopping:Shop Menu 1 Items - Costs Gold :coin:
 These items lasts until player death.  Server owner can change the prices of these items in the war3source*.cfg files.  *.cfg files are text based files.
 * boot - fun faster
 * claw - extra dmg to enemy
@@ -78,7 +78,7 @@ These items lasts until player death.  Server owner can change the prices of the
 * fullplate - +20 phys armor
 * dragonmail - +50 magic armor
 
-### Shop Menu 2 Items - Costs Diamonds :moneybag:
+### :shopping:Shop Menu 2 Items - Costs Diamonds :diamonds:
 These items you buy only once and lasts until map change.
 * posthaste - +3% speed
 * lifetube - +1 HP regeneration
