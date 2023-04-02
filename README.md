@@ -27,7 +27,7 @@ Server Invite:
 
 * https://discord.gg/uhTfXYgJfB
 
-## What is War3Evo War3Source Evolution:grey_question:
+## What is War3Evo War3Source Evolution:
 
 From https://war3source.com/:
 War3Source brings the Warcraft 3 leveling style and races into the game. It is originally based on the amxmodx (AMX) version War3FT.
@@ -284,9 +284,7 @@ Get a fastDL server and set your sv_downloadurl (see link --> https://developer.
 Read file [CHANGELOGS](CHANGELOG.md).
 
 ## Reporting Issues
-
 :speech_balloon:
-
 Issues can be reported via the [Github issue tracker](https://github.com/War3Evo/War3Source-EVO/issues).
 
 Please take the time to review existing issues before submitting your own to
@@ -332,7 +330,7 @@ Read file [COPYING](LICENSE).
 
 ## Wiki
 
-* https://github.com/War3Evo/War3Source-EVO/wiki
+:notebook: https://github.com/War3Evo/War3Source-EVO/wiki
 
 ## Links
 
