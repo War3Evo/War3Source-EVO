@@ -14,6 +14,7 @@ Requires Sourcemod and Steamcmd - install.sh script for Linux installs everythin
 * :bulb:[Submit Ideas](#submitting-ideas)
 * :globe_with_meridians:[Development and Roadmap](#development-and-roadmap)
 * :copyright:[Copyright](#copyright)
+* :notebook:[Wiki](#wiki)
 * :link:[Links](#links)
 * :clipboard:[To Do List](#to-do-list)
 
@@ -282,20 +283,22 @@ Get a fastDL server and set your sv_downloadurl (see link --> https://developer.
 
 Read file [CHANGELOGS](CHANGELOG.md).
 
-## :speech_balloon:Reporting Issues
+## Reporting Issues
+
+:speech_balloon:
 
 Issues can be reported via the [Github issue tracker](https://github.com/War3Evo/War3Source-EVO/issues).
 
 Please take the time to review existing issues before submitting your own to
 prevent duplicates.
 
-## :hammer:Submitting Fixes
-
+## Submitting Fixes
+:hammer:
 SourcePawn fixes are submitted as pull requests via Github.
 For SQL only fixes, open a ticket; if a bug report exists for the bug, post on an existing ticket.
 
-## :bulb:Submitting Ideas
-
+## Submitting Ideas
+:bulb:
 https://github.com/War3Evo/War3Source-EVO/discussions/categories/ideas
 
 ## Development and Roadmap
@@ -326,6 +329,10 @@ Anyone willing to help with translating for your language, see the Develop branc
 License: GPL 3.0
 
 Read file [COPYING](LICENSE).
+
+## Wiki
+
+* https://github.com/War3Evo/War3Source-EVO/wiki
 
 ## Links
 
