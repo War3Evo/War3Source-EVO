@@ -5,6 +5,41 @@
 //new Float:MessageTimer[MAXPLAYERSCUSTOM];
 //new W3Buff:MessageEventType[MAXPLAYERSCUSTOM];
 
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//					NotifyTranslateFunction replaces repeated code, but I'm unsure if it works
+//
+//					There's still stuff to translate.  I need to test this before translating the next set of files.
+//
+//					ONCE YOU FINISH TRNASLATENING THIS FILE, TEST IT TO MAKE SURE IT WORKS BY TESTING ON THE SERVER!
+//
+//
+//	NotifyTranslateFunction is going to be tested on the server to make sure it works before continuing the translations.
+//
+//  	if (NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;   returns 0 for errors / log
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// NotifyTranslateFunction(iTarget,bool:IsSkill,skillORitem,String:sSkillName[32],String:sSkillType[32])
+
 stock bool IsValidRace(raceid_)
 {
 	return (raceid_>0&&raceid_<=GetRacesLoaded())?true:false;
@@ -134,38 +169,6 @@ public Native_NotifyPlayerItemActivated(Handle:plugin, numParams)
 	}
 }
 
-// String:sSkillName[32]
-//stock War3_ChatMessage(client, const String:szMessage[], any:...)
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//					NotifyTranslateFunction replaces repeated code, but I'm unsure if it works
-//
-//					There's still stuff to translate.  I need to test this before translating the next set of files.
-//
-//					ONCE YOU FINISH TRNASLATENING THIS FILE, TEST IT TO MAKE SURE IT WORKS BY TESTING ON THE SERVER!
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 NotifyTranslateFunction(iTarget,bool:IsSkill,skillORitem,String:sSkillName[32],String:sSkillType[32])
 {
 	new race=GetRace(iTarget);
@@ -201,7 +204,8 @@ NotifyTranslateFunction(iTarget,bool:IsSkill,skillORitem,String:sSkillName[32],S
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
 		Format(TMPsSkillType, sizeof(TMPsSkillType), "%T", "item", iTarget);
 		strcopy(sSkillType, sizeof(sSkillType), TMPsSkillType);
-	}	
+	}
+	return 1;	
 }
 
 
@@ -255,7 +259,7 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
 		strcopy(sSkillType, sizeof(sSkillType), "%T", "item", attacker);
 	}*/
-	NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType);
+	if (NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;
 
 	decl String:sTmpString[256];
 	Format(sTmpString,sizeof(sTmpString)," %s %s", sAttackerName, sSkillName);
@@ -317,7 +321,7 @@ NotifyPlayerTookDamageFunction(victim,attacker,damage,skillORitem,bool:IsSkill)
 	{
 		strcopy(sSkillType, sizeof(sSkillType), "%T", "item", victim);
 	}*/
-	NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType);
+	if (NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;
 
 	if(GetPlayerProp(victim,iCombatMessages)==1)
 	{
@@ -422,7 +426,8 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
 		strcopy(sSkillType, sizeof(sSkillType), "item");
 	}*/
-	NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType);
+	if (NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;
+
 
 	decl String:sTmpString[256];
 	Format(sTmpString,sizeof(sTmpString)," %s %s", sAttackerName, sSkillName);
@@ -435,9 +440,9 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 			MessageCount[attacker]+=health;
 			MessageTimer[attacker]=GetGameTime();
 
-			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "You leeched +%i health from %s with %s", health, sVictimName, sSkillName);
-			PrintToConsole(attacker, "[%d] You leeched +%i health from %s with %s", MessageCount[attacker], health, sVictimName, sSkillName);
-			War3_ChatMessage(attacker,"{default}[{blue}%d{default}] You leeched [{green}+%d{default}] health from [{green}%s{default}] with {blue}%s{default} [{green}%s{default}]!", MessageCount[attacker], health, sVictimName, sSkillType, sSkillName);
+			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "%T", "You leeched +{iHealth} health from {sVictimName} with {sSkillName}", attacker, health, sVictimName, sSkillName);
+			PrintToConsole(attacker, "%T", "[{MessageCount}] You leeched +{iHealth} health from {sVictimName} with {sSkillName}", attacker, MessageCount[attacker], health, sVictimName, sSkillName);
+			War3_ChatMessage(attacker, "%T", "[{MessageCount}] You leeched [+{iHealth}] health from [{sVictimName}] with {sSkillType} [{sSkillName}]!", attacker, MessageCount[attacker], health, sVictimName, sSkillType, sSkillName);
 		}
 		else
 		{
@@ -445,13 +450,13 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 			MessageTimer[attacker]=GetGameTime();
 			strcopy(MessageString1[attacker], 255, sTmpString);
 
-			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "You leeched +%i health from %s with %s", health, sVictimName, sSkillName);
-			PrintToConsole(attacker, "[%d] You leeched +%i health from %s with %s", MessageCount[attacker], health, sVictimName, sSkillName);
-			War3_ChatMessage(attacker,"{default}[{blue}%d{default}] You leeched [{green}+%d{default}] health from [{green}%s{default}] with {blue}%s{default} [{green}%s{default}]!", MessageCount[attacker], health, sVictimName, sSkillType, sSkillName);
+			W3Hint(attacker, HINT_DMG_DEALT, 0.5, "%T", "You leeched +{iHealth} health from {sVictimName} with {sSkillName}", attacker, health, sVictimName, sSkillName);
+			PrintToConsole(attacker, "%T", "[{MessageCount}] You leeched +{iHealth} health from {sVictimName} with {sSkillName}", attacker, MessageCount[attacker], health, sVictimName, sSkillName);
+			War3_ChatMessage(attacker, "%T", "[{MessageCount}] You leeched [+{iHealth}] health from [{sVictimName}] with {sSkillType} [{sSkillName}]!", attacker, MessageCount[attacker], health, sVictimName, sSkillType, sSkillName);
 		}
 	}
 
-	NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType);
+	if (NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;
 
 	if(GetPlayerProp(victim,iCombatMessages)==1)
 	{
@@ -460,9 +465,9 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 			MessageCount[victim]+=health;
 			MessageTimer[victim]=GetGameTime();
 
-			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%s leeched %i health from you with %s", sAttackerName, health, sSkillName);
-			PrintToConsole(victim, "[%d] %s leeched %i health from you with %s", MessageCount[victim], sAttackerName, health, sSkillName);
-			War3_ChatMessage(victim,"{default}[{blue}%d{default}] [{green}%s{default}] leeched [{green}+%d{default}] health from you with {blue}%s{default} [{green}%s{default}] as a {green}%s{default}!", MessageCount[victim], sAttackerName, health, sSkillType, sSkillName, sRaceName);
+			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%T", "{sAttackerName} leeched {iHealth} health from you with {sSkillName}", victim, sAttackerName, health, sSkillName);
+			PrintToConsole(victim, "%T", "[{MessageCount}] {sAttackerName} leeched {iHealth} health from you with {sSkillName}", victim, MessageCount[victim], sAttackerName, health, sSkillName);
+			War3_ChatMessage(victim, "%T", "[{MessageCount}] [{sAttackerName}] leeched [+{iHealth}] health from you with {sSkillType} [{sSkillName}] as a {sRaceName}!", victim, MessageCount[victim], sAttackerName, health, sSkillType, sSkillName, sRaceName);
 		}
 		else if(attacker!=victim)
 		{
@@ -470,9 +475,9 @@ NotifyPlayerLeechedHealthFunction(victim,attacker,health,skillORitem,bool:IsSkil
 			MessageTimer[victim]=GetGameTime();
 			strcopy(MessageString1[victim], 255, sTmpString);
 
-			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%s leeched %i health from you with %s", sAttackerName, health, sSkillName);
-			PrintToConsole(victim, "[%d] %s leeched %i health from you with %s", MessageCount[victim], sAttackerName, health, sSkillName);
-			War3_ChatMessage(victim,"{default}[{blue}%d{default}] [{green}%s{default}] leeched [{green}+%d{default}] health from you with {blue}%s{default} [{green}%s{default}] as a {green}%s{default}!", MessageCount[victim], sAttackerName, health, sSkillType, sSkillName, sRaceName);
+			W3Hint(victim, HINT_DMG_RCVD, 0.5, "%T", "{sAttackerName} leeched {iHealth} health from you with {sSkillName}", victim, sAttackerName, health, sSkillName);
+			PrintToConsole(victim, "%T", "[{MessageCount}] {sAttackerName} leeched {iHealth} health from you with {sSkillName}", victim, MessageCount[victim], sAttackerName, health, sSkillName);
+			War3_ChatMessage(victim, "%T", "[{MessageCount}] [{sAttackerName}] leeched [+{iHealth}] health from you with {sSkillType} [{sSkillName}] as a {sRaceName}!", victim, MessageCount[victim], sAttackerName, health, sSkillType, sSkillName, sRaceName);
 		}
 	}
 
@@ -586,7 +591,8 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 		W3GetItemName(skillORitem, sSkillName, sizeof(sSkillName));
 		strcopy(sSkillType, sizeof(sSkillType), "item");
 	}*/
-	NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType);
+	if (NotifyTranslateFunction(victim,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;
+
 	//}
 
 	//new health=1;
@@ -617,13 +623,14 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 			MessageTimer_Immunities[victim]=GetGameTime();
 			strcopy(MessageString_Immunities[victim], 255, sTmpString);
 
-			W3Hint(victim, HINT_DMG_DEALT, 0.5, "You are immune to %s from %s", sSkillName, sAttackerName);
-			PrintToConsole(victim, "You are immune to %s from %s", sSkillName, sVictimName);
-			War3_ChatMessage(victim,"{default}You are immune to %s [{green}%s{default}] from [{green}%s{default}]!", sSkillType, sSkillName, sAttackerName);
+			W3Hint(victim, HINT_DMG_DEALT, 0.5, "%T", "You are immune to {sSkillName} from {sAttackerName}", victim, sSkillName, sAttackerName);
+			PrintToConsole(victim, "%T", "You are immune to {sSkillName} from {sAttackerName}", victim, sSkillName, sVictimName);
+			War3_ChatMessage(victim, "%T", "You are immune to {sSkillType} [{sSkillName}] from [{sAttackerName}]!", victim, sSkillType, sSkillName, sAttackerName);
 		}
 	}
 
-	NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType);
+	if (NotifyTranslateFunction(attacker,IsSkill,skillORitem,sSkillName,sSkillType) == 0) return 0;
+
 
 	if(GetPlayerProp(attacker,iCombatMessages)==1)
 	{
@@ -644,9 +651,9 @@ NotifyPlayerImmuneFromSkillOrItem(attacker,victim,skillORitem,bool:IsSkill)
 			MessageTimer_Immunities[attacker]=GetGameTime();
 			strcopy(MessageString_Immunities[attacker], 255, sTmpString);
 
-			W3Hint(attacker, HINT_DMG_RCVD, 0.5, "%s is immune to %s", sVictimName, sSkillName);
-			PrintToConsole(attacker, "%s is immune to %s", sVictimName, sSkillName);
-			War3_ChatMessage(attacker,"{default}[{green}%s{default}] is immune to {green}%s{default} [{green}%s{default}]!", sVictimName, sSkillType, sSkillName);
+			W3Hint(attacker, HINT_DMG_RCVD, 0.5, "%T", "{sVictimName} is immune to {sSkillName}", attacker, sVictimName, sSkillName);
+			PrintToConsole(attacker, "%T", "{sVictimName} is immune to {sSkillName}", attacker, sVictimName, sSkillName);
+			War3_ChatMessage(attacker, "%T", "[{sVictimName}] is immune to {sSkillType} [{sSkillName}]!", attacker, sVictimName, sSkillType, sSkillName);
 		}
 	}
 	return 1;
@@ -744,64 +751,64 @@ public War3Source_Engine_Notifications_OnWar3Event(client){
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}SLOW SKILL{default}] You're being slowed by {cyan}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[SLOW] You are slowed by %s!",OwnerName);
+						War3_ChatMessage(client,"%T","[SLOW SKILL] You're being slowed by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[SLOW] You are slowed by {OwnerName}!",client,OwnerName);
 					}
 					else if(buffindex==fHPDecay)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}HPDECAY SKILL{default}] Your health is being drained by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[HP DECAY] Health is drained by %s!",OwnerName);
+						War3_ChatMessage(client,"%T","[HPDECAY SKILL] Your health is being drained by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[HP DECAY] Health is drained by {OwnerName}!",client,OwnerName);
 					}
 					else if(buffindex==bStunned)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}STUN{default}] You are stunned by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[STUN] You are stunned!");
+						War3_ChatMessage(client,"%T","[STUN] You are stunned by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[STUN] You are stunned!",client);
 					}
 					else if(buffindex==bBashed)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}BASHED{default}] You are bashed by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[BASHED] You are bashed!");
+						War3_ChatMessage(client,"%T","[BASHED] You are bashed by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[BASHED] You are bashed!",client);
 					}
 					else if(buffindex==bDisarm)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}DISARM{default}] You are disarmed by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[DISARM] You are disarmed!");
+						War3_ChatMessage(client,"%T","[DISARM] You are disarmed by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[DISARM] You are disarmed!",client);
 					}
 					else if(buffindex==bSilenced)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}SILENCED{default}] You are silenced by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[SILENCED] You are silenced!");
+						War3_ChatMessage(client,"%T","[SILENCED] You are silenced by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[SILENCED] You are silenced!",client);
 					}
 					else if(buffindex==bHexed)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}HEXED{default}] You are hexed by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[HEXED] You are hexed!");
+						War3_ChatMessage(client,"%T","[HEXED] You are hexed by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[HEXED] You are hexed!",client);
 					}
 					else if(buffindex==bPerplexed)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}PERPLEXED{default}] You are perplexed by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[PERPLEXED] You are perplexed!");
+						War3_ChatMessage(client,"%T","[PERPLEXED] You are perplexed by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[PERPLEXED] You are perplexed!",client);
 					}
 					else if(buffindex==bNoMoveMode)
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{red}NO MOVE{default}] You are unable to move by {green}%s{default}!",OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[NO MOVE] You are unable to move!");
+						War3_ChatMessage(client,"%T","[NO MOVE] You are unable to move by {OwnerName}!",client,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[NO MOVE] You are unable to move!",client);
 					}
 				}
 				else
@@ -810,8 +817,8 @@ public War3Source_Engine_Notifications_OnWar3Event(client){
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{blue}ARMOR BUFF{default}({blue}%.2f{default})] You're being buffed by {cyan}%s{default}!",float:value,OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[ARMOR BUFF] You are buffed by %s!",OwnerName);
+						War3_ChatMessage(client,"%T","[ARMOR BUFF({iValue})] You're being buffed by {OwnerName}!",client,float:value,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[ARMOR BUFF] You are buffed by {OwnerName}!",client,OwnerName);
 					}
 				}
 				/*
@@ -845,8 +852,8 @@ public War3Source_Engine_Notifications_OnWar3Event(client){
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"{default}[{blue}ARMOR BUFF{default}({blue}%.2f{default})] You ({cyan}%s{default}) are being buffed!",float:value,OwnerName);
-						W3Hint(client,HINT_SKILL_STATUS,0.5,"[ARMOR BUFF] You (%s) are buffed!",OwnerName);
+						War3_ChatMessage(client,"[ARMOR BUFF({iValue})] You ({OwnerName}) are being buffed!",client,float:value,OwnerName);
+						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[ARMOR BUFF] You ({OwnerName}) are buffed!",client,OwnerName);
 					}
 				}
 			}
