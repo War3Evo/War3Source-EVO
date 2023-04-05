@@ -210,8 +210,8 @@ chmod +x installcsgo.sh
 * TF2 ./installtf2.sh
 ```
 wget "https://raw.githubusercontent.com/War3Evo/War3Source-EVO/master/installtf2.sh" -O installtf2.sh
-chmod +x installcss.sh
-./installcss.sh
+chmod +x installtf2.sh
+./installtf2.sh
 ```
 * FOF ./installfof.sh
 ```
