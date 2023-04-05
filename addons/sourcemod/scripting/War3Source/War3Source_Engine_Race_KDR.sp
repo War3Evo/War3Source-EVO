@@ -1,5 +1,7 @@
 // War3Source_Engine_Race_KDR.sp
 
+// TRANSLATED 4/5/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 
@@ -54,7 +56,7 @@ public War3Source_Engine_Race_KDR_OnWar3Event(client)
 
 War3Source_Engine_Race_KDR_Initialize_SQLTable()
 {
-	PrintToServer("[War3Source:EVO] Initialize SQLTable RACE KDR");
+	PrintToServer("[War3Source:EVO] %T","Initialize SQLTable RACE KDR",LANG_SERVER);
 	if(hDB!=INVALID_HANDLE)
 	{
 
@@ -151,7 +153,7 @@ public generateRACESKDR_Callback(Handle:owner, Handle:hndl, const String:error[]
 				}
 			}
 			if(retrievals>0){
-				PrintToServer("[War3Source:EVO] Successfully retrieved kdr, total of %d races kdr were returned, %d races kdr used.",retrievals,usefulretrievals);
+				PrintToServer("[War3Source:EVO] %T","Successfully retrieved kdr, total of {retrievals} races kdr were returned, {usefulretrievals} races kdr used.",LANG_SERVER,retrievals,usefulretrievals);
 			}
 			//new inserts;  ?? not sure if needed from War3Source_Engine_DatabaseSaveXP.sp .. removed the rest
 			//War3_ChatMessage(client,"Successfully retrieved gems save data");
@@ -177,7 +179,7 @@ public generateRACESKDR_Callback(Handle:owner, Handle:hndl, const String:error[]
 				}
 				if(inserts>0)
 				{
-					PrintToServer("[War3Source:EVO] Inserting fresh data for %d jobs",inserts);
+					PrintToServer("[War3Source:EVO] %T","Inserting fresh data for %d races",LANG_SERVER,inserts);
 				}
 			}
 		}
@@ -268,7 +270,7 @@ public Action:War3Source_Engine_Race_KDR_DoAutosave(Handle:timer,any:data)
 			War3Source_EVO_SaveData(raceid);
 		}
 	}
-	War3_ChatMessage(0,"Saved all race kdr stats");
+	War3_ChatMessage(0,"%T","Saved all race kdr stats",LANG_SERVER);
 
 	//CreateTimer(300.0,DoAutosave);
 }
@@ -407,7 +409,7 @@ War3Source_EVO_SaveData(raceid)
 
 		if(StrEqual(RaceShortName, "", false))
 		{
-			PrintToServer("CAN'T SAVE WAR3 RACES KDR DATA!  RACE DOES NOT HAVE SHORTNAME");
+			PrintToServer("%T","CAN'T SAVE WAR3 RACES KDR DATA!  RACE DOES NOT HAVE SHORTNAME",LANG_SERVER);
 			return;
 		}
 

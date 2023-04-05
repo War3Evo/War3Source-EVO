@@ -11,7 +11,8 @@
 //
 //
 //
-//
+//                  Test 4/5/2023 -- need to finish translations,
+//                                   seems like SourceMod will atually tell you there's a missing translation now.
 //
 //
 //
@@ -852,7 +853,7 @@ public War3Source_Engine_Notifications_OnWar3Event(client){
 					{
 						new String:OwnerName[64];
 						GetClientName(buffowner,OwnerName,sizeof(OwnerName));
-						War3_ChatMessage(client,"[ARMOR BUFF({iValue})] You ({OwnerName}) are being buffed!",client,float:value,OwnerName);
+						War3_ChatMessage(client, "%T", "[ARMOR BUFF({iValue})] You ({OwnerName}) are being buffed!",client,float:value,OwnerName);
 						W3Hint(client,HINT_SKILL_STATUS,0.5,"%T","[ARMOR BUFF] You ({OwnerName}) are buffed!",client,OwnerName);
 					}
 				}

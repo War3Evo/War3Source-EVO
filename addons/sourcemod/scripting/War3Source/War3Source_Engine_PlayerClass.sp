@@ -2,6 +2,8 @@
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
+// TRANSLATED 4/5/2023
+// except for the convars and errors
 
 
 new p_xp[MAXPLAYERSCUSTOM][MAXRACES];
@@ -163,7 +165,7 @@ public Action:cmdwar3RaceDynamicLoadingOn(client,args){
 		Call_PushCell(x);
 		Call_Finish(dummy);
 		GetRaceName(x,LongRaceName,sizeof(LongRaceName));
-		PrintToConsole(client,"%s Enabled",LongRaceName);
+		PrintToConsole(client,"%T","{LongRaceName} Enabled",client,LongRaceName);
 	}
 
 	return Plugin_Handled;
@@ -179,7 +181,7 @@ public Action:cmdwar3RaceDynamicLoadingOff(client,args){
 		Call_PushCell(x);
 		Call_Finish(dummy);
 		GetRaceName(x,LongRaceName,sizeof(LongRaceName));
-		PrintToConsole(client,"%s Disabled",LongRaceName);
+		PrintToConsole(client,"%T","{LongRaceName} Disabled",client,LongRaceName);
 	}
 
 	return Plugin_Handled;
@@ -210,7 +212,7 @@ public Action:cmdwar3EnableRaceDynamicLoading(client,args){
 			Call_PushCell(x);
 			Call_Finish(dummy);
 			GetRaceName(x,LongRaceName,sizeof(LongRaceName));
-			PrintToConsole(client,"%s Disabled",LongRaceName);
+			PrintToConsole(client,"%T","{LongRaceName} Disabled",client,LongRaceName);
 		}
 		else
 		{
@@ -218,7 +220,7 @@ public Action:cmdwar3EnableRaceDynamicLoading(client,args){
 			Call_PushCell(x);
 			Call_Finish(dummy);
 			GetRaceName(x,LongRaceName,sizeof(LongRaceName));
-			PrintToConsole(client,"%s Enabled",LongRaceName);
+			PrintToConsole(client,"%T","{LongRaceName} Enabled",client,LongRaceName);
 		}
 	}
 
@@ -732,7 +734,7 @@ public War3Source_Engine_PlayerClass_OnWar3Event(W3EVENT:event,client)
 		else
 		{
 			internal_ClearSkillLevels(client,raceid);
-			War3_ChatMessage(client,"%T","Your skills have been reset for your current job",client);
+			War3_ChatMessage(client,"%T","Your skills have been reset for your current race",client);
 			if(War3_GetLevel(client,raceid)>0)
 			{
 				DoFwd_War3_Event(DoShowSpendskillsMenu,client);
@@ -752,7 +754,7 @@ public ResetSkillsAndSetVar(client)
 
 			// Check if the level of the race we reset is > 0 and the current job is still the one we reset
 			if((War3_GetLevel(client,RaceIDToReset[client])>0)&&(GetRace(client)==RaceIDToReset[client])){
-				War3_ChatMessage(client,"%T","Your skills have been reset for your current job",client);
+				War3_ChatMessage(client,"%T","Your skills have been reset for your current race",client);
 				DoFwd_War3_Event(DoShowSpendskillsMenu,client);
 			}
 		}

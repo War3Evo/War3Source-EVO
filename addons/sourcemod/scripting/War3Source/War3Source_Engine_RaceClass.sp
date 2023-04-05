@@ -74,7 +74,8 @@ public War3Source_Engine_RaceClass_OnPluginStart()
 	//skillProp[0][0][0]=0; // not used anywhere
 	m_MinimumUltimateLevel=CreateConVar("war3_minimumultimatelevel","10");
 	//PrintToServer("W3E OnPluginStart Engine RaceClass");
-	RegAdminCmd("getjoblist",Cmdjoblist,ADMFLAG_KICK);
+	RegAdminCmd("getjoblist",Cmdracelist,ADMFLAG_KICK);
+	RegAdminCmd("getracelist",Cmdracelist,ADMFLAG_KICK);
 	RegAdminCmd("war3_loadarace",Cmd_load_a_race,ADMFLAG_ROOT);
 	RegAdminCmd("war3_crrloadraces",Cmdraceload,ADMFLAG_ROOT);
 
@@ -188,13 +189,13 @@ public Action:Cmdassignrace(client,args)
 }
 
 
-public Action:Cmdjoblist(client,args){
+public Action:Cmdracelist(client,args){
 	int RacesLoaded = GetRacesLoaded();
 	char LongRaceName[32];
 	for(int x=1;x<=RacesLoaded;x++)
 	{
 		GetRaceName(x,LongRaceName,sizeof(LongRaceName));
-		War3_ChatMessage(client,"JobList [Debug] Job: %s Job ID: %i",LongRaceName,x);
+		War3_ChatMessage(client,"%T","racelist Race: {LongRaceName} Race ID: {raceid}",client,LongRaceName,x);
 	}
 	return Plugin_Handled;
 }
@@ -280,7 +281,7 @@ Internal_NWar3_IsRaceReloading()
 		// ReloadRaces_Shortname[x]==
 		if(ReloadRaces_Id[x]==true)
 			{
-				//PrintToServer("NWar3_IsRaceReloading shortname %s Job %i id",ReloadRaces_Shortname[x],x);
+				//PrintToServer("NWar3_IsRaceReloading shortname %s Race %i id",ReloadRaces_Shortname[x],x);
 				findtherace=true;
 				break;
 			}
@@ -645,10 +646,12 @@ public NW3GetRaceSkillName(Handle:plugin,numParams)
 	new skill=GetNativeCell(2);
 	new maxlen=GetNativeCell(4);
 
-	if(race<1||race>GetRacesLoaded()){
+	if(race<1||race>GetRacesLoaded())
+	{
 		ThrowNativeError(1,"bad race %d",race);
 	}
-	if(skill<1||skill>GetRaceSkillCount(race)){
+	if(skill<1||skill>GetRaceSkillCount(race))
+	{
 		ThrowNativeError(1,"bad skillid %d",skill);
 	}
 	new String:buf[32];
@@ -1020,29 +1023,29 @@ public NW3_GenericSkillLevel(Handle:plugin,numParams){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//                                 NEED TO CONTINUS TRANSLATING HERE:
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 
 CreateNewRace(String:tracename[],String:traceshortname[],String:traceshortdesc[],TheReloadRaceId){
