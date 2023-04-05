@@ -24,6 +24,9 @@ RNAME="hlserver"
 # either CSS or CSGO or TF2 or FOF
 GAME_SWITCHER="TF2"
 
+# branch of War3Source-EVO
+git_branch="master"
+
 # example /home/steamgameserver
 # CPATH actually will install in what ever directory you start this script in,
 # not really your home path, otherwise you can change $PWD to $HOME
@@ -147,7 +150,7 @@ bash -c "${SCRIPT_RUN}"
 #read -p "Press ENTER to continue" readTMP
 
 # git clone War3Source
-git clone https://github.com/War3Evo/War3Source-EVO.git
+git clone https://github.com/War3Evo/War3Source-EVO.git --branch ${git_branch}
 cp -vrf ./War3Source-EVO/cfg "${SourceMetaModWar3InstallPath}"
 # uncomment below if you want to stop at this point
 #read -p "Press ENTER to continue" readTMP
