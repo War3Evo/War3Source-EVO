@@ -1114,7 +1114,7 @@ CreateNewRace(String:tracename[],String:traceshortname[],String:traceshortdesc[]
 
 	if(load_a_race)
 	{
-		War3_ChatMessage(0,"Race Now Loading %s %s ID: %d",tracename,traceshortname,TheReloadRaceId);
+		War3_ChatMessage(0,"%T","Race Now Loading {tracename} {traceshortname} ID: {TheReloadRaceId}",LANG_SERVER, tracename,traceshortname,TheReloadRaceId);
 	}
 
 	return traceid; //this will be the new race's id / index
@@ -1181,7 +1181,7 @@ AddRaceSkill(raceid,String:skillname[],String:skilldescription[],bool:isUltimate
 
 		if(load_a_race)
 		{
-			War3_ChatMessage(0,"Loading... Race ID: %d Skill: %s",raceid,skillname);
+			War3_ChatMessage(0,"%T","Loading... Race ID: {raceid} Skill: {skillname}",LANG_SERVER, raceid,skillname);
 		}
 
 		return raceSkillCount[raceid]; //return their actual skill number
@@ -1238,7 +1238,7 @@ CreateRaceEnd(raceid){
 
 			if(load_a_race)
 			{
-				War3_ChatMessage(0,"Race Finished Loading: Race ID: %d %s",raceid,shortname);
+				War3_ChatMessage(0,"%T","Race Finished Loading: Race ID: {raceid} {shortname}",LANG_SERVER,raceid,shortname);
 			}
 		}
 		if(ReloadRaces_Id[raceid]==true)
