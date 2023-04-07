@@ -1,0 +1,102 @@
+
+// w3s.War3Source_Engine_ShowMOTD.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+// }
+
+"Phrases"
+{
+	"{white}To {orange}bind a key{white} you must {orange}enable your developer console."
+	{
+		"en"				"{white}To {orange}bind a key{white} you must {orange}enable your developer console."
+	}
+	"{orange}Escape {white}-> {orange}Options {white}-> {orange}Advanced {white}-> {orange}[ ] Enable Developer Console"
+	{
+		"en"				"{orange}Escape {white}-> {orange}Options {white}-> {orange}Advanced {white}-> {orange}[ ] Enable Developer Console"
+	}
+	"{white}Hit {orange}'`'{white} to open the console. It is {orange}the button to the left of 1."
+	{
+		"en"				"{white}Hit {orange}'`'{white} to open the console. It is {orange}the button to the left of 1."
+	}
+	"{white}Type {orange}bind j +ultimate {white}into the console."
+	{
+		"en"				"{white}Type {orange}bind j +ultimate {white}into the console."
+	}
+	"{white}Type {orange}bind k +ability {white}into the console."
+	{
+		"en"				"{white}Type {orange}bind k +ability {white}into the console."
+	}
+	"{white}To see a {orange}video {white}of this process, type {orange}!bind2"
+	{
+		"en"				"{white}To see a {orange}video {white}of this process, type {orange}!bind2"
+	}
+	"Ask an admin."
+	{
+		"en"				"Ask an admin."
+	}
+	"{lightseagreen}This is a {darkgreen}War3Mod{lightseagreen} server."
+	{
+		"en"				"{lightseagreen}This is a {darkgreen}War3Mod{lightseagreen} server."
+	}
+	"{lightseagreen}You gain {darkgreen}exp{lightseagreen} and {darkgreen}gold{lightseagreen} for kills and map objectives."
+	{
+		"en"				"{lightseagreen}You gain {darkgreen}exp{lightseagreen} and {darkgreen}gold{lightseagreen} for kills and map objectives."
+	}
+	"{lightseagreen}When you {darkgreen}level up{lightseagreen} you can gain new {darkgreen}skills."
+	{
+		"en"				"{lightseagreen}When you {darkgreen}level up{lightseagreen} you can gain new {darkgreen}skills."
+	}
+	"{lightseagreen}Type {darkgreen}raceinfo{lightseagreen} to learn what different {darkgreen}skills {lightseagreen} each race gets!"
+	{
+		"en"				"{lightseagreen}Type {darkgreen}jobinfo{lightseagreen} to learn what different {darkgreen}skills {lightseagreen} each race gets!"
+	}
+	"{lightseagreen}Type {darkgreen}shopmenu{lightseagreen} to spend {darkgreen}gold {lightseagreen} on different {darkgreen}items."
+	{
+		"en"				"{lightseagreen}Type {darkgreen}shopmenu{lightseagreen} to spend {darkgreen}gold {lightseagreen} on different {darkgreen}items."
+	}
+	"{lightseagreen}Type {darkgreen}war3menu{lightseagreen} for the full help menu. Type {darkgreen}myinfo {lightseagreen} to see your current race info."
+	{
+		"en"				"{lightseagreen}Type {darkgreen}war3menu{lightseagreen} for the full help menu. Type {darkgreen}myinfo {lightseagreen} to see your current race info."
+	}
+}

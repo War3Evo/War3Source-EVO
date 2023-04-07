@@ -1,0 +1,106 @@
+
+// w3s.War3Source_Engine_RaceRestrictions.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+// }
+
+"Phrases"
+{
+	// {red}Item Removed because of your new class/race combo.
+	"Item Removed because of your new class/race combo."
+	{
+		"en"			"{red}Item Removed because of your new class/race combo."
+	}
+	// Race requires {green}%s {default}with a minimum level of {green}%d
+	"Race requires {tName} with a minimum level of {RaceDependencyLevel}"
+	{
+		"#format"			"{1:s},{2:d}"
+		"en"				"Race requires {green}{1} {default}with a minimum level of {green}{2}"
+	}
+	"VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin."
+	{
+		"en"				"VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin."
+	}
+	"No Admin ID found"
+	{
+		"en"				"No Admin ID found"
+	}
+	"ERROR on admin flag check {flag}"
+	{
+		"#format"			"{1:s}"
+		"en"				"ERROR on admin flag check {1}"
+	}
+	"Admin ID found, but no required flag"
+	{
+		"en"				"Admin ID found, but no required flag"
+	}
+	// You need %d more total levels to use this race.
+	"You need {levels} more total levels to use this race."
+	{
+		"#format"			"{1:d}"
+		"en"				"You need {1} more total levels to use this race."
+	}
+	// Race limit for your team has been reached, please select a different race. (MAX %d)
+	"Race limit for your team has been reached, please select a different race. (MAX {amount})"
+	{
+		"#format"			"{1:d}"
+		"en"				"Race limit for your team has been reached, please select a different race. (MAX {1})"
+	}
+	"This is a bots only race.  Select another race!"
+	{
+		"en"				"This is a bots only race.  Select another race!"
+	}
+	// Race restricted due to class only allowed for this race is: %s
+	"Race restricted due to class only allowed for this race is: {cvarstr}"
+	{
+		"#format"			"{1:s}"
+		"en"				"Race restricted due to class only allowed for this race is: {1}"
+	}
+	// Race restricted due to class restriction: %s
+	"Race restricted due to class restriction: {classstring}"
+	{
+		"#format"			"{1:s}"
+		"en"				"Race restricted due to class restriction: {1}"
+	}
+}
