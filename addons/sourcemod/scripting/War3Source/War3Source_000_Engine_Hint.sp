@@ -38,8 +38,9 @@ public NW3Hint(Handle:plugin,numParams)
 	new W3HintPriority:priority=W3HintPriority:GetNativeCell(2);
 	new Float:Duration=GetNativeCell(3);
 	if(Duration>20.0){ Duration=20.0;}
-	new String:format[128];
-	GetNativeString(4,format,sizeof(format));
+	// useless code: (if needed change format to something else, because format is a SourcePawn function)
+	//new String:format[128];
+	//GetNativeString(4,format,sizeof(format));
 	new String:output[128];
 	FormatNativeString(0,
 			4,

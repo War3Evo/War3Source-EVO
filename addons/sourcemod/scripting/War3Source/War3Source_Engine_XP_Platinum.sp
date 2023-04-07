@@ -1,5 +1,21 @@
 // War3Source_Engine_XP_Platinum.sp
 
+//
+//
+//
+//
+//
+//
+//				STILL NEEDS TRANSLATION BEFORE RELEASING SHOPMENU 3 !!!
+//
+//
+//
+//
+//
+//
+//
+//
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 /*

@@ -52,6 +52,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_Wards_Wards");
 	LoadTranslations("w3s._War3Source_Engine_WCX_Engine_Crit");
 	LoadTranslations("w3s._War3Source_Engine_WCX_Engine_Teleport");
+	LoadTranslations("w3s._War3Source_Engine_XPGold");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");

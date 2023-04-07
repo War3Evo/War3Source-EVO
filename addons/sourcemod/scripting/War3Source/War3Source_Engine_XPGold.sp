@@ -470,7 +470,7 @@ public ShowXP(client)
 	if(race==0)
 	{
 		//if(bXPLoaded[client])
-		War3_ChatMessage(client,"%T","You must first select a job with changejob!",client);
+		War3_ChatMessage(client,"%T","You must first select a race with changerace!",client);
 		return;
 	}
 	new level=War3_GetLevel(client,race);
@@ -536,7 +536,9 @@ public War3Source_Engine_XPGold_OnWar3EventDeath(victim,attacker)
 	}
 	if(victim!=attacker&&ValidPlayer(victim))
 	{
-		W3GiveXPGold(victim,XPAwardByGeneric,0,1,"dying bravely in combat!");
+		new String:sDescription[64];
+		Format(sDescription,sizeof(sDescription),"%T","dying bravely in combat!",victim);
+		W3GiveXPGold(victim,XPAwardByGeneric,0,1,sDescription);
 	}
 }
 #endif
@@ -584,7 +586,8 @@ public War3Source_Engine_XPGold_War3Source_RoundOverEvent(Handle:event,const Str
 TryToGiveXPGold(client,W3XPAwardedBy:awardedfromevent,xp,gold,String:awardedprintstring[],bool:IsFake){
 	new race=GetRace(client);
 	if(race>0){
-		if(GetConVarInt(minplayersXP)>PlayersOnTeam(2)+PlayersOnTeam(3)){
+		if(GetConVarInt(minplayersXP)>PlayersOnTeam(2)+PlayersOnTeam(3))
+		{
 			War3_ChatMessage(client,"%T","No XP is given when less than {amount} players are playing",client,GetConVarInt(minplayersXP));
 			return;
 		}
@@ -770,7 +773,8 @@ LevelCheck(client){
 			else
 			{
 			// El Diablo: Currently keeping the limit on the ultimates
-				if(skilllevel>0&&skilllevel*2+ultminlevel-1>curlevel+1){
+				if(skilllevel>0&&skilllevel*2+ultminlevel-1>curlevel+1)
+				{
 					ClearSkillLevels(client,race);
 					War3_ChatMessage(client,"%T","A ultimate is over the maximum level allowed for your current level, please reselect your skills",client);
 					DoFwd_War3_Event(DoShowSpendskillsMenu,client);
@@ -804,7 +808,8 @@ LevelCheck(client){
 					//War3Source_SkillMenu(client);
 
 					//PrintToChatAll("LEVEL %d  xp2 %d",War3_GetXP(client,race),ReqLevelXP(curlevel+1));
-					if(IsPlayerAlive(client)){
+					if(IsPlayerAlive(client))
+					{
 						War3_EmitSoundToAll(levelupSound,client);
 					}
 					else{
@@ -825,7 +830,8 @@ LevelCheck(client){
 		//  Request they level up after they die
 		// some reason you can only level for every time you type spendskills..
 		// doesnt level  you up on spawn.
-		if(GetLevelsSpent(client,race)<War3_GetLevel(client,race)){
+		if(GetLevelsSpent(client,race)<War3_GetLevel(client,race))
+		{
 			if(!(IsPlayerAlive(client)))
 				mySwitch=1;
 			//DP("%i",mySwitch);
@@ -838,9 +844,11 @@ LevelCheck(client){
 }
 
 
-ClearSkillLevels(client,race){
+ClearSkillLevels(client,race)
+{
 	new SkillCount =GetRaceSkillCount(race);
-	for(new i=1;i<=SkillCount;i++){
+	for(new i=1;i<=SkillCount;i++)
+	{
 		SetSkillLevelINTERNAL(client,race,i,0);
 	}
 }
