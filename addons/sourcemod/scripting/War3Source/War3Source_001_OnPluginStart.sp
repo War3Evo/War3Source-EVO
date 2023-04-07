@@ -46,6 +46,8 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_RaceClass");
 	LoadTranslations("w3s._War3Source_Engine_RaceRestrictions");
 	LoadTranslations("w3s._War3Source_Engine_ShowMOTD");
+	LoadTranslations("w3s._War3Source_Engine_SkillEffects");
+	LoadTranslations("w3s._War3Source_Engine_SteamTools");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");

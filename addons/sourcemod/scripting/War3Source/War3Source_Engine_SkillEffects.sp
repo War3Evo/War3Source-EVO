@@ -1,5 +1,7 @@
 // War3Source_Engine_SkillEffects.sp
 
+// TRANSLATED 4/7/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 /*
@@ -67,7 +69,7 @@ public Native_EvadeDamage(Handle:plugin, numParams)
 	if (ValidPlayer(victim))
 	{
 		W3FlashScreen(victim, RGBA_COLOR_BLUE);
-		W3Hint(victim, HINT_SKILL_STATUS, 1.0, "You Evaded a Shot");
+		W3Hint(victim, HINT_SKILL_STATUS, 1.0, "%T","You Evaded a Shot",victim);
 #if (GGAMETYPE == GGAME_TF2)
 		decl Float:pos[3];
 		GetClientEyePosition(victim, pos);
@@ -78,7 +80,7 @@ public Native_EvadeDamage(Handle:plugin, numParams)
 
 	if (ValidPlayer(attacker))
 	{
-		W3Hint(attacker, HINT_SKILL_STATUS, 1.0, "Enemy Evaded");
+		W3Hint(attacker, HINT_SKILL_STATUS, 1.0, "%T","Enemy Evaded",attacker);
 	}
 }
 
@@ -172,8 +174,8 @@ public Native_BashEffect(Handle:plugin, numParams)
 
 	W3FlashScreen(victim, RGBA_COLOR_RED);
 
-	W3Hint(victim, HINT_SKILL_STATUS, 1.0, "You got bashed");
-	W3Hint(attacker, HINT_SKILL_STATUS, 1.0, "Bashed enemy");
+	W3Hint(victim, HINT_SKILL_STATUS, 1.0, "%T","You got bashed",victim);
+	W3Hint(attacker, HINT_SKILL_STATUS, 1.0, "%T","Bashed enemy",attacker);
 }
 
 public Native_WardVisualEffect(Handle:plugin, numParams)
