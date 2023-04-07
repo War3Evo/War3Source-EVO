@@ -152,7 +152,7 @@ public NW3GetCvarActualString(Handle:plugin,numParams){
 public Action:cmdWar3_no_desc(client,args)
 {
 	if(client!=0&&!HasSMAccess(client,ADMFLAG_ROOT)){
-		ReplyToCommand(client,"No Access. This is not a command for players. say war3menu for the main menu");
+		ReplyToCommand(client,"%T","No Access. This is not a command for players. say war3menu for the main menu",client);
 	}
 	else{
 
@@ -196,7 +196,7 @@ public Action:cmdWar3_no_desc(client,args)
 public Action:cmdWar3(client,args)
 {
 	if(client!=0&&!HasSMAccess(client,ADMFLAG_ROOT)){
-		ReplyToCommand(client,"No Access. This is not a command for players. say war3menu for the main menu");
+		ReplyToCommand(client,"%T","No Access. This is not a command for players. say war3menu for the main menu",client);
 	}
 	else{
 
@@ -299,13 +299,16 @@ PrintCvars(client,bool:hasfilter,filterarg,bool:hasdesc){
 	}
 }
 
-SetCvar(client){
+SetCvar(client)
+{
 	new String:arg1[64];
 	GetCmdArg(1,arg1,sizeof(arg1));
 
 	new cvar=W3FindCvar(arg1);
-	if(cvar==-1){
-		ReplyToCommand(client,"W3CVAR \"%s\" not found, please fix/clean up your config",arg1);
+	if(cvar==-1)
+	{
+		// Removing this, it's not needed and it's annoying
+		//ReplyToCommand(client,"W3CVAR \"%s\" not found, please fix/clean up your config",arg1);
 		W3Log("W3CVAR (internal)  \"%s\" not found, please fix/clean up your config",arg1);
 		return;
 	}

@@ -1,5 +1,6 @@
 // War3Source_Engine_SteamTools.sp
 
+// TRANSLATED 4/7/2023
 
 #if (GGAMETYPE != GGAME_CSGO)
 

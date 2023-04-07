@@ -48,6 +48,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_ShowMOTD");
 	LoadTranslations("w3s._War3Source_Engine_SkillEffects");
 	LoadTranslations("w3s._War3Source_Engine_SteamTools");
+	LoadTranslations("w3s._War3Source_Engine_TrieKeyValue");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");
