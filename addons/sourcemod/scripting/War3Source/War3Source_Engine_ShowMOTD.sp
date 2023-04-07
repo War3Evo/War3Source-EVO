@@ -1,5 +1,10 @@
 // War3Source_Engine_ShowMOTD.sp
 
+
+// TRANSLATED 4/7/2023
+// TO-DO: FILE SHOULD LATER GET MERGED INTO COMMANDHOOK
+
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 #define MOTDPANEL_TYPE_TEXT 0 /**< Treat msg as plain text */
@@ -73,17 +78,17 @@ public Action:War3Source_Engine_ShowMOTD_Command_Say(client, args) {
 		return Plugin_Continue;
 	} else if (strcmp(message, "!bind", false) == 0 || strcmp(message, "/bind", false) == 0)
 	{
-		CPrintToChat(client, "{white}To {orange}bind a key{white} you must {orange}enable your developer console.");
-		CPrintToChat(client, "{orange}Escape {white}-> {orange}Options {white}-> {orange}Advanced {white}-> {orange}[ ] Enable Developer Console");
-		CPrintToChat(client, "{white}Hit {orange}'`'{white} to open the console. It is {orange}the button to the left of 1.");
-		CPrintToChat(client, "{white}Type {orange}bind j +ultimate {white}into the console.");
-		CPrintToChat(client, "{white}Type {orange}bind k +ability {white}into the console.");
-		CPrintToChat(client, "{white}To see a {orange}video {white}of this process, type {orange}!bind2");
+		War3_ChatMessage(client, "%T","{white}To {orange}bind a key{white} you must {orange}enable your developer console.",client);
+		War3_ChatMessage(client, "%T","{orange}Escape {white}-> {orange}Options {white}-> {orange}Advanced {white}-> {orange}[ ] Enable Developer Console",client);
+		War3_ChatMessage(client, "%T","{white}Hit {orange}'`'{white} to open the console. It is {orange}the button to the left of 1.",client);
+		War3_ChatMessage(client, "%T","{white}Type {orange}bind j +ultimate {white}into the console.",client);
+		War3_ChatMessage(client, "%T","{white}Type {orange}bind k +ability {white}into the console.",client);
+		War3_ChatMessage(client, "%T","{white}To see a {orange}video {white}of this process, type {orange}!bind2",client);
 		return Plugin_Continue;
 	}
 	if (strcmp(message, "!rules", false) == 0 || strcmp(message, "/rules", false) == 0)
 	{
-		CPrintToChat(client,"Ask an admin.");
+		CPrintToChat(client,"%T","Ask an admin.",client);
 		return Plugin_Continue;
 	}
 	if (strcmp(message, "!commands", false) == 0 || strcmp(message, "/commands", false) == 0 || strcmp(message, "!command", false) == 0)
@@ -111,12 +116,12 @@ public Action:War3Source_Engine_ShowMOTD_Command_Say(client, args) {
 
 public printHelpInfo(client)
 {
-		CPrintToChat(client,"{lightseagreen}This is a {darkgreen}War3Mod{lightseagreen} server.");
-		CPrintToChat(client,"{lightseagreen}You gain {darkgreen}exp{lightseagreen} and {darkgreen}gold{lightseagreen} for kills and map objectives.");
-		CPrintToChat(client,"{lightseagreen}When you {darkgreen}level up{lightseagreen} you can gain new {darkgreen}skills.");
-		CPrintToChat(client,"{lightseagreen}Type {darkgreen}jobinfo{lightseagreen} to learn what different {darkgreen}skills {lightseagreen} each job gets!");
-		CPrintToChat(client,"{lightseagreen}Type {darkgreen}shopmenu{lightseagreen} to spend {darkgreen}gold {lightseagreen} on different {darkgreen}items.");
-		CPrintToChat(client,"{lightseagreen}Type {darkgreen}war3menu{lightseagreen} for the full help menu. Type {darkgreen}myinfo {lightseagreen} to see your current job info.");
+		War3_ChatMessage(client,"%T","{lightseagreen}This is a {darkgreen}War3Mod{lightseagreen} server.",client);
+		War3_ChatMessage(client,"%T","{lightseagreen}You gain {darkgreen}exp{lightseagreen} and {darkgreen}gold{lightseagreen} for kills and map objectives.",client);
+		War3_ChatMessage(client,"%T","{lightseagreen}When you {darkgreen}level up{lightseagreen} you can gain new {darkgreen}skills.",client);
+		War3_ChatMessage(client,"%T","{lightseagreen}Type {darkgreen}raceinfo{lightseagreen} to learn what different {darkgreen}skills {lightseagreen} each race gets!",client);
+		War3_ChatMessage(client,"%T","{lightseagreen}Type {darkgreen}shopmenu{lightseagreen} to spend {darkgreen}gold {lightseagreen} on different {darkgreen}items.",client);
+		War3_ChatMessage(client,"%T","{lightseagreen}Type {darkgreen}war3menu{lightseagreen} for the full help menu. Type {darkgreen}myinfo {lightseagreen} to see your current race info.",client);
 }
 public hiddenURL(client, String:url[])
 {
