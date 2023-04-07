@@ -43,6 +43,7 @@ public OnPluginStart()
 	LoadTranslations("w3s._War3Source_Engine_PlayerClass");
 	LoadTranslations("w3s._War3Source_Engine_PlayerLevelbank");
 	LoadTranslations("w3s._War3Source_Engine_Race_KDR");
+	LoadTranslations("w3s._War3Source_Engine_RaceClass");
 	// LoadTranslations("");
 	// LoadTranslations("");
 	// LoadTranslations("");

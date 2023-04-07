@@ -8,7 +8,7 @@ public Plugin:myinfo =
 {
     name = "War3Source:EVO - Engine - Race Class",
     author = "War3Source:EVO Team",
-    description = "Information about races"
+    descriptionstr = "Information about races"
 };*/
 
 /*  ** MOVED TO War3Source_Variables.inc
@@ -1076,7 +1076,7 @@ CreateNewRace(String:tracename[],String:traceshortname[],String:traceshortdesc[]
 	if(totalRacesLoaded==0){
 		for(new i=0;i<MAXSKILLCOUNT;i++){
 			Format(raceSkillName[totalRacesLoaded][i],31,"ZEROTH RACE SKILL");
-			Format(raceSkillDescription[totalRacesLoaded][i],2000,"ZEROTH RACE SKILL DESCRIPTION");
+			Format(raceSkillDescription[totalRacesLoaded][i],2000,"ZEROTH RACE SKILL descriptionstr");
 
 		}
 		Format(raceName[totalRacesLoaded],31,"No Race");
@@ -1094,7 +1094,7 @@ CreateNewRace(String:tracename[],String:traceshortname[],String:traceshortdesc[]
 		//make all skills zero so we can easily debug
 		for(new i=0;i<MAXSKILLCOUNT;i++){
 			Format(raceSkillName[traceid][i],31,"NO SKILL DEFINED %d",i);
-			Format(raceSkillDescription[traceid][i],2000,"NO SKILL DESCRIPTION DEFINED %d",i);
+			Format(raceSkillDescription[traceid][i],2000,"NO SKILL descriptionstr DEFINED %d",i);
 		}
 	}
 	else
@@ -1108,7 +1108,7 @@ CreateNewRace(String:tracename[],String:traceshortname[],String:traceshortdesc[]
 		//make all skills zero so we can easily debug
 		for(new i=0;i<MAXSKILLCOUNT;i++){
 			Format(raceSkillName[traceid][i],31,"NO SKILL DEFINED %d",i);
-			Format(raceSkillDescription[traceid][i],2000,"NO SKILL DESCRIPTION DEFINED %d",i);
+			Format(raceSkillDescription[traceid][i],2000,"NO SKILL descriptionstr DEFINED %d",i);
 		}
 	}
 
@@ -1191,8 +1191,10 @@ AddRaceSkill(raceid,String:skillname[],String:skilldescription[],bool:isUltimate
 }
 
 
-CreateRaceEnd(raceid){
-	if(raceid>0){
+CreateRaceEnd(raceid)
+{
+	if(raceid>0)
+	{
 		racecreationended=true;
 		Format(creatingraceshortname,sizeof(creatingraceshortname),"");
 		///now we put shit into the database and create cvars
@@ -1203,38 +1205,50 @@ CreateRaceEnd(raceid){
 
 			new String:cvarstr[64];
 			Format(cvarstr,sizeof(cvarstr),"%s_minlevel",shortname);
-			MinLevelCvar[raceid]=W3CreateCvar(cvarstr,"0","Minimum level for race",Internal_NWar3_IsRaceReloading());
+
+			new String:descriptionstr[64];
+			Format(descriptionstr,sizeof(descriptionstr),"%T","Minimum level for race",LANG_SERVER);
+			MinLevelCvar[raceid]=W3CreateCvar(cvarstr,"0",descriptionstr,Internal_NWar3_IsRaceReloading());
 
 			Format(cvarstr,sizeof(cvarstr),"%s_accessflag",shortname);
-			AccessFlagCvar[raceid]=W3CreateCvar(cvarstr,"0","Admin access flag required for race",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","Admin access flag required for race",LANG_SERVER);
+			AccessFlagCvar[raceid]=W3CreateCvar(cvarstr,"0",descriptionstr,Internal_NWar3_IsRaceReloading());
 
 			Format(cvarstr,sizeof(cvarstr),"%s_raceorder",shortname);
 			new String:buf[16];
 			Format(buf,sizeof(buf),"%d",raceid*100);
-			RaceOrderCvar[raceid]=W3CreateCvar(cvarstr,buf,"This race's Race Order on changerace menu",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","This race's Race Order on changerace menu",LANG_SERVER);
+			RaceOrderCvar[raceid]=W3CreateCvar(cvarstr,buf,descriptionstr,Internal_NWar3_IsRaceReloading());
 
 			Format(cvarstr,sizeof(cvarstr),"%s_flags",shortname);
-			RaceFlagsCvar[raceid]=W3CreateCvar(cvarstr,"","This race's flags, ie 'hidden,etc",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","This race's flags, ie 'hidden,etc",LANG_SERVER);
+			RaceFlagsCvar[raceid]=W3CreateCvar(cvarstr,"",descriptionstr,Internal_NWar3_IsRaceReloading());
 
 			Format(cvarstr,sizeof(cvarstr),"%s_restrict_items",shortname);
-			RestrictItemsCvar[raceid]=W3CreateCvar(cvarstr,"","Which items to restrict for people on this race. Separate by comma, ie 'claw,orb'",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","Which items to restrict for people on this race. Separate by comma, ie 'claw,orb'",LANG_SERVER);
+			RestrictItemsCvar[raceid]=W3CreateCvar(cvarstr,"",descriptionstr,Internal_NWar3_IsRaceReloading());
 
 			Format(cvarstr,sizeof(cvarstr),"%s_team%d_limit",shortname,1);
-			RestrictLimitCvar[raceid][0]=W3CreateCvar(cvarstr,"99","How many people can play this race on team 1 (RED/T)",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","How many people can play this race on team 1 (RED/T)",LANG_SERVER);
+			RestrictLimitCvar[raceid][0]=W3CreateCvar(cvarstr,"99",descriptionstr,Internal_NWar3_IsRaceReloading());
 			Format(cvarstr,sizeof(cvarstr),"%s_team%d_limit",shortname,2);
-			RestrictLimitCvar[raceid][1]=W3CreateCvar(cvarstr,"99","How many people can play this race on team 2 (BLU/CT)",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","How many people can play this race on team 2 (BLU/CT)",LANG_SERVER);
+			RestrictLimitCvar[raceid][1]=W3CreateCvar(cvarstr,"99",descriptionstr,Internal_NWar3_IsRaceReloading());
 
 			int temp;
 			Format(cvarstr,sizeof(cvarstr),"%s_restrictclass",shortname);
-			temp=W3CreateCvar(cvarstr,"","Which classes are not allowed to play this race? Separate by comma. MAXIMUM OF 2!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","Which classes are not allowed to play this race? Separate by comma. MAXIMUM OF 2!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",LANG_SERVER);
+			temp=W3CreateCvar(cvarstr,"",descriptionstr,Internal_NWar3_IsRaceReloading());
 			SetRaceCell(raceid,ClassRestrictionCvar,temp);
 
 			Format(cvarstr,sizeof(cvarstr),"%s_onlysingleclass",shortname);
-			temp=W3CreateCvar(cvarstr,"","Which class can only play this race? MAXIMUM OF 1!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",Internal_NWar3_IsRaceReloading());
+			Format(descriptionstr,sizeof(descriptionstr),"%T","Which class can only play this race? MAXIMUM OF 1!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer",LANG_SERVER);
+			temp=W3CreateCvar(cvarstr,"",descriptionstr,Internal_NWar3_IsRaceReloading());
 			SetRaceCell(raceid,OnlySingleClassAllowedCvar,temp);
 
 			Format(cvarstr,sizeof(cvarstr),"%s_category",shortname);
-			SetRaceCell(raceid,RaceCategorieCvar,W3CreateCvar(cvarstr,"default","Determines in which Category the race should be displayed(if cats are active)",Internal_NWar3_IsRaceReloading()));
+			Format(descriptionstr,sizeof(descriptionstr),"%T","Determines in which Category the race should be displayed(if cats are active)",LANG_SERVER);
+			SetRaceCell(raceid,RaceCategorieCvar,W3CreateCvar(cvarstr,"default",descriptionstr,Internal_NWar3_IsRaceReloading()));
 
 			if(load_a_race)
 			{
