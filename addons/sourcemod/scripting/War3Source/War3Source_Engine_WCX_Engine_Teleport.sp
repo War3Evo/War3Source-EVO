@@ -223,14 +223,14 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 			distanceteleport2=GetVectorDistance(clientpos,startpos);
 			if(distanceteleport2 > distance){
 				new String:buffer[100];
-				Format(buffer, sizeof(buffer), "You are too far away from your target!");
+				Format(buffer, sizeof(buffer), "%T","You are too far away from your target!",client);
 				//DP("%f > %f",distanceteleport,distance);
 				W3PrintHint(client,buffer);
 				return false;
 			}
 			if(distanceteleport2<200.0){
 				new String:buffer[100];
-				Format(buffer, sizeof(buffer), "You are too close too teleport!");
+				Format(buffer, sizeof(buffer), "%T","You are too close too teleport!",client);
 				W3PrintHint(client,buffer);
 				return false;
 			}
@@ -240,7 +240,7 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 			distanceteleport=GetVectorDistance(startpos,endpos);
 			if(distanceteleport<200.0){
 				new String:buffer[100];
-				Format(buffer, sizeof(buffer),"Distance too short.");
+				Format(buffer, sizeof(buffer),"%T","Distance too short.",client);
 				W3PrintHint(client,buffer);
 				return false;
 			}
@@ -259,7 +259,7 @@ bool:internal_Teleport(client,target,Float:ScaleVectorDistance,Float:distance)
 
 		if(GetVectorLength(emptypos)<1.0){
 			new String:buffer[100];
-			Format(buffer, sizeof(buffer), "No empty location found");
+			Format(buffer, sizeof(buffer), "%T","No empty location found",client);
 			W3PrintHint(client,buffer);
 			return false; //it returned 0 0 0
 		}
@@ -310,7 +310,7 @@ public Action:checkTeleport(Handle:h,any:client){
 	{
 		//Use Internal_TeleportEntity instead of TeleportEntity
 		Internal_TeleportEntity(client,oldpos[client],NULL_VECTOR,NULL_VECTOR);
-		W3PrintHint(client,"Cannot teleport there");
+		W3PrintHint(client,"%T","Cannot teleport there",client);
 		if(PlayerProp[client][tele_raceid]>-1 && PlayerProp[client][tele_skillid]>-1)
 		{
 			War3_CooldownReset(client,PlayerProp[client][tele_raceid],PlayerProp[client][tele_skillid]);
@@ -318,7 +318,7 @@ public Action:checkTeleport(Handle:h,any:client){
 	}
 	else
 	{
-		W3PrintHint(client,"Teleported!");
+		W3PrintHint(client,"%T","Teleported!",client);
 
 		Call_StartForward(g_OnW3Teleported);
 		Call_PushCell(client);
