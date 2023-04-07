@@ -1,0 +1,128 @@
+
+// w3s._War3Source_Engine_XPGold.txt
+//
+// SetTrans(client) right before calling a function that has no client
+//
+//stock SetTrans(client) {
+//	W3SetVar(TransClient, client);
+//}
+//stock GetTrans() {
+//	return W3GetVar(TransClient);
+//}
+
+// if (client == 0)
+// {
+// 	PrintToServer("[SM] %t", "Player no longer available");
+// }
+// else
+// {
+// 	PrintToChat(client, "[SM] %t", "Player no longer available");
+// }
+
+// little t for no params
+// Format(retstr,maxlen,"%t","TF Spec");
+
+// char buffer[128];
+// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
+// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
+
+// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
+
+// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
+// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
+
+// decl String:webtbufferz[128];
+// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
+
+// Format(menuText,sizeof(menuText),"%s%T\n",menuText,"{rank} - {player} (Lvl. {amount}, {amount} XP)",client,x2+1,Top100Name[x],Top100totallevel[x],Top100totalxp[x]);
+
+// "Phrases"
+// {
+// 	""
+// 	{
+// 		"#format"		""
+// 		"en"			""
+// 	}
+// }
+
+"Phrases"
+{
+	"You must first select a race with changerace!"
+	{
+		"en"			"You must first select a race with changerace!"
+	}
+	"{racename} - Level {amount} - {amount} XP / {amount} XP"
+	{
+		"#format"		"{1:s},{2:d},{3:d},{4:d}"
+		"en"			"{1} - Level {2} - {3} XP / {4} XP"
+	}
+	"{racename} - Level {amount} - {amount} XP"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"{1} - Level {2} - {3} XP"
+	}
+	"dying bravely in combat!"
+	{
+		"en"			"dying bravely in combat!"
+	}
+	"being on the winning team"
+	{
+		"en"			"being on the winning team"
+	}
+	"No XP is given when less than {amount} players are playing"
+	{
+		"#format"		"{1:d}"
+		"en"			"No XP is given when less than {1} players are playing"
+	}
+	"You have gained {amount} XP and {amount} gold for {award}"
+	{
+		"#format"		"{1:d},{2:d},{3:s}"
+		"en"			"You have gained {1} XP and {2} gold for {3}"
+	}
+	"You have gained {amount} XP for {award}"
+	{
+		"#format"		"{1:d},{2:s}"
+		"en"			"You have gained {1} XP for {3}"
+	}
+	"You have gained {amount} gold for {award}"
+	{
+		"#format"		"{1:d},{2:s}"
+		"en"			"You have gained {1} gold for {3}"
+	}
+	"You have lost {amount} XP and {amount} gold for {award}"
+	{
+		"#format"		"{1:d},{2:d},{3:s}"
+		"en"			"You have lost {1} XP and {2} gold for {3}"
+	}
+	"You have lost {amount} XP for {award}"
+	{
+		"#format"		"{1:d},{2:s}"
+		"en"			"You have lost {1} XP for {3}"
+	}
+	"You have lost {amount} gold for {award}"
+	{
+		"#format"		"{1:d},{2:s}"
+		"en"			"You have lost {1} gold for {3}"
+	}
+	"a kill"
+	{
+		"en"			"a kill"
+	}
+	"assisting a kill"
+	{
+		"en"			"assisting a kill"
+	}
+	"A skill is over the maximum level allowed for your current level, please reselect your skills"
+	{
+		"en"			"A skill is over the maximum level allowed for your current level, please reselect your skills"
+	}
+	"A ultimate is over the maximum level allowed for your current level, please reselect your skills"
+	{
+		"en"			"A ultimate is over the maximum level allowed for your current level, please reselect your skills"
+	}
+	"You are now level {amount}"
+	{
+		"#format"		"{1:d}"
+		"en"			"You are now level {1}"
+	}
+}
