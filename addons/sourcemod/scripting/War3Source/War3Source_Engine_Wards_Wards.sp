@@ -137,7 +137,7 @@ public JarateBomber( victim, level, Float:duration )
 							Tcolor[3]=50; // more dark yellow flash
 							W3FlashScreen( x, Tcolor );
 							W3FlashScreen( x, Tcolor );
-							PrintCenterText(x,"Jarated by an enemy yellow ward! -->> Say \"antiwards\" to be immune next time!");
+							PrintCenterText(x,"%T","Jarated by an enemy yellow ward! -->> Say \"antiwards\" to be immune next time!",x);
 						}
 						else
 						{
@@ -264,7 +264,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 			//W3Hint(victim,HINT_DMG_RCVD,1.0,"You're being damaged! QUICK -->> Say \"antiwards\" or move!");
 			if(War3Source_Engine_Wards_Wards_MessageTimer[victim]<(GetGameTime()-3.0))
 			{
-				War3_ChatMessage(victim,"{default}You're being damaged! QUICK -->> Say \"{green}antiwards{default}\" or move!");
+				War3_ChatMessage(victim,"%T","{default}You're being damaged! QUICK -->> Say \"{green}antiwards{default}\" or move!",victim);
 				War3Source_Engine_Wards_Wards_MessageTimer[victim]=GetGameTime();
 			}
 
@@ -367,8 +367,8 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 		{
 			if(War3Source_Engine_Wards_Wards_MessageTimer[victim]<(GetGameTime()-3.0))
 			{
-				War3_ChatMessage(victim,"{default}You're being disrupted! QUICK -->> Say \"{green}antiwards{default}\" or move!");
-				W3Hint(victim,HINT_DMG_RCVD,1.0,"You're being disrupted! QUICK -->> Say \"antiwards\" or move!");
+				War3_ChatMessage(victim,"%T","{default}You're being disrupted! QUICK -->> Say \"{green}antiwards{default}\" or move!",victim);
+				W3Hint(victim,HINT_DMG_RCVD,1.0,"%T","You're being disrupted! QUICK -->> Say \"antiwards\" or move!",victim);
 				War3Source_Engine_Wards_Wards_MessageTimer[victim]=GetGameTime();
 			}
 			decl Float:data[MAXWARDDATA];
@@ -410,8 +410,8 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 		{
 			if(War3Source_Engine_Wards_Wards_MessageTimer[victim]<(GetGameTime()-3.0))
 			{
-				War3_ChatMessage(victim,"{default}This ward makes you immune to Sentry Detection.");
-				W3Hint(victim,HINT_DMG_RCVD,1.0,"Sentry Immunity On");
+				War3_ChatMessage(victim,"%T","{default}This ward makes you immune to Sentry Detection.",victim);
+				W3Hint(victim,HINT_DMG_RCVD,1.0,"%T","Sentry Immunity On",victim);
 				War3Source_Engine_Wards_Wards_MessageTimer[victim]=GetGameTime();
 			}
 			//decl Float:data[MAXWARDDATA];
@@ -461,7 +461,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 
 			if(War3Source_Engine_Wards_Wards_MessageTimer[victim]<(GetGameTime()-3.0))
 			{
-				W3Hint(victim,HINT_DMG_RCVD,1.0,"You're being jarate! QUICK -->> Say \"antiwards\" or move!");
+				W3Hint(victim,HINT_DMG_RCVD,1.0,"%T","You're being jarate! QUICK -->> Say \"antiwards\" or move!",victim);
 				War3Source_Engine_Wards_Wards_MessageTimer[victim]=GetGameTime();
 			}
 			new wardskill = War3_GetWardSkill(wardindex);
@@ -483,7 +483,7 @@ public OnWardTrigger(wardindex, victim, owner, behavior)
 		{
 			if(War3Source_Engine_Wards_Wards_MessageTimer[victim]<(GetGameTime()-3.0))
 			{
-				War3_ChatMessage(victim,"{default}You're being zapped! QUICK -->> Say \"{green}antiwards{default}\" or move!");
+				War3_ChatMessage(victim,"%T","{default}You're being zapped! QUICK -->> Say \"{green}antiwards{default}\" or move!",victim);
 				War3Source_Engine_Wards_Wards_MessageTimer[victim]=GetGameTime();
 			}
 
@@ -571,7 +571,7 @@ public OnWardExpire(wardindex, owner, behaviorID)
 				HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]=-1;
 				new flags = GetEntityFlags(victim)&~FL_NOTARGET;
 				SetEntityFlags(victim, flags);
-				War3_ChatMessage(victim,"{default}You are no longer immune to Sentry Detection.");
+				War3_ChatMessage(victim,"%T","{default}You are no longer immune to Sentry Detection.",victim);
 				W3Hint(victim,HINT_DMG_RCVD,1.0,"Sentry Immunity Off");
 			}
 		}
@@ -594,7 +594,7 @@ public OnWardNotTrigger(wardindex, victim, owner, behavior)
 			HasWardID[victim][BEHAVIOR_SENTRY_IMMUNITY]=-1;
 			new flags = GetEntityFlags(victim)&~FL_NOTARGET;
 			SetEntityFlags(victim, flags);
-			War3_ChatMessage(victim,"{default}You are no longer immune to Sentry Detection.");
+			War3_ChatMessage(victim,"%T","{default}You are no longer immune to Sentry Detection.",victim);
 			W3Hint(victim,HINT_DMG_RCVD,1.0,"Sentry Immunity Off");
 		}
 	}

@@ -1,5 +1,7 @@
 // War3Source_Engine_TrieKeyValue.sp
 
+// TRANSLATED 4/7/2023
+
 //#pragma dynamic 10000
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
