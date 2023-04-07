@@ -1,5 +1,7 @@
 // War3Source_Engine_RaceClass.sp
 
+// TRANSLATED 4/7/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 //#include "W3SIncs/forwards2"

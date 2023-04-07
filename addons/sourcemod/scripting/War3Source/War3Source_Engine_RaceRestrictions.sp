@@ -1,5 +1,7 @@
 // War3Source_Engine_RaceRestrictions.sp
 
+// TRANSLATED 4/7/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 /*
@@ -56,7 +58,7 @@ public Action:CheckItems(Handle:Timer, any:userid)
 					if(W3Denyable(DN_CanBuyItem1,client)==false)
 					{
 						SetOwnsItem(client,i,false);
-						War3_ChatMessage(client,"{red}Item Removed because of your new class/race combo.");
+						War3_ChatMessage(client,"%T","Item Removed because of your new class/race combo.",client);
 					}
 				}
 			}
@@ -95,7 +97,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 				char tName[32];
 				GetRaceName(x,tName,sizeof(tName));
 				//DP("Found race dependency %s",tName);
-				War3_ChatMessage(client,"Race requires {green}%s {default}with a minimum level of {green}%d",tName,FindRaceDependency(race_selected,x));
+				War3_ChatMessage(client,"%T","Race requires {tName} with a minimum level of {RaceDependencyLevel}",client,tName,FindRaceDependency(race_selected,x));
 				DenyNow=true;
 				//return W3Deny();
 			}
@@ -132,8 +134,8 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 				{
 					if(No_Message==false)
 					{
-						War3_ChatMessage(client,"VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin.");
-						PrintToConsole(client,"No Admin ID found");
+						War3_ChatMessage(client,"%T","VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin.",client);
+						PrintToConsole(client,"%T","No Admin ID found",client);
 					}
 					return W3Deny();
 				}
@@ -154,7 +156,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 						{
 							if(No_Message==false)
 							{
-								War3_ChatMessage(client,"VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin.");
+								War3_ChatMessage(client,"%T","VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin.",client);
 								PrintToConsole(client,"Admin ID found, but no required flag");
 							}
 							return W3Deny();
@@ -186,7 +188,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 			{
 				if(No_Message==false)
 				{
-					War3_ChatMessage(client,"You need %d more total levels to use this race.",min_level-total_level);
+					War3_ChatMessage(client,"%T","You need {levels} more total levels to use this race.",client,min_level-total_level);
 				}
 				return W3Deny();
 			}
@@ -201,7 +203,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 					//	DP("racerestricitons.sp");
 					if(No_Message==false)
 					{
-						War3_ChatMessage(client,"Job limit for your team has been reached, please select a different race. (MAX {amount})",GetRaceMaxLimitTeam(race_selected,GetClientTeam(client)));
+						War3_ChatMessage(client,"%T","Race limit for your team has been reached, please select a different race. (MAX {amount})",client,GetRaceMaxLimitTeam(race_selected,GetClientTeam(client)));
 					}
 
 					new cvar=GetRaceMaxLimitTeamCvar(race_selected,GetClientTeam(client));
@@ -226,7 +228,7 @@ public War3Source_Engine_RaceRestrictions_OnW3Denyable(client)
 
 			if (RaceHasFlag(race_selected, "botsonly"))
 			{
-				War3_ChatMessage(client,"This is a bots only race.  Select another race!");
+				War3_ChatMessage(client,"%T","This is a bots only race.  Select another race!",client);
 				return W3Deny();
 			}
 
@@ -264,7 +266,7 @@ enum TFClassType
 				//DP("deny");
 				if(No_Message==false)
 				{
-					War3_ChatMessage(client,"Race restricted due to class only allowed for this race is: %s",cvarstr);
+					War3_ChatMessage(client,"%T","Race restricted due to class only allowed for this race is: {cvarstr}",client,cvarstr);
 				}
 				return W3Deny();
 			}
@@ -283,7 +285,7 @@ enum TFClassType
 				//DP("deny");
 				if(No_Message==false)
 				{
-					War3_ChatMessage(client,"Race restricted due to class restriction: %s",classstring);
+					War3_ChatMessage(client,"%T","Race restricted due to class restriction: {classstring}",client,classstring);
 				}
 				return W3Deny();
 			}
