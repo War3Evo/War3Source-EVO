@@ -154,16 +154,17 @@ public void War3Source_Engine_WCX_Engine_Crit_OnWar3EventPostHurt(int victim, in
 			{
 #if (GGAMETYPE == GGAME_TF2)
 				if(ValidPlayer(attacker,true) && !IsOwnerSentry(attacker))
-#else // css or csgo
+#else // css or csgo or fof
 				if(ValidPlayer(attacker,true))
 #endif
 				{
-					War3_ChatMessage(attacker,"{blue}CRIT! {default}Multi {blue}%.2f {default}extra dmg: {blue}%d",CritMultiplier,RoundToFloor(CritPercentIncrease));
+					// TO DO: change War3_ChatMessage to include victim name if they are valid
+					War3_ChatMessage(attacker,"%T","{blue}CRIT! {default}Multi {blue}{CritMultiplier} {default}extra dmg: {blue}{CritPercentIncrease}",attacker,CritMultiplier,RoundToFloor(CritPercentIncrease));
 					if(ValidPlayer(victim))
 					{
 						char AttackerName[128];
 						GetClientName(attacker,AttackerName,sizeof(AttackerName));
-						War3_ChatMessage(victim,"%s {red}CRITS you for {default}Multi {red}%.2f {default}extra dmg: {red}%d",AttackerName,CritMultiplier,RoundToFloor(CritPercentIncrease));
+						War3_ChatMessage(victim,"{AttackerName} {red}CRITS you for {default}Multi {red}{CritMultiplier} {default}extra dmg: {red}{CritPercentIncrease}",victim,AttackerName,CritMultiplier,RoundToFloor(CritPercentIncrease));
 					}
 				}
 			}

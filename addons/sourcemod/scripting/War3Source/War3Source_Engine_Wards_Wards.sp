@@ -1,5 +1,7 @@
 // War3Source_Engine_Wards_Wards.sp
 
+// TRANSLATED 4/7/2023
+
 //#assert GGAMEMODE == MODE_WAR3SOURCE
 
 /*
