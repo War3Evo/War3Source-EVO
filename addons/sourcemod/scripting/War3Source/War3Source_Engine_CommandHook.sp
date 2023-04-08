@@ -39,7 +39,7 @@ public War3Source_Engine_CommandHook_OnPluginStart()
 	RegConsoleCmd("+ultimate",War3Source_UltimateCommand);
 	RegConsoleCmd("-ultimate",War3Source_UltimateCommand);
 	RegConsoleCmd("+ability",War3Source_NoNumAbilityCommand);
-	RegConsoleCmd("-ability",War3Source_NoNumAbilityCommand); //dont blame me if ur job is a failure because theres too much buttons to press
+	RegConsoleCmd("-ability",War3Source_NoNumAbilityCommand); //dont blame me if ur race is a failure because theres too much buttons to press
 	RegConsoleCmd("+ability1",War3Source_AbilityCommand);
 	RegConsoleCmd("-ability1",War3Source_AbilityCommand);
 	RegConsoleCmd("+ability2",War3Source_AbilityCommand);
