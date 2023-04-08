@@ -400,7 +400,7 @@ War3Source_LoadPlayerData(client) //war3source calls this
 
 		PrintToServer(longquery);
 
-		PrintToConsole(client,"[War3Source:EVO] %T","XP retrieval query: sending MAIN and load all jobs request! Time: {GetGameTime}",client,GetGameTime());
+		PrintToConsole(client,"[War3Source:EVO] %T","XP retrieval query: sending MAIN and load all races request! Time: {GetGameTime}",client,GetGameTime());
 		SetPlayerProp(client,sqlStartLoadXPTime,GetGameTime());
 
 		//Lets get race data too
@@ -898,7 +898,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 
 
 					char printstr[500];
-					Format(printstr,sizeof(printstr),"[War3Source:EVO] %T","XP Ret: Job {1} Level {2} XP {3} Time {4}...",client,raceshortname,level,pxp,GetGameTime());
+					Format(printstr,sizeof(printstr),"[War3Source:EVO] %T","XP Ret: Race {raceshortname} Level {level} XP {pxp} Time {GameTime}...",client,raceshortname,level,pxp,GetGameTime());
 
 
 
@@ -926,7 +926,7 @@ public void T_CallbackSelectPDataRace(Handle owner,Handle hndl,const char[] erro
 			}
 		}
 		if(retrievals>0){
-			PrintToConsole(client,"[War3Source:EVO] %T","Successfully retrieved data jobs, total of {numofraces} races were returned, {totalracesnum} are running on this server",client,retrievals,usefulretrievals);
+			PrintToConsole(client,"[War3Source:EVO] %T","Successfully retrieved data races, total of {numofraces} races were returned, {totalracesnum} are running on this server",client,retrievals,usefulretrievals);
 		}
 		else if(retrievals<=0&&GetRacesLoaded()>0)
 		{//no xp record

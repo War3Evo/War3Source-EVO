@@ -130,10 +130,10 @@
 		"#format"		"{1:d}"
 		"en"			"steamaccountid = {1}"
 	}
-	"XP retrieval query: sending MAIN and load all jobs request! Time: {GetGameTime}"
+	"XP retrieval query: sending MAIN and load all races request! Time: {GetGameTime}"
 	{
 		"#format"		"{1:d}"
-		"en"			"XP retrieval query: sending MAIN and load all jobs request! Time: {1}"
+		"en"			"XP retrieval query: sending MAIN and load all races request! Time: {1}"
 	}
 	"T_CallbackSelectPDataMain()"
 	{
@@ -260,12 +260,13 @@
 		"#format"		"{1:s}"
 		"en"			"T_CallbackSelectPDataRace POSSIBLE ERRORS? {1}"
 	}
-	"XP Ret: Job %s Level %d XP %d Time %f..."
+	// XP Ret: Race %s Level %d XP %d Time %f...
+	"XP Ret: Race {raceshortname} Level {level} XP {pxp} Time {GameTime}..."
 	{
 		"#format"		"{1:s},{2:d},{3:d},{4:f}"
-		"en"			"XP Ret: Job {1} Level {2} XP {3} Time {4}..."
+		"en"			"XP Ret: Race {1} Level {2} XP {3} Time {4}..."
 	}
-	"Successfully retrieved data jobs, total of {numofraces} races were returned, {totalracesnum} are running on this server"
+	"Successfully retrieved data races, total of {numofraces} races were returned, {totalracesnum} are running on this server"
 	{
 		"#format"		"{1:d},{2:d}"
 		"en"			"Successfully retrieved data races, total of {1} races were returned, {2} are running on this server"

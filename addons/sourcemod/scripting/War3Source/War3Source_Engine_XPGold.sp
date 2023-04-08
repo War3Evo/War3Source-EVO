@@ -1,5 +1,7 @@
 // War3Source_Engine_XPGold.sp
 
+// TRANSLATED 4/27/2023 --- WAR3SOURCE.SP IS NOW READY FOR TESTING
+
 //#pragma tabsize 0     // doesn't mess with how you format your lines
 
 //#assert GGAMEMODE == MODE_WAR3SOURCE
