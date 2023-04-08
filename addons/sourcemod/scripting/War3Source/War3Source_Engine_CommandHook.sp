@@ -692,7 +692,7 @@ bool:Internal_War3Source_SayCommand(client,String:arg1[256])
 			War3_ChatMessage(client,"%T","War3Source:EVO Developers",client);
 			return returnblocking;
 		}
-		else if(CommandCheck(arg1,"myinfo")||CommandCheck(arg1,"!myinfo"))
+		else if(CommandCheck(arg1,"myinfo"))
 		{
 			internal_W3SetVar(EventArg1,client);
 			DoFwd_War3_Event(DoShowPlayerInfoTarget,client);
