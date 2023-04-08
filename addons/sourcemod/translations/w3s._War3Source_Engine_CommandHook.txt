@@ -74,12 +74,16 @@
 		"#format"		""
 		"en"			"Could not find race."
 	}
+
+	// These are say chat commands that you can change for your langauge:
+
 	// show xp commands
 	"showxp"
 	{
 		"#format"		""
 		"en"			"showxp"
 	}
+	// say command xp
 	"xp"
 	{
 		"#format"		""
@@ -91,6 +95,7 @@
 		"#format"		""
 		"en"			"cr"
 	}
+	// say command changerace
 	"changerace"
 	{
 		"#format"		""
@@ -102,93 +107,109 @@
 		"#format"		""
 		"en"			"buff"
 	}
+	// say command buffs
 	"buffs"
 	{
 		"#format"		""
 		"en"			"buffs"
 	}
+	// say command showbuff
 	"showbuff"
 	{
 		"#format"		""
 		"en"			"showbuff"
 	}
+	// say command showbuffs
 	"showbuffs"
 	{
 		"#format"		""
 		"en"			"showbuffs"
 	}
-	// help menu commands
+	// help menu commands (say command)
 	"war3help"
 	{
 		"#format"		""
 		"en"			"war3help"
 	}
+	// say command help
 	"help"
 	{
 		"#format"		""
 		"en"			"help"
 	}
+	// say command wchelp
 	"wchelp"
 	{
 		"#format"		""
 		"en"			"wchelp"
 	}
+	// say command war3
 	"war3"
 	{
 		"#format"		""
 		"en"			"war3"
 	}
-	// Do Show Items Info Menu
+	// war3version (say command)
+	"war3version"
+	{
+		"#format"		""
+		"en"			"war3version"
+	}
+	// Do Show Items Info Menu (say command)
 	"itemsinfo"
 	{
 		"#format"		""
 		"en"			"itemsinfo"
 	}
+	// say command iteminfo
 	"iteminfo"
 	{
 		"#format"		""
 		"en"			"iteminfo"
 	}
-	// Do Show Items Info Menu 2
-	"itemsinfo2
+	// Do Show Items Info Menu 2 (say command)
+	"itemsinfo2"
 	{
 		"#format"		""
 		"en"			"itemsinfo2"
 	}
+	// say command iteminfo2
 	"iteminfo2"
 	{
 		"#format"		""
 		"en"			"iteminfo2"
 	}
-	// Do Show Items Info Menu 3
+	// Do Show Items Info Menu 3 (say command)
 	"itemsinfo3"
 	{
 		"#format"		""
 		"en"			"itemsinfo3"
 	}
+	// say command iteminfo3
 	"iteminfo3"
 	{
 		"#format"		""
 		"en"			"iteminfo3"
 	}
-	// playerinfo <player name> without < and > and no spaces.
+	// playerinfo <player name> without < and > and no spaces. (say command)
 	"playerinfo"
 	{
 		"#format"		""
 		"en"			"playerinfo"
 	}
-	// Do Show Race info Menu
+	// Do Show Race info Menu (say command)
 	"raceinfo"
 	{
 		"#format"		""
 		"en"			"raceinfo"
 	}
-	// tell player how much gold they have
+	// tell player how much gold they have (say command)
 	"mygold"
 	{
 		"#format"		""
 		"en"			"mygold"
 	}
+	// say command gold
 	"gold"
 	{
 		"#format"		""
@@ -199,17 +220,19 @@
 		"#format"		"{1:i}"
 		"en"			"Gold: {1}"
 	}
-	// tell player how many diamonds they have
+	// tell player how many diamonds they have (say command)
 	"mydiamonds"
 	{
 		"#format"		""
 		"en"			"mydiamonds"
 	}
+	// say command diamonds
 	"diamonds"
 	{
 		"#format"		""
 		"en"			"diamonds"
 	}
+	// say command diamond
 	"diamond"
 	{
 		"#format"		""
@@ -220,7 +243,7 @@
 		"#format"		"{1:i}"
 		"en"			"Diamonds: {1}"
 	}
-	// tell player before speed
+	// tell player before speed (say command)
 	"beforespeed"
 	{
 		"#format"		""
@@ -257,7 +280,7 @@
 		"#format"		"{1:f}"
 		"en"			"fnewmaxspeed is {1}"
 	}
-	// tell a admin or player the target player's speed if spectating, otherwise their own speed
+	// tell a admin or player the target player's speed if spectating, otherwise their own speed (say command)
 	"speed"
 	{
 		"#format"		""
@@ -509,6 +532,7 @@
 		"#format"		""
 		"en"			"balance"
 	}
+	// say command bank_balance
 	"bank_balance"
 	{
 		"#format"		""
