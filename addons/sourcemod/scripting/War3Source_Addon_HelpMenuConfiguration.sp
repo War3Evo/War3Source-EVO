@@ -68,7 +68,7 @@ public OnPluginStart()
 
 	war3_help_menu_title = CreateConVar("war3_help_menu_title", "[War3Source-EVO] Help Menu", "Custom Help Menu Title");
 
-	war3_help_menu_cfg = CreateConVar("war3_help_menu_cfg", "1", "Enable/Disable Custom Help Menu");
+	war3_help_menu_cfg = CreateConVar("war3_help_menu_cfg", "0", "Enable/Disable Custom Help Menu");
 	war3_help_menu_debug = CreateConVar("war3_help_menu_debug", "0", "Enable/Disable Help Menu Debug Messages");
 
 	if(Loaded != 666)
