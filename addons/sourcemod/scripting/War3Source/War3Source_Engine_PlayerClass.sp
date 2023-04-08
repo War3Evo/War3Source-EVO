@@ -319,7 +319,7 @@ stock SetRace(client,newrace)
 
 				decl String:buf[32];
 				GetRaceName(newrace,buf,sizeof(buf));
-				War3_ChatMessage(client,"%T","You are now {racename}",client,buf);
+				War3_ChatMessage(client,"%T","You are now {racename}.",client,buf);
 
 				//if(oldrace==0){
 				//	War3_ChatMessage(client,"%T","say war3bug <description> to file a bug report",client);
