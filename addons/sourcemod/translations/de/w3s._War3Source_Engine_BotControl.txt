@@ -1,0 +1,17 @@
+// w3s._War3Source_Engine_BotControl.txt
+
+"Phrases"
+{
+	"Error could not find war3_bots_use_races (stopped)"
+	{
+		"de"			"{cyan}Fehler konnte nicht finden war3_bots_use_races (gestoppt)"
+	}
+	"Bot can not select that race."
+	{
+		"de"			"{cyan}Bot kann dieses Rennen nicht auswählen."
+	}
+	"Bot could not find race."
+	{
+		"de"			"{cyan}Bot konnte kein Rennen finden."
+	}
+}
