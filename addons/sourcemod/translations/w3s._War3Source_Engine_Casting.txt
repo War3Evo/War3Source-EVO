@@ -74,14 +74,4 @@
 		"#format"		""
 		"en"			"[War3Source:EVO] Thirdperson view disabled!"
 	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
-	""
-	{
-		"#format"		""
-		"en"			""
-	}
 }
