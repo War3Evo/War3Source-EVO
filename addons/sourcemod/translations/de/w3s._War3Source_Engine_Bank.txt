@@ -1,0 +1,25 @@
+// w3s._War3Source_Engine_Bank.txt
+
+"Phrases"
+{
+	"default 2700 = 45 minutes"
+	{
+		"en"			"Standard 2700 = 45 Minuten"
+	}
+	"You don't have enough gold on hand."
+	{
+		"en"			"Sie haben nicht genug Gold zur Hand."
+	}
+	"On hand: {decimal} Gold. !balance: {decimal} Gold. Please wait {string} to withdraw."
+	{
+		"en"			"Zur Hand: {green}{1} {default}Gold. !balance: {green}{2} {default}Gold. Bitte warten Sie {3}, um sich zurückzuziehen."
+	}
+	"On hand: {decimal} Gold. !balance: {decimal} Gold. You don't have enough gold in the bank."
+	{
+		"en"			"Zur Hand: {green}{1} {default}Gold. !balance: {green}{2} {default}Gold. Sie haben nicht genug Gold in der Bank."
+	}
+	"That withdrawal would put you over the gold cap ({integer}})."
+	{
+		"en"			"Dieser Rückzug würde Sie über die Goldkappe bringen ({1}})."
+	}
+}
