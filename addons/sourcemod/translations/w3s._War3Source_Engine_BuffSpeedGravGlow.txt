@@ -1,46 +1,4 @@
 // w3s._War3Source_Engine_BuffSpeedGravGlow.txt
-//
-// SetTrans(client) right before calling a function that has no client
-//
-//stock SetTrans(client) {
-//	W3SetVar(TransClient, client);
-//}
-//stock GetTrans() {
-//	return W3GetVar(TransClient);
-//}
-
-// if (client == 0)
-// {
-// 	PrintToServer("[SM] %t", "Player no longer available");
-// }
-// else
-// {
-// 	PrintToChat(client, "[SM] %t", "Player no longer available");
-// }
-
-// little t for no params
-// Format(retstr,maxlen,"%t","TF Spec");
-
-// char buffer[128];
-// Format(buffer, sizeof(buffer), "[War3Source:EVO] %t","This game does not support hint text.");
-// WithDrawTimeLimitCvar = CreateConVar("war3_bank_withdraw_timelimit","2700",buffer);
-
-// PrintToServer("[War3Source:EVO] %T","SQL connection successful, driver {driver}",LANG_SERVER,driver_ident);
-
-// War3_ChatMessage(0,"%t","Error could not find war3_bots_use_races (stopped)");
-// War3_ChatMessage(client,"%T","The player you selected has left the server",client);
-
-// decl String:webtbufferz[128];
-// Format(webtbufferz, sizeof(webtbufferz), "%t","Cannot Invis. Being revealed");
-
-// "Phrases"
-// {
-// 	""
-// 	{
-// 		"#format"		""
-// 		"en"			""
-// 	}
-// }
 
 "Phrases"
 {
