@@ -1,0 +1,45 @@
+// w3s._War3Source_Engine_BuffSystem.txt
+
+"Phrases"
+{
+	"You are now {amount} percent visibile."
+	{
+		"de"			"Sie sind jetzt {green}{1}{default} Prozent sichtbar."
+	}
+	"You now have {amount} percent physical armor damage reduction."
+	{
+		"de"			"Du hast jetzt {green}{1}{default} Prozent prozentualer Reduzierung der physischen Rüstung."
+	}
+	"You now have {amount} percent magical armor damage reduction."
+	{
+		"de"			"Du hast jetzt {green}{1}{default} Prozent prozentualer Rüstungsschäden Reduktion."
+	}
+	"You now have {amount} percent attack speed buff."
+	{
+		"de"			"Du hast jetzt {green}{1}{default} prozentualer Angriffsgeschwindigkeit Buff."
+	}
+	"You now gain {amount} percent damage as health."
+	{
+		"de"			"Sie gewinnen jetzt {green}{1}{default} prozentualer Schaden als Gesundheit."
+	}
+	"You now gain {amount} hit points per second."
+	{
+		"de"			"Sie gewinnen jetzt {green}{1}{default} Trefferpunkte pro Sekunde."
+	}
+	"You move at {amount} percent {speed} than normal."
+	{
+		"de"			"Sie bewegen sich an {green}{1}{default} Prozent {green}{2}{default} als normal."
+	}
+	"You move at normal speed."
+	{
+		"de"			"Sie bewegen sich an {green}normal{default} Geschwindigkeit."
+	}
+	"Your new Buffs:"
+	{
+		"de"			"{lightgreen}Ihre neuen Buffs{default}:"
+	}
+	"invalid buff index"
+	{
+		"de"			"Ungültiger Buff Index"
+	}
+}
