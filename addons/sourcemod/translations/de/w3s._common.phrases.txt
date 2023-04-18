@@ -1,0 +1,57 @@
+// w3s._common.phrases.txt
+
+"Phrases"
+{
+	"Back"
+	{
+		"de"		"Zurück"
+	}
+	"Exit"
+	{
+		"de"		"Ausfahrt"
+	}
+	"Next"
+	{
+		"de"		"Nächste"
+	}
+	"Previous"
+	{
+		"de"		"Vorherige"
+	}
+	"[Return to Categories]"
+	{
+		"de"			"[Kehren Sie zu Kategorien zurück]"
+	}
+	"Please join our Steam Group."
+	{
+		"de"			"Bitte schließen Sie sich unserer Dampfgruppe an."
+	}
+	"Player has left the server"
+	{
+		"de"			"Der Spieler hat den Server verlassen"
+	}
+	"Refresh"
+	{
+		"de"			"Aktualisierung"
+	}
+	"ULTIMATE"
+	{
+		"de"			"Ultimativ"
+	}
+	"SKILL"
+	{
+		"de"			"Fähigkeit"
+	}
+	"ultimate"
+	{
+		"de"			"ultimate"
+	}
+	"skill"
+	{
+		"de"			"Fähigkeit"
+	}
+	"item"
+	{
+		"de"			"Artikel"
+	}
+}
