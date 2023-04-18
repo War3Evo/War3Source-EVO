@@ -1,0 +1,29 @@
+// w3s._War3Source_Engine_Casting.txt
+
+"Phrases"
+{
+	"{clientteamcolor}{clientname} successfully canceled {targetteamcolor}{targetname}'s spell {skillname}!"
+	{
+		"de"			"{1}{2} {default}erfolgreich abgesagt {3}{4}'s {default}spell {green}{5}!"
+	}
+	"Spell no longer exists."
+	{
+		"de"			"Zauber existiert nicht mehr."
+	}
+	"[Magic] Cancel Spell Menu"
+	{
+		"de"			"[Magie] Zaubermenü abbrechen"
+	}
+	"Could not find any spells being cast."
+	{
+		"de"			"{red}Konnte keine Zaubersprüche finden."
+	}
+	"Thirdperson view will be enabled when you spawn."
+	{
+		"de"			"[War3Source:EVO] Die Ansicht von ThirdPerson wird aktiviert, wenn Sie laichen."
+	}
+	"Thirdperson view disabled!"
+	{
+		"de"			"[War3Source:EVO] ThirdPerson View Deaktiviert!"
+	}
+}
