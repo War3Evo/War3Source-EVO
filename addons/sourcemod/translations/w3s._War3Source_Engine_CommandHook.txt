@@ -584,46 +584,46 @@
 	"Your pressed +ability, but the map is changing"
 	{
 		"#format"		""
-		"en"			"Your pressed +ability, but the map is changing"
+		"en"			"You pressed +ability, but the map is changing"
 	}
 	"Your pressed +ability, but war3 is paused"
 	{
 		"#format"		""
-		"en"			"Your pressed +ability, but war3 is paused"
+		"en"			"You pressed +ability, but war3 is paused"
 	}
 	"Your pressed +ability"
 	{
 		"#format"		""
-		"en"			"Your pressed +ability"
+		"en"			"You pressed +ability"
 	}
 	"Your pressed +ability2, but the map is changing"
 	{
 		"#format"		""
-		"en"			"Your pressed +ability2, but the map is changing"
+		"en"			"You pressed +ability2, but the map is changing"
 	}
 	"Your pressed +ability2, but war3 is paused"
 	{
 		"#format"		""
-		"en"			"Your pressed +ability2, but war3 is paused"
+		"en"			"You pressed +ability2, but war3 is paused"
 	}
 	"Your pressed +ability2"
 	{
 		"#format"		""
-		"en"			"Your pressed +ability2"
+		"en"			"You pressed +ability2"
 	}
 	"Your pressed +ultimate, but the map is changing"
 	{
 		"#format"		""
-		"en"			"Your pressed +ultimate, but the map is changing"
+		"en"			"You pressed +ultimate, but the map is changing"
 	}
 	"Your pressed +ultimate, but war3 is paused"
 	{
 		"#format"		""
-		"en"			"Your pressed +ultimate, but war3 is paused"
+		"en"			"You pressed +ultimate, but war3 is paused"
 	}
 	"Your pressed +ultimate"
 	{
 		"#format"		""
-		"en"			"Your pressed +ultimate"
+		"en"			"You pressed +ultimate"
 	}
 }
