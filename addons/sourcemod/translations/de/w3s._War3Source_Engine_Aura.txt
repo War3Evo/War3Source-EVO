@@ -1,0 +1,9 @@
+// w3s._War3Source_Engine_Aura.txt
+
+"Phrases"
+{
+	"CANNOT REGISTER ANY MORE AURAS"
+	{
+		"en"			"Kann keine Auras mehr registrieren"
+	}
+}
