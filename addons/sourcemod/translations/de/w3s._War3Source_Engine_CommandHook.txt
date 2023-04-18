@@ -1,0 +1,486 @@
+// w3s._War3Source_Engine_CommandHook.txt
+
+"Phrases"
+{
+	"{W3GAMETITLE} is currently paused, please wait until {W3GAMETITLE} resumes."
+	{
+		"de"			"{1} ist derzeit eine Pause, bitte warten Sie bis {2} Lebensläufe."
+	}
+	"The proper commands are +ability, +ability1 ... and +ultimate"
+	{
+		"de"			"Die richtigen Befehle sind +ability, +ability1 ... and +ultimate"
+	}
+	"You can now cr instantly in spawn."
+	{
+		"de"			"Du kannst jetzt cr sofort im Spawn."
+	}
+	"You will change to {racename} race on death or spawn."
+	{
+		"de"			"Sie werden sich auf {1} -Rasse auf Tod oder Spawn ändern."
+	}
+	"You can not select that race."
+	{
+		"de"			"Sie können dieses Rennen nicht auswählen."
+	}
+	"Could not find race."
+	{
+		"de"			"Konnte keine Rasse finden."
+	}
+
+	// These are say chat commands that you can change for your langauge:
+
+	// show xp commands
+	"showxp"
+	{
+		"de"			"showxp"
+	}
+	// say command xp
+	"xp"
+	{
+		"de"			"xp"
+	}
+	// change race <race> without < and >
+	"cr"
+	{
+		"de"			"cr"
+	}
+	// say command changerace
+	"changerace"
+	{
+		"de"			"changerace"
+	}
+	// show buffs commands
+	"buff"
+	{
+		"de"			"buff"
+	}
+	// say command buffs
+	"buffs"
+	{
+		"de"			"buffs"
+	}
+	// say command showbuff
+	"showbuff"
+	{
+		"de"			"showbuff"
+	}
+	// say command showbuffs
+	"showbuffs"
+	{
+		"de"			"showbuffs"
+	}
+	// help menu commands (say command)
+	"war3help"
+	{
+		"de"			"war3help"
+	}
+	// say command help
+	"help"
+	{
+		"de"			"help"
+	}
+	// say command wchelp
+	"wchelp"
+	{
+		"de"			"wchelp"
+	}
+	// say command war3
+	"war3"
+	{
+		"de"			"war3"
+	}
+	// war3version (say command)
+	"war3version"
+	{
+		"de"			"war3version"
+	}
+	// Do Show Items Info Menu (say command)
+	"itemsinfo"
+	{
+		"de"			"itemsinfo"
+	}
+	// say command iteminfo
+	"iteminfo"
+	{
+		"de"			"iteminfo"
+	}
+	// Do Show Items Info Menu 2 (say command)
+	"itemsinfo2"
+	{
+		"de"			"itemsinfo2"
+	}
+	// say command iteminfo2
+	"iteminfo2"
+	{
+		"de"			"iteminfo2"
+	}
+	// Do Show Items Info Menu 3 (say command)
+	"itemsinfo3"
+	{
+		"de"			"itemsinfo3"
+	}
+	// say command iteminfo3
+	"iteminfo3"
+	{
+		"de"			"iteminfo3"
+	}
+	// playerinfo <player name> without < and > and no spaces. (say command)
+	"playerinfo"
+	{
+		"de"			"playerinfo"
+	}
+	// Do Show Race info Menu (say command)
+	"raceinfo"
+	{
+		"de"			"raceinfo"
+	}
+	// tell player how much gold they have (say command)
+	"mygold"
+	{
+		"de"			"mygold"
+	}
+	// say command gold
+	"gold"
+	{
+		"de"			"gold"
+	}
+	"Gold: {amount}"
+	{
+		"de"			"Gold: {1}"
+	}
+	// tell player how many diamonds they have (say command)
+	"mydiamonds"
+	{
+		"de"			"mydiamonds"
+	}
+	// say command diamonds
+	"diamonds"
+	{
+		"de"			"diamonds"
+	}
+	// say command diamond
+	"diamond"
+	{
+		"de"			"diamond"
+	}
+	"Diamonds: {amount}"
+	{
+		"de"			"Diamonds: {1}"
+	}
+	// tell player before speed (say command)
+	"beforespeed"
+	{
+		"de"			"beforespeed"
+	}
+	"Your before speed is {amount}."
+	{
+		"de"			"Ihre vor der Geschwindigkeit ist {1}."
+	}
+	// debug info
+	"vars"
+	{
+		"de"			"vars"
+	}
+	"fclassbasespeed is {fAmount}"
+	{
+		"de"			"fclassbasespeed is {1}"
+	}
+	"fBeforeSpeedDifferenceMULTI is {fAmount}"
+	{
+		"de"			"fBeforeSpeedDifferenceMULTI is {1}"
+	}
+	"fWarCraftBonus_AND_TF2Bonus is {fAmount}"
+	{
+		"de"			"fWarCraftBonus_AND_TF2Bonus is {1}"
+	}
+	"fnewmaxspeed is {fAmount}"
+	{
+		"de"			"fnewmaxspeed is {1}"
+	}
+	// tell a admin or player the target player's speed if spectating, otherwise their own speed (say command)
+	"speed"
+	{
+		"de"			"speed"
+	}
+	"While being spectator,\nYou must be spectating a player to get player's speed."
+	{
+		"de"			"Während Sie zu Zuschauer sind, müssen Sie einen Spieler zuspectieren, um die Geschwindigkeit des Spielers zu erzielen."
+	}
+	// copyed from old file w3s._common.phrases.txt
+	"Spectating target's max speed is {amount}"
+	{
+		"de"		"Die maximale Geschwindigkeit des Ziels ist die Spektion {1}"
+	}
+	// say command
+	"maxhp"
+	{
+		"de"			"maxhp"
+	}
+	// copyed from old file w3s._common.phrases.txt
+	"Your max speed is {amount}"
+	{
+		"de"		"Ihre maximale Geschwindigkeit ist {1}"
+	}
+	"Your max health is: {amount}"
+	{
+		"de"			"Ihre maximale Gesundheit ist: {1}"
+	}
+	// say command
+	"skillsinfo"
+	{
+		"de"			"skillsinfo"
+	}
+	// say command
+	"skl"
+	{
+		"de"			"skl"
+	}
+	// say command
+	"resetskills"
+	{
+		"de"			"resetskills"
+	}
+	// say command
+	"spendskills"
+	{
+		"de"			"spendskills"
+	}
+	// say command shopmenu
+	"shopmenu"
+	{
+		"de"			"shopmenu"
+	}
+	// say command shopmenu
+	"sh1"
+	{
+		"de"			"sh1"
+	}
+	// say command shopmenu2
+	"shopmenu2"
+	{
+		"de"			"shopmenu2"
+	}
+	// say command shopmenu2
+	"sh2"
+	{
+		"de"			"sh2"
+	}
+	// say command shopmenu3
+	"shopmenu3"
+	{
+		"de"			"shopmenu3"
+	}
+	// say command shopmenu3
+	"sh3"
+	{
+		"de"			"sh3"
+	}
+	// say command war3menu
+	"war3menu"
+	{
+		"de"			"war3menu"
+	}
+	// say command war3menu
+	"w3e"
+	{
+		"de"			"w3e"
+	}
+	// say command war3menu
+	"wcs"
+	{
+		"de"			"wcs"
+	}
+	// say command levelbank
+	"levelbank"
+	{
+		"de"			"levelbank"
+	}
+	// say command war3rank
+	"war3rank"
+	{
+		"de"			"war3rank"
+	}
+		"This server does not save XP, feature disabled"
+	{
+		"de"		"Dieser Server speichert nicht XP, die Funktion deaktiviert."
+	}
+	// say command war3stats
+	"war3stats"
+	{
+		"de"			"war3stats"
+	}
+	// say command to allow player to have the server tell their client to reconnect to server
+	"!retry"
+	{
+		"de"			"!retry"
+	}
+	// say command 
+	"war3dev"
+	{
+		"de"			"war3dev"
+	}
+	"War3Source:EVO Developers"
+	{
+		"de"		"El Diablo (STEAM_0:1:35173666) Und LORD DAGOTHUR [X]-RATED (STEAM_0:0:5027348) sind Entwickler für War3Source:EVO."
+	}
+	// say command myinfo
+	"myinfo"
+	{
+		"de"			"myinfo"
+	}
+	// say command buyprevious
+	"buyprevious"
+	{
+		"de"			"buyprevious"
+	}
+	// say command buyprevious
+	"bp"
+	{
+		"de"			"bp"
+	}
+	// say command myitems
+	"myitems"
+	{
+		"de"			"myitems"
+	}
+	// say command drop
+	"drop"
+	{
+		"de"			"drop"
+	}
+	"You dropped {itemname}"
+	{
+		"de"			"Du hast {1} fallen gelassen"
+	}
+	"please use format: drop item"
+	{
+		"de"			"Bitte verwenden Sie das Format: drop item"
+	}
+	// say command gems
+	"gems"
+	{
+		"de"			"gems"
+	}
+	// say command 
+	"myitems3"
+	{
+		"de"			"myitems3"
+	}
+	// say command saybank
+	"saybank"
+	{
+		"de"			"saybank"
+	}
+	"{name} has {GoldInHand} gold on hand, {Gold} gold in the bank, {Diamonds} diamonds, and {Platinum} platinum."
+	{
+		"de"			"{green}{1} {default}hat {green}{2} {default}Gold zur Hand, {green}{3} {default}Gold in der Bank, {green}{4} {default}Diamanten und {green}{5} {default}Platinum."
+	}
+	// say command saygold
+	"saygold"
+	{
+		"de"			"saygold"
+	}
+	"{name} has {gold} gold."
+	{
+		"de"			"{green}{1} {default}hat {green}{2} {default}Gold."
+	}
+	// say command saydiamond
+	"saydiamond"
+	{
+		"de"			"saydiamond"
+	}
+	"{name} has {diamonds} diamonds."
+	{
+		"de"			"{green}{1} {default}hat {green}{2} {default}Diamanten."
+	}
+	// say command sayplatinum
+	"sayplatinum"
+	{
+		"de"			"sayplatinum"
+	}
+	"{name} has {platinum} platinum."
+	{
+		"de"			"{green}{1} {default}hat {green}{2} {default}Platin."
+	}
+	// say command balance
+	"balance"
+	{
+		"de"			"Gleichgewicht"
+	}
+	// say command bank_balance
+	"bank_balance"
+	{
+		"de"			"bank_balance"
+	}
+	"On hand: {gold} Gold. balance: {bankgold} Gold. Please wait {withdrawtime} to withdraw"
+	{
+		"de"			"Zur Hand: {green}{1} {default}Gold. Gleichgewicht: {green}{2} {default}Gold. Warten Sie mal {3} zurückziehen"
+	}
+	// say command deposit
+	"deposit"
+	{
+		"de"			"Kaution"
+	}
+	"On hand: {gold} Gold. !balance: {bankgold} Gold."
+	{
+		"de"			"Zur Hand: {green}{1} {default}Gold. !Gleichgewicht {green}{2} {default}Gold."
+	}
+	"On hand: {gold} Gold. !balance: {bankgold} Gold. Please try !deposit 1"
+	{
+		"de"			"Zur Hand: {green}{1} {default}Gold. !Gleichgewicht: {green}{2} {default}Gold. Bitte versuche !Kaution 1"
+	}
+	// say command withdraw
+	"withdraw"
+	{
+		"de"			"zurückziehen"
+	}
+	"On hand: {gold} Gold. !balance: {bankgold} Gold. Please try !withdraw 1"
+	{
+		"de"			"Zur Hand: {green}{1} {default}Gold. !Gleichgewicht: {green}{2} {default}Gold. Bitte versuche !zurückziehen 1"
+	}
+	// say command tome
+	"tome"
+	{
+		"de"			"tome"
+	}
+	"Select a race first!!"
+	{
+		"de"			"Wählen Sie zuerst ein Rennen aus !!"
+	}
+	"Your pressed +ability, but the map is changing"
+	{
+		"de"			"Du hast gedrückt +ability, Aber die Karte ändert sich"
+	}
+	"Your pressed +ability, but war3 is paused"
+	{
+		"de"			"Du hast gedrückt +ability, Aber War3 wird angehalten"
+	}
+	"Your pressed +ability"
+	{
+		"de"			"Du hast gedrückt +ability"
+	}
+	"Your pressed +ability2, but the map is changing"
+	{
+		"de"			"Du hast gedrückt +ability2, Aber die Karte ändert sich"
+	}
+	"Your pressed +ability2, but war3 is paused"
+	{
+		"de"			"Du hast gedrückt +ability2, Aber War3 wird angehalten"
+	}
+	"Your pressed +ability2"
+	{
+		"de"			"Du hast gedrückt +ability2"
+	}
+	"Your pressed +ultimate, but the map is changing"
+	{
+		"de"			"Du hast gedrückt +ultimate, Aber die Karte ändert sich"
+	}
+	"Your pressed +ultimate, but war3 is paused"
+	{
+		"de"			"Du hast gedrückt +ultimate, Aber War3 wird angehalten"
+	}
+	"Your pressed +ultimate"
+	{
+		"de"			"Du hast gedrückt +ultimate"
+	}
+}
