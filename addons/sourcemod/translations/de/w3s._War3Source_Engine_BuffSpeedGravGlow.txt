@@ -1,0 +1,29 @@
+// w3s._War3Source_Engine_BuffSpeedGravGlow.txt
+
+"Phrases"
+{
+	"CSGO: Couldn't find cvar: sv_disable_immunity_alpha"
+	{
+		"de"			"CSGO: Konnte nicht finden cvar: \"sv_disable_immunity_alpha\""
+	}
+	"sv_disable_immunity_alpha is locked and can't be changed!"
+	{
+		"de"			"sv_disable_immunity_alpha ist verschlossen und kann nicht geändert werden!"
+	}
+	"Error finding speed offset."
+	{
+		"de"			"Fehler Speed -Offset finden."
+	}
+	"Error finding render color offset."
+	{
+		"de"			"Fehler finden machen color Offset."
+	}
+	"alpha playertracking out of bounds 0 - 255"
+	{
+		"de"			"Alpha Playertracking außer Grenzen 0 - 255"
+	}
+	"Cannot Invis. Being revealed"
+	{
+		"de"			"Cannot Invis. Being revealed"
+	}
+}
