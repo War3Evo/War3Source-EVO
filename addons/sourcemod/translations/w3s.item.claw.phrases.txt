@@ -6,7 +6,7 @@
 	}
 	"claw_ItemShortDesc"
 	{
-		"en"		"extra dmg to enemy"
+		"en"		"extra damage to enemy"
 	}
 	"claw_ItemDesc"
 	{

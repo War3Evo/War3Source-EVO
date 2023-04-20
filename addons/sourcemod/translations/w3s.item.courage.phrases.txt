@@ -6,7 +6,7 @@
 	}
 	"courage_ItemShortDesc"
 	{
-		"en"		"up to 15% dmg reduction"
+		"en"		"15% dmg reduction"
 	}
 	"courage_ItemDesc"
 	{
