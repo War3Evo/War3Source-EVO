@@ -4,6 +4,6 @@
 {
 	"CANNOT REGISTER ANY MORE AURAS"
 	{
-		"en"			"Kann keine Auras mehr registrieren"
+		"de"			"Kann keine Auras mehr registrieren"
 	}
 }
