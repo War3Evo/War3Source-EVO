@@ -3,6 +3,18 @@
 * While we do this, lets document this file. I saw a forum post requesting documentation in this file.
 */
 
+// Bit flags for shop items and other tasks
+#define GAME_MODE_ANY          (0 << 0)
+#define GAME_MODE_FOF            (1 << 1)
+#define GAME_MODE_CSS          (1 << 2)
+#define GAME_MODE_TF2          (1 << 3)
+#define GAME_MODE_MVM		  (1 << 4)
+#define GAME_MODE_CSGO          (1 << 5)
+// for future use
+#define GAME_MODE_L4D          (1 << 6)
+#define GAME_MODE_L4D2          (1 << 7)
+#define GAME_MODE_DOD          (1 << 8)
+
 //used for some special things in interface
 #define WAR3MAIN
 

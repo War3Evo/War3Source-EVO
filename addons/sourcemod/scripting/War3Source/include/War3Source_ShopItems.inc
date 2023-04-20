@@ -7,17 +7,20 @@
 //=============================================================================
 /**
  * Registers a shop item with the War3Source plugin
+ * @param game: The game that the item is for. (GAME_MODE_ANY, GAME_MODE_FOF, GAME_MODE_CSS, GAME_MODE_TF2, GAME_MODE_CSGO)
+ *              You can combine game modes: for example (GAME_MODE_FOF | GAME_MODE_CSS)
+ *              Look up c++ for how to handle bit flags.
  * @param name: The name of the item.
  * @param shortname: the shortname of the item, must be unique
  * @param desc: The description of the item.
  * @param cost: The cost of the item
- * @param isgold: Does the item cost gold?
+ * @param costmoney: The cost of the item in cs money
  * @param usecsmoney: set to 1 for item to use the csmoney number
  * @return The return value will be the item index or -1 if there was a problem.
  */
-native War3_CreateShopItem(String:name[],String:shortname[],String:shortdesc[],String:desc[],costgold,costmoney,usecsmoney=0);
+native War3_CreateShopItem(game,String:name[],String:shortname[],String:shortdesc[],String:desc[],costgold,costmoney=0,usecsmoney=0);
 //translated
-native War3_CreateShopItemT(String:shortname[],String:shortdesc[],costgold,costmoney,usecsmoney=0);
+native War3_CreateShopItemT(game,String:shortname[],costgold,costmoney=0,usecsmoney=0);
 
 //=============================================================================
 // Shop Items Owner

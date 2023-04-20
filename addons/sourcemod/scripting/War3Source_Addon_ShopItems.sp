@@ -132,18 +132,21 @@ public OnPluginStart()
 	for(new i=1;i<=MaxClients;i++){
 		maskSoundDelay[i]=War3_RegisterDelayTracker();
 	}
-	LoadTranslations("w3s._common.phrases");
-	LoadTranslations("w3s.item.helm.phrases");
-	LoadTranslations("w3s.item.courage.phrases");
-	LoadTranslations("w3s.item.antiward.phrases");
-	LoadTranslations("w3s.item.uberme.phrases");
+
+	LoadTranslations("w3s._War3Source_Addon_ShopItems");
+
+	//LoadTranslations("w3s._common.phrases");
+	//LoadTranslations("w3s.item.helm.phrases");
+	//LoadTranslations("w3s.item.courage.phrases");
+	//LoadTranslations("w3s.item.antiward.phrases");
+	//LoadTranslations("w3s.item.uberme.phrases");
 #if (GGAMETYPE == GGAME_TF2)
-	LoadTranslations("w3s.item.fireorb.phrases");
+	//LoadTranslations("w3s.item.fireorb.phrases");
 #endif
 
 	//shield
 	ShieldRestrictionCvar=CreateConVar("war3_shop_shield_restriction","0","Set this to 1 if you want to forbid necklace+shield. 0 default");
-	LoadTranslations("w3s.item.shield.phrases");
+	//LoadTranslations("w3s.item.shield.phrases");
 
 }
 
@@ -173,78 +176,100 @@ public OnWar3LoadRaceOrItemOrdered(num)
 #endif
 		for(new x=0;x<MAXITEMS;x++)
 			shopItem[x]=0;
-		shopItem[BOOTS]=War3_CreateShopItemT("boot","fun faster",3,2500);
+		shopItem[BOOTS]=War3_CreateShopItemT(GAME_MODE_ANY,"boot",3,2500);
 
-		shopItem[CLAW]=War3_CreateShopItemT("claw","extra dmg to enemy",3,5000);
+		shopItem[CLAW]=War3_CreateShopItemT(GAME_MODE_ANY,"claw",3,5000);
 #if (GGAMETYPE_JAILBREAK == JAILBREAK_OFF)
-		shopItem[CLOAK]=War3_CreateShopItemT("cloak","partially invisible",2,1000);
+		shopItem[CLOAK]=War3_CreateShopItemT(GAME_MODE_ANY,"cloak",2,1000);
 #endif
 
-		shopItem[MASK]=War3_CreateShopItemT("mask","gain hp on hit",3,1500);
+		shopItem[MASK]=War3_CreateShopItemT(GAME_MODE_ANY,"mask",3,1500);
 
-		shopItem[NECKLACE]=War3_CreateShopItemT("lace","immunity to ultimates",2,800);
+		shopItem[NECKLACE]=War3_CreateShopItemT(GAME_MODE_ANY,"lace",2,800);
 
-		shopItem[FROST]=War3_CreateShopItemT("orb","slow on hit",3,2000);
+		shopItem[FROST]=War3_CreateShopItemT(GAME_MODE_ANY,"orb",3,2000);
 
-		shopItem[RING]=War3_CreateShopItemT("ring","regenerate hp",3,1500);
+		shopItem[RING]=War3_CreateShopItemT(GAME_MODE_ANY,"ring",3,1500);
 
-		shopItem[TOME]=War3_CreateShopItemT("tome","gold for xp",10,10000);
+		shopItem[TOME]=War3_CreateShopItemT(GAME_MODE_ANY,"tome",10,10000);
 		War3_SetItemProperty(	shopItem[TOME], ITEM_USED_ON_BUY,true);
 
-		shopItem[SOCK]=War3_CreateShopItemT("sock","less gravity",2,1500);
+		shopItem[SOCK]=War3_CreateShopItemT(GAME_MODE_ANY,"sock",2,1500);
 
-		shopItem[OIL]=War3_CreateShopItem("Oil of Penetration","oil","penetrate helm/plates","Coats your weapons with ability to penetrate plates and helm.",8,3500);
+		shopItem[OIL]=War3_CreateShopItemT(GAME_MODE_ANY,"oil",8,3500);
 
-		shopItem[PLATES]=War3_CreateShopItem("Plates of Protection","plate","no dmg to chest","Prevents All Damage to Chest.",10,3500);
+		shopItem[PLATES]=War3_CreateShopItemT(GAME_MODE_ANY,"plate",10,3500);
 
-		shopItem[HELM]=War3_CreateShopItemT("helm","no headshots to self",10,3500);
+		shopItem[HELM]=War3_CreateShopItemT(GAME_MODE_ANY,"helm",10,3500);
 
-		shopItem[SHIELD]=War3_CreateShopItemT("shield","immunity to skills",3,2000);
+		shopItem[SHIELD]=War3_CreateShopItemT(GAME_MODE_ANY,"shield",3,2000);
 
-		shopItem[GAUNTLET]=War3_CreateShopItem("Gauntlet of Endurance","gauntlet","35 more max hp","Increases max health by 35 HP",5,3000);
+		shopItem[GAUNTLET]=War3_CreateShopItemT(GAME_MODE_ANY,"gauntlet",5,3000);
 #if (GGAMETYPE == GGAME_TF2)
-		shopItem[FIREORB]=War3_CreateShopItemT("fireorb","chance fire enemy", 10, 4000);
+		shopItem[FIREORB]=War3_CreateShopItemT(GAME_MODE_TF2,"fireorb", 10);
 #endif
 
-		shopItem[COURAGE]=War3_CreateShopItem("Armor of Courage","courage","15% dmg reduction","increases up to 15% resistance against all physcial damage\n(does not block magical)\n(does not stack with other armor increases)",10,3000);
+		shopItem[COURAGE]=War3_CreateShopItemT(GAME_MODE_ANY,"courage",10,3000);
 
-		shopItem[FAITH]=War3_CreateShopItem("Armor of Faith","faith","15% magic dmg reduction","increases up to 15% resistance against all magical damage\n(does not block physical)\n(does not stack with other armor increases)",10,3000);
+		shopItem[FAITH]=War3_CreateShopItemT(GAME_MODE_ANY,"faith",10,3000);
 
-		shopItem[ARMBAND]=War3_CreateShopItem("Armband of Repetition","armband","15% more dps","Increases attack speed by 15%\n(does not stack with other attack speed increases)",10,3000);
+		shopItem[ARMBAND]=War3_CreateShopItemT(GAME_MODE_ANY,"armband",10,3000);
 
-		shopItem[ANTIWARD]=War3_CreateShopItemT("antiward","immunity to wards",3,3000);
+		shopItem[ANTIWARD]=War3_CreateShopItemT(GAME_MODE_ANY,"antiward",3,3000);
 
 #if (GGAMETYPE == GGAME_TF2)
-		shopItem[UBER50]=War3_CreateShopItem("+50 Uber","uber50","+50 uber","+50 Uber is added to your current uber",150,3000);
+		shopItem[UBER50]=War3_CreateShopItemT(GAME_MODE_TF2,"uber50");
 		War3_TFSetItemClasses(shopItem[UBER50],TFClass_Medic);
 		War3_SetItemProperty(shopItem[UBER50], ITEM_USED_ON_BUY,true);
 #endif
 
-		shopItem[ARMOR_PIERCING]=War3_CreateShopItem("Physical Armor Piercing","piercing","pierce physical armor",
-		"Upgrades your weapons with ability to penetrate physical armor.\nRequires Oil of Penetration",20,3500);
+		shopItem[ARMOR_PIERCING]=War3_CreateShopItemT(GAME_MODE_ANY,"piercing",20,3500);
 
 #if (GGAMETYPE == GGAME_TF2)
-		shopItem[ANTIHACKITEM]=War3_CreateShopItem("Building Anti-Hack","stophack","stop hacks","When a someone tries to hack your building,\nthis item will be used instead.\n(single use item)",20,3000);
+		shopItem[ANTIHACKITEM]=War3_CreateShopItemT(GAME_MODE_TF2,"stophack",20);
 		War3_TFSetItemClasses(shopItem[ANTIHACKITEM],TFClass_Engineer);
 		War3_SetItemProperty(shopItem[ANTIHACKITEM], ITEM_USED_ON_BUY,false);
 
-		shopItem[MBOOTS]=War3_CreateShopItem("Medi Boots","mboots","Give Speed","Gives healing target increased movement speed",9,3000);
+		shopItem[MBOOTS]=War3_CreateShopItemT(GAME_MODE_TF2,"mboots",9);
 		War3_TFSetItemClasses(shopItem[MBOOTS],TFClass_Medic);
-		shopItem[MRING]=War3_CreateShopItem("Medi Ring","mring","Give Regen","Gives healing target regeneration of hp",9,3000);
+
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// 
+		// TO DO: Change War3_CreateShopItem to War3_CreateShopItemT for the rest of the statements below:
+
+		shopItem[MRING]=War3_CreateShopItem(GAME_MODE_TF2,"Medi Ring","mring","Give Regen","Gives healing target regeneration of hp",9,3000);
 		War3_TFSetItemClasses(shopItem[MRING],TFClass_Medic);
-		shopItem[MHEALTH]=War3_CreateShopItem("Medi Health","mhealth","Give More Health","Gives healing target extra hp",9,3000);
+		shopItem[MHEALTH]=War3_CreateShopItem(GAME_MODE_TF2,"Medi Health","mhealth","Give More Health","Gives healing target extra hp",9,3000);
 		War3_TFSetItemClasses(shopItem[MHEALTH],TFClass_Medic);
 #endif
 
 #if (GGAMETYPE2 == GGAME_PVM)
 		// Armor
-		shopItem[LEATHER]=War3_CreateShopItem("Leather Armor +12","leather","+12 phys armor","Increases physical armor by +12",24,3000);
-		shopItem[CHAINMAIL]=War3_CreateShopItem("Chainmail Armor +14","chainmail","+14 phys armor","Increases physical armor by +14",28,3000);
-		shopItem[BANDEDMAIL]=War3_CreateShopItem("Banded mail Armor +16","bandedmail","+16 phys armor","Increases physical armor by +16",32,3000);
-		shopItem[HALFPLATE]=War3_CreateShopItem("Half-plate Armor +18","halfplate","+18 phys armor","Increases physical armor by +18",36,3000);
-		shopItem[FULLPLATE]=War3_CreateShopItem("Full-plate Armor +20","fullplate","+20 phys armor","Increases physical armor by +20",40,3000);
+		shopItem[LEATHER]=War3_CreateShopItem(GAME_MODE_MVM,"Leather Armor +12","leather","+12 phys armor","Increases physical armor by +12",24,3000);
+		shopItem[CHAINMAIL]=War3_CreateShopItem(GAME_MODE_MVM,"Chainmail Armor +14","chainmail","+14 phys armor","Increases physical armor by +14",28,3000);
+		shopItem[BANDEDMAIL]=War3_CreateShopItem(GAME_MODE_MVM,"Banded mail Armor +16","bandedmail","+16 phys armor","Increases physical armor by +16",32,3000);
+		shopItem[HALFPLATE]=War3_CreateShopItem(GAME_MODE_MVM,"Half-plate Armor +18","halfplate","+18 phys armor","Increases physical armor by +18",36,3000);
+		shopItem[FULLPLATE]=War3_CreateShopItem(GAME_MODE_MVM,"Full-plate Armor +20","fullplate","+20 phys armor","Increases physical armor by +20",40,3000);
 
-		shopItem[DRAGONMAIL]=War3_CreateShopItem("Dragon mail Armor +50","dragonmail","+50 magic armor","Increases magical armor by +50",50,3000);
+		shopItem[DRAGONMAIL]=War3_CreateShopItem(GAME_MODE_MVM,"Dragon mail Armor +50","dragonmail","+50 magic armor","Increases magical armor by +50",50,3000);
 
 		War3_AddItemBuff(shopItem[LEATHER], fArmorPhysical, 12.0);
 		War3_AddItemBuff(shopItem[CHAINMAIL], fArmorPhysical, 14.0);
@@ -399,7 +424,7 @@ public Action:PointOneSecondLoop(Handle:timer,any:data)
 				TF2_RemoveCondition(client, TFCond_OnFire);
 
 				g_fExtinguishNow[client] = 0.0;
-				War3_ChatMessage(client, "You have been extinguished...");
+				War3_ChatMessage(client, "%T", "You have been extinguished...", client);
 			}
 		}
 	}
@@ -431,12 +456,12 @@ public OnW3Denyable(W3DENY:event,client)
 	if((event == DN_CanBuyItem1) && (W3GetVar(EventArg1) == shopItem[SHIELD]) && (War3_GetOwnsItem(client, shopItem[NECKLACE]) && GetConVarBool(ShieldRestrictionCvar)))
 	{
 		W3Deny();
-		War3_ChatMessage(client, "Cannot wear Necklace and Shield at the same time.");
+		War3_ChatMessage(client, "%T", "Cannot wear Necklace and Shield at the same time.", client);
 	}
 	if((event == DN_CanBuyItem1) && (W3GetVar(EventArg1) == shopItem[NECKLACE]) && (War3_GetOwnsItem(client, shopItem[SHIELD])) && GetConVarBool(ShieldRestrictionCvar))
 	{
 		W3Deny();
-		War3_ChatMessage(client, "Cannot wear Necklace and Shield at the same time.");
+		War3_ChatMessage(client, "%T", "Cannot wear Necklace and Shield at the same time.", client);
 	}
 #if (GGAMETYPE == GGAME_TF2)
 	if((event == DN_CanBuyItem1) && (W3GetVar(EventArg1) == shopItem[MBOOTS]) && TF2_GetPlayerClass(client) != TFClass_Medic)
@@ -516,7 +541,7 @@ public OnItemPurchase(client,item)
 		if(IsPlayerAlive(client))
 		{
 			War3_NotifyPlayerItemActivated(client,shopItem[SOCK],true);
-			War3_ChatMessage(client,"You pull on your socks");
+			War3_ChatMessage(client,"%T","You pull on your socks",client);
 		}
 	}
 	else if(item==shopItem[TOME]) // tome of xp
@@ -934,7 +959,7 @@ public Action OnW3TakeDmgAll(int victim,int attacker, float damage)
 
 						//PrintToConsole(attacker,"%T","ORB OF FROST!",attacker);
 						//PrintToConsole(victim,"%T","Frosted, reducing your speed",victim);
-						PrintHintText(victim,"Frosted, reducing your speed!");
+						PrintHintText(victim,"%T","Frosted, reducing your speed!",victim);
 						//War3_NotifyPlayerItemActivated(attacker,shopItem[FROST],true);
 						// Need to create a datapack here to transfer both victim and attacker info..
 						CreateTimer(1.0,Unfrost,victim);
@@ -994,12 +1019,12 @@ public void OnWar3Event(W3EVENT event,int client)
 		if(item==shopItem[UBER50] && TF2_GetPlayerClass(client)!=TFClass_Medic)
 		{
 			W3SetVar(EventArg2, 0);
-			War3_ChatMessage(client, "Only Medics can buy this item!");
+			War3_ChatMessage(client, "%T", "Only Medics can buy this item!", client);
 		}
 		if(item==shopItem[ANTIHACKITEM] && TF2_GetPlayerClass(client)!=TFClass_Engineer)
 		{
 			W3SetVar(EventArg2, 0);
-			War3_ChatMessage(client, "Only Engineers can buy this item!");
+			War3_ChatMessage(client, "%T","Only Engineers can buy this item!",client);
 		}
 #endif
 	}
@@ -1040,7 +1065,7 @@ public Action:SDK_Forwarded_TraceAttack(victim, &attacker, &inflictor, &Float:da
 		pos[2] += 4.0;
 		War3_TF_ParticleToClient(0, "miss_text", pos); //to the attacker at the enemy pos
 #endif
-		W3Hint(attacker,HINT_LOWEST,5.0,"The enemy you hit has \"plates\" from \"sh1\". Type \"oil\" to counter!");
+		W3Hint(attacker,HINT_LOWEST,5.0,"%T","The enemy you hit has \"plates\" from \"sh1\". Type \"oil\" to counter!",attacker);
 	}
 	// helms
 	if((Owns_item!=1)&&hitgroup==1&&War3_GetOwnsItem(victim,shopItem[HELM])&&!Perplexed(victim)){
@@ -1062,7 +1087,7 @@ public Action:SDK_Forwarded_TraceAttack(victim, &attacker, &inflictor, &Float:da
 		pos[2] += 4.0;
 		War3_TF_ParticleToClient(0, "miss_text", pos); //to the attacker at the enemy pos
 #endif
-		W3Hint(attacker,HINT_LOWEST,5.0,"The enemy you hit has \"helm\" from \"sh1\". Type \"oil\" to counter!");
+		W3Hint(attacker,HINT_LOWEST,5.0,"%T","The enemy you hit has \"helm\" from \"sh1\". Type \"oil\" to counter!",attacker);
 	}
 	return Plugin_Changed;
 }

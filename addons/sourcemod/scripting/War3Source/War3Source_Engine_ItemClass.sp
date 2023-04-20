@@ -11,6 +11,7 @@
 ///race instance variables
 //RACE ID = index of [MAXRACES], raceid 1 is raceName[1][32]
 
+new itemGame[MAXITEMS];
 new String:itemName[MAXITEMS][64];
 new String:itemShortname[MAXITEMS][16];
 new String:itemDescription[MAXITEMS][512];
@@ -78,22 +79,23 @@ public NWar3_CreateShopItem(Handle:plugin,numParams)
 {
 
 	decl String:name[64],String:shortname[16],String:shortdesc[256],String:desc[512];
-	GetNativeString(1,name,sizeof(name));
-	GetNativeString(2,shortname,sizeof(shortname));
-	GetNativeString(3,shortdesc,sizeof(shortdesc));
-	GetNativeString(4,desc,sizeof(desc));
-	new cost=GetNativeCell(5);
-	new costmoney=GetNativeCell(6);
-	new usecsmoney=GetNativeCell(7);
-	new itemid=CreateNewItem(name,shortname,shortdesc,desc,cost,costmoney,usecsmoney);
+	new igame=GetNativeCell(1);
+	GetNativeString(2,name,sizeof(name));
+	GetNativeString(3,shortname,sizeof(shortname));
+	GetNativeString(4,shortdesc,sizeof(shortdesc));
+	GetNativeString(5,desc,sizeof(desc));
+	new cost=GetNativeCell(6);
+	new costmoney=GetNativeCell(7);
+	new usecsmoney=GetNativeCell(8);
+	new itemid=CreateNewItem(igame,name,shortname,shortdesc,desc,cost,costmoney,usecsmoney);
 	return itemid;
 }
 public NWar3_CreateShopItemT(Handle:plugin,numParams)
 {
 
 	decl String:name[64],String:shortname[16],String:shortdesc[256],String:desc[512];
-	GetNativeString(1,shortname,sizeof(shortname));
-	GetNativeString(2,shortdesc,sizeof(shortdesc));
+	new igame=GetNativeCell(1);
+	GetNativeString(2,shortname,sizeof(shortname));
 	new cost=GetNativeCell(3);
 	new costmoney=GetNativeCell(4);
 	new usecsmoney=GetNativeCell(5);
@@ -101,9 +103,11 @@ public NWar3_CreateShopItemT(Handle:plugin,numParams)
 
 	Format(name,sizeof(name),"%s_ItemName",shortname);
 
+	Format(shortdesc,sizeof(shortdesc),"%s_ItemShortDesc",shortname);
+
 	Format(desc,sizeof(desc),"%s_ItemDesc",shortname);
 
-	new itemid=CreateNewItem(name,shortname,shortdesc,desc,cost,costmoney,usecsmoney);
+	new itemid=CreateNewItem(igame,name,shortname,shortdesc,desc,cost,costmoney,usecsmoney);
 	itemTranslated[itemid]=true;
 
 	if(StrEqual(shortname,"scroll")){
@@ -372,8 +376,16 @@ public NW3GetItemCategory(Handle:plugin,numParams)
 }
 
 
-
-CreateNewItem(String:titemname[] ,String:titemshortname[] ,String:titemshortdesc[] ,String:titemdescription[], itemcostgold,itemcostmoney,usecsmoney=0){
+CreateNewItem(iGame, String:titemname[] ,String:titemshortname[] ,String:titemshortdesc[] ,String:titemdescription[], itemcostgold,itemcostmoney,usecsmoney=0)
+{
+	// Do not create items in the wrong game mode
+	if(!(iGame & GAME_MODE_ANY))
+	{
+		if(!(CurrentGameMode & iGame))
+		{
+			return -1;
+		}
+	}
 
 	if(totalItemsLoaded+1==MAXITEMS){ //make sure we didnt reach our item capacity limit
 		LogError("[War3Source:EVO] %T","MAX ITEMS REACHED, CANNOT REGISTER {titemname}", LANG_SERVER, titemname);
@@ -404,6 +416,7 @@ CreateNewItem(String:titemname[] ,String:titemshortname[] ,String:titemshortdesc
 	totalItemsLoaded++;
 	new titemid=totalItemsLoaded;
 
+	itemGame[titemid]=iGame;
 	strcopy(itemName[titemid], 31, titemname);
 	strcopy(itemShortname[titemid], 15, titemshortname);
 	strcopy(itemShortDescription[titemid], 255, titemshortdesc);
@@ -445,7 +458,8 @@ GetItemName(itemid,String:str[],len){
 		Format(buf,sizeof(buf),"%T",itemName[itemid],GetTrans());
 		strcopy(str,len,buf);
 	}
-	else{
+	else
+	{
 		strcopy(str,len,itemName[itemid]);
 	}
 }
@@ -453,12 +467,24 @@ GetItemShortname(itemid,String:str[],len){
 	strcopy(str,len,itemShortname[itemid]);
 
 }
-GetItemShortdesc(itemid,String:str[],len){
-	strcopy(str,len,itemShortDescription[itemid]);
+GetItemShortdesc(itemid,String:str[],len)
+{
+	if(itemTranslated[itemid])
+	{
+		new String:buf[256];
+		Format(buf,sizeof(buf),"%T",itemShortname[itemid],GetTrans());
+		strcopy(str,len,buf);
+	}
+	else
+	{
+		strcopy(str,len,itemShortDescription[itemid]);
+	}
 
 }
-GetItemDescription(itemid,String:str[],len){
-	if(itemTranslated[itemid]){
+GetItemDescription(itemid,String:str[],len)
+{
+	if(itemTranslated[itemid])
+	{
 		new String:buf[512];
 		Format(buf,sizeof(buf),"%T",itemDescription[itemid],GetTrans());
 		strcopy(str,len,buf);

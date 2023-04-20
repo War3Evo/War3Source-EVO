@@ -1,5 +1,8 @@
 // War3Source_Variables.inc
 
+// assigned in War3Source.sp load
+int CurrentGameMode;
+
 Handle gh_CVAR_War3Source_Pause = null;
 
 //Handle g_War3Source_Engine_CSGO_Radar = null;
