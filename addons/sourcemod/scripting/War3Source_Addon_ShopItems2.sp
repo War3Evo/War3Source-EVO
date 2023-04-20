@@ -130,14 +130,14 @@ public OnWar3LoadRaceOrItemOrdered(num)
 		for(int x=0;x<MAXITEMS2;x++)
 			ItemID[x]=0;
 
-		ItemID[POSTHASTE]=War3_CreateShopItem2T("posthaste","+3% speed",10);
+		ItemID[POSTHASTE]=War3_CreateShopItem2T("posthaste",10);
 		if(ItemID[POSTHASTE]==0){
 			DP("ERR ITEM ID RETURNED IS ZERO");
 		}
-		ItemID[TRINKET]=War3_CreateShopItem2T("trinket","+0.5 HP regeneration",15);
-		ItemID[LIFETUBE]=War3_CreateShopItem2T("lifetube","+1 HP regeneration",40);
-		ItemID[SNAKE_BRACELET]=War3_CreateShopItem2T("sbracelt","+5% Evasion",10);
-		ItemID[FORTIFIED_BRACER]=War3_CreateShopItem2T("fbracer","+10 max HP",10);
+		ItemID[TRINKET]=War3_CreateShopItem2T("trinket",15);
+		ItemID[LIFETUBE]=War3_CreateShopItem2T("lifetube",40);
+		ItemID[SNAKE_BRACELET]=War3_CreateShopItem2T("sbracelt",10);
+		ItemID[FORTIFIED_BRACER]=War3_CreateShopItem2T("fbracer",10);
 #if (GGAMETYPE == GGAME_TF2)
 		//ItemID[SCROLL_OF_ESSENCE]=War3_CreateShopItem2("Scroll of Essence","scrollessence","instant respawn","The essence of life flows back into you\nand gives you instant respawn.",60000);
 
