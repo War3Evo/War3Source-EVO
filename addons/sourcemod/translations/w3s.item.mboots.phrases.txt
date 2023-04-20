@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"mboots_ItemName"
+	{
+		"en"		"Medi Boots"
+	}
+	"mboots_ItemShortDesc"
+	{
+		"en"		"Give Speed"
+	}
+	"mboots_ItemDesc"
+	{
+		"en"		"Gives healing target increased movement speed"
+	}
+}

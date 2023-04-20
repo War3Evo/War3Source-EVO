@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"plate_ItemName"
+	{
+		"en"		"Plates of Protection"
+	}
+	"plate_ItemShortDesc"
+	{
+		"en"		"no dmg to chest"
+	}
+	"plate_ItemDesc"
+	{
+		"en"		"Prevents All Damage to Chest."
+	}
+}

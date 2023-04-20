@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"oil_ItemName"
+	{
+		"en"		"Oil of Penetration"
+	}
+	"oil_ItemShortDesc"
+	{
+		"en"		"penetrate helm/plates"
+	}
+	"oil_ItemDesc"
+	{
+		"en"		"Coats your weapons with ability to penetrate plates and helm."
+	}
+}

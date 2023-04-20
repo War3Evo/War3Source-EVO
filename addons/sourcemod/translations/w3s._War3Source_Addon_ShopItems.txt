@@ -1,0 +1,53 @@
+// w3s._War3Source_Addon_ShopItems.txt
+
+"Phrases"
+{
+	"You have been extinguished..."
+	{
+		"#format"		""
+		"en"			"You have been extinguished..."
+	}
+	"Cannot wear Necklace and Shield at the same time."
+	{
+		"#format"		""
+		"en"			"Cannot wear Necklace and Shield at the same time."
+	}
+	"You pull on your socks"
+	{
+		"#format"		""
+		"en"			"You pull on your socks"
+	}
+	"+{amount} XP"
+	{
+		"#format"		"{1:d}"
+		"en"			"+{1} XP"
+	}
+	"You are now frozen!"
+	{
+		"#format"		""
+		"en"			"You are now frozen!"
+	}
+	"REGAINED SPEED from frost"
+	{
+		"#format"		""
+		"en"			"REGAINED SPEED from frost"
+	}
+	"Only Medics can buy this item!"
+	{
+		"#format"		""
+		"en"			"Only Medics can buy this item!"
+	}
+	"Only Engineers can buy this item!"
+	{
+		"#format"		""
+		"en"			"Only Engineers can buy this item!"
+	}
+	"The enemy you hit has \"plates\" from \"sh1\". Type \"oil\" to counter!"
+	{
+		"en"			"The enemy you hit has \"plates\" from \"sh1\". Type \"oil\" to counter!"
+	}
+	"The enemy you hit has \"helm\" from \"sh1\". Type \"oil\" to counter!"
+	{
+		"en"			"The enemy you hit has \"helm\" from \"sh1\". Type \"oil\" to counter!"
+	}
+}
