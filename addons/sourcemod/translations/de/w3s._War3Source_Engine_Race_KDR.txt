@@ -1,0 +1,30 @@
+
+// w3s._War3Source_Engine_Race_KDR.txt
+
+"Phrases"
+{
+	"Initialize SQLTable RACE KDR"
+	{
+		"de"			"Initialize SQLTable RACE KDR"
+	}
+	// Successfully retrieved kdr, total of %d races kdr were returned, %d races kdr used.
+	"Successfully retrieved kdr, total of {retrievals} races kdr were returned, {usefulretrievals} races kdr used."
+	{
+		"de"			"Successfully retrieved kdr, total of {1} races kdr were returned, {2} races kdr used."
+	}
+	// Inserting fresh data for %d races
+	"Inserting fresh data for {inserts} races"
+	{
+		"de"			"Inserting fresh data for {1} races"
+	}
+	// Saved all race kdr stats
+	"Saved all race kdr stats"
+	{
+		"de"			"Saved all race kdr stats"
+	}
+	// CAN'T SAVE WAR3 RACES KDR DATA!  RACE DOES NOT HAVE SHORTNAME
+	"CAN'T SAVE WAR3 RACES KDR DATA!  RACE DOES NOT HAVE SHORTNAME"
+	{
+		"de"			"CAN'T SAVE WAR3 RACES KDR DATA!  RACE DOES NOT HAVE SHORTNAME"
+	}
+}

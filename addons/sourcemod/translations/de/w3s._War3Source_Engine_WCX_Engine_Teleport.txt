@@ -1,0 +1,30 @@
+
+// w3s._War3Source_Engine_WCX_Engine_Teleport.txt
+
+"Phrases"
+{
+	"You are too far away from your target!"
+	{
+		"de"			"You are too far away from your target!"
+	}
+	"You are too close too teleport!"
+	{
+		"de"			"You are too close too teleport!"
+	}
+	"Distance too short."
+	{
+		"de"			"Distance too short."
+	}
+	"No empty location found"
+	{
+		"de"			"No empty location found"
+	}
+	"Cannot teleport there"
+	{
+		"de"			"Cannot teleport there"
+	}
+	"Teleported!"
+	{
+		"de"			"Teleported!"
+	}
+}

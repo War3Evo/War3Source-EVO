@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"faith_ItemName"
+	{
+		"de"		"Armor of Faith"
+	}
+	"faith_ItemShortDesc"
+	{
+		"de"		"15% magic dmg reduction"
+	}
+	"faith_ItemDesc"
+	{
+		"de"		"increases up to 15% resistance against all magical damage\n(does not block physical)\n(does not stack with other armor increases)"
+	}
+}

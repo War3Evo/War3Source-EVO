@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"claw_ItemName"
+	{
+		"de"		"Claws of Attack"
+	}
+	"claw_ItemShortDesc"
+	{
+		"de"		"extra damage to enemy"
+	}
+	"claw_ItemDesc"
+	{
+		"de"		"An additional X hp will be removed from the enemy on every successful attack."
+	}
+}

@@ -1,0 +1,47 @@
+
+// w3s._War3Source_Engine_Wards_Wards.txt
+
+"Phrases"
+{
+	// antiwards must stay in english
+	"Jarated by an enemy yellow ward! -->> Say \"antiwards\" to be immune next time!"
+	{
+		"de"			"Jarated by an enemy yellow ward! -->> Say \"antiwards\" to be immune next time!"
+	}
+	// antiwards must stay in english
+	"{default}You're being damaged! QUICK -->> Say \"{green}antiwards{default}\" or move!"
+	{
+		"de"			"{default}You're being damaged! QUICK -->> Say \"{green}antiwards{default}\" or move!"
+	}
+	// antiwards must stay in english
+	"{default}You're being disrupted! QUICK -->> Say \"{green}antiwards{default}\" or move!"
+	{
+		"de"			"{default}You're being disrupted! QUICK -->> Say \"{green}antiwards{default}\" or move!"
+	}
+	// antiwards must stay in english
+	"You're being disrupted! QUICK -->> Say \"antiwards\" or move!"
+	{
+		"de"			"You're being disrupted! QUICK -->> Say \"antiwards\" or move!"
+	}
+	"{default}This ward makes you immune to Sentry Detection."
+	{
+		"de"			"{default}This ward makes you immune to Sentry Detection."
+	}
+	"Sentry Immunity On"
+	{
+		"de"			"Sentry Immunity On"
+	}
+	// antiwards must stay in english
+	"You're being jarate! QUICK -->> Say \"antiwards\" or move!"
+	{
+		"de"			"You're being jarate! QUICK -->> Say \"antiwards\" or move!"
+	}
+	"{default}You're being zapped! QUICK -->> Say \"{green}antiwards{default}\" or move!"
+	{
+		"de"			"{default}You're being zapped! QUICK -->> Say \"{green}antiwards{default}\" or move!"
+	}
+	"{default}You are no longer immune to Sentry Detection."
+	{
+		"de"			"{default}You are no longer immune to Sentry Detection."
+	}
+}

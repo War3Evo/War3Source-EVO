@@ -1,0 +1,25 @@
+// w3s._War3Source_Engine_HelpMenu.txt
+
+"Phrases"
+{
+	"There was a failure in creating the help vector, definitely halting."
+	{
+		"de"			"There was a failure in creating the help vector, definitely halting."
+	}
+	"Select a command for more info"
+	{
+		"de"			"Select a command for more info"
+	}
+	"Description:"
+	{
+		"de"			"Description:"
+	}
+	"Command - {cmd}"
+	{
+		"de"			"Command - {1}"
+	}
+	"Back to help commands"
+	{
+		"de"			"Back to help commands"
+	}
+}

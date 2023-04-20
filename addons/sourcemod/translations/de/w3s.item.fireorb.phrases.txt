@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"fireorb_ItemName"
+	{
+		"de"		"Orb of Fire"
+	}
+	"fireorb_ItemShortDesc"
+	{
+		"de"		"chance fire enemy"
+	}
+	"fireorb_ItemDesc"
+	{
+		"de"		"Chance to ignite enemy target on fire for 3 seconds."
+	}
+}

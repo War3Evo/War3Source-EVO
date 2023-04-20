@@ -1,0 +1,79 @@
+
+// w3s._War3Source_Engine_RaceClass.txt
+
+"Phrases"
+{
+	// racelist Race: %s Race ID: %i
+	"racelist Race: {LongRaceName} Race ID: {raceid}"
+	{
+		"de"			"racelist Race: {1} Race ID: {2}"
+	}
+	// Race Now Loading %s %s ID: %d
+	"Race Now Loading {tracename} {traceshortname} ID: {TheReloadRaceId}"
+	{
+		"de"			"Race Now Loading {1} {2} ID: {3}"
+	}
+	// Loading... Race ID: %d Skill: %s
+	"Loading... Race ID: {raceid} Skill: {skillname}"
+	{
+		"de"			"Loading... Race ID: {1} Skill: {2}"
+	}
+	// Race Finished Loading: Race ID: %d %s
+	"Race Finished Loading: Race ID: {raceid} {shortname}"
+	{
+		"de"			"Race Finished Loading: Race ID: {1} {2}"
+	}
+
+	// CreateRaceEnd(raceid) Cvar:
+
+	// Minimum level for race
+	"Minimum level for race"
+	{
+		"de"			"Minimum level for race"
+	}
+	// Admin access flag required for race
+	"Admin access flag required for race"
+	{
+		"de"			"Admin access flag required for race"
+	}
+	"This race's Race Order on changerace menu"
+	{
+		"de"			"This race's Race Order on changerace menu"
+	}
+	//
+	// This race's flags, ie 'hidden,etc
+	// hidden must be in english or any flags for this service is in english
+	// if you translate, just make sure they understand the flags must stay in english
+	"This race's flags, ie 'hidden,etc"
+	{
+		"de"			"This race's flags, ie 'hidden,etc"
+	}
+	// the items must be in the language the items use ... claw, orb, etc are in english
+	// in order for claw to not be in english, you'll have to complie the plugin within the language
+	"Which items to restrict for people on this race. Separate by comma, ie 'claw,orb'"
+	{
+		"de"			"Which items to restrict for people on this race. Separate by comma, ie 'claw,orb'"
+	}
+	"How many people can play this race on team 1 (RED/T)"
+	{
+		"de"			"How many people can play this race on team 1 (RED/T)"
+	}
+	"How many people can play this race on team 2 (BLU/CT)"
+	{
+		"de"			"How many people can play this race on team 2 (BLU/CT)"
+	}
+	// the classes must stay in english, like scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer must stay in english
+	"Which classes are not allowed to play this race? Separate by comma. MAXIMUM OF 2!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer"
+	{
+		"de"			"Which classes are not allowed to play this race? Separate by comma. MAXIMUM OF 2!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer"
+	}
+	// the classes must stay in english, like scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer must stay in english
+	"Which class can only play this race? MAXIMUM OF 1!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer"
+	{
+		"de"			"Which class can only play this race? MAXIMUM OF 1!! list: scout,sniper,soldier,demoman,medic,heavy,pyro,spy,engineer"
+	}
+	"Determines in which Category the race should be displayed(if cats are active)"
+	{
+		"de"			"Determines in which Category the race should be displayed(if cats are active)"
+	}
+}

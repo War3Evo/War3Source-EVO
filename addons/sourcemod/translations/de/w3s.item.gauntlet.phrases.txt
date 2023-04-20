@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"gauntlet_ItemName"
+	{
+		"de"		"Gauntlet of Endurance"
+	}
+	"gauntlet_ItemShortDesc"
+	{
+		"de"		"35 more max hp"
+	}
+	"gauntlet_ItemDesc"
+	{
+		"de"		"Increases max health by 35 HP"
+	}
+}

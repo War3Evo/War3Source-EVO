@@ -1,0 +1,19 @@
+
+// w3s._War3Source_Engine_NewPlayers.txt
+
+"Phrases"
+{
+	"New Players:"
+	{
+		"de"			"New Players:"
+	}
+	"End of New Players"
+	{
+		"de"			"End of New Players"
+	}
+	// {green}[New Player Fast Respawn]{lightgreen}Because your new on our servers, you get a slightly faster respawn.
+	"[New Player Fast Respawn]Because your new on our servers, you get a slightly faster respawn."
+	{
+		"de"			"{green}[New Player Fast Respawn]{lightgreen}Because your new on our servers, you get a slightly faster respawn."
+	}
+}

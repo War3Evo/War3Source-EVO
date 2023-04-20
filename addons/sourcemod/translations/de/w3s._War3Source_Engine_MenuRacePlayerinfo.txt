@@ -1,0 +1,101 @@
+// w3s._War3Source_Engine_MenuRacePlayerinfo.txt
+
+"Phrases"
+{
+	"0 disables showing other players items using playerinfo. [default 1]"
+	{
+		"de"			"0 disables showing other players items using playerinfo. [default 1]"
+	}
+	"0 disables showing targeting yourself items using playerinfo. [default 1]"
+	{
+		"de"			"0 disables showing targeting yourself items using playerinfo. [default 1]"
+	}
+	"Select a race for more info"
+	{
+		"de"			"Select a race for more info"
+	}
+	"Information for job: {racename} (LVL {amount}/{amount})"
+	{
+		"de"			"Information for job: {1} (LVL {2}/{3})"
+	}
+	"Ultimate: {skillname} (LVL {amount}/{amount})"
+	{
+		"de"			"Ultimate: {1} (LVL {2}/{3})"
+	}
+	"{skillname} (LVL {amount}/{amount})"
+	{
+		"de"			"{1} (LVL {2}/{3})"
+	}
+	"Change to this race"
+	{
+		"de"			"Change to this race"
+	}
+	"People who are race: {racename}"
+	{
+		"de"			"People who are race: {1}"
+	}
+	"{player} (Level {amount}) [{team}]"
+	{
+		"de"			"{1} (Level {2}) [{3}]"
+	}
+	"Select a player to view its information"
+	{
+		"de"			"Select a player to view its information"
+	}
+	"{player} ({racename} LVL {amount})"
+	{
+		"de"			"{1} ({2} LVL {3})"
+	}
+	"{player} ({racename})"
+	{
+		"de"			"{1} ({2})"
+	}
+	"Information for {player}"
+	{
+		"de"			"Information for {1}"
+	}
+	"Current Race: {racename} (LVL {amount}/{amount}) XP: {amount}/{amount}"
+	{
+		"de"			"Current Race: {1} (LVL {2}/{3}) XP: {4}/{5}"
+	}
+	"Current Race: {racename} (LVL {amount}/{amount}) XP: {amount}"
+	{
+		"de"			"Current Race: {1} (LVL {2}/{3}) XP: {4}"
+	}
+	"Race kdr: {kdr}"
+	{
+		"de"			"Race kdr: {1}\n"
+	}
+	"Items:"
+	{
+		"de"			"Items:"
+	}
+	"Physical Armor: {amount} (+-{amount}%)"
+	{
+		"de"			"Physical Armor: {1} ({2}{3}%)"
+	}
+	"PImagicArmor: {amount} (+-{amount}%)"
+	{
+		"de"			"PImagicArmor: {1} ({2}{3}%)"
+	}
+	"See {racename} Race information"
+	{
+		"de"			"See {1} Race information"
+	}
+	"See all players with Race {racename}"
+	{
+		"de"			"See all players with Race {1}"
+	}
+	"Spectate Player"
+	{
+		"de"			"Spectate Player"
+	}
+	"Refresh"
+	{
+		"de"			"Refresh"
+	}
+	"Player Not Alive"
+	{
+		"de"			"Player Not Alive"
+	}
+}

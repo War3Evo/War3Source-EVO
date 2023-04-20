@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"antiward_ItemName"
+	{
+		"de"		"Antiwards"
+	}
+	"antiward_ItemShortDesc"
+	{
+		"de"		"immunity to wards"
+	}
+	"antiward_ItemDesc"
+	{
+		"de"		"Protects you from Wards"
+	}
+}

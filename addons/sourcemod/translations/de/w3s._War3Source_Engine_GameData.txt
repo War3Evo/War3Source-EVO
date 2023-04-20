@@ -1,0 +1,17 @@
+// w3s._War3Source_Engine_GameData.txt
+
+"Phrases"
+{
+	"Failed to load gamedata {filename}"
+	{
+		"de"			"Failed to load gamedata '{1}'"
+	}
+	"Couldn't finalize SDK call preparation of {IsMeleeWeapon}!"
+	{
+		"de"			"Couldn't finalize SDK call preparation of 'IsMeleeWeapon'!"
+	}
+	"Failed to lookup 'IsMeleeWeapon' function. Using Stock function instead."
+	{
+		"de"			"Failed to lookup 'IsMeleeWeapon' function. Using Stock function instead."
+	}
+}

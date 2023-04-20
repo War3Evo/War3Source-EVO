@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"fbracer_temName"
+	{
+		"de"		"Fortified Bracer"
+	}
+	"fbracer_ItemShortDesc"
+	{
+		"de"		"+10 max HP"
+	}
+	"fbracer_temDesc"
+	{
+		"de"		"+10 max HP."
+	}
+}

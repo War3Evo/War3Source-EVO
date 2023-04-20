@@ -1,0 +1,211 @@
+
+// w3s._War3Source_Engine_Notifications.txt
+
+"Phrases"
+{
+	// {default}[{green}{sSkillType} {blue}{sSkillName} {green}ACTIVATED{default}]
+	"[{sSkillType} {sSkillName} ACTIVATED]"
+	{
+		"de"			"{default}[{green}{1} {blue}{2} {green}ACTIVATED{default}]"
+	}
+	// {default}[{green}%s {blue}%s {green}DEACTIVATED{default}]
+	"[{sSkillType} {sSkillName} DEACTIVATED]"
+	{
+		"de"			"{default}[{green}{1} {blue}{2} {green}DEACTIVATED{default}]"
+	}
+	// {default}[{green}ITEM {blue}%s {green}ACTIVATED{default}]
+	"[ITEM {sSkillName} ACTIVATED]"
+	{
+		"de"			"{default}[{green}ITEM {blue}{1} {green}ACTIVATED{default}]"
+	}
+	// {default}[{green}ITEM {blue}%s {green}DEACTIVATED{default}]
+	"[ITEM {sSkillName} DEACTIVATED]"
+	{
+		"de"			"{default}[{green}ITEM {blue}{1} {green}DEACTIVATED{default}]"
+	}
+	// You did +%i damage to %s with %s
+	"You did +{iDamage} damage to {sVictimName} with {sSkillName}"
+	{
+		"de"			"You did +{1} damage to {2} with {3}"
+	}
+	// [%d] You did +%i damage to %s with %s
+	"[{MessageCount} You did +{iDamage} damage to {sVictimName} with {sSkillName}"
+	{
+		"de"			"[{1}] You did +{2} damage to {3} with {4}"
+	}
+	// {default}[{red}%d{default}] You did [{green}+%d{default}] damage to [{green}%s{default}] with {green}%s{default} [{green}%s{default}]!
+	"[{MessageCount}] You did [+{iDamage}] damage to [{sVictimName}] with {sSkillType} [{sSkillName}]!"
+	{
+		"de"			"{default}[{red}{1}{default}] You did [{green}+{2}{default}] damage to [{green}{3}{default}] with {green}{4}{default} [{green}{5}{default}]!"
+	}
+	// %s did %i damage to you with %s
+	"{sAttackerName} did {iDamage} damage to you with {sSkillName}"
+	{
+		"de"			"{1} did {2} damage to you with {3}"
+	}
+	// [%d] %s did %i damage to you with %s
+	"[{MessageCount} {sAttackerName} did {iDamage} damage to you with {sSkillName}"
+	{
+		"de"			"[{1}] {2} did {3} damage to you with {4}"
+	}
+	// {default}[{red}%d{default}] [{green}%s{default}] did [{green}+%d{default}] damage to you with {green}%s{default} [{green}%s{default}] as a {green}%s{default}!
+	"[{MessageCount}] [{sAttackerName}] did [+{iDamage}] damage to you with {sSkillType} [{sSkillName}] as a {sRaceName}!"
+	{
+		"de"			"{default}[{red}{1}{default}] [{green}{2}{default}] did [{green}+{3}{default}] damage to you with {green}{4}{default} [{green}{5}{default}] as a {green}{6}{default}!"
+	}
+	//"You leeched +%i health from %s with %s"
+	"You leeched +{iHealth} health from {sVictimName} with {sSkillName}"
+	{
+		"de"			"You leeched +{1} health from {2} with {3}"
+	}
+	// [%d] You leeched +%i health from %s with %s
+	"[{MessageCount}] You leeched +{iHealth} health from {sVictimName} with {sSkillName}"
+	{
+		"de"			"[{1}] You leeched +{2} health from {3} with {4}"
+	}
+	// {default}[{blue}%d{default}] You leeched [{green}+%d{default}] health from [{green}%s{default}] with {blue}%s{default} [{green}%s{default}]!
+	"[{MessageCount}] You leeched [+{iHealth}] health from [{sVictimName}] with {sSkillType} [{sSkillName}]!"
+	{
+		"de"			"{default}[{blue}{1}{default}] You leeched [{green}+{2}{default}] health from [{green}{3}{default}] with {blue}{4}{default} [{green}{5}{default}]!"
+	}
+	// %s leeched %i health from you with %s
+	"{sAttackerName} leeched {iHealth} health from you with {sSkillName}"
+	{
+		"de"			"{1} leeched {2} health from you with {3}"
+	}
+	// [%d] %s leeched %i health from you with %s
+	"[{MessageCount}] {sAttackerName} leeched {iHealth} health from you with {sSkillName}"
+	{
+		"de"			"[{1}] {2} leeched {3} health from you with {4}"
+	}
+	// {default}[{blue}%d{default}] [{green}%s{default}] leeched [{green}+%d{default}] health from you with {blue}%s{default} [{green}%s{default}] as a {green}%s{default}!
+	"[{MessageCount}] [{sAttackerName}] leeched [+{iHealth}] health from you with {sSkillType} [{sSkillName}] as a {sRaceName}!"
+	{
+		"de"			"{default}[{blue}{1}{default}] [{green}{2}{default}] leeched [{green}+{3}{default}] health from you with {blue}{4}{default} [{green}{5}{default}] as a {green}{6}{default}!"
+	}
+	// You are immune to {sSkillName} from {sAttackerName}
+	"You are immune to {sSkillName} from {sAttackerName}"
+	{
+		"de"			"You are immune to {1} from {2}"
+	}
+	// {default}You are immune to %s [{green}%s{default}] from [{green}%s{default}]!
+	"You are immune to {sSkillType} [{sSkillName}] from [{sAttackerName}]!"
+	{
+		"de"			"{default}You are immune to {1} [{green}{2}{default}] from [{green}{3}{default}]!"
+	}
+	// %s is immune to %s
+	"{sVictimName} is immune to {sSkillName}"
+	{
+		"de"			"{1} is immune to {2}"
+	}
+	// {default}[{green}%s{default}] is immune to {green}%s{default} [{green}%s{default}]!
+	"[{sVictimName}] is immune to {sSkillType} [{sSkillName}]!"
+	{
+		"de"			"{default}[{green}{1}{default}] is immune to {green}{2}{default} [{green}{3}{default}]!"
+	}
+	// {default}[{red}SLOW SKILL{default}] You're being slowed by {cyan}{OwnerName}{default}!    OwnerName is %s
+	"[SLOW SKILL] You're being slowed by {OwnerName}!"
+	{
+		"de"			"{default}[{red}SLOW SKILL{default}] You're being slowed by {cyan}{1}{default}!"
+	}
+	// [SLOW] You are slowed by %s!
+	"[SLOW] You are slowed by {OwnerName}!"
+	{
+		"de"			"[SLOW] You are slowed by {1}!"
+	}
+	// {default}[{red}HPDECAY SKILL{default}] Your health is being drained by {green}%s{default}!
+	"[HPDECAY SKILL] Your health is being drained by {OwnerName}!"
+	{
+		"de"			"{default}[{red}HPDECAY SKILL{default}] Your health is being drained by {green}{1}{default}!"
+	}
+	// [HP DECAY] Health is drained by %s!
+	"[HP DECAY] Health is drained by {OwnerName}!"
+	{
+		"de"			"[HP DECAY] Health is drained by {1}!"
+	}
+	// {default}[{red}STUN{default}] You are stunned by {green}%s{default}!
+	"[STUN] You are stunned by {OwnerName}!"
+	{
+		"de"			"{default}[{red}STUN{default}] You are stunned by {green}{1}{default}!"
+	}
+	// [STUN] You are stunned!   There is no format varaible
+	"[STUN] You are stunned!"
+	{
+		"de"			"[STUN] You are stunned!"
+	}
+	// {default}[{red}BASHED{default}] You are bashed by {green}%s{default}!
+	"[BASHED] You are bashed by {OwnerName}!"
+	{
+		"de"			"{default}[{red}BASHED{default}] You are bashed by {green}{1}{default}!"
+	}
+	// [BASHED] You are bashed!
+	"[BASHED] You are bashed!"
+	{
+		"de"			"[BASHED] You are bashed!"
+	}
+	// {default}[{red}DISARM{default}] You are disarmed by {green}%s{default}!
+	"[DISARM] You are disarmed by {OwnerName}!"
+	{
+		"de"			"{default}[{red}DISARM{default}] You are disarmed by {green}{1}{default}!"
+	}
+	// [DISARM] You are disarmed!
+	"[DISARM] You are disarmed!"
+	{
+		"de"			"[DISARM] You are disarmed!"
+	}
+	// {default}[{red}SILENCED{default}] You are silenced by {green}%s{default}!
+	"[SILENCED] You are silenced by {OwnerName}!"
+	{
+		"de"			"{default}[{red}SILENCED{default}] You are silenced by {green}{1}{default}!"
+	}
+	// [SILENCED] You are silenced!
+	"[SILENCED] You are silenced!"
+	{
+		"de"			"[SILENCED] You are silenced!"
+	}
+	// {default}[{red}HEXED{default}] You are hexed by {green}%s{default}!
+	"[HEXED] You are hexed by {OwnerName}!"
+	{
+		"de"			"{default}[{red}HEXED{default}] You are hexed by {green}{1}{default}!"
+	}
+	// [HEXED] You are hexed!
+	"[HEXED] You are hexed!"
+	{
+		"de"			"[HEXED] You are hexed!"
+	}
+	// {default}[{red}PERPLEXED{default}] You are perplexed by {green}%s{default}!
+	"[PERPLEXED] You are perplexed by {OwnerName}!"
+	{
+		"de"			"{default}[{red}PERPLEXED{default}] You are perplexed by {green}{1}{default}!"
+	}
+	// {default}[{red}NO MOVE{default}] You are unable to move by {green}%s{default}!
+	"[NO MOVE] You are unable to move by {OwnerName}!"
+	{
+		"de"			"{default}[{red}NO MOVE{default}] You are unable to move by {green}{1}{default}!"
+	}
+	// [NO MOVE] You are unable to move!
+	"[NO MOVE] You are unable to move!"
+	{
+		"de"			"[NO MOVE] You are unable to move!"
+	}
+	// {default}[{blue}ARMOR BUFF{default}({blue}%.2f{default})] You're being buffed by {cyan}%s{default}!  %.2f is iValue, %s is OwnerName
+	"[ARMOR BUFF({iValue})] You're being buffed by {OwnerName}!"
+	{
+		"de"			"{default}[{blue}ARMOR BUFF{default}({blue}{1:.2f}{default})] You're being buffed by {cyan}{2}{default}!"
+	}
+	// [ARMOR BUFF] You are buffed by %s!
+	"[ARMOR BUFF] You are buffed by {OwnerName}!"
+	{
+		"de"			"[ARMOR BUFF] You are buffed by {1}!"
+	}
+	// {default}[{blue}ARMOR BUFF{default}({blue}%.2f{default})] You ({cyan}%s{default}) are being buffed!
+	"[ARMOR BUFF({iValue})] You ({OwnerName}) are being buffed!"
+	{
+		"de"			"{default}[{blue}ARMOR BUFF{default}({blue}{1:.2f}{default})] You ({cyan}{2}{default}) are being buffed!"
+	}
+	// [ARMOR BUFF] You (%s) are buffed!
+	"[ARMOR BUFF] You ({OwnerName}) are buffed!"
+	{
+		"de"			"[ARMOR BUFF] You ({1}) are buffed!"
+	}
+}

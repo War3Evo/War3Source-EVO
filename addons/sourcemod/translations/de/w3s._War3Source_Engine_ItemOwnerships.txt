@@ -1,0 +1,53 @@
+// w3s._War3Source_Engine_ItemOwnerships.txt
+
+"Phrases"
+{
+	"Disallow items in shopmenu, shortname separated by comma only ie:'claw,orb'"
+	{
+		"de"			"Disallow items in shopmenu, shortname separated by comma only ie:'claw,orb'"
+	}
+	"<<buyprevious>>You have more items than allowed by server. Correct adjustments will be made."
+	{
+		"de"			"{red}<<buyprevious>>{default}You have more items than allowed by server.\n{green}<<buyprevious>>{default}Correct adjustments will be made."
+	}
+	"<<buyprevious>>You already own these items."
+	{
+		"de"			"{red}<<buyprevious>>{default}You already{red} own{default} these items{default}."
+	}
+	"<<buyprevious>>Item Discarded: {item} (You didn't own this item on death)."
+	{
+		"de"			"{red}<<buyprevious>>{default}Item Discarded: {green}{1}{default} (You didn't own this item on death)."
+	}
+	"<<buyprevious>>You bought {item}."
+	{
+		"de"			"{red}<<buyprevious>>{default}You bought {green}{1}{default}."
+	}
+	"<<buyprevious>>You can not afford {item}."
+	{
+		"de"			"{red}<<buyprevious>>{default}You can not afford {green}{1}{default}."
+	}
+	"<<buyprevious>>You already own it! Skipping: {item}."
+	{
+		"de"			"{red}<<buyprevious>>{default}You already own it! Skipping: {green}{1}{default}."
+	}
+	"<<buyprevious>>Total cost ${itemcost}."
+	{
+		"de"			"{red}<<buyprevious>>{default}Total cost ${green}{1} {default}."
+	}
+	"<<buyprevious>>Total cost {itemcost} gold."
+	{
+		"de"			"{red}<<buyprevious>>{default}Total cost {green}{1} {default}gold."
+	}
+	"<<buyprevious>>You receive {item}."
+	{
+		"de"			"{red}<<buyprevious>>{default}You receive {green}{1}{default}."
+	}
+	"<<buyprevious>>Item Discarded: {item} (You didn't own this item on death)."
+	{
+		"de"			"{red}<<buyprevious>>{default}Item Discarded: {green}{1}{default} (You didn't own this item on death)."
+	}
+	"{itemname} is restricted on race {racename}, item has been removed"
+	{
+		"de"		"{1} is restricted on race {2}, item has been removed."
+	}
+}

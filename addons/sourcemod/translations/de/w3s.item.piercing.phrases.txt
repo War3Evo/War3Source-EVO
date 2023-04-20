@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"piercing_ItemName"
+	{
+		"de"		"Physical Armor Piercing"
+	}
+	"piercing_ItemShortDesc"
+	{
+		"de"		"pierce physical armor"
+	}
+	"piercing_ItemDesc"
+	{
+		"de"		"Upgrades your weapons with ability to penetrate physical armor.\nRequires Oil of Penetration"
+	}
+}

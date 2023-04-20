@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"stophack_ItemName"
+	{
+		"de"		"Building Anti-Hack"
+	}
+	"stophack_ItemShortDesc"
+	{
+		"de"		"stop hacks"
+	}
+	"stophack_ItemDesc"
+	{
+		"de"		"When a someone tries to hack your building,\nthis item will be used instead.\n(single use item)"
+	}
+}

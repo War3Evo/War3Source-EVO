@@ -1,0 +1,22 @@
+
+// w3s._War3Source_Engine_SkillEffects.txt
+
+"Phrases"
+{
+	"You Evaded a Shot"
+	{
+		"de"			"You Evaded a Shot"
+	}
+	"Enemy Evaded"
+	{
+		"de"			"Enemy Evaded"
+	}
+	"You got bashed"
+	{
+		"de"			"You got bashed"
+	}
+	"Bashed enemy"
+	{
+		"de"			"Bashed enemy"
+	}
+}

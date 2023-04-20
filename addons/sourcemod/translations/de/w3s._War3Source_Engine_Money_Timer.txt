@@ -1,0 +1,22 @@
+
+// w3s._War3Source_Engine_Money_Timer.txt
+
+"Phrases"
+{
+	"Gold: {gold}{goldChange} (Type !war3menu)"
+	{
+		"de"			"Gold: {1}{2} (Type !war3menu)"
+	}
+	"Diamonds: {diamonds}{diamondsChange} (Type !war3menu)"
+	{
+		"de"			"Diamonds: {1}{2} (Type !war3menu)"
+	}
+	"Platinum: {platinum}{platinumChange} (Type !war3menu)"
+	{
+		"de"			"Platinum: {1}{2} (Type !war3menu)"
+	}
+	"G {gold}{goldChange} | D {diamonds}{diamondsChange} | P {platinum}{platinumChange}"
+	{
+		"de"			"G {1}{2} | D {3}{4} | P {5}{6}"
+	}
+}

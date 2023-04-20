@@ -1,0 +1,58 @@
+
+// w3s._War3Source_Engine_MenuSpendskills.txt
+
+"Phrases"
+{
+	"Set to 1 to require no limit on non-ultimate spendskills"
+	{
+		"de"			"Set to 1 to require no limit on non-ultimate spendskills"
+	}
+	"Ultimate: {skillname} [Requires {level} lvl on {skillname2}]"
+	{
+		"de"			"Ultimate: {1} [Requires {2} lvl on {3}]"
+	}
+	"{skillname} [Requires {level} lvl on {skillname2}]"
+	{
+		"de"			"{1} [Requires {2} lvl on {3}]"
+	}
+	"You do not have any skill points to spend, if you want to reset your skills use resetskills"
+	{
+		"de"			"You do not have any skill points to spend, if you want to reset your skills use resetskills"
+	}
+	"Select your desired skill. ({skillcount}/{level})"
+	{
+		"de"			"Select your desired skill. ({1}/{2})"
+	}
+	"no description"
+	{
+		"de"			"no description"	
+	}
+	"(Ultimate: {skillname} [{curskilllevel} / {maxskilllevel}])"
+	{
+		"de"			"(Ultimate: {1} [{2} / {3}])"
+	}
+	"[Requires lvl {amount}]"
+	{
+		"de"			"[Requires lvl {1}]"
+	}
+	"{skillname} [{curskilllevel} / {maxskilllevel}]"
+	{
+		"de"			"{1} [{2} / {3}]"
+	}
+	"{skillname} is now level {amount}"
+	{
+		"de"			"{1} is now level {2}"
+	}
+	"You can not choose a skill without gaining another level"
+	{
+		"de"			"You can not choose a skill without gaining another level"
+	}
+	"You need to be at least level {amount} to choose an ultimate"
+	{
+		"de"			"You need to be at least level {1} to choose an ultimate"
+	}
+	"You did not select any skills. Your skills were auto assigned. Type resetskills in chat to reconfigure them."
+	{
+		"de"			"{lightgreen}You did not select any skills.\nYour skills were auto assigned.\nType resetskills in chat to reconfigure them.{default}"
+	}
+}

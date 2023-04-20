@@ -1,0 +1,13 @@
+// w3s.003_RegisterPrivateForwards.txt
+
+"Phrases"
+{
+	"Disable races on round end?"
+	{
+		"de"			"Disable races on round end?"
+	}
+	"Enable races on round start?"
+	{
+		"de"			"Enable races on round start?"
+	}
+}

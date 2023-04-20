@@ -1,0 +1,90 @@
+
+// w3s._War3Source_Engine_MenuWar3Menu.txt
+
+"Phrases"
+{
+	"Type the command in quotes into chat!"
+	{
+		"de"			"Type the command in quotes into chat!"
+	}
+	"What are my skills and their levels? - \"!myinfo\""
+	{
+		"de"			"What are my skills and their levels? - \"!myinfo\""
+	}
+	"What are all the races? - \"!raceinfo\""
+	{
+		"de"			"What are all the races? - \"!raceinfo\""
+	}
+	"Change my race - \"!changerace\""
+	{
+		"de"			"Change my race - \"!changerace\""
+	}
+	"What races are people playing? - \"!playerinfo\""
+	{
+		"de"			"What races are people playing? - \"!playerinfo\""
+	}
+	"Buy items with gold that last until death - \"!sh1\""
+	{
+		"de"			"Buy items with gold that last until death - \"!sh1\""
+	}
+	"Buy items with diamonds that last until map change - \"!sh2\""
+	{
+		"de"			"Buy items with diamonds that last until map change - \"!sh2\""
+	}
+	"Buy items with platinum that last forever - \"!sh3\""
+	{
+		"de"			"Buy items with platinum that last forever - \"!sh3\""
+	}
+	"How do I bind a key? - \"!bind\""
+	{
+		"de"			"How do I bind a key? - \"!bind\""
+	}
+	"Reset my current race's skills - \"!resetskills\""
+	{
+		"de"			"Reset my current race's skills - \"!resetskills\""
+	}
+	"Spend my unused skill points - \"!spendskills\""
+	{
+		"de"			"Spend my unused skill points - \"!spendskills\""
+	}
+	"Spend my levelbanks - \"!levelbank\""
+	{
+		"de"			"Spend my levelbanks - \"!levelbank\""
+	}
+	"Open the forums - \"!forums\""
+	{
+		"de"			"Open the forums - \"!forums\""
+	}
+	"Open the donor page - \"!donate\""
+	{
+		"de"			"Open the donor page - \"!donate\""
+	}
+	"How do I tag up for bonus xp/gold? - \"!taghelp\""
+	{
+		"de"			"How do I tag up for bonus xp/gold? - \"!taghelp\""
+	}
+	"How do I view the players with the most levels? - \"!war3top10\""
+	{
+		"de"			"How do I view the players with the most levels? - \"!war3top10\""
+	}
+	"Open the full commands listing - \"!commands\""
+	{
+		"de"			"Open the full commands listing - \"!commands\""
+	}
+	"View recent mod updates - \"!update\""
+	{
+		"de"			"View recent mod updates - \"!update\""
+	}
+	"Shopmenu (sh1) information  - \"!itemsinfo\""
+	{
+		"de"			"Shopmenu (sh1) information  - \"!itemsinfo\""
+	}
+	"Shopmenu2 (sh2) information  - \"!itemsinfo2\""
+	{
+		"de"			"Shopmenu2 (sh2) information  - \"!itemsinfo2\""
+	}
+	"Shopmenu3 (sh3) information  - \"!itemsinfo3\""
+	{
+		"de"			"Shopmenu3 (sh3) information  - \"!itemsinfo3\""
+	}
+}

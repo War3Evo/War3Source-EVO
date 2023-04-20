@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"mask_ItemName"
+	{
+		"de"		"Mask of Death"
+	}
+	"mask_ItemShortDesc"
+	{
+		"de"		"gain hp on hit"
+	}
+	"mask_ItemDesc"
+	{
+		"de"		"You will receive health for every hit on the enemy."
+	}
+}

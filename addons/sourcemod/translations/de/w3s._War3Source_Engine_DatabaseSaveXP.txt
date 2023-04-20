@@ -1,0 +1,219 @@
+// w3s._War3Source_Engine_DatabaseSaveXP.txt
+
+"Phrases"
+{
+	"War3Source_Engine_DatabaseSaveXP_OnPluginStart Start"
+	{
+		"de"			"War3Source_Engine_DatabaseSaveXP_OnPluginStart Start"
+	}
+	"War3Source_Engine_DatabaseSaveXP_OnPluginStart END"
+	{
+		"de"			"War3Source_Engine_DatabaseSaveXP_OnPluginStart END"
+	}
+	"War3Source_Engine_DatabaseSaveXP_OnWar3Event()"
+	{
+		"de"			"War3Source_Engine_DatabaseSaveXP_OnWar3Event()"
+	}
+	"Initialize SQLTable Main Table START"
+	{
+		"de"			"Initialize SQLTable Main Table START"
+	}
+	"Tried to change column from 'credits' to 'gold'"
+	{
+		"de"			"Tried to change column from 'credits' to 'gold'"
+	}
+	"{database} doesnt exist, creating!!!"
+	{
+		"de"			"{1} doesnt exist, creating!!!"
+	}
+	"ERROR in the creation of the SQL table {tablename}"
+	{
+		"de"			"ERROR in the creation of the SQL table {1}"
+	}
+	// keep 1 space at the end 
+	"invalid handle to data, "
+	{
+		"de"			"invalid handle to data, "
+	}
+	"Initialize SQLTable Main Table END"
+	{
+		"de"			"Initialize SQLTable Main Table END"
+	}
+	"Database_DoAutosave()"
+	{
+		"de"			"Database_DoAutosave()"
+	}
+	"Saving all player XP and updating stats"
+	{
+		"de"			"Saving all player XP and updating stats"
+	}
+	"War3Source_SavePlayerData()"
+	{
+		"de"			"War3Source_SavePlayerData()"
+	}
+	"OnClientPutInServer {clientnumber}"
+	{
+		"de"			"OnClientPutInServer {1}"
+	}
+	"OnClientDisconnect {clientnumber}"
+	{
+		"de"			"OnClientDisconnect {1}"
+	}
+	"LoadPlayerData {clientnumber}"
+	{
+		"de"			"LoadPlayerData {1}"
+	}
+	"War3Source_LoadPlayerData(client)"
+	{
+		"de"			"War3Source_LoadPlayerData(client)"
+	}
+	"steamaccountid = {steamaccountid}"
+	{
+		"de"			"steamaccountid = {1}"
+	}
+	"XP retrieval query: sending MAIN and load all races request! Time: {GetGameTime}"
+	{
+		"de"			"XP retrieval query: sending MAIN and load all races request! Time: {1}"
+	}
+	"T_CallbackSelectPDataMain()"
+	{
+		"de"			"T_CallbackSelectPDataMain()"
+	}
+	"T_CallbackSelectPDataMain ERRORS? {errormessage}"
+	{
+		"de"			"T_CallbackSelectPDataMain ERRORS? {1}"
+	}
+	"ERROR: SELECT player data failed! Check DATABASE settings!"
+	{
+		"de"			"ERROR: SELECT player data failed! Check DATABASE settings!"
+	}
+	"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	{
+		"de"			"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	}
+	"Please wait while we look up your steamid account information for"
+	{
+		"de"			"Please wait while we look up your steamid account information for"
+	}
+	"ERROR: could not retrieve steam id {steamid} (after not finding accountid)"
+	{
+		"de"			"ERROR: could not retrieve steam id {1} (after not finding accountid)"
+	}
+	"Unexpected error loading player data, could not FETCH row. Check DATABASE settings!"
+	{
+		"de"			"Unexpected error loading player data, could not FETCH row. Check DATABASE settings!"
+	}
+	"GETTING PLAYER INFO"
+	{
+		"de"			"GETTING PLAYER INFO"
+	}
+	"ACCOUNT ID IS NULL"
+	{
+		"de"			"ACCOUNT ID IS NULL"
+	}
+	"ACCOUNT {account} STEAMID {steamid}"
+	{
+		"de"			"ACCOUNT {1} STEAMID {2}"
+	}
+	"Setting join_date {joindate}"
+	{
+		"de"			"Setting join_date {1}"
+	}
+	"Setting Gold {gold}"
+	{
+		"de"			"Setting Gold {1}"
+	}
+	"Setting Diamonds {diamonds}"
+	{
+		"de"			"Setting Diamonds {1}"
+	}
+	"Setting Platinum {platinum}"
+	{
+		"de"			"Setting Platinum {1}"
+	}
+	"Setting levelbank {levelbank}"
+	{
+		"de"			"Setting levelbank {1}"
+	}
+	"Unexpected error loading player currentrace. Check DATABASE settings!"
+	{
+		"de"			"Unexpected error loading player currentrace. Check DATABASE settings!"
+	}
+	"War3 MAIN retrieval: gold {gold} Time {time}"
+	{
+		"de"			"War3 MAIN retrieval: gold {1} Time {2}"
+	}
+	"Diamonds {diamonds}"
+	{
+		"de"			"Diamonds {1}"
+	}
+	"Platinum {platinum}"
+	{
+		"de"			"Platinum {1}"
+	}
+	"couldn't find account id, looking for steamid = {steamid}"
+	{
+		"de"			"couldn't find account id, looking for steamid = {1}"
+	}
+	"ERROR RETRIEVING YOUR STEAM ID!"
+	{
+		"de"			"ERROR RETRIEVING YOUR STEAM ID!"
+	}
+	"NEW PLAYER SETUP"
+	{
+		"de"			"NEW PLAYER SETUP"
+	}
+	"Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: {rows})"
+	{
+		"de"			"Returned more than 1 record, primary or UNIQUE keys are screwed (main, rows: {1})"
+	}
+	"POSSIBLE ERRORS? {errormessages}"
+	{
+		"de"			"POSSIBLE ERRORS? {1}"
+	}
+	"T_CallbackSelectPDataRace POSSIBLE ERRORS? {errormessages}"
+	{
+		"de"			"T_CallbackSelectPDataRace POSSIBLE ERRORS? {1}"
+	}
+	// XP Ret: Race %s Level %d XP %d Time %f...
+	"XP Ret: Race {raceshortname} Level {level} XP {pxp} Time {GameTime}..."
+	{
+		"de"			"XP Ret: Race {1} Level {2} XP {3} Time {4}..."
+	}
+	"Successfully retrieved data races, total of {numofraces} races were returned, {totalracesnum} are running on this server"
+	{
+		"de"			"Successfully retrieved data races, total of {1} races were returned, {2} are running on this server"
+	}
+	"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	{
+		"de"			"CAN NOT FIND YOUR ACCOUNT ID... Please wait while we look for your STEAMID instead..."
+	}
+	"ERROR: SELECT player data failed! Check DATABASE settings!"
+	{
+		"de"			"ERROR: SELECT player data failed! Check DATABASE settings!"
+	}
+	"Inserting fresh level xp data for {inserts} races"
+	{
+		"de"			"Inserting fresh level xp data for {1} races"
+	}
+	"XP RETRIEVED IN {seconds} seconds"
+	{
+		"de"			"XP RETRIEVED IN {1} seconds"
+	}
+	"SavePlayerRace client {client} race {race}"
+	{
+		"de"			"SavePlayerRace client {1} race {2}"
+	}
+	"Saving XP for race {racename}: LVL {level} XP {xp}"
+	{
+		"de"			"Saving XP for race {1}: LVL {2} XP {3}"
+	}
+	"SavePlayerMainData client {clientnumber}"
+	{
+		"de"			"SavePlayerMainData client {1}"
+	}
+	"DoForwardOnWar3PlayerAuthed client {clientnumber}"
+	{
+		"de"			"DoForwardOnWar3PlayerAuthed client {1}"
+	}
+}

@@ -1,0 +1,16 @@
+
+// w3s._War3Source_Engine_WCX_Engine_Crit.txt
+
+"Phrases"
+{
+	// {blue}CRIT! {default}Multi {blue}%.2f {default}extra dmg: {blue}%d
+	"{blue}CRIT! {default}Multi {blue}{CritMultiplier} {default}extra dmg: {blue}{CritPercentIncrease}"
+	{
+		"de"			"{blue}CRIT! {default}Multi {blue}{1} {default}extra dmg: {blue}{2}"
+	}
+	// %s {red}CRITS you for {default}Multi {red}%.2f {default}extra dmg: {red}%d
+	"{AttackerName} {red}CRITS you for {default}Multi {red}{CritMultiplier} {default}extra dmg: {red}{CritPercentIncrease}"
+	{
+		"de"			"{1} {red}CRITS you for {default}Multi {red}{2} {default}extra dmg: {red}{3}"
+	}
+}

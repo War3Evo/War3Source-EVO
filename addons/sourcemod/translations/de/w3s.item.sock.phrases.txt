@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"sock_ItemName"
+	{
+		"de"		"Sock of the Feather"
+	}
+	"sock_ItemShortDesc"
+	{
+		"de"		"less gravity"
+	}
+	"sock_ItemDesc"
+	{
+		"de"		"You will be able to jump higher. (Does not stack)"
+	}
+}

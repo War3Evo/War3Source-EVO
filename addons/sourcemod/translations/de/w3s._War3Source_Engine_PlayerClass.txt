@@ -1,0 +1,25 @@
+
+// w3s._War3Source_Engine_PlayerClass.txt
+
+"Phrases"
+{
+	"{LongRaceName} Enabled"
+	{
+		"de"			"{1} Enabled"
+	}
+	// %s Disabled
+	"{LongRaceName} Disabled"
+	{
+		"de"			"{1} Disabled"
+	}
+	// Your skills will be reset when you die
+	"Your skills will be reset when you die"
+	{
+		"de"			"Your skills will be reset when you die"
+	}
+	// Your skills have been reset for your current race
+	"Your skills have been reset for your current race"
+	{
+		"de"			"Your skills have been reset for your current race"
+	}
+}

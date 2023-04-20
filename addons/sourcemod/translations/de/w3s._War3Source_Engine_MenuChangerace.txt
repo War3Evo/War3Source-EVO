@@ -1,0 +1,101 @@
+// w3s._War3Source_Engine_MenuChangerace.txt
+
+"Phrases"
+{
+	"If non-zero race categories will be enabled"
+	{
+		"de"			"If non-zero race categories will be enabled"
+	}
+	"Allow Default Categories to show in category menu? (default 0)"
+	{
+		"de"			"Allow Default Categories to show in category menu? (default 0)"
+	}
+	"Allow All Races Categories to show in category menu? (default 0)"
+	{
+		"de"			"Allow All Races Categories to show in category menu? (default 0)"
+	}
+	"forcing race categories to be refreshed.."
+	{
+		"de"			"forcing race categories to be refreshed.."
+	}
+	"Select a category"
+	{
+		"de"			"Select a category"
+	}
+	"You Have {amount} levels in levelbank. Say levelbank to use it"
+	{
+		"de"		"You Have {1} levels in levelbank.\nSay levelbank to use it."
+	}
+	"All Races"
+	{
+		"de"			"All Races"
+	}
+	"{strCat} ({amount} new races)"
+	{
+		"de"			"{1} ({2} new races)"
+	}
+	"Select your desired race"
+	{
+		"de"			"Select your desired race"
+	}
+	"Category: {category}"
+	{
+		"de"			"Category: {1}"
+	}
+	"{racename} [L {amount}]"
+	{
+		"de"			"{1} [L {2}]"
+	}
+	"reqlvl {amount}"
+	{
+		"de"			"ReqLvl {1}"
+	}
+	"Join our Steam Group"
+	{
+		"de"			"Join our Steam Group"
+	}
+	"Please join our steam group!"
+	{
+		"de"			"Please join our steam group!"
+	}
+	"XP failed to load! Please reconnect!"
+	{
+		"de"			"XP failed to load! Please reconnect!"
+	}
+	"(VIP Only)"
+	{
+		"de"			"(VIP Only)"
+	}
+	"Steam Group Required"
+	{
+		"de"			"Steam Group Required"
+	}
+	"(Steam Group)"
+	{
+		"de"			"(Steam Group)"
+	}
+	"You are already {racename}"
+	{
+		"de"			"You are already {1}"
+	}
+	"You can now (changerace) instantly in spawn."
+	{
+		"de"			"You can now (changerace) instantly in spawn."
+	}
+	"You must be in spawn to have instant race changing."
+	{
+		"de"			"You must be in {green}spawn{default} to have instant race changing."
+	}
+	"You will be {racename} after death or spawn"
+	{
+		"de"			"You will be {green}{1}{default} after death or spawn"
+	}
+	"Only in JailBreak Warcraft can you switch races instantly!"
+	{
+		"de"			"Only in JailBreak Warcraft can you switch races instantly!"
+	}
+	"You are now {racename}."
+	{
+		"de"			"You are now {1}."
+	}
+}

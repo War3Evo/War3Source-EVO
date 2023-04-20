@@ -1,0 +1,73 @@
+// w3s._War3Source_Engine_ItemClass.txt
+
+"Phrases"
+{
+	// All
+	"MAX ITEMS REACHED, CANNOT REGISTER {titemname}"
+	{
+		"de"			"MAX ITEMS REACHED, CANNOT REGISTER {1}"
+	}
+	"ZEROTH ITEM"
+	{
+		"de"			"ZEROTH ITEM"
+	}
+	// War3Source_Engine_ItemClass
+	"use cs money instead of gold"
+	{
+		"de"			"use cs money instead of gold"
+	}
+	"item cost with gold"
+	{
+		"de"			"item cost with gold"
+	}
+	"item cost with cs money"
+	{
+		"de"			"item cost with cs money"
+	}
+	"item order"
+	{
+		"de"			"item order"
+	}
+	"item flags"
+	{
+		"de"			"item flags"
+	}
+	"item category"
+	{
+		"de"			"item category"
+	}
+	// War3Source_Engine_ItemClass2
+	"item2 cost with diamonds"
+	{
+		"de"			"item2 cost with diamonds"
+	}
+	"item2 order"
+	{
+		"de"			"item2 order"
+	}
+	"item2 flags"
+	{
+		"de"			"item2 flags"
+	}
+	"item2 category"
+	{
+		"de"			"item2 category"
+	}
+	// 
+	"item2 cost with diamonds"
+	{
+		"de"			"item3 cost with platinum"
+	}
+	"item2 order"
+	{
+		"de"			"item3 order"
+	}
+	"item2 flags"
+	{
+		"de"			"item3 flags"
+	}
+	"item2 category"
+	{
+		"de"			"item3 category"
+	}
+}

@@ -1,0 +1,35 @@
+
+// w3s._War3Source_Engine_SteamTools.txt
+
+"Phrases"
+{
+	"Steamtools detected!"
+	{
+		"de"			"Steamtools detected!"
+	}
+	"Steamtools wasn't recognized!"
+	{
+		"de"			"Steamtools wasn't recognized!"
+	}
+	// Membership status of Group(%i) is: %s
+	"Membership status of Group({g_hClanID}) is: {SteamGroupStatus}"
+	{
+		"de"			"Membership status of Group({1}) is: {2}"
+	}
+	"Welcome to the -W3E- Steam Group! Bonus races and items have been unlocked!"
+	{
+		"de"			"Welcome to the -W3E- Steam Group! Bonus races and items have been unlocked!"
+	}
+	"Welcome {clientname}! Please join our steam group for bonus races and items."
+	{
+		"de"			"Welcome {1}! Please join our steam group for bonus races and items."
+	}
+	"Please join our steam group for bonus races and items."
+	{
+		"de"			"Please join our steam group for bonus races and items."
+	}
+	"Thanks for joining our steam group! Bonus races and items have been unlocked!"
+	{
+		"de"			"Thanks for joining our steam group! Bonus races and items have been unlocked!"
+	}
+}

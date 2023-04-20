@@ -1,0 +1,10 @@
+
+// w3s._War3Source_Engine_TrieKeyValue.txt
+
+"Phrases"
+{
+	"No Access. This is not a command for players. say war3menu for the main menu"
+	{
+		"de"			"No Access. This is not a command for players. say war3menu for the main menu"
+	}
+}

@@ -1,0 +1,56 @@
+
+// w3s.War3Source_Engine_RaceRestrictions.txt
+
+"Phrases"
+{
+	// {red}Item Removed because of your new class/race combo.
+	"Item Removed because of your new class/race combo."
+	{
+		"de"			"{red}Item Removed because of your new class/race combo."
+	}
+	// Race requires {green}%s {default}with a minimum level of {green}%d
+	"Race requires {tName} with a minimum level of {RaceDependencyLevel}"
+	{
+		"de"				"Race requires {green}{1} {default}with a minimum level of {green}{2}"
+	}
+	"VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin."
+	{
+		"de"				"VIP time required. Type !trial or !donate. Once a VIP race is max level, no time is required to use it! If you have active VIP time, please contact an Admin."
+	}
+	"No Admin ID found"
+	{
+		"de"				"No Admin ID found"
+	}
+	"ERROR on admin flag check {flag}"
+	{
+		"de"				"ERROR on admin flag check {1}"
+	}
+	"Admin ID found, but no required flag"
+	{
+		"de"				"Admin ID found, but no required flag"
+	}
+	// You need %d more total levels to use this race.
+	"You need {levels} more total levels to use this race."
+	{
+		"de"				"You need {1} more total levels to use this race."
+	}
+	// Race limit for your team has been reached, please select a different race. (MAX %d)
+	"Race limit for your team has been reached, please select a different race. (MAX {amount})"
+	{
+		"de"				"Race limit for your team has been reached, please select a different race. (MAX {1})"
+	}
+	"This is a bots only race.  Select another race!"
+	{
+		"de"				"This is a bots only race.  Select another race!"
+	}
+	// Race restricted due to class only allowed for this race is: %s
+	"Race restricted due to class only allowed for this race is: {cvarstr}"
+	{
+		"de"				"Race restricted due to class only allowed for this race is: {1}"
+	}
+	// Race restricted due to class restriction: %s
+	"Race restricted due to class restriction: {classstring}"
+	{
+		"de"				"Race restricted due to class restriction: {1}"
+	}
+}

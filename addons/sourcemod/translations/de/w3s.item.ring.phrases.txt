@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"ring_ItemName"
+	{
+		"de"		"Ring of Regeneration"
+	}
+	"ring_ItemShortDesc"
+	{
+		"de"		"regenerate hp"
+	}
+	"ring_ItemDesc"
+	{
+		"de"		"Regenerates health slowly."
+	}
+}

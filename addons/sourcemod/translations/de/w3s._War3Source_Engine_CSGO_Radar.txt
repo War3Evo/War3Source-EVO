@@ -1,0 +1,21 @@
+// w3s._War3Source_Engine_CSGO_Radar.txt
+
+"Phrases"
+{
+	"mp_teamcashawards 0 ERROR -->CSGO RADAR"
+	{
+		"de"			"mp_teamcashawards 0 ERROR -->CSGO RADAR"
+	}
+	"mp_playercashawards 0 ERROR -->CSGO RADAR"
+	{
+		"de"			"mp_playercashawards 0 ERROR -->CSGO RADAR"
+	}
+	"mp_teamcashawards 1 ERROR -->CSGO RADAR"
+	{
+		"de"			"mp_teamcashawards 1 ERROR -->CSGO RADAR"
+	}
+	"mp_teamcashawards 1 ERROR -->CSGO RADAR"
+	{
+		"de"			"mp_teamcashawards 1 ERROR -->CSGO RADAR"
+	}
+}

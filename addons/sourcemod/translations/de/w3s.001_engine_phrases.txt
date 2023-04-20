@@ -1,0 +1,122 @@
+// w3s.001_engine_phrases.txt
+
+"Phrases"
+{
+	// War3Source_001_Configuration.sp
+	"0 disabled / 1 enabled\nDisables all War3Source based text."
+	{
+		"de"			"0 disabled / 1 enabled\nDisables all War3Source based text."
+	}
+	"the game wants 100-166, but I'm sure it can be anything"
+	{
+		"de"			"the game wants 100-166, but I'm sure it can be anything."
+	}
+	"1 to Allow Instant Race Change or 0 if not"
+	{
+		"de"			"1 to Allow Instant Race Change or 0 if not."
+	}
+	"0 disabled / 1 enabled\nPauses all War3Source stuff, so plugins can be reloaded easier."
+	{
+		"de"			"0 disabled / 1 enabled\nPauses all War3Source stuff, so plugins can be reloaded easier."
+	}
+	"0 disabled / 1 enabled\nallows developer to have developer access."
+	{
+		"de"			"0 disabled / 1 enabled\nallows developer to have developer access."
+	}
+	"0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc."
+	{
+		"de"			"0 disabled / 1 enabled\nallows developer to bypass race restrictions, etc."
+	}
+	"9999.0 to disable speed limit. Must be a float.\nControls the overall speed limit of Warcraft, and allows TF2 speed bonuses to exceed it."
+	{
+		"de"			"9999.0 to disable speed limit. Must be a float.\nControls the overall speed limit of Warcraft, and allows TF2 speed bonuses to exceed it."
+	}
+	"0 disabled / 1 enabled\nallows maxspeed debug messages."
+	{
+		"de"			"0 disabled / 1 enabled\nallows maxspeed debug messages."
+	}
+	"Should race limit restrictions per team be enabled"
+	{
+		"de"			"Should race limit restrictions per team be enabled"
+	}
+	"change game description to war3source? does not affect player connect"
+	{
+		"de"			"change game description to war3source? does not affect player connect"
+	}
+	"Do you want use metric system? 1-Yes, 0-No"
+	{
+		"de"			"Do you want use metric system? 1-Yes, 0-No"
+	}
+	"1 = enabled, 0 is default."
+	{
+		"de"			"1 = enabled, 0 is default."
+	}
+	"War3Source:EVO has now been paused."
+	{
+		"de"			"{yellow}War3Source:EVO has now been paused."
+	}
+	"War3Source:EVO has now resumed."
+	{
+		"de"			"{yellow}War3Source:EVO has now resumed."
+	}
+	"Scout {amount} | Soldier {amount} | Demo {amount}"
+	{
+		"de"			"{yellow}Scout {1} | Soldier {2} | Demo {3}"
+	}
+	"Medic {amount} | Pyro {amount} | Spy {amount}"
+	{
+		"de"			"{yellow}Medic {1} | Pyro {2} | Spy {3}"
+	}
+	"Engineer {amount} | Sniper {amount} | Heavy {amount}"
+	{
+		"de"			"{yellow}Engineer {1} | Sniper {2} | Heavy {3}"
+	}
+
+	// War3Source_001_GameEvents.sp
+	"MapChangingCount = {decimal}"
+	{
+		"de"			"MapChangingCount = {1}"
+	}
+	"MapChanging = false"
+	{
+		"de"			"MapChanging = false"
+	}
+
+	// War3Source_001_OnMapEnd.sp
+	"MapChanging = true"
+	{
+		"de"			"MapChanging = true"
+	}
+
+	// War3Source_001_OnMapStart.sp
+	"OnMapStart Start"
+	{
+		"de"			"OnMapStart Start"
+	}
+	"OnMapStart Finished"
+	{
+		"de"			"OnMapStart Finished"
+	}
+
+	// War3Source_001_OnPluginStart.sp
+	"--------------------------OnPluginStart----------------------"
+	{
+		"de"			"--------------------------OnPluginStart----------------------"
+	}
+	"SDK Hooks is not loaded."
+	{
+		"de"			"SDK Hooks is not loaded."
+	}
+	"There was a failure in initiating event hooks."
+	{
+		"de"			"There was a failure in initiating event hooks."
+	}
+	"There was a failure in initiating console variables."
+	{
+		"de"			"There was a failure in initiating console variables."
+	}
+	"Plugin finished loading.\n-------------------END OnPluginStart-------------------"
+	{
+		"de"			"Plugin finished loading.\n-------------------END OnPluginStart-------------------"
+	}
+}

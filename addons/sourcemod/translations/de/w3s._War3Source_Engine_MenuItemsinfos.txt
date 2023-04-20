@@ -1,0 +1,28 @@
+// w3s._War3Source_Engine_MenuItemsinfos.txt
+
+// War3Source_Engine_MenuItemsinfo.sp
+// War3Source_Engine_MenuItemsinfo2.sp
+// War3Source_Engine_MenuItemsinfo3.sp
+"Phrases"
+{
+	"Shopmenu items"
+	{
+		"de"			"Shopmenu items"
+	}
+	"Item: {item} (identifier: {id})"
+	{
+		"de"			"Item: {1} (identifier: {2})"
+	}
+	"Shopmenu items 2"
+	{
+		"de"			"Shopmenu items 2"
+	}
+	"Shopmenu items 3"
+	{
+		"de"			"Shopmenu items 3"
+	}
+	"Item: {item} (identifier: {id}) {item3desc}"
+	{
+		"de"			"Item: {1} (identifier: {2})\n{3}"
+	}
+}

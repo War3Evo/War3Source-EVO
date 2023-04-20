@@ -1,0 +1,74 @@
+
+// w3s._War3Source_Engine_XPGold.txt
+
+"Phrases"
+{
+	"You must first select a race with changerace!"
+	{
+		"de"			"You must first select a race with changerace!"
+	}
+	"{racename} - Level {amount} - {amount} XP / {amount} XP"
+	{
+		"de"			"{1} - Level {2} - {3} XP / {4} XP"
+	}
+	"{racename} - Level {amount} - {amount} XP"
+	{
+		"de"			"{1} - Level {2} - {3} XP"
+	}
+	"dying bravely in combat!"
+	{
+		"de"			"dying bravely in combat!"
+	}
+	"being on the winning team"
+	{
+		"de"			"being on the winning team"
+	}
+	"No XP is given when less than {amount} players are playing"
+	{
+		"de"			"No XP is given when less than {1} players are playing"
+	}
+	"You have gained {amount} XP and {amount} gold for {award}"
+	{
+		"de"			"You have gained {1} XP and {2} gold for {3}"
+	}
+	"You have gained {amount} XP for {award}"
+	{
+		"de"			"You have gained {1} XP for {3}"
+	}
+	"You have gained {amount} gold for {award}"
+	{
+		"de"			"You have gained {1} gold for {3}"
+	}
+	"You have lost {amount} XP and {amount} gold for {award}"
+	{
+		"de"			"You have lost {1} XP and {2} gold for {3}"
+	}
+	"You have lost {amount} XP for {award}"
+	{
+		"de"			"You have lost {1} XP for {3}"
+	}
+	"You have lost {amount} gold for {award}"
+	{
+		"de"			"You have lost {1} gold for {3}"
+	}
+	"a kill"
+	{
+		"de"			"a kill"
+	}
+	"assisting a kill"
+	{
+		"de"			"assisting a kill"
+	}
+	"A skill is over the maximum level allowed for your current level, please reselect your skills"
+	{
+		"de"			"A skill is over the maximum level allowed for your current level, please reselect your skills"
+	}
+	"A ultimate is over the maximum level allowed for your current level, please reselect your skills"
+	{
+		"de"			"A ultimate is over the maximum level allowed for your current level, please reselect your skills"
+	}
+	"You are now level {amount}"
+	{
+		"de"			"You are now level {1}"
+	}
+}

@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"uber50_ItemName"
+	{
+		"de"		"+50 Uber"
+	}
+	"uber50_ItemShortDesc"
+	{
+		"de"		"+50 uber"
+	}
+	"uber50_ItemDesc"
+	{
+		"de"		"+50 Uber is added to your current uber."
+	}
+}

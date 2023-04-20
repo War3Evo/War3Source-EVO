@@ -1,0 +1,9 @@
+// w3s._War3Source_Engine_Cyborg.txt
+
+"Phrases"
+{
+	"Cyborgs can't feel the effects of these items!"
+	{
+		"de"			"Cyborgs can't feel the effects of these items!"
+	}
+}

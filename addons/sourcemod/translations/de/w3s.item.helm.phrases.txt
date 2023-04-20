@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"helm_ItemName"
+	{
+		"de"		"Helm of the Black Legion"
+	}
+	"helm_ItemShortDesc"
+	{
+		"de"		"no headshots to self"
+	}
+	"helm_ItemDesc"
+	{
+		"de"		"Protects you from Headshots"
+	}
+}

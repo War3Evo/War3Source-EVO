@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"tome_ItemName"
+	{
+		"de"		"Tome of Experience"
+	}
+	"tome_ItemShortDesc"
+	{
+		"de"		"gold for xp"
+	}
+	"tome_ItemDesc"
+	{
+		"de"		"Automatically gain experience, this item is used on purchase."
+	}
+}

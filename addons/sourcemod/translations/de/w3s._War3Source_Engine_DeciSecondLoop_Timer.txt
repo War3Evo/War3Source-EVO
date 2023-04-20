@@ -1,0 +1,9 @@
+// w3s._War3Source_Engine_DeciSecondLoop_Timer.txt
+
+"Phrases"
+{
+	"Loading XP... Please Wait"
+	{
+		"de"		"Loading XP... Please Wait"
+	}	
+}

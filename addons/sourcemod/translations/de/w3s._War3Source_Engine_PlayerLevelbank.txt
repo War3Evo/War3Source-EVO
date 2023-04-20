@@ -1,0 +1,65 @@
+
+// w3s._War3Source_Engine_PlayerLevelbank.txt
+
+"Phrases"
+{
+	// You have {amount} levels in your levelbank
+	"You have {amount} levels in your levelbank"
+	{
+		"de"			"You have {1} levels in your levelbank"
+	}
+	// Add a level to curret race from bank:
+	"Add a level to curret race from bank:"
+	{
+		"de"			"Add a level to curret race from bank:"
+	}
+	// You do not have any levels in the level bank
+	"You do not have any levels in the level bank"
+	{
+		"de"			"You do not have any levels in the level bank"
+	}
+	// You do not have a valid race
+	"You do not have a valid race"
+	{
+		"de"			"You do not have a valid race"
+	}
+	// Your race is already maxed
+	"Your race is already maxed"
+	{
+		"de"			"Your race is already maxed"
+	}
+	"Successfully added a level to race"
+	{
+		"de"			"Successfully added a level to race"
+	}
+	// Found client %d in game with steamid %s, giving adding to level bank levels now
+	"Found client {client} in game with steamid {steamid}, giving adding to level bank levels now"
+	{
+		"de"			"Found client {1} in game with steamid {2}, giving adding to level bank levels now"
+	}
+	// steamid appears to exist
+	"steamid appears to exist"
+	{
+		"de"			"steamid appears to exist"
+	}
+	// ERR: NO RESULT SET, player never joined the server once? Add Failed
+	"ERR: NO RESULT SET, player never joined the server once? Add Failed"
+	{
+		"de"			"ERR: NO RESULT SET, player never joined the server once? Add Failed"
+	}
+	// no sql error, success? %s    new level bank: %d
+	"no sql error, success? {steamid}    new level bank: {newlevelbank}"
+	{
+		"de"			"no sql error, success? {1}    new level bank: {2}"
+	}
+	// Failed: no database connection
+	"Failed: no database connection"
+	{
+		"de"			"Failed: no database connection"
+	}
+	// You have {amount} levels in your levelbank, say levelbank to use them
+	"You have {amount} levels in your levelbank, say levelbank to use them"
+	{
+		"de"			"You have {1} levels in your levelbank, say levelbank to use them"
+	}
+}

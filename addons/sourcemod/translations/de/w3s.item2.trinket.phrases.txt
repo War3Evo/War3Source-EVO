@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"trinket_temName"
+	{
+		"de"		"Trinket of Restoration"
+	}
+	"trinket_ItemShortDesc"
+	{
+		"de"		"+0.5 HP regeneration"
+	}
+	"trinket_temDesc"
+	{
+		"de"		"+0.5 HP regeneration."
+	}
+}

@@ -1,0 +1,58 @@
+
+// w3s.War3Source_Engine_ShowMOTD.txt
+
+"Phrases"
+{
+	"{white}To {orange}bind a key{white} you must {orange}enable your developer console."
+	{
+		"de"				"{white}To {orange}bind a key{white} you must {orange}enable your developer console."
+	}
+	"{orange}Escape {white}-> {orange}Options {white}-> {orange}Advanced {white}-> {orange}[ ] Enable Developer Console"
+	{
+		"de"				"{orange}Escape {white}-> {orange}Options {white}-> {orange}Advanced {white}-> {orange}[ ] Enable Developer Console"
+	}
+	"{white}Hit {orange}'`'{white} to open the console. It is {orange}the button to the left of 1."
+	{
+		"de"				"{white}Hit {orange}'`'{white} to open the console. It is {orange}the button to the left of 1."
+	}
+	"{white}Type {orange}bind j +ultimate {white}into the console."
+	{
+		"de"				"{white}Type {orange}bind j +ultimate {white}into the console."
+	}
+	"{white}Type {orange}bind k +ability {white}into the console."
+	{
+		"de"				"{white}Type {orange}bind k +ability {white}into the console."
+	}
+	"{white}To see a {orange}video {white}of this process, type {orange}!bind2"
+	{
+		"de"				"{white}To see a {orange}video {white}of this process, type {orange}!bind2"
+	}
+	"Ask an admin."
+	{
+		"de"				"Ask an admin."
+	}
+	"{lightseagreen}This is a {darkgreen}War3Mod{lightseagreen} server."
+	{
+		"de"				"{lightseagreen}This is a {darkgreen}War3Mod{lightseagreen} server."
+	}
+	"{lightseagreen}You gain {darkgreen}exp{lightseagreen} and {darkgreen}gold{lightseagreen} for kills and map objectives."
+	{
+		"de"				"{lightseagreen}You gain {darkgreen}exp{lightseagreen} and {darkgreen}gold{lightseagreen} for kills and map objectives."
+	}
+	"{lightseagreen}When you {darkgreen}level up{lightseagreen} you can gain new {darkgreen}skills."
+	{
+		"de"				"{lightseagreen}When you {darkgreen}level up{lightseagreen} you can gain new {darkgreen}skills."
+	}
+	"{lightseagreen}Type {darkgreen}raceinfo{lightseagreen} to learn what different {darkgreen}skills {lightseagreen} each race gets!"
+	{
+		"de"				"{lightseagreen}Type {darkgreen}jobinfo{lightseagreen} to learn what different {darkgreen}skills {lightseagreen} each race gets!"
+	}
+	"{lightseagreen}Type {darkgreen}shopmenu{lightseagreen} to spend {darkgreen}gold {lightseagreen} on different {darkgreen}items."
+	{
+		"de"				"{lightseagreen}Type {darkgreen}shopmenu{lightseagreen} to spend {darkgreen}gold {lightseagreen} on different {darkgreen}items."
+	}
+	"{lightseagreen}Type {darkgreen}war3menu{lightseagreen} for the full help menu. Type {darkgreen}myinfo {lightseagreen} to see your current race info."
+	{
+		"de"				"{lightseagreen}Type {darkgreen}war3menu{lightseagreen} for the full help menu. Type {darkgreen}myinfo {lightseagreen} to see your current race info."
+	}
+}

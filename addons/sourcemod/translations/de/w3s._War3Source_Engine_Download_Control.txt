@@ -1,0 +1,41 @@
+// w3s._War3Source_Engine_Download_Control.txt
+
+"Phrases"
+{
+	"Maximum downloads CVAR {imaxdownloadsCvar} * Current Clients Connected {CurrentClientsConnected} = New Maximum Downloads {iMaxDownloads}"
+	{
+		"de"			"Maximum downloads CVAR {1} * Current Clients Connected {2} = New Maximum Downloads {3}"
+	}
+	"PRIORITY_TOP {filename}"
+	{
+		"de"			"TOP PRIORITY: {1}"
+	}
+	"PRIORITY_HIGH {filename}"
+	{
+		"de"			"HIGH PRIORITY: {1}"
+	}
+	"PRIORITY_MEDIUM {filename}"
+	{
+		"de"			"MEDIUM PRIORITY: {1}"
+	}
+	"PRIORITY_LOW {filename}"
+	{
+		"de"			"LOW PRIORITY: {1}"
+	}
+	"PRIORITY_BOTTOM {filename}"
+	{
+		"de"			"BOTTOM PRIORITY: {1}"
+	}
+	"DownloadCount {DownloadCount}"
+	{
+		"de"			"Download count {1}"
+	}
+	"{filename} Count {count} Download Count {downloadcount}"
+	{
+		"de"			"{1} Count {2} Download Count {3}"
+	}
+	"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file '{filename}' not found"
+	{
+		"de"			"War3Source_Engine_Download_Control: (War3_Internal_PreCacheSound) Sound file '{1}' not found"
+	}
+}

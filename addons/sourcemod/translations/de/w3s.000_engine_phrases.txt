@@ -1,0 +1,33 @@
+// w3s.000_engine_phrases.txt
+
+"Phrases"
+{
+	"Connecting to Database"
+	{
+		"de"			"Connecting to Database"
+	}
+	"Could not connect to Database"
+	{
+		"de"			"Could not connect to Database"
+	}
+	"SQL connection successful, driver {driver}"
+	{
+		"de"			"SQL connection successful, driver {1}"
+	}
+
+	// War3Source_000_Engine_Hint.sp
+	"This game does not support hint text."
+	{
+		"de"		"This game does not support hint text."
+	}
+	"Could not find string table: ParticleEffectNames"
+	{
+		"de"		"Could not find string table: ParticleEffectNames"
+	}
+	"Could not find particle: {name}"
+	{
+		"de"		"Could not find particle: {1}"
+	}
+
+
+}

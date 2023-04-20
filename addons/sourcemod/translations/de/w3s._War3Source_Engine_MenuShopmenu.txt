@@ -1,0 +1,218 @@
+
+// w3s._War3Source_Engine_MenuShopmenu.txt
+
+"Phrases"
+{
+	//War3Source_Engine_MenuShopmenu.sp
+	"Enable/Disable shopitem categorys"
+	{
+		"de"			"Enable/Disable shopitem categorys"
+	}
+	"Select an item category to browse. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"de"			"Select an item category to browse. You have {1}/{2} items"
+	}
+	"{min}/{max} gold."
+	{
+		"de"			"{1}/{2} gold."
+	}
+	"{min}/{max} gold ${csmoney} money"
+	{
+		"de"			"{1}/{2} gold ${3} money."
+	}
+	"Select an item to buy. You have {amount}/{amount} items"
+	{
+		"de"		"Select an item to buy. You have {1}/{2} items"
+	}
+	">{itemname} - {cost} Gold"
+	{
+		"de"			">{1} - {2} Gold"
+	}
+	"{itemname} - {cost} Gold"
+	{
+		"de"			"{1} - {2} Gold"
+	}
+	"{steamgroup} *Steam Group Required*"
+	{
+		"de"			"{1} *Steam Group Required*"
+	}
+	"{steamgroup} <Steam Group Enabled>"
+	{
+		"de"			"{1} <Steam Group Enabled>"
+	}
+	"You do not have enough money on hand + in the bank to buy that many tomes!"
+	{
+		"de"			"You do not have enough money on hand + in the bank to buy that many tomes!"
+	}
+	"Withdrew {WithdrewAmount} Gold from bank. New Balance: {War3_GetGoldBank} Gold."
+	{
+		"de"			"Withdrew {green}{1} {default}Gold from bank. New Balance: {green}{2} {default}Gold."
+	}
+	"{amount} Tomes of Experience"
+	{
+		"de"		"{1} Tomes of Experience"
+	}
+	"{itemname} is disabled"
+	{
+		"de"			"{1} is disabled"
+	}
+	"{itemname} is disabled for {racename}"
+	{
+		"de"			"{1} is disabled for {2}"
+	}
+	"You already own {itemname}"
+	{
+		"de"			"You already own {1}"
+	}
+	"You cannot afford {itemname}"
+	{
+		"de"			"You cannot afford {1}"
+	}
+	"You have {cred} Gold. It costs {cost_num} Gold."
+	{
+		"de"			"You have {1} Gold. It costs {2} Gold."
+	}
+	"You have successfully purchased {itemname}"
+	{
+		"de"			"You have successfully purchased {1}"
+	}
+	"You have gained {amount} XP"
+	{
+		"de"			"You have gained {1} XP"
+	}
+	"You already have a max of {maxitems} items. Choose an item to replace with {itemname}. You will not get gold back"
+	{
+		"de"			"You already have a max of {1} items. Choose an item to replace with {2}. You will not get gold back"
+	}
+	"Your current balance on hand is {gold}/{maxgold} Gold"
+	{
+		"de"			"Your current balance on hand is {1}/{2} Gold"
+	}
+	"You have successfully purchased {itemname}"
+	{
+		"de"			"You have successfully purchased {1}"
+	}
+	// War3Source_Engine_MenuShopmenu2.sp
+	"You have {amount} Diamonds"
+	{
+		"de"			"You have {1} Diamonds"
+	}
+	">{itemname} - {amount} Diamonds"
+	{
+		"de"			">{1} - {2} Diamonds"
+	}
+	"{itemname} - {amount} Diamonds"
+	{
+		"de"			"{1} - {2} Diamonds"
+	}
+	"You may not purchase {itemname} when you are {racename}"
+	{
+		"de"			"You may not purchase {1} when you are {2}"
+	}
+	"You already have a max of {amount} items. Choose an item to replace with {itemname}. You will not get Diamonds back"
+	{
+		"de"			"You already have a max of {1} items. Choose an item to replace with {2}. You will not get Diamonds back"
+	}
+	// War3Source_Engine_MenuShopmenu3.sp
+	"Select an item category to browse. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"de"			"Select an item category to browse. You have {1}/{2} items"
+	}
+	"You have {amount} Platinum."
+	{
+		"de"			"You have {1} Platinum."
+	}
+	"Current race: {racename}"
+	{
+		"de"			"Current race: {1}"
+	}
+	"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!"
+	{
+		"de"			"GEMS BOUGHT WILL BE BOUND TO YOUR CURRENT RACE!!!"
+	}
+	"Red - raw power/offense"
+	{
+		"de"			"Red - raw power/offense"
+	}
+	"Yellow - modifiers"
+	{
+		"de"			"Yellow - modifiers"
+	}
+	"Blue - recovery"
+	{
+		"de"			"Blue - recovery"
+	}
+	"Orange - matching red and yellow"
+	{
+		"de"			"Orange - matching red and yellow"
+	}
+	"Green - matching yellow and blue"
+	{
+		"de"			"Green - matching yellow and blue"
+	}
+	"Purple - matching blue and red"
+	{
+		"de"			"Purple - matching blue and red"
+	}
+	"Select an [{category}] item to buy. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"de"			"Select an [{1}] item to buy. You have {2}/{3} items"
+	}
+	"Select an item to buy. You have {itemsowned}/{maxitemsperplayer} items"
+	{
+		"de"			"Select an item to buy. You have {1}/{2} items"
+	}
+	"You have {amount} Platinum"
+	{
+		"de"			"You have {1} Platinum"
+	}
+	">{itemname} - {amount} Platinum"
+	{
+		"de"			">{1} - {2} Platinum"
+	}
+	"{itemname} - {amount} Platinum"
+	{
+		"de"			"{1} - {2} Platinum"
+	}
+	"You already have a [{item}] item. Choose an item to replace with [{item}] {otheritem}. You will not get Platinum back!"
+	{
+		"de"			"You already have a [{1}] item.\nChoose an item to replace with [{2}] {3}.\nYou will not get Platinum back!"
+	}
+	"You can only have one [{item}] item per race."
+	{
+		"de"			"You can only have one [{1}] item per race."
+	}
+	"You already have a max of {itemcount} items. Choose an item to replace with [{item}] {otheritem}. You will not get Platinum back"
+	{
+		"de"			"You already have a max of {1} items.\nChoose an item to replace with [{2}] {3}.\nYou will not get Platinum back"
+	}
+	"You can only have one [{itemname}] item per race."
+	{
+		"de"			"You can only have one [{1}] item per race."
+	}
+	// \nInformation for {playername}\n \n{racename} has:\n \n
+	"Information for {playername} {racename} has:"
+	{
+		"de"			"\nInformation for {1}\n \n{2} has:\n \n"
+	}
+	"{TmpStr}: lvl {itemlvl}/{maxlvl}"
+	{
+		"de"			"{1}: lvl {2}/{3}"
+	}
+	"{TmpStr}: lvl {itemlvl}/{maxlvl} xp: {itemxp}/{itemMaxXp}"
+	{
+		"de"			"{1}: lvl {2}/{3} xp: {4}/{5}"
+	}
+	"BUY [{category}] {str}?\n\n{str3}"
+	{
+		"de"			"BUY [{1}] {2}?\n\n{3}"
+	}
+	"Costs: {cost} Platinum"
+	{
+		"de"			"Costs: {1} Platinum"
+	}
+	"Buy"
+	{
+		"de"			"Buy"
+	}
+}

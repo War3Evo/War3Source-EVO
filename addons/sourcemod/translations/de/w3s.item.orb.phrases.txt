@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"orb_ItemName"
+	{
+		"de"		"Orb of Frost"
+	}
+	"orb_ItemShortDesc"
+	{
+		"de"		"slow on hit"
+	}
+	"orb_ItemDesc"
+	{
+		"de"		"Gives you a chance to slow down your target enemy when you hit him/her."
+	}
+}

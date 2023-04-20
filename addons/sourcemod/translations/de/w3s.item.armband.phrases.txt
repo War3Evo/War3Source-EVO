@@ -1,0 +1,15 @@
+"Phrases"
+{
+	"armband_ItemName"
+	{
+		"de"		"Armband of Repetition"
+	}
+	"armband_ItemShortDesc"
+	{
+		"de"		"15% more dps"
+	}
+	"armband_ItemDesc"
+	{
+		"de"		"Increases attack speed by 15%\n(does not stack with other attack speed increases)"
+	}
+}

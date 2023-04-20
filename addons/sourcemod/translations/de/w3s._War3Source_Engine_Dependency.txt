@@ -1,0 +1,25 @@
+// w3s._War3Source_Engine_Dependency.txt
+
+"Phrases"
+{
+	"number of params is invalid!"
+	{
+		"de"			"number of params is invalid!"
+	}
+	"required race is invalid!"
+	{
+		"de"			"required race is invalid!"
+	}
+	"race is invalid!"
+	{
+		"de"			"race is invalid!"
+	}
+	"iFindRace is invalid!"
+	{
+		"de"			"iFindRace is invalid!"
+	}
+	"iRace is invalid!"
+	{
+		"de"			"iRace is invalid!"
+	}
+}
