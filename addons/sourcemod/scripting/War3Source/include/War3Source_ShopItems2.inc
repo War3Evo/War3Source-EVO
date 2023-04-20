@@ -8,7 +8,7 @@
 
 //Shopmenu 2 item class
 native War3_CreateShopItem2(String:name[],String:shortname[],String:shortdesc[],String:desc[],cost);
-native War3_CreateShopItem2T(String:shortname[],String:shortdesc[],cost);
+native War3_CreateShopItem2T(String:shortname[],cost);
 
 //native W3CreateShopItem2(String:name[],String:shortname[],String:desc[],cost,translated=false);
 //translated
