@@ -75,10 +75,11 @@ public NWar3_CreateShopItem2T(Handle:plugin,numParams)
 
 	decl String:name[64],String:shortname[16],String:shortdesc[256],String:desc[512];
 	GetNativeString(1,shortname,sizeof(shortname));
-	GetNativeString(2,shortdesc,sizeof(shortdesc));
-	new cost=GetNativeCell(3);
+	new cost=GetNativeCell(2);
 
 	Format(name,sizeof(name),"%s_temName",shortname);
+
+	Format(shortdesc,sizeof(shortdesc),"%s_ItemShortDesc",shortname);
 
 	Format(desc,sizeof(desc),"%s_temDesc",shortname);
 
@@ -272,9 +273,18 @@ GetItem2Shortname(itemid,String:str[],len){
 	strcopy(str,len,item2Shortname[itemid]);
 
 }
-GetItem2Shortdesc(itemid,String:str[],len){
-	strcopy(str,len,item2ShortDescription[itemid]);
+GetItem2Shortdesc(itemid,String:str[],len)
+{
+	if(item2Translated[itemid])
+	{
 
+		char buf[64];
+		Format(buf,sizeof(buf),"%T",item2ShortDescription[itemid],GetTrans());
+		strcopy(str,len,buf);
+	}
+	else{
+		strcopy(str,len,item2ShortDescription[itemid]);
+	}
 }
 GetItem2Description(itemid,String:str[],len){
 	if(item2Translated[itemid]){
